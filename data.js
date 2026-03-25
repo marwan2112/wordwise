@@ -5175,6 +5175,67 @@ window.lessonsData = {
 ]
 },
 
+"101": {
+"title": "Renewable Energy",
+"content": "",
+"terms": [
+  ]
+},
+"102": {
+"title": "Entrepreneurship",
+"content": "",
+"terms": [
+  ]
+},
+"103": {
+"title": "Digital Literacy  ",
+"content": "",
+"terms": [
+  ]
+},
+"104": {
+"title": "Ethical Dilemmas",
+"content": "",
+"terms": [
+  ]
+},
+"105": {
+"title": "Cultural Heritage",
+"content": "",
+"terms": [
+  ]
+},
+"106": {
+"title": "Migration and Diversity",
+"content": "",
+"terms": [
+  ]
+},
+"107": {
+"title": "Media Literac",
+"content": "",
+"terms": [
+  ]
+},
+"108": {
+"title": "Artificial Intelligence Ethics",
+"content": "",
+"terms": [
+  ]
+},
+"109": {
+"title": "Financial Literacy",
+"content": "",
+"terms": [
+  ]
+},
+"110": {
+"title": "Sustainable Living",
+"content": "",
+"terms":[
+  ]
+},
+
 "301": {
   "title": "Cooperative Sovereignty in a Globalized Era",
   "content": "Recent decades have witnessed a fundamental transformation in the concept of national sovereignty, driven by the growing power of international institutions and multilateral agreements. Sovereignty, in its classical sense, has long been associated with the absolute right of a state to control its territory, resources, and population without external interference. However, the emergence of transnational challenges such as climate change, cyber-organized crime, and global pandemics has starkly revealed the limits of this concept. States are no longer capable of confronting these challenges individually, which has compelled them to negotiate and cede portions of their authority to global governance bodies. This shift propels a model known as 'cooperative sovereignty' or 'sovereignty as responsibility'. Proponents argue that in an interconnected world, the ultimate exercise of sovereignty is the ability to participate effectively in international systems, shape global norms, and protect one's citizens from threats that originate beyond borders. This requires a pragmatic surrender of absolute autonomy in exchange for influence and collective security. For example, a country adhering to World Trade Organization rules accepts constraints on its domestic trade policies but gains access to a dispute resolution mechanism and a vast global market. Critics, however, view this evolution with suspicion, interpreting it as a dilution of statehood and a potential infringement on national self-determination. They warn that powerful states or unaccountable bureaucracies in international organizations can dominate the rule-setting process, effectively imposing their will on smaller nations under the guise of global cooperation. The tension between the imperative for international collaboration and the desire to preserve national autonomy and identity forms the core of contemporary geopolitical discourse, influencing debates on issues ranging from migration and environmental treaties to data privacy regulations and military alliances.",
