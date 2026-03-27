@@ -1913,7 +1913,9 @@ async prepareGapFill() {
 }
 
 async generateGapFillWithGemini(targetWord, lessonContent, allEnglishWords) {
-    const apiKey = "AIzaSyCH3c8dCPaRMz6YJza1udtLUE6zT5TwcSY"; // تأكد من صحة هذا المفتاح
+    // ضع مفتاحك الجديد هنا بين علامتي التنصيص
+    const apiKey = "AIzaSyBN32_9EMJfoKERfa2Q-LQLoddJl3EtmHc";  // استبدل هذا بالمفتاح الجديد
+
     const prompt = `أنت منشئ أسئلة تعلم اللغة الإنجليزية. 
 الكلمة المستهدفة: "${targetWord}". 
 نص الدرس (للاستئناس فقط، لا تنقل جملة منه): """${lessonContent}""". 
@@ -1933,6 +1935,7 @@ async generateGapFillWithGemini(targetWord, lessonContent, allEnglishWords) {
 تأكد من أن الخيارات تحتوي على الكلمة الصحيحة مرة واحدة فقط، ولا تكرر الخيارات.`;
 
     try {
+        console.log('جاري الاتصال بـ Gemini...');
         const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -1940,8 +1943,7 @@ async generateGapFillWithGemini(targetWord, lessonContent, allEnglishWords) {
                 contents: [{ parts: [{ text: prompt }] }],
                 generationConfig: {
                     temperature: 0.7,
-                    maxOutputTokens: 250,
-                    topP: 0.95
+                    maxOutputTokens: 250
                 },
                 safetySettings: [
                     { category: "HARM_CATEGORY_HARASSMENT", threshold: "BLOCK_NONE" },
@@ -1953,9 +1955,11 @@ async generateGapFillWithGemini(targetWord, lessonContent, allEnglishWords) {
         });
 
         if (!response.ok) {
-            const errorData = await response.text();
-            console.error('Gemini API error:', response.status, errorData);
-            throw new Error(`HTTP ${response.status}: ${errorData}`);
+            const errorText = await response.text();
+            console.error('❌ خطأ من Google:', response.status, errorText);
+            // عرض رسالة واضحة للمستخدم
+            alert(`فشل الاتصال بالذكاء الاصطناعي (${response.status}). تأكد من صحة المفتاح في الكود ومن اتصال الإنترنت.`);
+            return null;
         }
 
         const data = await response.json();
@@ -1968,17 +1972,21 @@ async generateGapFillWithGemini(targetWord, lessonContent, allEnglishWords) {
                 if (!parsed.originalSentence) {
                     parsed.originalSentence = parsed.sentence.replace('______', targetWord);
                 }
+                console.log('✅ تم إنشاء السؤال بنجاح');
                 return parsed;
             } else {
-                console.warn('Invalid response structure:', parsed);
+                console.warn('تنسيق JSON غير صحيح:', parsed);
+                alert('الرد من الذكاء الاصطناعي غير صحيح. حاول مرة أخرى.');
                 return null;
             }
         } else {
-            console.warn('No JSON found in response:', text);
+            console.warn('لم يتم العثور على JSON في الرد:', text);
+            alert('الرد من الذكاء الاصطناعي غير مفهوم. حاول مرة أخرى.');
             return null;
         }
     } catch (e) {
-        console.error('Gemini request failed:', e);
+        console.error('❌ خطأ في الاتصال:', e);
+        alert('حدث خطأ في الاتصال بالإنترنت أو أن المفتاح غير صالح. تأكد من صحة المفتاح.');
         return null;
     }
 }
