@@ -3102,4 +3102,64 @@ class App {
                 return `<div class="reading-card" style="text-align: center;">
                     <h3>📝 ملء الفراغ</h3>
                     <p>لفتح هذا التمرين تحتاج 75 💎 لؤلؤة (مرة واحدة فقط للدرس).</p>
-                    <p>رصيد
+                    <p>رصيدك الحالي: ${this.userCoins} 💎</p>
+                    <button class="hero-btn" onclick="appInstance.unlockGapFill('${this.selectedLessonId}')" style="background: #8b5cf6;">فتح (75 💎)</button>
+                </div>`;
+            }
+            if (!this.gapFillCurrentQuestion) {
+                return `<div class="reading-card"><p>جاري تحضير السؤال...</p></div>`;
+            }
+            const q = this.gapFillCurrentQuestion;
+            return `<div class="reading-card">
+                <h3>📝 اختر الكلمة المناسبة لملء الفراغ</h3>
+                <div class="gapfill-sentence">
+                    ${q.text}
+                </div>
+                <div class="quiz-options">
+                    ${this.gapFillOptions.map(opt => `
+                        <button class="quiz-opt-btn gapfill-opt-btn"
+                                data-action="gapfillAnswer"
+                                data-english="${opt}">
+                            ${opt}
+                        </button>
+                    `).join('')}
+                </div>
+                ${this.gapFillResult !== null ? `
+                    <div class="spelling-feedback ${this.gapFillResult === 'correct' ? 'correct-feedback' : 'wrong-feedback'}">
+                        ${this.gapFillResult === 'correct' ? '✅ إجابة صحيحة!' : '❌ إجابة خاطئة!'}
+                    </div>
+                    <div class="gapfill-explanation" style="margin: 15px 0; padding: 10px; background: #eef2ff; border-radius: 8px; font-size: 0.95rem;">
+                        ${this.gapFillExplanation}
+                    </div>
+                    <div class="gapfill-controls">
+                        <button class="hero-btn" data-action="gapfillNext" style="background:#3b82f6;">➡️ التالي</button>
+                    </div>
+                ` : ''}
+            </div>`;
+        }
+
+        return `<div style="text-align:center; padding:50px;">جاري التحميل...</div>`;
+    }
+
+    toggleTheme() {
+        this.theme = this.theme === 'light' ? 'dark' : 'light';
+        document.documentElement.setAttribute('data-theme', this.theme);
+        localStorage.setItem('theme', this.theme);
+        const logoImg = document.querySelector('.logo-container img');
+        if (logoImg) {
+            logoImg.src = 'wordwise_logo.png';
+        }
+        this.render();
+    }
+
+    resetPlacement() {
+        this.placementStep = 0;
+        this.placementScore = 0;
+        this.currentDifficulty = 'A1';
+        this.placementHistory = [];
+        this.currentPlacementDetails = [];
+        this.render();
+    }
+}
+
+const appInstance = new App();
