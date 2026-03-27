@@ -312,24 +312,24 @@ class App {
                 background-color: #444 !important;
             }
             /* إصلاح مشكلة النص في المدخلات */
-            [data-theme="dark"] input,
-            [data-theme="dark"] textarea,
-            [data-theme="dark"] .spelling-input,
-            [data-theme="dark"] #newEng,
-            [data-theme="dark"] #newArb,
-            [data-theme="dark"] #ocrText,
-            [data-theme="dark"] #newLessonTitle,
-            [data-theme="dark"] #profileName,
-            [data-theme="dark"] #profileAge,
-            [data-theme="dark"] #profilePassword,
-            [data-theme="dark"] #purchaseName,
-            [data-theme="dark"] #purchaseEmail,
-            [data-theme="dark"] #purchasePhone {
-                background-color: #2d2d2d !important;
-                color: #ffffff !important;
-                border-color: #555 !important;
-            }
-            [data-theme="dark"] .spelling-input::placeholder,
+[data-theme="dark"] input,
+[data-theme="dark"] textarea,
+[data-theme="dark"] .spelling-input,
+[data-theme="dark"] #newEng,
+[data-theme="dark"] #newArb,
+[data-theme="dark"] #ocrText,
+[data-theme="dark"] #newLessonTitle,
+[data-theme="dark"] #profileName,
+[data-theme="dark"] #profileAge,
+[data-theme="dark"] #profilePassword,
+[data-theme="dark"] #purchaseName,
+[data-theme="dark"] #purchaseEmail,
+[data-theme="dark"] #purchasePhone {
+    background-color: #2d2d2d !important;
+    color: #000000 !important;
+    border-color: #555 !important;
+}
+[data-theme="dark"] .spelling-input::placeholder,
             [data-theme="dark"] input::placeholder,
             [data-theme="dark"] textarea::placeholder {
                 color: #aaa !important;
