@@ -762,6 +762,31 @@ addThemeStyles() {
             justify-content: center;
             margin-top: 20px;
         }
+        /* إصلاح إضافي للوضع الليلي */
+[data-theme="dark"] .quiz-question-row h2,
+[data-theme="dark"] .quiz-opt-btn,
+[data-theme="dark"] .spelling-input,
+[data-theme="dark"] .gapfill-sentence,
+[data-theme="dark"] .gapfill-sentence *,
+[data-theme="dark"] .spelling-feedback,
+[data-theme="dark"] .gapfill-controls + div {
+    color: #ffffff !important;
+}
+
+/* خلفية الأزرار في الوضع الليلي */
+[data-theme="dark"] .quiz-opt-btn {
+    background-color: #333 !important;
+    border-color: #555 !important;
+}
+[data-theme="dark"] .quiz-opt-btn.correct-answer {
+    background-color: #10b981 !important;
+}
+[data-theme="dark"] .quiz-opt-btn.wrong-answer {
+    background-color: #ef4444 !important;
+}
+[data-theme="dark"] .quiz-opt-btn.other-option {
+    background-color: #6b7280 !important;
+}
     `;
     document.head.appendChild(style);
 }
