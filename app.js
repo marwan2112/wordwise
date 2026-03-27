@@ -781,27 +781,55 @@ class App {
         document.body.appendChild(modalDiv);
     }
 
+    // دالة خاصة لعرض نافذة تأكيد الشراء بأسلوب جميل (مثل نتيجة الاختبار)
+    showCoinPurchaseModal(price, onConfirm) {
+        const modalDiv = document.createElement('div');
+        modalDiv.className = 'modal-overlay';
+        modalDiv.onclick = (e) => {
+            if (e.target === modalDiv) modalDiv.remove();
+        };
+        modalDiv.innerHTML = `
+            <div class="modal-content result-modal">
+                <div class="result-icon">💎</div>
+                <div class="result-message" style="font-size:1.1rem; margin-bottom:10px;">
+                    هل تريد فتح هذه الميزة بـ ${price} لؤلؤة؟
+                </div>
+                <div style="display:flex; gap:10px; justify-content:center;">
+                    <button class="hero-btn" id="confirmPurchaseBtn" style="background:#10b981;">تأكيد</button>
+                    <button class="hero-btn" id="cancelPurchaseBtn" style="background:#ef4444;">إلغاء</button>
+                </div>
+            </div>
+        `;
+        document.body.appendChild(modalDiv);
+        document.getElementById('confirmPurchaseBtn').onclick = () => {
+            modalDiv.remove();
+            onConfirm(true);
+        };
+        document.getElementById('cancelPurchaseBtn').onclick = () => {
+            modalDiv.remove();
+            onConfirm(false);
+        };
+    }
+
     // ================== دوال فتح الدروس ==================
     unlockLessonWithCoins(lessonId) {
         if (this.userCoins >= 100) {
-            if (confirm('هل تريد فتح هذا الدرس باستخدام 100 لؤلؤة؟')) {
-                this.userCoins -= 100;
-                this.unlockedLessons.push(String(lessonId));
-                this.saveUserData();
-                this.updateBadgesAndTier();
-                this.showCustomModal('success', '🎉', 'تم فتح الدرس بنجاح!');
-                // الانتقال مباشرة للدرس
-                this.selectedLessonId = lessonId;
-                this.currentPage = 'reading';
-                this.isUnlockTest = false;
-                this.render();
-                return true;
-            } else {
-                return false;
-            }
+            this.showCoinPurchaseModal(100, (confirmed) => {
+                if (confirmed) {
+                    this.userCoins -= 100;
+                    this.unlockedLessons.push(String(lessonId));
+                    this.saveUserData();
+                    this.updateBadgesAndTier();
+                    this.showCustomModal('success', '🎉', `تم فتح الدرس بنجاح!`);
+                    // الانتقال مباشرة للدرس
+                    this.selectedLessonId = lessonId;
+                    this.currentPage = 'reading';
+                    this.isUnlockTest = false;
+                    this.render();
+                }
+            });
         } else {
             this.showCustomModal('error', '❌', 'ليس لديك لآلئ كافية! تحتاج 100 لؤلؤة.');
-            return false;
         }
     }
 
@@ -1123,58 +1151,55 @@ class App {
     unlockListening(lessonId) {
         if (this.listeningUnlocked[lessonId]) return true;
         if (this.userCoins >= 50) {
-            if (confirm('هل تريد فتح اختبار الاستماع لهذا الدرس باستخدام 50 لؤلؤة؟')) {
-                this.userCoins -= 50;
-                this.listeningUnlocked[lessonId] = true;
-                this.saveUserData();
-                this.prepareListeningQuiz();
-                this.render();
-                return true;
-            } else {
-                return false;
-            }
+            this.showCoinPurchaseModal(50, (confirmed) => {
+                if (confirmed) {
+                    this.userCoins -= 50;
+                    this.listeningUnlocked[lessonId] = true;
+                    this.saveUserData();
+                    this.prepareListeningQuiz();
+                    this.render();
+                }
+            });
         } else {
             alert(`❌ ليس لديك لآلئ كافية! تحتاج 50 لؤلؤة. رصيدك الحالي: ${this.userCoins}`);
-            return false;
         }
+        return false;
     }
 
     unlockJumble(lessonId) {
         if (this.jumbleUnlocked[lessonId]) return true;
         if (this.userCoins >= 50) {
-            if (confirm('هل تريد فتح تمرين ترتيب الجمل لهذا الدرس باستخدام 50 لؤلؤة؟')) {
-                this.userCoins -= 50;
-                this.jumbleUnlocked[lessonId] = true;
-                this.saveUserData();
-                this.prepareJumble();
-                this.render();
-                return true;
-            } else {
-                return false;
-            }
+            this.showCoinPurchaseModal(50, (confirmed) => {
+                if (confirmed) {
+                    this.userCoins -= 50;
+                    this.jumbleUnlocked[lessonId] = true;
+                    this.saveUserData();
+                    this.prepareJumble();
+                    this.render();
+                }
+            });
         } else {
             alert(`❌ ليس لديك لآلئ كافية! تحتاج 50 لؤلؤة. رصيدك الحالي: ${this.userCoins}`);
-            return false;
         }
+        return false;
     }
 
     unlockSpelling(lessonId) {
         if (this.spellingUnlocked[lessonId]) return true;
         if (this.userCoins >= 50) {
-            if (confirm('هل تريد فتح تمرين الكتابة لهذا الدرس باستخدام 50 لؤلؤة؟')) {
-                this.userCoins -= 50;
-                this.spellingUnlocked[lessonId] = true;
-                this.saveUserData();
-                this.prepareSpelling();
-                this.render();
-                return true;
-            } else {
-                return false;
-            }
+            this.showCoinPurchaseModal(50, (confirmed) => {
+                if (confirmed) {
+                    this.userCoins -= 50;
+                    this.spellingUnlocked[lessonId] = true;
+                    this.saveUserData();
+                    this.prepareSpelling();
+                    this.render();
+                }
+            });
         } else {
             alert(`❌ ليس لديك لآلئ كافية! تحتاج 50 لؤلؤة. رصيدك الحالي: ${this.userCoins}`);
-            return false;
         }
+        return false;
     }
 
     // ================== دوال تمرين الكتابة (Spelling) ==================
@@ -1972,20 +1997,19 @@ class App {
     unlockGapFill(lessonId) {
         if (this.gapFillUnlocked[lessonId]) return true;
         if (this.userCoins >= 75) {
-            if (confirm('هل تريد فتح تمرين ملء الفراغ لهذا الدرس باستخدام 75 لؤلؤة؟')) {
-                this.userCoins -= 75;
-                this.gapFillUnlocked[lessonId] = true;
-                this.saveUserData();
-                this.prepareGapFill();
-                this.render();
-                return true;
-            } else {
-                return false;
-            }
+            this.showCoinPurchaseModal(75, (confirmed) => {
+                if (confirmed) {
+                    this.userCoins -= 75;
+                    this.gapFillUnlocked[lessonId] = true;
+                    this.saveUserData();
+                    this.prepareGapFill();
+                    this.render();
+                }
+            });
         } else {
             alert(`❌ ليس لديك لآلئ كافية! تحتاج 75 لؤلؤة. رصيدك الحالي: ${this.userCoins}`);
-            return false;
         }
+        return false;
     }
 
     // ================== الأحداث العامة ==================
@@ -2580,7 +2604,6 @@ class App {
     }
 
     getView(lesson, allTerms) {
-        // صفحة المصادقة
         if (this.currentPage === 'auth') {
             return `<main class="main-content">
                 <div class="auth-container">
@@ -2599,7 +2622,6 @@ class App {
             </main>`;
         }
 
-        // الصفحة الرئيسية
         if (this.currentPage === 'home') {
             const progressLevel = this.userStats.xp % 100;
             const totalLessons = this.unlockedLessons ? this.unlockedLessons.length : 0;
@@ -2642,7 +2664,6 @@ class App {
             </main>`;
         }
 
-        // صفحة الملف الشخصي
         if (this.currentPage === 'profile') {
             const englishLevel = this.getEnglishLevel();
             const totalLessons = this.unlockedLessons.length;
@@ -2687,7 +2708,6 @@ class App {
             </main>`;
         }
 
-        // صفحة سجل الاختبارات
         if (this.currentPage === 'test_history') {
             return `<main class="main-content">
                 <button class="hero-btn" data-action="goHome" style="margin-bottom:15px; background:#64748b;">← الرجوع للرئيسية</button>
@@ -2714,7 +2734,6 @@ class App {
             </main>`;
         }
 
-        // اختبار المستوى
         if (this.currentPage === 'placement_test') {
             if (this.placementStep >= 35) {
                 return `<div class="reading-card result-card">
@@ -2766,7 +2785,6 @@ class App {
             </div>`;
         }
 
-        // تفاصيل اختبار مستوى
         if (this.currentPage === 'placement_details' && this.viewingPlacementDetails) {
             const details = this.viewingPlacementDetails.details || [];
             return `<div class="reading-card">
@@ -2786,7 +2804,6 @@ class App {
             </div>`;
         }
 
-        // قائمة الدروس
         if (this.currentPage === 'lessons') {
             const list = window.lessonsList[this.selectedLevel] || [];
             let testLevelParam = '';
@@ -2810,7 +2827,6 @@ class App {
             </main>`;
         }
 
-        // خيار فتح الدرس
         if (this.currentPage === 'unlock_choice') {
             return `<div class="reading-card" style="text-align:center;">
                 <h3>🔓 فتح الدرس</h3>
@@ -2823,7 +2839,6 @@ class App {
             </div>`;
         }
 
-        // نصوصي الخاصة
         if (this.currentPage === 'custom_lessons_view') {
             const lessons = Object.values(this.customLessons);
             return `<main class="main-content">
@@ -2851,7 +2866,6 @@ class App {
             </main>`;
         }
 
-        // صفحة القراءة
         if (this.currentPage === 'reading') {
             const audioSrc = lesson.audio || `audio/${lesson.id}.mp3`;
 
@@ -2882,7 +2896,6 @@ class App {
             </main>`;
         }
 
-        // صفحة البطاقات
         if (this.currentPage === 'flashcards') {
             const active = allTerms.filter(t => !this.masteredWords.includes(String(t.id)) && !this.hiddenFromCards.includes(String(t.id)));
             if (active.length === 0) {
@@ -2916,7 +2929,6 @@ class App {
             </main>`;
         }
 
-        // اختبار الكلمات (Quiz)
         if (this.currentPage === 'quiz') {
             if (this.quizIndex >= this.quizQuestions.length) {
                 const pass = (this.quizScore / this.quizQuestions.length) >= 0.75;
@@ -2946,7 +2958,6 @@ class App {
             </div>`;
         }
 
-        // ترتيب الجمل
         if (this.currentPage === 'jumble') {
             if (!this.jumbleUnlocked[this.selectedLessonId]) {
                 return `<div class="reading-card" style="text-align: center;">
@@ -2979,7 +2990,6 @@ class App {
             </div>`;
         }
 
-        // الاستماع
         if (this.currentPage === 'listening') {
             if (!this.listeningUnlocked[this.selectedLessonId]) {
                 return `<div class="reading-card" style="text-align: center;">
@@ -3005,7 +3015,6 @@ class App {
             </div>`;
         }
 
-        // الكتابة
         if (this.currentPage === 'spelling') {
             if (!this.spellingUnlocked[this.selectedLessonId]) {
                 return `<div class="reading-card" style="text-align: center;">
@@ -3036,7 +3045,6 @@ class App {
             </div>`;
         }
 
-        // الاختبار الشامل للمستوى
         if (this.currentPage === 'level_test') {
             if (!this.levelTestCurrentQuestion) {
                 return `<div class="reading-card"><p>جاري تحضير الاختبار...</p></div>`;
@@ -3068,7 +3076,6 @@ class App {
             </div>`;
         }
 
-        // نتيجة الاختبار الشامل
         if (this.currentPage === 'level_test_result') {
             return `<div class="reading-card">
                 <h2 style="text-align:center;">🏁 نتيجة الاختبار الشامل</h2>
@@ -3079,7 +3086,6 @@ class App {
             </div>`;
         }
 
-        // إضافة درس (كاميرا)
         if (this.currentPage === 'addLesson') {
             return `<main class="main-content" style="height: 90vh; display: flex; flex-direction: column; gap: 10px;">
                 <button class="hero-btn" data-action="goHome" style="background:#64748b; flex-shrink: 0;">← رجوع للرئيسية</button>
@@ -3095,7 +3101,6 @@ class App {
             </main>`;
         }
 
-        // تمرين ملء الفراغ (Gap Fill)
         if (this.currentPage === 'gapfill') {
             if (!this.gapFillUnlocked[this.selectedLessonId]) {
                 return `<div class="reading-card" style="text-align: center;">
@@ -3137,4 +3142,28 @@ class App {
             </div>`;
         }
 
-        return `<div style
+        return `<div style="text-align:center; padding:50px;">جاري التحميل...</div>`;
+    }
+
+    toggleTheme() {
+        this.theme = this.theme === 'light' ? 'dark' : 'light';
+        document.documentElement.setAttribute('data-theme', this.theme);
+        localStorage.setItem('theme', this.theme);
+        const logoImg = document.querySelector('.logo-container img');
+        if (logoImg) {
+            logoImg.src = 'wordwise_logo.png';
+        }
+        this.render();
+    }
+
+    resetPlacement() {
+        this.placementStep = 0;
+        this.placementScore = 0;
+        this.currentDifficulty = 'A1';
+        this.placementHistory = [];
+        this.currentPlacementDetails = [];
+        this.render();
+    }
+}
+
+const appInstance = new App();
