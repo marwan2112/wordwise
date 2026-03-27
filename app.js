@@ -11,14 +11,13 @@ class App {
         this.jumbleArabicHint = '';
         this.jumbleCurrentSentence = '';
 
-        // إحصائيات وسجلات المستخدم
+        // بيانات المستخدم (سيتم تحميلها من localStorage)
         this.userStats = { xp: 0, level: 1, badges: [], tier: 'برونزي' };
         this.placementResults = [];
         this.placementFullHistory = [];
         this.currentPlacementDetails = [];
         this.viewingPlacementDetails = null;
 
-        // العملات
         this.userCoins = 0;
         this.showCoinModal = false;
 
@@ -55,12 +54,11 @@ class App {
         this.gapFillCurrentQuestion = null;
         this.gapFillOptions = [];
         this.gapFillAnswered = false;
-        this.gapFillResult = null; // 'correct' or 'wrong'
+        this.gapFillResult = null;
         this.gapFillTimer = null;
         this.gapFillUnlocked = {};
-        this.gapFillUsedWords = [];
+        this.gapFillExplanation = '';
         this.gapFillNextCount = 0;
-        this.gapFillExplanation = ''; // نص الشرح
 
         // الاختبار الشامل
         this.levelTestLevel = null;
@@ -130,7 +128,7 @@ class App {
         }
     }
 
-    // ================== دوال أساسية (مصادقة، حفظ، تحميل) ==================
+    // ================== دوال أساسية ==================
     hashPassword(password) {
         return btoa(password);
     }
@@ -313,11 +311,28 @@ class App {
             [data-theme="dark"] .quiz-opt-btn:hover {
                 background-color: #444 !important;
             }
+            /* إصلاح مشكلة النص في المدخلات */
             [data-theme="dark"] input,
-            [data-theme="dark"] textarea {
+            [data-theme="dark"] textarea,
+            [data-theme="dark"] .spelling-input,
+            [data-theme="dark"] #newEng,
+            [data-theme="dark"] #newArb,
+            [data-theme="dark"] #ocrText,
+            [data-theme="dark"] #newLessonTitle,
+            [data-theme="dark"] #profileName,
+            [data-theme="dark"] #profileAge,
+            [data-theme="dark"] #profilePassword,
+            [data-theme="dark"] #purchaseName,
+            [data-theme="dark"] #purchaseEmail,
+            [data-theme="dark"] #purchasePhone {
                 background-color: #2d2d2d !important;
                 color: #ffffff !important;
                 border-color: #555 !important;
+            }
+            [data-theme="dark"] .spelling-input::placeholder,
+            [data-theme="dark"] input::placeholder,
+            [data-theme="dark"] textarea::placeholder {
+                color: #aaa !important;
             }
             [data-theme="dark"] .flashcard-front,
             [data-theme="dark"] .flashcard-back {
@@ -331,28 +346,12 @@ class App {
             [data-theme="dark"] .welcome-banner {
                 background: linear-gradient(135deg, #1a1a2e, #16213e) !important;
             }
-            /* إصلاح النص في الوضع الليلي */
             [data-theme="dark"] .scrollable-text,
             [data-theme="dark"] .reading-card p,
             [data-theme="dark"] .reading-card div,
             [data-theme="dark"] .quiz-question-row h2,
             [data-theme="dark"] .gapfill-sentence {
                 color: #ffffff !important;
-            }
-            [data-theme="dark"] .spelling-input,
-            [data-theme="dark"] #newEng,
-            [data-theme="dark"] #newArb,
-            [data-theme="dark"] #ocrText,
-            [data-theme="dark"] #newLessonTitle {
-                color: #ffffff !important;
-                background-color: #2d2d2d !important;
-            }
-            [data-theme="dark"] .spelling-input::placeholder,
-            [data-theme="dark"] #newEng::placeholder,
-            [data-theme="dark"] #newArb::placeholder,
-            [data-theme="dark"] #ocrText::placeholder,
-            [data-theme="dark"] #newLessonTitle::placeholder {
-                color: #aaa !important;
             }
 
             /* أنماط الهيدر واللوجو */
@@ -1834,7 +1833,6 @@ class App {
 
         if (this.gapFillRemaining.length === 0) {
             this.gapFillRemaining = [...available].sort(() => 0.5 - Math.random());
-            this.gapFillUsedWords = [];
         }
 
         const targetWordObj = this.gapFillRemaining[0];
@@ -1852,12 +1850,12 @@ class App {
             text: questionData.sentence,
             correct: targetWord,
             arabic: targetArabic,
-            originalSentence: questionData.originalSentence || '' // لحفظ الجملة الأصلية للشرح
+            originalSentence: questionData.originalSentence || ''
         };
         this.gapFillOptions = questionData.options;
         this.gapFillAnswered = false;
         this.gapFillResult = null;
-        this.gapFillExplanation = ''; // سيتم تعبئتها عند الإجابة
+        this.gapFillExplanation = '';
         this.render();
     }
 
@@ -1934,6 +1932,7 @@ class App {
 
         const isCorrect = (selectedEnglish.trim().toLowerCase() === this.gapFillCurrentQuestion.correct.trim().toLowerCase());
         this.playTone(isCorrect ? 'correct' : 'error');
+        this.gapFillResult = isCorrect ? 'correct' : 'wrong';
 
         // تلوين الأزرار
         const allOptions = document.querySelectorAll('.gapfill-opt-btn');
@@ -1952,12 +1951,8 @@ class App {
         if (isCorrect) {
             this.gapFillRemaining.shift();
             this.updateProgress(5);
-            this.gapFillResult = 'correct';
-            // إنشاء شرح
             this.gapFillExplanation = `✅ إجابة صحيحة! كلمة "${this.gapFillCurrentQuestion.correct}" تعني "${this.gapFillCurrentQuestion.arabic}" في العربية. الجملة الأصلية: "${this.gapFillCurrentQuestion.originalSentence || this.gapFillCurrentQuestion.text.replace('______', this.gapFillCurrentQuestion.correct)}"`;
         } else {
-            this.gapFillResult = 'wrong';
-            // إنشاء شرح
             this.gapFillExplanation = `❌ إجابة خاطئة. الإجابة الصحيحة هي "${this.gapFillCurrentQuestion.correct}" (${this.gapFillCurrentQuestion.arabic}). الجملة الأصلية: "${this.gapFillCurrentQuestion.originalSentence || this.gapFillCurrentQuestion.text.replace('______', this.gapFillCurrentQuestion.correct)}"`;
         }
 
@@ -2585,6 +2580,7 @@ class App {
     }
 
     getView(lesson, allTerms) {
+        // صفحة المصادقة
         if (this.currentPage === 'auth') {
             return `<main class="main-content">
                 <div class="auth-container">
@@ -2603,6 +2599,7 @@ class App {
             </main>`;
         }
 
+        // الصفحة الرئيسية
         if (this.currentPage === 'home') {
             const progressLevel = this.userStats.xp % 100;
             const totalLessons = this.unlockedLessons ? this.unlockedLessons.length : 0;
@@ -2627,15 +2624,14 @@ class App {
                         </div>
                     </div>
 
-                    <!-- عرض الأوسمة -->
                     ${this.getBadgesDisplay()}
 
                     <div style="margin-top: 10px; font-size:0.9rem;">التاج الحالي: ${this.userStats.tier}</div>
                     <div style="margin-top: 5px; font-size:0.9rem;">الدروس المفتوحة: ${totalLessons} | الكلمات المتقنة: ${totalMastered}</div>
                 </div>
 
-                <button class="hero-btn" data-action="setPage" data-param="addLesson" style="width:100%; background:#8b5cf6; margin-top:15px; box-shadow: 0 4px 6px -1px rgba(139, 92, 246, 0.3);">📸 إضافة من الكاميرا أو الهاتف</button>
-                <button class="hero-btn" data-action="setPage" data-param="placement_test" style="width:100%; background:#ec4899; margin:15px 0; box-shadow: 0 4px 6px -1px rgba(236, 72, 153, 0.3);">🧠 اختبار مستوى </button>
+                <button class="hero-btn" data-action="setPage" data-param="addLesson" style="width:100%; background:#8b5cf6; margin-top:15px;">📸 إضافة من الكاميرا أو الهاتف</button>
+                <button class="hero-btn" data-action="setPage" data-param="placement_test" style="width:100%; background:#ec4899; margin:15px 0;">🧠 اختبار مستوى </button>
 
                 <div class="features-grid">
                     ${window.levels.map(l => `<div class="feature-card" data-action="selLevel" data-param="${l.id}"><h3>${l.icon} ${l.name}</h3></div>`).join('')}
@@ -2646,6 +2642,7 @@ class App {
             </main>`;
         }
 
+        // صفحة الملف الشخصي
         if (this.currentPage === 'profile') {
             const englishLevel = this.getEnglishLevel();
             const totalLessons = this.unlockedLessons.length;
@@ -2690,6 +2687,7 @@ class App {
             </main>`;
         }
 
+        // صفحة سجل الاختبارات
         if (this.currentPage === 'test_history') {
             return `<main class="main-content">
                 <button class="hero-btn" data-action="goHome" style="margin-bottom:15px; background:#64748b;">← الرجوع للرئيسية</button>
@@ -2716,6 +2714,7 @@ class App {
             </main>`;
         }
 
+        // اختبار المستوى
         if (this.currentPage === 'placement_test') {
             if (this.placementStep >= 35) {
                 return `<div class="reading-card result-card">
@@ -2767,6 +2766,7 @@ class App {
             </div>`;
         }
 
+        // تفاصيل اختبار مستوى
         if (this.currentPage === 'placement_details' && this.viewingPlacementDetails) {
             const details = this.viewingPlacementDetails.details || [];
             return `<div class="reading-card">
@@ -2786,6 +2786,7 @@ class App {
             </div>`;
         }
 
+        // قائمة الدروس
         if (this.currentPage === 'lessons') {
             const list = window.lessonsList[this.selectedLevel] || [];
             let testLevelParam = '';
@@ -2809,6 +2810,7 @@ class App {
             </main>`;
         }
 
+        // خيار فتح الدرس
         if (this.currentPage === 'unlock_choice') {
             return `<div class="reading-card" style="text-align:center;">
                 <h3>🔓 فتح الدرس</h3>
@@ -2821,6 +2823,7 @@ class App {
             </div>`;
         }
 
+        // نصوصي الخاصة
         if (this.currentPage === 'custom_lessons_view') {
             const lessons = Object.values(this.customLessons);
             return `<main class="main-content">
@@ -2848,6 +2851,7 @@ class App {
             </main>`;
         }
 
+        // صفحة القراءة
         if (this.currentPage === 'reading') {
             const audioSrc = lesson.audio || `audio/${lesson.id}.mp3`;
 
@@ -2878,6 +2882,7 @@ class App {
             </main>`;
         }
 
+        // صفحة البطاقات
         if (this.currentPage === 'flashcards') {
             const active = allTerms.filter(t => !this.masteredWords.includes(String(t.id)) && !this.hiddenFromCards.includes(String(t.id)));
             if (active.length === 0) {
@@ -2911,6 +2916,7 @@ class App {
             </main>`;
         }
 
+        // اختبار الكلمات (Quiz)
         if (this.currentPage === 'quiz') {
             if (this.quizIndex >= this.quizQuestions.length) {
                 const pass = (this.quizScore / this.quizQuestions.length) >= 0.75;
@@ -2940,6 +2946,7 @@ class App {
             </div>`;
         }
 
+        // ترتيب الجمل
         if (this.currentPage === 'jumble') {
             if (!this.jumbleUnlocked[this.selectedLessonId]) {
                 return `<div class="reading-card" style="text-align: center;">
@@ -2972,6 +2979,7 @@ class App {
             </div>`;
         }
 
+        // الاستماع
         if (this.currentPage === 'listening') {
             if (!this.listeningUnlocked[this.selectedLessonId]) {
                 return `<div class="reading-card" style="text-align: center;">
@@ -2997,6 +3005,7 @@ class App {
             </div>`;
         }
 
+        // الكتابة
         if (this.currentPage === 'spelling') {
             if (!this.spellingUnlocked[this.selectedLessonId]) {
                 return `<div class="reading-card" style="text-align: center;">
@@ -3027,6 +3036,7 @@ class App {
             </div>`;
         }
 
+        // الاختبار الشامل للمستوى
         if (this.currentPage === 'level_test') {
             if (!this.levelTestCurrentQuestion) {
                 return `<div class="reading-card"><p>جاري تحضير الاختبار...</p></div>`;
@@ -3058,6 +3068,7 @@ class App {
             </div>`;
         }
 
+        // نتيجة الاختبار الشامل
         if (this.currentPage === 'level_test_result') {
             return `<div class="reading-card">
                 <h2 style="text-align:center;">🏁 نتيجة الاختبار الشامل</h2>
@@ -3068,6 +3079,7 @@ class App {
             </div>`;
         }
 
+        // إضافة درس (كاميرا)
         if (this.currentPage === 'addLesson') {
             return `<main class="main-content" style="height: 90vh; display: flex; flex-direction: column; gap: 10px;">
                 <button class="hero-btn" data-action="goHome" style="background:#64748b; flex-shrink: 0;">← رجوع للرئيسية</button>
@@ -3083,7 +3095,7 @@ class App {
             </main>`;
         }
 
-        // صفحة gapfill
+        // تمرين ملء الفراغ (Gap Fill)
         if (this.currentPage === 'gapfill') {
             if (!this.gapFillUnlocked[this.selectedLessonId]) {
                 return `<div class="reading-card" style="text-align: center;">
@@ -3125,28 +3137,4 @@ class App {
             </div>`;
         }
 
-        return `<div style="text-align:center; padding:50px;">جاري التحميل...</div>`;
-    }
-
-    toggleTheme() {
-        this.theme = this.theme === 'light' ? 'dark' : 'light';
-        document.documentElement.setAttribute('data-theme', this.theme);
-        localStorage.setItem('theme', this.theme);
-        const logoImg = document.querySelector('.logo-container img');
-        if (logoImg) {
-            logoImg.src = 'wordwise_logo.png';
-        }
-        this.render();
-    }
-
-    resetPlacement() {
-        this.placementStep = 0;
-        this.placementScore = 0;
-        this.currentDifficulty = 'A1';
-        this.placementHistory = [];
-        this.currentPlacementDetails = [];
-        this.render();
-    }
-}
-
-const appInstance = new App();
+        return `<div style
