@@ -28,12 +28,7 @@
 [data-theme="dark"] .header {
     background-color: #0f3460;
 }
-[data-theme="dark"] input,
-[data-theme="dark"] textarea {
-    background-color: #1e293b;
-    color: #000000;
-    border-color: #475569;
-}
+/* تم نقل هذه القواعد إلى addThemeStyles في app.js */
 body {
     background: var(--bg-main);
     color: var(--text-main);
