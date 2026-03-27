@@ -1877,25 +1877,22 @@ async prepareGapFill() {
     const targetWord = targetWordObj.english;
     const targetArabic = targetWordObj.arabic;
 
-    // محاولة توليد سؤال باستخدام Gemini (يجب أن تكون الجملة من الذكاء الاصطناعي)
+    // عرض رسالة انتظار
+    this.showCustomModal('info', '🤖', 'جاري إنشاء سؤال بالذكاء الاصطناعي...');
+
     let questionData = await this.generateGapFillWithGemini(targetWord, lesson.content, allTerms.map(t => t.english));
 
     if (!questionData) {
-        // في حال فشل Gemini، نعرض رسالة ونعيد المحاولة مرة واحدة
-        this.showCustomModal('error', '⚠️', 'فشل الاتصال بالذكاء الاصطناعي. جارٍ إعادة المحاولة...');
-        await new Promise(resolve => setTimeout(resolve, 2000));
-        questionData = await this.generateGapFillWithGemini(targetWord, lesson.content, allTerms.map(t => t.english));
-        if (!questionData) {
-            alert('تعذر إنشاء السؤال. تأكد من اتصال الإنترنت وحاول مرة أخرى.');
-            return;
-        }
+        // فشل تماماً – عرض رسالة خطأ واضحة
+        this.showCustomModal('error', '❌', 'فشل الاتصال بالذكاء الاصطناعي. تأكد من مفتاح API في الكود ومن اتصال الإنترنت.');
+        return;
     }
 
     // التأكد من أن الخيارات تحتوي على الكلمة الصحيحة وثلاث كلمات أخرى من مفردات الدرس
     const otherTerms = allTerms.filter(t => t.english !== targetWord).map(t => t.english);
     const shuffledOther = [...otherTerms].sort(() => 0.5 - Math.random());
     const wrongOptions = shuffledOther.slice(0, 3);
-    while (wrongOptions.length < 3) wrongOptions.push(targetWord + '?'); // fallback
+    while (wrongOptions.length < 3) wrongOptions.push(targetWord + '?');
     const options = [targetWord, ...wrongOptions];
     this.shuffleArray(options);
 
@@ -1914,8 +1911,9 @@ async prepareGapFill() {
     this.gapFillExplanationVisible = false;
     this.render();
 }
+
 async generateGapFillWithGemini(targetWord, lessonContent, allEnglishWords) {
-    const apiKey = "AIzaSyA61WmhHPYBwojm50jKg5LEppeKja7NDaQ";
+    const apiKey = "AIzaSyCH3c8dCPaRMz6YJza1udtLUE6zT5TwcSY"; // تأكد من صحة هذا المفتاح
     const prompt = `أنت منشئ أسئلة تعلم اللغة الإنجليزية. 
 الكلمة المستهدفة: "${targetWord}". 
 نص الدرس (للاستئناس فقط، لا تنقل جملة منه): """${lessonContent}""". 
@@ -1940,10 +1938,26 @@ async generateGapFillWithGemini(targetWord, lessonContent, allEnglishWords) {
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
                 contents: [{ parts: [{ text: prompt }] }],
-                generationConfig: { temperature: 0.7, maxOutputTokens: 250 }
+                generationConfig: {
+                    temperature: 0.7,
+                    maxOutputTokens: 250,
+                    topP: 0.95
+                },
+                safetySettings: [
+                    { category: "HARM_CATEGORY_HARASSMENT", threshold: "BLOCK_NONE" },
+                    { category: "HARM_CATEGORY_HATE_SPEECH", threshold: "BLOCK_NONE" },
+                    { category: "HARM_CATEGORY_SEXUALLY_EXPLICIT", threshold: "BLOCK_NONE" },
+                    { category: "HARM_CATEGORY_DANGEROUS_CONTENT", threshold: "BLOCK_NONE" }
+                ]
             })
         });
-        if (!response.ok) throw new Error('API error');
+
+        if (!response.ok) {
+            const errorData = await response.text();
+            console.error('Gemini API error:', response.status, errorData);
+            throw new Error(`HTTP ${response.status}: ${errorData}`);
+        }
+
         const data = await response.json();
         const text = data.candidates[0].content.parts[0].text;
         const jsonMatch = text.match(/\{[\s\S]*\}/);
@@ -1951,19 +1965,24 @@ async generateGapFillWithGemini(targetWord, lessonContent, allEnglishWords) {
             const parsed = JSON.parse(jsonMatch[0]);
             if (parsed.sentence && parsed.options && parsed.options.includes(targetWord)) {
                 while (parsed.options.length < 4) parsed.options.push('???');
-                // التأكد من أن originalSentence موجود
                 if (!parsed.originalSentence) {
                     parsed.originalSentence = parsed.sentence.replace('______', targetWord);
                 }
                 return parsed;
+            } else {
+                console.warn('Invalid response structure:', parsed);
+                return null;
             }
+        } else {
+            console.warn('No JSON found in response:', text);
+            return null;
         }
-        throw new Error('Invalid response');
     } catch (e) {
-        console.warn('Gemini failed:', e);
+        console.error('Gemini request failed:', e);
         return null;
     }
-}    generateLocalGapFill(targetWord, targetArabic, lessonContent, allTerms) {
+}
+    generateLocalGapFill(targetWord, targetArabic, lessonContent, allTerms) {
         const sentences = lessonContent.split(/[.!?]+/).map(s => s.trim()).filter(s => s.length > 0);
         const regex = new RegExp(`\\b${this.escapeRegex(targetWord)}\\b`, 'i');
         let originalSentence = sentences.find(s => regex.test(s));
