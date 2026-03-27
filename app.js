@@ -280,35 +280,50 @@ addThemeStyles() {
     const style = document.createElement('style');
     style.id = styleId;
     style.textContent = `
-        /* ========== أنماط الوضع الليلي (كاملة) ========== */
+        /* ========== الوضع الليلي ========== */
+        [data-theme="dark"] {
+            /* خلفيات عامة */
+            --bg-main: #121212;
+            --bg-card: #1e1e1e;
+            --text-main: #ffffff;
+            --text-muted: #cccccc;
+            --border-color: #444;
+        }
+
         [data-theme="dark"] body {
             background-color: #121212 !important;
             color: #ffffff !important;
         }
 
-        [data-theme="dark"] .header {
-            background-color: #1e1e1e !important;
-            border-bottom: 1px solid #333 !important;
-        }
-
+        /* جميع العناصر النصية داخل المحتوى الرئيسي تصبح بيضاء */
+        [data-theme="dark"] .main-content,
         [data-theme="dark"] .reading-card,
         [data-theme="dark"] .feature-card,
         [data-theme="dark"] .quiz-box,
         [data-theme="dark"] .flashcard-container,
         [data-theme="dark"] .jumble-card,
-        [data-theme="dark"] .spelling-card {
+        [data-theme="dark"] .spelling-card,
+        [data-theme="dark"] .profile-container,
+        [data-theme="dark"] .auth-card,
+        [data-theme="dark"] .badges-container,
+        [data-theme="dark"] .gapfill-sentence,
+        [data-theme="dark"] .scrollable-text {
             background-color: #1e1e1e !important;
             color: #ffffff !important;
             border-color: #444 !important;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.5) !important;
         }
 
-        /* جميع النصوص داخل البطاقات تكون بيضاء */
+        /* جميع النصوص داخل هذه الحاويات تصبح بيضاء */
         [data-theme="dark"] .reading-card *,
+        [data-theme="dark"] .feature-card *,
         [data-theme="dark"] .quiz-box *,
         [data-theme="dark"] .flashcard-container *,
         [data-theme="dark"] .jumble-card *,
-        [data-theme="dark"] .spelling-card * {
+        [data-theme="dark"] .spelling-card *,
+        [data-theme="dark"] .profile-container *,
+        [data-theme="dark"] .auth-card *,
+        [data-theme="dark"] .badges-container *,
+        [data-theme="dark"] .scrollable-text * {
             color: #ffffff !important;
         }
 
@@ -316,20 +331,7 @@ addThemeStyles() {
         [data-theme="dark"] input,
         [data-theme="dark"] textarea,
         [data-theme="dark"] .spelling-input,
-        [data-theme="dark"] #newEng,
-        [data-theme="dark"] #newArb,
-        [data-theme="dark"] #ocrText,
-        [data-theme="dark"] #newLessonTitle,
-        [data-theme="dark"] #profileName,
-        [data-theme="dark"] #profileAge,
-        [data-theme="dark"] #profilePassword,
-        [data-theme="dark"] #purchaseName,
-        [data-theme="dark"] #purchaseEmail,
-        [data-theme="dark"] #purchasePhone,
-        [data-theme="dark"] input[type="text"],
-        [data-theme="dark"] input[type="email"],
-        [data-theme="dark"] input[type="password"],
-        [data-theme="dark"] input[type="number"] {
+        [data-theme="dark"] input:not([type="checkbox"]):not([type="radio"]) {
             background-color: #2d2d2d !important;
             color: #000000 !important;
             border-color: #555 !important;
@@ -338,6 +340,12 @@ addThemeStyles() {
         [data-theme="dark"] input::placeholder,
         [data-theme="dark"] textarea::placeholder {
             color: #aaa !important;
+        }
+
+        /* الهيدر والأزرار */
+        [data-theme="dark"] .header {
+            background-color: #1e1e1e !important;
+            border-bottom: 1px solid #333 !important;
         }
 
         [data-theme="dark"] .hero-btn,
@@ -368,15 +376,23 @@ addThemeStyles() {
             background: linear-gradient(135deg, #1a1a2e, #16213e) !important;
         }
 
-        [data-theme="dark"] .scrollable-text,
-        [data-theme="dark"] .reading-card p,
-        [data-theme="dark"] .reading-card div,
-        [data-theme="dark"] .quiz-question-row h2,
-        [data-theme="dark"] .gapfill-sentence {
+        /* أنماط إضافية لضمان ظهور النصوص في الأقسام الخاصة */
+        [data-theme="dark"] .quiz-question-row h2 {
             color: #ffffff !important;
         }
 
-        /* أنماط الهيدر واللوجو */
+        [data-theme="dark"] .gapfill-sentence {
+            background: #2d2d2d !important;
+            color: #fff !important;
+        }
+
+        [data-theme="dark"] .spelling-feedback,
+        [data-theme="dark"] .gapfill-controls + div {
+            background-color: #eef2ff !important;
+            color: #000000 !important;
+        }
+
+        /* أنماط الهيدر واللوجو (العامة) */
         .header-content {
             display: flex;
             justify-content: space-between;
@@ -416,7 +432,7 @@ addThemeStyles() {
             -webkit-text-fill-color: transparent;
         }
 
-        /* أنماط صفحة Auth */
+        /* بقية الأنماط العامة (كما هي) */
         .auth-container {
             text-align: center;
             margin-bottom: 30px;
@@ -452,7 +468,6 @@ addThemeStyles() {
             margin: 0 auto;
         }
 
-        /* أنماط تمرين الكتابة */
         .spelling-input {
             width: 100%;
             padding: 15px;
@@ -478,7 +493,6 @@ addThemeStyles() {
             color: #ef4444;
         }
 
-        /* أنماط الإعلانات والشراء */
         .ad-container {
             margin: 20px 0;
             padding: 15px;
@@ -496,7 +510,6 @@ addThemeStyles() {
             margin: 10px 0;
         }
 
-        /* أنماط النافذة المنبثقة للعملات */
         .modal-overlay {
             position: fixed;
             top: 0;
@@ -586,7 +599,6 @@ addThemeStyles() {
             box-shadow: 0 5px 15px rgba(0,0,0,0.1);
         }
 
-        /* أنماط صفحة الملف الشخصي */
         .profile-container {
             display: flex;
             flex-direction: column;
@@ -662,7 +674,6 @@ addThemeStyles() {
             transition: width 0.3s;
         }
 
-        /* أنماط النوافذ المنبثقة للنتائج */
         .result-modal {
             text-align: center;
         }
@@ -677,7 +688,6 @@ addThemeStyles() {
             margin-bottom: 20px;
         }
 
-        /* أنماط خيار فتح الدرس */
         .unlock-choice {
             display: flex;
             gap: 15px;
@@ -685,7 +695,6 @@ addThemeStyles() {
             margin: 20px 0;
         }
 
-        /* أنماط الأوسمة */
         .badges-container {
             display: flex;
             gap: 10px;
@@ -747,34 +756,11 @@ addThemeStyles() {
             font-weight: bold;
         }
 
-        /* أنماط إضافية لتمرين ملء الفراغ */
-        .gapfill-sentence {
-            margin: 20px 0;
-            padding: 20px;
-            background: #f0f7ff;
-            border-radius: 12px;
-            font-size: 1.2rem;
-            text-align: center;
-            color: #000;
-        }
-
-        [data-theme="dark"] .gapfill-sentence {
-            background: #2d2d2d;
-            color: #fff;
-        }
-
         .gapfill-controls {
             display: flex;
             gap: 10px;
             justify-content: center;
             margin-top: 20px;
-        }
-
-        /* إضافة قاعدة لضمان أن جميع النصوص في الشرح تظهر بشكل صحيح في الوضع الليلي */
-        [data-theme="dark"] .spelling-feedback,
-        [data-theme="dark"] .gapfill-controls + div {
-            color: #000000 !important;
-            background-color: #eef2ff !important;
         }
     `;
     document.head.appendChild(style);
