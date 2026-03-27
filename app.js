@@ -1913,7 +1913,7 @@ async prepareGapFill() {
 }
 
 async generateGapFillWithGemini(targetWord, lessonContent, allEnglishWords) {
-    const apiKey = "AIzaSyBN32_9EMJfoKERfa2Q-LQLoddJl3EtmHc"; // ضع مفتاحك الجديد هنا
+    const apiKey = "AIzaSyCJtyYLRdLXDkx5bHQEzjkqSBdVt9Gktzg";  // ضع مفتاحك الجديد هنا
 
     const prompt = `أنت منشئ أسئلة تعلم اللغة الإنجليزية. 
 الكلمة المستهدفة: "${targetWord}". 
@@ -1933,33 +1933,46 @@ async generateGapFillWithGemini(targetWord, lessonContent, allEnglishWords) {
 }`;
 
     try {
-const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-pro:generateContent?key=${apiKey}`, {
-    method: 'POST',
+        console.log('جاري الاتصال بـ Gemini باستخدام النموذج gemini-pro...');
+        const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=${apiKey}`, {
+            method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
                 contents: [{ parts: [{ text: prompt }] }],
                 generationConfig: { temperature: 0.7, maxOutputTokens: 250 }
             })
         });
+
         if (!response.ok) {
             const errorText = await response.text();
-            console.error('❌ تفاصيل الخطأ:', response.status, errorText);
-            alert(`فشل الاتصال: ${response.status}\n${errorText.substring(0, 200)}`);
+            console.error('❌ خطأ من Google:', response.status, errorText);
+            alert(`فشل الاتصال (${response.status}). تأكد من صحة المفتاح ومن أن النموذج gemini-pro متاح.`);
             return null;
         }
+
         const data = await response.json();
         const text = data.candidates[0].content.parts[0].text;
         const jsonMatch = text.match(/\{[\s\S]*\}/);
         if (jsonMatch) {
             const parsed = JSON.parse(jsonMatch[0]);
             if (parsed.sentence && parsed.options && parsed.options.includes(targetWord)) {
+                while (parsed.options.length < 4) parsed.options.push('???');
+                if (!parsed.originalSentence) {
+                    parsed.originalSentence = parsed.sentence.replace('______', targetWord);
+                }
                 return parsed;
+            } else {
+                console.warn('تنسيق JSON غير صحيح:', parsed);
+                alert('الرد من الذكاء الاصطناعي غير صحيح. حاول مرة أخرى.');
+                return null;
             }
+        } else {
+            console.warn('لم يتم العثور على JSON في الرد:', text);
+            alert('الرد غير مفهوم. حاول مرة أخرى.');
+            return null;
         }
-        alert('الرد من الذكاء الاصطناعي غير صحيح.');
-        return null;
     } catch (e) {
-        console.error('❌ خطأ شبكة:', e);
+        console.error('❌ خطأ في الاتصال:', e);
         alert(`خطأ في الاتصال: ${e.message}`);
         return null;
     }
