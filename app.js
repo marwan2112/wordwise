@@ -1913,48 +1913,52 @@ async prepareGapFill() {
 }
 
 async generateGapFillWithGemini(targetWord, lessonContent, allEnglishWords) {
-    const apiKey = "AIzaSyCUY0Ldusj38ZENBbWLo6Nbdy3DrqjTNlo";  // ضع مفتاحك الجديد هنا
+    // ضع مفتاح Hugging Face هنا
+    const apiKey = "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"; // استبدل بالمفتاح
 
-    const prompt = `أنت منشئ أسئلة تعلم اللغة الإنجليزية. 
-الكلمة المستهدفة: "${targetWord}". 
-نص الدرس (للاستئناس فقط، لا تنقل جملة منه): """${lessonContent}""". 
-مطلوب:
-1. قم بإنشاء جملة جديدة بالكامل (ليست من النص) تناسب مستوى الدرس (A1-C2) وتستخدم الكلمة "${targetWord}" بشكل صحيح.
-2. استبدل الكلمة "${targetWord}" في الجملة بفراغ "______".
-3. قدم الجملة الأصلية (بدون فراغ) في حقل "originalSentence".
-4. قدم أربع خيارات للفراغ: الخيار الصحيح (هو نفس الكلمة) وثلاثة خيارات خاطئة. يجب أن تكون الخيارات الخاطئة من بين الكلمات الأخرى في الدرس (القائمة أدناه) إن أمكن.
-قائمة الكلمات المتاحة في الدرس (للاستخدام في الخيارات الخاطئة): ${allEnglishWords.join(', ')}
+    const prompt = `You are an English teacher. Create a new simple sentence using the word "${targetWord}". The sentence should be appropriate for the lesson level (A1-C2). Replace the word "${targetWord}" with "______" in the sentence. Also provide the original sentence without blank. Then give 4 options: the correct word and three wrong options. The wrong options should be from the list of other words in the lesson if possible: ${allEnglishWords.join(', ')}. 
 
-أعد الإجابة بتنسيق JSON كالتالي:
+Return ONLY a JSON object with the following structure:
 {
-  "sentence": "الجملة مع ______ مكان الكلمة",
-  "options": ["خيار1", "خيار2", "خيار3", "خيار4"],
-  "originalSentence": "الجملة الأصلية بدون فراغ"
-}`;
+  "sentence": "The sentence with ______ in place of the word",
+  "options": ["option1", "option2", "option3", "option4"],
+  "originalSentence": "The full sentence without blank"
+}
+The correct word must be included in the options. Do not include any explanation.`;
 
     try {
-        const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=${apiKey}`, {
+        const response = await fetch('https://api-inference.huggingface.co/models/google/flan-t5-large', {
             method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
+            headers: {
+                'Authorization': `Bearer ${apiKey}`,
+                'Content-Type': 'application/json'
+            },
             body: JSON.stringify({
-                contents: [{ parts: [{ text: prompt }] }],
-                generationConfig: { temperature: 0.7, maxOutputTokens: 250 }
+                inputs: prompt,
+                parameters: {
+                    max_length: 300,
+                    temperature: 0.7,
+                    return_full_text: false
+                }
             })
         });
 
         if (!response.ok) {
             const errorText = await response.text();
-            console.error('❌ خطأ:', response.status, errorText);
-            alert(`فشل الاتصال (${response.status}). تأكد من المفتاح ومن أن النموذج gemini-pro متاح.`);
+            console.error('❌ Hugging Face error:', response.status, errorText);
+            alert(`فشل الاتصال بـ Hugging Face (${response.status}). تأكد من المفتاح ومن اتصال الإنترنت.`);
             return null;
         }
 
         const data = await response.json();
-        const text = data.candidates[0].content.parts[0].text;
-        const jsonMatch = text.match(/\{[\s\S]*\}/);
+        let generatedText = data[0]?.generated_text || '';
+        
+        // استخراج JSON من النص المُولَّد
+        const jsonMatch = generatedText.match(/\{[\s\S]*\}/);
         if (jsonMatch) {
             const parsed = JSON.parse(jsonMatch[0]);
             if (parsed.sentence && parsed.options && parsed.options.includes(targetWord)) {
+                // تأكد من وجود 4 خيارات
                 while (parsed.options.length < 4) parsed.options.push('???');
                 if (!parsed.originalSentence) {
                     parsed.originalSentence = parsed.sentence.replace('______', targetWord);
@@ -1962,15 +1966,21 @@ async generateGapFillWithGemini(targetWord, lessonContent, allEnglishWords) {
                 return parsed;
             }
         }
-        alert('الرد غير صحيح. حاول مرة أخرى.');
-        return null;
+        
+        // إذا فشل استخراج JSON، نحاول إنشاء جملة بسيطة يدوياً (كملاذ أخير)
+        console.warn('الرد غير صحيح، استخدام جملة بسيطة');
+        const fallbackSentence = `I ______ the ${targetWord} every day.`;
+        return {
+            sentence: fallbackSentence.replace(targetWord, '______'),
+            options: [targetWord, ...allEnglishWords.filter(w => w !== targetWord).slice(0, 3)],
+            originalSentence: fallbackSentence
+        };
     } catch (e) {
-        console.error(e);
+        console.error('❌ خطأ في الاتصال:', e);
         alert(`خطأ في الاتصال: ${e.message}`);
         return null;
     }
-}
-    
+}    
     generateLocalGapFill(targetWord, targetArabic, lessonContent, allTerms) {
         const sentences = lessonContent.split(/[.!?]+/).map(s => s.trim()).filter(s => s.length > 0);
         const regex = new RegExp(`\\b${this.escapeRegex(targetWord)}\\b`, 'i');
