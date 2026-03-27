@@ -2021,7 +2021,7 @@ class App {
 
             if (action === 'ansQ') { this.handleAnswer(param, correct, btn); return; }
             if (action === 'levelTestAns') { this.handleLevelTestAnswer(param, correct, btn); return; }
-            if (action === 'gapfillAnswer') { this.handleGapFillAnswer(param); return; }
+            if (action === 'gapfillAnswer') { this.handleGapFillAnswer(btn.dataset.english); return; }
             if (action === 'gapfillNext') { this.handleGapFillNext(); return; }
 
             switch (action) {
