@@ -1,3 +1,4 @@
+/* 1. الإعدادات العامة والخطوط */
 @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap');
 
 :root {
@@ -26,6 +27,7 @@ body {
     -webkit-tap-highlight-color: transparent;
 }
 
+/* 2. الهيدر والتنقل */
 .header {
     background: #1e40af;
     color: white;
@@ -86,12 +88,14 @@ body {
     color: #1e40af;
 }
 
+/* 3. الحاوية الرئيسية */
 .main-content {
     max-width: 800px;
     margin: 0.5rem auto;
     padding: 0.5rem;
 }
 
+/* 4. البطاقات */
 .flashcard-container {
     perspective: 1000px;
     width: 100%;
@@ -135,6 +139,7 @@ body {
     word-break: break-word;
 }
 
+/* 5. خيارات الاختبار (Quiz) */
 .quiz-options {
     display: flex;
     flex-direction: column;
@@ -159,6 +164,7 @@ body {
     min-height: 70px;
     line-height: 1.4;
     word-break: break-word;
+    transition: none;
 }
 .quiz-opt-btn:hover:not(:disabled) {
     border-color: #1e40af;
@@ -169,6 +175,7 @@ body {
     cursor: not-allowed;
 }
 
+/* ألوان الإجابات */
 .correct-answer {
     background-color: #10b981 !important;
     color: white !important;
@@ -185,6 +192,7 @@ body {
     border-color: #4b5563 !important;
 }
 
+/* زر النطق */
 .quiz-question-row {
     display: flex;
     align-items: center;
@@ -219,6 +227,7 @@ body {
     justify-content: center;
 }
 
+/* 6. شبكة المستويات والدروس */
 .features-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -244,6 +253,7 @@ body {
     unicode-bidi: plaintext;
 }
 
+/* 7. الأزرار العامة */
 .hero-btn {
     background: #1e40af;
     color: white;
@@ -263,6 +273,7 @@ body {
     transform: scale(0.98);
 }
 
+/* 8. النص القرائي */
 .reading-card {
     background: white;
     padding: 1.2rem;
@@ -293,6 +304,7 @@ body {
     margin-top: 10px;
 }
 
+/* 9. صفحة الملف الشخصي */
 .profile-container {
     display: flex;
     flex-direction: column;
@@ -352,6 +364,7 @@ body {
     transition: width 0.3s;
 }
 
+/* 10. تمرين الكتابة */
 .spelling-input {
     width: 100%;
     padding: 15px;
@@ -374,6 +387,7 @@ body {
     color: #ef4444;
 }
 
+/* 11. النوافذ المنبثقة */
 .modal-overlay {
     position: fixed;
     top: 0;
@@ -439,6 +453,75 @@ body {
     transform: scale(1.02);
     box-shadow: 0 5px 15px rgba(0,0,0,0.1);
 }
+
+/* 12. سجل الاختبارات */
+.history-list {
+    max-height: 400px;
+    overflow-y: auto;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    padding: 10px;
+}
+.history-item {
+    border-bottom: 1px solid #e2e8f0;
+    padding: 12px;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+.history-item:hover {
+    background: #f1f5f9;
+}
+.history-item:last-child {
+    border-bottom: none;
+}
+
+/* 13. شاشات الجوال */
+@media (max-width: 600px) {
+    .flashcard-container { height: 280px; }
+    .flashcard-front h1, .flashcard-back h1 { font-size: 1.8rem; }
+    .quiz-opt-btn { padding: 14px; font-size: 1rem; min-height: 60px; }
+    .quiz-options { gap: 10px; }
+    .main-content { padding: 0.5rem; margin: 0.5rem auto; }
+    .features-grid { grid-template-columns: 1fr; }
+    .reading-card { padding: 1rem; font-size: 0.95rem; }
+}
+
+/* 14. أنيميشن الحذف والتحكم */
+.master-anim {
+    animation: masterFly 0.6s forwards cubic-bezier(0.4, 0, 0.2, 1);
+    pointer-events: none;
+}
+@keyframes masterFly {
+    0% { transform: translateY(0) scale(1); opacity: 1; }
+    100% { transform: translateY(-500px) scale(0) rotate(20deg); opacity: 0; background: #10b981; }
+}
+.delete-anim {
+    animation: deleteDrop 0.6s forwards ease-in;
+    pointer-events: none;
+}
+@keyframes deleteDrop {
+    0% { transform: translateY(0) scale(1); opacity: 1; }
+    100% { transform: translateY(500px) scale(0) rotate(-20deg); opacity: 0; background: #ef4444; }
+}
+.slide-next { animation: slideNext 0.4s forwards; }
+.slide-prev { animation: slidePrev 0.4s forwards; }
+@keyframes slideNext {
+    100% { transform: translateX(100%); opacity: 0; }
+}
+@keyframes slidePrev {
+    100% { transform: translateX(-100%); opacity: 0; }
+}
+.shuffle-anim-card {
+    animation: shuffle 0.6s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+}
+@keyframes shuffle {
+    0% { transform: scale(1); }
+    25% { transform: scale(0.9) rotate(-5deg); }
+    75% { transform: scale(1.1) rotate(5deg); }
+    100% { transform: scale(1); }
+}
+
+/* 15. أنماط الأوسمة */
 .badges-container {
     display: flex;
     gap: 10px;
@@ -487,70 +570,188 @@ body {
     font-size: 1rem;
     font-weight: bold;
 }
-.gapfill-controls {
-    display: flex;
-    gap: 10px;
-    justify-content: center;
-    margin-top: 20px;
+
+/* 16. أنماط تسجيل الدخول */
+.auth-container {
+    text-align: center;
+    margin-bottom: 30px;
 }
-.history-list {
-    max-height: 400px;
-    overflow-y: auto;
-    border: 1px solid #e2e8f0;
-    border-radius: 8px;
-    padding: 10px;
+.auth-container img {
+    max-width: 120px;
+    height: auto;
+    margin-bottom: 15px;
 }
-.history-item {
-    border-bottom: 1px solid #e2e8f0;
+.auth-container h1 {
+    font-size: 2.5rem;
+    margin: 0;
+    color: #1e40af;
+}
+.auth-container p {
+    font-size: 1.2rem;
+    color: #64748b;
+}
+.auth-card {
+    max-width: 400px;
+    margin: 0 auto;
+}
+.auth-input {
+    width: 100%;
     padding: 12px;
-    cursor: pointer;
-    transition: background 0.2s;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 1rem;
 }
-.history-item:hover {
-    background: #f1f5f9;
+
+/* 17. أنماط الوضع الليلي (مباشرة في الملف لضمان العمل) */
+[data-theme="dark"] body {
+    background-color: #121212 !important;
+    color: #ffffff !important;
 }
-.history-item:last-child {
-    border-bottom: none;
+[data-theme="dark"] .header {
+    background-color: #1e1e1e !important;
+    border-bottom: 1px solid #333 !important;
 }
-@media (max-width: 600px) {
-    .flashcard-container { height: 280px; }
-    .flashcard-front h1, .flashcard-back h1 { font-size: 1.8rem; }
-    .quiz-opt-btn { padding: 14px; font-size: 1rem; min-height: 60px; }
-    .quiz-options { gap: 10px; }
-    .main-content { padding: 0.5rem; margin: 0.5rem auto; }
-    .features-grid { grid-template-columns: 1fr; }
-    .reading-card { padding: 1rem; font-size: 0.95rem; }
+[data-theme="dark"] .logo-container h2 {
+    background: linear-gradient(135deg, #ffd700, #fbbf24);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
-.master-anim {
-    animation: masterFly 0.6s forwards cubic-bezier(0.4, 0, 0.2, 1);
-    pointer-events: none;
+[data-theme="dark"] .nav-btn {
+    background-color: #333 !important;
+    color: #fff !important;
 }
-@keyframes masterFly {
-    0% { transform: translateY(0) scale(1); opacity: 1; }
-    100% { transform: translateY(-500px) scale(0) rotate(20deg); opacity: 0; background: #10b981; }
+[data-theme="dark"] .nav-btn.active {
+    background-color: #fff !important;
+    color: #1e40af !important;
 }
-.delete-anim {
-    animation: deleteDrop 0.6s forwards ease-in;
-    pointer-events: none;
+[data-theme="dark"] .reading-card,
+[data-theme="dark"] .feature-card,
+[data-theme="dark"] .quiz-box,
+[data-theme="dark"] .flashcard-container,
+[data-theme="dark"] .jumble-card,
+[data-theme="dark"] .spelling-card,
+[data-theme="dark"] .profile-container,
+[data-theme="dark"] .auth-card,
+[data-theme="dark"] .badges-container,
+[data-theme="dark"] .gapfill-sentence,
+[data-theme="dark"] .scrollable-text,
+[data-theme="dark"] .gapfill-explanation,
+[data-theme="dark"] .history-list {
+    background-color: #1e1e1e !important;
+    color: #ffffff !important;
+    border-color: #444 !important;
 }
-@keyframes deleteDrop {
-    0% { transform: translateY(0) scale(1); opacity: 1; }
-    100% { transform: translateY(500px) scale(0) rotate(-20deg); opacity: 0; background: #ef4444; }
+[data-theme="dark"] .reading-card *,
+[data-theme="dark"] .feature-card *,
+[data-theme="dark"] .quiz-box *,
+[data-theme="dark"] .flashcard-container *,
+[data-theme="dark"] .jumble-card *,
+[data-theme="dark"] .spelling-card *,
+[data-theme="dark"] .profile-container *,
+[data-theme="dark"] .auth-card *,
+[data-theme="dark"] .badges-container *,
+[data-theme="dark"] .scrollable-text *,
+[data-theme="dark"] .gapfill-sentence *,
+[data-theme="dark"] .gapfill-explanation *,
+[data-theme="dark"] .history-list * {
+    color: #ffffff !important;
 }
-.slide-next { animation: slideNext 0.4s forwards; }
-.slide-prev { animation: slidePrev 0.4s forwards; }
-@keyframes slideNext {
-    100% { transform: translateX(100%); opacity: 0; }
+[data-theme="dark"] input,
+[data-theme="dark"] textarea,
+[data-theme="dark"] .spelling-input {
+    background-color: #2d2d2d !important;
+    color: #000000 !important;
+    border-color: #555 !important;
 }
-@keyframes slidePrev {
-    100% { transform: translateX(-100%); opacity: 0; }
+[data-theme="dark"] input::placeholder,
+[data-theme="dark"] textarea::placeholder {
+    color: #aaa !important;
 }
-.shuffle-anim-card {
-    animation: shuffle 0.6s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+[data-theme="dark"] .hero-btn,
+[data-theme="dark"] .quiz-opt-btn {
+    background-color: #333 !important;
+    color: #fff !important;
+    border-color: #555 !important;
 }
-@keyframes shuffle {
-    0% { transform: scale(1); }
-    25% { transform: scale(0.9) rotate(-5deg); }
-    75% { transform: scale(1.1) rotate(5deg); }
-    100% { transform: scale(1); }
+[data-theme="dark"] .hero-btn:hover,
+[data-theme="dark"] .quiz-opt-btn:hover {
+    background-color: #444 !important;
+}
+[data-theme="dark"] .flashcard-front,
+[data-theme="dark"] .flashcard-back {
+    background-color: #2d2d2d !important;
+    color: #fff !important;
+}
+[data-theme="dark"] .logout-btn {
+    background-color: #4a4a4a !important;
+    color: #fff !important;
+}
+[data-theme="dark"] .welcome-banner {
+    background: linear-gradient(135deg, #1a1a2e, #16213e) !important;
+}
+[data-theme="dark"] .quiz-question-row {
+    background: #2d2d2d !important;
+}
+[data-theme="dark"] .quiz-question-row h2 {
+    color: #ffffff !important;
+}
+[data-theme="dark"] .gapfill-sentence {
+    background: #2d2d2d !important;
+    color: #fff !important;
+}
+[data-theme="dark"] .spelling-feedback {
+    background-color: #2d2d2d !important;
+    color: #ffffff !important;
+}
+[data-theme="dark"] .spelling-feedback.correct-feedback {
+    color: #10b981 !important;
+}
+[data-theme="dark"] .spelling-feedback.wrong-feedback {
+    color: #ef4444 !important;
+}
+[data-theme="dark"] .quiz-opt-btn.correct-answer {
+    background-color: #10b981 !important;
+}
+[data-theme="dark"] .quiz-opt-btn.wrong-answer {
+    background-color: #ef4444 !important;
+}
+[data-theme="dark"] .quiz-opt-btn.other-option {
+    background-color: #6b7280 !important;
+}
+[data-theme="dark"] .modal-content {
+    background: #1e1e1e !important;
+    color: white !important;
+}
+[data-theme="dark"] .modal-content .close-btn {
+    color: #ccc;
+}
+[data-theme="dark"] .modal-content .close-btn:hover {
+    color: white;
+}
+[data-theme="dark"] .coin-option {
+    background: #2d2d2d !important;
+    border-color: #444 !important;
+}
+[data-theme="dark"] .badge-modal-item {
+    background: #2d2d2d !important;
+}
+[data-theme="dark"] .badge-modal-item.earned {
+    background: #ffd700 !important;
+    color: #000 !important;
+}
+[data-theme="dark"] .history-item:hover {
+    background: #2d2d2d !important;
+}
+[data-theme="dark"] .profile-info {
+    background: #2d2d2d !important;
+}
+[data-theme="dark"] .info-row {
+    border-bottom-color: #444 !important;
+}
+[data-theme="dark"] .auth-container h1 {
+    color: #ffd700 !important;
+}
+[data-theme="dark"] .auth-container p {
+    color: #ccc !important;
 }
