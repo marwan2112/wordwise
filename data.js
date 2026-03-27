@@ -7014,7 +7014,7 @@ window.lessonsData = {
   ]
 },
   "352": {
-  "title": " Neuroplasticity and Adult Learning",
+  "title": "Neuroplasticity and Adult Learning",
   "content": "",
   "terms": [
   ]
