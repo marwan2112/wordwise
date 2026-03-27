@@ -1913,7 +1913,7 @@ async prepareGapFill() {
 }
 
 async generateGapFillWithGemini(targetWord, lessonContent, allEnglishWords) {
-    const apiKey = "AIzaSyCJtyYLRdLXDkx5bHQEzjkqSBdVt9Gktzg";  // ضع مفتاحك الجديد هنا
+    const apiKey = "AIzaSyCUY0Ldusj38ZENBbWLo6Nbdy3DrqjTNlo";  // ضع مفتاحك الجديد هنا
 
     const prompt = `أنت منشئ أسئلة تعلم اللغة الإنجليزية. 
 الكلمة المستهدفة: "${targetWord}". 
@@ -1933,7 +1933,6 @@ async generateGapFillWithGemini(targetWord, lessonContent, allEnglishWords) {
 }`;
 
     try {
-        console.log('جاري الاتصال بـ Gemini باستخدام النموذج gemini-pro...');
         const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=${apiKey}`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -1945,8 +1944,8 @@ async generateGapFillWithGemini(targetWord, lessonContent, allEnglishWords) {
 
         if (!response.ok) {
             const errorText = await response.text();
-            console.error('❌ خطأ من Google:', response.status, errorText);
-            alert(`فشل الاتصال (${response.status}). تأكد من صحة المفتاح ومن أن النموذج gemini-pro متاح.`);
+            console.error('❌ خطأ:', response.status, errorText);
+            alert(`فشل الاتصال (${response.status}). تأكد من المفتاح ومن أن النموذج gemini-pro متاح.`);
             return null;
         }
 
@@ -1961,22 +1960,17 @@ async generateGapFillWithGemini(targetWord, lessonContent, allEnglishWords) {
                     parsed.originalSentence = parsed.sentence.replace('______', targetWord);
                 }
                 return parsed;
-            } else {
-                console.warn('تنسيق JSON غير صحيح:', parsed);
-                alert('الرد من الذكاء الاصطناعي غير صحيح. حاول مرة أخرى.');
-                return null;
             }
-        } else {
-            console.warn('لم يتم العثور على JSON في الرد:', text);
-            alert('الرد غير مفهوم. حاول مرة أخرى.');
-            return null;
         }
+        alert('الرد غير صحيح. حاول مرة أخرى.');
+        return null;
     } catch (e) {
-        console.error('❌ خطأ في الاتصال:', e);
+        console.error(e);
         alert(`خطأ في الاتصال: ${e.message}`);
         return null;
     }
 }
+    
     generateLocalGapFill(targetWord, targetArabic, lessonContent, allTerms) {
         const sentences = lessonContent.split(/[.!?]+/).map(s => s.trim()).filter(s => s.length > 0);
         const regex = new RegExp(`\\b${this.escapeRegex(targetWord)}\\b`, 'i');
