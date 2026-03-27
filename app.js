@@ -310,8 +310,7 @@ class App {
             [data-theme="dark"] .hero-btn:hover,
             [data-theme="dark"] .quiz-opt-btn:hover {
                 background-color: #444 !important;
-            }
-            /* إصلاح مشكلة النص في المدخلات */
+            }/* إصلاح مشكلة النص في المدخلات - التأكيد على اللون الأسود */
 [data-theme="dark"] input,
 [data-theme="dark"] textarea,
 [data-theme="dark"] .spelling-input,
@@ -330,10 +329,21 @@ class App {
     border-color: #555 !important;
 }
 [data-theme="dark"] .spelling-input::placeholder,
-            [data-theme="dark"] input::placeholder,
-            [data-theme="dark"] textarea::placeholder {
-                color: #aaa !important;
-            }
+[data-theme="dark"] input::placeholder,
+[data-theme="dark"] textarea::placeholder {
+    color: #aaa !important;
+}
+/* إضافة قاعدة أكثر تحديداً لجميع المدخلات النصية */
+[data-theme="dark"] input[type="text"],
+[data-theme="dark"] input[type="email"],
+[data-theme="dark"] input[type="password"],
+[data-theme="dark"] input[type="number"],
+[data-theme="dark"] textarea,
+[data-theme="dark"] .spelling-input {
+    color: #000000 !important;
+    background-color: #2d2d2d !important;
+}
+}
             [data-theme="dark"] .flashcard-front,
             [data-theme="dark"] .flashcard-back {
                 background-color: #2d2d2d !important;
