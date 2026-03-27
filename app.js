@@ -280,7 +280,6 @@ addThemeStyles() {
     const style = document.createElement('style');
     style.id = styleId;
     style.textContent = `
-        /* أنماط الوضع الليلي - تطبق تلقائياً عند [data-theme="dark"] */
         [data-theme="dark"] {
             --bg-main: #121212 !important;
             --bg-card: #1e1e1e !important;
@@ -294,7 +293,6 @@ addThemeStyles() {
             color: #ffffff !important;
         }
 
-        /* جميع الحاويات الرئيسية */
         [data-theme="dark"] .main-content,
         [data-theme="dark"] .reading-card,
         [data-theme="dark"] .feature-card,
@@ -308,13 +306,17 @@ addThemeStyles() {
         [data-theme="dark"] .gapfill-sentence,
         [data-theme="dark"] .scrollable-text,
         [data-theme="dark"] .gapfill-explanation,
-        [data-theme="dark"] .result-modal .modal-content {
+        [data-theme="dark"] .history-list,
+        [data-theme="dark"] .history-item,
+        [data-theme="dark"] .result-card,
+        [data-theme="dark"] .finish-box,
+        [data-theme="dark"] .auth-container,
+        [data-theme="dark"] .quiz-question-row {
             background-color: #1e1e1e !important;
             color: #ffffff !important;
             border-color: #444 !important;
         }
 
-        /* جميع النصوص داخل هذه الحاويات */
         [data-theme="dark"] .reading-card *,
         [data-theme="dark"] .feature-card *,
         [data-theme="dark"] .quiz-box *,
@@ -326,17 +328,22 @@ addThemeStyles() {
         [data-theme="dark"] .badges-container *,
         [data-theme="dark"] .scrollable-text *,
         [data-theme="dark"] .gapfill-sentence *,
-        [data-theme="dark"] .gapfill-explanation * {
+        [data-theme="dark"] .gapfill-explanation *,
+        [data-theme="dark"] .history-list *,
+        [data-theme="dark"] .history-item *,
+        [data-theme="dark"] .result-card *,
+        [data-theme="dark"] .finish-box *,
+        [data-theme="dark"] .auth-container *,
+        [data-theme="dark"] .quiz-question-row * {
             color: #ffffff !important;
         }
 
-        /* استثناء حقول الإدخال – نص أسود على خلفية رمادية */
         [data-theme="dark"] input,
         [data-theme="dark"] textarea,
         [data-theme="dark"] .spelling-input,
         [data-theme="dark"] input:not([type="checkbox"]):not([type="radio"]) {
             background-color: #2d2d2d !important;
-            color: #000000 !important;
+            color: #ffffff !important;
             border-color: #555 !important;
         }
 
@@ -345,7 +352,6 @@ addThemeStyles() {
             color: #aaa !important;
         }
 
-        /* الهيدر والأزرار */
         [data-theme="dark"] .header {
             background-color: #1e1e1e !important;
             border-bottom: 1px solid #333 !important;
@@ -379,7 +385,6 @@ addThemeStyles() {
             background: linear-gradient(135deg, #1a1a2e, #16213e) !important;
         }
 
-        /* أنماط إضافية */
         [data-theme="dark"] .quiz-question-row h2 {
             color: #ffffff !important;
         }
@@ -417,35 +422,36 @@ addThemeStyles() {
             background-color: #6b7280 !important;
         }
 
-        /* النوافذ المنبثقة */
+        [data-theme="dark"] .auth-container img {
+            filter: brightness(0.8);
+        }
+
+        [data-theme="dark"] .logo-container h2 {
+            background: linear-gradient(135deg, #ffd700, #fbbf24);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        [data-theme="dark"] .profile-info {
+            background: #2d2d2d !important;
+        }
+
+        [data-theme="dark"] .info-row {
+            border-bottom-color: #444 !important;
+        }
+
         [data-theme="dark"] .modal-content {
             background: #1e1e1e !important;
             color: white !important;
         }
 
-        [data-theme="dark"] .close-btn {
-            color: #ccc !important;
-        }
-        [data-theme="dark"] .close-btn:hover {
-            color: white !important;
-        }
-
-        /* سجل الاختبارات */
-        [data-theme="dark"] .history-item {
-            border-bottom-color: #444 !important;
-        }
-        [data-theme="dark"] .history-item:hover {
+        [data-theme="dark"] .coin-option {
             background: #2d2d2d !important;
+            border-color: #444 !important;
         }
 
-        /* الأوسمة */
         [data-theme="dark"] .badge-modal-item {
             background: #2d2d2d !important;
-        }
-
-        /* زر التبديل */
-        [data-theme="dark"] button[data-action="toggleTheme"] {
-            background: none !important;
         }
     `;
     document.head.appendChild(style);
