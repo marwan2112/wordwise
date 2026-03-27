@@ -1761,12 +1761,21 @@ addThemeStyles() {
     }
 
     // عرض شرح مفصل عند الضغط على الزر
-    showDetailedGapFillExplanation() {
-        if (!this.gapFillCurrentQuestion) return;
-        this.gapFillExplanationVisible = true;
+async showDetailedGapFillExplanation() {
+    if (!this.gapFillCurrentQuestion) return;
+    
+    // إذا لم تكن الترجمة العربية للجملة الأصلية محفوظة بعد، قم بترجمتها الآن
+    if (!this.gapFillCurrentQuestion.originalSentenceArabic && this.gapFillCurrentQuestion.originalSentence) {
+        const translated = await this.translateText(this.gapFillCurrentQuestion.originalSentence);
+        this.gapFillCurrentQuestion.originalSentenceArabic = translated || '(غير متوفرة)';
+        // إعادة التصيير بعد الترجمة لتحديث المحتوى
         this.render();
+        return; // نخرج مؤقتاً، وسيتم إعادة التصيير بعد الترجمة
     }
-
+    
+    this.gapFillExplanationVisible = true;
+    this.render();
+}
     handleGapFillNext() {
         if (this.gapFillRemaining.length === 0) {
             alert('🎉 تهانينا! أكملت جميع الكلمات.');
