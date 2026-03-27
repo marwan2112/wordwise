@@ -1852,61 +1852,80 @@ class App {
         }, 1100);
     }
 
-    async prepareGapFill() {
-        if (this.gapFillTimer) {
-            clearTimeout(this.gapFillTimer);
-            this.gapFillTimer = null;
-        }
-
-        const lesson = this.getCurrentLessonData();
-        if (!lesson) return;
-
-        const allTerms = [...lesson.terms, ...this.userVocabulary.filter(v => v.lessonId == this.selectedLessonId)];
-        const available = allTerms.filter(t => !this.masteredWords.includes(String(t.id)) && !this.hiddenFromCards.includes(String(t.id)));
-
-        if (available.length === 0) {
-            alert('لا توجد كلمات متاحة لهذا التمرين. قم بإضافة كلمات جديدة أو إعادة تعيين الكلمات المتقنة.');
-            return;
-        }
-
-        if (this.gapFillRemaining.length === 0) {
-            this.gapFillRemaining = [...available].sort(() => 0.5 - Math.random());
-        }
-
-        const targetWordObj = this.gapFillRemaining[0];
-        const targetWord = targetWordObj.english;
-        const targetArabic = targetWordObj.arabic;
-
-        let questionData = await this.generateGapFillWithGemini(targetWord, lesson.content, allTerms.map(t => t.english));
-        if (!questionData) {
-            questionData = this.generateLocalGapFill(targetWord, targetArabic, lesson.content, allTerms);
-        }
-
-        this.gapFillCurrentQuestion = {
-            text: questionData.sentence,
-            correct: targetWord,
-            arabic: targetArabic,
-            originalSentence: questionData.originalSentence || '',
-            originalSentenceArabic: ''
-        };
-        this.gapFillOptions = questionData.options;
-        this.gapFillAnswered = false;
-        this.gapFillResult = null;
-        this.gapFillExplanation = '';
-        this.gapFillOptionsMeanings = [];
-        this.gapFillExplanationVisible = false;
-        this.render();
+async prepareGapFill() {
+    if (this.gapFillTimer) {
+        clearTimeout(this.gapFillTimer);
+        this.gapFillTimer = null;
     }
 
-    async generateGapFillWithGemini(targetWord, lessonContent, allEnglishWords) {
-        const apiKey = "AIzaSyA61WmhHPYBwojm50jKg5LEppeKja7NDaQ";
-        const prompt = `أنت منشئ أسئلة تعلم اللغة الإنجليزية. 
-لدينا كلمة: "${targetWord}". 
-النص الأصلي للدرس: """${lessonContent}""". 
-اختر جملة من النص تحتوي الكلمة، أو أنشئ جملة جديدة مناسبة لمستوى المبتدئين. 
-يجب أن تكون الجملة مفيدة وتعكس معنى الكلمة. 
-استبدل الكلمة في الجملة بفراغ "______". 
-ثم قدم أربع خيارات للفراغ: الخيار الصحيح (هو نفس الكلمة) وثلاثة خيارات خاطئة من بين الكلمات الأخرى في الدرس (لا تكرر الخيارات). 
+    const lesson = this.getCurrentLessonData();
+    if (!lesson) return;
+
+    const allTerms = [...lesson.terms, ...this.userVocabulary.filter(v => v.lessonId == this.selectedLessonId)];
+    const available = allTerms.filter(t => !this.masteredWords.includes(String(t.id)) && !this.hiddenFromCards.includes(String(t.id)));
+
+    if (available.length === 0) {
+        alert('لا توجد كلمات متاحة لهذا التمرين. قم بإضافة كلمات جديدة أو إعادة تعيين الكلمات المتقنة.');
+        return;
+    }
+
+    if (this.gapFillRemaining.length === 0) {
+        this.gapFillRemaining = [...available].sort(() => 0.5 - Math.random());
+    }
+
+    const targetWordObj = this.gapFillRemaining[0];
+    const targetWord = targetWordObj.english;
+    const targetArabic = targetWordObj.arabic;
+
+    // محاولة توليد سؤال باستخدام Gemini (يجب أن تكون الجملة من الذكاء الاصطناعي)
+    let questionData = await this.generateGapFillWithGemini(targetWord, lesson.content, allTerms.map(t => t.english));
+
+    if (!questionData) {
+        // في حال فشل Gemini، نعرض رسالة ونعيد المحاولة مرة واحدة
+        this.showCustomModal('error', '⚠️', 'فشل الاتصال بالذكاء الاصطناعي. جارٍ إعادة المحاولة...');
+        await new Promise(resolve => setTimeout(resolve, 2000));
+        questionData = await this.generateGapFillWithGemini(targetWord, lesson.content, allTerms.map(t => t.english));
+        if (!questionData) {
+            alert('تعذر إنشاء السؤال. تأكد من اتصال الإنترنت وحاول مرة أخرى.');
+            return;
+        }
+    }
+
+    // التأكد من أن الخيارات تحتوي على الكلمة الصحيحة وثلاث كلمات أخرى من مفردات الدرس
+    const otherTerms = allTerms.filter(t => t.english !== targetWord).map(t => t.english);
+    const shuffledOther = [...otherTerms].sort(() => 0.5 - Math.random());
+    const wrongOptions = shuffledOther.slice(0, 3);
+    while (wrongOptions.length < 3) wrongOptions.push(targetWord + '?'); // fallback
+    const options = [targetWord, ...wrongOptions];
+    this.shuffleArray(options);
+
+    this.gapFillCurrentQuestion = {
+        text: questionData.sentence,
+        correct: targetWord,
+        arabic: targetArabic,
+        originalSentence: questionData.originalSentence || '',
+        originalSentenceArabic: ''
+    };
+    this.gapFillOptions = options;
+    this.gapFillAnswered = false;
+    this.gapFillResult = null;
+    this.gapFillExplanation = '';
+    this.gapFillOptionsMeanings = [];
+    this.gapFillExplanationVisible = false;
+    this.render();
+}
+async generateGapFillWithGemini(targetWord, lessonContent, allEnglishWords) {
+    const apiKey = "AIzaSyA61WmhHPYBwojm50jKg5LEppeKja7NDaQ";
+    const prompt = `أنت منشئ أسئلة تعلم اللغة الإنجليزية. 
+الكلمة المستهدفة: "${targetWord}". 
+نص الدرس (للاستئناس فقط، لا تنقل جملة منه): """${lessonContent}""". 
+مطلوب:
+1. قم بإنشاء جملة جديدة بالكامل (ليست من النص) تناسب مستوى الدرس (A1-C2) وتستخدم الكلمة "${targetWord}" بشكل صحيح.
+2. استبدل الكلمة "${targetWord}" في الجملة بفراغ "______".
+3. قدم الجملة الأصلية (بدون فراغ) في حقل "originalSentence".
+4. قدم أربع خيارات للفراغ: الخيار الصحيح (هو نفس الكلمة) وثلاثة خيارات خاطئة. يجب أن تكون الخيارات الخاطئة من بين الكلمات الأخرى في الدرس (القائمة أدناه) إن أمكن، أو كلمات مناسبة لمستوى الدرس إذا لم تكن موجودة.
+قائمة الكلمات المتاحة في الدرس (للاستخدام في الخيارات الخاطئة): ${allEnglishWords.join(', ')}
+
 أعد الإجابة بتنسيق JSON كالتالي:
 {
   "sentence": "الجملة مع ______ مكان الكلمة",
@@ -1915,33 +1934,36 @@ class App {
 }
 تأكد من أن الخيارات تحتوي على الكلمة الصحيحة مرة واحدة فقط، ولا تكرر الخيارات.`;
 
-        try {
-            const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    contents: [{ parts: [{ text: prompt }] }],
-                    generationConfig: { temperature: 0.7, maxOutputTokens: 200 }
-                })
-            });
-            if (!response.ok) throw new Error('API error');
-            const data = await response.json();
-            const text = data.candidates[0].content.parts[0].text;
-            const jsonMatch = text.match(/\{[\s\S]*\}/);
-            if (jsonMatch) {
-                const parsed = JSON.parse(jsonMatch[0]);
-                if (parsed.sentence && parsed.options && parsed.options.includes(targetWord)) {
-                    while (parsed.options.length < 4) parsed.options.push('???');
-                    return parsed;
+    try {
+        const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                contents: [{ parts: [{ text: prompt }] }],
+                generationConfig: { temperature: 0.7, maxOutputTokens: 250 }
+            })
+        });
+        if (!response.ok) throw new Error('API error');
+        const data = await response.json();
+        const text = data.candidates[0].content.parts[0].text;
+        const jsonMatch = text.match(/\{[\s\S]*\}/);
+        if (jsonMatch) {
+            const parsed = JSON.parse(jsonMatch[0]);
+            if (parsed.sentence && parsed.options && parsed.options.includes(targetWord)) {
+                while (parsed.options.length < 4) parsed.options.push('???');
+                // التأكد من أن originalSentence موجود
+                if (!parsed.originalSentence) {
+                    parsed.originalSentence = parsed.sentence.replace('______', targetWord);
                 }
+                return parsed;
             }
-        } catch (e) {
-            console.warn('Gemini failed:', e);
         }
+        throw new Error('Invalid response');
+    } catch (e) {
+        console.warn('Gemini failed:', e);
         return null;
     }
-
-    generateLocalGapFill(targetWord, targetArabic, lessonContent, allTerms) {
+}    generateLocalGapFill(targetWord, targetArabic, lessonContent, allTerms) {
         const sentences = lessonContent.split(/[.!?]+/).map(s => s.trim()).filter(s => s.length > 0);
         const regex = new RegExp(`\\b${this.escapeRegex(targetWord)}\\b`, 'i');
         let originalSentence = sentences.find(s => regex.test(s));
