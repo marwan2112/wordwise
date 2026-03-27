@@ -1,28 +1,28 @@
 class App {
     constructor() {
-        this.currentAudio = null; // كائن الصوت الحالي
-        this.audioPlaybackRate = 1.0; // السرعة الافتراضية
-        this.availableSpeeds = [0.5, 0.75, 1.0, 1.5, 2.0, 2.5, 3.0]; // السرعات المتاحة
+        this.currentAudio = null;
+        this.audioPlaybackRate = 1.0;
+        this.availableSpeeds = [0.5, 0.75, 1.0, 1.5, 2.0, 2.5, 3.0];
         this.placementStep = 0;
         this.currentDifficulty = 'A1';
         this.placementHistory = [];
         this.placementScore = 0;
         this.theme = localStorage.getItem('theme') || 'light';
-        this.jumbleArabicHint = ''; // الترجمة العربية للجملة كمساعدة
-        this.jumbleCurrentSentence = ''; // لتتبع الجملة التي طلبت الترجمة لها
+        this.jumbleArabicHint = '';
+        this.jumbleCurrentSentence = '';
 
-        // تعريف الإحصائيات (XP والنقاط) والسجل - سيتم تحميلها من بيانات المستخدم لاحقاً
+        // إحصائيات وسجلات المستخدم
         this.userStats = { xp: 0, level: 1, badges: [], tier: 'برونزي' };
         this.placementResults = [];
         this.placementFullHistory = [];
         this.currentPlacementDetails = [];
         this.viewingPlacementDetails = null;
 
-        // نظام العملات (اللآلئ)
+        // العملات
         this.userCoins = 0;
         this.showCoinModal = false;
 
-        // متغيرات خاصة بميزة إعادة ترتيب الجمل
+        // متغيرات التمارين
         this.jumbleOriginalSentence = '';
         this.jumbleWords = [];
         this.jumbleUserAnswer = [];
@@ -33,7 +33,6 @@ class App {
         this.jumbleUnlocked = {};
         this.jumbleNextCount = 0;
 
-        // متغيرات خاصة بميزة الاستماع
         this.listeningRemaining = [];
         this.listeningCurrent = null;
         this.listeningOptions = [];
@@ -43,7 +42,6 @@ class App {
         this.listeningUnlocked = {};
         this.listeningNextCount = 0;
 
-        // متغيرات خاصة بتمرين الكتابة (Spelling)
         this.spellingRemaining = [];
         this.spellingCurrent = null;
         this.spellingAnswered = false;
@@ -52,7 +50,18 @@ class App {
         this.spellingUnlocked = {};
         this.spellingNextCount = 0;
 
-        // متغيرات خاصة بالاختبار الشامل للمستوى (Level Mastery Test)
+        // متغيرات تمرين ملء الفراغ (Gap Fill)
+        this.gapFillRemaining = [];
+        this.gapFillCurrentQuestion = null;
+        this.gapFillOptions = [];
+        this.gapFillAnswered = false;
+        this.gapFillTimer = null;
+        this.gapFillResult = null;
+        this.gapFillUnlocked = {};
+        this.gapFillUsedWords = [];
+        this.gapFillNextCount = 0;
+
+        // الاختبار الشامل
         this.levelTestLevel = null;
         this.levelTestLessons = [];
         this.levelTestCurrentLessonIndex = 0;
@@ -70,15 +79,11 @@ class App {
         this.levelTestUnlockedCount = 0;
         this.levelTestCoinsEarned = 0;
 
-        // تحميل آخر درس تم اختباره لكل مستوى (سيتم استخدامه للبدء)
         this.lastTestedLesson = { beginner: 0, intermediate: 0, advanced: 0 };
-
-        // متغيرات الإعلانات والشراء
         this.newWordsAddedCount = 0;
         this.adWatchedCount = 0;
         this.purchaseRequests = [];
 
-        // بيانات الملف الشخصي
         this.userProfile = {
             name: '',
             age: '',
@@ -88,23 +93,19 @@ class App {
             testsHistory: []
         };
 
-        // بيانات المستخدم الحالي (تخزن بعد تسجيل الدخول)
         this.currentUserEmail = null;
         this.userData = null;
-
-        // بيانات المستخدم الأساسية (يجب تهيئتها لتجنب الأخطاء)
         this.userVocabulary = [];
         this.masteredWords = [];
         this.unlockedLessons = [];
         this.hiddenFromCards = [];
         this.customLessons = {};
 
-        // تهيئة قائمة المستخدمين في localStorage إذا لم تكن موجودة
+        // تهيئة localStorage للمستخدمين
         if (!localStorage.getItem('users')) {
             localStorage.setItem('users', JSON.stringify({}));
         }
 
-        // محاولة استعادة جلسة المستخدم (إذا كان هناك بريد محفوظ)
         const savedEmail = localStorage.getItem('currentUser');
         if (savedEmail) {
             const users = JSON.parse(localStorage.getItem('users'));
@@ -128,12 +129,11 @@ class App {
         }
     }
 
-    // دالة لتشفير بسيط (للاستخدام المحلي فقط)
+    // ================== دوال أساسية (مصادقة، حفظ، تحميل) ==================
     hashPassword(password) {
-        return btoa(password); // ترميز base64 (ليس آمناً للإنتاج الحقيقي)
+        return btoa(password);
     }
 
-    // دالة لتحميل بيانات مستخدم معين من localStorage
     loadUserData(email) {
         const key = `userData_${email}`;
         const data = JSON.parse(localStorage.getItem(key)) || {};
@@ -149,6 +149,7 @@ class App {
         this.jumbleUnlocked = data.jumbleUnlocked || {};
         this.listeningUnlocked = data.listeningUnlocked || {};
         this.spellingUnlocked = data.spellingUnlocked || {};
+        this.gapFillUnlocked = data.gapFillUnlocked || {};
         this.newWordsAddedCount = data.newWordsAddedCount || 0;
         this.adWatchedCount = data.adWatchedCount || 0;
         this.purchaseRequests = data.purchaseRequests || [];
@@ -161,14 +162,12 @@ class App {
             testsHistory: []
         };
         this.lastTestedLesson = data.lastTestedLesson || { beginner: 0, intermediate: 0, advanced: 0 };
-        // تحديث مستوى اللغة في الملف الشخصي من آخر اختبار مستوى
         if (this.placementResults.length > 0) {
             this.userProfile.level = this.placementResults[0].level;
         }
         this.updateBadgesAndTier();
     }
 
-    // دالة لحفظ بيانات المستخدم الحالي
     saveUserData() {
         if (!this.currentUserEmail) return;
         const key = `userData_${this.currentUserEmail}`;
@@ -185,6 +184,7 @@ class App {
             jumbleUnlocked: this.jumbleUnlocked,
             listeningUnlocked: this.listeningUnlocked,
             spellingUnlocked: this.spellingUnlocked,
+            gapFillUnlocked: this.gapFillUnlocked,
             newWordsAddedCount: this.newWordsAddedCount,
             adWatchedCount: this.adWatchedCount,
             purchaseRequests: this.purchaseRequests,
@@ -194,13 +194,9 @@ class App {
         localStorage.setItem(key, JSON.stringify(data));
     }
 
-    // دالة لتسجيل الخروج
     logout() {
-        // حفظ البيانات قبل الخروج
         this.saveUserData();
-        // إزالة البريد المحفوظ
         localStorage.removeItem('currentUser');
-        // إعادة تعيين المتغيرات
         this.currentUserEmail = null;
         this.userData = null;
         this.userVocabulary = [];
@@ -215,6 +211,7 @@ class App {
         this.jumbleUnlocked = {};
         this.listeningUnlocked = {};
         this.spellingUnlocked = {};
+        this.gapFillUnlocked = {};
         this.newWordsAddedCount = 0;
         this.adWatchedCount = 0;
         this.purchaseRequests = [];
@@ -234,24 +231,17 @@ class App {
     updateBadgesAndTier() {
         const totalLessonsUnlocked = this.unlockedLessons ? this.unlockedLessons.length : 0;
         const totalMastered = this.masteredWords ? this.masteredWords.length : 0;
-
-        // تحديث الشارات
         let newBadges = [];
-        if (totalLessonsUnlocked >= 10 && totalMastered >= 100) newBadges.push('🥉'); // برونزي
-        if (totalLessonsUnlocked >= 20 && totalMastered >= 500) newBadges.push('🥈'); // فضي
-        if (totalLessonsUnlocked >= 50 && totalMastered >= 1500) newBadges.push('🥇'); // ذهبي
-        if (totalLessonsUnlocked >= 100 && totalMastered >= 3000) newBadges.push('👑'); // ماسي
-
+        if (totalLessonsUnlocked >= 10 && totalMastered >= 100) newBadges.push('🥉');
+        if (totalLessonsUnlocked >= 20 && totalMastered >= 500) newBadges.push('🥈');
+        if (totalLessonsUnlocked >= 50 && totalMastered >= 1500) newBadges.push('🥇');
+        if (totalLessonsUnlocked >= 100 && totalMastered >= 3000) newBadges.push('👑');
         this.userStats.badges = newBadges;
-
-        // تحديث التاج (tier) بناءً على عدد الشارات
         if (newBadges.includes('👑')) this.userStats.tier = 'ماسي';
         else if (newBadges.includes('🥇')) this.userStats.tier = 'ذهبي';
         else if (newBadges.includes('🥈')) this.userStats.tier = 'فضي';
         else if (newBadges.includes('🥉')) this.userStats.tier = 'برونزي';
         else this.userStats.tier = 'بدون';
-
-        // تحديث مستوى المستخدم بناءً على الدروس المفتوحة (نظام ذكي)
         if (totalLessonsUnlocked >= 100) this.userStats.level = 5;
         else if (totalLessonsUnlocked >= 60) this.userStats.level = 4;
         else if (totalLessonsUnlocked >= 30) this.userStats.level = 3;
@@ -266,28 +256,21 @@ class App {
     }
 
     init() {
-        // إضافة CSS للوضع الليلي والأنماط الأخرى
         this.addThemeStyles();
-
         document.documentElement.setAttribute('data-theme', this.theme);
-
         if (!window.levels || !window.lessonsData || !window.placementBank || !window.lessonsList) {
             setTimeout(() => this.init(), 500);
             return;
         }
-
-        // إذا كان هناك مستخدم مسجل، نذهب للصفحة الرئيسية مباشرة
         if (this.currentUserEmail) {
             this.currentPage = 'home';
         } else {
             this.currentPage = 'auth';
         }
-
         this.audioCtx = new (window.AudioContext || window.webkitAudioContext)();
         if (this.audioCtx.state === 'suspended') {
             this.audioCtx.resume();
         }
-
         this.setupGlobalEvents();
         this.render();
     }
@@ -674,7 +657,7 @@ class App {
         document.head.appendChild(style);
     }
 
-    // دالة لعرض إعلان (وهمية، ستستدعي موب ادد)
+    // ================== دوال الإعلانات والشراء ==================
     showAd(type, callback) {
         console.log(`📺 عرض إعلان من نوع ${type}`);
         setTimeout(() => {
@@ -683,7 +666,6 @@ class App {
         alert(`جارٍ عرض الإعلان...`);
     }
 
-    // مشاهدة 3 إعلانات لكسب 50 لؤلؤة
     watchAdsForCoins() {
         if (this.adWatchedCount >= 3) {
             this.showCustomModal('info', '⚠️', 'لقد استنفدت حصتك اليومية من مشاهدة الإعلانات. حاول غداً!');
@@ -704,7 +686,6 @@ class App {
         });
     }
 
-    // طلب شراء 300 لؤلؤة
     requestPurchase() {
         this.showPurchaseForm = true;
         this.showCoinModal = true;
@@ -734,14 +715,12 @@ class App {
         this.render();
     }
 
-    // إظهار/إخفاء نافذة العملات
     toggleCoinModal() {
         this.showCoinModal = !this.showCoinModal;
         this.showPurchaseForm = false;
         this.render();
     }
 
-    // إظهار نافذة منبثقة جميلة (معدلة لدعم HTML)
     showCustomModal(type, icon, message) {
         const modalDiv = document.createElement('div');
         modalDiv.className = 'modal-overlay';
@@ -758,7 +737,7 @@ class App {
         document.body.appendChild(modalDiv);
     }
 
-    // دالة لفتح درس بالعملات (بدلاً من الاختبار)
+    // ================== دوال فتح الدروس ==================
     unlockLessonWithCoins(lessonId) {
         if (this.userCoins >= 100) {
             if (confirm('هل تريد فتح هذا الدرس باستخدام 100 لؤلؤة؟')) {
@@ -767,6 +746,10 @@ class App {
                 this.saveUserData();
                 this.updateBadgesAndTier();
                 this.showCustomModal('success', '🎉', 'تم فتح الدرس بنجاح!');
+                // الانتقال مباشرة للدرس
+                this.selectedLessonId = lessonId;
+                this.currentPage = 'reading';
+                this.isUnlockTest = false;
                 this.render();
                 return true;
             } else {
@@ -778,24 +761,21 @@ class App {
         }
     }
 
-    // تعديل فتح الدرس: إما اختبار أو دفع
     openLesson(lessonId) {
         const list = window.lessonsList[this.selectedLevel] || [];
         const isUnlocked = this.unlockedLessons.includes(String(lessonId)) || (list[0] && list[0].id == lessonId) || this.selectedLevel === 'custom_list';
         if (isUnlocked) {
-            // الدرس مفتوح بالفعل
             this.selectedLessonId = lessonId;
             this.currentPage = 'reading';
             this.isUnlockTest = false;
         } else {
-            // الدرس مقفل، نعرض خيارين
             this.tempLessonToUnlock = lessonId;
             this.currentPage = 'unlock_choice';
         }
         this.render();
     }
 
-    // إضافة اختبار إلى التاريخ
+    // ================== دوال التاريخ والملف الشخصي ==================
     addTestToHistory(testType, score, details) {
         this.userProfile.testsHistory.push({
             type: testType,
@@ -803,22 +783,18 @@ class App {
             score: score,
             details: details
         });
-        // لا نحفظ هنا لأنها ستُحفظ في handlePlacement
     }
 
-    // صفحة الملف الشخصي
     showProfile() {
         this.currentPage = 'profile';
         this.render();
     }
 
-    // عرض سجل اختبارات المستوى
     showTestHistory() {
         this.currentPage = 'test_history';
         this.render();
     }
 
-    // عرض تفاصيل اختبار معين من السجل
     viewTestDetails(index) {
         const record = this.placementResults[index];
         if (record) {
@@ -828,7 +804,6 @@ class App {
         }
     }
 
-    // تحديث بيانات الملف الشخصي
     updateProfile() {
         const newName = document.getElementById('profileName')?.value;
         const newAge = document.getElementById('profileAge')?.value;
@@ -838,8 +813,7 @@ class App {
         if (newName) {
             this.userProfile.name = newName;
             if (this.userData) {
-                this.userData.name = newName; // تحديث اسم المستخدم في userData أيضاً
-                // تحديث الاسم في جدول المستخدمين
+                this.userData.name = newName;
                 const users = JSON.parse(localStorage.getItem('users'));
                 if (users[this.currentUserEmail]) {
                     users[this.currentUserEmail].name = newName;
@@ -851,7 +825,6 @@ class App {
         if (newPassword && this.userData) {
             const hashed = this.hashPassword(newPassword);
             this.userData.pass = hashed;
-            // تحديث كلمة المرور في جدول المستخدمين
             const users = JSON.parse(localStorage.getItem('users'));
             if (users[this.currentUserEmail]) {
                 users[this.currentUserEmail].password = hashed;
@@ -872,7 +845,6 @@ class App {
         }
     }
 
-    // حساب مستوى اللغة (A1, A2, ...) - يعيد آخر مستوى تم الحصول عليه من اختبار المستوى
     getEnglishLevel() {
         return this.userProfile.level || 'A1';
     }
@@ -1095,7 +1067,6 @@ class App {
             this.listeningErrorTimer = setTimeout(() => {
                 this.listeningErrorTimer = null;
                 this.listeningAnswered = false;
-                // إعادة تعيين الألوان
                 allOptions.forEach(btn => {
                     btn.disabled = false;
                     btn.classList.remove('correct-answer', 'wrong-answer', 'other-option');
@@ -1105,7 +1076,6 @@ class App {
         }
     }
 
-    // دالة لفتح اختبار الاستماع بالعملات (مرة واحدة لكل درس)
     unlockListening(lessonId) {
         if (this.listeningUnlocked[lessonId]) return true;
         if (this.userCoins >= 50) {
@@ -1125,7 +1095,6 @@ class App {
         }
     }
 
-    // دالة لفتح الترتيب بالعملات
     unlockJumble(lessonId) {
         if (this.jumbleUnlocked[lessonId]) return true;
         if (this.userCoins >= 50) {
@@ -1145,7 +1114,6 @@ class App {
         }
     }
 
-    // دالة لفتح الكتابة بالعملات
     unlockSpelling(lessonId) {
         if (this.spellingUnlocked[lessonId]) return true;
         if (this.userCoins >= 50) {
@@ -1295,7 +1263,6 @@ class App {
         this.render();
     }
 
-    // دالة مساعدة لجمع كل كلمات المستوى (للاستخدام في توليد الخيارات)
     getAllLevelWords() {
         if (!this.levelTestLevel) return [];
         const lessonIds = this.levelTestLessons || [];
@@ -1305,13 +1272,10 @@ class App {
             if (lesson && lesson.terms) {
                 allWords = allWords.concat(lesson.terms);
             }
-            // إضافة الكلمات المضافة من المستخدم
             const added = this.userVocabulary.filter(v => v.lessonId == id);
             allWords = allWords.concat(added);
         });
-        // إزالة الكلمات المخفية والمتقنة
         allWords = allWords.filter(t => !this.hiddenFromCards.includes(String(t.id)) && !this.masteredWords.includes(String(t.id)));
-        // إزالة التكرار (حسب id)
         const unique = {};
         allWords.forEach(w => unique[w.id] = w);
         return Object.values(unique);
@@ -1337,11 +1301,9 @@ class App {
 
         this.levelTestCurrentQuestion = bank.shift();
 
-        // جمع الخيارات الخاطئة
         let wrongOptions = [];
 
-        // 1. من بنك الدرس الحالي (بعد إزالة السؤال الحالي)
-        const currentLessonWords = [...bank]; // نسخة من البنك المتبقي
+        const currentLessonWords = [...bank];
         this.shuffleArray(currentLessonWords);
         for (let i = 0; i < 3; i++) {
             if (currentLessonWords.length > i) {
@@ -1351,7 +1313,6 @@ class App {
             }
         }
 
-        // 2. إذا لم يكتمل العدد، نستخدم كلمات من جميع دروس المستوى (عدا السؤال الحالي)
         if (wrongOptions.length < 3) {
             const allLevelWords = this.getAllLevelWords().filter(w => w.id !== this.levelTestCurrentQuestion.id);
             this.shuffleArray(allLevelWords);
@@ -1364,18 +1325,15 @@ class App {
             }
         }
 
-        // 3. إذا ما زال العدد ناقصاً، نضيف '???'
         while (wrongOptions.length < 3) {
             wrongOptions.push('???');
         }
 
-        // تكوين الخيارات النهائية (صحيح + 3 خاطئة) وخلطها
         const options = [this.levelTestCurrentQuestion.arabic, ...wrongOptions];
         this.shuffleArray(options);
         this.levelTestCurrentOptions = options;
     }
 
-    // دالة handleLevelTestAnswer المعدلة (باستخدام trim وتصحيح التلوين)
     handleLevelTestAnswer(selected, correct, btnElement) {
         if (this.isWaiting) return;
         this.isWaiting = true;
@@ -1391,15 +1349,11 @@ class App {
             btn.disabled = true;
             btn.classList.remove('correct-answer', 'wrong-answer', 'other-option');
             const btnParam = btn.dataset.param ? btn.dataset.param.trim().toLowerCase() : '';
-            
             if (btnParam === correctTrim) {
-                // هذا هو الزر الصحيح
                 btn.classList.add('correct-answer');
             } else if (btnParam === selectedTrim && !isCorrect) {
-                // هذا هو الزر الذي اختاره المستخدم وكان خطأ
                 btn.classList.add('wrong-answer');
             } else {
-                // باقي الأزرار
                 btn.classList.add('other-option');
             }
         });
@@ -1420,11 +1374,10 @@ class App {
 
         setTimeout(() => {
             if (this.levelTestCurrentCorrect >= this.levelTestRequiredCorrect) {
-                // اجتاز الدرس
                 if (!this.unlockedLessons.includes(this.levelTestCurrentLessonId)) {
                     this.unlockedLessons.push(this.levelTestCurrentLessonId);
                     this.levelTestUnlockedCount++;
-                    this.userCoins += 20; // مكافأة لكل درس يُفتح
+                    this.userCoins += 20;
                     this.levelTestCoinsEarned += 20;
                     this.levelTestResults.push({
                         lessonId: this.levelTestCurrentLessonId,
@@ -1434,7 +1387,6 @@ class App {
                 }
                 this.moveToNextLesson();
             } else {
-                // لم يجتز الدرس بعد
                 if (this.levelTestQuestionsBank[this.levelTestCurrentLessonId].length === 0) {
                     const lesson = window.lessonsData[this.levelTestCurrentLessonId];
                     if (lesson && lesson.terms) {
@@ -1496,7 +1448,6 @@ class App {
             }
         }
 
-        // إضافة اللؤلؤ المكتسب
         if (this.levelTestCoinsEarned > 0) {
             message += `\nحصلت على ${this.levelTestCoinsEarned} لؤلؤة إضافية.`;
         }
@@ -1688,7 +1639,6 @@ class App {
         return selected;
     }
 
-    // دالة handlePlacement المعدلة (باستخدام trim وتصحيح التلوين)
     handlePlacement(selected, correct, btnElement) {
         if (this.isWaiting) return;
         this.isWaiting = true;
@@ -1705,7 +1655,6 @@ class App {
             btn.disabled = true;
             btn.classList.remove('correct-answer', 'wrong-answer', 'other-option');
             const btnParam = btn.dataset.param ? btn.dataset.param.trim().toLowerCase() : '';
-            
             if (btnParam === correctTrim) {
                 btn.classList.add('correct-answer');
             } else if (btnParam === selectedTrim && !isCorrect) {
@@ -1746,8 +1695,6 @@ class App {
                 this.placementFullHistory.push(res);
                 this.currentPlacementDetails = [];
                 this.addTestToHistory('اختبار مستوى', this.placementScore, this.currentPlacementDetails);
-
-                // تحديث مستوى اللغة في الملف الشخصي
                 this.userProfile.level = res.level;
                 this.saveUserData();
             }
@@ -1787,7 +1734,6 @@ class App {
         this.quizOptions = [currentQ.arabic, ...wrongs].sort(() => 0.5 - Math.random());
     }
 
-    // دالة handleAnswer المعدلة (باستخدام trim وتصحيح التلوين)
     handleAnswer(selected, correct, btnElement) {
         if (this.isWaiting) return;
         this.isWaiting = true;
@@ -1806,7 +1752,6 @@ class App {
             btn.disabled = true;
             btn.classList.remove('correct-answer', 'wrong-answer', 'other-option');
             const btnParam = btn.dataset.param ? btn.dataset.param.trim().toLowerCase() : '';
-            
             if (btnParam === correctTrim) {
                 btn.classList.add('correct-answer');
             } else if (btnParam === selectedTrim && !isCorrect) {
@@ -1824,6 +1769,182 @@ class App {
         }, 1100);
     }
 
+    // ================== دوال تمرين ملء الفراغ (Gap Fill) ==================
+    async prepareGapFill() {
+        if (this.gapFillTimer) {
+            clearTimeout(this.gapFillTimer);
+            this.gapFillTimer = null;
+        }
+
+        const lesson = window.lessonsData[this.selectedLessonId];
+        if (!lesson) return;
+
+        const allTerms = [...lesson.terms, ...this.userVocabulary.filter(v => v.lessonId == this.selectedLessonId)];
+        const available = allTerms.filter(t => !this.masteredWords.includes(String(t.id)) && !this.hiddenFromCards.includes(String(t.id)));
+
+        if (available.length === 0) {
+            alert('لا توجد كلمات متاحة لهذا التمرين. قم بإضافة كلمات جديدة أو إعادة تعيين الكلمات المتقنة.');
+            return;
+        }
+
+        if (this.gapFillRemaining.length === 0) {
+            this.gapFillRemaining = [...available].sort(() => 0.5 - Math.random());
+            this.gapFillUsedWords = [];
+        }
+
+        const targetWordObj = this.gapFillRemaining[0];
+        const targetWord = targetWordObj.english;
+        const targetArabic = targetWordObj.arabic;
+
+        // محاولة توليد سؤال باستخدام Gemini
+        let questionData = await this.generateGapFillWithGemini(targetWord, lesson.content, allTerms.map(t => t.english));
+        if (!questionData) {
+            // fallback: استخدام جملة من الدرس تحتوي الكلمة
+            questionData = this.generateLocalGapFill(targetWord, targetArabic, lesson.content, allTerms);
+        }
+
+        this.gapFillCurrentQuestion = {
+            text: questionData.sentence,
+            correct: targetWord,
+            arabic: targetArabic
+        };
+        this.gapFillOptions = questionData.options;
+        this.gapFillAnswered = false;
+        this.gapFillResult = null;
+        this.render();
+    }
+
+    async generateGapFillWithGemini(targetWord, lessonContent, allEnglishWords) {
+        const apiKey = "AIzaSyA61WmhHPYBwojm50jKg5LEppeKja7NDaQ";
+        const prompt = `أنت منشئ أسئلة تعلم اللغة الإنجليزية. 
+لدينا كلمة: "${targetWord}". 
+النص الأصلي للدرس: """${lessonContent}""". 
+اختر جملة من النص تحتوي الكلمة، أو أنشئ جملة جديدة مناسبة لمستوى المبتدئين. 
+يجب أن تكون الجملة مفيدة وتعكس معنى الكلمة. 
+استبدل الكلمة في الجملة بفراغ "______". 
+ثم قدم أربع خيارات للفراغ: الخيار الصحيح (هو نفس الكلمة) وثلاثة خيارات خاطئة من بين الكلمات الأخرى في الدرس (لا تكرر الخيارات). 
+أعد الإجابة بتنسيق JSON كالتالي:
+{
+  "sentence": "الجملة مع ______ مكان الكلمة",
+  "options": ["خيار1", "خيار2", "خيار3", "خيار4"]
+}
+تأكد من أن الخيارات تحتوي على الكلمة الصحيحة مرة واحدة فقط، ولا تكرر الخيارات.`;
+
+        try {
+            const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    contents: [{ parts: [{ text: prompt }] }],
+                    generationConfig: { temperature: 0.7, maxOutputTokens: 150 }
+                })
+            });
+            if (!response.ok) throw new Error('API error');
+            const data = await response.json();
+            const text = data.candidates[0].content.parts[0].text;
+            const jsonMatch = text.match(/\{[\s\S]*\}/);
+            if (jsonMatch) {
+                const parsed = JSON.parse(jsonMatch[0]);
+                if (parsed.sentence && parsed.options && parsed.options.includes(targetWord)) {
+                    while (parsed.options.length < 4) parsed.options.push('???');
+                    return parsed;
+                }
+            }
+        } catch (e) {
+            console.warn('Gemini failed:', e);
+        }
+        return null;
+    }
+
+    generateLocalGapFill(targetWord, targetArabic, lessonContent, allTerms) {
+        const sentences = lessonContent.split(/[.!?]+/).map(s => s.trim()).filter(s => s.length > 0);
+        const regex = new RegExp(`\\b${this.escapeRegex(targetWord)}\\b`, 'i');
+        let sentence = sentences.find(s => regex.test(s));
+        if (!sentence) {
+            sentence = `The word "${targetWord}" is used in this sentence.`;
+        }
+        const sentenceWithBlank = sentence.replace(regex, '______');
+
+        const otherWords = allTerms.filter(t => t.english !== targetWord && !this.masteredWords.includes(String(t.id)) && !this.hiddenFromCards.includes(String(t.id)))
+                                   .map(t => t.english);
+        const shuffled = [...otherWords].sort(() => 0.5 - Math.random());
+        const wrongOptions = shuffled.slice(0, 3);
+        while (wrongOptions.length < 3) wrongOptions.push(targetWord + '?');
+        const options = [targetWord, ...wrongOptions];
+        this.shuffleArray(options);
+
+        return { sentence: sentenceWithBlank, options };
+    }
+
+    escapeRegex(str) {
+        return str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    }
+
+    handleGapFillAnswer(selectedEnglish) {
+        if (this.gapFillAnswered || !this.gapFillCurrentQuestion) return;
+        this.gapFillAnswered = true;
+
+        const isCorrect = (selectedEnglish.trim().toLowerCase() === this.gapFillCurrentQuestion.correct.trim().toLowerCase());
+        this.playTone(isCorrect ? 'correct' : 'error');
+
+        const allOptions = document.querySelectorAll('.gapfill-opt-btn');
+        allOptions.forEach(btn => {
+            btn.disabled = true;
+            btn.classList.remove('correct-answer', 'wrong-answer', 'other-option');
+            if (btn.dataset.english === this.gapFillCurrentQuestion.correct) {
+                btn.classList.add('correct-answer');
+            } else if (btn.dataset.english === selectedEnglish && !isCorrect) {
+                btn.classList.add('wrong-answer');
+            } else {
+                btn.classList.add('other-option');
+            }
+        });
+
+        if (isCorrect) {
+            this.gapFillRemaining.shift();
+            this.updateProgress(5);
+            this.gapFillTimer = setTimeout(() => {
+                this.gapFillTimer = null;
+                if (this.gapFillRemaining.length === 0) {
+                    alert('🎉 تهانينا! أكملت جميع الكلمات.');
+                    this.currentPage = 'reading';
+                } else {
+                    this.prepareGapFill();
+                }
+                this.render();
+            }, 2500);
+        } else {
+            this.gapFillTimer = setTimeout(() => {
+                this.gapFillTimer = null;
+                if (this.gapFillRemaining.length > 1) {
+                    const wrongWord = this.gapFillRemaining.shift();
+                    this.gapFillRemaining.push(wrongWord);
+                }
+                this.prepareGapFill();
+                this.render();
+            }, 1500);
+        }
+    }
+
+    unlockGapFill(lessonId) {
+        if (this.gapFillUnlocked[lessonId]) return true;
+        if (this.userCoins >= 75) {
+            if (confirm('هل تريد فتح تمرين ملء الفراغ لهذا الدرس باستخدام 75 لؤلؤة؟')) {
+                this.userCoins -= 75;
+                this.gapFillUnlocked[lessonId] = true;
+                this.saveUserData();
+                this.prepareGapFill();
+                this.render();
+                return true;
+            } else {
+                return false;
+            }
+        } else {
+            alert(`❌ ليس لديك لآلئ كافية! تحتاج 75 لؤلؤة. رصيدك الحالي: ${this.userCoins}`);
+            return false;
+        }
+    }
+
     // ================== الأحداث العامة ==================
     setupGlobalEvents() {
         document.addEventListener('click', (e) => {
@@ -1833,6 +1954,7 @@ class App {
 
             if (action === 'ansQ') { this.handleAnswer(param, correct, btn); return; }
             if (action === 'levelTestAns') { this.handleLevelTestAnswer(param, correct, btn); return; }
+            if (action === 'gapfillAnswer') { this.handleGapFillAnswer(param); return; }
 
             switch (action) {
                 case 'masterWord':
@@ -1900,7 +2022,6 @@ class App {
                     break;
 
                 case 'unlockWithTest':
-                    // فتح الدرس بالاختبار (الطريقة القديمة)
                     const list = window.lessonsList[this.selectedLevel] || [];
                     const curIdx = list.findIndex(l => l.id == param);
                     const prevId = list[curIdx - 1]?.id;
@@ -1913,7 +2034,6 @@ class App {
                     break;
 
                 case 'unlockWithCoins':
-                    // فتح الدرس بالعملات
                     this.unlockLessonWithCoins(param);
                     break;
 
@@ -1944,6 +2064,12 @@ class App {
                     } else if (param === 'test_history') {
                         this.showTestHistory();
                         return;
+                    } else if (param === 'gapfill' && this.selectedLessonId) {
+                        if (!this.gapFillUnlocked[this.selectedLessonId]) {
+                            if (!this.unlockGapFill(this.selectedLessonId)) return;
+                        } else {
+                            this.prepareGapFill();
+                        }
                     }
                     this.currentPage = param;
                     this.currentCardIndex = 0;
@@ -2017,33 +2143,16 @@ class App {
                         if (param === 'all' && this.selectedLessonId) {
                             const lessonId = this.selectedLessonId;
                             const lesson = window.lessonsData[lessonId];
-                            
-                            // جمع معرفات كلمات الدرس الأصلية
                             const originalIds = lesson && lesson.terms ? lesson.terms.map(t => String(t.id)) : [];
-                            console.log('Original IDs:', originalIds);
-                            
-                            // جمع معرفات كلمات المستخدم لهذا الدرس
                             const userWordIds = this.userVocabulary
                                 .filter(v => v.lessonId == lessonId)
                                 .map(v => String(v.id));
-                            console.log('User word IDs:', userWordIds);
-                            
-                            // دمج المعرفات
                             const allIds = [...originalIds, ...userWordIds];
-                            console.log('All IDs to remove from masteredWords:', allIds);
-                            
                             if (allIds.length > 0) {
-                                // إزالة هذه المعرفات من masteredWords
-                                const beforeLength = this.masteredWords.length;
                                 this.masteredWords = this.masteredWords.filter(id => !allIds.includes(id));
-                                console.log(`✅ Removed ${beforeLength - this.masteredWords.length} words from masteredWords. New masteredWords:`, this.masteredWords);
-                            } else {
-                                console.log('⚠️ No IDs found for this lesson.');
                             }
-                            
                             this.currentCardIndex = 0;
                             this.saveUserData();
-                            console.log('✅ Data saved. Rendering...');
                             this.render();
                         }
                     }, delay);
@@ -2126,7 +2235,6 @@ class App {
                     this.finishLevelTestEarly();
                     break;
 
-                // أحداث جديدة للعملات والإعلانات
                 case 'watchAds':
                     this.watchAdsForCoins();
                     break;
@@ -2140,7 +2248,6 @@ class App {
                     this.submitPurchaseRequest();
                     break;
 
-                // أحداث الملف الشخصي
                 case 'updateProfile':
                     this.updateProfile();
                     break;
@@ -2158,7 +2265,7 @@ class App {
         });
     }
 
-    // دالة معالجة المصادقة (تسجيل الدخول والتسجيل)
+    // ================== دوال المصادقة ==================
     handleAuth() {
         const name = document.getElementById('authName')?.value;
         const email = document.getElementById('authEmail')?.value;
@@ -2172,11 +2279,8 @@ class App {
         const users = JSON.parse(localStorage.getItem('users'));
         const hashedPass = this.hashPassword(pass);
 
-        // التحقق مما إذا كان المستخدم موجوداً
         if (users[email]) {
-            // مستخدم موجود - تحقق من كلمة المرور
             if (users[email].password === hashedPass) {
-                // تسجيل الدخول ناجح
                 this.currentUserEmail = email;
                 this.userData = { name: users[email].name, email, pass: hashedPass };
                 localStorage.setItem('currentUser', email);
@@ -2187,14 +2291,11 @@ class App {
                 alert('كلمة المرور غير صحيحة');
             }
         } else {
-            // مستخدم جديد - تسجيل
             users[email] = { name, password: hashedPass };
             localStorage.setItem('users', JSON.stringify(users));
             this.currentUserEmail = email;
             this.userData = { name, email, pass: hashedPass };
             localStorage.setItem('currentUser', email);
-            
-            // إنشاء بيانات افتراضية للمستخدم الجديد
             this.userVocabulary = [];
             this.masteredWords = [];
             this.unlockedLessons = [];
@@ -2203,10 +2304,11 @@ class App {
             this.userStats = { xp: 0, level: 1, badges: [], tier: 'برونزي' };
             this.placementResults = [];
             this.placementFullHistory = [];
-            this.userCoins = 100; // مكافأة ترحيبية
+            this.userCoins = 100;
             this.jumbleUnlocked = {};
             this.listeningUnlocked = {};
             this.spellingUnlocked = {};
+            this.gapFillUnlocked = {};
             this.newWordsAddedCount = 0;
             this.adWatchedCount = 0;
             this.purchaseRequests = [];
@@ -2220,7 +2322,6 @@ class App {
             };
             this.lastTestedLesson = { beginner: 0, intermediate: 0, advanced: 0 };
             this.saveUserData();
-
             this.currentPage = 'home';
             this.render();
         }
@@ -2301,13 +2402,11 @@ class App {
         }
     }
 
-    // دالة مساعدة لعرض الأوسمة في الصفحة الرئيسية
+    // ================== دوال الأوسمة ==================
     getBadgesDisplay() {
         const earnedBadges = this.userStats.badges || [];
         const badgeNames = { '🥉': 'برونزي', '🥈': 'فضي', '🥇': 'ذهبي', '👑': 'ماسي' };
-        
         if (earnedBadges.length > 0) {
-            // عرض جميع الأوسمة التي حصل عليها المستخدم
             return `<div class="badges-container" onclick="appInstance.showBadgesModal()">
                 ${earnedBadges.map(b => `<span class="badge-item" title="${badgeNames[b]}">${b}</span>`).join('')}
             </div>`;
@@ -2318,7 +2417,6 @@ class App {
         }
     }
 
-    // دالة عرض الأوسمة في نافذة منبثقة (مع أسماء الأوسمة فقط)
     showBadgesModal() {
         const allBadges = [
             { icon: '🥉', name: 'برونزي' },
@@ -2327,7 +2425,6 @@ class App {
             { icon: '👑', name: 'ماسي' }
         ];
         const earnedBadges = this.userStats.badges || [];
-        
         let badgesHtml = '<div class="badges-grid">';
         allBadges.forEach(badge => {
             const isEarned = earnedBadges.includes(badge.icon);
@@ -2339,10 +2436,10 @@ class App {
             `;
         });
         badgesHtml += '</div>';
-        
         this.showCustomModal('info', '🏅 الأوسمة', badgesHtml);
     }
 
+    // ================== دوال العرض ==================
     render() {
         const app = document.getElementById('app');
         if (!app) return;
@@ -2405,7 +2502,7 @@ class App {
     getHeader() {
         if (this.currentPage === 'auth') return '';
         let nav = '';
-        if (this.selectedLessonId && ['reading', 'flashcards', 'quiz', 'jumble', 'listening', 'spelling'].includes(this.currentPage) && !this.isUnlockTest) {
+        if (this.selectedLessonId && ['reading', 'flashcards', 'quiz', 'jumble', 'listening', 'spelling', 'gapfill'].includes(this.currentPage) && !this.isUnlockTest) {
             nav = `<nav class="nav-menu">
                 <button class="nav-btn ${this.currentPage === 'reading' ? 'active' : ''}" data-action="setPage" data-param="reading">📖 النص</button>
                 <button class="nav-btn ${this.currentPage === 'flashcards' ? 'active' : ''}" data-action="setPage" data-param="flashcards">🎴 بطاقات</button>
@@ -2413,6 +2510,7 @@ class App {
                 <button class="nav-btn ${this.currentPage === 'jumble' ? 'active' : ''}" data-action="setPage" data-param="jumble">🔤 ترتيب</button>
                 <button class="nav-btn ${this.currentPage === 'listening' ? 'active' : ''}" data-action="setPage" data-param="listening">🎧 استماع</button>
                 <button class="nav-btn ${this.currentPage === 'spelling' ? 'active' : ''}" data-action="setPage" data-param="spelling">✍️ كتابة</button>
+                <button class="nav-btn ${this.currentPage === 'gapfill' ? 'active' : ''}" data-action="setPage" data-param="gapfill">📝 ملء فراغ</button>
             </nav>`;
         }
 
@@ -2935,6 +3033,41 @@ class App {
                 </div>
             </main>`;
         }
+
+        // صفحة gapfill
+        if (this.currentPage === 'gapfill') {
+            if (!this.gapFillUnlocked[this.selectedLessonId]) {
+                return `<div class="reading-card" style="text-align: center;">
+                    <h3>📝 ملء الفراغ</h3>
+                    <p>لفتح هذا التمرين تحتاج 75 💎 لؤلؤة (مرة واحدة فقط للدرس).</p>
+                    <p>رصيدك الحالي: ${this.userCoins} 💎</p>
+                    <button class="hero-btn" onclick="appInstance.unlockGapFill('${this.selectedLessonId}')" style="background: #8b5cf6;">فتح (75 💎)</button>
+                </div>`;
+            }
+            if (!this.gapFillCurrentQuestion) {
+                return `<div class="reading-card"><p>جاري تحضير السؤال...</p></div>`;
+            }
+            const q = this.gapFillCurrentQuestion;
+            return `<div class="reading-card">
+                <h3>📝 اختر الكلمة المناسبة لملء الفراغ</h3>
+                <div style="margin: 20px 0; padding: 20px; background: #f0f7ff; border-radius: 12px; font-size: 1.2rem; text-align: center;">
+                    ${q.text}
+                </div>
+                <div class="quiz-options">
+                    ${this.gapFillOptions.map(opt => `
+                        <button class="quiz-opt-btn gapfill-opt-btn"
+                                data-action="gapfillAnswer"
+                                data-english="${opt}">
+                            ${opt}
+                        </button>
+                    `).join('')}
+                </div>
+                ${this.gapFillResult !== null ? `<div class="spelling-feedback ${this.gapFillResult === 'correct' ? 'correct-feedback' : 'wrong-feedback'}">
+                    ${this.gapFillResult === 'correct' ? '✅ إجابة صحيحة!' : '❌ إجابة خاطئة!'}
+                </div>` : ''}
+            </div>`;
+        }
+
         return `<div style="text-align:center; padding:50px;">جاري التحميل...</div>`;
     }
 
@@ -2942,12 +3075,10 @@ class App {
         this.theme = this.theme === 'light' ? 'dark' : 'light';
         document.documentElement.setAttribute('data-theme', this.theme);
         localStorage.setItem('theme', this.theme);
-
         const logoImg = document.querySelector('.logo-container img');
         if (logoImg) {
             logoImg.src = 'wordwise_logo.png';
         }
-
         this.render();
     }
 
