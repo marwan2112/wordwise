@@ -55,11 +55,12 @@ class App {
         this.gapFillCurrentQuestion = null;
         this.gapFillOptions = [];
         this.gapFillAnswered = false;
+        this.gapFillResult = null; // 'correct' or 'wrong'
         this.gapFillTimer = null;
-        this.gapFillResult = null;
         this.gapFillUnlocked = {};
         this.gapFillUsedWords = [];
         this.gapFillNextCount = 0;
+        this.gapFillExplanation = ''; // نص الشرح
 
         // الاختبار الشامل
         this.levelTestLevel = null;
@@ -281,7 +282,7 @@ class App {
         const style = document.createElement('style');
         style.id = styleId;
         style.textContent = `
-            /* أنماط الوضع الليلي */
+            /* أنماط الوضع الليلي - إصلاح النص في الحقول */
             [data-theme="dark"] body {
                 background-color: #121212 !important;
                 color: #ffffff !important;
@@ -315,7 +316,7 @@ class App {
             [data-theme="dark"] input,
             [data-theme="dark"] textarea {
                 background-color: #2d2d2d !important;
-                color: #fff !important;
+                color: #ffffff !important;
                 border-color: #555 !important;
             }
             [data-theme="dark"] .flashcard-front,
@@ -329,6 +330,29 @@ class App {
             }
             [data-theme="dark"] .welcome-banner {
                 background: linear-gradient(135deg, #1a1a2e, #16213e) !important;
+            }
+            /* إصلاح النص في الوضع الليلي */
+            [data-theme="dark"] .scrollable-text,
+            [data-theme="dark"] .reading-card p,
+            [data-theme="dark"] .reading-card div,
+            [data-theme="dark"] .quiz-question-row h2,
+            [data-theme="dark"] .gapfill-sentence {
+                color: #ffffff !important;
+            }
+            [data-theme="dark"] .spelling-input,
+            [data-theme="dark"] #newEng,
+            [data-theme="dark"] #newArb,
+            [data-theme="dark"] #ocrText,
+            [data-theme="dark"] #newLessonTitle {
+                color: #ffffff !important;
+                background-color: #2d2d2d !important;
+            }
+            [data-theme="dark"] .spelling-input::placeholder,
+            [data-theme="dark"] #newEng::placeholder,
+            [data-theme="dark"] #newArb::placeholder,
+            [data-theme="dark"] #ocrText::placeholder,
+            [data-theme="dark"] #newLessonTitle::placeholder {
+                color: #aaa !important;
             }
 
             /* أنماط الهيدر واللوجو */
@@ -652,6 +676,27 @@ class App {
             .badge-modal-item .badge-name {
                 font-size: 1rem;
                 font-weight: bold;
+            }
+
+            /* أنماط إضافية لتمرين ملء الفراغ */
+            .gapfill-sentence {
+                margin: 20px 0;
+                padding: 20px;
+                background: #f0f7ff;
+                border-radius: 12px;
+                font-size: 1.2rem;
+                text-align: center;
+                color: #000;
+            }
+            [data-theme="dark"] .gapfill-sentence {
+                background: #2d2d2d;
+                color: #fff;
+            }
+            .gapfill-controls {
+                display: flex;
+                gap: 10px;
+                justify-content: center;
+                margin-top: 20px;
             }
         `;
         document.head.appendChild(style);
@@ -1806,11 +1851,13 @@ class App {
         this.gapFillCurrentQuestion = {
             text: questionData.sentence,
             correct: targetWord,
-            arabic: targetArabic
+            arabic: targetArabic,
+            originalSentence: questionData.originalSentence || '' // لحفظ الجملة الأصلية للشرح
         };
         this.gapFillOptions = questionData.options;
         this.gapFillAnswered = false;
         this.gapFillResult = null;
+        this.gapFillExplanation = ''; // سيتم تعبئتها عند الإجابة
         this.render();
     }
 
@@ -1826,7 +1873,8 @@ class App {
 أعد الإجابة بتنسيق JSON كالتالي:
 {
   "sentence": "الجملة مع ______ مكان الكلمة",
-  "options": ["خيار1", "خيار2", "خيار3", "خيار4"]
+  "options": ["خيار1", "خيار2", "خيار3", "خيار4"],
+  "originalSentence": "الجملة الأصلية بدون فراغ"
 }
 تأكد من أن الخيارات تحتوي على الكلمة الصحيحة مرة واحدة فقط، ولا تكرر الخيارات.`;
 
@@ -1836,7 +1884,7 @@ class App {
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
                     contents: [{ parts: [{ text: prompt }] }],
-                    generationConfig: { temperature: 0.7, maxOutputTokens: 150 }
+                    generationConfig: { temperature: 0.7, maxOutputTokens: 200 }
                 })
             });
             if (!response.ok) throw new Error('API error');
@@ -1859,11 +1907,11 @@ class App {
     generateLocalGapFill(targetWord, targetArabic, lessonContent, allTerms) {
         const sentences = lessonContent.split(/[.!?]+/).map(s => s.trim()).filter(s => s.length > 0);
         const regex = new RegExp(`\\b${this.escapeRegex(targetWord)}\\b`, 'i');
-        let sentence = sentences.find(s => regex.test(s));
-        if (!sentence) {
-            sentence = `The word "${targetWord}" is used in this sentence.`;
+        let originalSentence = sentences.find(s => regex.test(s));
+        if (!originalSentence) {
+            originalSentence = `The word "${targetWord}" is used in this sentence.`;
         }
-        const sentenceWithBlank = sentence.replace(regex, '______');
+        const sentenceWithBlank = originalSentence.replace(regex, '______');
 
         const otherWords = allTerms.filter(t => t.english !== targetWord && !this.masteredWords.includes(String(t.id)) && !this.hiddenFromCards.includes(String(t.id)))
                                    .map(t => t.english);
@@ -1873,7 +1921,7 @@ class App {
         const options = [targetWord, ...wrongOptions];
         this.shuffleArray(options);
 
-        return { sentence: sentenceWithBlank, options };
+        return { sentence: sentenceWithBlank, options, originalSentence };
     }
 
     escapeRegex(str) {
@@ -1887,6 +1935,7 @@ class App {
         const isCorrect = (selectedEnglish.trim().toLowerCase() === this.gapFillCurrentQuestion.correct.trim().toLowerCase());
         this.playTone(isCorrect ? 'correct' : 'error');
 
+        // تلوين الأزرار
         const allOptions = document.querySelectorAll('.gapfill-opt-btn');
         allOptions.forEach(btn => {
             btn.disabled = true;
@@ -1903,27 +1952,26 @@ class App {
         if (isCorrect) {
             this.gapFillRemaining.shift();
             this.updateProgress(5);
-            this.gapFillTimer = setTimeout(() => {
-                this.gapFillTimer = null;
-                if (this.gapFillRemaining.length === 0) {
-                    alert('🎉 تهانينا! أكملت جميع الكلمات.');
-                    this.currentPage = 'reading';
-                } else {
-                    this.prepareGapFill();
-                }
-                this.render();
-            }, 2500);
+            this.gapFillResult = 'correct';
+            // إنشاء شرح
+            this.gapFillExplanation = `✅ إجابة صحيحة! كلمة "${this.gapFillCurrentQuestion.correct}" تعني "${this.gapFillCurrentQuestion.arabic}" في العربية. الجملة الأصلية: "${this.gapFillCurrentQuestion.originalSentence || this.gapFillCurrentQuestion.text.replace('______', this.gapFillCurrentQuestion.correct)}"`;
         } else {
-            this.gapFillTimer = setTimeout(() => {
-                this.gapFillTimer = null;
-                if (this.gapFillRemaining.length > 1) {
-                    const wrongWord = this.gapFillRemaining.shift();
-                    this.gapFillRemaining.push(wrongWord);
-                }
-                this.prepareGapFill();
-                this.render();
-            }, 1500);
+            this.gapFillResult = 'wrong';
+            // إنشاء شرح
+            this.gapFillExplanation = `❌ إجابة خاطئة. الإجابة الصحيحة هي "${this.gapFillCurrentQuestion.correct}" (${this.gapFillCurrentQuestion.arabic}). الجملة الأصلية: "${this.gapFillCurrentQuestion.originalSentence || this.gapFillCurrentQuestion.text.replace('______', this.gapFillCurrentQuestion.correct)}"`;
         }
+
+        this.render();
+    }
+
+    handleGapFillNext() {
+        if (this.gapFillRemaining.length === 0) {
+            alert('🎉 تهانينا! أكملت جميع الكلمات.');
+            this.currentPage = 'reading';
+        } else {
+            this.prepareGapFill();
+        }
+        this.render();
     }
 
     unlockGapFill(lessonId) {
@@ -1955,6 +2003,7 @@ class App {
             if (action === 'ansQ') { this.handleAnswer(param, correct, btn); return; }
             if (action === 'levelTestAns') { this.handleLevelTestAnswer(param, correct, btn); return; }
             if (action === 'gapfillAnswer') { this.handleGapFillAnswer(param); return; }
+            if (action === 'gapfillNext') { this.handleGapFillNext(); return; }
 
             switch (action) {
                 case 'masterWord':
@@ -3050,7 +3099,7 @@ class App {
             const q = this.gapFillCurrentQuestion;
             return `<div class="reading-card">
                 <h3>📝 اختر الكلمة المناسبة لملء الفراغ</h3>
-                <div style="margin: 20px 0; padding: 20px; background: #f0f7ff; border-radius: 12px; font-size: 1.2rem; text-align: center;">
+                <div class="gapfill-sentence">
                     ${q.text}
                 </div>
                 <div class="quiz-options">
@@ -3062,9 +3111,17 @@ class App {
                         </button>
                     `).join('')}
                 </div>
-                ${this.gapFillResult !== null ? `<div class="spelling-feedback ${this.gapFillResult === 'correct' ? 'correct-feedback' : 'wrong-feedback'}">
-                    ${this.gapFillResult === 'correct' ? '✅ إجابة صحيحة!' : '❌ إجابة خاطئة!'}
-                </div>` : ''}
+                ${this.gapFillResult !== null ? `
+                    <div class="spelling-feedback ${this.gapFillResult === 'correct' ? 'correct-feedback' : 'wrong-feedback'}">
+                        ${this.gapFillResult === 'correct' ? '✅ إجابة صحيحة!' : '❌ إجابة خاطئة!'}
+                    </div>
+                    <div style="margin: 15px 0; padding: 10px; background: #eef2ff; border-radius: 8px; font-size: 0.95rem;">
+                        ${this.gapFillExplanation}
+                    </div>
+                    <div class="gapfill-controls">
+                        <button class="hero-btn" data-action="gapfillNext" style="background:#3b82f6;">➡️ التالي</button>
+                    </div>
+                ` : ''}
             </div>`;
         }
 
@@ -3092,4 +3149,4 @@ class App {
     }
 }
 
-const appInstance = new App();
+const appInstance = new App
