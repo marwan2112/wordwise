@@ -1913,8 +1913,7 @@ async prepareGapFill() {
 }
 
 async generateGapFillWithGemini(targetWord, lessonContent, allEnglishWords) {
-    // ضع مفتاحك الجديد هنا بين علامتي التنصيص
-    const apiKey = "AIzaSyBN32_9EMJfoKERfa2Q-LQLoddJl3EtmHc";  // استبدل هذا بالمفتاح الجديد
+    const apiKey = "AIzaSyBN32_9EMJfoKERfa2Q-LQLoddJl3EtmHc"; // ضع مفتاحك الجديد هنا
 
     const prompt = `أنت منشئ أسئلة تعلم اللغة الإنجليزية. 
 الكلمة المستهدفة: "${targetWord}". 
@@ -1923,7 +1922,7 @@ async generateGapFillWithGemini(targetWord, lessonContent, allEnglishWords) {
 1. قم بإنشاء جملة جديدة بالكامل (ليست من النص) تناسب مستوى الدرس (A1-C2) وتستخدم الكلمة "${targetWord}" بشكل صحيح.
 2. استبدل الكلمة "${targetWord}" في الجملة بفراغ "______".
 3. قدم الجملة الأصلية (بدون فراغ) في حقل "originalSentence".
-4. قدم أربع خيارات للفراغ: الخيار الصحيح (هو نفس الكلمة) وثلاثة خيارات خاطئة. يجب أن تكون الخيارات الخاطئة من بين الكلمات الأخرى في الدرس (القائمة أدناه) إن أمكن، أو كلمات مناسبة لمستوى الدرس إذا لم تكن موجودة.
+4. قدم أربع خيارات للفراغ: الخيار الصحيح (هو نفس الكلمة) وثلاثة خيارات خاطئة. يجب أن تكون الخيارات الخاطئة من بين الكلمات الأخرى في الدرس (القائمة أدناه) إن أمكن.
 قائمة الكلمات المتاحة في الدرس (للاستخدام في الخيارات الخاطئة): ${allEnglishWords.join(', ')}
 
 أعد الإجابة بتنسيق JSON كالتالي:
@@ -1931,62 +1930,37 @@ async generateGapFillWithGemini(targetWord, lessonContent, allEnglishWords) {
   "sentence": "الجملة مع ______ مكان الكلمة",
   "options": ["خيار1", "خيار2", "خيار3", "خيار4"],
   "originalSentence": "الجملة الأصلية بدون فراغ"
-}
-تأكد من أن الخيارات تحتوي على الكلمة الصحيحة مرة واحدة فقط، ولا تكرر الخيارات.`;
+}`;
 
     try {
-        console.log('جاري الاتصال بـ Gemini...');
         const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
                 contents: [{ parts: [{ text: prompt }] }],
-                generationConfig: {
-                    temperature: 0.7,
-                    maxOutputTokens: 250
-                },
-                safetySettings: [
-                    { category: "HARM_CATEGORY_HARASSMENT", threshold: "BLOCK_NONE" },
-                    { category: "HARM_CATEGORY_HATE_SPEECH", threshold: "BLOCK_NONE" },
-                    { category: "HARM_CATEGORY_SEXUALLY_EXPLICIT", threshold: "BLOCK_NONE" },
-                    { category: "HARM_CATEGORY_DANGEROUS_CONTENT", threshold: "BLOCK_NONE" }
-                ]
+                generationConfig: { temperature: 0.7, maxOutputTokens: 250 }
             })
         });
-
         if (!response.ok) {
             const errorText = await response.text();
-            console.error('❌ خطأ من Google:', response.status, errorText);
-            // عرض رسالة واضحة للمستخدم
-            alert(`فشل الاتصال بالذكاء الاصطناعي (${response.status}). تأكد من صحة المفتاح في الكود ومن اتصال الإنترنت.`);
+            console.error('❌ تفاصيل الخطأ:', response.status, errorText);
+            alert(`فشل الاتصال: ${response.status}\n${errorText.substring(0, 200)}`);
             return null;
         }
-
         const data = await response.json();
         const text = data.candidates[0].content.parts[0].text;
         const jsonMatch = text.match(/\{[\s\S]*\}/);
         if (jsonMatch) {
             const parsed = JSON.parse(jsonMatch[0]);
             if (parsed.sentence && parsed.options && parsed.options.includes(targetWord)) {
-                while (parsed.options.length < 4) parsed.options.push('???');
-                if (!parsed.originalSentence) {
-                    parsed.originalSentence = parsed.sentence.replace('______', targetWord);
-                }
-                console.log('✅ تم إنشاء السؤال بنجاح');
                 return parsed;
-            } else {
-                console.warn('تنسيق JSON غير صحيح:', parsed);
-                alert('الرد من الذكاء الاصطناعي غير صحيح. حاول مرة أخرى.');
-                return null;
             }
-        } else {
-            console.warn('لم يتم العثور على JSON في الرد:', text);
-            alert('الرد من الذكاء الاصطناعي غير مفهوم. حاول مرة أخرى.');
-            return null;
         }
+        alert('الرد من الذكاء الاصطناعي غير صحيح.');
+        return null;
     } catch (e) {
-        console.error('❌ خطأ في الاتصال:', e);
-        alert('حدث خطأ في الاتصال بالإنترنت أو أن المفتاح غير صالح. تأكد من صحة المفتاح.');
+        console.error('❌ خطأ شبكة:', e);
+        alert(`خطأ في الاتصال: ${e.message}`);
         return null;
     }
 }
