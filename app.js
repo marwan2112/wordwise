@@ -3060,63 +3060,61 @@ async showDetailedGapFillExplanation() {
             </main>`;
         }
 
-        if (this.currentPage === 'gapfill') {
-            if (!this.gapFillUnlocked[this.selectedLessonId]) {
-                return `<div class="reading-card" style="text-align: center;">
-                    <h3>📝 ملء الفراغ</h3>
-                    <p>لفتح هذا التمرين تحتاج 75 💎 لؤلؤة (مرة واحدة فقط للدرس).</p>
-                    <p>رصيدك الحالي: ${this.userCoins} 💎</p>
-                    <button class="hero-btn" onclick="appInstance.unlockGapFill('${this.selectedLessonId}')" style="background: #8b5cf6;">فتح (75 💎)</button>
-                </div>`;
-            }
-            if (!this.gapFillCurrentQuestion) {
-                return `<div class="reading-card"><p>جاري تحضير السؤال...</p></div>`;
-            }
-            const q = this.gapFillCurrentQuestion;
-            return `<div class="reading-card">
-                <h3>📝 اختر الكلمة المناسبة لملء الفراغ</h3>
-                <div class="gapfill-sentence">
-                    ${q.text}
-                </div>
-                <div class="quiz-options">
-                    ${this.gapFillOptions.map(opt => `
-                        <button class="quiz-opt-btn gapfill-opt-btn"
-                                data-action="gapfillAnswer"
-                                data-english="${opt}">
-                            ${opt}
-                        </button>
-                    `).join('')}
-                </div>
-                ${this.gapFillResult !== null ? `
-                    <div class="spelling-feedback ${this.gapFillResult === 'correct' ? 'correct-feedback' : 'wrong-feedback'}">
-                        ${this.gapFillResult === 'correct' ? '✅ إجابة صحيحة!' : '❌ إجابة خاطئة!'}
-                    </div>
-                    <div style="display: flex; justify-content: center; gap: 10px; margin: 10px 0;">
-                        <button class="hero-btn" data-action="gapfillShowExplanation" style="background:#6366f1;">💡 شرح مفصل</button>
-                    </div>
-                    ${this.gapFillExplanationVisible ? `
-                        <div class="gapfill-explanation" style="margin: 15px 0; padding: 10px; background: #eef2ff; border-radius: 8px; font-size: 0.95rem;">
-                            <div style="font-weight: bold; margin-bottom: 8px;">📖 معنى الجملة:</div>
-                            <div>${this.gapFillCurrentQuestion.originalSentence ? this.gapFillCurrentQuestion.originalSentence : q.text.replace('______', q.correct)}</div>
-                            <div style="font-weight: bold; margin: 10px 0 5px;">📚 معاني الخيارات:</div>
-                            <div style="display: flex; flex-direction: column; gap: 5px;">
-                                ${this.gapFillOptionsMeanings.map(opt => `
-                                    <div>• <strong>${opt.english}</strong> : ${opt.arabic}</div>
-                                `).join('')}
-                            </div>
-                            <div style="margin-top: 10px; font-weight: bold;">✅ الإجابة الصحيحة: ${q.correct} (${q.arabic})</div>
-                        </div>
-                    ` : ''}
-                    <div class="gapfill-controls">
-                        <button class="hero-btn" data-action="gapfillNext" style="background:#3b82f6;">➡️ التالي</button>
-                    </div>
-                ` : ''}
-            </div>`;
-        }
-
-        return `<div style="text-align:center; padding:50px;">جاري التحميل...</div>`;
+if (this.currentPage === 'gapfill') {
+    if (!this.gapFillUnlocked[this.selectedLessonId]) {
+        return `<div class="reading-card" style="text-align: center;">
+            <h3>📝 ملء الفراغ</h3>
+            <p>لفتح هذا التمرين تحتاج 75 💎 لؤلؤة (مرة واحدة فقط للدرس).</p>
+            <p>رصيدك الحالي: ${this.userCoins} 💎</p>
+            <button class="hero-btn" onclick="appInstance.unlockGapFill('${this.selectedLessonId}')" style="background: #8b5cf6;">فتح (75 💎)</button>
+        </div>`;
     }
-
+    if (!this.gapFillCurrentQuestion) {
+        return `<div class="reading-card"><p>جاري تحضير السؤال...</p></div>`;
+    }
+    const q = this.gapFillCurrentQuestion;
+    return `<div class="reading-card">
+        <h3>📝 اختر الكلمة المناسبة لملء الفراغ</h3>
+        <div class="gapfill-sentence" style="font-size: 1.8rem; font-weight: bold; text-align: center; margin: 30px 0; padding: 20px; background: ${this.theme === 'dark' ? '#2d2d2d' : '#f8fafc'}; border-radius: 16px;">
+            ${q.text}
+        </div>
+        <div class="quiz-options">
+            ${this.gapFillOptions.map(opt => `
+                <button class="quiz-opt-btn gapfill-opt-btn"
+                        data-action="gapfillAnswer"
+                        data-english="${opt}">
+                    ${opt}
+                </button>
+            `).join('')}
+        </div>
+        ${this.gapFillResult !== null ? `
+            <div class="spelling-feedback ${this.gapFillResult === 'correct' ? 'correct-feedback' : 'wrong-feedback'}">
+                ${this.gapFillResult === 'correct' ? '✅ إجابة صحيحة!' : '❌ إجابة خاطئة!'}
+            </div>
+            <div style="display: flex; justify-content: center; gap: 10px; margin: 10px 0;">
+                <button class="hero-btn" data-action="gapfillShowExplanation" style="background:#6366f1;">💡 شرح مفصل</button>
+            </div>
+            ${this.gapFillExplanationVisible ? `
+                <div class="gapfill-explanation" style="margin: 15px 0; padding: 10px; background: ${this.theme === 'dark' ? '#2d2d2d' : '#eef2ff'}; border-radius: 8px; font-size: 0.95rem;">
+                    <div style="font-weight: bold; margin-bottom: 8px;">📖 معنى الجملة (بالإنجليزية):</div>
+                    <div>${q.originalSentence || q.text.replace('______', q.correct)}</div>
+                    <div style="font-weight: bold; margin: 10px 0 5px;">🌐 الترجمة العربية:</div>
+                    <div>${q.originalSentenceArabic || 'جاري التحميل...'}</div>
+                    <div style="font-weight: bold; margin: 10px 0 5px;">📚 معاني الخيارات:</div>
+                    <div style="display: flex; flex-direction: column; gap: 5px;">
+                        ${this.gapFillOptionsMeanings.map(opt => `
+                            <div>• <strong>${opt.english}</strong> : ${opt.arabic}</div>
+                        `).join('')}
+                    </div>
+                    <div style="margin-top: 10px; font-weight: bold;">✅ الإجابة الصحيحة: ${q.correct} (${q.arabic})</div>
+                </div>
+            ` : ''}
+            <div class="gapfill-controls">
+                <button class="hero-btn" data-action="gapfillNext" style="background:#3b82f6;">➡️ التالي</button>
+            </div>
+        ` : ''}
+    </div>`;
+}
     toggleTheme() {
         this.theme = this.theme === 'light' ? 'dark' : 'light';
         document.documentElement.setAttribute('data-theme', this.theme);
