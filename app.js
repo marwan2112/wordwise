@@ -11,7 +11,6 @@ class App {
         this.jumbleArabicHint = '';
         this.jumbleCurrentSentence = '';
 
-        // بيانات المستخدم (سيتم تحميلها من localStorage)
         this.userStats = { xp: 0, level: 1, badges: [], tier: 'برونزي' };
         this.placementResults = [];
         this.placementFullHistory = [];
@@ -21,7 +20,6 @@ class App {
         this.userCoins = 0;
         this.showCoinModal = false;
 
-        // متغيرات التمارين
         this.jumbleOriginalSentence = '';
         this.jumbleWords = [];
         this.jumbleUserAnswer = [];
@@ -49,7 +47,6 @@ class App {
         this.spellingUnlocked = {};
         this.spellingNextCount = 0;
 
-        // متغيرات تمرين ملء الفراغ (Gap Fill)
         this.gapFillRemaining = [];
         this.gapFillCurrentQuestion = null;
         this.gapFillOptions = [];
@@ -58,9 +55,10 @@ class App {
         this.gapFillTimer = null;
         this.gapFillUnlocked = {};
         this.gapFillExplanation = '';
+        this.gapFillExplanationVisible = false; // حالة إظهار الشرح التفصيلي
+        this.gapFillOptionsMeanings = []; // لتخزين معاني الخيارات
         this.gapFillNextCount = 0;
 
-        // الاختبار الشامل
         this.levelTestLevel = null;
         this.levelTestLessons = [];
         this.levelTestCurrentLessonIndex = 0;
@@ -99,8 +97,8 @@ class App {
         this.unlockedLessons = [];
         this.hiddenFromCards = [];
         this.customLessons = {};
+        this.generatedLessons = {}; // { lessonId: { level, title, content, terms } }
 
-        // تهيئة localStorage للمستخدمين
         if (!localStorage.getItem('users')) {
             localStorage.setItem('users', JSON.stringify({}));
         }
@@ -128,7 +126,6 @@ class App {
         }
     }
 
-    // ================== دوال أساسية ==================
     hashPassword(password) {
         return btoa(password);
     }
@@ -141,6 +138,7 @@ class App {
         this.unlockedLessons = data.unlockedLessons || [];
         this.hiddenFromCards = data.hiddenFromCards || [];
         this.customLessons = data.customLessons || {};
+        this.generatedLessons = data.generatedLessons || {};
         this.userStats = data.userStats || { xp: 0, level: 1, badges: [], tier: 'برونزي' };
         this.placementResults = data.placementResults || [];
         this.placementFullHistory = data.placementFullHistory || [];
@@ -176,6 +174,7 @@ class App {
             unlockedLessons: this.unlockedLessons,
             hiddenFromCards: this.hiddenFromCards,
             customLessons: this.customLessons,
+            generatedLessons: this.generatedLessons,
             userStats: this.userStats,
             placementResults: this.placementResults,
             placementFullHistory: this.placementFullHistory,
@@ -203,6 +202,7 @@ class App {
         this.unlockedLessons = [];
         this.hiddenFromCards = [];
         this.customLessons = {};
+        this.generatedLessons = {};
         this.userStats = { xp: 0, level: 1, badges: [], tier: 'برونزي' };
         this.placementResults = [];
         this.placementFullHistory = [];
@@ -274,523 +274,452 @@ class App {
         this.render();
     }
 
-addThemeStyles() {
-    const styleId = 'theme-dynamic-styles';
-    if (document.getElementById(styleId)) return;
-    const style = document.createElement('style');
-    style.id = styleId;
-    style.textContent = `
-        /* ========== الوضع الليلي ========== */
-        [data-theme="dark"] {
-            /* خلفيات عامة */
-            --bg-main: #121212;
-            --bg-card: #1e1e1e;
-            --text-main: #ffffff;
-            --text-muted: #cccccc;
-            --border-color: #444;
-        }
+    addThemeStyles() {
+        const styleId = 'theme-dynamic-styles';
+        if (document.getElementById(styleId)) return;
+        const style = document.createElement('style');
+        style.id = styleId;
+        style.textContent = `
+            [data-theme="dark"] {
+                --bg-main: #121212;
+                --bg-card: #1e1e1e;
+                --text-main: #ffffff;
+                --text-muted: #cccccc;
+                --border-color: #444;
+            }
+            [data-theme="dark"] body {
+                background-color: #121212 !important;
+                color: #ffffff !important;
+            }
+            [data-theme="dark"] .main-content,
+            [data-theme="dark"] .reading-card,
+            [data-theme="dark"] .feature-card,
+            [data-theme="dark"] .quiz-box,
+            [data-theme="dark"] .flashcard-container,
+            [data-theme="dark"] .jumble-card,
+            [data-theme="dark"] .spelling-card,
+            [data-theme="dark"] .profile-container,
+            [data-theme="dark"] .auth-card,
+            [data-theme="dark"] .badges-container,
+            [data-theme="dark"] .gapfill-sentence,
+            [data-theme="dark"] .scrollable-text {
+                background-color: #1e1e1e !important;
+                color: #ffffff !important;
+                border-color: #444 !important;
+            }
+            [data-theme="dark"] .reading-card *,
+            [data-theme="dark"] .feature-card *,
+            [data-theme="dark"] .quiz-box *,
+            [data-theme="dark"] .flashcard-container *,
+            [data-theme="dark"] .jumble-card *,
+            [data-theme="dark"] .spelling-card *,
+            [data-theme="dark"] .profile-container *,
+            [data-theme="dark"] .auth-card *,
+            [data-theme="dark"] .badges-container *,
+            [data-theme="dark"] .scrollable-text * {
+                color: #ffffff !important;
+            }
+            [data-theme="dark"] input,
+            [data-theme="dark"] textarea,
+            [data-theme="dark"] .spelling-input,
+            [data-theme="dark"] input:not([type="checkbox"]):not([type="radio"]) {
+                background-color: #2d2d2d !important;
+                color: #000000 !important;
+                border-color: #555 !important;
+            }
+            [data-theme="dark"] input::placeholder,
+            [data-theme="dark"] textarea::placeholder {
+                color: #aaa !important;
+            }
+            [data-theme="dark"] .header {
+                background-color: #1e1e1e !important;
+                border-bottom: 1px solid #333 !important;
+            }
+            [data-theme="dark"] .hero-btn,
+            [data-theme="dark"] .quiz-opt-btn,
+            [data-theme="dark"] .nav-btn {
+                background-color: #333 !important;
+                color: #fff !important;
+                border-color: #555 !important;
+            }
+            [data-theme="dark"] .hero-btn:hover,
+            [data-theme="dark"] .quiz-opt-btn:hover {
+                background-color: #444 !important;
+            }
+            [data-theme="dark"] .flashcard-front,
+            [data-theme="dark"] .flashcard-back {
+                background-color: #2d2d2d !important;
+                color: #fff !important;
+            }
+            [data-theme="dark"] .logout-btn {
+                background-color: #4a4a4a !important;
+                color: #fff !important;
+            }
+            [data-theme="dark"] .welcome-banner {
+                background: linear-gradient(135deg, #1a1a2e, #16213e) !important;
+            }
+            [data-theme="dark"] .quiz-question-row h2 {
+                color: #ffffff !important;
+            }
+            [data-theme="dark"] .gapfill-sentence {
+                background: #2d2d2d !important;
+                color: #fff !important;
+            }
+            [data-theme="dark"] .gapfill-explanation {
+                background-color: #2d2d2d !important;
+                color: #ffffff !important;
+                border: 1px solid #555 !important;
+            }
+            [data-theme="dark"] .gapfill-explanation * {
+                color: #ffffff !important;
+            }
+            [data-theme="dark"] .spelling-feedback {
+                background-color: #2d2d2d !important;
+                color: #ffffff !important;
+            }
+            [data-theme="dark"] .spelling-feedback.correct-feedback {
+                color: #10b981 !important;
+            }
+            [data-theme="dark"] .spelling-feedback.wrong-feedback {
+                color: #ef4444 !important;
+            }
+            .header-content {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding: 10px 20px;
+            }
+            .logo-container {
+                display: flex;
+                align-items: center;
+                gap: 10px;
+                cursor: pointer;
+            }
+            .logo-container img {
+                height: 40px;
+                width: auto;
+                transition: transform 0.3s;
+            }
+            .logo-container:hover img {
+                transform: scale(1.05);
+            }
+            .logo-container h2 {
+                margin: 0;
+                font-size: 1.5rem;
+                font-weight: bold;
+                background: linear-gradient(135deg, #1e40af, #3b82f6);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+            }
+            [data-theme="dark"] .logo-container h2 {
+                background: linear-gradient(135deg, #ffd700, #fbbf24);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+            }
+            .auth-container {
+                text-align: center;
+                margin-bottom: 30px;
+            }
+            .auth-container img {
+                height: 100px;
+                width: auto;
+                margin-bottom: 15px;
+            }
+            .auth-container h1 {
+                font-size: 2.5rem;
+                margin: 0;
+                color: #1e40af;
+            }
+            .auth-container p {
+                font-size: 1.2rem;
+                color: #64748b;
+            }
+            [data-theme="dark"] .auth-container h1 {
+                color: #ffd700;
+            }
+            [data-theme="dark"] .auth-container p {
+                color: #ccc;
+            }
+            .auth-card {
+                max-width: 400px;
+                margin: 0 auto;
+            }
+            .spelling-input {
+                width: 100%;
+                padding: 15px;
+                font-size: 1.2rem;
+                border: 2px solid #ddd;
+                border-radius: 8px;
+                margin: 20px 0;
+                direction: ltr;
+                text-align: left;
+            }
+            .spelling-feedback {
+                font-size: 1.2rem;
+                font-weight: bold;
+                margin: 10px 0;
+            }
+            .correct-feedback {
+                color: #10b981;
+            }
+            .wrong-feedback {
+                color: #ef4444;
+            }
+            .ad-container {
+                margin: 20px 0;
+                padding: 15px;
+                background: #f0f0f0;
+                border-radius: 10px;
+                text-align: center;
+                border: 1px dashed #ffd700;
+            }
+            .bank-info {
+                background: #e3f2fd;
+                padding: 15px;
+                border-radius: 10px;
+                font-size: 0.9rem;
+                margin: 10px 0;
+            }
+            .modal-overlay {
+                position: fixed;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background: rgba(0,0,0,0.5);
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                z-index: 1000;
+                animation: fadeIn 0.3s;
+            }
+            .modal-content {
+                background: white;
+                border-radius: 16px;
+                padding: 25px;
+                max-width: 400px;
+                width: 90%;
+                max-height: 80vh;
+                overflow-y: auto;
+                box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+                animation: slideUp 0.3s;
+                position: relative;
+            }
+            [data-theme="dark"] .modal-content {
+                background: #1e1e1e;
+                color: white;
+            }
+            @keyframes fadeIn {
+                from { opacity: 0; }
+                to { opacity: 1; }
+            }
+            @keyframes slideUp {
+                from { transform: translateY(20px); opacity: 0; }
+                to { transform: translateY(0); opacity: 1; }
+            }
+            .modal-header {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                margin-bottom: 20px;
+            }
+            .modal-header h3 {
+                margin: 0;
+            }
+            .close-btn {
+                font-size: 1.5rem;
+                cursor: pointer;
+                padding: 0 5px;
+                color: #999;
+                transition: color 0.2s;
+            }
+            .close-btn:hover {
+                color: #333;
+            }
+            [data-theme="dark"] .close-btn:hover {
+                color: white;
+            }
+            .coin-option {
+                background: #f5f5f5;
+                border-radius: 12px;
+                padding: 15px;
+                margin-bottom: 15px;
+                cursor: pointer;
+                transition: transform 0.2s, box-shadow 0.2s;
+                border: 1px solid #e0e0e0;
+            }
+            [data-theme="dark"] .coin-option {
+                background: #2d2d2d;
+                border-color: #444;
+            }
+            .coin-option:hover {
+                transform: scale(1.02);
+                box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            }
+            .profile-container {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 15px;
+            }
+            .profile-image {
+                width: 150px;
+                height: 150px;
+                border-radius: 50%;
+                background: #e0e0e0;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                overflow: hidden;
+                border: 4px solid #ffd700;
+                cursor: pointer;
+                margin: 10px auto;
+            }
+            .profile-image img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+            .profile-image svg {
+                width: 70px;
+                height: 70px;
+                fill: #aaa;
+            }
+            .profile-info {
+                width: 100%;
+                background: #f9f9f9;
+                border-radius: 12px;
+                padding: 15px;
+                margin: 5px 0;
+            }
+            [data-theme="dark"] .profile-info {
+                background: #2d2d2d;
+            }
+            .info-row {
+                display: flex;
+                justify-content: space-between;
+                padding: 8px 0;
+                border-bottom: 1px solid #eee;
+            }
+            [data-theme="dark"] .info-row {
+                border-bottom-color: #444;
+            }
+            .info-row:last-child {
+                border-bottom: none;
+            }
+            .progress-bar-container {
+                width: 100%;
+                height: 10px;
+                background: #e0e0e0;
+                border-radius: 5px;
+                margin: 10px 0;
+            }
+            .progress-bar-fill {
+                height: 100%;
+                background: linear-gradient(90deg, #ffd700, #ffa500);
+                border-radius: 5px;
+                transition: width 0.3s;
+            }
+            .result-modal {
+                text-align: center;
+            }
+            .result-icon {
+                font-size: 4rem;
+                margin-bottom: 15px;
+            }
+            .result-message {
+                font-size: 1.2rem;
+                margin-bottom: 20px;
+            }
+            .unlock-choice {
+                display: flex;
+                gap: 15px;
+                flex-direction: column;
+                margin: 20px 0;
+            }
+            .badges-container {
+                display: flex;
+                gap: 10px;
+                flex-wrap: wrap;
+                margin: 15px 0;
+                padding: 10px;
+                background: rgba(255,255,255,0.1);
+                border-radius: 12px;
+                cursor: pointer;
+            }
+            .badge-item {
+                font-size: 2rem;
+                transition: transform 0.2s;
+            }
+            .badge-item:hover {
+                transform: scale(1.1);
+            }
+            .badges-grid {
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                gap: 15px;
+                padding: 10px;
+            }
+            .badge-modal-item {
+                text-align: center;
+                padding: 15px;
+                border-radius: 12px;
+                background: #f5f5f5;
+                transition: 0.2s;
+            }
+            [data-theme="dark"] .badge-modal-item {
+                background: #2d2d2d;
+            }
+            .badge-modal-item.earned {
+                background: #ffd700;
+                color: #000;
+                font-weight: bold;
+            }
+            .badge-modal-item:not(.earned) {
+                opacity: 0.4;
+                filter: grayscale(1);
+            }
+            .badge-modal-item .badge-icon {
+                font-size: 3rem;
+                display: block;
+                margin-bottom: 5px;
+            }
+            .badge-modal-item .badge-name {
+                font-size: 1rem;
+                font-weight: bold;
+            }
+            .gapfill-controls {
+                display: flex;
+                gap: 10px;
+                justify-content: center;
+                margin-top: 20px;
+            }
+            [data-theme="dark"] .quiz-question-row h2,
+            [data-theme="dark"] .quiz-opt-btn,
+            [data-theme="dark"] .spelling-input,
+            [data-theme="dark"] .gapfill-sentence,
+            [data-theme="dark"] .gapfill-sentence *,
+            [data-theme="dark"] .spelling-feedback,
+            [data-theme="dark"] .gapfill-controls + div {
+                color: #ffffff !important;
+            }
+            [data-theme="dark"] .quiz-opt-btn {
+                background-color: #333 !important;
+                border-color: #555 !important;
+            }
+            [data-theme="dark"] .quiz-opt-btn.correct-answer {
+                background-color: #10b981 !important;
+            }
+            [data-theme="dark"] .quiz-opt-btn.wrong-answer {
+                background-color: #ef4444 !important;
+            }
+            [data-theme="dark"] .quiz-opt-btn.other-option {
+                background-color: #6b7280 !important;
+            }
+        `;
+        document.head.appendChild(style);
+    }
 
-        [data-theme="dark"] body {
-            background-color: #121212 !important;
-            color: #ffffff !important;
-        }
-
-        /* جميع العناصر النصية داخل المحتوى الرئيسي تصبح بيضاء */
-        [data-theme="dark"] .main-content,
-        [data-theme="dark"] .reading-card,
-        [data-theme="dark"] .feature-card,
-        [data-theme="dark"] .quiz-box,
-        [data-theme="dark"] .flashcard-container,
-        [data-theme="dark"] .jumble-card,
-        [data-theme="dark"] .spelling-card,
-        [data-theme="dark"] .profile-container,
-        [data-theme="dark"] .auth-card,
-        [data-theme="dark"] .badges-container,
-        [data-theme="dark"] .gapfill-sentence,
-        [data-theme="dark"] .scrollable-text {
-            background-color: #1e1e1e !important;
-            color: #ffffff !important;
-            border-color: #444 !important;
-        }
-
-        /* جميع النصوص داخل هذه الحاويات تصبح بيضاء */
-        [data-theme="dark"] .reading-card *,
-        [data-theme="dark"] .feature-card *,
-        [data-theme="dark"] .quiz-box *,
-        [data-theme="dark"] .flashcard-container *,
-        [data-theme="dark"] .jumble-card *,
-        [data-theme="dark"] .spelling-card *,
-        [data-theme="dark"] .profile-container *,
-        [data-theme="dark"] .auth-card *,
-        [data-theme="dark"] .badges-container *,
-        [data-theme="dark"] .scrollable-text * {
-            color: #ffffff !important;
-        }
-
-        /* استثناء: حقول الإدخال – نص أسود على خلفية رمادية */
-        [data-theme="dark"] input,
-        [data-theme="dark"] textarea,
-        [data-theme="dark"] .spelling-input,
-        [data-theme="dark"] input:not([type="checkbox"]):not([type="radio"]) {
-            background-color: #2d2d2d !important;
-            color: #000000 !important;
-            border-color: #555 !important;
-        }
-
-        [data-theme="dark"] input::placeholder,
-        [data-theme="dark"] textarea::placeholder {
-            color: #aaa !important;
-        }
-
-        /* الهيدر والأزرار */
-        [data-theme="dark"] .header {
-            background-color: #1e1e1e !important;
-            border-bottom: 1px solid #333 !important;
-        }
-
-        [data-theme="dark"] .hero-btn,
-        [data-theme="dark"] .quiz-opt-btn,
-        [data-theme="dark"] .nav-btn {
-            background-color: #333 !important;
-            color: #fff !important;
-            border-color: #555 !important;
-        }
-
-        [data-theme="dark"] .hero-btn:hover,
-        [data-theme="dark"] .quiz-opt-btn:hover {
-            background-color: #444 !important;
-        }
-
-        [data-theme="dark"] .flashcard-front,
-        [data-theme="dark"] .flashcard-back {
-            background-color: #2d2d2d !important;
-            color: #fff !important;
-        }
-
-        [data-theme="dark"] .logout-btn {
-            background-color: #4a4a4a !important;
-            color: #fff !important;
-        }
-
-        [data-theme="dark"] .welcome-banner {
-            background: linear-gradient(135deg, #1a1a2e, #16213e) !important;
-        }
-
-        /* أنماط إضافية لضمان ظهور النصوص في الأقسام الخاصة */
-        [data-theme="dark"] .quiz-question-row h2 {
-            color: #ffffff !important;
-        }
-
-        [data-theme="dark"] .gapfill-sentence {
-            background: #2d2d2d !important;
-            color: #fff !important;
-        }
-
-        [data-theme="dark"] .spelling-feedback,
-        [data-theme="dark"] .gapfill-controls + div {
-            background-color: #eef2ff !important;
-            color: #000000 !important;
-        }
-
-        /* أنماط الهيدر واللوجو (العامة) */
-        .header-content {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 10px 20px;
-        }
-
-        .logo-container {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            cursor: pointer;
-        }
-
-        .logo-container img {
-            height: 40px;
-            width: auto;
-            transition: transform 0.3s;
-        }
-
-        .logo-container:hover img {
-            transform: scale(1.05);
-        }
-
-        .logo-container h2 {
-            margin: 0;
-            font-size: 1.5rem;
-            font-weight: bold;
-            background: linear-gradient(135deg, #1e40af, #3b82f6);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        [data-theme="dark"] .logo-container h2 {
-            background: linear-gradient(135deg, #ffd700, #fbbf24);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        /* بقية الأنماط العامة (كما هي) */
-        .auth-container {
-            text-align: center;
-            margin-bottom: 30px;
-        }
-
-        .auth-container img {
-            height: 100px;
-            width: auto;
-            margin-bottom: 15px;
-        }
-
-        .auth-container h1 {
-            font-size: 2.5rem;
-            margin: 0;
-            color: #1e40af;
-        }
-
-        .auth-container p {
-            font-size: 1.2rem;
-            color: #64748b;
-        }
-
-        [data-theme="dark"] .auth-container h1 {
-            color: #ffd700;
-        }
-
-        [data-theme="dark"] .auth-container p {
-            color: #ccc;
-        }
-
-        .auth-card {
-            max-width: 400px;
-            margin: 0 auto;
-        }
-
-        .spelling-input {
-            width: 100%;
-            padding: 15px;
-            font-size: 1.2rem;
-            border: 2px solid #ddd;
-            border-radius: 8px;
-            margin: 20px 0;
-            direction: ltr;
-            text-align: left;
-        }
-
-        .spelling-feedback {
-            font-size: 1.2rem;
-            font-weight: bold;
-            margin: 10px 0;
-        }
-
-        .correct-feedback {
-            color: #10b981;
-        }
-
-        .wrong-feedback {
-            color: #ef4444;
-        }
-
-        .ad-container {
-            margin: 20px 0;
-            padding: 15px;
-            background: #f0f0f0;
-            border-radius: 10px;
-            text-align: center;
-            border: 1px dashed #ffd700;
-        }
-
-        .bank-info {
-            background: #e3f2fd;
-            padding: 15px;
-            border-radius: 10px;
-            font-size: 0.9rem;
-            margin: 10px 0;
-        }
-
-        .modal-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(0,0,0,0.5);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 1000;
-            animation: fadeIn 0.3s;
-        }
-
-        .modal-content {
-            background: white;
-            border-radius: 16px;
-            padding: 25px;
-            max-width: 400px;
-            width: 90%;
-            max-height: 80vh;
-            overflow-y: auto;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-            animation: slideUp 0.3s;
-            position: relative;
-        }
-
-        [data-theme="dark"] .modal-content {
-            background: #1e1e1e;
-            color: white;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-
-        @keyframes slideUp {
-            from { transform: translateY(20px); opacity: 0; }
-            to { transform: translateY(0); opacity: 1; }
-        }
-
-        .modal-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 20px;
-        }
-
-        .modal-header h3 {
-            margin: 0;
-        }
-
-        .close-btn {
-            font-size: 1.5rem;
-            cursor: pointer;
-            padding: 0 5px;
-            color: #999;
-            transition: color 0.2s;
-        }
-
-        .close-btn:hover {
-            color: #333;
-        }
-
-        [data-theme="dark"] .close-btn:hover {
-            color: white;
-        }
-
-        .coin-option {
-            background: #f5f5f5;
-            border-radius: 12px;
-            padding: 15px;
-            margin-bottom: 15px;
-            cursor: pointer;
-            transition: transform 0.2s, box-shadow 0.2s;
-            border: 1px solid #e0e0e0;
-        }
-
-        [data-theme="dark"] .coin-option {
-            background: #2d2d2d;
-            border-color: #444;
-        }
-
-        .coin-option:hover {
-            transform: scale(1.02);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-        }
-
-        .profile-container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 15px;
-        }
-
-        .profile-image {
-            width: 150px;
-            height: 150px;
-            border-radius: 50%;
-            background: #e0e0e0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
-            border: 4px solid #ffd700;
-            cursor: pointer;
-            margin: 10px auto;
-        }
-
-        .profile-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .profile-image svg {
-            width: 70px;
-            height: 70px;
-            fill: #aaa;
-        }
-
-        .profile-info {
-            width: 100%;
-            background: #f9f9f9;
-            border-radius: 12px;
-            padding: 15px;
-            margin: 5px 0;
-        }
-
-        [data-theme="dark"] .profile-info {
-            background: #2d2d2d;
-        }
-
-        .info-row {
-            display: flex;
-            justify-content: space-between;
-            padding: 8px 0;
-            border-bottom: 1px solid #eee;
-        }
-
-        [data-theme="dark"] .info-row {
-            border-bottom-color: #444;
-        }
-
-        .info-row:last-child {
-            border-bottom: none;
-        }
-
-        .progress-bar-container {
-            width: 100%;
-            height: 10px;
-            background: #e0e0e0;
-            border-radius: 5px;
-            margin: 10px 0;
-        }
-
-        .progress-bar-fill {
-            height: 100%;
-            background: linear-gradient(90deg, #ffd700, #ffa500);
-            border-radius: 5px;
-            transition: width 0.3s;
-        }
-
-        .result-modal {
-            text-align: center;
-        }
-
-        .result-icon {
-            font-size: 4rem;
-            margin-bottom: 15px;
-        }
-
-        .result-message {
-            font-size: 1.2rem;
-            margin-bottom: 20px;
-        }
-
-        .unlock-choice {
-            display: flex;
-            gap: 15px;
-            flex-direction: column;
-            margin: 20px 0;
-        }
-
-        .badges-container {
-            display: flex;
-            gap: 10px;
-            flex-wrap: wrap;
-            margin: 15px 0;
-            padding: 10px;
-            background: rgba(255,255,255,0.1);
-            border-radius: 12px;
-            cursor: pointer;
-        }
-
-        .badge-item {
-            font-size: 2rem;
-            transition: transform 0.2s;
-        }
-
-        .badge-item:hover {
-            transform: scale(1.1);
-        }
-
-        .badges-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 15px;
-            padding: 10px;
-        }
-
-        .badge-modal-item {
-            text-align: center;
-            padding: 15px;
-            border-radius: 12px;
-            background: #f5f5f5;
-            transition: 0.2s;
-        }
-
-        [data-theme="dark"] .badge-modal-item {
-            background: #2d2d2d;
-        }
-
-        .badge-modal-item.earned {
-            background: #ffd700;
-            color: #000;
-            font-weight: bold;
-        }
-
-        .badge-modal-item:not(.earned) {
-            opacity: 0.4;
-            filter: grayscale(1);
-        }
-
-        .badge-modal-item .badge-icon {
-            font-size: 3rem;
-            display: block;
-            margin-bottom: 5px;
-        }
-
-        .badge-modal-item .badge-name {
-            font-size: 1rem;
-            font-weight: bold;
-        }
-
-        .gapfill-controls {
-            display: flex;
-            gap: 10px;
-            justify-content: center;
-            margin-top: 20px;
-        }
-        /* إصلاح إضافي للوضع الليلي */
-[data-theme="dark"] .quiz-question-row h2,
-[data-theme="dark"] .quiz-opt-btn,
-[data-theme="dark"] .spelling-input,
-[data-theme="dark"] .gapfill-sentence,
-[data-theme="dark"] .gapfill-sentence *,
-[data-theme="dark"] .spelling-feedback,
-[data-theme="dark"] .gapfill-controls + div {
-    color: #ffffff !important;
-}
-
-/* خلفية الأزرار في الوضع الليلي */
-[data-theme="dark"] .quiz-opt-btn {
-    background-color: #333 !important;
-    border-color: #555 !important;
-}
-[data-theme="dark"] .quiz-opt-btn.correct-answer {
-    background-color: #10b981 !important;
-}
-[data-theme="dark"] .quiz-opt-btn.wrong-answer {
-    background-color: #ef4444 !important;
-}
-[data-theme="dark"] .quiz-opt-btn.other-option {
-    background-color: #6b7280 !important;
-}
-    `;
-    document.head.appendChild(style);
-}
-    // ================== دوال الإعلانات والشراء ==================
     showAd(type, callback) {
         console.log(`📺 عرض إعلان من نوع ${type}`);
         setTimeout(() => {
@@ -870,7 +799,6 @@ addThemeStyles() {
         document.body.appendChild(modalDiv);
     }
 
-    // دالة خاصة لعرض نافذة تأكيد الشراء بأسلوب جميل (مثل نتيجة الاختبار)
     showCoinPurchaseModal(price, onConfirm) {
         const modalDiv = document.createElement('div');
         modalDiv.className = 'modal-overlay';
@@ -900,7 +828,6 @@ addThemeStyles() {
         };
     }
 
-    // ================== دوال فتح الدروس ==================
     unlockLessonWithCoins(lessonId) {
         if (this.userCoins >= 100) {
             this.showCoinPurchaseModal(100, (confirmed) => {
@@ -910,7 +837,6 @@ addThemeStyles() {
                     this.saveUserData();
                     this.updateBadgesAndTier();
                     this.showCustomModal('success', '🎉', `تم فتح الدرس بنجاح!`);
-                    // الانتقال مباشرة للدرس
                     this.selectedLessonId = lessonId;
                     this.currentPage = 'reading';
                     this.isUnlockTest = false;
@@ -923,7 +849,7 @@ addThemeStyles() {
     }
 
     openLesson(lessonId) {
-        const list = window.lessonsList[this.selectedLevel] || [];
+        const list = this.getLessonsForCurrentLevel(); // دالة جديدة للحصول على دروس المستوى
         const isUnlocked = this.unlockedLessons.includes(String(lessonId)) || (list[0] && list[0].id == lessonId) || this.selectedLevel === 'custom_list';
         if (isUnlocked) {
             this.selectedLessonId = lessonId;
@@ -936,7 +862,20 @@ addThemeStyles() {
         this.render();
     }
 
-    // ================== دوال التاريخ والملف الشخصي ==================
+    // دالة للحصول على دروس المستوى الحالي (الأصلية + المولدة)
+    getLessonsForCurrentLevel() {
+        if (!this.selectedLevel) return [];
+        let originalLessons = window.lessonsList[this.selectedLevel] || [];
+        let generated = Object.values(this.generatedLessons).filter(l => l.level === this.selectedLevel);
+        // تحويل الدرس المولد إلى نفس صيغة الدروس الأصلية
+        let generatedLessonsFormatted = generated.map(g => ({
+            id: g.id,
+            title: g.title,
+            isGenerated: true
+        }));
+        return [...originalLessons, ...generatedLessonsFormatted];
+    }
+
     addTestToHistory(testType, score, details) {
         this.userProfile.testsHistory.push({
             type: testType,
@@ -1010,15 +949,13 @@ addThemeStyles() {
         return this.userProfile.level || 'A1';
     }
 
-    // ================== دوال إعادة ترتيب الجمل ==================
+    // ================== دوال إعادة ترتيب الجمل (Jumble) ==================
     prepareJumble() {
-        const lesson = window.lessonsData[this.selectedLessonId];
+        const lesson = this.getCurrentLessonData();
         if (!lesson) return;
 
         const termWords = lesson.terms.map(t => t.english.toLowerCase());
-
         const sentences = lesson.content.split(/[.!?]+/).map(s => s.trim()).filter(s => s.length > 0);
-
         const usefulSentences = sentences.filter(s => {
             const words = s.split(/\s+/).length;
             if (words < 3 || words > 7) return false;
@@ -1046,7 +983,6 @@ addThemeStyles() {
         }
 
         this.jumbleCurrentSentence = this.jumbleOriginalSentence;
-
         this.translateText(this.jumbleOriginalSentence).then(translated => {
             if (this.jumbleCurrentSentence === this.jumbleOriginalSentence) {
                 this.jumbleArabicHint = translated;
@@ -1163,7 +1099,7 @@ addThemeStyles() {
             this.listeningErrorTimer = null;
         }
 
-        const lesson = window.lessonsData[this.selectedLessonId];
+        const lesson = this.getCurrentLessonData();
         if (!lesson) return;
 
         const allTerms = [...lesson.terms, ...this.userVocabulary.filter(v => v.lessonId == this.selectedLessonId)];
@@ -1293,7 +1229,7 @@ addThemeStyles() {
 
     // ================== دوال تمرين الكتابة (Spelling) ==================
     prepareSpelling() {
-        const lesson = window.lessonsData[this.selectedLessonId];
+        const lesson = this.getCurrentLessonData();
         if (!lesson) return;
 
         const allTerms = [...lesson.terms, ...this.userVocabulary.filter(v => v.lessonId == this.selectedLessonId)];
@@ -1403,7 +1339,7 @@ addThemeStyles() {
         this.levelTestCoinsEarned = 0;
 
         lessonIds.forEach(id => {
-            const lesson = window.lessonsData[id];
+            const lesson = this.getLessonDataById(id);
             if (lesson && lesson.terms) {
                 let allWords = [...lesson.terms];
                 const added = this.userVocabulary.filter(v => v.lessonId == id);
@@ -1426,7 +1362,7 @@ addThemeStyles() {
         const lessonIds = this.levelTestLessons || [];
         let allWords = [];
         lessonIds.forEach(id => {
-            const lesson = window.lessonsData[id];
+            const lesson = this.getLessonDataById(id);
             if (lesson && lesson.terms) {
                 allWords = allWords.concat(lesson.terms);
             }
@@ -1546,7 +1482,7 @@ addThemeStyles() {
                 this.moveToNextLesson();
             } else {
                 if (this.levelTestQuestionsBank[this.levelTestCurrentLessonId].length === 0) {
-                    const lesson = window.lessonsData[this.levelTestCurrentLessonId];
+                    const lesson = this.getLessonDataById(this.levelTestCurrentLessonId);
                     if (lesson && lesson.terms) {
                         let allWords = [...lesson.terms];
                         const added = this.userVocabulary.filter(v => v.lessonId == this.levelTestCurrentLessonId);
@@ -1621,7 +1557,7 @@ addThemeStyles() {
 
     // ================== دوال أخرى ==================
     isLessonCompleted(lessonId) {
-        const lesson = window.lessonsData[lessonId];
+        const lesson = this.getLessonDataById(lessonId);
         if (!lesson) return false;
         const allTermIds = lesson.terms.map(t => String(t.id));
         return allTermIds.every(id => this.masteredWords.includes(id));
@@ -1885,7 +1821,7 @@ addThemeStyles() {
     generateOptions() {
         if (this.quizIndex >= this.quizQuestions.length) return;
         const currentQ = this.quizQuestions[this.quizIndex];
-        const lesson = window.lessonsData[this.selectedLessonId] || { terms: [] };
+        const lesson = this.getCurrentLessonData() || { terms: [] };
         let allArb = [...lesson.terms, ...this.userVocabulary].map(t => t.arabic);
         let wrongs = [...new Set(allArb.filter(a => a !== currentQ.arabic))].sort(() => 0.5 - Math.random()).slice(0, 3);
         while (wrongs.length < 3) wrongs.push("خيار " + (wrongs.length + 1));
@@ -1934,7 +1870,7 @@ addThemeStyles() {
             this.gapFillTimer = null;
         }
 
-        const lesson = window.lessonsData[this.selectedLessonId];
+        const lesson = this.getCurrentLessonData();
         if (!lesson) return;
 
         const allTerms = [...lesson.terms, ...this.userVocabulary.filter(v => v.lessonId == this.selectedLessonId)];
@@ -1956,7 +1892,6 @@ addThemeStyles() {
         // محاولة توليد سؤال باستخدام Gemini
         let questionData = await this.generateGapFillWithGemini(targetWord, lesson.content, allTerms.map(t => t.english));
         if (!questionData) {
-            // fallback: استخدام جملة من الدرس تحتوي الكلمة
             questionData = this.generateLocalGapFill(targetWord, targetArabic, lesson.content, allTerms);
         }
 
@@ -1970,6 +1905,8 @@ addThemeStyles() {
         this.gapFillAnswered = false;
         this.gapFillResult = null;
         this.gapFillExplanation = '';
+        this.gapFillOptionsMeanings = [];
+        this.gapFillExplanationVisible = false;
         this.render();
     }
 
@@ -2021,7 +1958,9 @@ addThemeStyles() {
         const regex = new RegExp(`\\b${this.escapeRegex(targetWord)}\\b`, 'i');
         let originalSentence = sentences.find(s => regex.test(s));
         if (!originalSentence) {
-            originalSentence = `The word "${targetWord}" is used in this sentence.`;
+            // حاول البحث عن كلمة مشتقة أو أنشئ جملة بسيطة
+            const simpleSentence = `The word "${targetWord}" is used in this sentence.`;
+            originalSentence = simpleSentence;
         }
         const sentenceWithBlank = originalSentence.replace(regex, '______');
 
@@ -2062,14 +2001,31 @@ addThemeStyles() {
             }
         });
 
+        // تجهيز معاني الخيارات (لزر الشرح)
+        const lesson = this.getCurrentLessonData();
+        const allTerms = lesson ? [...lesson.terms, ...this.userVocabulary.filter(v => v.lessonId == this.selectedLessonId)] : [];
+        this.gapFillOptionsMeanings = this.gapFillOptions.map(opt => {
+            const term = allTerms.find(t => t.english === opt);
+            if (term) return { english: opt, arabic: term.arabic };
+            return { english: opt, arabic: 'معنى غير متاح' };
+        });
+
         if (isCorrect) {
             this.gapFillRemaining.shift();
             this.updateProgress(5);
-            this.gapFillExplanation = `✅ إجابة صحيحة! كلمة "${this.gapFillCurrentQuestion.correct}" تعني "${this.gapFillCurrentQuestion.arabic}" في العربية. الجملة الأصلية: "${this.gapFillCurrentQuestion.originalSentence || this.gapFillCurrentQuestion.text.replace('______', this.gapFillCurrentQuestion.correct)}"`;
+            // التغذية الراجعة الأساسية (ستظهر تلقائياً)
+            this.gapFillExplanation = `✅ إجابة صحيحة! كلمة "${this.gapFillCurrentQuestion.correct}" تعني "${this.gapFillCurrentQuestion.arabic}" في العربية.`;
         } else {
-            this.gapFillExplanation = `❌ إجابة خاطئة. الإجابة الصحيحة هي "${this.gapFillCurrentQuestion.correct}" (${this.gapFillCurrentQuestion.arabic}). الجملة الأصلية: "${this.gapFillCurrentQuestion.originalSentence || this.gapFillCurrentQuestion.text.replace('______', this.gapFillCurrentQuestion.correct)}"`;
+            this.gapFillExplanation = `❌ إجابة خاطئة. الإجابة الصحيحة هي "${this.gapFillCurrentQuestion.correct}" (${this.gapFillCurrentQuestion.arabic}).`;
         }
 
+        this.render();
+    }
+
+    // عرض شرح مفصل عند الضغط على الزر
+    showDetailedGapFillExplanation() {
+        if (!this.gapFillCurrentQuestion) return;
+        this.gapFillExplanationVisible = true;
         this.render();
     }
 
@@ -2101,6 +2057,153 @@ addThemeStyles() {
         return false;
     }
 
+    // ================== دوال توليد درس بالذكاء الاصطناعي ==================
+    async generateAILesson(level) {
+        // تحديد مستوى اللغة للـ prompt
+        let levelDesc = '';
+        if (level === 'beginner') levelDesc = 'A1-A2 (مبتدئ)';
+        else if (level === 'intermediate') levelDesc = 'B1-B2 (متوسط)';
+        else levelDesc = 'C1-C2 (متقدم)';
+
+        const prompt = `قم بإنشاء درس جديد لتعلم اللغة الإنجليزية للمستوى ${levelDesc}. المطلوب:
+- عنوان الدرس (بالانجليزية)
+- نص قصير (5-7 جمل) يتضمن كلمات مفيدة
+- قائمة من 10-12 كلمة مع ترجمتها العربية
+أعد الإجابة بتنسيق JSON كالتالي:
+{
+  "title": "عنوان الدرس بالانجليزية",
+  "content": "نص الدرس بالانجليزية (جمل كاملة)",
+  "terms": [
+    {"id": "ai_1", "english": "word1", "arabic": "ترجمة1"},
+    {"id": "ai_2", "english": "word2", "arabic": "ترجمة2"},
+    ...
+  ]
+}
+تأكد من أن الكلمات موجودة في النص.`;
+
+        try {
+            const apiKey = "AIzaSyA61WmhHPYBwojm50jKg5LEppeKja7NDaQ";
+            const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    contents: [{ parts: [{ text: prompt }] }],
+                    generationConfig: { temperature: 0.8, maxOutputTokens: 800 }
+                })
+            });
+            if (!response.ok) throw new Error('API error');
+            const data = await response.json();
+            const text = data.candidates[0].content.parts[0].text;
+            const jsonMatch = text.match(/\{[\s\S]*\}/);
+            if (jsonMatch) {
+                const parsed = JSON.parse(jsonMatch[0]);
+                if (parsed.title && parsed.content && parsed.terms && parsed.terms.length > 0) {
+                    // إنشاء معرف فريد
+                    const id = 'ai_' + Date.now() + '_' + Math.random().toString(36).substr(2, 6);
+                    const newLesson = {
+                        id: id,
+                        title: parsed.title,
+                        content: parsed.content,
+                        terms: parsed.terms,
+                        audio: `audio/${id}.mp3` // سيتم تحديده لاحقاً
+                    };
+                    // حفظ الدرس في generatedLessons مع المستوى
+                    this.generatedLessons[id] = {
+                        ...newLesson,
+                        level: level,
+                        isGenerated: true
+                    };
+                    // إضافة الدرس إلى lessonsData للتشغيل
+                    window.lessonsData[id] = newLesson;
+                    this.saveUserData();
+                    this.showCustomModal('success', '✨', 'تم إنشاء الدرس بنجاح! يمكنك الآن فتحه من قائمة الدروس.');
+                    // تحديث عرض الدروس
+                    if (this.currentPage === 'lessons') {
+                        this.render();
+                    }
+                    return true;
+                }
+            }
+            throw new Error('Invalid response format');
+        } catch (e) {
+            console.error('AI generation failed:', e);
+            this.showCustomModal('error', '❌', 'فشل إنشاء الدرس. يرجى المحاولة مرة أخرى.');
+            return false;
+        }
+    }
+
+    // حذف درس مولَّد
+    deleteGeneratedLesson(lessonId) {
+        if (confirm('هل أنت متأكد من حذف هذا الدرس؟ لا يمكن استعادته.')) {
+            delete this.generatedLessons[lessonId];
+            delete window.lessonsData[lessonId];
+            // إزالة أي بيانات مرتبطة (كلمات مضافة، إتقان، إلخ)
+            this.userVocabulary = this.userVocabulary.filter(v => v.lessonId !== lessonId);
+            this.masteredWords = this.masteredWords.filter(id => !id.startsWith(lessonId));
+            this.unlockedLessons = this.unlockedLessons.filter(id => id !== lessonId);
+            this.saveUserData();
+            this.render();
+            this.showCustomModal('info', '🗑️', 'تم حذف الدرس بنجاح.');
+        }
+    }
+
+    // إعادة توليد درس (يتم إنشاء درس جديد بدلاً من القديم)
+    async regenerateAILesson(level, oldId) {
+        if (confirm('سيتم إنشاء درس جديد بدلاً من الدرس الحالي. هل تريد المتابعة؟')) {
+            const success = await this.generateAILesson(level);
+            if (success) {
+                // حذف الدرس القديم
+                this.deleteGeneratedLesson(oldId);
+            }
+        }
+    }
+
+    // ================== دوال إضافة كلمة جديدة مع منع التكرار ==================
+    handleNewWord() {
+        const eng = document.getElementById('newEng').value.trim();
+        const arb = document.getElementById('newArb').value.trim();
+        if (!eng || !arb) return;
+
+        const lesson = this.getCurrentLessonData();
+        if (!lesson) {
+            alert('الدرس غير موجود.');
+            return;
+        }
+
+        // التحقق من عدم وجود الكلمة مسبقاً في الدرس (أصلي أو مضاف)
+        const existingWords = lesson.terms.map(t => t.english.toLowerCase());
+        const userWords = this.userVocabulary.filter(v => v.lessonId == this.selectedLessonId).map(v => v.english.toLowerCase());
+        if (existingWords.includes(eng.toLowerCase()) || userWords.includes(eng.toLowerCase())) {
+            this.showCustomModal('error', '⚠️', 'هذه الكلمة موجودة بالفعل في الدرس. لا يمكن إضافتها مرة أخرى.');
+            return;
+        }
+
+        this.userVocabulary.push({ id: "u" + Date.now(), lessonId: String(this.selectedLessonId), english: eng, arabic: arb });
+        this.saveUserData();
+        document.getElementById('newEng').value = '';
+        document.getElementById('newArb').value = '';
+        this.newWordsAddedCount++;
+        if (this.newWordsAddedCount % 10 === 0) {
+            this.showAd('video');
+        }
+        this.render();
+        this.showCustomModal('success', '✅', 'تمت إضافة الكلمة بنجاح إلى بطاقات الدرس.');
+    }
+
+    // ================== دوال الحصول على بيانات الدرس ==================
+    getCurrentLessonData() {
+        if (!this.selectedLessonId) return null;
+        return this.getLessonDataById(this.selectedLessonId);
+    }
+
+    getLessonDataById(id) {
+        // أولاً من الدروس الأصلية
+        if (window.lessonsData[id]) return window.lessonsData[id];
+        // ثم من الدروس المولدة
+        if (this.generatedLessons[id]) return this.generatedLessons[id];
+        return null;
+    }
+
     // ================== الأحداث العامة ==================
     setupGlobalEvents() {
         document.addEventListener('click', (e) => {
@@ -2112,6 +2215,7 @@ addThemeStyles() {
             if (action === 'levelTestAns') { this.handleLevelTestAnswer(param, correct, btn); return; }
             if (action === 'gapfillAnswer') { this.handleGapFillAnswer(btn.dataset.english); return; }
             if (action === 'gapfillNext') { this.handleGapFillNext(); return; }
+            if (action === 'gapfillShowExplanation') { this.showDetailedGapFillExplanation(); return; }
 
             switch (action) {
                 case 'masterWord':
@@ -2185,7 +2289,7 @@ addThemeStyles() {
                     if (prevId) {
                         this.tempLessonToUnlock = param;
                         this.selectedLessonId = prevId;
-                        this.prepareQuiz(window.lessonsData[prevId].terms, true);
+                        this.prepareQuiz(this.getLessonDataById(prevId).terms, true);
                         this.currentPage = 'quiz';
                     }
                     break;
@@ -2214,7 +2318,8 @@ addThemeStyles() {
                             this.prepareSpelling();
                         }
                     } else if (param === 'quiz' && this.selectedLessonId) {
-                        this.prepareQuiz(window.lessonsData[this.selectedLessonId].terms, false);
+                        const lessonData = this.getLessonDataById(this.selectedLessonId);
+                        if (lessonData) this.prepareQuiz(lessonData.terms, false);
                     } else if (param === 'profile') {
                         this.showProfile();
                         return;
@@ -2299,7 +2404,7 @@ addThemeStyles() {
                     setTimeout(() => {
                         if (param === 'all' && this.selectedLessonId) {
                             const lessonId = this.selectedLessonId;
-                            const lesson = window.lessonsData[lessonId];
+                            const lesson = this.getLessonDataById(lessonId);
                             const originalIds = lesson && lesson.terms ? lesson.terms.map(t => String(t.id)) : [];
                             const userWordIds = this.userVocabulary
                                 .filter(v => v.lessonId == lessonId)
@@ -2411,6 +2516,19 @@ addThemeStyles() {
                 case 'goToProfile':
                     this.showProfile();
                     break;
+
+                // الأحداث الجديدة لتوليد وحذف الدروس
+                case 'generateAILesson':
+                    this.generateAILesson(param);
+                    break;
+                case 'deleteGeneratedLesson':
+                    this.deleteGeneratedLesson(param);
+                    break;
+                case 'regenerateAILesson':
+                    // param يحتوي على level,oldId مثلاً
+                    const [lvl, old] = param.split(',');
+                    this.regenerateAILesson(lvl, old);
+                    break;
             }
             this.render();
         });
@@ -2458,6 +2576,7 @@ addThemeStyles() {
             this.unlockedLessons = [];
             this.hiddenFromCards = [];
             this.customLessons = {};
+            this.generatedLessons = {};
             this.userStats = { xp: 0, level: 1, badges: [], tier: 'برونزي' };
             this.placementResults = [];
             this.placementFullHistory = [];
@@ -2480,22 +2599,6 @@ addThemeStyles() {
             this.lastTestedLesson = { beginner: 0, intermediate: 0, advanced: 0 };
             this.saveUserData();
             this.currentPage = 'home';
-            this.render();
-        }
-    }
-
-    handleNewWord() {
-        const eng = document.getElementById('newEng').value.trim();
-        const arb = document.getElementById('newArb').value.trim();
-        if (eng && arb) {
-            this.userVocabulary.push({ id: "u" + Date.now(), lessonId: String(this.selectedLessonId), english: eng, arabic: arb });
-            this.saveUserData();
-            document.getElementById('newEng').value = '';
-            document.getElementById('newArb').value = '';
-            this.newWordsAddedCount++;
-            if (this.newWordsAddedCount % 10 === 0) {
-                this.showAd('video');
-            }
             this.render();
         }
     }
@@ -2600,7 +2703,7 @@ addThemeStyles() {
     render() {
         const app = document.getElementById('app');
         if (!app) return;
-        const lesson = window.lessonsData[this.selectedLessonId];
+        const lesson = this.getCurrentLessonData();
         const added = this.userVocabulary.filter(v => v.lessonId == this.selectedLessonId);
         const allTerms = lesson ? [...lesson.terms, ...added] : [];
 
@@ -2894,11 +2997,19 @@ addThemeStyles() {
         }
 
         if (this.currentPage === 'lessons') {
-            const list = window.lessonsList[this.selectedLevel] || [];
+            const list = this.getLessonsForCurrentLevel();
             let testLevelParam = '';
             if (this.selectedLevel === 'beginner') testLevelParam = 'beginner';
             else if (this.selectedLevel === 'intermediate') testLevelParam = 'intermediate';
             else if (this.selectedLevel === 'advanced') testLevelParam = 'advanced';
+
+            // إضافة زر توليد الدرس بعد آخر درس في القائمة
+            const generateButton = `
+                <div class="feature-card" data-action="generateAILesson" data-param="${this.selectedLevel}" style="border: 2px dashed #8b5cf6; background: linear-gradient(135deg, #f5f0ff, #e9e4ff);">
+                    <h3>✨ توليد درس جديد بالذكاء الاصطناعي</h3>
+                    <p style="font-size:0.9rem; margin-top:5px;">أنشئ درساً مناسباً لمستواك الحالي</p>
+                </div>
+            `;
 
             return `<main class="main-content">
                 <button class="hero-btn" data-action="goHome" style="margin-bottom:15px; background:#64748b;">← رجوع</button>
@@ -2909,9 +3020,21 @@ addThemeStyles() {
                 ` : ''}
                 <div class="features-grid">
                     ${list.map(l => {
-                const isOk = (list[0].id == l.id || this.unlockedLessons.includes(String(l.id)));
-                return `<div class="feature-card" data-action="selLesson" data-param="${l.id}" style="${isOk ? '' : 'opacity:0.6;'}"><h3>${isOk ? '' : '🔒 '}${l.title}</h3></div>`;
+                const isOk = (list[0].id == l.id || this.unlockedLessons.includes(String(l.id))) && !l.isGenerated; // الدروس المولدة تحتاج لفتح أيضاً
+                // لتبسيط، سنعتبر الدروس المولدة مفتوحة للمستخدم الذي أنشأها
+                const isGeneratedUnlocked = l.isGenerated && (this.unlockedLessons.includes(String(l.id)) || true); // مؤقتاً كلها مفتوحة
+                const displayLock = (!isOk && !l.isGenerated) ? '🔒 ' : '';
+                return `<div class="feature-card" data-action="selLesson" data-param="${l.id}" style="${(!isOk && !l.isGenerated) ? 'opacity:0.6;' : ''}">
+                            <h3>${displayLock}${l.title}</h3>
+                            ${l.isGenerated ? `
+                                <div style="display:flex; justify-content:center; gap:10px; margin-top:10px;">
+                                    <button class="hero-btn" data-action="deleteGeneratedLesson" data-param="${l.id}" style="background:#ef4444; padding:5px 10px; font-size:0.8rem;">🗑️ حذف</button>
+                                    <button class="hero-btn" data-action="regenerateAILesson" data-param="${this.selectedLevel},${l.id}" style="background:#f59e0b; padding:5px 10px; font-size:0.8rem;">🔄 إعادة توليد</button>
+                                </div>
+                            ` : ''}
+                          </div>`;
             }).join('')}
+                    ${generateButton}
                 </div>
             </main>`;
         }
@@ -3221,9 +3344,22 @@ addThemeStyles() {
                     <div class="spelling-feedback ${this.gapFillResult === 'correct' ? 'correct-feedback' : 'wrong-feedback'}">
                         ${this.gapFillResult === 'correct' ? '✅ إجابة صحيحة!' : '❌ إجابة خاطئة!'}
                     </div>
-                    <div style="margin: 15px 0; padding: 10px; background: #eef2ff; border-radius: 8px; font-size: 0.95rem;">
-                        ${this.gapFillExplanation}
+                    <div style="display: flex; justify-content: center; gap: 10px; margin: 10px 0;">
+                        <button class="hero-btn" data-action="gapfillShowExplanation" style="background:#6366f1;">💡 شرح مفصل</button>
                     </div>
+                    ${this.gapFillExplanationVisible ? `
+                        <div class="gapfill-explanation" style="margin: 15px 0; padding: 10px; background: #eef2ff; border-radius: 8px; font-size: 0.95rem;">
+                            <div style="font-weight: bold; margin-bottom: 8px;">📖 معنى الجملة:</div>
+                            <div>${this.gapFillCurrentQuestion.originalSentence ? this.gapFillCurrentQuestion.originalSentence : q.text.replace('______', q.correct)}</div>
+                            <div style="font-weight: bold; margin: 10px 0 5px;">📚 معاني الخيارات:</div>
+                            <div style="display: flex; flex-direction: column; gap: 5px;">
+                                ${this.gapFillOptionsMeanings.map(opt => `
+                                    <div>• <strong>${opt.english}</strong> : ${opt.arabic}</div>
+                                `).join('')}
+                            </div>
+                            <div style="margin-top: 10px; font-weight: bold;">✅ الإجابة الصحيحة: ${q.correct} (${q.arabic})</div>
+                        </div>
+                    ` : ''}
                     <div class="gapfill-controls">
                         <button class="hero-btn" data-action="gapfillNext" style="background:#3b82f6;">➡️ التالي</button>
                     </div>
