@@ -3149,4 +3149,4 @@ class App {
     }
 }
 
-const appInstance = new App
+const appInstance = new App();
