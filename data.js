@@ -7054,7 +7054,6 @@ window.lessonsData = {
   "content": "",
   "terms": [
   ]
-},
 };
 
 window.placementBank = {
