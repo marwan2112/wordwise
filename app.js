@@ -1632,10 +1632,12 @@ addThemeStyles() {
         }
 
         this.gapFillCurrentQuestion = {
+            
             text: questionData.sentence,
             correct: targetWord,
             arabic: targetArabic,
             originalSentence: questionData.originalSentence || ''
+             originalSentenceArabic:
         };
         this.gapFillOptions = questionData.options;
         this.gapFillAnswered = false;
