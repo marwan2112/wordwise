@@ -476,5 +476,314 @@ window.gapfillDB = {
             originalSentence: "I am going to the supermarket."
         }
     ]
+    // استكمال gapfillDB.js - الدرس الثاني (2-1 إلى 2-44)
+    "2-1": [ // number
+        {
+            sentence: "What is your phone ______?",
+            options: ["number", "book", "hand", "desk"],
+            originalSentence: "What is your phone number?"
+        }
+    ],
+    "2-2": [ // one
+        {
+            sentence: "I have ______ brother and two sisters.",
+            options: ["one", "ten", "six", "nine"],
+            originalSentence: "I have one brother and two sisters."
+        }
+    ],
+    "2-3": [ // two
+        {
+            sentence: "A person has ______ eyes.",
+            options: ["two", "three", "four", "five"],
+            originalSentence: "A person has two eyes."
+        }
+    ],
+    "2-4": [ // three
+        {
+            sentence: "A triangle has ______ sides.",
+            options: ["three", "one", "seven", "eight"],
+            originalSentence: "A triangle has three sides."
+        }
+    ],
+    "2-5": [ // four
+        {
+            sentence: "A car has ______ wheels.",
+            options: ["four", "two", "five", "six"],
+            originalSentence: "A car has four wheels."
+        }
+    ],
+    "2-6": [ // five
+        {
+            sentence: "I have ______ fingers on each hand.",
+            options: ["five", "three", "seven", "nine"],
+            originalSentence: "I have five fingers on each hand."
+        }
+    ],
+    "2-7": [ // six
+        {
+            sentence: "Half of twelve is ______.",
+            options: ["six", "four", "two", "eight"],
+            originalSentence: "Half of twelve is six."
+        }
+    ],
+    "2-8": [ // seven
+        {
+            sentence: "There are ______ days in a week.",
+            options: ["seven", "six", "five", "ten"],
+            originalSentence: "There are seven days in a week."
+        }
+    ],
+    "2-9": [ // eight
+        {
+            sentence: "An octopus has ______ legs.",
+            options: ["eight", "four", "six", "two"],
+            originalSentence: "An octopus has eight legs."
+        }
+    ],
+    "2-10": [ // nine
+        {
+            sentence: "The number after eight is ______.",
+            options: ["nine", "ten", "seven", "six"],
+            originalSentence: "The number after eight is nine."
+        }
+    ],
+    "2-11": [ // ten
+        {
+            sentence: "I have ______ toes on my feet.",
+            options: ["ten", "five", "two", "one"],
+            originalSentence: "I have ten toes on my feet."
+        }
+    ],
+    "2-12": [ // eleven
+        {
+            sentence: "Ten plus one equals ______.",
+            options: ["eleven", "twelve", "thirteen", "fourteen"],
+            originalSentence: "Ten plus one equals eleven."
+        }
+    ],
+    "2-13": [ // twelve
+        {
+            sentence: "There are ______ months in a year.",
+            options: ["twelve", "eleven", "ten", "thirteen"],
+            originalSentence: "There are twelve months in a year."
+        }
+    ],
+    "2-14": [ // thirteen
+        {
+            sentence: "The number ______ comes after twelve.",
+            options: ["thirteen", "fourteen", "fifteen", "sixteen"],
+            originalSentence: "The number thirteen comes after twelve."
+        }
+    ],
+    "2-15": [ // fourteen
+        {
+            sentence: "Two weeks have ______ days.",
+            options: ["fourteen", "twelve", "ten", "thirteen"],
+            originalSentence: "Two weeks have fourteen days."
+        }
+    ],
+    "2-16": [ // fifteen
+        {
+            sentence: "Ten plus five is ______.",
+            options: ["fifteen", "sixteen", "seventeen", "eighteen"],
+            originalSentence: "Ten plus five is fifteen."
+        }
+    ],
+    "2-17": [ // sixteen
+        {
+            sentence: "Four times four is ______.",
+            options: ["sixteen", "fifteen", "seventeen", "eighteen"],
+            originalSentence: "Four times four is sixteen."
+        }
+    ],
+    "2-18": [ // seventeen
+        {
+            sentence: "The number ______ is between sixteen and eighteen.",
+            options: ["seventeen", "fifteen", "nineteen", "twenty"],
+            originalSentence: "The number seventeen is between sixteen and eighteen."
+        }
+    ],
+    "2-19": [ // eighteen
+        {
+            sentence: "He is ______ years old and can drive now.",
+            options: ["eighteen", "eight", "two", "ten"],
+            originalSentence: "He is eighteen years old and can drive now."
+        }
+    ],
+    "2-20": [ // nineteen
+        {
+            sentence: "The last teen number is ______.",
+            options: ["nineteen", "eighteen", "seventeen", "sixteen"],
+            originalSentence: "The last teen number is nineteen."
+        }
+    ],
+    "2-21": [ // twenty
+        {
+            sentence: "Ten plus ten is ______.",
+            options: ["twenty", "ten", "thirty", "forty"],
+            originalSentence: "Ten plus ten is twenty."
+        }
+    ],
+    "2-22": [ // count
+        {
+            sentence: "Can you ______ from one to ten?",
+            options: ["count", "write", "repeat", "learn"],
+            originalSentence: "Can you count from one to ten?"
+        }
+    ],
+    "2-23": [ // finger
+        {
+            sentence: "I cut my ______ while cooking.",
+            options: ["finger", "desk", "board", "pencil"],
+            originalSentence: "I cut my finger while cooking."
+        }
+    ],
+    "2-24": [ // hand
+        {
+            sentence: "Please raise your ______ if you know the answer.",
+            options: ["hand", "finger", "pencil", "book"],
+            originalSentence: "Please raise your hand if you know the answer."
+        }
+    ],
+    "2-25": [ // pencil
+        {
+            sentence: "I am using a ______ to draw a picture.",
+            options: ["pencil", "desk", "board", "homework"],
+            originalSentence: "I am using a pencil to draw a picture."
+        }
+    ],
+    "2-26": [ // book
+        {
+            sentence: "I am reading an interesting ______.",
+            options: ["book", "desk", "hand", "finger"],
+            originalSentence: "I am reading an interesting book."
+        }
+    ],
+    "2-27": [ // desk
+        {
+            sentence: "Put your books on the ______.",
+            options: ["desk", "finger", "hand", "homework"],
+            originalSentence: "Put your books on the desk."
+        }
+    ],
+    "2-28": [ // board
+        {
+            sentence: "Look at the ______ to see the lesson.",
+            options: ["board", "pencil", "desk", "finger"],
+            originalSentence: "Look at the board to see the lesson."
+        }
+    ],
+    "2-29": [ // learn
+        {
+            sentence: "I want to ______ how to speak English.",
+            options: ["learn", "teach", "write", "repeat"],
+            originalSentence: "I want to learn how to speak English."
+        }
+    ],
+    "2-30": [ // teach
+        {
+            sentence: "She will ______ us math today.",
+            options: ["teach", "learn", "count", "practice"],
+            originalSentence: "She will teach us math today."
+        }
+    ],
+    "2-31": [ // say
+        {
+            sentence: "Please ______ hello to your family.",
+            options: ["say", "write", "practice", "count"],
+            originalSentence: "Please say hello to your family."
+        }
+    ],
+    "2-32": [ // repeat
+        {
+            sentence: "Listen and ______ after me.",
+            options: ["repeat", "learn", "write", "count"],
+            originalSentence: "Listen and repeat after me."
+        }
+    ],
+    "2-33": [ // write
+        {
+            sentence: "Please ______ your name on this paper.",
+            options: ["write", "say", "learn", "teach"],
+            originalSentence: "Please write your name on this paper."
+        }
+    ],
+    "2-34": [ // practice
+        {
+            sentence: "You must ______ English every day.",
+            options: ["practice", "count", "repeat", "say"],
+            originalSentence: "You must practice English every day."
+        }
+    ],
+    "2-35": [ // homework
+        {
+            sentence: "I finished my ______ before dinner.",
+            options: ["homework", "desk", "board", "finger"],
+            originalSentence: "I finished my homework before dinner."
+        }
+    ],
+    "2-36": [ // family
+        {
+            sentence: "I love my ______ very much.",
+            options: ["family", "homework", "desk", "pencil"],
+            originalSentence: "I love my family very much."
+        }
+    ],
+    "2-37": [ // fun
+        {
+            sentence: "Playing games is very ______.",
+            options: ["fun", "excellent", "carefully", "together"],
+            originalSentence: "Playing games is very fun."
+        }
+    ],
+    "2-38": [ // together
+        {
+            sentence: "Let's study ______ in the library.",
+            options: ["together", "carefully", "excellent", "fun"],
+            originalSentence: "Let's study together in the library."
+        }
+    ],
+    "2-39": [ // carefully
+        {
+            sentence: "Please listen ______ to the instructions.",
+            options: ["carefully", "together", "fun", "excellent"],
+            originalSentence: "Please listen carefully to the instructions."
+        }
+    ],
+    "2-40": [ // excellent
+        {
+            sentence: "You got 100%! That is ______ work.",
+            options: ["excellent", "good", "fun", "together"],
+            originalSentence: "You got 100%! That is excellent work."
+        }
+    ],
+    "2-41": [ // great
+        {
+            sentence: "Have a ______ day at school!",
+            options: ["great", "together", "carefully", "count"],
+            originalSentence: "Have a great day at school!"
+        }
+    ],
+    "2-42": [ // good
+        {
+            sentence: "He is a ______ friend to everyone.",
+            options: ["good", "excellent", "carefully", "fun"],
+            originalSentence: "He is a good friend to everyone."
+        }
+    ],
+    "2-43": [ // question
+        {
+            sentence: "I have a ______ about the lesson.",
+            options: ["question", "answer", "homework", "board"],
+            originalSentence: "I have a question about the lesson."
+        }
+    ],
+    "2-44": [ // answer
+        {
+            sentence: "I don't know the ______ to this question.",
+            options: ["answer", "question", "homework", "pencil"],
+            originalSentence: "I don't know the answer to this question."
+        }
+    ]
 };
 // يمكن أيضاً إضافة أسئلة للكلمات المضافة من قبل المستخدم (تبدأ معرفاتها بـ "u")
