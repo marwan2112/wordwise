@@ -1878,6 +1878,9 @@ async prepareGapFill() {
     // الكلمات المتاحة (غير متقنة وغير مخفية)
     const available = allTerms.filter(t => !this.masteredWords.includes(String(t.id)) && !this.hiddenFromCards.includes(String(t.id)));
 
+    console.log('📚 جميع كلمات الدرس:', allTerms.map(t => ({ id: t.id, english: t.english })));
+    console.log('✅ الكلمات المتاحة للتمرين:', available.map(t => ({ id: t.id, english: t.english })));
+
     if (available.length === 0) {
         alert('🎉 لقد أنهيت جميع الكلمات المتاحة! يمكنك إعادة تعيين الكلمات المتقنة من قائمة البطاقات.');
         return;
@@ -1888,6 +1891,7 @@ async prepareGapFill() {
         this.gapFillRemaining = [...available].sort(() => 0.5 - Math.random());
         this.gapFillUsedQuestions = {};
         this.gapFillNoQuestionsMessageShown = false;
+        console.log('🔄 بدأ جولة جديدة، قائمة الكلمات:', this.gapFillRemaining.map(t => t.id));
     }
 
     // البحث عن أول كلمة في القائمة لها أسئلة
@@ -1898,9 +1902,10 @@ async prepareGapFill() {
     for (let i = 0; i < this.gapFillRemaining.length; i++) {
         const wordObj = this.gapFillRemaining[i];
         const wordId = wordObj.id;
-        const questions = (window.gapfillDB && window.gapfillDB[wordId]) ? window.gapfillDB[wordId] : [];
+        const hasQuestions = window.gapfillDB && window.gapfillDB[wordId] && window.gapfillDB[wordId].length > 0;
+        console.log(`🔍 كلمة ${wordObj.english} (${wordId}) ${hasQuestions ? '✅ لها أسئلة' : '❌ ليس لها أسئلة'}`);
         
-        if (questions.length > 0) {
+        if (hasQuestions) {
             selectedWordIndex = i;
             selectedWordObj = wordObj;
             selectedWordId = wordId;
@@ -1910,23 +1915,24 @@ async prepareGapFill() {
 
     // إذا لم نجد أي كلمة لها أسئلة في القائمة بأكملها
     if (selectedWordIndex === -1) {
+        console.warn('⚠️ لم يتم العثور على أي كلمة لها أسئلة في القائمة الحالية.');
         // عرض رسالة واحدة فقط
         if (!this.gapFillNoQuestionsMessageShown) {
             this.gapFillNoQuestionsMessageShown = true;
             this.showCustomModal('info', '📝', 'لا توجد أسئلة محفوظة للكلمات الحالية. سيتم إضافة الأسئلة قريباً.', () => {
-                // بعد إغلاق النافذة، ننهي التمرين
                 this.currentPage = 'reading';
                 this.render();
             });
         } else {
-            // إذا ظهرت الرسالة مسبقاً، ننهي التمرين مباشرة
             this.currentPage = 'reading';
             this.render();
         }
         return;
     }
 
-    // نحصل على الكلمة التي وجدناها
+    // وصلنا إلى هنا، يعني وجدنا كلمة لها أسئلة
+    console.log(`🎯 اخترنا الكلمة: ${selectedWordObj.english} (${selectedWordId})`);
+
     const targetWordObj = selectedWordObj;
     const targetWord = targetWordObj.english;
     const targetArabic = targetWordObj.arabic;
@@ -1934,7 +1940,8 @@ async prepareGapFill() {
 
     // الحصول على أسئلة هذه الكلمة
     const questionsForWord = window.gapfillDB[wordId];
-    
+    console.log(`📋 عدد أسئلة الكلمة: ${questionsForWord.length}`);
+
     // تهيئة قائمة الأسئلة المستخدمة لهذه الكلمة
     if (!this.gapFillUsedQuestions[wordId]) {
         this.gapFillUsedQuestions[wordId] = [];
@@ -1948,12 +1955,14 @@ async prepareGapFill() {
         const randomIndex = Math.floor(Math.random() * availableQuestions.length);
         questionData = availableQuestions[randomIndex];
         this.gapFillUsedQuestions[wordId].push(questionData);
+        console.log(`✅ اخترنا سؤالاً جديداً (رقم ${randomIndex + 1})`);
     } else {
         // جميع الأسئلة استخدمت، نعيد ضبط القائمة (دورة جديدة)
         this.gapFillUsedQuestions[wordId] = [];
         const randomIndex = Math.floor(Math.random() * questionsForWord.length);
         questionData = questionsForWord[randomIndex];
         this.gapFillUsedQuestions[wordId].push(questionData);
+        console.log(`🔄 أعادنا ضبط الأسئلة للكلمة، اخترنا السؤال ${randomIndex + 1}`);
     }
 
     // التأكد من وجود 4 خيارات
@@ -1974,6 +1983,8 @@ async prepareGapFill() {
     this.gapFillExplanation = '';
     this.gapFillOptionsMeanings = [];
     this.gapFillExplanationVisible = false;
+
+    console.log('✅ تم تحضير السؤال بنجاح:', this.gapFillCurrentQuestion.text);
     this.render();
 }
     handleGapFillAnswer(selectedEnglish) {
