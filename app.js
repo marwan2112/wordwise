@@ -62,7 +62,7 @@ class App {
         this.gapFillNoQuestionsMessageShown = false;
         this.gapFillAvailableWords = [];
         this.gapFillRemainingWords = [];
-        this.gapFillCurrentLessonId = null; // لتتبع الدرس الحالي
+        this.gapFillCurrentLessonId = null; // مهم لتتبع الدرس الحالي
 
         this.levelTestLevel = null;
         this.levelTestLessons = [];
@@ -865,8 +865,7 @@ class App {
             this.selectedLessonId = lessonId;
             this.currentPage = 'reading';
             this.isUnlockTest = false;
-            // إعادة تعيين بيانات ملء الفراغ عند تغيير الدرس
-            this.resetGapFillForNewLesson();
+            this.resetGapFillForNewLesson(); // إعادة تعيين بيانات ملء الفراغ عند تغيير الدرس
         } else {
             this.tempLessonToUnlock = lessonId;
             this.currentPage = 'unlock_choice';
@@ -1878,11 +1877,9 @@ class App {
         }, 1100);
     }
 
-    // ================== Gap Fill Exercises (مُحسّن) ==================
-    // إنشاء سؤال ديناميكي للكلمة إذا لم يكن موجوداً في قاعدة البيانات
+    // ================== Gap Fill Exercises ==================
     generateDynamicGapFillQuestion(wordObj) {
         const { english, arabic } = wordObj;
-        // قالب بسيط يعتمد على معنى الكلمة
         const sentence = `The word "______" means "${arabic}".`;
         const originalSentence = `The word "${english}" means "${arabic}".`;
         const options = [english, ...this.getRandomWordsForOptions(english, 3)];
@@ -1917,7 +1914,6 @@ class App {
             return;
         }
 
-        // التحقق من تغيير الدرس
         if (this.gapFillCurrentLessonId !== this.selectedLessonId) {
             this.resetGapFillForNewLesson();
             this.gapFillCurrentLessonId = this.selectedLessonId;
@@ -1931,13 +1927,11 @@ class App {
             return;
         }
 
-        // تجهيز قائمة الكلمات التي لها أسئلة (من قاعدة البيانات أو يتم إنشاؤها ديناميكياً)
         if (!this.gapFillRemainingWords || this.gapFillRemainingWords.length === 0) {
             this.gapFillRemainingWords = [...available];
             this.shuffleArray(this.gapFillRemainingWords);
             this.gapFillUsedQuestions = {};
             this.gapFillNoQuestionsMessageShown = false;
-            console.log('🔄 بدأ جولة جديدة، الكلمات:', this.gapFillRemainingWords.map(w => w.english));
         }
 
         const targetWordObj = this.gapFillRemainingWords[0];
@@ -1947,7 +1941,6 @@ class App {
 
         let questionData = null;
 
-        // محاولة جلب سؤال من قاعدة البيانات إن وجدت
         if (window.gapfillDB && window.gapfillDB[wordId] && window.gapfillDB[wordId].length > 0) {
             const questionsForWord = window.gapfillDB[wordId];
             if (!this.gapFillUsedQuestions[wordId]) {
@@ -1963,7 +1956,6 @@ class App {
             this.gapFillUsedQuestions[wordId].push(questionData);
         }
 
-        // إذا لم يوجد سؤال في قاعدة البيانات، نقوم بإنشاء سؤال ديناميكي
         if (!questionData) {
             questionData = this.generateDynamicGapFillQuestion(targetWordObj);
         }
@@ -1985,7 +1977,6 @@ class App {
         this.gapFillOptionsMeanings = [];
         this.gapFillExplanationVisible = false;
 
-        console.log('✅ تم تحضير السؤال:', this.gapFillCurrentQuestion.text);
         this.render();
     }
 
@@ -2019,18 +2010,16 @@ class App {
         });
 
         if (isCorrect) {
-            // إزالة الكلمة الحالية من القائمة (تم إتقانها)
             if (this.gapFillRemainingWords && this.gapFillRemainingWords.length > 0) {
                 this.gapFillRemainingWords.shift();
             }
             this.updateProgress(5);
         } else {
-            // إعادة الكلمة بشكل عشوائي لاحقاً
             if (this.gapFillRemainingWords && this.gapFillRemainingWords.length > 0) {
                 const currentWord = this.gapFillRemainingWords.shift();
                 const len = this.gapFillRemainingWords.length;
                 if (len > 0) {
-                    const randomIndex = Math.floor(Math.random() * len) + 1; // من 1 إلى len
+                    const randomIndex = Math.floor(Math.random() * len) + 1;
                     this.gapFillRemainingWords.splice(randomIndex, 0, currentWord);
                 } else {
                     this.gapFillRemainingWords.push(currentWord);
@@ -2061,7 +2050,6 @@ class App {
         this.gapFillExplanationVisible = !this.gapFillExplanationVisible;
 
         if (this.gapFillExplanationVisible) {
-            // تحميل ترجمة الجملة الكاملة إن لم تكن موجودة
             if (!this.gapFillCurrentQuestion.originalSentenceArabic && this.gapFillCurrentQuestion.originalSentence) {
                 const translated = await this.translateText(this.gapFillCurrentQuestion.originalSentence);
                 this.gapFillCurrentQuestion.originalSentenceArabic = translated || '';
