@@ -1884,13 +1884,15 @@ console.log('🔍 gapfillDB keys:', Object.keys(window.gapfillDB || {}));
             return;
         }
 
-        const wordsWithQuestions = [];
-        for (const word of available) {
-            if (window.gapfillDB && window.gapfillDB[word.id] && window.gapfillDB[word.id].length > 0) {
-                wordsWithQuestions.push(word);
-            }
-        }
-
+const wordsWithQuestions = [];
+for (const word of available) {
+    const hasQuestions = window.gapfillDB && window.gapfillDB[word.id] && window.gapfillDB[word.id].length > 0;
+    console.log(`📌 كلمة ${word.english} (${word.id}) ${hasQuestions ? '✅ لها أسئلة' : '❌ لا يوجد'}`);
+    if (hasQuestions) {
+        wordsWithQuestions.push(word);
+    }
+}
+console.log('📋 wordsWithQuestions:', wordsWithQuestions);
         if (wordsWithQuestions.length === 0) {
             if (!this.gapFillNoQuestionsMessageShown) {
                 this.gapFillNoQuestionsMessageShown = true;
