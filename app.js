@@ -104,6 +104,9 @@ class App {
         this.customLessons = {};
         this.generatedLessons = {};
 
+        // متغير مؤقت لعرض جميع البطاقات عند إعادة التكرار
+        this.showAllCardsTemporary = false;
+
         if (!localStorage.getItem('users')) {
             localStorage.setItem('users', JSON.stringify({}));
         }
@@ -2416,8 +2419,9 @@ class App {
                     const delay = cardShuffle ? 600 : 0;
                     setTimeout(() => {
                         if (param === 'all' && this.selectedLessonId) {
-                            // إعادة ضبط المؤشر فقط – لا نمس الكلمات المتقنة
+                            // إعادة ضبط المؤشر وتفعيل عرض جميع البطاقات مؤقتاً
                             this.currentCardIndex = 0;
+                            this.showAllCardsTemporary = true;
                             this.saveUserData();
                             this.render();
                         } else if (param === 'remaining') {
@@ -2433,6 +2437,7 @@ class App {
                                 this.masteredWords = this.masteredWords.filter(id => !allIds.includes(id));
                             }
                             this.currentCardIndex = 0;
+                            this.showAllCardsTemporary = false;
                             this.saveUserData();
                             this.render();
                         }
@@ -3110,7 +3115,15 @@ class App {
         }
 
         if (this.currentPage === 'flashcards') {
-            const active = allTerms.filter(t => !this.masteredWords.includes(String(t.id)) && !this.hiddenFromCards.includes(String(t.id)));
+            // اختيار الكلمات: إذا كان العرض المؤقت لجميع البطاقات مفعّلاً، نعرض الكل بدون فلترة، وإلا نعرض المتبقي فقط
+            let active;
+            if (this.showAllCardsTemporary) {
+                active = allTerms.filter(t => !this.hiddenFromCards.includes(String(t.id)));
+                // إلغاء تفعيل العرض المؤقت بعد التصيير (لأنه سيعاد تعيينه عند الخروج من الشاشة)
+                this.showAllCardsTemporary = false;
+            } else {
+                active = allTerms.filter(t => !this.masteredWords.includes(String(t.id)) && !this.hiddenFromCards.includes(String(t.id)));
+            }
             if (active.length === 0) {
                 return `<div class="reading-card" style="text-align:center;">
                     <div style="font-size:3rem; margin-bottom:10px;">🧠</div>
