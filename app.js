@@ -1890,31 +1890,31 @@ async prepareGapFill() {
         this.gapFillNoQuestionsMessageShown = false;
     }
 
-    // البحث عن أول كلمة لها أسئلة
-    let foundWordIndex = -1;
-    let foundWordObj = null;
-    let foundWordId = null;
+    // البحث عن أول كلمة في القائمة لها أسئلة
+    let selectedWordIndex = -1;
+    let selectedWordObj = null;
+    let selectedWordId = null;
 
     for (let i = 0; i < this.gapFillRemaining.length; i++) {
         const wordObj = this.gapFillRemaining[i];
         const wordId = wordObj.id;
-        const questions = window.gapfillDB && window.gapfillDB[wordId] ? window.gapfillDB[wordId] : [];
+        const questions = (window.gapfillDB && window.gapfillDB[wordId]) ? window.gapfillDB[wordId] : [];
         
         if (questions.length > 0) {
-            foundWordIndex = i;
-            foundWordObj = wordObj;
-            foundWordId = wordId;
+            selectedWordIndex = i;
+            selectedWordObj = wordObj;
+            selectedWordId = wordId;
             break;
         }
     }
 
     // إذا لم نجد أي كلمة لها أسئلة في القائمة بأكملها
-    if (foundWordIndex === -1) {
+    if (selectedWordIndex === -1) {
         // عرض رسالة واحدة فقط
         if (!this.gapFillNoQuestionsMessageShown) {
             this.gapFillNoQuestionsMessageShown = true;
             this.showCustomModal('info', '📝', 'لا توجد أسئلة محفوظة للكلمات الحالية. سيتم إضافة الأسئلة قريباً.', () => {
-                // بعد إغلاق النافذة، ننهي التمرين أو نعيد المحاولة
+                // بعد إغلاق النافذة، ننهي التمرين
                 this.currentPage = 'reading';
                 this.render();
             });
@@ -1926,13 +1926,11 @@ async prepareGapFill() {
         return;
     }
 
-    // إزالة الكلمات التي ليس لها أسئلة من بداية القائمة حتى الكلمة المختارة
-    // (لأننا نمرر على القائمة من البداية، يمكننا ببساطة استخدام الكلمة التي وجدناها)
-    // لكن لتجنب المشاكل، نأخذ الكلمة التي وجدناها مباشرة
-    const targetWordObj = foundWordObj;
+    // نحصل على الكلمة التي وجدناها
+    const targetWordObj = selectedWordObj;
     const targetWord = targetWordObj.english;
     const targetArabic = targetWordObj.arabic;
-    const wordId = foundWordId;
+    const wordId = selectedWordId;
 
     // الحصول على أسئلة هذه الكلمة
     const questionsForWord = window.gapfillDB[wordId];
@@ -1942,6 +1940,7 @@ async prepareGapFill() {
         this.gapFillUsedQuestions[wordId] = [];
     }
 
+    // اختيار سؤال لم يُستخدم بعد لهذه الكلمة
     let availableQuestions = questionsForWord.filter(q => !this.gapFillUsedQuestions[wordId].includes(q));
     let questionData = null;
 
@@ -1950,7 +1949,7 @@ async prepareGapFill() {
         questionData = availableQuestions[randomIndex];
         this.gapFillUsedQuestions[wordId].push(questionData);
     } else {
-        // إعادة ضبط الأسئلة المستخدمة لهذه الكلمة (دورة جديدة)
+        // جميع الأسئلة استخدمت، نعيد ضبط القائمة (دورة جديدة)
         this.gapFillUsedQuestions[wordId] = [];
         const randomIndex = Math.floor(Math.random() * questionsForWord.length);
         questionData = questionsForWord[randomIndex];
@@ -1961,10 +1960,7 @@ async prepareGapFill() {
     while (questionData.options.length < 4) questionData.options.push('???');
     this.shuffleArray(questionData.options);
 
-    // إزالة الكلمة الحالية من قائمة الانتظار (سيتم إزالتها عند الإجابة الصحيحة)
-    // نزيل الكلمة التي وجدناها من القائمة
-    this.gapFillRemaining.splice(foundWordIndex, 1);
-
+    // تعيين السؤال الحالي
     this.gapFillCurrentQuestion = {
         text: questionData.sentence,
         correct: targetWord,
@@ -1980,35 +1976,6 @@ async prepareGapFill() {
     this.gapFillExplanationVisible = false;
     this.render();
 }
-    else {
-                // الكلمة ليس لها أسئلة: نحذفها من القائمة
-                this.gapFillRemaining.shift();
-                console.warn(`⚠️ لا توجد أسئلة للكلمة: ${targetWord} (${wordId})`);
-
-                // عرض رسالة واحدة فقط (لن تظهر إلا إذا كان هناك كلمات بدون أسئلة في هذه الجولة)
-                if (!this.gapFillNoQuestionsMessageShown) {
-                    this.gapFillNoQuestionsMessageShown = true;
-                    // نعرض الرسالة ونستمر في البحث (بعد إغلاق النافذة سنقوم بمعاودة البحث)
-                    this.showCustomModal('info', '📝', 'بعض الكلمات لا توجد لها أسئلة بعد. سيتم إضافتها قريباً.', () => {
-                        // بعد إغلاق النافذة، نستمر في البحث عن كلمة أخرى
-                        this.prepareGapFill();
-                    });
-                    return; // ننتظر حتى يغلق المستخدم النافذة
-                }
-                // إذا ظهرت الرسالة مسبقاً، نستمر في الحلقة مباشرة دون عرض نافذة جديدة
-            }
-        }
-
-        // إذا وصلنا إلى هنا، فهذا يعني أن جميع الكلمات المتبقية ليس لها أسئلة.
-        // نعيد ضبط القائمة من جديد (نعيد خلط الكلمات الأصلية) ونعرض رسالة (إذا لم تظهر من قبل)
-        this.gapFillRemaining = [...available].sort(() => 0.5 - Math.random());
-        this.gapFillUsedQuestions = {};
-        this.gapFillNoQuestionsMessageShown = false;
-
-        // نعيد المحاولة مرة أخرى (سيتعامل مع الكلمات التي ليس لها أسئلة عبر الحلقة)
-        this.prepareGapFill();
-    }
-
     handleGapFillAnswer(selectedEnglish) {
         if (this.gapFillAnswered || !this.gapFillCurrentQuestion) return;
         this.gapFillAnswered = true;
