@@ -61,7 +61,7 @@ class App {
         this.gapFillUsedQuestions = {};
         this.gapFillNoQuestionsMessageShown = false;
         this.gapFillAvailableWords = [];
-        this.gapFillRemainingWords = [];// لتخزين الكلمات المتاحة عند بداية الجولة
+        this.gapFillRemainingWords = []; // لتخزين الكلمات التي لها أسئلة
 
         this.levelTestLevel = null;
         this.levelTestLessons = [];
@@ -1864,105 +1864,96 @@ class App {
         }, 1100);
     }
 
-    // ================== دوال تمرين ملء الفراغ (Gap Fill) - الإصدار النهائي ==================
-async prepareGapFill() {
-    if (this.gapFillTimer) {
-        clearTimeout(this.gapFillTimer);
-        this.gapFillTimer = null;
-    }
-
-    const lesson = this.getCurrentLessonData();
-    if (!lesson) return;
-
-    // جميع كلمات الدرس (الأصلية + المضافة من المستخدم)
-    const allTerms = [...lesson.terms, ...this.userVocabulary.filter(v => v.lessonId == this.selectedLessonId)];
-    // الكلمات المتاحة (غير متقنة وغير مخفية)
-    const available = allTerms.filter(t => !this.masteredWords.includes(String(t.id)) && !this.hiddenFromCards.includes(String(t.id)));
-
-    if (available.length === 0) {
-        alert('🎉 لقد أنهيت جميع الكلمات المتاحة! يمكنك إعادة تعيين الكلمات المتقنة من قائمة البطاقات.');
-        return;
-    }
-
-    // بناء قائمة الكلمات التي لها أسئلة فقط
-    const wordsWithQuestions = [];
-    for (const word of available) {
-        if (window.gapfillDB && window.gapfillDB[word.id] && window.gapfillDB[word.id].length > 0) {
-            wordsWithQuestions.push(word);
+    // ================== دوال تمرين ملء الفراغ (Gap Fill) ==================
+    async prepareGapFill() {
+        if (this.gapFillTimer) {
+            clearTimeout(this.gapFillTimer);
+            this.gapFillTimer = null;
         }
-    }
 
-    // إذا لم توجد أي كلمة لها أسئلة
-    if (wordsWithQuestions.length === 0) {
-        if (!this.gapFillNoQuestionsMessageShown) {
-            this.gapFillNoQuestionsMessageShown = true;
-            this.showCustomModal('info', '📝', 'لا توجد أسئلة محفوظة للكلمات الحالية. سيتم إضافة الأسئلة قريباً.', () => {
+        const lesson = this.getCurrentLessonData();
+        if (!lesson) return;
+
+        const allTerms = [...lesson.terms, ...this.userVocabulary.filter(v => v.lessonId == this.selectedLessonId)];
+        const available = allTerms.filter(t => !this.masteredWords.includes(String(t.id)) && !this.hiddenFromCards.includes(String(t.id)));
+
+        if (available.length === 0) {
+            alert('🎉 لقد أنهيت جميع الكلمات المتاحة! يمكنك إعادة تعيين الكلمات المتقنة من قائمة البطاقات.');
+            return;
+        }
+
+        const wordsWithQuestions = [];
+        for (const word of available) {
+            if (window.gapfillDB && window.gapfillDB[word.id] && window.gapfillDB[word.id].length > 0) {
+                wordsWithQuestions.push(word);
+            }
+        }
+
+        if (wordsWithQuestions.length === 0) {
+            if (!this.gapFillNoQuestionsMessageShown) {
+                this.gapFillNoQuestionsMessageShown = true;
+                this.showCustomModal('info', '📝', 'لا توجد أسئلة محفوظة للكلمات الحالية. سيتم إضافة الأسئلة قريباً.', () => {
+                    this.currentPage = 'reading';
+                    this.render();
+                });
+            } else {
                 this.currentPage = 'reading';
                 this.render();
-            });
-        } else {
-            this.currentPage = 'reading';
-            this.render();
+            }
+            return;
         }
-        return;
+
+        if (!this.gapFillRemainingWords || this.gapFillRemainingWords.length === 0) {
+            this.gapFillRemainingWords = [...wordsWithQuestions];
+            this.gapFillUsedQuestions = {};
+            this.gapFillNoQuestionsMessageShown = false;
+        }
+
+        const targetWordObj = this.gapFillRemainingWords[0];
+        const targetWord = targetWordObj.english;
+        const targetArabic = targetWordObj.arabic;
+        const wordId = targetWordObj.id;
+
+        const questionsForWord = window.gapfillDB[wordId];
+
+        if (!this.gapFillUsedQuestions[wordId]) {
+            this.gapFillUsedQuestions[wordId] = [];
+        }
+
+        let availableQuestions = questionsForWord.filter(q => !this.gapFillUsedQuestions[wordId].includes(q));
+        let questionData = null;
+
+        if (availableQuestions.length > 0) {
+            const randomIndex = Math.floor(Math.random() * availableQuestions.length);
+            questionData = availableQuestions[randomIndex];
+            this.gapFillUsedQuestions[wordId].push(questionData);
+        } else {
+            this.gapFillUsedQuestions[wordId] = [];
+            const randomIndex = Math.floor(Math.random() * questionsForWord.length);
+            questionData = questionsForWord[randomIndex];
+            this.gapFillUsedQuestions[wordId].push(questionData);
+        }
+
+        while (questionData.options.length < 4) questionData.options.push('???');
+        this.shuffleArray(questionData.options);
+
+        this.gapFillCurrentQuestion = {
+            text: questionData.sentence,
+            correct: targetWord,
+            arabic: targetArabic,
+            originalSentence: questionData.originalSentence || '',
+            originalSentenceArabic: ''
+        };
+        this.gapFillOptions = questionData.options;
+        this.gapFillAnswered = false;
+        this.gapFillResult = null;
+        this.gapFillExplanation = '';
+        this.gapFillOptionsMeanings = [];
+        this.gapFillExplanationVisible = false;
+
+        this.render();
     }
 
-    // إذا كانت قائمة الكلمات المتبقية فارغة أو لم تُهيأ، نبدأ جولة جديدة
-    if (!this.gapFillRemainingWords || this.gapFillRemainingWords.length === 0) {
-        this.gapFillRemainingWords = [...wordsWithQuestions];
-        this.gapFillUsedQuestions = {};
-        this.gapFillNoQuestionsMessageShown = false;
-    }
-
-    // نأخذ أول كلمة من القائمة (أو عشوائية، حسب رغبتك)
-    const targetWordObj = this.gapFillRemainingWords[0];
-    const targetWord = targetWordObj.english;
-    const targetArabic = targetWordObj.arabic;
-    const wordId = targetWordObj.id;
-
-    const questionsForWord = window.gapfillDB[wordId];
-
-    // تهيئة قائمة الأسئلة المستخدمة لهذه الكلمة
-    if (!this.gapFillUsedQuestions[wordId]) {
-        this.gapFillUsedQuestions[wordId] = [];
-    }
-
-    // اختيار سؤال لم يُستخدم بعد لهذه الكلمة
-    let availableQuestions = questionsForWord.filter(q => !this.gapFillUsedQuestions[wordId].includes(q));
-    let questionData = null;
-
-    if (availableQuestions.length > 0) {
-        const randomIndex = Math.floor(Math.random() * availableQuestions.length);
-        questionData = availableQuestions[randomIndex];
-        this.gapFillUsedQuestions[wordId].push(questionData);
-    } else {
-        // جميع الأسئلة استخدمت، نعيد ضبط القائمة (دورة جديدة)
-        this.gapFillUsedQuestions[wordId] = [];
-        const randomIndex = Math.floor(Math.random() * questionsForWord.length);
-        questionData = questionsForWord[randomIndex];
-        this.gapFillUsedQuestions[wordId].push(questionData);
-    }
-
-    // التأكد من وجود 4 خيارات
-    while (questionData.options.length < 4) questionData.options.push('???');
-    this.shuffleArray(questionData.options);
-
-    this.gapFillCurrentQuestion = {
-        text: questionData.sentence,
-        correct: targetWord,
-        arabic: targetArabic,
-        originalSentence: questionData.originalSentence || '',
-        originalSentenceArabic: ''
-    };
-    this.gapFillOptions = questionData.options;
-    this.gapFillAnswered = false;
-    this.gapFillResult = null;
-    this.gapFillExplanation = '';
-    this.gapFillOptionsMeanings = [];
-    this.gapFillExplanationVisible = false;
-
-    this.render();
-}
     handleGapFillAnswer(selectedEnglish) {
         if (this.gapFillAnswered || !this.gapFillCurrentQuestion) return;
         this.gapFillAnswered = true;
@@ -1992,38 +1983,45 @@ async prepareGapFill() {
             return { english: opt, arabic: 'معنى غير متاح' };
         });
 
-if (isCorrect) {
-    // إزالة الكلمة الحالية من قائمة الكلمات المتبقية
-    if (this.gapFillRemainingWords && this.gapFillRemainingWords.length > 0) {
-        this.gapFillRemainingWords.shift();
+        if (isCorrect) {
+            if (this.gapFillRemainingWords && this.gapFillRemainingWords.length > 0) {
+                this.gapFillRemainingWords.shift();
+            }
+            this.updateProgress(5);
+        }
+
+        this.gapFillExplanation = isCorrect ?
+            `✅ إجابة صحيحة! كلمة "${this.gapFillCurrentQuestion.correct}" تعني "${this.gapFillCurrentQuestion.arabic}" في العربية.` :
+            `❌ إجابة خاطئة. الإجابة الصحيحة هي "${this.gapFillCurrentQuestion.correct}" (${this.gapFillCurrentQuestion.arabic}).`;
+
+        this.render();
     }
-    this.updateProgress(5);
-    // ...
-}
+
     async showDetailedGapFillExplanation() {
         if (!this.gapFillCurrentQuestion) return;
-        
+
         if (!this.gapFillCurrentQuestion.originalSentenceArabic && this.gapFillCurrentQuestion.originalSentence) {
             const translated = await this.translateText(this.gapFillCurrentQuestion.originalSentence);
             this.gapFillCurrentQuestion.originalSentenceArabic = translated || '(غير متوفرة)';
             this.render();
             return;
         }
-        
+
         this.gapFillExplanationVisible = true;
         this.render();
     }
 
-handleGapFillNext() {
-    if (this.gapFillRemainingWords.length === 0) {
-        alert('🎉 تهانينا! أكملت جميع الكلمات.');
-        this.currentPage = 'reading';
-    } else {
-        this.prepareGapFill();
+    handleGapFillNext() {
+        if (this.gapFillRemainingWords.length === 0) {
+            alert('🎉 تهانينا! أكملت جميع الكلمات.');
+            this.currentPage = 'reading';
+        } else {
+            this.prepareGapFill();
+        }
+        this.render();
     }
-    this.render();
-}
-        unlockGapFill(lessonId) {
+
+    unlockGapFill(lessonId) {
         if (this.gapFillUnlocked[lessonId]) return true;
         if (this.userCoins >= 75) {
             this.showCoinPurchaseModal(75, (confirmed) => {
@@ -2082,7 +2080,6 @@ handleGapFillNext() {
         return null;
     }
 
-    // ================== الأحداث العامة ==================
     setupGlobalEvents() {
         document.addEventListener('click', (e) => {
             const btn = e.target.closest('[data-action]');
@@ -2405,7 +2402,6 @@ handleGapFillNext() {
         });
     }
 
-    // ================== دوال المصادقة ==================
     handleAuth() {
         const name = document.getElementById('authName')?.value;
         const email = document.getElementById('authEmail')?.value;
