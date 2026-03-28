@@ -6974,6 +6974,91 @@ window.lessonsData = {
   "terms": [
   ]
 },
+  "345": {
+  "title": "The Paradox of Hyper-Connectivity in Education",
+  "content": "",
+  "terms": [
+  ]
+},
+  "346": {
+  "title": "The Geopolitical Scramble for Arctic Resources",
+  "content": "",
+  "terms": [
+  ]
+},
+  "347": {
+  "title": "The Revival of Indigenous Knowledge in Conservation",
+  "content": "",
+  "terms": [
+  ]
+},
+  "348": {
+  "title": "The Corporate Scrutiny of Supply Chain Emissions",
+  "content": "",
+  "terms": [
+  ]
+},
+  "349": {
+  "title": "The Ethics of Generative AI in Creative Industries",
+  "content": "",
+  "terms": [
+  ]
+},
+  "350": {
+  "title": "Global Supply Chain Resilience Post-Pandemic",
+  "content": "",
+  "terms": [
+  ]
+},
+  "351": {
+  "title": "The Geopolitics of Water Scarcity in the Middle East",
+  "content": "",
+  "terms": [
+  ]
+},
+  "352": {
+  "title": "Neuroplasticity and Adult Learning",
+  "content": "",
+  "terms": [
+  ]
+},
+  "353": {
+  "title": "The Rise of Digital Currencies and State Sovereignty",
+  "content": "",
+  "terms": [
+  ]
+},
+  "354": {
+  "title": "Urban Planning: The Concept of the 15-Minute City",
+  "content": "",
+  "terms": [
+  ]
+},
+  "355": {
+  "title": "Space Debris and the Sustainability of Low Earth Orbit",
+  "content": "",
+  "terms": [
+  ]
+},
+  "356": {
+  "title": "The Impact of Social Media on Democratic Institutions",
+  "content": "",
+  "terms": [
+  ]
+},
+  "357": {
+  "title": "CRISPR Technology and the Future of Genetic Engineering",
+  "content": "",
+  "terms": [
+  ]
+},
+  "358": {
+  "title": "The Role of Microgrids in Decentralizing Energy Infrastructure",
+  "content": "",
+  "terms": [
+  ]
+}
+};
 
 };
 
