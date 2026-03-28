@@ -1864,93 +1864,123 @@ class App {
     }
 
     // ================== دوال تمرين ملء الفراغ (Gap Fill) - الإصدار النهائي ==================
-    async prepareGapFill() {
-        if (this.gapFillTimer) {
-            clearTimeout(this.gapFillTimer);
-            this.gapFillTimer = null;
+async prepareGapFill() {
+    if (this.gapFillTimer) {
+        clearTimeout(this.gapFillTimer);
+        this.gapFillTimer = null;
+    }
+
+    const lesson = this.getCurrentLessonData();
+    if (!lesson) return;
+
+    // جميع كلمات الدرس (الأصلية + المضافة من المستخدم)
+    const allTerms = [...lesson.terms, ...this.userVocabulary.filter(v => v.lessonId == this.selectedLessonId)];
+    // الكلمات المتاحة (غير متقنة وغير مخفية)
+    const available = allTerms.filter(t => !this.masteredWords.includes(String(t.id)) && !this.hiddenFromCards.includes(String(t.id)));
+
+    if (available.length === 0) {
+        alert('🎉 لقد أنهيت جميع الكلمات المتاحة! يمكنك إعادة تعيين الكلمات المتقنة من قائمة البطاقات.');
+        return;
+    }
+
+    // إذا كانت قائمة الانتظار فارغة، نبدأ جولة جديدة
+    if (this.gapFillRemaining.length === 0) {
+        this.gapFillRemaining = [...available].sort(() => 0.5 - Math.random());
+        this.gapFillUsedQuestions = {};
+        this.gapFillNoQuestionsMessageShown = false;
+    }
+
+    // البحث عن أول كلمة لها أسئلة
+    let foundWordIndex = -1;
+    let foundWordObj = null;
+    let foundWordId = null;
+
+    for (let i = 0; i < this.gapFillRemaining.length; i++) {
+        const wordObj = this.gapFillRemaining[i];
+        const wordId = wordObj.id;
+        const questions = window.gapfillDB && window.gapfillDB[wordId] ? window.gapfillDB[wordId] : [];
+        
+        if (questions.length > 0) {
+            foundWordIndex = i;
+            foundWordObj = wordObj;
+            foundWordId = wordId;
+            break;
         }
+    }
 
-        const lesson = this.getCurrentLessonData();
-        if (!lesson) return;
-
-        // الحصول على الكلمات المتاحة (غير المتقنة وغير المخفية)
-        const allTerms = [...lesson.terms, ...this.userVocabulary.filter(v => v.lessonId == this.selectedLessonId)];
-        const available = allTerms.filter(t => !this.masteredWords.includes(String(t.id)) && !this.hiddenFromCards.includes(String(t.id)));
-
-        if (available.length === 0) {
-            alert('لا توجد كلمات متاحة لهذا التمرين. قم بإضافة كلمات جديدة أو إعادة تعيين الكلمات المتقنة.');
-            return;
-        }
-
-        // بداية جولة جديدة: إعادة ترتيب الكلمات وإعادة ضبط المتغيرات
-        if (this.gapFillRemaining.length === 0) {
-            this.gapFillRemaining = [...available].sort(() => 0.5 - Math.random());
-            this.gapFillUsedQuestions = {};
-            this.gapFillNoQuestionsMessageShown = false;
-            this.gapFillAvailableWords = [...available]; // حفظ نسخة للرجوع إليها
-        }
-
-        // إذا كانت القائمة فارغة بعد المعالجة (لأي سبب) نعيد تعبئتها
-        if (this.gapFillRemaining.length === 0) {
-            this.gapFillRemaining = [...available].sort(() => 0.5 - Math.random());
-            this.gapFillUsedQuestions = {};
-            this.gapFillNoQuestionsMessageShown = false;
-        }
-
-        // حلقة للعثور على أول كلمة لها أسئلة
-        while (this.gapFillRemaining.length > 0) {
-            const targetWordObj = this.gapFillRemaining[0];
-            const targetWord = targetWordObj.english;
-            const targetArabic = targetWordObj.arabic;
-            const wordId = targetWordObj.id;
-
-            let questionsForWord = [];
-            if (window.gapfillDB && window.gapfillDB[wordId]) {
-                questionsForWord = window.gapfillDB[wordId];
-            }
-
-            // إذا كانت هناك أسئلة للكلمة
-            if (questionsForWord.length > 0) {
-                // تهيئة قائمة الأسئلة المستخدمة لهذه الكلمة
-                if (!this.gapFillUsedQuestions[wordId]) {
-                    this.gapFillUsedQuestions[wordId] = [];
-                }
-
-                let availableQuestions = questionsForWord.filter(q => !this.gapFillUsedQuestions[wordId].includes(q));
-                let questionData = null;
-
-                if (availableQuestions.length > 0) {
-                    const randomIndex = Math.floor(Math.random() * availableQuestions.length);
-                    questionData = availableQuestions[randomIndex];
-                    this.gapFillUsedQuestions[wordId].push(questionData);
-                } else {
-                    // إعادة ضبط الأسئلة المستخدمة للكلمة (دورة جديدة)
-                    this.gapFillUsedQuestions[wordId] = [];
-                    const randomIndex = Math.floor(Math.random() * questionsForWord.length);
-                    questionData = questionsForWord[randomIndex];
-                    this.gapFillUsedQuestions[wordId].push(questionData);
-                }
-
-                // التأكد من وجود 4 خيارات
-                while (questionData.options.length < 4) questionData.options.push('???');
-                this.shuffleArray(questionData.options);
-
-                this.gapFillCurrentQuestion = {
-                    text: questionData.sentence,
-                    correct: targetWord,
-                    arabic: targetArabic,
-                    originalSentence: questionData.originalSentence || '',
-                    originalSentenceArabic: ''
-                };
-                this.gapFillOptions = questionData.options;
-                this.gapFillAnswered = false;
-                this.gapFillResult = null;
-                this.gapFillExplanation = '';
-                this.gapFillOptionsMeanings = [];
-                this.gapFillExplanationVisible = false;
+    // إذا لم نجد أي كلمة لها أسئلة في القائمة بأكملها
+    if (foundWordIndex === -1) {
+        // عرض رسالة واحدة فقط
+        if (!this.gapFillNoQuestionsMessageShown) {
+            this.gapFillNoQuestionsMessageShown = true;
+            this.showCustomModal('info', '📝', 'لا توجد أسئلة محفوظة للكلمات الحالية. سيتم إضافة الأسئلة قريباً.', () => {
+                // بعد إغلاق النافذة، ننهي التمرين أو نعيد المحاولة
+                this.currentPage = 'reading';
                 this.render();
-                return; // انتهينا بنجاح
-            } else {
+            });
+        } else {
+            // إذا ظهرت الرسالة مسبقاً، ننهي التمرين مباشرة
+            this.currentPage = 'reading';
+            this.render();
+        }
+        return;
+    }
+
+    // إزالة الكلمات التي ليس لها أسئلة من بداية القائمة حتى الكلمة المختارة
+    // (لأننا نمرر على القائمة من البداية، يمكننا ببساطة استخدام الكلمة التي وجدناها)
+    // لكن لتجنب المشاكل، نأخذ الكلمة التي وجدناها مباشرة
+    const targetWordObj = foundWordObj;
+    const targetWord = targetWordObj.english;
+    const targetArabic = targetWordObj.arabic;
+    const wordId = foundWordId;
+
+    // الحصول على أسئلة هذه الكلمة
+    const questionsForWord = window.gapfillDB[wordId];
+    
+    // تهيئة قائمة الأسئلة المستخدمة لهذه الكلمة
+    if (!this.gapFillUsedQuestions[wordId]) {
+        this.gapFillUsedQuestions[wordId] = [];
+    }
+
+    let availableQuestions = questionsForWord.filter(q => !this.gapFillUsedQuestions[wordId].includes(q));
+    let questionData = null;
+
+    if (availableQuestions.length > 0) {
+        const randomIndex = Math.floor(Math.random() * availableQuestions.length);
+        questionData = availableQuestions[randomIndex];
+        this.gapFillUsedQuestions[wordId].push(questionData);
+    } else {
+        // إعادة ضبط الأسئلة المستخدمة لهذه الكلمة (دورة جديدة)
+        this.gapFillUsedQuestions[wordId] = [];
+        const randomIndex = Math.floor(Math.random() * questionsForWord.length);
+        questionData = questionsForWord[randomIndex];
+        this.gapFillUsedQuestions[wordId].push(questionData);
+    }
+
+    // التأكد من وجود 4 خيارات
+    while (questionData.options.length < 4) questionData.options.push('???');
+    this.shuffleArray(questionData.options);
+
+    // إزالة الكلمة الحالية من قائمة الانتظار (سيتم إزالتها عند الإجابة الصحيحة)
+    // نزيل الكلمة التي وجدناها من القائمة
+    this.gapFillRemaining.splice(foundWordIndex, 1);
+
+    this.gapFillCurrentQuestion = {
+        text: questionData.sentence,
+        correct: targetWord,
+        arabic: targetArabic,
+        originalSentence: questionData.originalSentence || '',
+        originalSentenceArabic: ''
+    };
+    this.gapFillOptions = questionData.options;
+    this.gapFillAnswered = false;
+    this.gapFillResult = null;
+    this.gapFillExplanation = '';
+    this.gapFillOptionsMeanings = [];
+    this.gapFillExplanationVisible = false;
+    this.render();
+}
+    else {
                 // الكلمة ليس لها أسئلة: نحذفها من القائمة
                 this.gapFillRemaining.shift();
                 console.warn(`⚠️ لا توجد أسئلة للكلمة: ${targetWord} (${wordId})`);
