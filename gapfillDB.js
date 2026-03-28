@@ -4106,6 +4106,2289 @@ window.gapfillDB = {
             originalSentence: "A verb is often called an action word."
         }
     ],
+    // استكمال gapfillDB.js - الدرس الثالث عشر (13-1 إلى 13-49)
+    "13-1": [ // adjective
+        {
+            sentence: "An ______ is a word that describes a person, place, or thing.",
+            options: ["adjective", "verb", "comparison", "gray"],
+            originalSentence: "An adjective is a word that describes a person, place, or thing."
+        }
+    ],
+    "13-2": [ // describing word
+        {
+            sentence: "We use a ______ to give more information about a noun.",
+            options: ["describing word", "action word", "gray", "round"],
+            originalSentence: "We use a describing word to give more information about a noun."
+        }
+    ],
+    "13-3": [ // big
+        {
+            sentence: "The elephant is a very ______ animal.",
+            options: ["big", "small", "thin", "weak"],
+            originalSentence: "The elephant is a very big animal."
+        }
+    ],
+    "13-4": [ // small
+        {
+            sentence: "The mouse is very ______ compared to the cat.",
+            options: ["small", "big", "fat", "loud"],
+            originalSentence: "The mouse is very small compared to the cat."
+        }
+    ],
+    "13-5": [ // tall
+        {
+            sentence: "The basketball player is very ______.",
+            options: ["tall", "short", "fat", "wet"],
+            originalSentence: "The basketball player is very tall."
+        }
+    ],
+    "13-6": [ // short
+        {
+            sentence: "The child is too ______ to reach the top shelf.",
+            options: ["short", "tall", "long", "heavy"],
+            originalSentence: "The child is too short to reach the top shelf."
+        }
+    ],
+    "13-7": [ // long
+        {
+            sentence: "The snake has a very ______ body.",
+            options: ["long", "short", "tall", "fat"],
+            originalSentence: "The snake has a very long body."
+        }
+    ],
+    "13-8": [ // fat
+        {
+            sentence: "That ______ cat needs to exercise more.",
+            options: ["fat", "thin", "young", "bright"],
+            originalSentence: "That fat cat needs to exercise more."
+        }
+    ],
+    "13-9": [ // thin
+        {
+            sentence: "The ______ man could fit through the narrow door.",
+            options: ["thin", "fat", "strong", "heavy"],
+            originalSentence: "The thin man could fit through the narrow door."
+        }
+    ],
+    "13-10": [ // young
+        {
+            sentence: "The ______ boy is learning how to ride a bike.",
+            options: ["young", "old", "ugly", "rich"],
+            originalSentence: "The young boy is learning how to ride a bike."
+        }
+    ],
+    "13-11": [ // beautiful
+        {
+            sentence: "She has a ______ smile that makes everyone happy.",
+            options: ["beautiful", "ugly", "dirty", "boring"],
+            originalSentence: "She has a beautiful smile that makes everyone happy."
+        }
+    ],
+    "13-12": [ // ugly
+        {
+            sentence: "In the story, the ______ monster lived in a cave.",
+            options: ["ugly", "beautiful", "interesting", "clean"],
+            originalSentence: "In the story, the ugly monster lived in a cave."
+        }
+    ],
+    "13-13": [ // clean
+        {
+            sentence: "Your shoes are so ______! Did you just wash them?",
+            options: ["clean", "dirty", "rough", "dark"],
+            originalSentence: "Your shoes are so clean! Did you just wash them?"
+        }
+    ],
+    "13-14": [ // dirty
+        {
+            sentence: "The car is ______ after the long trip through the mud.",
+            options: ["dirty", "clean", "smooth", "bright"],
+            originalSentence: "The car is dirty after the long trip through the mud."
+        }
+    ],
+    "13-15": [ // hot
+        {
+            sentence: "Be careful! The tea is very ______.",
+            options: ["hot", "cold", "wet", "dry"],
+            originalSentence: "Be careful! The tea is very hot."
+        }
+    ],
+    "13-16": [ // cold
+        {
+            sentence: "I like to drink ______ water in the summer.",
+            options: ["cold", "hot", "loud", "quiet"],
+            originalSentence: "I like to drink cold water in the summer."
+        }
+    ],
+    "13-17": [ // loud
+        {
+            sentence: "The music was too ______ and my ears hurt.",
+            options: ["loud", "quiet", "easy", "difficult"],
+            originalSentence: "The music was too loud and my ears hurt."
+        }
+    ],
+    "13-18": [ // quiet
+        {
+            sentence: "Please be ______ while the baby is sleeping.",
+            options: ["quiet", "loud", "funny", "strong"],
+            originalSentence: "Please be quiet while the baby is sleeping."
+        }
+    ],
+    "13-19": [ // strong
+        {
+            sentence: "The weightlifter has ______ muscles.",
+            options: ["strong", "weak", "thin", "light"],
+            originalSentence: "The weightlifter has strong muscles."
+        }
+    ],
+    "13-20": [ // weak
+        {
+            sentence: "I felt ______ when I was sick last week.",
+            options: ["weak", "strong", "rich", "poor"],
+            originalSentence: "I felt weak when I was sick last week."
+        }
+    ],
+    "13-21": [ // rich
+        {
+            sentence: "That ______ family owns three large houses.",
+            options: ["rich", "poor", "mean", "funny"],
+            originalSentence: "That rich family owns three large houses."
+        }
+    ],
+    "13-22": [ // poor
+        {
+            sentence: "The ______ man didn't have enough money for food.",
+            options: ["poor", "rich", "helpful", "colorful"],
+            originalSentence: "The poor man didn't have enough money for food."
+        }
+    ],
+    "13-23": [ // mean
+        {
+            sentence: "Don't be ______; share your toys with your sister.",
+            options: ["mean", "interesting", "helpful", "clear"],
+            originalSentence: "Don't be mean; share your toys with your sister."
+        }
+    ],
+    "13-24": [ // funny
+        {
+            sentence: "The clown told a very ______ joke.",
+            options: ["funny", "boring", "heavy", "gray"],
+            originalSentence: "The clown told a very funny joke."
+        }
+    ],
+    "13-25": [ // interesting
+        {
+            sentence: "I am reading a very ______ book about space.",
+            options: ["interesting", "boring", "ugly", "weak"],
+            originalSentence: "I am reading a very interesting book about space."
+        }
+    ],
+    "13-26": [ // boring
+        {
+            sentence: "The movie was so ______ that I fell asleep.",
+            options: ["boring", "interesting", "playful", "bright"],
+            originalSentence: "The movie was so boring that I fell asleep."
+        }
+    ],
+    "13-27": [ // easy
+        {
+            sentence: "The math test was very ______; I finished it in five minutes.",
+            options: ["easy", "difficult", "heavy", "rough"],
+            originalSentence: "The math test was very easy; I finished it in five minutes."
+        }
+    ],
+    "13-28": [ // difficult
+        {
+            sentence: "Climbing that mountain is very ______ and dangerous.",
+            options: ["difficult", "easy", "light", "smooth"],
+            originalSentence: "Climbing that mountain is very difficult and dangerous."
+        }
+    ],
+    "13-29": [ // heavy
+        {
+            sentence: "This box is too ______ for me to lift alone.",
+            options: ["heavy", "light", "thin", "empty"],
+            originalSentence: "This box is too heavy for me to lift alone."
+        }
+    ],
+    "13-30": [ // light
+        {
+            sentence: "A feather is very ______; the wind can blow it away.",
+            options: ["light", "heavy", "full", "thick"],
+            originalSentence: "A feather is very light; the wind can blow it away."
+        }
+    ],
+    "13-31": [ // full
+        {
+            sentence: "I can't eat anymore; my stomach is ______.",
+            options: ["full", "empty", "open", "closed"],
+            originalSentence: "I can't eat anymore; my stomach is full."
+        }
+    ],
+    "13-32": [ // empty
+        {
+            sentence: "The glass is ______; please give me more juice.",
+            options: ["empty", "full", "wet", "dry"],
+            originalSentence: "The glass is empty; please give me more juice."
+        }
+    ],
+    "13-33": [ // open
+        {
+            sentence: "The window is ______; I can hear the birds.",
+            options: ["open", "closed", "bright", "dark"],
+            originalSentence: "The window is open; I can hear the birds."
+        }
+    ],
+    "13-34": [ // closed
+        {
+            sentence: "The shop is ______ at night.",
+            options: ["closed", "open", "clear", "playful"],
+            originalSentence: "The shop is closed at night."
+        }
+    ],
+    "13-35": [ // wet
+        {
+            sentence: "Don't sit on that bench; the paint is still ______.",
+            options: ["wet", "dry", "rough", "smooth"],
+            originalSentence: "Don't sit on that bench; the paint is still wet."
+        }
+    ],
+    "13-36": [ // dry
+        {
+            sentence: "The desert is a very ______ place with no rain.",
+            options: ["dry", "wet", "full", "colorful"],
+            originalSentence: "The desert is a very dry place with no rain."
+        }
+    ],
+    "13-37": [ // rough
+        {
+            sentence: "The wall felt ______ like sandpaper.",
+            options: ["rough", "smooth", "clear", "gray"],
+            originalSentence: "The wall felt rough like sandpaper."
+        }
+    ],
+    "13-38": [ // smooth
+        {
+            sentence: "The ice on the lake is very ______.",
+            options: ["smooth", "rough", "heavy", "thick"],
+            originalSentence: "The ice on the lake is very smooth."
+        }
+    ],
+    "13-39": [ // bright
+        {
+            sentence: "The sun is so ______ that I need sunglasses.",
+            options: ["bright", "dark", "thin", "weak"],
+            originalSentence: "The sun is so bright that I need sunglasses."
+        }
+    ],
+    "13-40": [ // dark
+        {
+            sentence: "It's too ______ in here; please turn on the light.",
+            options: ["dark", "bright", "colorful", "clear"],
+            originalSentence: "It's too dark in here; please turn on the light."
+        }
+    ],
+    "13-41": [ // clear
+        {
+            sentence: "The water in the pool is so ______ I can see the bottom.",
+            options: ["clear", "dirty", "gray", "round"],
+            originalSentence: "The water in the pool is so clear I can see the bottom."
+        }
+    ],
+    "13-42": [ // playful
+        {
+            sentence: "The ______ puppy kept chasing its own tail.",
+            options: ["playful", "boring", "heavy", "dry"],
+            originalSentence: "The playful puppy kept chasing its own tail."
+        }
+    ],
+    "13-43": [ // helpful
+        {
+            sentence: "Thank you for being so ______ with my bags.",
+            options: ["helpful", "mean", "ugly", "short"],
+            originalSentence: "Thank you for being so helpful with my bags."
+        }
+    ],
+    "13-44": [ // colorful
+        {
+            sentence: "The rainbow is very ______.",
+            options: ["colorful", "gray", "dark", "empty"],
+            originalSentence: "The rainbow is very colorful."
+        }
+    ],
+    "13-45": [ // thick
+        {
+            sentence: "I need a ______ blanket because it's cold tonight.",
+            options: ["thick", "thin", "light", "open"],
+            originalSentence: "I need a thick blanket because it's cold tonight."
+        }
+    ],
+    "13-46": [ // thin
+        {
+            sentence: "He wore a ______ shirt even though it was snowing.",
+            options: ["thin", "thick", "strong", "long"],
+            originalSentence: "He wore a thin shirt even though it was snowing."
+        }
+    ],
+    "13-47": [ // gray
+        {
+            sentence: "The sky is ______; I think it will rain soon.",
+            options: ["gray", "bright", "colorful", "clear"],
+            originalSentence: "The sky is gray; I think it will rain soon."
+        }
+    ],
+    "13-48": [ // round
+        {
+            sentence: "A football is not ______; it is oval.",
+            options: ["round", "thick", "short", "fat"],
+            originalSentence: "A football is not round; it is oval."
+        }
+    ],
+    "13-49": [ // comparison
+        {
+            sentence: "When we say one thing is bigger than another, we use ______.",
+            options: ["comparison", "adjective", "verb", "word"],
+            originalSentence: "When we say one thing is bigger than another, we use comparison."
+        }
+    ],
+    // استكمال gapfillDB.js - الدرس الرابع عشر (14-1 إلى 14-42)
+    "14-1": [ // time
+        {
+            sentence: "Do you have the ______? I forgot my watch.",
+            options: ["time", "alarm", "clock", "hand"],
+            originalSentence: "Do you have the time? I forgot my watch."
+        }
+    ],
+    "14-2": [ // clock
+        {
+            sentence: "The ______ on the wall says it is 10:00 AM.",
+            options: ["clock", "watch", "hand", "alarm"],
+            originalSentence: "The clock on the wall says it is 10:00 AM."
+        }
+    ],
+    "14-3": [ // hour
+        {
+            sentence: "There are sixty minutes in one ______.",
+            options: ["hour", "time", "clock", "minute"],
+            originalSentence: "There are sixty minutes in one hour."
+        }
+    ],
+    "14-4": [ // minute
+        {
+            sentence: "Please wait a ______; I am almost ready.",
+            options: ["minute", "hour", "time", "hand"],
+            originalSentence: "Please wait a minute; I am almost ready."
+        }
+    ],
+    "14-5": [ // hand
+        {
+            sentence: "The big ______ of the clock points to twelve.",
+            options: ["hand", "arm", "finger", "leg"],
+            originalSentence: "The big hand of the clock points to twelve."
+        }
+    ],
+    "14-6": [ // hour hand
+        {
+            sentence: "The ______ is shorter and moves slowly.",
+            options: ["hour hand", "minute hand", "alarm", "watch"],
+            originalSentence: "The hour hand is shorter and moves slowly."
+        }
+    ],
+    "14-7": [ // minute hand
+        {
+            sentence: "The ______ points to the minutes on the clock.",
+            options: ["minute hand", "hour hand", "alarm", "tower"],
+            originalSentence: "The minute hand points to the minutes on the clock."
+        }
+    ],
+    "14-8": [ // o'clock
+        {
+            sentence: "It is exactly nine ______ now.",
+            options: ["o'clock", "half past", "quarter to", "a.m."],
+            originalSentence: "It is exactly nine o'clock now."
+        }
+    ],
+    "14-9": [ // half past
+        {
+            sentence: "At 2:30, we say it is ______ two.",
+            options: ["half past", "quarter past", "quarter to", "o'clock"],
+            originalSentence: "At 2:30, we say it is half past two."
+        }
+    ],
+    "14-10": [ // quarter past
+        {
+            sentence: "4:15 can be read as ______ four.",
+            options: ["quarter past", "quarter to", "half past", "o'clock"],
+            originalSentence: "4:15 can be read as quarter past four."
+        }
+    ],
+    "14-11": [ // quarter to
+        {
+            sentence: "7:45 is also called ______ eight.",
+            options: ["quarter to", "quarter past", "half past", "o'clock"],
+            originalSentence: "7:45 is also called quarter to eight."
+        }
+    ],
+    "14-12": [ // morning
+        {
+            sentence: "I like to drink coffee early in the ______.",
+            options: ["morning", "night", "evening", "afternoon"],
+            originalSentence: "I like to drink coffee early in the morning."
+        }
+    ],
+    "14-13": [ // afternoon
+        {
+            sentence: "We usually have a break at 2:00 PM in the ______.",
+            options: ["afternoon", "morning", "night", "now"],
+            originalSentence: "We usually have a break at 2:00 PM in the afternoon."
+        }
+    ],
+    "14-14": [ // evening
+        {
+            sentence: "The sun goes down in the ______.",
+            options: ["evening", "morning", "afternoon", "early"],
+            originalSentence: "The sun goes down in the evening."
+        }
+    ],
+    "14-15": [ // night
+        {
+            sentence: "The moon and stars come out at ______.",
+            options: ["night", "morning", "afternoon", "early"],
+            originalSentence: "The moon and stars come out at night."
+        }
+    ],
+    "14-16": [ // a.m.
+        {
+            sentence: "The shop opens at 8:00 ______.",
+            options: ["a.m.", "p.m.", "now", "late"],
+            originalSentence: "The shop opens at 8:00 a.m."
+        }
+    ],
+    "14-17": [ // p.m.
+        {
+            sentence: "We have dinner around 7:30 ______.",
+            options: ["p.m.", "a.m.", "early", "on time"],
+            originalSentence: "We have dinner around 7:30 p.m."
+        }
+    ],
+    "14-18": [ // now
+        {
+            sentence: "I cannot talk; I am busy ______.",
+            options: ["now", "early", "late", "every hour"],
+            originalSentence: "I cannot talk; I am busy now."
+        }
+    ],
+    "14-19": [ // early
+        {
+            sentence: "He arrived ______ for the meeting, so he waited.",
+            options: ["early", "late", "now", "on time"],
+            originalSentence: "He arrived early for the meeting, so he waited."
+        }
+    ],
+    "14-20": [ // late
+        {
+            sentence: "Hurry up! We are going to be ______ for school.",
+            options: ["late", "early", "on time", "now"],
+            originalSentence: "Hurry up! We are going to be late for school."
+        }
+    ],
+    "14-21": [ // what time
+        {
+            sentence: "______ does the movie start?",
+            options: ["What time", "When", "Now", "Early"],
+            originalSentence: "What time does the movie start?"
+        }
+    ],
+    "14-22": [ // when
+        {
+            sentence: "______ is your birthday?",
+            options: ["When", "What time", "Now", "Late"],
+            originalSentence: "When is your birthday?"
+        }
+    ],
+    "14-23": [ // every hour
+        {
+            sentence: "The bus comes ______ to take people to the city.",
+            options: ["every hour", "late", "early", "p.m."],
+            originalSentence: "The bus comes every hour to take people to the city."
+        }
+    ],
+    "14-24": [ // on time
+        {
+            sentence: "It is important to arrive ______ for your job.",
+            options: ["on time", "late", "early", "every hour"],
+            originalSentence: "It is important to arrive on time for your job."
+        }
+    ],
+    "14-25": [ // wake up time
+        {
+            sentence: "6:00 AM is my usual ______.",
+            options: ["wake up time", "bedtime", "lunch time", "break time"],
+            originalSentence: "6:00 AM is my usual wake up time."
+        }
+    ],
+    "14-26": [ // bedtime
+        {
+            sentence: "The children have an 8:00 PM ______.",
+            options: ["bedtime", "school time", "homework time", "morning"],
+            originalSentence: "The children have an 8:00 PM bedtime."
+        }
+    ],
+    "14-27": [ // school time
+        {
+            sentence: "Wear your uniform; it is ______!",
+            options: ["school time", "dinner time", "free time", "long time"],
+            originalSentence: "Wear your uniform; it is school time!"
+        }
+    ],
+    "14-28": [ // lunch time
+        {
+            sentence: "I am hungry; is it ______ yet?",
+            options: ["lunch time", "wake up time", "homework time", "a.m."],
+            originalSentence: "I am hungry; is it lunch time yet?"
+        }
+    ],
+    "14-29": [ // break time
+        {
+            sentence: "Students play football during ______.",
+            options: ["break time", "bedtime", "on time", "now"],
+            originalSentence: "Students play football during break time."
+        }
+    ],
+    "14-30": [ // homework time
+        {
+            sentence: "After school, it is ______ for me.",
+            options: ["homework time", "wake up time", "lunch time", "late"],
+            originalSentence: "After school, it is homework time for me."
+        }
+    ],
+    "14-31": [ // dinner time
+        {
+            sentence: "Wash your hands; it's ______.",
+            options: ["dinner time", "break time", "every hour", "a.m."],
+            originalSentence: "Wash your hands; it's dinner time."
+        }
+    ],
+    "14-32": [ // clock tower
+        {
+            sentence: "Big Ben is a famous ______ in London.",
+            options: ["clock tower", "watch", "alarm", "hand"],
+            originalSentence: "Big Ben is a famous clock tower in London."
+        }
+    ],
+    "14-33": [ // watch
+        {
+            sentence: "I wear a ______ on my wrist.",
+            options: ["watch", "clock", "alarm", "hand"],
+            originalSentence: "I wear a watch on my wrist."
+        }
+    ],
+    "14-34": [ // alarm
+        {
+            sentence: "I set my ______ to wake me up tomorrow.",
+            options: ["alarm", "clock", "watch", "hand"],
+            originalSentence: "I set my alarm to wake me up tomorrow."
+        }
+    ],
+    "14-35": [ // tick tock
+        {
+            sentence: "The clock makes a ______ sound in the quiet room.",
+            options: ["tick tock", "rush", "wait", "free"],
+            originalSentence: "The clock makes a tick tock sound in the quiet room."
+        }
+    ],
+    "14-36": [ // rush
+        {
+            sentence: "Don't ______; we have plenty of time.",
+            options: ["rush", "wait", "spend", "late"],
+            originalSentence: "Don't rush; we have plenty of time."
+        }
+    ],
+    "14-37": [ // wait
+        {
+            sentence: "We have to ______ for the bus for ten minutes.",
+            options: ["wait", "rush", "spend", "late"],
+            originalSentence: "We have to wait for the bus for ten minutes."
+        }
+    ],
+    "14-38": [ // spend time
+        {
+            sentence: "I like to ______ with my grandparents.",
+            options: ["spend time", "rush", "wait", "on time"],
+            originalSentence: "I like to spend time with my grandparents."
+        }
+    ],
+    "14-39": [ // free time
+        {
+            sentence: "In my ______, I like to read books.",
+            options: ["free time", "school time", "homework time", "every hour"],
+            originalSentence: "In my free time, I like to read books."
+        }
+    ],
+    "14-40": [ // long time
+        {
+            sentence: "I haven't seen you for a ______!",
+            options: ["long time", "short time", "now", "early"],
+            originalSentence: "I haven't seen you for a long time!"
+        }
+    ],
+    "14-41": [ // short time
+        {
+            sentence: "The meeting lasted a ______, only five minutes.",
+            options: ["short time", "long time", "every hour", "always"],
+            originalSentence: "The meeting lasted a short time, only five minutes."
+        }
+    ],
+    "14-42": [ // same time
+        {
+            sentence: "The two runners finished at the ______.",
+            options: ["same time", "free time", "on time", "late"],
+            originalSentence: "The two runners finished at the same time."
+        }
+    ],
+    // استكمال gapfillDB.js - الدرس الخامس عشر (15-1 إلى 15-30)
+    "15-1": [ // classroom
+        {
+            sentence: "We sit at our desks and learn in the ______.",
+            options: ["classroom", "playground", "cafeteria", "hallway"],
+            originalSentence: "We sit at our desks and learn in the classroom."
+        }
+    ],
+    "15-2": [ // library
+        {
+            sentence: "The ______ is a quiet place where we read books.",
+            options: ["library", "art room", "gym", "hallway"],
+            originalSentence: "The library is a quiet place where we read books."
+        }
+    ],
+    "15-3": [ // art room
+        {
+            sentence: "We use paints and brushes in the ______.",
+            options: ["art room", "library", "cafeteria", "principal"],
+            originalSentence: "We use paints and brushes in the art room."
+        }
+    ],
+    "15-4": [ // playground
+        {
+            sentence: "The students run and play during break in the ______.",
+            options: ["playground", "classroom", "library", "office"],
+            originalSentence: "The students run and play during break in the playground."
+        }
+    ],
+    "15-5": [ // cafeteria
+        {
+            sentence: "We eat our lunch in the school ______.",
+            options: ["cafeteria", "art room", "hallway", "library"],
+            originalSentence: "We eat our lunch in the school cafeteria."
+        }
+    ],
+    "15-6": [ // hallway
+        {
+            sentence: "Please walk slowly and don't run in the ______.",
+            options: ["hallway", "playground", "slide", "swing"],
+            originalSentence: "Please walk slowly and don't run in the hallway."
+        }
+    ],
+    "15-7": [ // principal
+        {
+            sentence: "The ______ is the leader of the school.",
+            options: ["principal", "janitor", "nurse", "librarian"],
+            originalSentence: "The principal is the leader of the school."
+        }
+    ],
+    "15-8": [ // janitor
+        {
+            sentence: "The ______ keeps our school clean and tidy.",
+            options: ["janitor", "principal", "nurse", "librarian"],
+            originalSentence: "The janitor keeps our school clean and tidy."
+        }
+    ],
+    "15-9": [ // librarian
+        {
+            sentence: "The ______ helps us find the books we need.",
+            options: ["librarian", "nurse", "janitor", "principal"],
+            originalSentence: "The librarian helps us find the books we need."
+        }
+    ],
+    "15-10": [ // nurse
+        {
+            sentence: "If you feel sick, you should go see the school ______.",
+            options: ["nurse", "librarian", "janitor", "principal"],
+            originalSentence: "If you feel sick, you should go see the school nurse."
+        }
+    ],
+    "15-11": [ // ruler
+        {
+            sentence: "I use a ______ to draw a straight line.",
+            options: ["ruler", "eraser", "sharpener", "glue"],
+            originalSentence: "I use a ruler to draw a straight line."
+        }
+    ],
+    "15-12": [ // eraser
+        {
+            sentence: "If you make a mistake, use an ______.",
+            options: ["eraser", "ruler", "stapler", "tape"],
+            originalSentence: "If you make a mistake, use an eraser."
+        }
+    ],
+    "15-13": [ // sharpener
+        {
+            sentence: "My pencil is broken; I need a ______.",
+            options: ["sharpener", "scissors", "glue", "folder"],
+            originalSentence: "My pencil is broken; I need a sharpener."
+        }
+    ],
+    "15-14": [ // glue
+        {
+            sentence: "Use ______ to stick the pictures in your notebook.",
+            options: ["glue", "scissors", "ruler", "calculator"],
+            originalSentence: "Use glue to stick the pictures in your notebook."
+        }
+    ],
+    "15-15": [ // scissors
+        {
+            sentence: "Be careful when you use ______ to cut the paper.",
+            options: ["scissors", "stapler", "tape", "folder"],
+            originalSentence: "Be careful when you use scissors to cut the paper."
+        }
+    ],
+    "15-16": [ // notebook
+        {
+            sentence: "I write my lessons and notes in my ______.",
+            options: ["notebook", "bookshelf", "water cooler", "slide"],
+            originalSentence: "I write my lessons and notes in my notebook."
+        }
+    ],
+    "15-17": [ // folder
+        {
+            sentence: "Put your worksheets inside this ______.",
+            options: ["folder", "calculator", "sharpener", "glue"],
+            originalSentence: "Put your worksheets inside this folder."
+        }
+    ],
+    "15-18": [ // stapler
+        {
+            sentence: "I used a ______ to join the three pages together.",
+            options: ["stapler", "eraser", "ruler", "poster"],
+            originalSentence: "I used a stapler to join the three pages together."
+        }
+    ],
+    "15-19": [ // tape
+        {
+            sentence: "We used ______ to put the poster on the wall.",
+            options: ["tape", "scissors", "eraser", "sharpener"],
+            originalSentence: "We used tape to put the poster on the wall."
+        }
+    ],
+    "15-20": [ // calculator
+        {
+            sentence: "We use a ______ to solve difficult math problems.",
+            options: ["calculator", "ruler", "glue", "folder"],
+            originalSentence: "We use a calculator to solve difficult math problems."
+        }
+    ],
+    "15-21": [ // bookshelf
+        {
+            sentence: "Please put the books back on the ______.",
+            options: ["bookshelf", "bulletin board", "water cooler", "swing"],
+            originalSentence: "Please put the books back on the bookshelf."
+        }
+    ],
+    "15-22": [ // bulletin board
+        {
+            sentence: "The teacher put our drawings on the ______.",
+            options: ["bulletin board", "water cooler", "slide", "glue"],
+            originalSentence: "The teacher put our drawings on the bulletin board."
+        }
+    ],
+    "15-23": [ // world map
+        {
+            sentence: "We can see all the countries on the ______.",
+            options: ["world map", "poster", "bulletin board", "backpack"],
+            originalSentence: "We can see all the countries on the world map."
+        }
+    ],
+    "15-24": [ // poster
+        {
+            sentence: "There is a large ______ of the solar system in the room.",
+            options: ["poster", "eraser", "stapler", "calculator"],
+            originalSentence: "There is a large poster of the solar system in the room."
+        }
+    ],
+    "15-25": [ // water cooler
+        {
+            sentence: "I am thirsty; I am going to the ______.",
+            options: ["water cooler", "bookshelf", "bulletin board", "slide"],
+            originalSentence: "I am thirsty; I am going to the water cooler."
+        }
+    ],
+    "15-26": [ // slide
+        {
+            sentence: "The children love to go down the ______.",
+            options: ["slide", "hallway", "folder", "librarian"],
+            originalSentence: "The children love to go down the slide."
+        }
+    ],
+    "15-27": [ // swing
+        {
+            sentence: "I like to sit on the ______ and go back and forth.",
+            options: ["swing", "slide", "ruler", "stapler"],
+            originalSentence: "I like to sit on the swing and go back and forth."
+        }
+    ],
+    "15-28": [ // lunch box
+        {
+            sentence: "My mother packed a sandwich in my ______.",
+            options: ["lunch box", "backpack", "folder", "notebook"],
+            originalSentence: "My mother packed a sandwich in my lunch box."
+        }
+    ],
+    "15-29": [ // borrow
+        {
+            sentence: "Can I ______ a pencil? I forgot mine at home.",
+            options: ["borrow", "sharpener", "glue", "staple"],
+            originalSentence: "Can I borrow a pencil? I forgot mine at home."
+        }
+    ],
+    "15-30": [ // backpack
+        {
+            sentence: "I put all my school supplies in my ______.",
+            options: ["backpack", "lunch box", "folder", "poster"],
+            originalSentence: "I put all my school supplies in my backpack."
+        }
+    ],
+    // استكمال gapfillDB.js - الدرس السادس عشر (16-1 إلى 16-40)
+    "16-1": [ // supermarket
+        {
+            sentence: "I need to buy some milk and eggs from the ______.",
+            options: ["supermarket", "mosque", "bank", "clinic"],
+            originalSentence: "I need to buy some milk and eggs from the supermarket."
+        }
+    ],
+    "16-2": [ // park
+        {
+            sentence: "Children love to run and play on the grass in the ______.",
+            options: ["park", "hospital", "bank", "police station"],
+            originalSentence: "Children love to run and play on the grass in the park."
+        }
+    ],
+    "16-3": [ // pond
+        {
+            sentence: "There are many ducks swimming in the small ______.",
+            options: ["pond", "shelf", "bench", "helmet"],
+            originalSentence: "There are many ducks swimming in the small pond."
+        }
+    ],
+    "16-4": [ // mosque
+        {
+            sentence: "Muslims go to the ______ to pray.",
+            options: ["mosque", "bakery", "post office", "pharmacy"],
+            originalSentence: "Muslims go to the mosque to pray."
+        }
+    ],
+    "16-5": [ // hospital
+        {
+            sentence: "The ambulance took the sick man to the ______.",
+            options: ["hospital", "fire station", "market", "restaurant"],
+            originalSentence: "The ambulance took the sick man to the hospital."
+        }
+    ],
+    "16-6": [ // fire station
+        {
+            sentence: "The ______ is where the firemen wait for emergencies.",
+            options: ["fire station", "police station", "bus stop", "bank"],
+            originalSentence: "The fire station is where the firemen wait for emergencies."
+        }
+    ],
+    "16-7": [ // fire truck
+        {
+            sentence: "The big red ______ has a long ladder on top.",
+            options: ["fire truck", "police car", "bus stop", "shelf"],
+            originalSentence: "The big red fire truck has a long ladder on top."
+        }
+    ],
+    "16-8": [ // fireman
+        {
+            sentence: "The ______ puts out fires and saves people.",
+            options: ["fireman", "doctor", "dentist", "vendor"],
+            originalSentence: "The fireman puts out fires and saves people."
+        }
+    ],
+    "16-9": [ // helmet
+        {
+            sentence: "A fireman wears a ______ to protect his head.",
+            options: ["helmet", "bench", "flower", "medicine"],
+            originalSentence: "A fireman wears a helmet to protect his head."
+        }
+    ],
+    "16-10": [ // police station
+        {
+            sentence: "If you lose your bag, you should go to the ______.",
+            options: ["police station", "bakery", "pond", "library"],
+            originalSentence: "If you lose your bag, you should go to the police station."
+        }
+    ],
+    "16-11": [ // police car
+        {
+            sentence: "The ______ has blue and red lights on its roof.",
+            options: ["police car", "fire truck", "bus stop", "bench"],
+            originalSentence: "The police car has blue and red lights on its roof."
+        }
+    ],
+    "16-12": [ // police officer
+        {
+            sentence: "The ______ helps keep the city safe.",
+            options: ["police officer", "vendor", "dentist", "doctor"],
+            originalSentence: "The police officer helps keep the city safe."
+        }
+    ],
+    "16-13": [ // bakery
+        {
+            sentence: "The ______ smells like fresh bread and cakes.",
+            options: ["bakery", "bank", "clinic", "post office"],
+            originalSentence: "The bakery smells like fresh bread and cakes."
+        }
+    ],
+    "16-14": [ // restaurant
+        {
+            sentence: "We are going to a ______ for a special dinner.",
+            options: ["restaurant", "pharmacy", "fire station", "pond"],
+            originalSentence: "We are going to a restaurant for a special dinner."
+        }
+    ],
+    "16-15": [ // bank
+        {
+            sentence: "People go to the ______ to keep their money safe.",
+            options: ["bank", "market", "bakery", "library"],
+            originalSentence: "People go to the bank to keep their money safe."
+        }
+    ],
+    "16-16": [ // post office
+        {
+            sentence: "I need to go to the ______ to send this letter.",
+            options: ["post office", "supermarket", "mosque", "hospital"],
+            originalSentence: "I need to go to the post office to send this letter."
+        }
+    ],
+    "16-17": [ // library
+        {
+            sentence: "You must be quiet when you study in the ______.",
+            options: ["library", "market", "restaurant", "fire station"],
+            originalSentence: "You must be quiet when you study in the library."
+        }
+    ],
+    "16-18": [ // shelf
+        {
+            sentence: "The books are organized on the ______.",
+            options: ["shelf", "pond", "helmet", "bench"],
+            originalSentence: "The books are organized on the shelf."
+        }
+    ],
+    "16-19": [ // bus stop
+        {
+            sentence: "A lot of people are waiting at the ______.",
+            options: ["bus stop", "clinic", "bank", "bakery"],
+            originalSentence: "A lot of people are waiting at the bus stop."
+        }
+    ],
+    "16-20": [ // bench
+        {
+            sentence: "The old man is sitting on a ______ in the park.",
+            options: ["bench", "shelf", "helmet", "pond"],
+            originalSentence: "The old man is sitting on a bench in the park."
+        }
+    ],
+    "16-21": [ // pharmacy
+        {
+            sentence: "You can buy aspirin and bandages at the ______.",
+            options: ["pharmacy", "bakery", "restaurant", "bank"],
+            originalSentence: "You can buy aspirin and bandages at the pharmacy."
+        }
+    ],
+    "16-22": [ // medicine
+        {
+            sentence: "The doctor gave me ______ to help me feel better.",
+            options: ["medicine", "fruit", "flower", "helmet"],
+            originalSentence: "The doctor gave me medicine to help me feel better."
+        }
+    ],
+    "16-23": [ // clinic
+        {
+            sentence: "The small ______ near my house is open for check-ups.",
+            options: ["clinic", "supermarket", "mosque", "bakery"],
+            originalSentence: "The small clinic near my house is open for check-ups."
+        }
+    ],
+    "16-24": [ // doctor
+        {
+            sentence: "The ______ checked my heart and my ears.",
+            options: ["doctor", "vendor", "fireman", "police officer"],
+            originalSentence: "The doctor checked my heart and my ears."
+        }
+    ],
+    "16-25": [ // dentist
+        {
+            sentence: "The ______ fixed my broken tooth.",
+            options: ["dentist", "doctor", "fireman", "vendor"],
+            originalSentence: "The dentist fixed my broken tooth."
+        }
+    ],
+    "16-26": [ // church
+        {
+            sentence: "Christians go to the ______ on Sundays.",
+            options: ["church", "mosque", "bank", "pharmacy"],
+            originalSentence: "Christians go to the church on Sundays."
+        }
+    ],
+    "16-27": [ // market
+        {
+            sentence: "The ______ is full of people buying fresh food.",
+            options: ["market", "hospital", "clinic", "post office"],
+            originalSentence: "The market is full of people buying fresh food."
+        }
+    ],
+    "16-28": [ // vendor
+        {
+            sentence: "The ______ at the market sells delicious apples.",
+            options: ["vendor", "doctor", "police officer", "dentist"],
+            originalSentence: "The vendor at the market sells delicious apples."
+        }
+    ],
+    "16-29": [ // sell
+        {
+            sentence: "Shops ______ many different things.",
+            options: ["sell", "buy", "walk", "see"],
+            originalSentence: "Shops sell many different things."
+        }
+    ],
+    "16-30": [ // fruit
+        {
+            sentence: "Apples and bananas are my favorite types of ______.",
+            options: ["fruit", "vegetable", "medicine", "clothes"],
+            originalSentence: "Apples and bananas are my favorite types of fruit."
+        }
+    ],
+    "16-31": [ // vegetable
+        {
+            sentence: "A carrot is a healthy orange ______.",
+            options: ["vegetable", "fruit", "flower", "medicine"],
+            originalSentence: "A carrot is a healthy orange vegetable."
+        }
+    ],
+    "16-32": [ // clothes
+        {
+            sentence: "I am going to the mall to buy some new ______.",
+            options: ["clothes", "fruit", "vegetables", "medicine"],
+            originalSentence: "I am going to the mall to buy some new clothes."
+        }
+    ],
+    "16-33": [ // busy
+        {
+            sentence: "The city streets are very ______ during the day.",
+            options: ["busy", "happy", "tired", "quiet"],
+            originalSentence: "The city streets are very busy during the day."
+        }
+    ],
+    "16-34": [ // buy
+        {
+            sentence: "I want to ______ a present for my mother.",
+            options: ["buy", "sell", "pass", "walk"],
+            originalSentence: "I want to buy a present for my mother."
+        }
+    ],
+    "16-35": [ // flower
+        {
+            sentence: "There is a beautiful red ______ in the garden.",
+            options: ["flower", "fruit", "vegetable", "medicine"],
+            originalSentence: "There is a beautiful red flower in the garden."
+        }
+    ],
+    "16-36": [ // tired
+        {
+            sentence: "I feel ______ after walking for three hours.",
+            options: ["tired", "happy", "busy", "fresh"],
+            originalSentence: "I feel tired after walking for three hours."
+        }
+    ],
+    "16-37": [ // happy
+        {
+            sentence: "She is ______ because she finished her homework.",
+            options: ["happy", "tired", "busy", "sad"],
+            originalSentence: "She is happy because she finished her homework."
+        }
+    ],
+    "16-38": [ // walk
+        {
+            sentence: "I ______ to school every morning.",
+            options: ["walk", "sell", "buy", "pass"],
+            originalSentence: "I walk to school every morning."
+        }
+    ],
+    "16-39": [ // see
+        {
+            sentence: "I can ______ the mountains from my window.",
+            options: ["see", "walk", "sell", "buy"],
+            originalSentence: "I can see the mountains from my window."
+        }
+    ],
+    "16-40": [ // pass
+        {
+            sentence: "I ______ the bakery on my way home.",
+            options: ["pass", "sell", "buy", "see"],
+            originalSentence: "I pass the bakery on my way home."
+        }
+    ],
+    // استكمال gapfillDB.js - الدرس السابع عشر (17-1 إلى 17-40)
+    "17-1": [ // transportation
+        {
+            sentence: "Buses, trains, and planes are different types of ______.",
+            options: ["transportation", "job", "wind", "basket"],
+            originalSentence: "Buses, trains, and planes are different types of transportation."
+        }
+    ],
+    "17-2": [ // vehicle
+        {
+            sentence: "A car is a ______ that moves on four wheels.",
+            options: ["vehicle", "platform", "ticket", "ocean"],
+            originalSentence: "A car is a vehicle that moves on four wheels."
+        }
+    ],
+    "17-3": [ // car
+        {
+            sentence: "My father drives a blue ______ to work.",
+            options: ["car", "airplane", "ship", "crane"],
+            originalSentence: "My father drives a blue car to work."
+        }
+    ],
+    "17-4": [ // wheel
+        {
+            sentence: "A bicycle has two ______.",
+            options: ["wheels", "rudders", "wings", "baskets"],
+            originalSentence: "A bicycle has two wheels."
+        }
+    ],
+    "17-5": [ // driver
+        {
+            sentence: "The bus ______ stops at every station.",
+            options: ["driver", "passenger", "conductor", "rider"],
+            originalSentence: "The bus driver stops at every station."
+        }
+    ],
+    "17-6": [ // seatbelt
+        {
+            sentence: "You must always wear your ______ for safety.",
+            options: ["seatbelt", "helmet", "ticket", "whistle"],
+            originalSentence: "You must always wear your seatbelt for safety."
+        }
+    ],
+    "17-7": [ // bus
+        {
+            sentence: "The school ______ picks up students at 7:00 AM.",
+            options: ["bus", "taxi", "boat", "scooter"],
+            originalSentence: "The school bus picks up students at 7:00 AM."
+        }
+    ],
+    "17-8": [ // taxi
+        {
+            sentence: "I took a ______ because I was in a hurry to reach the airport.",
+            options: ["taxi", "bicycle", "skateboard", "bulldozer"],
+            originalSentence: "I took a taxi because I was in a hurry to reach the airport."
+        }
+    ],
+    "17-9": [ // passenger
+        {
+            sentence: "The ______ waited for the train to stop before getting off.",
+            options: ["passenger", "driver", "conductor", "pedal"],
+            originalSentence: "The passenger waited for the train to stop before getting off."
+        }
+    ],
+    "17-10": [ // motorcycle
+        {
+            sentence: "He wears a helmet when he rides his ______.",
+            options: ["motorcycle", "bicycle", "skateboard", "bus"],
+            originalSentence: "He wears a helmet when he rides his motorcycle."
+        }
+    ],
+    "17-11": [ // rider
+        {
+            sentence: "The motorcycle ______ drove carefully through the rain.",
+            options: ["rider", "conductor", "passenger", "driver"],
+            originalSentence: "The motorcycle rider drove carefully through the rain."
+        }
+    ],
+    "17-12": [ // bicycle
+        {
+            sentence: "I use my ______ to go to the park near my house.",
+            options: ["bicycle", "airplane", "helicopter", "ship"],
+            originalSentence: "I use my bicycle to go to the park near my house."
+        }
+    ],
+    "17-13": [ // pedal
+        {
+            sentence: "You need to ______ faster to go up the hill.",
+            options: ["pedal", "sail", "whistle", "rush"],
+            originalSentence: "You need to pedal faster to go up the hill."
+        }
+    ],
+    "17-14": [ // basket
+        {
+            sentence: "She put her groceries in the ______ of her bike.",
+            options: ["basket", "wheel", "rudder", "container"],
+            originalSentence: "She put her groceries in the basket of her bike."
+        }
+    ],
+    "17-15": [ // scooter
+        {
+            sentence: "The little boy is playing with his new electric ______.",
+            options: ["scooter", "truck", "crane", "train"],
+            originalSentence: "The little boy is playing with his new electric scooter."
+        }
+    ],
+    "17-16": [ // train station
+        {
+            sentence: "We are waiting at the ______ for the express train.",
+            options: ["train station", "runway", "construction site", "ocean"],
+            originalSentence: "We are waiting at the train station for the express train."
+        }
+    ],
+    "17-17": [ // platform
+        {
+            sentence: "Please stand behind the yellow line on the ______.",
+            options: ["platform", "track", "crosswalk", "rudder"],
+            originalSentence: "Please stand behind the yellow line on the platform."
+        }
+    ],
+    "17-18": [ // conductor
+        {
+            sentence: "The ______ checked everyone's tickets on the train.",
+            options: ["conductor", "driver", "rider", "pilot"],
+            originalSentence: "The conductor checked everyone's tickets on the train."
+        }
+    ],
+    "17-19": [ // whistle
+        {
+            sentence: "The train made a loud ______ sound as it started moving.",
+            options: ["whistle", "ticket", "track", "wind"],
+            originalSentence: "The train made a loud whistle sound as it started moving."
+        }
+    ],
+    "17-20": [ // ticket
+        {
+            sentence: "You cannot enter the train without a ______.",
+            options: ["ticket", "basket", "pedal", "wheel"],
+            originalSentence: "You cannot enter the train without a ticket."
+        }
+    ],
+    "17-21": [ // track
+        {
+            sentence: "The train runs on a long metal ______.",
+            options: ["track", "runway", "platform", "crosswalk"],
+            originalSentence: "The train runs on a long metal track."
+        }
+    ],
+    "17-22": [ // airplane
+        {
+            sentence: "The ______ is flying high above the clouds.",
+            options: ["airplane", "boat", "bus", "car"],
+            originalSentence: "The airplane is flying high above the clouds."
+        }
+    ],
+    "17-23": [ // runway
+        {
+            sentence: "The plane landed safely on the ______.",
+            options: ["runway", "track", "platform", "ocean"],
+            originalSentence: "The plane landed safely on the runway."
+        }
+    ],
+    "17-24": [ // helicopter
+        {
+            sentence: "A ______ can land in small places where planes cannot.",
+            options: ["helicopter", "ship", "train", "bus"],
+            originalSentence: "A helicopter can land in small places where planes cannot."
+        }
+    ],
+    "17-25": [ // boat
+        {
+            sentence: "We took a small ______ across the river.",
+            options: ["boat", "truck", "bicycle", "scooter"],
+            originalSentence: "We took a small boat across the river."
+        }
+    ],
+    "17-26": [ // sail
+        {
+            sentence: "The ______ helps the boat move using the wind.",
+            options: ["sail", "wheel", "pedal", "whistle"],
+            originalSentence: "The sail helps the boat move using the wind."
+        }
+    ],
+    "17-27": [ // wind
+        {
+            sentence: "Strong ______ can push the ship faster across the water.",
+            options: ["wind", "tracks", "wheels", "baskets"],
+            originalSentence: "Strong wind can push the ship faster across the water."
+        }
+    ],
+    "17-28": [ // rudder
+        {
+            sentence: "The ______ is used to steer the ship left or right.",
+            options: ["rudder", "seatbelt", "basket", "crane"],
+            originalSentence: "The rudder is used to steer the ship left or right."
+        }
+    ],
+    "17-29": [ // ship
+        {
+            sentence: "The large ______ carries goods across the ocean.",
+            options: ["ship", "car", "helicopter", "bicycle"],
+            originalSentence: "The large ship carries goods across the ocean."
+        }
+    ],
+    "17-30": [ // container
+        {
+            sentence: "The cargo was packed inside a huge metal ______.",
+            options: ["container", "ticket", "whistle", "platform"],
+            originalSentence: "The cargo was packed inside a huge metal container."
+        }
+    ],
+    "17-31": [ // ocean
+        {
+            sentence: "The Pacific is the largest ______ in the world.",
+            options: ["ocean", "runway", "track", "construction site"],
+            originalSentence: "The Pacific is the largest ocean in the world."
+        }
+    ],
+    "17-32": [ // dump truck
+        {
+            sentence: "The ______ carried sand and rocks to the site.",
+            options: ["dump truck", "airplane", "taxi", "bicycle"],
+            originalSentence: "The dump truck carried sand and rocks to the site."
+        }
+    ],
+    "17-33": [ // bulldozer
+        {
+            sentence: "The ______ is pushing dirt to clear the ground.",
+            options: ["bulldozer", "scooter", "bus", "boat"],
+            originalSentence: "The bulldozer is pushing dirt to clear the ground."
+        }
+    ],
+    "17-34": [ // crane
+        {
+            sentence: "The ______ lifted the heavy beams to the top of the building.",
+            options: ["crane", "rudder", "pedal", "ticket"],
+            originalSentence: "The crane lifted the heavy beams to the top of the building."
+        }
+    ],
+    "17-35": [ // construction site
+        {
+            sentence: "You must wear a hard hat when visiting the ______.",
+            options: ["construction site", "train station", "ocean", "runway"],
+            originalSentence: "You must wear a hard hat when visiting the construction site."
+        }
+    ],
+    "17-36": [ // traffic light
+        {
+            sentence: "Wait for the ______ to turn green before you drive.",
+            options: ["traffic light", "crosswalk", "runway", "track"],
+            originalSentence: "Wait for the traffic light to turn green before you drive."
+        }
+    ],
+    "17-37": [ // crosswalk
+        {
+            sentence: "Pedestrians should always use the ______ to cross the street.",
+            options: ["crosswalk", "platform", "track", "rudder"],
+            originalSentence: "Pedestrians should always use the crosswalk to cross the street."
+        }
+    ],
+    "17-38": [ // skateboard
+        {
+            sentence: "He practices tricks on his ______ at the park.",
+            options: ["skateboard", "ship", "bulldozer", "taxi"],
+            originalSentence: "He practices tricks on his skateboard at the park."
+        }
+    ],
+    "17-39": [ // roller skates
+        {
+            sentence: "She is gliding smoothly on her ______.",
+            options: ["roller skates", "bicycle", "bus", "airplane"],
+            originalSentence: "She is gliding smoothly on her roller skates."
+        }
+    ],
+    "17-40": [ // job
+        {
+            sentence: "Driving a train is a very important ______.",
+            options: ["job", "wind", "basket", "pedal"],
+            originalSentence: "Driving a train is a very important job."
+        }
+    ],
+    // استكمال gapfillDB.js - الدرس الثامن عشر (18-1 إلى 18-44)
+    "18-1": [ // weather
+        {
+            sentence: "What is the ______ like today? Is it sunny or rainy?",
+            options: ["weather", "season", "nature", "sky"],
+            originalSentence: "What is the weather like today? Is it sunny or rainy?"
+        }
+    ],
+    "18-2": [ // season
+        {
+            sentence: "Winter is my favorite ______ because I love the snow.",
+            options: ["season", "weather", "nature", "star"],
+            originalSentence: "Winter is my favorite season because I love the snow."
+        }
+    ],
+    "18-3": [ // sunny
+        {
+            sentence: "It is a ______ day, so let's go to the beach.",
+            options: ["sunny", "snowy", "stormy", "cloudy"],
+            originalSentence: "It is a sunny day, so let's go to the beach."
+        }
+    ],
+    "18-4": [ // cloudy
+        {
+            sentence: "The sky is ______, so we might not see the sun today.",
+            options: ["cloudy", "sunny", "hot", "warm"],
+            originalSentence: "The sky is cloudy, so we might not see the sun today."
+        }
+    ],
+    "18-5": [ // rainy
+        {
+            sentence: "Don't forget your umbrella on a ______ day.",
+            options: ["rainy", "sunny", "windy", "hot"],
+            originalSentence: "Don't forget your umbrella on a rainy day."
+        }
+    ],
+    "18-6": [ // windy
+        {
+            sentence: "It is very ______; the trees are moving a lot.",
+            options: ["windy", "sunny", "snowy", "cool"],
+            originalSentence: "It is very windy; the trees are moving a lot."
+        }
+    ],
+    "18-7": [ // snowy
+        {
+            sentence: "The ground is white because it is a ______ day.",
+            options: ["snowy", "rainy", "sunny", "warm"],
+            originalSentence: "The ground is white because it is a snowy day."
+        }
+    ],
+    "18-8": [ // stormy
+        {
+            sentence: "The ______ weather made it difficult to see the road.",
+            options: ["stormy", "sunny", "cool", "warm"],
+            originalSentence: "The stormy weather made it difficult to see the road."
+        }
+    ],
+    "18-9": [ // hot
+        {
+            sentence: "In summer, the weather is usually very ______.",
+            options: ["hot", "cold", "snowy", "cool"],
+            originalSentence: "In summer, the weather is usually very hot."
+        }
+    ],
+    "18-10": [ // cold
+        {
+            sentence: "It is very ______ outside; you should wear a coat.",
+            options: ["cold", "hot", "warm", "sunny"],
+            originalSentence: "It is very cold outside; you should wear a coat."
+        }
+    ],
+    "18-11": [ // cool
+        {
+            sentence: "The autumn breeze feels ______ and nice.",
+            options: ["cool", "hot", "stormy", "snowy"],
+            originalSentence: "The autumn breeze feels cool and nice."
+        }
+    ],
+    "18-12": [ // warm
+        {
+            sentence: "The sun feels ______ on my face in the spring.",
+            options: ["warm", "cold", "snowy", "stormy"],
+            originalSentence: "The sun feels warm on my face in the spring."
+        }
+    ],
+    "18-13": [ // cloud
+        {
+            sentence: "There is a big white ______ in the blue sky.",
+            options: ["cloud", "star", "flower", "leaf"],
+            originalSentence: "There is a big white cloud in the blue sky."
+        }
+    ],
+    "18-14": [ // rain
+        {
+            sentence: "Plants need ______ to grow.",
+            options: ["rain", "snow", "wind", "storm"],
+            originalSentence: "Plants need rain to grow."
+        }
+    ],
+    "18-15": [ // umbrella
+        {
+            sentence: "Hold the ______ to stay dry in the rain.",
+            options: ["umbrella", "scarf", "gloves", "kite"],
+            originalSentence: "Hold the umbrella to stay dry in the rain."
+        }
+    ],
+    "18-16": [ // wind
+        {
+            sentence: "The strong ______ blew my hat off.",
+            options: ["wind", "rain", "snow", "cloud"],
+            originalSentence: "The strong wind blew my hat off."
+        }
+    ],
+    "18-17": [ // kite
+        {
+            sentence: "It is a windy day, perfect for flying a ______.",
+            options: ["kite", "snowman", "rainbow", "fire"],
+            originalSentence: "It is a windy day, perfect for flying a kite."
+        }
+    ],
+    "18-18": [ // snow
+        {
+            sentence: "Children love to play in the white ______.",
+            options: ["snow", "rain", "wind", "storm"],
+            originalSentence: "Children love to play in the white snow."
+        }
+    ],
+    "18-19": [ // snowman
+        {
+            sentence: "We used a carrot for the nose of our ______.",
+            options: ["snowman", "cloud", "star", "bird"],
+            originalSentence: "We used a carrot for the nose of our snowman."
+        }
+    ],
+    "18-20": [ // snowball
+        {
+            sentence: "He threw a ______ at his friend during the game.",
+            options: ["snowball", "flower", "leaf", "star"],
+            originalSentence: "He threw a snowball at his friend during the game."
+        }
+    ],
+    "18-21": [ // coat
+        {
+            sentence: "Put on your ______ before you go out in the cold.",
+            options: ["coat", "kite", "umbrella", "flower"],
+            originalSentence: "Put on your coat before you go out in the cold."
+        }
+    ],
+    "18-22": [ // scarf
+        {
+            sentence: "I wear a ______ around my neck to stay warm.",
+            options: ["scarf", "gloves", "umbrella", "kite"],
+            originalSentence: "I wear a scarf around my neck to stay warm."
+        }
+    ],
+    "18-23": [ // gloves
+        {
+            sentence: "My hands are cold; I need my ______.",
+            options: ["gloves", "scarf", "coat", "umbrella"],
+            originalSentence: "My hands are cold; I need my gloves."
+        }
+    ],
+    "18-24": [ // storm
+        {
+            sentence: "We stayed inside during the big ______.",
+            options: ["storm", "rainbow", "bloom", "nature"],
+            originalSentence: "We stayed inside during the big storm."
+        }
+    ],
+    "18-25": [ // lightning
+        {
+            sentence: "We saw a flash of ______ in the dark sky.",
+            options: ["lightning", "thunder", "rainbow", "snowball"],
+            originalSentence: "We saw a flash of lightning in the dark sky."
+        }
+    ],
+    "18-26": [ // thunder
+        {
+            sentence: "I heard the loud ______ after the lightning.",
+            options: ["thunder", "lightning", "wind", "rain"],
+            originalSentence: "I heard the loud thunder after the lightning."
+        }
+    ],
+    "18-27": [ // spring
+        {
+            sentence: "In ______, the flowers start to grow.",
+            options: ["spring", "winter", "autumn", "summer"],
+            originalSentence: "In spring, the flowers start to grow."
+        }
+    ],
+    "18-28": [ // summer
+        {
+            sentence: "We go swimming in the pool during the ______.",
+            options: ["summer", "winter", "autumn", "spring"],
+            originalSentence: "We go swimming in the pool during the summer."
+        }
+    ],
+    "18-29": [ // autumn
+        {
+            sentence: "Leaves fall from the trees in ______.",
+            options: ["autumn", "spring", "summer", "winter"],
+            originalSentence: "Leaves fall from the trees in autumn."
+        }
+    ],
+    "18-30": [ // winter
+        {
+            sentence: "It is very cold and it might snow in ______.",
+            options: ["winter", "summer", "spring", "autumn"],
+            originalSentence: "It is very cold and it might snow in winter."
+        }
+    ],
+    "18-31": [ // flower
+        {
+            sentence: "A red ______ is growing in the garden.",
+            options: ["flower", "cloud", "snowball", "fire"],
+            originalSentence: "A red flower is growing in the garden."
+        }
+    ],
+    "18-32": [ // bloom
+        {
+            sentence: "Flowers ______ in the spring time.",
+            options: ["bloom", "change", "appear", "sparkle"],
+            originalSentence: "Flowers bloom in the spring time."
+        }
+    ],
+    "18-33": [ // leaf
+        {
+            sentence: "A green ______ fell from the tree.",
+            options: ["leaf", "flower", "star", "cloud"],
+            originalSentence: "A green leaf fell from the tree."
+        }
+    ],
+    "18-34": [ // bird
+        {
+            sentence: "The ______ is singing in the tree.",
+            options: ["bird", "snowman", "cloud", "star"],
+            originalSentence: "The bird is singing in the tree."
+        }
+    ],
+    "18-35": [ // swim
+        {
+            sentence: "I like to ______ in the sea when it's hot.",
+            options: ["swim", "bloom", "appear", "change"],
+            originalSentence: "I like to swim in the sea when it's hot."
+        }
+    ],
+    "18-36": [ // ice cream
+        {
+            sentence: "I love eating ______ on a hot summer day.",
+            options: ["ice cream", "fire", "snowball", "leaf"],
+            originalSentence: "I love eating ice cream on a hot summer day."
+        }
+    ],
+    "18-37": [ // fire
+        {
+            sentence: "We sat by the ______ to stay warm in winter.",
+            options: ["fire", "rainbow", "sky", "cloud"],
+            originalSentence: "We sat by the fire to stay warm in winter."
+        }
+    ],
+    "18-38": [ // rainbow
+        {
+            sentence: "A colorful ______ appeared after the rain.",
+            options: ["rainbow", "storm", "thunder", "lightning"],
+            originalSentence: "A colorful rainbow appeared after the rain."
+        }
+    ],
+    "18-39": [ // sky
+        {
+            sentence: "The ______ is very clear and blue today.",
+            options: ["sky", "nature", "flower", "leaf"],
+            originalSentence: "The sky is very clear and blue today."
+        }
+    ],
+    "18-40": [ // star
+        {
+            sentence: "There is a bright ______ in the night sky.",
+            options: ["star", "cloud", "rainbow", "bird"],
+            originalSentence: "There is a bright star in the night sky."
+        }
+    ],
+    "18-41": [ // nature
+        {
+            sentence: "I love to walk in ______ and see the trees.",
+            options: ["nature", "weather", "season", "change"],
+            originalSentence: "I love to walk in nature and see the trees."
+        }
+    ],
+    "18-42": [ // change
+        {
+            sentence: "The leaves ______ color in the autumn.",
+            options: ["change", "bloom", "appear", "sparkle"],
+            originalSentence: "The leaves change color in the autumn."
+        }
+    ],
+    "18-43": [ // appear
+        {
+            sentence: "The sun will ______ after the storm ends.",
+            options: ["appear", "bloom", "change", "swim"],
+            originalSentence: "The sun will appear after the storm ends."
+        }
+    ],
+    "18-44": [ // sparkle
+        {
+            sentence: "The stars ______ in the dark night.",
+            options: ["sparkle", "bloom", "change", "swim"],
+            originalSentence: "The stars sparkle in the dark night."
+        }
+    ],
+    // استكمال gapfillDB.js - الدرس التاسع عشر (19-1 إلى 19-38)
+    "19-1": [ // hobby
+        {
+            sentence: "Photography is a very interesting ______ that I do on weekends.",
+            options: ["hobby", "forest", "stamp", "point"],
+            originalSentence: "Photography is a very interesting hobby that I do on weekends."
+        }
+    ],
+    "19-2": [ // activity
+        {
+            sentence: "Swimming is a healthy ______ for people of all ages.",
+            options: ["activity", "collection", "party", "toy car"],
+            originalSentence: "Swimming is a healthy activity for people of all ages."
+        }
+    ],
+    "19-3": [ // enjoy
+        {
+            sentence: "I ______ reading stories before I go to sleep.",
+            options: ["enjoy", "teach", "point", "water"],
+            originalSentence: "I enjoy reading stories before I go to sleep."
+        }
+    ],
+    "19-4": [ // free time
+        {
+            sentence: "What do you like to do in your ______?",
+            options: ["free time", "break time", "collection", "plan"],
+            originalSentence: "What do you like to do in your free time?"
+        }
+    ],
+    "19-5": [ // share
+        {
+            sentence: "It is nice to ______ your hobbies with your friends.",
+            options: ["share", "collect", "join", "practice"],
+            originalSentence: "It is nice to share your hobbies with your friends."
+        }
+    ],
+    "19-6": [ // drawing
+        {
+            sentence: "He is very good at ______; look at this beautiful picture!",
+            options: ["drawing", "cooking", "fishing", "gardening"],
+            originalSentence: "He is very good at drawing; look at this beautiful picture!"
+        }
+    ],
+    "19-7": [ // active
+        {
+            sentence: "To stay healthy, you should be ______ and exercise every day.",
+            options: ["active", "magical", "delicious", "exciting"],
+            originalSentence: "To stay healthy, you should be active and exercise every day."
+        }
+    ],
+    "19-8": [ // reading
+        {
+            sentence: "______ books helps you learn many new words.",
+            options: ["Reading", "Cooking", "Baking", "Dancing"],
+            originalSentence: "Reading books helps you learn many new words."
+        }
+    ],
+    "19-9": [ // magical
+        {
+            sentence: "The story was about a ______ kingdom in the clouds.",
+            options: ["magical", "active", "delicious", "together"],
+            originalSentence: "The story was about a magical kingdom in the clouds."
+        }
+    ],
+    "19-10": [ // forest
+        {
+            sentence: "We went for a walk in the deep green ______.",
+            options: ["forest", "hobby", "stamp", "collection"],
+            originalSentence: "We went for a walk in the deep green forest."
+        }
+    ],
+    "19-11": [ // cooking
+        {
+            sentence: "My father likes ______ dinner for the whole family.",
+            options: ["cooking", "baking", "drawing", "fishing"],
+            originalSentence: "My father likes cooking dinner for the whole family."
+        }
+    ],
+    "19-12": [ // baking
+        {
+            sentence: "I love the smell of fresh bread ______ in the oven.",
+            options: ["baking", "reading", "gardening", "sharing"],
+            originalSentence: "I love the smell of fresh bread baking in the oven."
+        }
+    ],
+    "19-13": [ // chocolate chip
+        {
+            sentence: "My favorite snack is a ______ cookie.",
+            options: ["chocolate chip", "magical", "active", "exciting"],
+            originalSentence: "My favorite snack is a chocolate chip cookie."
+        }
+    ],
+    "19-14": [ // cookie
+        {
+            sentence: "Would you like a ______ with your glass of milk?",
+            options: ["cookie", "stamp", "bird", "toy car"],
+            originalSentence: "Would you like a cookie with your glass of milk?"
+        }
+    ],
+    "19-15": [ // bicycle
+        {
+            sentence: "I ride my ______ to the park every afternoon.",
+            options: ["bicycle", "chess", "stamp", "forest"],
+            originalSentence: "I ride my bicycle to the park every afternoon."
+        }
+    ],
+    "19-16": [ // swimming
+        {
+            sentence: "We go ______ in the pool when the weather is hot.",
+            options: ["swimming", "fishing", "drawing", "baking"],
+            originalSentence: "We go swimming in the pool when the weather is hot."
+        }
+    ],
+    "19-17": [ // fishing
+        {
+            sentence: "He caught three big fish while ______ at the lake.",
+            options: ["fishing", "gardening", "photography", "dancing"],
+            originalSentence: "He caught three big fish while fishing at the lake."
+        }
+    ],
+    "19-18": [ // gardening
+        {
+            sentence: "My grandmother loves ______ and growing red roses.",
+            options: ["gardening", "drawing", "cooking", "reading"],
+            originalSentence: "My grandmother loves gardening and growing red roses."
+        }
+    ],
+    "19-19": [ // photography
+        {
+            sentence: "She uses her camera to practice ______.",
+            options: ["photography", "chess", "baking", "drawing"],
+            originalSentence: "She uses her camera to practice photography."
+        }
+    ],
+    "19-20": [ // collect
+        {
+            sentence: "I want to ______ all the different toy cars.",
+            options: ["collect", "share", "teach", "water"],
+            originalSentence: "I want to collect all the different toy cars."
+        }
+    ],
+    "19-21": [ // stamp
+        {
+            sentence: "He put a ______ on the envelope before posting the letter.",
+            options: ["stamp", "cookie", "bird", "chess"],
+            originalSentence: "He put a stamp on the envelope before posting the letter."
+        }
+    ],
+    "19-22": [ // chess
+        {
+            sentence: "You have to think carefully when playing ______.",
+            options: ["chess", "bicycle", "forest", "cookie"],
+            originalSentence: "You have to think carefully when playing chess."
+        }
+    ],
+    "19-23": [ // bird
+        {
+            sentence: "I saw a beautiful blue ______ flying in the garden.",
+            options: ["bird", "stamp", "toy car", "cookie"],
+            originalSentence: "I saw a beautiful blue bird flying in the garden."
+        }
+    ],
+    "19-24": [ // toy car
+        {
+            sentence: "The little boy is playing with his red ______.",
+            options: ["toy car", "stamp", "chess", "bicycle"],
+            originalSentence: "The little boy is playing with his red toy car."
+        }
+    ],
+    "19-25": [ // practice
+        {
+            sentence: "You must ______ the piano every day to get better.",
+            options: ["practice", "share", "join", "collect"],
+            originalSentence: "You must practice the piano every day to get better."
+        }
+    ],
+    "19-26": [ // dance
+        {
+            sentence: "They learned a new ______ for the school show.",
+            options: ["dance", "hobby", "plan", "forest"],
+            originalSentence: "They learned a new dance for the school show."
+        }
+    ],
+    "19-27": [ // party
+        {
+            sentence: "We are having a big ______ for my birthday.",
+            options: ["party", "collection", "break time", "activity"],
+            originalSentence: "We are having a big party for my birthday."
+        }
+    ],
+    "19-28": [ // point
+        {
+            sentence: "Can you ______ to the hobby you like the most?",
+            options: ["point", "water", "teach", "share"],
+            originalSentence: "Can you point to the hobby you like the most?"
+        }
+    ],
+    "19-29": [ // water
+        {
+            sentence: "Please ______ the plants so they don't get dry.",
+            options: ["water", "teach", "collect", "point"],
+            originalSentence: "Please water the plants so they don't get dry."
+        }
+    ],
+    "19-30": [ // everywhere
+        {
+            sentence: "In spring, there are colorful flowers ______.",
+            options: ["everywhere", "together", "delicious", "exciting"],
+            originalSentence: "In spring, there are colorful flowers everywhere."
+        }
+    ],
+    "19-31": [ // break time
+        {
+            sentence: "We play football during our ______ at school.",
+            options: ["break time", "free time", "collection", "plan"],
+            originalSentence: "We play football during our break time at school."
+        }
+    ],
+    "19-32": [ // teach
+        {
+            sentence: "My brother is going to ______ me how to play chess.",
+            options: ["teach", "water", "point", "collect"],
+            originalSentence: "My brother is going to teach me how to play chess."
+        }
+    ],
+    "19-33": [ // together
+        {
+            sentence: "It is more fun to play games ______.",
+            options: ["together", "everywhere", "active", "magical"],
+            originalSentence: "It is more fun to play games together."
+        }
+    ],
+    "19-34": [ // delicious
+        {
+            sentence: "The cake my mother baked was ______.",
+            options: ["delicious", "magical", "active", "exciting"],
+            originalSentence: "The cake my mother baked was delicious."
+        }
+    ],
+    "19-35": [ // join
+        {
+            sentence: "Would you like to ______ our art club?",
+            options: ["join", "share", "point", "water"],
+            originalSentence: "Would you like to join our art club?"
+        }
+    ],
+    "19-36": [ // collection
+        {
+            sentence: "He has a large ______ of old stamps.",
+            options: ["collection", "activity", "hobby", "forest"],
+            originalSentence: "He has a large collection of old stamps."
+        }
+    ],
+    "19-37": [ // plan
+        {
+            sentence: "We have a ______ to visit the forest this summer.",
+            options: ["plan", "hobby", "stamp", "party"],
+            originalSentence: "We have a plan to visit the forest this summer."
+        }
+    ],
+    "19-38": [ // exciting
+        {
+            sentence: "Winning the game was an ______ moment for the team.",
+            options: ["exciting", "delicious", "magical", "active"],
+            originalSentence: "Winning the game was an exciting moment for the team."
+        }
+    ],
+    // استكمال gapfillDB.js - الدرس العشرين (20-1 إلى 20-42)
+    "20-1": [ // sport
+        {
+            sentence: "Football is a very popular ______ all over the world.",
+            options: ["sport", "dream", "idea", "track"],
+            originalSentence: "Football is a very popular sport all over the world."
+        }
+    ],
+    "20-2": [ // healthy
+        {
+            sentence: "Eating fruit and doing exercise helps you stay ______.",
+            options: ["healthy", "strong", "fresh", "safe"],
+            originalSentence: "Eating fruit and doing exercise helps you stay healthy."
+        }
+    ],
+    "20-3": [ // strong
+        {
+            sentence: "Lifting weights makes your muscles very ______.",
+            options: ["strong", "healthy", "fresh", "safe"],
+            originalSentence: "Lifting weights makes your muscles very strong."
+        }
+    ],
+    "20-4": [ // exercise
+        {
+            sentence: "You should ______ for thirty minutes every morning.",
+            options: ["exercise", "score", "pass", "roll"],
+            originalSentence: "You should exercise for thirty minutes every morning."
+        }
+    ],
+    "20-5": [ // teamwork
+        {
+            sentence: "In basketball, ______ is more important than playing alone.",
+            options: ["teamwork", "competition", "equipment", "safety"],
+            originalSentence: "In basketball, teamwork is more important than playing alone."
+        }
+    ],
+    "20-6": [ // match
+        {
+            sentence: "Are you going to watch the football ______ tonight?",
+            options: ["match", "race", "track", "pool"],
+            originalSentence: "Are you going to watch the football match tonight?"
+        }
+    ],
+    "20-7": [ // pass
+        {
+            sentence: "Quick! ______ the ball to me so I can score.",
+            options: ["pass", "throw", "flip", "roll"],
+            originalSentence: "Quick! pass the ball to me so I can score."
+        }
+    ],
+    "20-8": [ // fresh
+        {
+            sentence: "I feel ______ and full of energy after a cold shower.",
+            options: ["fresh", "strong", "healthy", "safe"],
+            originalSentence: "I feel fresh and full of energy after a cold shower."
+        }
+    ],
+    "20-9": [ // swing
+        {
+            sentence: "In golf, you need a very smooth ______ to hit the ball.",
+            options: ["swing", "flip", "roll", "match"],
+            originalSentence: "In golf, you need a very smooth swing to hit the ball."
+        }
+    ],
+    "20-10": [ // basket
+        {
+            sentence: "The player jumped high and threw the ball into the ______.",
+            options: ["basket", "net", "goal", "court"],
+            originalSentence: "The player jumped high and threw the ball into the basket."
+        }
+    ],
+    "20-11": [ // throw
+        {
+            sentence: "How far can you ______ a baseball?",
+            options: ["throw", "pass", "score", "flip"],
+            originalSentence: "How far can you throw a baseball?"
+        }
+    ],
+    "20-12": [ // net
+        {
+            sentence: "In tennis, the ball must go over the ______.",
+            options: ["net", "basket", "goal", "mat"],
+            originalSentence: "In tennis, the ball must go over the net."
+        }
+    ],
+    "20-13": [ // gymnastics
+        {
+            sentence: "______ requires a lot of balance and flexibility.",
+            options: ["Gymnastics", "Boxing", "Diving", "Golf"],
+            originalSentence: "Gymnastics requires a lot of balance and flexibility."
+        }
+    ],
+    "20-14": [ // flip
+        {
+            sentence: "The gymnast did a perfect ______ in the air.",
+            options: ["flip", "roll", "swing", "race"],
+            originalSentence: "The gymnast did a perfect flip in the air."
+        }
+    ],
+    "20-15": [ // roll
+        {
+            sentence: "The first thing we learned in class was a forward ______.",
+            options: ["roll", "flip", "swing", "match"],
+            originalSentence: "The first thing we learned in class was a forward roll."
+        }
+    ],
+    "20-16": [ // mat
+        {
+            sentence: "Always practice your jumps on a soft ______ for safety.",
+            options: ["mat", "track", "court", "pool"],
+            originalSentence: "Always practice your jumps on a soft mat for safety."
+        }
+    ],
+    "20-17": [ // baseball
+        {
+            sentence: "In ______, players use a bat to hit the ball.",
+            options: ["baseball", "rugby", "boxing", "surfing"],
+            originalSentence: "In baseball, players use a bat to hit the ball."
+        }
+    ],
+    "20-18": [ // golf
+        {
+            sentence: "______ is a quiet sport played on a large green field.",
+            options: ["Golf", "Boxing", "Wrestling", "Rugby"],
+            originalSentence: "Golf is a quiet sport played on a large green field."
+        }
+    ],
+    "20-19": [ // rugby
+        {
+            sentence: "______ is a tough sport where players run with an oval ball.",
+            options: ["Rugby", "Golf", "Skating", "Skiing"],
+            originalSentence: "Rugby is a tough sport where players run with an oval ball."
+        }
+    ],
+    "20-20": [ // boxing
+        {
+            sentence: "In ______, fighters wear large padded gloves.",
+            options: ["boxing", "surfing", "skating", "diving"],
+            originalSentence: "In boxing, fighters wear large padded gloves."
+        }
+    ],
+    "20-21": [ // wrestling
+        {
+            sentence: "Two athletes try to pin each other down in ______.",
+            options: ["wrestling", "skiing", "golf", "baseball"],
+            originalSentence: "Two athletes try to pin each other down in wrestling."
+        }
+    ],
+    "20-22": [ // skiing
+        {
+            sentence: "We went ______ in the mountains during the winter.",
+            options: ["skiing", "surfing", "diving", "horse riding"],
+            originalSentence: "We went skiing in the mountains during the winter."
+        }
+    ],
+    "20-23": [ // skating
+        {
+            sentence: "She is very graceful when she is ice ______.",
+            options: ["skating", "boxing", "rugby", "wrestling"],
+            originalSentence: "She is very graceful when she is ice skating."
+        }
+    ],
+    "20-24": [ // surfing
+        {
+            sentence: "You need big waves to go ______ in the ocean.",
+            options: ["surfing", "skiing", "skating", "gymnastics"],
+            originalSentence: "You need big waves to go surfing in the ocean."
+        }
+    ],
+    "20-25": [ // diving
+        {
+            sentence: "The athlete did a beautiful ______ into the deep pool.",
+            options: ["diving", "boxing", "golf", "baseball"],
+            originalSentence: "The athlete did a beautiful diving into the deep pool."
+        }
+    ],
+    "20-26": [ // horse riding
+        {
+            sentence: "______ is my favorite outdoor activity in the countryside.",
+            options: ["Horse riding", "Skiing", "Boxing", "Skating"],
+            originalSentence: "Horse riding is my favorite outdoor activity in the countryside."
+        }
+    ],
+    "20-27": [ // equipment
+        {
+            sentence: "Do you have all the ______ you need for the match?",
+            options: ["equipment", "safety", "idea", "dream"],
+            originalSentence: "Do you have all the equipment you need for the match?"
+        }
+    ],
+    "20-28": [ // goal
+        {
+            sentence: "The keeper tried to stop the ball from entering the ______.",
+            options: ["goal", "net", "basket", "court"],
+            originalSentence: "The keeper tried to stop the ball from entering the goal."
+        }
+    ],
+    "20-29": [ // racket
+        {
+            sentence: "I need a new ______ to play tennis this weekend.",
+            options: ["racket", "helmet", "swimsuit", "goggles"],
+            originalSentence: "I need a new racket to play tennis this weekend."
+        }
+    ],
+    "20-30": [ // helmet
+        {
+            sentence: "Wear a ______ to protect your head while cycling.",
+            options: ["helmet", "racket", "swimsuit", "goggles"],
+            originalSentence: "Wear a helmet to protect your head while cycling."
+        }
+    ],
+    "20-31": [ // safety
+        {
+            sentence: "Following the rules is important for your ______.",
+            options: ["safety", "competition", "teamwork", "equipment"],
+            originalSentence: "Following the rules is important for your safety."
+        }
+    ],
+    "20-32": [ // goggles
+        {
+            sentence: "I wear ______ to see underwater while swimming.",
+            options: ["goggles", "helmet", "racket", "swimsuit"],
+            originalSentence: "I wear goggles to see underwater while swimming."
+        }
+    ],
+    "20-33": [ // swimsuit
+        {
+            sentence: "Don't forget to pack your ______ for the pool.",
+            options: ["swimsuit", "helmet", "racket", "goggles"],
+            originalSentence: "Don't forget to pack your swimsuit for the pool."
+        }
+    ],
+    "20-34": [ // track
+        {
+            sentence: "The runners are waiting on the ______ for the race to start.",
+            options: ["track", "court", "pool", "mat"],
+            originalSentence: "The runners are waiting on the track for the race to start."
+        }
+    ],
+    "20-35": [ // pool
+        {
+            sentence: "Our school has a large ______ for swimming lessons.",
+            options: ["pool", "court", "track", "mat"],
+            originalSentence: "Our school has a large pool for swimming lessons."
+        }
+    ],
+    "20-36": [ // court
+        {
+            sentence: "The basketball ______ is made of wood.",
+            options: ["court", "track", "pool", "mat"],
+            originalSentence: "The basketball court is made of wood."
+        }
+    ],
+    "20-37": [ // score
+        {
+            sentence: "Our team needs to ______ one more time to win.",
+            options: ["score", "pass", "throw", "flip"],
+            originalSentence: "Our team needs to score one more time to win."
+        }
+    ],
+    "20-38": [ // team
+        {
+            sentence: "My favorite football ______ is wearing red today.",
+            options: ["team", "match", "race", "competition"],
+            originalSentence: "My favorite football team is wearing red today."
+        }
+    ],
+    "20-39": [ // race
+        {
+            sentence: "He won the 100-meter ______ and got a gold medal.",
+            options: ["race", "match", "team", "goal"],
+            originalSentence: "He won the 100-meter race and got a gold medal."
+        }
+    ],
+    "20-40": [ // competition
+        {
+            sentence: "There is a big swimming ______ next Saturday.",
+            options: ["competition", "teamwork", "safety", "equipment"],
+            originalSentence: "There is a big swimming competition next Saturday."
+        }
+    ],
+    "20-41": [ // dream
+        {
+            sentence: "It is my ______ to become a professional athlete.",
+            options: ["dream", "idea", "track", "mat"],
+            originalSentence: "It is my dream to become a professional athlete."
+        }
+    ],
+    "20-42": [ // idea
+        {
+            sentence: "That is a great ______! Let's go cycling in the park.",
+            options: ["idea", "dream", "safety", "score"],
+            originalSentence: "That is a great idea! Let's go cycling in the park."
+        }
+    ],
 };
 // يمكن أيضاً إضافة أسئلة للكلمات المضافة من قبل المستخدم (تبدأ معرفاتها بـ "u")
 
