@@ -1880,8 +1880,15 @@ async prepareGapFill() {
 
     if (this.gapFillRemaining.length === 0) {
         this.gapFillRemaining = [...available].sort(() => 0.5 - Math.random());
-        // إعادة ضبط تتبع الأسئلة المستخدمة عند بدء جولة جديدة
+        this.gapFillUsedQuestions = {}; // إعادة ضبط تتبع الأسئلة المستخدمة عند بدء جولة جديدة
+        this.gapFillNoQuestionsMessageShown = false; // إعادة ضبط متغير الرسالة
+    }
+
+    // إذا لم يتبق أي كلمات في قائمة الانتظار (حدث خطأ) نعيد تهيئة
+    if (this.gapFillRemaining.length === 0) {
+        this.gapFillRemaining = [...available].sort(() => 0.5 - Math.random());
         this.gapFillUsedQuestions = {};
+        this.gapFillNoQuestionsMessageShown = false;
     }
 
     const targetWordObj = this.gapFillRemaining[0];
@@ -1889,10 +1896,32 @@ async prepareGapFill() {
     const targetArabic = targetWordObj.arabic;
     const wordId = targetWordObj.id;
 
-    // الحصول على قائمة الأسئلة المتاحة لهذه الكلمة من قاعدة البيانات
+    // البحث عن أسئلة للكلمة في قاعدة البيانات
     let questionsForWord = [];
     if (window.gapfillDB && window.gapfillDB[wordId]) {
         questionsForWord = window.gapfillDB[wordId];
+    }
+
+    // إذا لم توجد أسئلة للكلمة
+    if (questionsForWord.length === 0) {
+        // إزالة الكلمة من قائمة الانتظار (لن تظهر مرة أخرى)
+        this.gapFillRemaining.shift();
+
+        // عرض رسالة واحدة فقط لكل جلسة (إذا لم تظهر من قبل)
+        if (!this.gapFillNoQuestionsMessageShown) {
+            this.gapFillNoQuestionsMessageShown = true;
+            this.showCustomModal('info', '📝', 'بعض الكلمات لا توجد لها أسئلة بعد. سيتم إضافتها قريباً.');
+        }
+
+        // الانتقال إلى الكلمة التالية
+        if (this.gapFillRemaining.length === 0) {
+            // إذا نفدت كل الكلمات، نعيد تهيئة القائمة (لتجنب التوقف)
+            this.gapFillRemaining = [...available].sort(() => 0.5 - Math.random());
+            this.gapFillUsedQuestions = {};
+            this.gapFillNoQuestionsMessageShown = false;
+        }
+        this.prepareGapFill(); // إعادة المحاولة مع الكلمة التالية
+        return;
     }
 
     // تهيئة قائمة الأسئلة المستخدمة لهذه الكلمة إذا لم تكن موجودة
@@ -1909,23 +1938,12 @@ async prepareGapFill() {
         const randomIndex = Math.floor(Math.random() * availableQuestions.length);
         questionData = availableQuestions[randomIndex];
         this.gapFillUsedQuestions[wordId].push(questionData);
-    } else if (questionsForWord.length > 0) {
-        // إذا كانت كل الأسئلة قد استُخدمت، نعيد ضبط القائمة ونستخدم أي سؤال (دورة جديدة)
+    } else {
+        // جميع الأسئلة استخدمت، نعيد ضبط القائمة ونستخدم أي سؤال (دورة جديدة)
         this.gapFillUsedQuestions[wordId] = [];
         const randomIndex = Math.floor(Math.random() * questionsForWord.length);
         questionData = questionsForWord[randomIndex];
         this.gapFillUsedQuestions[wordId].push(questionData);
-    }
-
-    // إذا لم يوجد سؤال للكلمة في قاعدة البيانات
-    if (!questionData) {
-        // عرض رسالة للمستخدم وانتقال إلى الكلمة التالية
-        this.showCustomModal('info', '📝', `لا توجد أسئلة محفوظة لكلمة "${targetWord}" (${targetArabic}). سيتم تخطي هذه الكلمة حالياً. يمكنك إضافة أسئلة جديدة في ملف gapfillDB.js.`);
-        // إزالة الكلمة من القائمة المتبقية وتكرار المحاولة
-        this.gapFillRemaining.shift();
-        // إعادة استدعاء الدالة بعد فترة قصيرة
-        setTimeout(() => this.prepareGapFill(), 500);
-        return;
     }
 
     // تأكد من وجود 4 خيارات
