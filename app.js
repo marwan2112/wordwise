@@ -62,7 +62,7 @@ class App {
         this.gapFillNoQuestionsMessageShown = false;
         this.gapFillAvailableWords = [];
         this.gapFillRemainingWords = [];
-        this.gapFillCurrentLessonId = null; // مهم لتتبع الدرس الحالي
+        this.gapFillCurrentLessonId = null;
 
         this.levelTestLevel = null;
         this.levelTestLessons = [];
@@ -488,35 +488,39 @@ class App {
                 left: 0;
                 right: 0;
                 bottom: 0;
-                background: rgba(0,0,0,0.5);
+                background: rgba(0,0,0,0.6);
                 display: flex;
                 justify-content: center;
                 align-items: center;
                 z-index: 1000;
                 animation: fadeIn 0.3s;
+                backdrop-filter: blur(2px);
             }
             .modal-content {
                 background: white;
-                border-radius: 16px;
-                padding: 25px;
-                max-width: 400px;
+                border-radius: 28px;
+                padding: 28px;
+                max-width: 380px;
                 width: 90%;
                 max-height: 80vh;
                 overflow-y: auto;
-                box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+                box-shadow: 0 20px 35px rgba(0,0,0,0.3);
                 animation: slideUp 0.3s;
                 position: relative;
+                text-align: center;
+                border: 1px solid rgba(255,255,255,0.2);
             }
             [data-theme="dark"] .modal-content {
                 background: #1e1e1e;
                 color: white;
+                border-color: #333;
             }
             @keyframes fadeIn {
                 from { opacity: 0; }
                 to { opacity: 1; }
             }
             @keyframes slideUp {
-                from { transform: translateY(20px); opacity: 0; }
+                from { transform: translateY(30px); opacity: 0; }
                 to { transform: translateY(0); opacity: 1; }
             }
             .modal-header {
@@ -543,7 +547,7 @@ class App {
             }
             .coin-option {
                 background: #f5f5f5;
-                border-radius: 12px;
+                border-radius: 16px;
                 padding: 15px;
                 margin-bottom: 15px;
                 cursor: pointer;
@@ -723,11 +727,44 @@ class App {
     }
 
     showAd(type, callback) {
-        console.log(`📺 عرض إعلان من نوع ${type}`);
+        // مودال إعلان جذاب
+        const modalDiv = document.createElement('div');
+        modalDiv.className = 'modal-overlay';
+        modalDiv.onclick = (e) => {
+            if (e.target === modalDiv) {
+                modalDiv.remove();
+                if (callback) callback(false);
+            }
+        };
+        modalDiv.innerHTML = `
+            <div class="modal-content" style="text-align:center;">
+                <div class="result-icon" style="font-size:3rem;">📺</div>
+                <div class="result-message" style="font-size:1.2rem; font-weight:bold;">جارٍ عرض الإعلان</div>
+                <div class="result-message" style="font-size:0.9rem; margin-top:-10px; color:#666;">يرجى الانتظار قليلاً</div>
+                <div class="progress-bar-container" style="margin:15px 0;">
+                    <div class="progress-bar-fill" style="width:0%; transition:width 2s linear;"></div>
+                </div>
+                <div style="display:flex; gap:10px; justify-content:center; margin-top:10px;">
+                    <button class="hero-btn" id="cancelAdBtn" style="background:#ef4444;">إلغاء</button>
+                </div>
+            </div>
+        `;
+        document.body.appendChild(modalDiv);
+        const progressBar = modalDiv.querySelector('.progress-bar-fill');
         setTimeout(() => {
-            if (callback) callback(true);
+            if (progressBar) progressBar.style.width = '100%';
+        }, 50);
+        const cancelBtn = modalDiv.querySelector('#cancelAdBtn');
+        cancelBtn.onclick = () => {
+            modalDiv.remove();
+            if (callback) callback(false);
+        };
+        setTimeout(() => {
+            if (modalDiv.parentNode) {
+                modalDiv.remove();
+                if (callback) callback(true);
+            }
         }, 2000);
-        alert(`جارٍ عرض الإعلان...`);
     }
 
     watchAdsForCoins() {
@@ -744,7 +781,7 @@ class App {
                     this.saveUserData();
                     this.render();
                 } else {
-                    alert(`✅ تمت مشاهدة الإعلان ${this.adWatchedCount}/3`);
+                    this.showCustomModal('info', '✅', `تمت مشاهدة الإعلان ${this.adWatchedCount}/3`);
                 }
             }
         });
@@ -809,19 +846,20 @@ class App {
         };
     }
 
-    showCoinPurchaseModal(price, onConfirm) {
+    showCoinPurchaseModal(price, onConfirm, onCancel = null) {
         const modalDiv = document.createElement('div');
         modalDiv.className = 'modal-overlay';
         modalDiv.onclick = (e) => {
             if (e.target === modalDiv) modalDiv.remove();
+            if (onCancel) onCancel();
         };
         modalDiv.innerHTML = `
-            <div class="modal-content result-modal">
+            <div class="modal-content result-modal" style="text-align:center;">
                 <div class="result-icon">💎</div>
                 <div class="result-message" style="font-size:1.1rem; margin-bottom:10px;">
                     هل تريد فتح هذه الميزة بـ ${price} لؤلؤة؟
                 </div>
-                <div style="display:flex; gap:10px; justify-content:center;">
+                <div style="display:flex; gap:15px; justify-content:center;">
                     <button class="hero-btn" id="confirmPurchaseBtn" style="background:#10b981;">تأكيد</button>
                     <button class="hero-btn" id="cancelPurchaseBtn" style="background:#ef4444;">إلغاء</button>
                 </div>
@@ -834,7 +872,37 @@ class App {
         };
         document.getElementById('cancelPurchaseBtn').onclick = () => {
             modalDiv.remove();
-            onConfirm(false);
+            if (onCancel) onCancel();
+        };
+    }
+
+    showConfirmModal(message, onConfirm, onCancel = null) {
+        const modalDiv = document.createElement('div');
+        modalDiv.className = 'modal-overlay';
+        modalDiv.onclick = (e) => {
+            if (e.target === modalDiv) {
+                modalDiv.remove();
+                if (onCancel) onCancel();
+            }
+        };
+        modalDiv.innerHTML = `
+            <div class="modal-content" style="text-align:center;">
+                <div class="result-icon" style="font-size:3rem;">❓</div>
+                <div class="result-message" style="font-size:1.1rem; margin-bottom:20px;">${message}</div>
+                <div style="display:flex; gap:15px; justify-content:center;">
+                    <button class="hero-btn" id="confirmYesBtn" style="background:#10b981;">نعم</button>
+                    <button class="hero-btn" id="confirmNoBtn" style="background:#ef4444;">إلغاء</button>
+                </div>
+            </div>
+        `;
+        document.body.appendChild(modalDiv);
+        document.getElementById('confirmYesBtn').onclick = () => {
+            modalDiv.remove();
+            if (onConfirm) onConfirm();
+        };
+        document.getElementById('confirmNoBtn').onclick = () => {
+            modalDiv.remove();
+            if (onCancel) onCancel();
         };
     }
 
@@ -1200,11 +1268,12 @@ class App {
                     this.listeningUnlocked[lessonId] = true;
                     this.saveUserData();
                     this.prepareListeningQuiz();
+                    this.currentPage = 'listening';
                     this.render();
                 }
             });
         } else {
-            alert(`❌ ليس لديك لآلئ كافية! تحتاج 50 لؤلؤة. رصيدك الحالي: ${this.userCoins}`);
+            this.showCustomModal('error', '❌', `ليس لديك لآلئ كافية! تحتاج 50 لؤلؤة. رصيدك الحالي: ${this.userCoins}`);
         }
         return false;
     }
@@ -1218,11 +1287,12 @@ class App {
                     this.jumbleUnlocked[lessonId] = true;
                     this.saveUserData();
                     this.prepareJumble();
+                    this.currentPage = 'jumble';
                     this.render();
                 }
             });
         } else {
-            alert(`❌ ليس لديك لآلئ كافية! تحتاج 50 لؤلؤة. رصيدك الحالي: ${this.userCoins}`);
+            this.showCustomModal('error', '❌', `ليس لديك لآلئ كافية! تحتاج 50 لؤلؤة. رصيدك الحالي: ${this.userCoins}`);
         }
         return false;
     }
@@ -1236,11 +1306,12 @@ class App {
                     this.spellingUnlocked[lessonId] = true;
                     this.saveUserData();
                     this.prepareSpelling();
+                    this.currentPage = 'spelling';
                     this.render();
                 }
             });
         } else {
-            alert(`❌ ليس لديك لآلئ كافية! تحتاج 50 لؤلؤة. رصيدك الحالي: ${this.userCoins}`);
+            this.showCustomModal('error', '❌', `ليس لديك لآلئ كافية! تحتاج 50 لؤلؤة. رصيدك الحالي: ${this.userCoins}`);
         }
         return false;
     }
@@ -1877,7 +1948,7 @@ class App {
         }, 1100);
     }
 
-    // ================== Gap Fill Exercises (مُحسّن) ==================
+    // ================== Gap Fill Exercises ==================
     generateDynamicGapFillQuestion(wordObj) {
         const { english, arabic } = wordObj;
         const sentence = `The word "______" means "${arabic}".`;
@@ -1894,7 +1965,7 @@ class App {
 
     getRandomWordsForOptions(correctWord, count) {
         const lesson = this.getCurrentLessonData();
-        if (!lesson) return []; // No lesson data, return empty
+        if (!lesson) return [];
         const allTerms = [...lesson.terms, ...this.userVocabulary.filter(v => v.lessonId == this.selectedLessonId)];
         const otherWords = allTerms.filter(t => t.english !== correctWord).map(t => t.english);
         const shuffled = [...otherWords].sort(() => 0.5 - Math.random());
@@ -1942,7 +2013,6 @@ class App {
 
         let questionData = null;
 
-        // Try to get a question from database if exists
         if (window.gapfillDB && window.gapfillDB[wordId] && window.gapfillDB[wordId].length > 0) {
             const questionsForWord = window.gapfillDB[wordId];
             if (!this.gapFillUsedQuestions[wordId]) {
@@ -1958,7 +2028,6 @@ class App {
             this.gapFillUsedQuestions[wordId].push(questionData);
         }
 
-        // If no question in DB, generate a dynamic one
         if (!questionData) {
             questionData = this.generateDynamicGapFillQuestion(targetWordObj);
         }
@@ -1971,7 +2040,8 @@ class App {
             correct: targetWord,
             arabic: targetArabic,
             originalSentence: questionData.originalSentence || questionData.sentence.replace('______', targetWord),
-            originalSentenceArabic: ''
+            originalSentenceArabic: '',
+            wordId: wordId
         };
         this.gapFillOptions = questionData.options;
         this.gapFillAnswered = false;
@@ -2071,6 +2141,17 @@ class App {
                     return { english: opt, arabic: 'معنى غير متاح' };
                 });
             }
+
+            let detailedExplanation = `✅ الإجابة الصحيحة هي "<strong>${this.gapFillCurrentQuestion.correct}</strong>" (${this.gapFillCurrentQuestion.arabic}).<br><br>`;
+            detailedExplanation += `📖 الجملة الكاملة بالإنجليزية: "${this.gapFillCurrentQuestion.originalSentence || this.gapFillCurrentQuestion.text.replace('______', this.gapFillCurrentQuestion.correct)}"<br>`;
+            detailedExplanation += `🌐 الترجمة العربية: "${this.gapFillCurrentQuestion.originalSentenceArabic || 'جاري التحميل...'}"<br><br>`;
+            detailedExplanation += `📚 معاني الخيارات:<br>`;
+            this.gapFillOptionsMeanings.forEach(opt => {
+                detailedExplanation += `• <strong>${opt.english}</strong> : ${opt.arabic}<br>`;
+            });
+            detailedExplanation += `<br>💡 سبب الاختيار: كلمة "<strong>${this.gapFillCurrentQuestion.correct}</strong>" (${this.gapFillCurrentQuestion.arabic}) هي الأنسب لسياق الجملة لأنها تعطي المعنى الصحيح وتتناسب مع بقية الكلمات.`;
+
+            this.gapFillExplanation = detailedExplanation;
         }
 
         this.render();
@@ -2086,11 +2167,12 @@ class App {
                     this.saveUserData();
                     this.resetGapFillForNewLesson();
                     this.prepareGapFill();
+                    this.currentPage = 'gapfill';
                     this.render();
                 }
             });
         } else {
-            alert(`❌ ليس لديك لآلئ كافية! تحتاج 75 لؤلؤة. رصيدك الحالي: ${this.userCoins}`);
+            this.showCustomModal('error', '❌', `ليس لديك لآلئ كافية! تحتاج 75 لؤلؤة. رصيدك الحالي: ${this.userCoins}`);
         }
         return false;
     }
@@ -2287,7 +2369,7 @@ class App {
                     return;
 
                 case 'deleteWord':
-                    if (confirm('حذف نهائي من البطاقات؟')) {
+                    this.showConfirmModal('هل أنت متأكد من حذف هذه الكلمة نهائياً من بطاقاتك؟', () => {
                         const cardD = document.querySelector('.flashcard-container');
                         if (cardD) {
                             cardD.classList.add('delete-anim');
@@ -2296,7 +2378,7 @@ class App {
                                 this.saveUserData(); this.render();
                             }, 550);
                         }
-                    }
+                    });
                     return;
 
                 case 'speak':
@@ -2334,6 +2416,12 @@ class App {
                     const delay = cardShuffle ? 600 : 0;
                     setTimeout(() => {
                         if (param === 'all' && this.selectedLessonId) {
+                            // إعادة ضبط المؤشر فقط – لا نمس الكلمات المتقنة
+                            this.currentCardIndex = 0;
+                            this.saveUserData();
+                            this.render();
+                        } else if (param === 'remaining') {
+                            // إعادة ضبط الكلمات المتقنة الخاصة بهذا الدرس فقط (لإعادة التدريب)
                             const lessonId = this.selectedLessonId;
                             const lesson = this.getLessonDataById(lessonId);
                             const originalIds = lesson && lesson.terms ? lesson.terms.map(t => String(t.id)) : [];
@@ -2553,12 +2641,13 @@ class App {
     }
 
     deleteCustomLesson(id) {
-        if (confirm('حذف النص نهائياً؟')) {
+        this.showConfirmModal('هل أنت متأكد من حذف هذا النص نهائياً؟', () => {
             delete this.customLessons[id];
             delete window.lessonsData[id];
             this.userVocabulary = this.userVocabulary.filter(v => v.lessonId !== String(id));
-            this.saveUserData(); this.render();
-        }
+            this.saveUserData();
+            this.render();
+        });
     }
 
     editLessonTitle(id) {
@@ -3272,7 +3361,7 @@ class App {
                                 `).join('')}
                             </div>
                             <div style="margin-top: 10px; font-weight: bold;">✅ الإجابة الصحيحة: ${q.correct} (${q.arabic})</div>
-                            <div style="margin-top: 8px; font-weight: bold;">💡 سبب الإجابة الصحيحة: الكلمة "${q.correct}" (${q.arabic}) هي الأنسب لملء الفراغ حسب سياق الجملة.</div>
+                            <div style="margin-top: 8px;">💡 سبب الإجابة: كلمة "${q.correct}" هي الأنسب لسياق الجملة لأنها تعطي المعنى الصحيح وتتناسب مع بقية الكلمات.</div>
                         </div>
                     ` : ''}
                     <div class="gapfill-controls">
