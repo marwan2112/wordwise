@@ -475,7 +475,7 @@ window.gapfillDB = {
             options: ["to", "into", "at", "and"],
             originalSentence: "I am going to the supermarket."
         }
-    ]
+    ],
     // استكمال gapfillDB.js - الدرس الثاني (2-1 إلى 2-44)
     "2-1": [ // number
         {
