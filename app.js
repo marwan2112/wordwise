@@ -1876,25 +1876,31 @@ async prepareGapFill() {
     const targetWordObj = this.gapFillRemaining[0];
     const targetWord = targetWordObj.english;
     const targetArabic = targetWordObj.arabic;
+    const wordId = targetWordObj.id; // مثلاً "1-1" أو "u123456"
 
-    // عرض رسالة انتظار
-    this.showCustomModal('info', '🤖', 'جاري إنشاء سؤال بالذكاء الاصطناعي...');
-
-    let questionData = await this.generateGapFillWithGemini(targetWord, lesson.content, allTerms.map(t => t.english));
-
-    if (!questionData) {
-        // فشل تماماً – عرض رسالة خطأ واضحة
-        this.showCustomModal('error', '❌', 'فشل الاتصال بالذكاء الاصطناعي. تأكد من مفتاح API في الكود ومن اتصال الإنترنت.');
-        return;
+    // محاولة الحصول على سؤال من قاعدة البيانات
+    let questionData = null;
+    if (window.gapfillDB && window.gapfillDB[wordId]) {
+        const questions = window.gapfillDB[wordId];
+        // اختر سؤالاً عشوائياً من الأسئلة المتاحة لهذه الكلمة
+        if (questions.length > 0) {
+            const randomIndex = Math.floor(Math.random() * questions.length);
+            questionData = questions[randomIndex];
+        }
     }
 
-    // التأكد من أن الخيارات تحتوي على الكلمة الصحيحة وثلاث كلمات أخرى من مفردات الدرس
-    const otherTerms = allTerms.filter(t => t.english !== targetWord).map(t => t.english);
-    const shuffledOther = [...otherTerms].sort(() => 0.5 - Math.random());
-    const wrongOptions = shuffledOther.slice(0, 3);
-    while (wrongOptions.length < 3) wrongOptions.push(targetWord + '?');
-    const options = [targetWord, ...wrongOptions];
-    this.shuffleArray(options);
+    if (!questionData) {
+        // إذا لم يوجد سؤال في قاعدة البيانات، استخدم جملة افتراضية بسيطة
+        console.warn(`لا يوجد سؤال محفوظ للكلمة ${targetWord} (${wordId})، استخدام جملة افتراضية.`);
+        questionData = {
+            sentence: `I ______ the ${targetWord} every day.`,
+            options: [targetWord, ...allTerms.filter(t => t.english !== targetWord).map(t => t.english).slice(0, 3)],
+            originalSentence: `I ${targetWord} the ${targetWord} every day.`
+        };
+        // تأكد من وجود 4 خيارات
+        while (questionData.options.length < 4) questionData.options.push('???');
+        this.shuffleArray(questionData.options);
+    }
 
     this.gapFillCurrentQuestion = {
         text: questionData.sentence,
@@ -1903,7 +1909,7 @@ async prepareGapFill() {
         originalSentence: questionData.originalSentence || '',
         originalSentenceArabic: ''
     };
-    this.gapFillOptions = options;
+    this.gapFillOptions = questionData.options;
     this.gapFillAnswered = false;
     this.gapFillResult = null;
     this.gapFillExplanation = '';
@@ -1911,7 +1917,6 @@ async prepareGapFill() {
     this.gapFillExplanationVisible = false;
     this.render();
 }
-
 async generateGapFillWithGemini(targetWord, lessonContent, allEnglishWords) {
     const apiKey = "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"; // مفتاحك
     const model = "google/flan-t5-small"; // نموذج أصغر وأسرع (جيد للجمل البسيطة)
