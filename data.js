@@ -744,7 +744,7 @@ window.lessonsData = {
   {"id": "10-47", "english": "comfortable", "arabic": "مريح"},
   {"id": "10-48", "english": "clean", "arabic": "نظيف"},
   {"id": "10-49", "english": "new", "arabic": "جديد"},
-  {"id": 10-50", "english": "old", "arabic": "قديم"},
+  {"id": "10-50", "english": "old", "arabic": "قديم"},
   {"id": "10-51", "english": "drawer", "arabic": "درج"},
   {"id": "10-52", "english": "choose", "arabic": "يختار"}
 ]
