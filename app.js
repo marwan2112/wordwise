@@ -1866,6 +1866,8 @@ class App {
 
     // ================== دوال تمرين ملء الفراغ (Gap Fill) ==================
     async prepareGapFill() {
+        console.log('🔍 available words:', available.map(w => ({ id: w.id, english: w.english })));
+console.log('🔍 gapfillDB keys:', Object.keys(window.gapfillDB || {}));
         if (this.gapFillTimer) {
             clearTimeout(this.gapFillTimer);
             this.gapFillTimer = null;
