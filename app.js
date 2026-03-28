@@ -1865,6 +1865,7 @@ class App {
     }
 
     // ================== دوال تمرين ملء الفراغ (Gap Fill) ==================
+// ================== دوال تمرين ملء الفراغ (Gap Fill) ==================
 async prepareGapFill() {
     if (this.gapFillTimer) {
         clearTimeout(this.gapFillTimer);
@@ -1872,7 +1873,10 @@ async prepareGapFill() {
     }
 
     const lesson = this.getCurrentLessonData();
-    if (!lesson) return;
+    if (!lesson) {
+        console.warn('❌ لا يوجد درس مفتوح');
+        return;
+    }
 
     const allTerms = [...lesson.terms, ...this.userVocabulary.filter(v => v.lessonId == this.selectedLessonId)];
     const available = allTerms.filter(t => !this.masteredWords.includes(String(t.id)) && !this.hiddenFromCards.includes(String(t.id)));
@@ -1882,6 +1886,7 @@ async prepareGapFill() {
         return;
     }
 
+    // بناء قائمة الكلمات التي لها أسئلة
     const wordsWithQuestions = [];
     for (const word of available) {
         if (window.gapfillDB && window.gapfillDB[word.id] && window.gapfillDB[word.id].length > 0) {
@@ -1903,9 +1908,17 @@ async prepareGapFill() {
         return;
     }
 
-    // اختيار كلمة عشوائية
-    const randomWordIndex = Math.floor(Math.random() * wordsWithQuestions.length);
-    const targetWordObj = wordsWithQuestions[randomWordIndex];
+    // إذا كانت قائمة الكلمات المتبقية فارغة، نبدأ جولة جديدة بترتيب عشوائي
+    if (!this.gapFillRemainingWords || this.gapFillRemainingWords.length === 0) {
+        this.gapFillRemainingWords = [...wordsWithQuestions];
+        this.shuffleArray(this.gapFillRemainingWords);
+        this.gapFillUsedQuestions = {};
+        this.gapFillNoQuestionsMessageShown = false;
+        console.log('🔄 بدأ جولة جديدة، الكلمات:', this.gapFillRemainingWords.map(w => w.english));
+    }
+
+    // نأخذ أول كلمة من القائمة
+    const targetWordObj = this.gapFillRemainingWords[0];
     const targetWord = targetWordObj.english;
     const targetArabic = targetWordObj.arabic;
     const wordId = targetWordObj.id;
@@ -1924,6 +1937,7 @@ async prepareGapFill() {
         questionData = availableQuestions[randomIndex];
         this.gapFillUsedQuestions[wordId].push(questionData);
     } else {
+        // جميع الأسئلة استخدمت، نعيد ضبط القائمة (دورة جديدة لهذه الكلمة)
         this.gapFillUsedQuestions[wordId] = [];
         const randomIndex = Math.floor(Math.random() * questionsForWord.length);
         questionData = questionsForWord[randomIndex];
@@ -1947,9 +1961,11 @@ async prepareGapFill() {
     this.gapFillOptionsMeanings = [];
     this.gapFillExplanationVisible = false;
 
+    console.log('✅ تم تحضير السؤال:', this.gapFillCurrentQuestion.text);
     this.render();
 }
-    handleGapFillAnswer(selectedEnglish) {
+
+handleGapFillAnswer(selectedEnglish) {
     if (this.gapFillAnswered || !this.gapFillCurrentQuestion) return;
     this.gapFillAnswered = true;
 
@@ -1979,7 +1995,10 @@ async prepareGapFill() {
     });
 
     if (isCorrect) {
-        // لا نزيل الكلمة هنا، سنعتمد على next لتجديد السؤال
+        // إزالة الكلمة الحالية من قائمة الكلمات المتبقية
+        if (this.gapFillRemainingWords && this.gapFillRemainingWords.length > 0) {
+            this.gapFillRemainingWords.shift();
+        }
         this.updateProgress(5);
     }
 
@@ -1991,20 +2010,14 @@ async prepareGapFill() {
 }
 
 handleGapFillNext() {
-    // لا نستخدم gapFillRemainingWords هنا، بل نعيد تحضير سؤال جديد عشوائي من الكلمات التي لها أسئلة
-    // وإذا لم تبقى كلمات (أي جميع الكلمات التي لها أسئلة استخدمت كل أسئلتها)، نعيد تعبئة القائمة
-    this.prepareGapFill();
-}
-    handleGapFillNext() {
-        if (this.gapFillRemainingWords.length === 0) {
-            alert('🎉 تهانينا! أكملت جميع الكلمات.');
-            this.currentPage = 'reading';
-        } else {
-            this.prepareGapFill();
-        }
-        this.render();
+    if (this.gapFillRemainingWords.length === 0) {
+        alert('🎉 تهانينا! أكملت جميع الكلمات.');
+        this.currentPage = 'reading';
+    } else {
+        this.prepareGapFill();
     }
-
+    this.render();
+}
     unlockGapFill(lessonId) {
         if (this.gapFillUnlocked[lessonId]) return true;
         if (this.userCoins >= 75) {
