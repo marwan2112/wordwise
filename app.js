@@ -62,6 +62,7 @@ class App {
         this.gapFillNoQuestionsMessageShown = false;
         this.gapFillAvailableWords = [];
         this.gapFillRemainingWords = [];
+        this.gapFillCurrentLessonId = null; // لتتبع الدرس الحالي
 
         this.levelTestLevel = null;
         this.levelTestLessons = [];
@@ -864,11 +865,24 @@ class App {
             this.selectedLessonId = lessonId;
             this.currentPage = 'reading';
             this.isUnlockTest = false;
+            // إعادة تعيين بيانات ملء الفراغ عند تغيير الدرس
+            this.resetGapFillForNewLesson();
         } else {
             this.tempLessonToUnlock = lessonId;
             this.currentPage = 'unlock_choice';
         }
         this.render();
+    }
+
+    resetGapFillForNewLesson() {
+        this.gapFillRemainingWords = [];
+        this.gapFillUsedQuestions = {};
+        this.gapFillCurrentLessonId = null;
+        this.gapFillNoQuestionsMessageShown = false;
+        this.gapFillCurrentQuestion = null;
+        this.gapFillAnswered = false;
+        this.gapFillResult = null;
+        this.gapFillExplanationVisible = false;
     }
 
     getLessonsForCurrentLevel() {
@@ -1903,6 +1917,12 @@ class App {
             return;
         }
 
+        // التحقق من تغيير الدرس
+        if (this.gapFillCurrentLessonId !== this.selectedLessonId) {
+            this.resetGapFillForNewLesson();
+            this.gapFillCurrentLessonId = this.selectedLessonId;
+        }
+
         const allTerms = [...lesson.terms, ...this.userVocabulary.filter(v => v.lessonId == this.selectedLessonId)];
         const available = allTerms.filter(t => !this.masteredWords.includes(String(t.id)) && !this.hiddenFromCards.includes(String(t.id)));
 
@@ -2073,6 +2093,7 @@ class App {
                     this.userCoins -= 75;
                     this.gapFillUnlocked[lessonId] = true;
                     this.saveUserData();
+                    this.resetGapFillForNewLesson();
                     this.prepareGapFill();
                     this.render();
                 }
