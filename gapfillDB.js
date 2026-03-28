@@ -6389,6 +6389,1199 @@ window.gapfillDB = {
             originalSentence: "That is a great idea! Let's go cycling in the park."
         }
     ],
+    // استكمال gapfillDB.js - الدرس رقم 301
+    "301-1": [
+        {
+            sentence: "The two neighboring countries signed a ______ agreement to manage water resources.",
+            options: ["Cooperative", "Absolute", "Starkly", "Vast"],
+            originalSentence: "The two neighboring countries signed a Cooperative agreement to manage water resources."
+        }
+    ],
+    "301-2": [
+        {
+            sentence: "Respecting a nation's ______ is a fundamental principle of international law.",
+            options: ["Sovereignty", "Pandemics", "Bureaucracy", "Evolution"],
+            originalSentence: "Respecting a nation's Sovereignty is a fundamental principle of international law."
+        }
+    ],
+    "301-3": [
+        {
+            sentence: "In today’s ______ economy, a financial crisis in one country can affect the entire world.",
+            options: ["Globalized", "Domestic", "Pragmatic", "Associated"],
+            originalSentence: "In today’s Globalized economy, a financial crisis in one country can affect the entire world."
+        }
+    ],
+    "301-4": [
+        {
+            sentence: "We are currently living in the digital ______, where information is accessible instantly.",
+            options: ["Era", "Dispute", "Resolution", "Infringement"],
+            originalSentence: "We are currently living in the digital Era, where information is accessible instantly."
+        }
+    ],
+    "301-5": [
+        {
+            sentence: "The climate summit is a ______ effort involving over 190 nations.",
+            options: ["Multilateral", "Absolute right", "Unaccountable", "Starkly"],
+            originalSentence: "The climate summit is a Multilateral effort involving over 190 nations."
+        }
+    ],
+    "301-6": [
+        {
+            sentence: "There are many health risks ______ with a sedentary lifestyle and poor diet.",
+            options: ["Associated", "Revealed", "Dominated", "Ceded"],
+            originalSentence: "There are many health risks Associated with a sedentary lifestyle and poor diet."
+        }
+    ],
+    "301-7": [
+        {
+            sentence: "No leader has the ______ to ignore the constitution of their country.",
+            options: ["Absolute right", "Mechanism", "Proponents", "Discourse"],
+            originalSentence: "No leader has the Absolute right to ignore the constitution of their country."
+        }
+    ],
+    "301-8": [
+        {
+            sentence: "The ______ of new technologies has completely changed the way we communicate.",
+            options: ["Emergence", "Pandemics", "Constraint", "Dilution"],
+            originalSentence: "The emergence of new technologies has completely changed the way we communicate."
+        }
+    ],
+    "301-9": [
+        {
+            sentence: "Global health organizations work together to prevent the spread of deadly ______.",
+            options: ["Pandemics", "Treaties", "Proponents", "Resolutions"],
+            originalSentence: "Global health organizations work together to prevent the spread of deadly Pandemics."
+        }
+    ],
+    "301-10": [
+        {
+            sentence: "The investigation ______ that the company had been ignoring safety regulations for years.",
+            options: ["Revealed", "Propelled", "Negotiated", "Originated"],
+            originalSentence: "The investigation Revealed that the company had been ignoring safety regulations for years."
+        }
+    ],
+    "301-11": [
+        {
+            sentence: "The contrast between the rich and the poor was ______ visible in the city center.",
+            options: ["Starkly", "Vastly", "Pragmatically", "Cooperatively"],
+            originalSentence: "The contrast between the rich and the poor was Starkly visible in the city center."
+        }
+    ],
+    "301-12": [
+        {
+            sentence: "High inflation rates often ______ families to cut down on non-essential spending.",
+            options: ["Compel", "Cede", "Dominate", "Negotiate"],
+            originalSentence: "High inflation rates often Compel families to cut down on non-essential spending."
+        }
+    ],
+    "301-13": [
+        {
+            sentence: "______ like the United Nations aim to maintain peace and security worldwide.",
+            options: ["Global Governance bodies", "World Trade Organizations", "Bureaucracy", "Proponents"],
+            originalSentence: "Global Governance bodies like the United Nations aim to maintain peace and security worldwide."
+        }
+    ],
+    "301-14": [
+        {
+            sentence: "The diplomats will ______ the terms of the peace treaty next week.",
+            options: ["Negotiate", "Surrender", "Reveal", "Form"],
+            originalSentence: "The diplomats will Negotiate the terms of the peace treaty next week."
+        }
+    ],
+    "301-15": [
+        {
+            sentence: "The empire was forced to ______ its overseas territories after losing the war.",
+            options: ["Cede", "Originate", "Dominate", "Resolve"],
+            originalSentence: "The empire was forced to Cede its overseas territories after losing the war."
+        }
+    ],
+    "301-16": [
+        {
+            sentence: "The new investment is expected to ______ the local economy toward growth.",
+            options: ["Propel", "Adhere to", "Dilute", "Infringe"],
+            originalSentence: "The new investment is expected to propel the local economy toward growth."
+        }
+    ],
+    "301-17": [
+        {
+            sentence: "______ of the new law argue that it will improve public safety.",
+            options: ["Proponents", "Critics", "Bureaucracy", "Constraints"],
+            originalSentence: "Proponents of the new law argue that it will improve public safety."
+        }
+    ],
+    "301-18": [
+        {
+            sentence: "In our ______, a virus can travel across the globe in less than 24 hours.",
+            options: ["Interconnected world", "Domestic market", "Absolute autonomy", "Global governance"],
+            originalSentence: "In our Interconnected world, a virus can travel across the globe in less than 24 hours."
+        }
+    ],
+    "301-19": [
+        {
+            sentence: "Many modern traditions actually ______ from ancient religious festivals.",
+            options: ["Originate", "Negotiate", "Compel", "Form"],
+            originalSentence: "Many modern traditions actually Originate from ancient religious festivals."
+        }
+    ],
+    "301-20": [
+        {
+            sentence: "The ______ goal of the project is to provide clean water to every village.",
+            options: ["Ultimate", "Pragmatic", "Contemporary", "Absolute"],
+            originalSentence: "The Ultimate goal of the project is to provide clean water to every village."
+        }
+    ],
+    "301-21": [
+        {
+            sentence: "Instead of idealistic theories, the committee took a ______ approach to solve the crisis.",
+            options: ["Pragmatic", "Vast", "Stark", "Unaccountable"],
+            originalSentence: "Instead of idealistic theories, the committee took a Pragmatic approach to solve the crisis."
+        }
+    ],
+    "301-22": [
+        {
+            sentence: "The rebels were forced to ______ their weapons after being surrounded.",
+            options: ["Surrender", "Dominate", "Negotiate", "Propel"],
+            originalSentence: "The rebels were forced to Surrender their weapons after being surrounded."
+        }
+    ],
+    "301-23": [
+        {
+            sentence: "During the emergency, the government exercised ______ power over all resources.",
+            options: ["Absolute", "Multilateral", "Globalized", "Contemporary"],
+            originalSentence: "During the emergency, the government exercised Absolute power over all resources."
+        }
+    ],
+    "301-24": [
+        {
+            sentence: "Many regions are fighting for more ______ to manage their own local affairs.",
+            options: ["Autonomy", "Pandemics", "Constraint", "Infringement"],
+            originalSentence: "Many regions are fighting for more Autonomy to manage their own local affairs."
+        }
+    ],
+    "301-25": [
+        {
+            sentence: "The company offered a higher salary ______ longer working hours.",
+            options: ["In exchange for", "Adhering to", "Under the guise of", "Ranging from"],
+            originalSentence: "The company offered a higher salary In exchange for longer working hours."
+        }
+    ],
+    "301-26": [
+        {
+            sentence: "Social media has a huge ______ on the opinions of young people today.",
+            options: ["Influence", "Resolution", "Dispute", "Sovereignty"],
+            originalSentence: "Social media has a huge Influence on the opinions of young people today."
+        }
+    ],
+    "301-27": [
+        {
+            sentence: "The alliance was formed to ensure the ______ of all member states against aggression.",
+            options: ["Collective security", "Global Governance", "Absolute right", "Statehood"],
+            originalSentence: "The alliance was formed to ensure the Collective security of all member states against aggression."
+        }
+    ],
+    "301-28": [
+        {
+            sentence: "All employees must ______ the company's strict code of conduct.",
+            options: ["Adhere to", "Ceding to", "Originating from", "Dealing with"],
+            originalSentence: "All employees must adhere to the company's strict code of conduct."
+        }
+    ],
+    "301-29": [
+        {
+            sentence: "The ______ sets the rules for international trade and settles trade disputes.",
+            options: ["World Trade Organization", "Global Governance body", "Multilateral Treaty", "Bureaucracy"],
+            originalSentence: "The World Trade Organization (WTO) sets the rules for international trade and settles trade disputes."
+        }
+    ],
+    "301-30": [
+        {
+            sentence: "Lack of funding is the main ______ preventing the completion of the park.",
+            options: ["Constraint", "Emergence", "Evolution", "Era"],
+            originalSentence: "Lack of funding is the main Constraint preventing the completion of the park."
+        }
+    ],
+    "301-31": [
+        {
+            sentence: "The government is focusing on ______ issues like education and healthcare this year.",
+            options: ["Domestic", "Globalized", "Multilateral", "Vast"],
+            originalSentence: "The government is focusing on Domestic issues like education and healthcare this year."
+        }
+    ],
+    "301-32": [
+        {
+            sentence: "The border ______ between the two countries has lasted for decades.",
+            options: ["Dispute", "Resolution", "Treaty", "Sovereignty"],
+            originalSentence: "The border Dispute between the two countries has lasted for decades."
+        }
+    ],
+    "301-33": [
+        {
+            sentence: "We are hoping for a peaceful ______ to the ongoing conflict.",
+            options: ["Resolution", "Constraint", "Influence", "Emergence"],
+            originalSentence: "We are hoping for a peaceful Resolution to the ongoing conflict."
+        }
+    ],
+    "301-34": [
+        {
+            sentence: "The Sahara is a ______ desert that covers much of North Africa.",
+            options: ["Vast", "Stark", "Absolute", "Contemporary"],
+            originalSentence: "The Sahara is a Vast desert that covers much of North Africa."
+        }
+    ],
+    "301-35": [
+        {
+            sentence: "The internet has opened up a ______ for small businesses to sell their products.",
+            options: ["Vast Global Market", "Global Governance body", "Collective security", "Self-determination"],
+            originalSentence: "The internet has opened up a Vast Global Market for small businesses to sell their products."
+        }
+    ],
+    "301-36": [
+        {
+            sentence: "The body has a natural ______ to regulate its internal temperature.",
+            options: ["Mechanism", "Bureaucracy", "Discourse", "Treaty"],
+            originalSentence: "The body has a natural Mechanism to regulate its internal temperature."
+        }
+    ],
+    "301-37": [
+        {
+            sentence: "______ of the film say that the plot was too predictable and boring.",
+            options: ["Critics", "Proponents", "GGBs", "Debates"],
+            originalSentence: "Critics of the film say that the plot was too predictable and boring."
+        }
+    ],
+    "301-38": [
+        {
+            sentence: "There is deep ______ regarding the true motives of the new political party.",
+            options: ["Suspicion", "Collaboration", "Autonomy", "Resolution"],
+            originalSentence: "There is deep Suspicion regarding the true motives of the new political party."
+        }
+    ],
+    "301-39": [
+        {
+            sentence: "The ______ of the smartphone has changed how we consume media.",
+            options: ["Evolution", "Dilution", "Infringement", "Era"],
+            originalSentence: "The Evolution of the smartphone has changed how we consume media."
+        }
+    ],
+    "301-40": [
+        {
+            sentence: "Some experts are ______ the recent data as a sign of economic recovery.",
+            options: ["Interpreting", "Compelling", "Surrendering", "Negotiating"],
+            originalSentence: "Some experts are Interpreting the recent data as a sign of economic recovery."
+        }
+    ],
+    "301-41": [
+        {
+            sentence: "Adding too much water led to the ______ of the chemical's strength.",
+            options: ["Dilution", "Emergence", "Sovereignty", "Evolution"],
+            originalSentence: "Adding too much water led to the Dilution of the chemical's strength."
+        }
+    ],
+    "301-42": [
+        {
+            sentence: "The group's ultimate goal is to achieve full ______ and international recognition.",
+            options: ["Statehood", "Migration", "Discourse", "Suspicion"],
+            originalSentence: "The group's ultimate goal is to achieve full Statehood and international recognition."
+        }
+    ],
+    "301-43": [
+        {
+            sentence: "Scientists are studying the ______ impact of global warming on island nations.",
+            options: ["Potential", "Absolute", "Pragmatic", "Domestic"],
+            originalSentence: "Scientists are studying the Potential impact of global warming on island nations."
+        }
+    ],
+    "301-44": [
+        {
+            sentence: "Copying someone else's work without permission is an ______ of copyright law.",
+            options: ["Infringement", "Adherence", "Influence", "Era"],
+            originalSentence: "Copying someone else's work without permission is an Infringement of copyright law."
+        }
+    ],
+    "301-45": [
+        {
+            sentence: "The principle of ______ allows people to choose their own form of government.",
+            options: ["Self-determination", "Collective security", "Absolute right", "Global Governance"],
+            originalSentence: "The principle of Self-determination allows people to choose their own form of government."
+        }
+    ],
+    "301-46": [
+        {
+            sentence: "Critics argue that the organization is ______, as no one can vote them out.",
+            options: ["Unaccountable", "Multilateral", "Associated", "Stark"],
+            originalSentence: "Critics argue that the organization is Unaccountable, as no one can vote them out."
+        }
+    ],
+    "301-47": [
+        {
+            sentence: "It took months to get the permit because of all the unnecessary ______.",
+            options: ["Bureaucracy", "Collaboration", "Sovereignty", "Dispute"],
+            originalSentence: "It took months to get the permit because of all the unnecessary Bureaucracy."
+        }
+    ],
+    "301-48": [
+        {
+            sentence: "Large corporations often ______ the market, making it hard for small shops.",
+            options: ["Dominate", "Surrender", "Reveal", "Negotiate"],
+            originalSentence: "Large corporations often Dominate the market, making it hard for small shops."
+        }
+    ],
+    "301-49": [
+        {
+            sentence: "It is the ______ of the people that should guide the country's leaders.",
+            options: ["Will", "Era", "Constraint", "Dilution"],
+            originalSentence: "It is the Will of the people that should guide the country's leaders."
+        }
+    ],
+    "301-50": [
+        {
+            sentence: "He offered to help her under the ______ of friendship, but he wanted her money.",
+            options: ["Guise of", "Resolution of", "Exchange for", "Influence of"],
+            originalSentence: "He offered to help her under the Guise of friendship, but he wanted her money."
+        }
+    ],
+    "301-51": [
+        {
+            sentence: "Saving the environment is ______ if we want to protect future generations.",
+            options: ["The imperative", "The mechanism", "The suspicion", "The dispute"],
+            originalSentence: "Saving the environment is The imperative if we want to protect future generations."
+        }
+    ],
+    "301-52": [
+        {
+            sentence: "Successful ______ between teachers and parents improves student performance.",
+            options: ["Collaboration", "Infringement", "Dilution", "Autonomy"],
+            originalSentence: "Successful Collaboration between teachers and parents improves student performance."
+        }
+    ],
+    "301-53": [
+        {
+            sentence: "We must take action ______ the natural beauty of our national parks.",
+            options: ["To preserve", "To compel", "To cede", "To dominate"],
+            originalSentence: "We must take action To preserve the natural beauty of our national parks."
+        }
+    ],
+    "301-54": [
+        {
+            sentence: "______ art often reflects the complexities of modern life.",
+            options: ["Contemporary", "Absolute", "Globalized", "Stark"],
+            originalSentence: "Contemporary art often reflects the complexities of modern life."
+        }
+    ],
+    "301-55": [
+        {
+            sentence: "Atoms ______ molecules, which are the building blocks of all matter.",
+            options: ["Form", "Propel", "Originate", "Negotiate"],
+            originalSentence: "Atoms Form molecules, which are the building blocks of all matter."
+        }
+    ],
+    "301-56": [
+        {
+            sentence: "Political ______ has become very divided and aggressive in recent years.",
+            options: ["Discourse", "Pandemics", "Mechanism", "Sovereignty"],
+            originalSentence: "Political Discourse has become very divided and aggressive in recent years."
+        }
+    ],
+    "301-57": [
+        {
+            sentence: "There is a heated ______ about whether social media is good for children.",
+            options: ["Debate", "Bureaucracy", "Evolution", "Constraint"],
+            originalSentence: "There is a heated Debate about whether social media is good for children."
+        }
+    ],
+    "301-58": [
+        {
+            sentence: "The store sells products ______ electronics to kitchen supplies.",
+            options: ["Ranging from", "Associated with", "Adhering to", "In exchange for"],
+            originalSentence: "The store sells products Ranging from electronics to kitchen supplies."
+        }
+    ],
+    "301-59": [
+        {
+            sentence: "Economic hardship is a major cause of ______ to wealthier countries.",
+            options: ["Migration", "Statehood", "Resolution", "Mechanism"],
+            originalSentence: "Economic hardship is a major cause of Migration to wealthier countries."
+        }
+    ],
+    "301-60": [
+        {
+            sentence: "The two countries signed a peace ______ to end the five-year war.",
+            options: ["Treaty", "Discourse", "Emergence", "Proponent"],
+            originalSentence: "The two countries signed a peace Treaty to end the five-year war."
+        }
+    ],
+    // استكمال gapfillDB.js - الدرس رقم 302
+    "302-1": [
+        {
+            sentence: "Economists are debating the ______ of Western markets from Eastern manufacturing.",
+            options: ["Decoupling", "Integration", "Dependency", "Trend"],
+            originalSentence: "Economists are debating the Decoupling of Western markets from Eastern manufacturing."
+        }
+    ],
+    "302-2": [
+        {
+            sentence: "The new foreign policy ______ focuses on regional stability and economic growth.",
+            options: ["Doctrine", "Fiction", "Mineral", "Sector"],
+            originalSentence: "The new foreign policy Doctrine focuses on regional stability and economic growth."
+        }
+    ],
+    "302-3": [
+        {
+            sentence: "Political ______ is often a slow and complicated process between rival nations.",
+            options: ["Disentanglement", "Integration", "Phenomenon", "Recalibration"],
+            originalSentence: "Political Disentanglement is often a slow and complicated process between rival nations."
+        }
+    ],
+    "302-4": [
+        {
+            sentence: "The report highlights the risks of inflation, ______ in the energy sector.",
+            options: ["Particularly", "Mutually", "Ultimately", "Pure"],
+            originalSentence: "The report highlights the risks of inflation, Particularly in the energy sector."
+        }
+    ],
+    "302-5": [
+        {
+            sentence: "While the plan sounds good in a ______ sense, it is hard to implement.",
+            options: ["Theoretical", "Full-scale", "Robust", "Selective"],
+            originalSentence: "While the plan sounds good in a Theoretical sense, it is hard to implement."
+        }
+    ],
+    "302-6": [
+        {
+            sentence: "There is a heated ______ regarding the impact of AI on job security.",
+            options: ["Debate", "Doctrine", "Implication", "Nuance"],
+            originalSentence: "There is a heated Debate regarding the impact of AI on job security."
+        }
+    ],
+    "302-7": [
+        {
+            sentence: "The government has several new ______ to improve the national health system.",
+            options: ["Policy considerations", "Spheres of influence", "Intellectual properties", "Trends"],
+            originalSentence: "The government has several new Policy considerations to improve the national health system."
+        }
+    ],
+    "302-8": [
+        {
+            sentence: "The sudden drop in stock prices was ______ a rise in interest rates.",
+            options: ["Triggered by", "Defined by", "Restricted by", "Bolstered by"],
+            originalSentence: "The sudden drop in stock prices was Triggered by a rise in interest rates."
+        }
+    ],
+    "302-9": [
+        {
+            sentence: "The ______ between the two tech giants has led to rapid innovation.",
+            options: ["Rivalry", "Integration", "Doctrine", "Fragmentation"],
+            originalSentence: "The Rivalry between the two tech giants has led to rapid innovation."
+        }
+    ],
+    "302-10": [
+        {
+            sentence: "There are growing ______ environmental damage caused by deep-sea mining.",
+            options: ["Concerns over", "Considerations for", "Implications of", "Trends in"],
+            originalSentence: "There are growing Concerns over environmental damage caused by deep-sea mining."
+        }
+    ],
+    "302-11": [
+        {
+            sentence: "I am writing to you ______ the new terms of your employment contract.",
+            options: ["Regarding", "Particularly", "Mutually", "Ultimately"],
+            originalSentence: "I am writing to you Regarding the new terms of your employment contract."
+        }
+    ],
+    "302-12": [
+        {
+            sentence: "The current ______ shows that more people are working from home.",
+            options: ["Trend", "Doctrine", "Phenomenon", "Reversal"],
+            originalSentence: "The current Trend shows that more people are working from home."
+        }
+    ],
+    "302-13": [
+        {
+            sentence: "The sudden ______ of the court's decision surprised the legal community.",
+            options: ["Reversal", "Recalibration", "Disentanglement", "Solidification"],
+            originalSentence: "The sudden Reversal of the court's decision surprised the legal community."
+        }
+    ],
+    "302-14": [
+        {
+            sentence: "It is difficult ______ the exact boundaries of this new scientific field.",
+            options: ["To define", "To bolster", "To flow", "To navigate"],
+            originalSentence: "It is difficult To define the exact boundaries of this new scientific field."
+        }
+    ],
+    "302-15": [
+        {
+            sentence: "Reducing our ______ on foreign oil is a top priority for the energy board.",
+            options: ["Dependency", "Integration", "Solidification", "Fragmentation"],
+            originalSentence: "Reducing our Dependency on foreign oil is a top priority for the energy board."
+        }
+    ],
+    "302-16": [
+        {
+            sentence: "Critical thinking is an ______ skill that students must develop.",
+            options: ["Intellectual", "Theoretical", "Chaotic", "Selective"],
+            originalSentence: "Critical thinking is an Intellectual skill that students must develop."
+        }
+    ],
+    "302-17": [
+        {
+            sentence: "The company owns several valuable pieces of ______ in the city center.",
+            options: ["Property", "Nuance", "Mineral", "Sector"],
+            originalSentence: "The company owns several valuable pieces of Property in the city center."
+        }
+    ],
+    "302-18": [
+        {
+            sentence: "The government hope to ______ the economy by lowering taxes.",
+            options: ["To Bolster", "To Restrict", "To Navigate", "To Prohibit"],
+            originalSentence: "The government hope to To Bolster the economy by lowering taxes."
+        }
+    ],
+    "302-19": [
+        {
+            sentence: "The tourism ______ has suffered greatly during the global pandemic.",
+            options: ["Sector", "Doctrine", "Phenomenon", "Bloc"],
+            originalSentence: "The tourism Sector has suffered greatly during the global pandemic."
+        }
+    ],
+    "302-20": [
+        {
+            sentence: "Shortages in ______ chips have delayed the production of new cars.",
+            options: ["Semiconductor", "Pharmaceutical", "Mineral", "Consumer"],
+            originalSentence: "Shortages in Semiconductor chips have delayed the production of new cars."
+        }
+    ],
+    "302-21": [
+        {
+            sentence: "The ______ industry is investing billions in new vaccine research.",
+            options: ["Pharmaceutical", "Semiconductor", "Consumer", "Selective"],
+            originalSentence: "The Pharmaceutical industry is investing billions in new vaccine research."
+        }
+    ],
+    "302-22": [
+        {
+            sentence: "The mountains are rich in ______ deposits like gold and copper.",
+            options: ["Mineral", "Pharmaceutical", "Semiconductor", "Property"],
+            originalSentence: "The mountains are rich in Mineral deposits like gold and copper."
+        }
+    ],
+    "302-23": [
+        {
+            sentence: "A good translator must understand every ______ of the original text.",
+            options: ["Nuance", "Doctrine", "Implication", "Trend"],
+            originalSentence: "A good translator must understand every Nuance of the original text."
+        }
+    ],
+    "302-24": [
+        {
+            sentence: "The army launched a ______ investigation into the security breach.",
+            options: ["Full-scale", "Selective", "Theoretical", "Pure"],
+            originalSentence: "The army launched a Full-scale investigation into the security breach."
+        }
+    ],
+    "302-25": [
+        {
+            sentence: "The idea that this problem can be solved overnight is pure ______.",
+            options: ["Fiction", "Doctrine", "Phenomenon", "Trend"],
+            originalSentence: "The idea that this problem can be solved overnight is pure Fiction."
+        }
+    ],
+    "302-26": [
+        {
+            sentence: "The ______ of the two companies will create a new market leader.",
+            options: ["Integration", "Fragmentation", "Dependency", "Recalibration"],
+            originalSentence: "The Integration of the two companies will create a new market leader."
+        }
+    ],
+    "302-27": [
+        {
+            sentence: "The security system has a ______ approach to protecting data.",
+            options: ["Multi-tiered", "Full-scale", "Theoretical", "Chaotic"],
+            originalSentence: "The security system has a Multi-tiered approach to protecting data."
+        }
+    ],
+    "302-28": [
+        {
+            sentence: "The cost of living in the capital city has become ______ expensive.",
+            options: ["Prohibitively", "Particularly", "Mutually", "Ultimately"],
+            originalSentence: "The cost of living in the capital city has become Prohibitively expensive."
+        }
+    ],
+    "302-29": [
+        {
+            sentence: "The traffic situation during the storm was completely ______.",
+            options: ["Chaotic", "Robust", "Selective", "Multifaceted"],
+            originalSentence: "The traffic situation during the storm was completely Chaotic."
+        }
+    ],
+    "302-30": [
+        {
+            sentence: "A peaceful agreement is ______ outcome than a lengthy conflict.",
+            options: ["A more probable", "A full-scale", "A theoretical", "A pure"],
+            originalSentence: "A peaceful agreement is A more probable outcome than a lengthy conflict."
+        }
+    ],
+    "302-31": [
+        {
+            sentence: "We watched the events ______ on the news as they happened.",
+            options: ["Unfold", "Solidify", "Bolster", "Restrict"],
+            originalSentence: "We watched the events Unfold on the news as they happened."
+        }
+    ],
+    "302-32": [
+        {
+            sentence: "Banks are adopting ______ strategies to protect against financial loss.",
+            options: ["Derisking", "Triggering", "Competing", "Flowing"],
+            originalSentence: "Banks are adopting Derisking strategies to protect against financial loss."
+        }
+    ],
+    "302-33": [
+        {
+            sentence: "We need a new ______ to solve this complex mathematical problem.",
+            options: ["Approach", "Doctrine", "Phenomenon", "Nuance"],
+            originalSentence: "We need a new Approach to solve this complex mathematical problem."
+        }
+    ],
+    "302-34": [
+        {
+            sentence: "Only ______ students were able to solve the difficult riddle.",
+            options: ["A handful of", "Full-scale", "Multi-tiered", "Selective"],
+            originalSentence: "Only A handful of students were able to solve the difficult riddle."
+        }
+    ],
+    "302-35": [
+        {
+            sentence: "The bridge is ______ enough to withstand strong winds and earthquakes.",
+            options: ["Robust", "Chaotic", "Selective", "Theoretical"],
+            originalSentence: "The bridge is Robust enough to withstand strong winds and earthquakes."
+        }
+    ],
+    "302-36": [
+        {
+            sentence: "Information continues ______ freely through the internet across borders.",
+            options: ["To flow", "To bolster", "To restrict", "To navigate"],
+            originalSentence: "Information continues To flow freely through the internet across borders."
+        }
+    ],
+    "302-37": [
+        {
+            sentence: "New laws will ______ the sale of harmful chemicals to the public.",
+            options: ["Restrict", "Bolster", "Solidify", "Navigate"],
+            originalSentence: "New laws will Restrict the sale of harmful chemicals to the public."
+        }
+    ],
+    "302-38": [
+        {
+            sentence: "Researchers believe ______ will revolutionize how we process data.",
+            options: ["Quantum computing", "Semiconductors", "Intellectual property", "Greenflation"],
+            originalSentence: "Researchers believe Quantum computing will revolutionize how we process data."
+        }
+    ],
+    "302-39": [
+        {
+            sentence: "The ______ must be careful to read the terms and conditions.",
+            options: ["Consumer", "Doctrine", "Phenomenon", "Nuance"],
+            originalSentence: "The Consumer must be careful to read the terms and conditions."
+        }
+    ],
+    "302-40": [
+        {
+            sentence: "The legal ______ of this decision will be felt for years to come.",
+            options: ["Implication", "Recalibration", "Trend", "Mineral"],
+            originalSentence: "The legal Implication of this decision will be felt for years to come."
+        }
+    ],
+    "302-41": [
+        {
+            sentence: "The university has a very ______ admissions process this year.",
+            options: ["Selective", "Chaotic", "Theoretical", "Full-scale"],
+            originalSentence: "The university has a very Selective admissions process this year."
+        }
+    ],
+    "302-42": [
+        {
+            sentence: "The project is ______, involving art, science, and history.",
+            options: ["Multifaceted", "Multi-tiered", "Full-blown", "Pure"],
+            originalSentence: "The project is Multifaceted, involving art, science, and history."
+        }
+    ],
+    "302-43": [
+        {
+            sentence: "The northern lights are a natural ______ that many people want to see.",
+            options: ["Phenomenon", "Doctrine", "Implication", "Trend"],
+            originalSentence: "The northern lights are a natural Phenomenon that many people want to see."
+        }
+    ],
+    "302-44": [
+        {
+            sentence: "The era after the 1940s is often ______ the post-war period.",
+            options: ["Termed", "Triggered", "Bolstered", "Navigated"],
+            originalSentence: "The era after the 1940s is often Termed the post-war period."
+        }
+    ],
+    "302-45": [
+        {
+            sentence: "Rising costs for eco-friendly materials are known as ______.",
+            options: ["Greenflation", "Inflation", "Derisking", "Fragmentation"],
+            originalSentence: "Rising costs for eco-friendly materials are known as Greenflation."
+        }
+    ],
+    "302-46": [
+        {
+            sentence: "High ______ rates are making it difficult for people to buy homes.",
+            options: ["Inflation", "Dependency", "Solidification", "Trend"],
+            originalSentence: "High Inflation rates are making it difficult for people to buy homes."
+        }
+    ],
+    "302-47": [
+        {
+            sentence: "The ______ of the political party led to the creation of three new groups.",
+            options: ["Fragmentation", "Integration", "Doctrine", "Recalibration"],
+            originalSentence: "The Fragmentation of the political party led to the creation of three new groups."
+        }
+    ],
+    "302-48": [
+        {
+            sentence: "Winning the championship helped ______ the team's reputation.",
+            options: ["Solidify", "Unfold", "Restrict", "Flow"],
+            originalSentence: "Winning the championship helped Solidify the team's reputation."
+        }
+    ],
+    "302-49": [
+        {
+            sentence: "The Eastern ______ of countries agreed on a new trade deal.",
+            options: ["Bloc", "Sector", "Mineral", "Phenomenon"],
+            originalSentence: "The Eastern Bloc of countries agreed on a new trade deal."
+        }
+    ],
+    "302-50": [
+        {
+            sentence: "Our company must ______ with international firms for the new project.",
+            options: ["To compete", "To flow", "To restrict", "To bolster"],
+            originalSentence: "Our company must To compete with international firms for the new project."
+        }
+    ],
+    "302-51": [
+        {
+            sentence: "Major powers often try to expand their ______ in developing regions.",
+            options: ["Spheres of influence", "Policy considerations", "Intellectual properties", "Trends"],
+            originalSentence: "Major powers often try to expand their Spheres of influence in developing regions."
+        }
+    ],
+    "302-52": [
+        {
+            sentence: "The decision will ______ depend on the final vote of the board.",
+            options: ["Ultimately", "Particularly", "Mutually", "Pure"],
+            originalSentence: "The decision will Ultimately depend on the final vote of the board."
+        }
+    ],
+    "302-53": [
+        {
+            sentence: "I want ______ the importance of teamwork in our success.",
+            options: ["Underscore", "Unfold", "Navigate", "Solidify"],
+            originalSentence: "I want Underscore the importance of teamwork in our success."
+        }
+    ],
+    "302-54": [
+        {
+            sentence: "The ______ of the machine's sensors was necessary after the repair.",
+            options: ["Recalibration", "Implication", "Dependency", "Trend"],
+            originalSentence: "The Recalibration of the machine's sensors was necessary after the repair."
+        }
+    ],
+    "302-55": [
+        {
+            sentence: "What started as a small fire became a ______ forest fire.",
+            options: ["Full-blown", "Theoretical", "Selective", "Multi-tiered"],
+            originalSentence: "What started as a small fire became a Full-blown forest fire."
+        }
+    ],
+    "302-56": [
+        {
+            sentence: "The two neighbors reached a ______ beneficial agreement about the fence.",
+            options: ["Mutually", "Particularly", "Ultimately", "Prohibitively"],
+            originalSentence: "The two neighbors reached a Mutually beneficial agreement about the fence."
+        }
+    ],
+    "302-57": [
+        {
+            sentence: "Smoking is ______ to your health and can cause many diseases.",
+            options: ["Detrimental", "Robust", "Selective", "Multifaceted"],
+            originalSentence: "Smoking is Detrimental to your health and can cause many diseases."
+        }
+    ],
+    "302-58": [
+        {
+            sentence: "The loud noise was ______ a panic among the crowd in the stadium.",
+            options: ["Triggering", "Bolstering", "Restricting", "Navigating"],
+            originalSentence: "The loud noise was Triggering a panic among the crowd in the stadium."
+        }
+    ],
+    "302-59": [
+        {
+            sentence: "The pilot had ______ through heavy fog to land the plane safely.",
+            options: ["Navigate", "Unfold", "Solidify", "Flow"],
+            originalSentence: "The pilot had Navigate through heavy fog to land the plane safely."
+        }
+    ],
+    "302-60": [
+        {
+            sentence: "The gold ring was made of ______ gold without any other metals.",
+            options: ["Pure", "Full-blown", "Theoretical", "Chaotic"],
+            originalSentence: "The gold ring was made of Pure gold without any other metals."
+        }
+    ],
+    // استكمال gapfillDB.js - الدرس رقم 303
+    "303-1": [
+        {
+            sentence: "Guerrilla warfare is a classic example of ______ conflict where powers are unequal.",
+            options: ["Asymmetric", "Combined", "Massed", "Definitive"],
+            originalSentence: "Guerrilla warfare is a classic example of Asymmetric conflict where powers are unequal."
+        }
+    ],
+    "303-2": [
+        {
+            sentence: "Military analysts often ______ different types of threats to better prepare defenses.",
+            options: ["Categorize", "Erode", "Divert", "Posit"],
+            originalSentence: "Military analysts often Categorize different types of threats to better prepare defenses."
+        }
+    ],
+    "303-3": [
+        {
+            sentence: "Cyber ______ has become a major concern for national security in the digital age.",
+            options: ["Warfare", "Framework", "Cohesion", "Institution"],
+            originalSentence: "Cyber Warfare has become a major concern for national security in the digital age."
+        }
+    ],
+    "303-4": [
+        {
+            sentence: "There is a ______ difference between tactical operations and strategic planning.",
+            options: ["Distinct", "Nebulous", "Asymmetric", "Enduring"],
+            originalSentence: "There is a Distinct difference between tactical operations and strategic planning."
+        }
+    ],
+    "303-5": [
+        {
+            sentence: "The treaty was successful in ______ the new borders between the two nations.",
+            options: ["Delineating", "Crippling", "Triggering", "Diverting"],
+            originalSentence: "The treaty was successful in Delineating the new borders between the two nations."
+        }
+    ],
+    "303-6": [
+        {
+            sentence: "Technological ______ in drone AI are changing the face of modern combat.",
+            options: ["Leaps", "Campaigns", "Institutions", "Realities"],
+            originalSentence: "Technological Leaps in drone AI are changing the face of modern combat."
+        }
+    ],
+    "303-7": [
+        {
+            sentence: "The ______ process of military doctrine takes decades of experience.",
+            options: ["Evolutionary", "Asymmetric", "Cognitive", "Non-kinetic"],
+            originalSentence: "The Evolutionary process of military doctrine takes decades of experience."
+        }
+    ],
+    "303-8": [
+        {
+            sentence: "The general ______ several historical examples to support his new strategy.",
+            options: ["Cited", "Eroded", "Dissolved", "Forced"],
+            originalSentence: "The general Cited several historical examples to support his new strategy."
+        }
+    ],
+    "303-9": [
+        {
+            sentence: "The legal ______ for international trade is governed by the WTO.",
+            options: ["Framework", "Warfare", "Intensity", "Utility"],
+            originalSentence: "The legal Framework for international trade is governed by the WTO."
+        }
+    ],
+    "303-10": [
+        {
+            sentence: "The army used ______ artillery fire to break the enemy's front line.",
+            options: ["Massed", "Pervasive", "Nebulous", "Academic"],
+            originalSentence: "The army used Massed artillery fire to break the enemy's front line."
+        }
+    ],
+    "303-11": [
+        {
+            sentence: "The long war turned into a battle of ______, where both sides suffered heavy losses.",
+            options: ["Attrition", "Cohesion", "Readiness", "Iteration"],
+            originalSentence: "The long war turned into a battle of Attrition, where both sides suffered heavy losses."
+        }
+    ],
+    "303-12": [
+        {
+            sentence: "The government launched a ______ protest against the violation of its airspace.",
+            options: ["Vigorous", "Nebulous", "Non-state", "Cognitive"],
+            originalSentence: "The government launched a Vigorous protest against the violation of its airspace."
+        }
+    ],
+    "303-13": [
+        {
+            sentence: "The rebel group was ______ after the peace agreement was signed.",
+            options: ["Dissolved", "Amplified", "Categorized", "Delineated"],
+            originalSentence: "The rebel group was Dissolved after the peace agreement was signed."
+        }
+    ],
+    "303-14": [
+        {
+            sentence: "Some experts ______ that the future of conflict lies in space exploration.",
+            options: ["Posit", "Erode", "Divert", "Cite"],
+            originalSentence: "Some experts Posit that the future of conflict lies in space exploration."
+        }
+    ],
+    "303-15": [
+        {
+            sentence: "Economic sanctions are a ______ method of putting pressure on a country.",
+            options: ["Non-kinetic", "Asymmetric", "Vigorous", "Massed"],
+            originalSentence: "Economic sanctions are a Non-kinetic method of putting pressure on a country."
+        }
+    ],
+    "303-16": [
+        {
+            sentence: "Psychological operations target the ______ processes of the enemy's population.",
+            options: ["Cognitive", "Evolutionary", "Academic", "Definitive"],
+            originalSentence: "Psychological operations target the Cognitive processes of the enemy's population."
+        }
+    ],
+    "303-17": [
+        {
+            sentence: "Social media has added a new ______ to modern information warfare.",
+            options: ["Dimension", "Framework", "Institution", "Utility"],
+            originalSentence: "Social media has added a new Dimension to modern information warfare."
+        }
+    ],
+    "303-18": [
+        {
+            sentence: "Deception is used to manipulate the ______ during a military operation.",
+            options: ["Adversary's perception", "Societal division", "Territorial defense", "Academic budgeting"],
+            originalSentence: "Deception is used to manipulate the Adversary's perception during a military operation."
+        }
+    ],
+    "303-19": [
+        {
+            sentence: "The ______ of the unit was tested during the difficult mountain mission.",
+            options: ["Cohesion", "Attrition", "Disinformation", "Subversion"],
+            originalSentence: "The Cohesion of the unit was tested during the difficult mountain mission."
+        }
+    ],
+    "303-20": [
+        {
+            sentence: "Terrorist organizations are often classified as ______ actors in global politics.",
+            options: ["Non-state", "Definitive", "Pervasive", "Combined"],
+            originalSentence: "Terrorist organizations are often classified as Non-state actors in global politics."
+        }
+    ],
+    "303-21": [
+        {
+            sentence: "The military uses ______ satellite systems for global communication.",
+            options: ["Sophisticated", "Nebulous", "Academic", "Massed"],
+            originalSentence: "The military uses Sophisticated satellite systems for global communication."
+        }
+    ],
+    "303-22": [
+        {
+            sentence: "The influence of technology is ______ in every part of modern life.",
+            options: ["Pervasive", "Distinct", "Definitive", "Asymmetric"],
+            originalSentence: "The influence of technology is Pervasive in every part of modern life."
+        }
+    ],
+    "303-23": [
+        {
+            sentence: "The spread of ______ can cause confusion and panic during an election.",
+            options: ["Disinformation", "Readiness", "Iteration", "Dimension"],
+            originalSentence: "The spread of Disinformation can cause confusion and panic during an election."
+        }
+    ],
+    "303-24": [
+        {
+            sentence: "Public health ______ are essential to encourage people to get vaccinated.",
+            options: ["Campaigns", "Institutions", "Frameworks", "Realities"],
+            originalSentence: "Public health Campaigns are essential to encourage people to get vaccinated."
+        }
+    ],
+    "303-25": [
+        {
+            sentence: "The dictator used ______ to keep the citizens from protesting.",
+            options: ["Coercion", "Cohesion", "Utility", "Deception"],
+            originalSentence: "The dictator used Coercion to keep the citizens from protesting."
+        }
+    ],
+    "303-26": [
+        {
+            sentence: "Internal ______ can weaken a country's ability to defend itself from outside threats.",
+            options: ["Societal division", "Adversary's perception", "Territorial defense", "Academic budgeting"],
+            originalSentence: "Internal Societal division can weaken a country's ability to defend itself from outside threats."
+        }
+    ],
+    "303-27": [
+        {
+            sentence: "Constant scandals can ______ the public's trust in the government.",
+            options: ["Erode", "Divert", "Amplify", "Solidify"],
+            originalSentence: "Constant scandals can Erode the public's trust in the government."
+        }
+    ],
+    "303-28": [
+        {
+            sentence: "The university is a respected ______ that has existed for centuries.",
+            options: ["Institution", "Dimension", "Iteration", "Framework"],
+            originalSentence: "The university is a respected Institution that has existed for centuries."
+        }
+    ],
+    "303-29": [
+        {
+            sentence: "A ______ cyberattack could shut down the entire power grid of the city.",
+            options: ["Crippling", "Vigorous", "Sophisticated", "Enduring"],
+            originalSentence: "A Crippling cyberattack could shut down the entire power grid of the city."
+        }
+    ],
+    "303-30": [
+        {
+            sentence: "Economic ______ doubt that the new law will actually lower prices.",
+            options: ["Skeptics", "Proponents", "Critics", "Sovereigns"],
+            originalSentence: "Economic Skeptics doubt that the new law will actually lower prices."
+        }
+    ],
+    "303-31": [
+        {
+            sentence: "The ______ of this tool is limited to very specific mechanical repairs.",
+            options: ["Utility", "Coercion", "Intensity", "Iteration"],
+            originalSentence: "The Utility of this tool is limited to very specific mechanical repairs."
+        }
+    ],
+    "303-32": [
+        {
+            sentence: "Some historians ______ that the war could have been avoided with better diplomacy.",
+            options: ["Contend", "Erode", "Delineate", "Dissolve"],
+            originalSentence: "Some historians Contend that the war could have been avoided with better diplomacy."
+        }
+    ],
+    "303-33": [
+        {
+            sentence: "He is ______ a student, not a professional expert in this field.",
+            options: ["Merely", "Particularly", "Ultimately", "Mutually"],
+            originalSentence: "He is Merely a student, not a professional expert in this field."
+        }
+    ],
+    "303-34": [
+        {
+            sentence: "The new software update is just a better ______ of the previous version.",
+            options: ["Iteration", "Dimension", "Framework", "Institution"],
+            originalSentence: "The new software update is just a better Iteration of the previous version."
+        }
+    ],
+    "303-35": [
+        {
+            sentence: "The magician used ______ to make the audience believe the card had disappeared.",
+            options: ["Deception", "Coercion", "Subversion", "Utility"],
+            originalSentence: "The magician used Deception to make the audience believe the card had disappeared."
+        }
+    ],
+    "303-36": [
+        {
+            sentence: "The government accused the spy of planning the ______ of the political system.",
+            options: ["Subversion", "Cohesion", "Readiness", "Campaign"],
+            originalSentence: "The government accused the spy of planning the Subversion of the political system."
+        }
+    ],
+    "303-37": [
+        {
+            sentence: "The sound of the music was ______ by the high-quality speakers.",
+            options: ["Amplified", "Eroded", "Dissolved", "Categorized"],
+            originalSentence: "The sound of the music was Amplified by the high-quality speakers."
+        }
+    ],
+    "303-38": [
+        {
+            sentence: "The ______ on theory often leaves students unprepared for practical work.",
+            options: ["Overemphasis", "Overestimation", "Framework", "Cohesion"],
+            originalSentence: "The Overemphasis on theory often leaves students unprepared for practical work."
+        }
+    ],
+    "303-39": [
+        {
+            sentence: "His explanation was so ______ that nobody really understood his point.",
+            options: ["Nebulous", "Distinct", "Sophisticated", "Definitive"],
+            originalSentence: "His explanation was so Nebulous that nobody really understood his point."
+        }
+    ],
+    "303-40": [
+        {
+            sentence: "The fake attack was designed to ______ the enemy's attention from the real target.",
+            options: ["Divert", "Bolster", "Solidify", "Unfold"],
+            originalSentence: "The fake attack was designed to Divert the enemy's attention from the real target."
+        }
+    ],
+    "303-41": [
+        {
+            sentence: "The army is responsible for the ______ of the country's borders.",
+            options: ["Territorial defense", "Societal division", "Academic budgeting", "Adversary's perception"],
+            originalSentence: "The army is responsible for the Territorial defense of the country's borders."
+        }
+    ],
+    "303-42": [
+        {
+            sentence: "Freedom is an ______ value that people have fought for throughout history.",
+            options: ["Enduring", "Nebulous", "Crippling", "Sophisticated"],
+            originalSentence: "Freedom is an Enduring value that people have fought for throughout history."
+        }
+    ],
+    "303-43": [
+        {
+            sentence: "We must face the ______ of the economic situation, even if they are difficult.",
+            options: ["Realities", "Campaigns", "Frameworks", "Dimensions"],
+            originalSentence: "We must face the Realities of the economic situation, even if they are difficult."
+        }
+    ],
+    "303-44": [
+        {
+            sentence: "The ______ operation involved the air force, navy, and ground troops.",
+            options: ["Combined", "Asymmetric", "Massed", "Academic"],
+            originalSentence: "The Combined operation involved the air force, navy, and ground troops."
+        }
+    ],
+    "303-45": [
+        {
+            sentence: "The ______ of the sun's rays is much stronger at high altitudes.",
+            options: ["Intensity", "Utility", "Attrition", "Cohesion"],
+            originalSentence: "The Intensity of the sun's rays is much stronger at high altitudes."
+        }
+    ],
+    "303-46": [
+        {
+            sentence: "The court's ______ ruling ended the legal battle once and for all.",
+            options: ["Definitive", "Academic", "Nebulous", "Cognitive"],
+            originalSentence: "The court's Definitive ruling ended the legal battle once and for all."
+        }
+    ],
+    "303-47": [
+        {
+            sentence: "The discussion was purely ______, as the project had already been canceled.",
+            options: ["Academic", "Enduring", "Vigorous", "Sophisticated"],
+            originalSentence: "The discussion was purely Academic, as the project had already been canceled."
+        }
+    ],
+    "303-48": [
+        {
+            sentence: "Effective ______ is key to completing the construction project on time.",
+            options: ["Budgeting", "Delineating", "Coercion", "Deception"],
+            originalSentence: "Effective Budgeting is key to completing the construction project on time."
+        }
+    ],
+    "303-49": [
+        {
+            sentence: "The pilots maintain a high state of ______ for any emergency calls.",
+            options: ["Readiness", "Attrition", "Dimension", "Subversion"],
+            originalSentence: "The pilots maintain a high state of Readiness for any emergency calls."
+        }
+    ],
+    "303-50": [
+        {
+            sentence: "The heavy snow is ______ the mountain climbers to turn back.",
+            options: ["Forcing", "Diverting", "Eroding", "Amplifying"],
+            originalSentence: "The heavy snow is Forcing the mountain climbers to turn back."
+        }
+    ],
 };
 // يمكن أيضاً إضافة أسئلة للكلمات المضافة من قبل المستخدم (تبدأ معرفاتها بـ "u")
 
