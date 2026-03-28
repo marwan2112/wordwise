@@ -1971,8 +1971,7 @@ window.gapfillDB = {
             options: ["favorite", "first", "last", "next"],
             originalSentence: "Pizza is my favorite food."
         }
-    ],
-
+    ]
 };
 // يمكن أيضاً إضافة أسئلة للكلمات المضافة من قبل المستخدم (تبدأ معرفاتها بـ "u")
 
