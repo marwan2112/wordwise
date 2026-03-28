@@ -62,6 +62,7 @@ class App {
         this.gapFillNoQuestionsMessageShown = false;
         this.gapFillAvailableWords = [];
         this.gapFillRemainingWords = [];
+        this.gapFillCurrentLessonId = null; // مهم لتتبع الدرس الحالي
 
         this.levelTestLevel = null;
         this.levelTestLessons = [];
@@ -864,11 +865,23 @@ class App {
             this.selectedLessonId = lessonId;
             this.currentPage = 'reading';
             this.isUnlockTest = false;
+            this.resetGapFillForNewLesson();
         } else {
             this.tempLessonToUnlock = lessonId;
             this.currentPage = 'unlock_choice';
         }
         this.render();
+    }
+
+    resetGapFillForNewLesson() {
+        this.gapFillRemainingWords = [];
+        this.gapFillUsedQuestions = {};
+        this.gapFillCurrentLessonId = null;
+        this.gapFillNoQuestionsMessageShown = false;
+        this.gapFillCurrentQuestion = null;
+        this.gapFillAnswered = false;
+        this.gapFillResult = null;
+        this.gapFillExplanationVisible = false;
     }
 
     getLessonsForCurrentLevel() {
@@ -1865,10 +1878,8 @@ class App {
     }
 
     // ================== Gap Fill Exercises (مُحسّن) ==================
-    // إنشاء سؤال ديناميكي للكلمة إذا لم يكن موجوداً في قاعدة البيانات
     generateDynamicGapFillQuestion(wordObj) {
         const { english, arabic } = wordObj;
-        // قالب بسيط يعتمد على معنى الكلمة
         const sentence = `The word "______" means "${arabic}".`;
         const originalSentence = `The word "${english}" means "${arabic}".`;
         const options = [english, ...this.getRandomWordsForOptions(english, 3)];
@@ -1883,7 +1894,8 @@ class App {
 
     getRandomWordsForOptions(correctWord, count) {
         const lesson = this.getCurrentLessonData();
-        const allTerms = lesson ? [...lesson.terms, ...this.userVocabulary.filter(v => v.lessonId == this.selectedLessonId)] : [];
+        if (!lesson) return []; // No lesson data, return empty
+        const allTerms = [...lesson.terms, ...this.userVocabulary.filter(v => v.lessonId == this.selectedLessonId)];
         const otherWords = allTerms.filter(t => t.english !== correctWord).map(t => t.english);
         const shuffled = [...otherWords].sort(() => 0.5 - Math.random());
         const selected = shuffled.slice(0, count);
@@ -1903,6 +1915,11 @@ class App {
             return;
         }
 
+        if (this.gapFillCurrentLessonId !== this.selectedLessonId) {
+            this.resetGapFillForNewLesson();
+            this.gapFillCurrentLessonId = this.selectedLessonId;
+        }
+
         const allTerms = [...lesson.terms, ...this.userVocabulary.filter(v => v.lessonId == this.selectedLessonId)];
         const available = allTerms.filter(t => !this.masteredWords.includes(String(t.id)) && !this.hiddenFromCards.includes(String(t.id)));
 
@@ -1911,13 +1928,11 @@ class App {
             return;
         }
 
-        // تجهيز قائمة الكلمات التي لها أسئلة (من قاعدة البيانات أو يتم إنشاؤها ديناميكياً)
         if (!this.gapFillRemainingWords || this.gapFillRemainingWords.length === 0) {
             this.gapFillRemainingWords = [...available];
             this.shuffleArray(this.gapFillRemainingWords);
             this.gapFillUsedQuestions = {};
             this.gapFillNoQuestionsMessageShown = false;
-            console.log('🔄 بدأ جولة جديدة، الكلمات:', this.gapFillRemainingWords.map(w => w.english));
         }
 
         const targetWordObj = this.gapFillRemainingWords[0];
@@ -1927,7 +1942,7 @@ class App {
 
         let questionData = null;
 
-        // محاولة جلب سؤال من قاعدة البيانات إن وجدت
+        // Try to get a question from database if exists
         if (window.gapfillDB && window.gapfillDB[wordId] && window.gapfillDB[wordId].length > 0) {
             const questionsForWord = window.gapfillDB[wordId];
             if (!this.gapFillUsedQuestions[wordId]) {
@@ -1943,7 +1958,7 @@ class App {
             this.gapFillUsedQuestions[wordId].push(questionData);
         }
 
-        // إذا لم يوجد سؤال في قاعدة البيانات، نقوم بإنشاء سؤال ديناميكي
+        // If no question in DB, generate a dynamic one
         if (!questionData) {
             questionData = this.generateDynamicGapFillQuestion(targetWordObj);
         }
@@ -1965,7 +1980,6 @@ class App {
         this.gapFillOptionsMeanings = [];
         this.gapFillExplanationVisible = false;
 
-        console.log('✅ تم تحضير السؤال:', this.gapFillCurrentQuestion.text);
         this.render();
     }
 
@@ -1999,18 +2013,16 @@ class App {
         });
 
         if (isCorrect) {
-            // إزالة الكلمة الحالية من القائمة (تم إتقانها)
             if (this.gapFillRemainingWords && this.gapFillRemainingWords.length > 0) {
                 this.gapFillRemainingWords.shift();
             }
             this.updateProgress(5);
         } else {
-            // إعادة الكلمة بشكل عشوائي لاحقاً
             if (this.gapFillRemainingWords && this.gapFillRemainingWords.length > 0) {
                 const currentWord = this.gapFillRemainingWords.shift();
                 const len = this.gapFillRemainingWords.length;
                 if (len > 0) {
-                    const randomIndex = Math.floor(Math.random() * len) + 1; // من 1 إلى len
+                    const randomIndex = Math.floor(Math.random() * len) + 1;
                     this.gapFillRemainingWords.splice(randomIndex, 0, currentWord);
                 } else {
                     this.gapFillRemainingWords.push(currentWord);
@@ -2041,7 +2053,6 @@ class App {
         this.gapFillExplanationVisible = !this.gapFillExplanationVisible;
 
         if (this.gapFillExplanationVisible) {
-            // تحميل ترجمة الجملة الكاملة إن لم تكن موجودة
             if (!this.gapFillCurrentQuestion.originalSentenceArabic && this.gapFillCurrentQuestion.originalSentence) {
                 const translated = await this.translateText(this.gapFillCurrentQuestion.originalSentence);
                 this.gapFillCurrentQuestion.originalSentenceArabic = translated || '';
@@ -2073,6 +2084,7 @@ class App {
                     this.userCoins -= 75;
                     this.gapFillUnlocked[lessonId] = true;
                     this.saveUserData();
+                    this.resetGapFillForNewLesson();
                     this.prepareGapFill();
                     this.render();
                 }
