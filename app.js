@@ -1913,74 +1913,93 @@ async prepareGapFill() {
 }
 
 async generateGapFillWithGemini(targetWord, lessonContent, allEnglishWords) {
-    // ضع مفتاح Hugging Face هنا
-    const apiKey = "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"; // استبدل بالمفتاح
+    const apiKey = "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"; // مفتاحك
+    const model = "google/flan-t5-small"; // نموذج أصغر وأسرع (جيد للجمل البسيطة)
 
-    const prompt = `You are an English teacher. Create a new simple sentence using the word "${targetWord}". The sentence should be appropriate for the lesson level (A1-C2). Replace the word "${targetWord}" with "______" in the sentence. Also provide the original sentence without blank. Then give 4 options: the correct word and three wrong options. The wrong options should be from the list of other words in the lesson if possible: ${allEnglishWords.join(', ')}. 
+    const prompt = `Create a new simple sentence using the word "${targetWord}". Replace the word with "______". Then give 4 options: the correct word and three wrong words from this list: ${allEnglishWords.join(', ')}. Return ONLY a JSON object like: {"sentence": "I ______ a book.", "options": ["read", "write", "cook", "run"], "originalSentence": "I read a book."}`;
 
-Return ONLY a JSON object with the following structure:
-{
-  "sentence": "The sentence with ______ in place of the word",
-  "options": ["option1", "option2", "option3", "option4"],
-  "originalSentence": "The full sentence without blank"
-}
-The correct word must be included in the options. Do not include any explanation.`;
+    let attempts = 0;
+    const maxAttempts = 3;
 
-    try {
-        const response = await fetch('https://api-inference.huggingface.co/models/google/flan-t5-large', {
-            method: 'POST',
-            headers: {
-                'Authorization': `Bearer ${apiKey}`,
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                inputs: prompt,
-                parameters: {
-                    max_length: 300,
-                    temperature: 0.7,
-                    return_full_text: false
+    while (attempts < maxAttempts) {
+        try {
+            const response = await fetch(`https://api-inference.huggingface.co/models/${model}`, {
+                method: 'POST',
+                headers: {
+                    'Authorization': `Bearer ${apiKey}`,
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    inputs: prompt,
+                    parameters: {
+                        max_length: 300,
+                        temperature: 0.7,
+                        return_full_text: false
+                    }
+                })
+            });
+
+            if (response.status === 503) {
+                // النموذج قيد التحميل
+                attempts++;
+                if (attempts < maxAttempts) {
+                    console.log(`⏳ النموذج قيد التحميل، إعادة المحاولة بعد 3 ثوانٍ... (${attempts}/${maxAttempts})`);
+                    await new Promise(resolve => setTimeout(resolve, 3000));
+                    continue;
+                } else {
+                    alert('الخدمة لا تزال تحمّل النموذج. حاول مرة أخرى بعد دقيقة.');
+                    return null;
                 }
-            })
-        });
+            }
 
-        if (!response.ok) {
-            const errorText = await response.text();
-            console.error('❌ Hugging Face error:', response.status, errorText);
-            alert(`فشل الاتصال بـ Hugging Face (${response.status}). تأكد من المفتاح ومن اتصال الإنترنت.`);
-            return null;
-        }
+            if (!response.ok) {
+                const errorText = await response.text();
+                console.error(`❌ Hugging Face error (${response.status}):`, errorText);
+                alert(`فشل الاتصال (${response.status}). تأكد من المفتاح ومن اتصال الإنترنت.`);
+                return null;
+            }
 
-        const data = await response.json();
-        let generatedText = data[0]?.generated_text || '';
-        
-        // استخراج JSON من النص المُولَّد
-        const jsonMatch = generatedText.match(/\{[\s\S]*\}/);
-        if (jsonMatch) {
-            const parsed = JSON.parse(jsonMatch[0]);
-            if (parsed.sentence && parsed.options && parsed.options.includes(targetWord)) {
-                // تأكد من وجود 4 خيارات
-                while (parsed.options.length < 4) parsed.options.push('???');
-                if (!parsed.originalSentence) {
-                    parsed.originalSentence = parsed.sentence.replace('______', targetWord);
+            const data = await response.json();
+            let generatedText = data[0]?.generated_text || '';
+
+            // استخراج JSON (قد يكون داخل نص)
+            const jsonMatch = generatedText.match(/\{[\s\S]*\}/);
+            if (jsonMatch) {
+                try {
+                    const parsed = JSON.parse(jsonMatch[0]);
+                    if (parsed.sentence && parsed.options && parsed.options.includes(targetWord)) {
+                        while (parsed.options.length < 4) parsed.options.push('???');
+                        if (!parsed.originalSentence) {
+                            parsed.originalSentence = parsed.sentence.replace('______', targetWord);
+                        }
+                        return parsed;
+                    }
+                } catch (e) {
+                    console.warn('خطأ في تحليل JSON', e);
                 }
-                return parsed;
+            }
+
+            // إذا فشل استخراج JSON، نحاول إنشاء جملة بسيطة
+            console.warn('لم نستطع استخراج JSON، نستخدم جملة احتياطية');
+            const fallbackSentence = `I ______ the ${targetWord} every day.`;
+            return {
+                sentence: fallbackSentence.replace(targetWord, '______'),
+                options: [targetWord, ...allEnglishWords.filter(w => w !== targetWord).slice(0, 3)],
+                originalSentence: fallbackSentence
+            };
+        } catch (e) {
+            console.error('❌ خطأ في الطلب:', e);
+            attempts++;
+            if (attempts < maxAttempts) {
+                await new Promise(resolve => setTimeout(resolve, 2000));
+            } else {
+                alert(`خطأ في الاتصال: ${e.message}`);
+                return null;
             }
         }
-        
-        // إذا فشل استخراج JSON، نحاول إنشاء جملة بسيطة يدوياً (كملاذ أخير)
-        console.warn('الرد غير صحيح، استخدام جملة بسيطة');
-        const fallbackSentence = `I ______ the ${targetWord} every day.`;
-        return {
-            sentence: fallbackSentence.replace(targetWord, '______'),
-            options: [targetWord, ...allEnglishWords.filter(w => w !== targetWord).slice(0, 3)],
-            originalSentence: fallbackSentence
-        };
-    } catch (e) {
-        console.error('❌ خطأ في الاتصال:', e);
-        alert(`خطأ في الاتصال: ${e.message}`);
-        return null;
     }
-}    
+    return null;
+}
     generateLocalGapFill(targetWord, targetArabic, lessonContent, allTerms) {
         const sentences = lessonContent.split(/[.!?]+/).map(s => s.trim()).filter(s => s.length > 0);
         const regex = new RegExp(`\\b${this.escapeRegex(targetWord)}\\b`, 'i');
