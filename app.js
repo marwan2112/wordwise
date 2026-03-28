@@ -58,8 +58,8 @@ class App {
         this.gapFillExplanationVisible = false;
         this.gapFillOptionsMeanings = [];
         this.gapFillNextCount = 0;
-        this.gapFillUsedQuestions = {};        // تتبع الأسئلة المستخدمة لكل كلمة
-        this.gapFillNoQuestionsMessageShown = false; // منع تكرار الرسالة
+        this.gapFillUsedQuestions = {};
+        this.gapFillNoQuestionsMessageShown = false;
 
         this.levelTestLevel = null;
         this.levelTestLessons = [];
@@ -1906,6 +1906,8 @@ class App {
         if (questionsForWord.length === 0) {
             // إزالة الكلمة من قائمة الانتظار
             this.gapFillRemaining.shift();
+            // تسجيل معرف الكلمة في وحدة التحكم لتسهيل التصحيح
+            console.warn(`⚠️ لا توجد أسئلة للكلمة: ${targetWord} (${wordId})`);
 
             // عرض رسالة واحدة فقط لكل جلسة
             if (!this.gapFillNoQuestionsMessageShown) {
@@ -2407,8 +2409,6 @@ class App {
                 case 'goToProfile':
                     this.showProfile();
                     break;
-
-                // أي أحداث أخرى (مثل إعادة ضبط أسئلة gapfill) يمكن إضافتها هنا
             }
             this.render();
         });
