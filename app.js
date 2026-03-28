@@ -58,6 +58,7 @@ class App {
         this.gapFillExplanationVisible = false;
         this.gapFillOptionsMeanings = [];
         this.gapFillNextCount = 0;
+        this.gapFillUsedQuestions = {}; // لتتبع الأسئلة المستخدمة لكل كلمة
 
         this.levelTestLevel = null;
         this.levelTestLessons = [];
@@ -97,7 +98,7 @@ class App {
         this.unlockedLessons = [];
         this.hiddenFromCards = [];
         this.customLessons = {};
-        this.generatedLessons = {};
+        this.generatedLessons = {}; // لم يعد يستخدم، لكن نبقيه لعدم فقدان البيانات القديمة
 
         if (!localStorage.getItem('users')) {
             localStorage.setItem('users', JSON.stringify({}));
@@ -862,6 +863,7 @@ class App {
     getLessonsForCurrentLevel() {
         if (!this.selectedLevel) return [];
         let originalLessons = window.lessonsList[this.selectedLevel] || [];
+        // لم نعد نستخدم generatedLessons للدروس المولدة، لكن نتركها للتوافق
         let generated = Object.values(this.generatedLessons).filter(l => l.level === this.selectedLevel);
         let generatedLessonsFormatted = generated.map(g => ({
             id: g.id,
@@ -944,6 +946,7 @@ class App {
         return this.userProfile.level || 'A1';
     }
 
+    // ================== دوال إعادة ترتيب الجمل ==================
     prepareJumble() {
         const lesson = this.getCurrentLessonData();
         if (!lesson) return;
@@ -1082,6 +1085,7 @@ class App {
         this.render();
     }
 
+    // ================== دوال اختبار الاستماع ==================
     prepareListeningQuiz() {
         if (this.listeningTimer) {
             clearTimeout(this.listeningTimer);
@@ -1220,6 +1224,7 @@ class App {
         return false;
     }
 
+    // ================== دوال تمرين الكتابة (Spelling) ==================
     prepareSpelling() {
         const lesson = this.getCurrentLessonData();
         if (!lesson) return;
@@ -1280,6 +1285,7 @@ class App {
         this.spellingUserAnswer = e.target.value;
     }
 
+    // ================== دوال الاختبار الشامل للمستوى ==================
     prepareLevelTest(levelParam) {
         let lessonIds = [];
         let levelName = '';
@@ -1546,6 +1552,7 @@ class App {
         });
     }
 
+    // ================== دوال أخرى ==================
     isLessonCompleted(lessonId) {
         const lesson = this.getLessonDataById(lessonId);
         if (!lesson) return false;
@@ -1564,6 +1571,7 @@ class App {
         }
     }
 
+    // ================== دوال الصوت والاختبارات العادية ==================
     speak(text) {
         if (!text) return;
         window.speechSynthesis.cancel();
@@ -1852,181 +1860,94 @@ class App {
         }, 1100);
     }
 
-async prepareGapFill() {
-    if (this.gapFillTimer) {
-        clearTimeout(this.gapFillTimer);
-        this.gapFillTimer = null;
-    }
-
-    const lesson = this.getCurrentLessonData();
-    if (!lesson) return;
-
-    const allTerms = [...lesson.terms, ...this.userVocabulary.filter(v => v.lessonId == this.selectedLessonId)];
-    const available = allTerms.filter(t => !this.masteredWords.includes(String(t.id)) && !this.hiddenFromCards.includes(String(t.id)));
-
-    if (available.length === 0) {
-        alert('لا توجد كلمات متاحة لهذا التمرين. قم بإضافة كلمات جديدة أو إعادة تعيين الكلمات المتقنة.');
-        return;
-    }
-
-    if (this.gapFillRemaining.length === 0) {
-        this.gapFillRemaining = [...available].sort(() => 0.5 - Math.random());
-    }
-
-    const targetWordObj = this.gapFillRemaining[0];
-    const targetWord = targetWordObj.english;
-    const targetArabic = targetWordObj.arabic;
-    const wordId = targetWordObj.id; // مثلاً "1-1" أو "u123456"
-
-    // محاولة الحصول على سؤال من قاعدة البيانات
-    let questionData = null;
-    if (window.gapfillDB && window.gapfillDB[wordId]) {
-        const questions = window.gapfillDB[wordId];
-        // اختر سؤالاً عشوائياً من الأسئلة المتاحة لهذه الكلمة
-        if (questions.length > 0) {
-            const randomIndex = Math.floor(Math.random() * questions.length);
-            questionData = questions[randomIndex];
+    // ================== دوال تمرين ملء الفراغ (Gap Fill) ==================
+    async prepareGapFill() {
+        if (this.gapFillTimer) {
+            clearTimeout(this.gapFillTimer);
+            this.gapFillTimer = null;
         }
-    }
 
-    if (!questionData) {
-        // إذا لم يوجد سؤال في قاعدة البيانات، استخدم جملة افتراضية بسيطة
-        console.warn(`لا يوجد سؤال محفوظ للكلمة ${targetWord} (${wordId})، استخدام جملة افتراضية.`);
-        questionData = {
-            sentence: `I ______ the ${targetWord} every day.`,
-            options: [targetWord, ...allTerms.filter(t => t.english !== targetWord).map(t => t.english).slice(0, 3)],
-            originalSentence: `I ${targetWord} the ${targetWord} every day.`
-        };
+        const lesson = this.getCurrentLessonData();
+        if (!lesson) return;
+
+        const allTerms = [...lesson.terms, ...this.userVocabulary.filter(v => v.lessonId == this.selectedLessonId)];
+        const available = allTerms.filter(t => !this.masteredWords.includes(String(t.id)) && !this.hiddenFromCards.includes(String(t.id)));
+
+        if (available.length === 0) {
+            alert('لا توجد كلمات متاحة لهذا التمرين. قم بإضافة كلمات جديدة أو إعادة تعيين الكلمات المتقنة.');
+            return;
+        }
+
+        if (this.gapFillRemaining.length === 0) {
+            this.gapFillRemaining = [...available].sort(() => 0.5 - Math.random());
+            // إعادة ضبط تتبع الأسئلة المستخدمة عند بدء جولة جديدة
+            this.gapFillUsedQuestions = {};
+        }
+
+        const targetWordObj = this.gapFillRemaining[0];
+        const targetWord = targetWordObj.english;
+        const targetArabic = targetWordObj.arabic;
+        const wordId = targetWordObj.id;
+
+        // الحصول على قائمة الأسئلة المتاحة لهذه الكلمة من قاعدة البيانات
+        let questionsForWord = [];
+        if (window.gapfillDB && window.gapfillDB[wordId]) {
+            questionsForWord = window.gapfillDB[wordId];
+        }
+
+        // تهيئة قائمة الأسئلة المستخدمة لهذه الكلمة إذا لم تكن موجودة
+        if (!this.gapFillUsedQuestions[wordId]) {
+            this.gapFillUsedQuestions[wordId] = [];
+        }
+
+        // تصفية الأسئلة التي لم تُستخدم بعد
+        let availableQuestions = questionsForWord.filter(q => !this.gapFillUsedQuestions[wordId].includes(q));
+
+        let questionData = null;
+        if (availableQuestions.length > 0) {
+            // اختيار سؤال عشوائي من الأسئلة المتبقية
+            const randomIndex = Math.floor(Math.random() * availableQuestions.length);
+            questionData = availableQuestions[randomIndex];
+            this.gapFillUsedQuestions[wordId].push(questionData);
+        } else if (questionsForWord.length > 0) {
+            // إذا كانت كل الأسئلة قد استُخدمت، نعيد ضبط القائمة ونستخدم أي سؤال (دورة جديدة)
+            this.gapFillUsedQuestions[wordId] = [];
+            const randomIndex = Math.floor(Math.random() * questionsForWord.length);
+            questionData = questionsForWord[randomIndex];
+            this.gapFillUsedQuestions[wordId].push(questionData);
+        }
+
+        if (!questionData) {
+            // في حال لم يكن هناك أي سؤال للكلمة في قاعدة البيانات، نستخدم جملة افتراضية
+            console.warn(`لا يوجد سؤال محفوظ للكلمة ${targetWord} (${wordId})، استخدام جملة افتراضية.`);
+            const dummyOptions = [targetWord, ...allTerms.filter(t => t.english !== targetWord).map(t => t.english).slice(0, 3)];
+            while (dummyOptions.length < 4) dummyOptions.push('???');
+            this.shuffleArray(dummyOptions);
+            questionData = {
+                sentence: `I ______ the ${targetWord} every day.`,
+                options: dummyOptions,
+                originalSentence: `I ${targetWord} the ${targetWord} every day.`
+            };
+        }
+
         // تأكد من وجود 4 خيارات
         while (questionData.options.length < 4) questionData.options.push('???');
         this.shuffleArray(questionData.options);
-    }
 
-    this.gapFillCurrentQuestion = {
-        text: questionData.sentence,
-        correct: targetWord,
-        arabic: targetArabic,
-        originalSentence: questionData.originalSentence || '',
-        originalSentenceArabic: ''
-    };
-    this.gapFillOptions = questionData.options;
-    this.gapFillAnswered = false;
-    this.gapFillResult = null;
-    this.gapFillExplanation = '';
-    this.gapFillOptionsMeanings = [];
-    this.gapFillExplanationVisible = false;
-    this.render();
-}
-async generateGapFillWithGemini(targetWord, lessonContent, allEnglishWords) {
-    const apiKey = "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"; // مفتاحك
-    const model = "google/flan-t5-small"; // نموذج أصغر وأسرع (جيد للجمل البسيطة)
-
-    const prompt = `Create a new simple sentence using the word "${targetWord}". Replace the word with "______". Then give 4 options: the correct word and three wrong words from this list: ${allEnglishWords.join(', ')}. Return ONLY a JSON object like: {"sentence": "I ______ a book.", "options": ["read", "write", "cook", "run"], "originalSentence": "I read a book."}`;
-
-    let attempts = 0;
-    const maxAttempts = 3;
-
-    while (attempts < maxAttempts) {
-        try {
-            const response = await fetch(`https://api-inference.huggingface.co/models/${model}`, {
-                method: 'POST',
-                headers: {
-                    'Authorization': `Bearer ${apiKey}`,
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    inputs: prompt,
-                    parameters: {
-                        max_length: 300,
-                        temperature: 0.7,
-                        return_full_text: false
-                    }
-                })
-            });
-
-            if (response.status === 503) {
-                // النموذج قيد التحميل
-                attempts++;
-                if (attempts < maxAttempts) {
-                    console.log(`⏳ النموذج قيد التحميل، إعادة المحاولة بعد 3 ثوانٍ... (${attempts}/${maxAttempts})`);
-                    await new Promise(resolve => setTimeout(resolve, 3000));
-                    continue;
-                } else {
-                    alert('الخدمة لا تزال تحمّل النموذج. حاول مرة أخرى بعد دقيقة.');
-                    return null;
-                }
-            }
-
-            if (!response.ok) {
-                const errorText = await response.text();
-                console.error(`❌ Hugging Face error (${response.status}):`, errorText);
-                alert(`فشل الاتصال (${response.status}). تأكد من المفتاح ومن اتصال الإنترنت.`);
-                return null;
-            }
-
-            const data = await response.json();
-            let generatedText = data[0]?.generated_text || '';
-
-            // استخراج JSON (قد يكون داخل نص)
-            const jsonMatch = generatedText.match(/\{[\s\S]*\}/);
-            if (jsonMatch) {
-                try {
-                    const parsed = JSON.parse(jsonMatch[0]);
-                    if (parsed.sentence && parsed.options && parsed.options.includes(targetWord)) {
-                        while (parsed.options.length < 4) parsed.options.push('???');
-                        if (!parsed.originalSentence) {
-                            parsed.originalSentence = parsed.sentence.replace('______', targetWord);
-                        }
-                        return parsed;
-                    }
-                } catch (e) {
-                    console.warn('خطأ في تحليل JSON', e);
-                }
-            }
-
-            // إذا فشل استخراج JSON، نحاول إنشاء جملة بسيطة
-            console.warn('لم نستطع استخراج JSON، نستخدم جملة احتياطية');
-            const fallbackSentence = `I ______ the ${targetWord} every day.`;
-            return {
-                sentence: fallbackSentence.replace(targetWord, '______'),
-                options: [targetWord, ...allEnglishWords.filter(w => w !== targetWord).slice(0, 3)],
-                originalSentence: fallbackSentence
-            };
-        } catch (e) {
-            console.error('❌ خطأ في الطلب:', e);
-            attempts++;
-            if (attempts < maxAttempts) {
-                await new Promise(resolve => setTimeout(resolve, 2000));
-            } else {
-                alert(`خطأ في الاتصال: ${e.message}`);
-                return null;
-            }
-        }
-    }
-    return null;
-}
-    generateLocalGapFill(targetWord, targetArabic, lessonContent, allTerms) {
-        const sentences = lessonContent.split(/[.!?]+/).map(s => s.trim()).filter(s => s.length > 0);
-        const regex = new RegExp(`\\b${this.escapeRegex(targetWord)}\\b`, 'i');
-        let originalSentence = sentences.find(s => regex.test(s));
-        if (!originalSentence) {
-            originalSentence = `The word "${targetWord}" is used in this sentence.`;
-        }
-        const sentenceWithBlank = originalSentence.replace(regex, '______');
-
-        const otherWords = allTerms.filter(t => t.english !== targetWord && !this.masteredWords.includes(String(t.id)) && !this.hiddenFromCards.includes(String(t.id)))
-                                   .map(t => t.english);
-        const shuffled = [...otherWords].sort(() => 0.5 - Math.random());
-        const wrongOptions = shuffled.slice(0, 3);
-        while (wrongOptions.length < 3) wrongOptions.push(targetWord + '?');
-        const options = [targetWord, ...wrongOptions];
-        this.shuffleArray(options);
-
-        return { sentence: sentenceWithBlank, options, originalSentence };
-    }
-
-    escapeRegex(str) {
-        return str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+        this.gapFillCurrentQuestion = {
+            text: questionData.sentence,
+            correct: targetWord,
+            arabic: targetArabic,
+            originalSentence: questionData.originalSentence || '',
+            originalSentenceArabic: ''
+        };
+        this.gapFillOptions = questionData.options;
+        this.gapFillAnswered = false;
+        this.gapFillResult = null;
+        this.gapFillExplanation = '';
+        this.gapFillOptionsMeanings = [];
+        this.gapFillExplanationVisible = false;
+        this.render();
     }
 
     handleGapFillAnswer(selectedEnglish) {
@@ -2111,97 +2032,7 @@ async generateGapFillWithGemini(targetWord, lessonContent, allEnglishWords) {
         return false;
     }
 
-    async generateAILesson(level) {
-        let levelDesc = '';
-        if (level === 'beginner') levelDesc = 'A1-A2 (مبتدئ)';
-        else if (level === 'intermediate') levelDesc = 'B1-B2 (متوسط)';
-        else levelDesc = 'C1-C2 (متقدم)';
-
-        const prompt = `قم بإنشاء درس جديد لتعلم اللغة الإنجليزية للمستوى ${levelDesc}. المطلوب:
-- عنوان الدرس (بالانجليزية)
-- نص قصير (5-7 جمل) يتضمن كلمات مفيدة
-- قائمة من 10-12 كلمة مع ترجمتها العربية
-أعد الإجابة بتنسيق JSON كالتالي:
-{
-  "title": "عنوان الدرس بالانجليزية",
-  "content": "نص الدرس بالانجليزية (جمل كاملة)",
-  "terms": [
-    {"id": "ai_1", "english": "word1", "arabic": "ترجمة1"},
-    {"id": "ai_2", "english": "word2", "arabic": "ترجمة2"},
-    ...
-  ]
-}
-تأكد من أن الكلمات موجودة في النص.`;
-
-        try {
-            const apiKey = "AIzaSyA61WmhHPYBwojm50jKg5LEppeKja7NDaQ";
-            const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    contents: [{ parts: [{ text: prompt }] }],
-                    generationConfig: { temperature: 0.8, maxOutputTokens: 800 }
-                })
-            });
-            if (!response.ok) throw new Error('API error');
-            const data = await response.json();
-            const text = data.candidates[0].content.parts[0].text;
-            const jsonMatch = text.match(/\{[\s\S]*\}/);
-            if (jsonMatch) {
-                const parsed = JSON.parse(jsonMatch[0]);
-                if (parsed.title && parsed.content && parsed.terms && parsed.terms.length > 0) {
-                    const id = 'ai_' + Date.now() + '_' + Math.random().toString(36).substr(2, 6);
-                    const newLesson = {
-                        id: id,
-                        title: parsed.title,
-                        content: parsed.content,
-                        terms: parsed.terms,
-                        audio: `audio/${id}.mp3`
-                    };
-                    this.generatedLessons[id] = {
-                        ...newLesson,
-                        level: level,
-                        isGenerated: true
-                    };
-                    window.lessonsData[id] = newLesson;
-                    this.saveUserData();
-                    this.showCustomModal('success', '✨', 'تم إنشاء الدرس بنجاح! يمكنك الآن فتحه من قائمة الدروس.');
-                    if (this.currentPage === 'lessons') {
-                        this.render();
-                    }
-                    return true;
-                }
-            }
-            throw new Error('Invalid response format');
-        } catch (e) {
-            console.error('AI generation failed:', e);
-            this.showCustomModal('error', '❌', 'فشل إنشاء الدرس. يرجى المحاولة مرة أخرى.');
-            return false;
-        }
-    }
-
-    deleteGeneratedLesson(lessonId) {
-        if (confirm('هل أنت متأكد من حذف هذا الدرس؟ لا يمكن استعادته.')) {
-            delete this.generatedLessons[lessonId];
-            delete window.lessonsData[lessonId];
-            this.userVocabulary = this.userVocabulary.filter(v => v.lessonId !== lessonId);
-            this.masteredWords = this.masteredWords.filter(id => !id.startsWith(lessonId));
-            this.unlockedLessons = this.unlockedLessons.filter(id => id !== lessonId);
-            this.saveUserData();
-            this.render();
-            this.showCustomModal('info', '🗑️', 'تم حذف الدرس بنجاح.');
-        }
-    }
-
-    async regenerateAILesson(level, oldId) {
-        if (confirm('سيتم إنشاء درس جديد بدلاً من الدرس الحالي. هل تريد المتابعة؟')) {
-            const success = await this.generateAILesson(level);
-            if (success) {
-                this.deleteGeneratedLesson(oldId);
-            }
-        }
-    }
-
+    // ================== دوال إضافة الدرس يدوي ==================
     handleNewWord() {
         const eng = document.getElementById('newEng').value.trim();
         const arb = document.getElementById('newArb').value.trim();
@@ -2243,6 +2074,7 @@ async generateGapFillWithGemini(targetWord, lessonContent, allEnglishWords) {
         return null;
     }
 
+    // ================== الأحداث العامة ==================
     setupGlobalEvents() {
         document.addEventListener('click', (e) => {
             const btn = e.target.closest('[data-action]');
@@ -2555,16 +2387,8 @@ async generateGapFillWithGemini(targetWord, lessonContent, allEnglishWords) {
                     this.showProfile();
                     break;
 
-                case 'generateAILesson':
-                    this.generateAILesson(param);
-                    break;
-                case 'deleteGeneratedLesson':
-                    this.deleteGeneratedLesson(param);
-                    break;
-                case 'regenerateAILesson':
-                    const [lvl, old] = param.split(',');
-                    this.regenerateAILesson(lvl, old);
-                    break;
+                // إزالة الأحداث المتعلقة بالذكاء الاصطناعي
+                // لن يتم التعامل معها لأننا حذفنا الدوال
             }
             this.render();
         });
@@ -2576,6 +2400,7 @@ async generateGapFillWithGemini(targetWord, lessonContent, allEnglishWords) {
         });
     }
 
+    // ================== دوال المصادقة ==================
     handleAuth() {
         const name = document.getElementById('authName')?.value;
         const email = document.getElementById('authEmail')?.value;
@@ -2697,6 +2522,7 @@ async generateGapFillWithGemini(targetWord, lessonContent, allEnglishWords) {
         }
     }
 
+    // ================== دوال الأوسمة ==================
     getBadgesDisplay() {
         const earnedBadges = this.userStats.badges || [];
         const badgeNames = { '🥉': 'برونزي', '🥈': 'فضي', '🥇': 'ذهبي', '👑': 'ماسي' };
@@ -2733,6 +2559,7 @@ async generateGapFillWithGemini(targetWord, lessonContent, allEnglishWords) {
         this.showCustomModal('info', '🏅 الأوسمة', badgesHtml);
     }
 
+    // ================== دوال العرض ==================
     render() {
         const app = document.getElementById('app');
         if (!app) return;
@@ -3036,10 +2863,11 @@ async generateGapFillWithGemini(targetWord, lessonContent, allEnglishWords) {
             else if (this.selectedLevel === 'intermediate') testLevelParam = 'intermediate';
             else if (this.selectedLevel === 'advanced') testLevelParam = 'advanced';
 
-            const generateButton = `
-                <div class="feature-card" data-action="generateAILesson" data-param="${this.selectedLevel}" style="border: 2px dashed #8b5cf6; background: linear-gradient(135deg, #f5f0ff, #e9e4ff);">
-                    <h3>✨ توليد درس جديد بالذكاء الاصطناعي</h3>
-                    <p style="font-size:0.9rem; margin-top:5px;">أنشئ درساً مناسباً لمستواك الحالي</p>
+            // زر إضافة درس يدوي
+            const addLessonButton = `
+                <div class="feature-card" data-action="setPage" data-param="addLesson" style="border: 2px dashed #10b981; background: linear-gradient(135deg, #e0f2e9, #d1fae5);">
+                    <h3>📝 إضافة درس يدوي</h3>
+                    <p style="font-size:0.9rem; margin-top:5px;">أضف درساً خاصاً بك عن طريق لصق النص والكلمات</p>
                 </div>
             `;
 
@@ -3064,7 +2892,7 @@ async generateGapFillWithGemini(targetWord, lessonContent, allEnglishWords) {
                             ` : ''}
                           </div>`;
             }).join('')}
-                    ${generateButton}
+                    ${addLessonButton}
                 </div>
             </main>`;
         }
