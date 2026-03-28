@@ -7060,8 +7060,6 @@ window.lessonsData = {
 }
 };
 
-};
-
 window.placementBank = {
   "A1": [  
     {"q": "She ___ a doctor.", "options": ["am", "is", "are"], "correct": "is"},
