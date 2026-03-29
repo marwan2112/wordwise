@@ -6389,6 +6389,2935 @@ window.gapfillDB = {
             originalSentence: "That is a great idea! Let's go cycling in the park."
         }
     ],
+    // استكمال gapfillDB.js - الدرس رقم 21
+    "21-1": [
+        {
+            sentence: "We use the ______ to talk about things that happened yesterday.",
+            options: ["Past tense", "Future tense", "Present simple", "Worksheet"],
+            originalSentence: "We use the Past tense to talk about things that happened yesterday."
+        }
+    ],
+    "21-2": [
+        {
+            sentence: "A ______ is a verb that ends with -ed in the past.",
+            options: ["Regular verb", "Irregular verb", "Adjective", "Noun"],
+            originalSentence: "A Regular verb is a verb that ends with -ed in the past."
+        }
+    ],
+    "21-3": [
+        {
+            sentence: "Did you see what ______ in the street a few minutes ago?",
+            options: ["Happened", "Added", "Praised", "Folded"],
+            originalSentence: "Did you see what happened in the street a few minutes ago?"
+        }
+    ],
+    "21-4": [
+        {
+            sentence: "To make the past tense of 'walk', you must ______ -ed to the end.",
+            options: ["Add", "Dry", "Iron", "Comb"],
+            originalSentence: "To make the past tense of 'walk', you must Add -ed to the end."
+        }
+    ],
+    "21-5": [
+        {
+            sentence: "Can you give me an ______ of a sentence in the past tense?",
+            options: ["Example", "Worksheet", "Cried", "Stayed"],
+            originalSentence: "Can you give me an Example of a sentence in the past tense?"
+        }
+    ],
+    "21-6": [
+        {
+            sentence: "Last summer, my family ______ our grandparents in the village.",
+            options: ["Visited", "Painted", "Clapped", "Picked"],
+            originalSentence: "Last summer, my family Visited our grandparents in the village."
+        }
+    ],
+    "21-7": [
+        {
+            sentence: "My mother ______ a delicious traditional dinner for us last night.",
+            options: ["Cooked", "Jumped", "Answered", "Danced"],
+            originalSentence: "My mother Cooked a delicious traditional dinner for us last night."
+        }
+    ],
+    "21-8": [
+        {
+            sentence: "The soldiers ______ to their base after a long mission.",
+            options: ["Returned", "Planted", "Smiled", "Combed"],
+            originalSentence: "The soldiers Returned to their base after a long mission."
+        }
+    ],
+    "21-9": [
+        {
+            sentence: "The artist ______ a beautiful picture of the mountains.",
+            options: ["Painted", "Dressed", "Hated", "Kicked"],
+            originalSentence: "The artist Painted a beautiful picture of the mountains."
+        }
+    ],
+    "21-10": [
+        {
+            sentence: "The teacher ______ the students the correct way to solve the problem.",
+            options: ["Showed", "Pushed", "Cried", "Ironed"],
+            originalSentence: "The teacher Showed the students the correct way to solve the problem."
+        }
+    ],
+    "21-11": [
+        {
+            sentence: "We ______ the whole house before the guests arrived.",
+            options: ["Cleaned", "Rested", "Cheered", "Carried"],
+            originalSentence: "We Cleaned the whole house before the guests arrived."
+        }
+    ],
+    "21-12": [
+        {
+            sentence: "The officer ______ the young man for his bravery and honesty.",
+            options: ["Praised", "Touched", "Started", "Baked"],
+            originalSentence: "The officer Praised the young man for his bravery and honesty."
+        }
+    ],
+    "21-13": [
+        {
+            sentence: "The cat ______ over the fence to catch the bird.",
+            options: ["Jumped", "Folded", "Studied", "Listened"],
+            originalSentence: "The cat Jumped over the fence to catch the bird."
+        }
+    ],
+    "21-14": [
+        {
+            sentence: "The player ______ the ball so hard that it went out of the stadium.",
+            options: ["Kicked", "Smiled", "Needed", "Stayed"],
+            originalSentence: "The player Kicked the ball so hard that it went out of the stadium."
+        }
+    ],
+    "21-15": [
+        {
+            sentence: "I ______ the heavy door, but it was locked from the inside.",
+            options: ["Pushed", "Pulled", "Finished", "Climbed"],
+            originalSentence: "I Pushed the heavy door, but it was locked from the inside."
+        }
+    ],
+    "21-16": [
+        {
+            sentence: "She ______ the drawer to look for her keys.",
+            options: ["Pulled", "Opened", "Closed", "Washed"],
+            originalSentence: "She Pulled the drawer to look for her keys."
+        }
+    ],
+    "21-17": [
+        {
+            sentence: "He ______ the window to let some fresh air into the room.",
+            options: ["Opened", "Cried", "Laughed", "Stayed"],
+            originalSentence: "He Opened the window to let some fresh air into the room."
+        }
+    ],
+    "21-18": [
+        {
+            sentence: "Please make sure you ______ all the doors before you go to sleep.",
+            options: ["Closed", "Enjoyed", "Harvested", "Planted"],
+            originalSentence: "Please make sure you Closed all the doors before you go to sleep."
+        }
+    ],
+    "21-19": [
+        {
+            sentence: "The students ______ carefully to the news on the radio.",
+            options: ["Listened", "Brushed", "Cheered", "Touched"],
+            originalSentence: "The students Listened carefully to the news on the radio."
+        }
+    ],
+    "21-20": [
+        {
+            sentence: "She ______ all the questions in the exam correctly.",
+            options: ["Answered", "Wanted", "Baked", "Dressed"],
+            originalSentence: "She Answered all the questions in the exam correctly."
+        }
+    ],
+    "21-21": [
+        {
+            sentence: "He ______ very hard for the test and got a high mark.",
+            options: ["Studied", "Stayed", "Jumped", "Painted"],
+            originalSentence: "He Studied very hard for the test and got a high mark."
+        }
+    ],
+    "21-22": [
+        {
+            sentence: "The workers ______ the heavy boxes to the truck.",
+            options: ["Carried", "Cried", "Enjoyed", "Laughed"],
+            originalSentence: "The workers Carried the heavy boxes to the truck."
+        }
+    ],
+    "21-23": [
+        {
+            sentence: "The little boy ______ because he lost his favorite toy.",
+            options: ["Cried", "Smiled", "Cheered", "Harvested"],
+            originalSentence: "The little boy Cried because he lost his favorite toy."
+        }
+    ],
+    "21-24": [
+        {
+            sentence: "We ______ the movie very much; it was very funny.",
+            options: ["Enjoyed", "Hated", "Needed", "Started"],
+            originalSentence: "We Enjoyed the movie very much; it was very funny."
+        }
+    ],
+    "21-25": [
+        {
+            sentence: "I ______ the taste of onions when I was a child.",
+            options: ["Hated", "Wanted", "Needed", "Stayed"],
+            originalSentence: "I Hated the taste of onions when I was a child."
+        }
+    ],
+    "21-26": [
+        {
+            sentence: "She ______ to buy a new car, but she didn't have enough money.",
+            options: ["Wanted", "Traveled", "Waited", "Finished"],
+            originalSentence: "She Wanted to buy a new car, but she didn't have enough money."
+        }
+    ],
+    "21-27": [
+        {
+            sentence: "I ______ some help with my homework yesterday.",
+            options: ["Needed", "Smiled", "Danced", "Dressed"],
+            originalSentence: "I Needed some help with my homework yesterday."
+        }
+    ],
+    "21-28": [
+        {
+            sentence: "They ______ for the bus for over thirty minutes in the rain.",
+            options: ["Waited", "Started", "Finished", "Climbed"],
+            originalSentence: "They Waited for the bus for over thirty minutes in the rain."
+        }
+    ],
+    "21-29": [
+        {
+            sentence: "The football match ______ at 6:00 PM sharp.",
+            options: ["Started", "Finished", "Stayed", "Traveled"],
+            originalSentence: "The football match Started at 6:00 PM sharp."
+        }
+    ],
+    "21-30": [
+        {
+            sentence: "She ______ her work early and went home.",
+            options: ["Finished", "Stayed", "Studied", "Carried"],
+            originalSentence: "She Finished her work early and went home."
+        }
+    ],
+    "21-31": [
+        {
+            sentence: "We ______ at a very nice hotel during our vacation.",
+            options: ["Stayed", "Traveled", "Climbed", "Planted"],
+            originalSentence: "We Stayed at a very nice hotel during our vacation."
+        }
+    ],
+    "21-32": [
+        {
+            sentence: "My uncle ______ to many countries when he was young.",
+            options: ["Traveled", "Climbed", "Planted", "Harvested"],
+            originalSentence: "My uncle Traveled to many countries when he was young."
+        }
+    ],
+    "21-33": [
+        {
+            sentence: "The hikers ______ the mountain to see the sunrise.",
+            options: ["Climbed", "Danced", "Smiled", "Laughed"],
+            originalSentence: "The hikers Climbed the mountain to see the sunrise."
+        }
+    ],
+    "21-34": [
+        {
+            sentence: "The farmer ______ the seeds in the early spring.",
+            options: ["Planted", "Harvested", "Baked", "Washed"],
+            originalSentence: "The farmer Planted the seeds in the early spring."
+        }
+    ],
+    "21-35": [
+        {
+            sentence: "They ______ the wheat after it turned golden in the sun.",
+            options: ["Harvested", "Danced", "Smiled", "Laughed"],
+            originalSentence: "They Harvested the wheat after it turned golden in the sun."
+        }
+    ],
+    "21-36": [
+        {
+            sentence: "Everyone ______ at the wedding party last night.",
+            options: ["Danced", "Dried", "Ironed", "Folded"],
+            originalSentence: "Everyone Danced at the wedding party last night."
+        }
+    ],
+    "21-37": [
+        {
+            sentence: "She ______ at me when I walked into the room.",
+            options: ["Smiled", "Laughed", "Brushed", "Combed"],
+            originalSentence: "She Smiled at me when I walked into the room."
+        }
+    ],
+    "21-38": [
+        {
+            sentence: "We all ______ at the funny joke he told us.",
+            options: ["Laughed", "Dressed", "Rested", "Clapped"],
+            originalSentence: "We all Laughed at the funny joke he told us."
+        }
+    ],
+    "21-39": [
+        {
+            sentence: "My grandmother ______ fresh bread every morning.",
+            options: ["Baked", "Washed", "Dried", "Ironed"],
+            originalSentence: "My grandmother Baked fresh bread every morning."
+        }
+    ],
+    "21-40": [
+        {
+            sentence: "I ______ all the dirty dishes after lunch.",
+            options: ["Washed", "Dried", "Ironed", "Folded"],
+            originalSentence: "I Washed all the dirty dishes after lunch."
+        }
+    ],
+    "21-41": [
+        {
+            sentence: "She ______ the clothes in the sun until they were ready.",
+            options: ["Dried", "Ironed", "Folded", "Brushed"],
+            originalSentence: "She Dried the clothes in the sun until they were ready."
+        }
+    ],
+    "21-42": [
+        {
+            sentence: "My father ______ his white shirt for the meeting.",
+            options: ["Ironed", "Folded", "Brushed", "Combed"],
+            originalSentence: "My father Ironed his white shirt for the meeting."
+        }
+    ],
+    "21-43": [
+        {
+            sentence: "I ______ the clean towels and put them in the cupboard.",
+            options: ["Folded", "Brushed", "Combed", "Dressed"],
+            originalSentence: "I Folded the clean towels and put them in the cupboard."
+        }
+    ],
+    "21-44": [
+        {
+            sentence: "He ______ his teeth before going to bed.",
+            options: ["Brushed", "Combed", "Dressed", "Rested"],
+            originalSentence: "He Brushed his teeth before going to bed."
+        }
+    ],
+    "21-45": [
+        {
+            sentence: "She ______ her hair in front of the mirror.",
+            options: ["Combed", "Dressed", "Rested", "Clapped"],
+            originalSentence: "She Combed her hair in front of the mirror."
+        }
+    ],
+    "21-46": [
+        {
+            sentence: "He ______ quickly and ran to catch the school bus.",
+            options: ["Dressed", "Rested", "Clapped", "Cheered"],
+            originalSentence: "He Dressed quickly and ran to catch the school bus."
+        }
+    ],
+    "21-47": [
+        {
+            sentence: "After a long walk, we ______ under a big tree.",
+            options: ["Rested", "Clapped", "Cheered", "Picked"],
+            originalSentence: "After a long walk, we Rested under a big tree."
+        }
+    ],
+    "21-48": [
+        {
+            sentence: "The audience ______ loudly after the beautiful performance.",
+            options: ["Clapped", "Cheered", "Picked", "Touched"],
+            originalSentence: "The audience Clapped loudly after the beautiful performance."
+        }
+    ],
+    "21-49": [
+        {
+            sentence: "The fans ______ for their team during the final match.",
+            options: ["Cheered", "Picked", "Touched", "Answered"],
+            originalSentence: "The fans Cheered for their team during the final match."
+        }
+    ],
+    "21-50": [
+        {
+            sentence: "The children ______ apples from the trees in the garden.",
+            options: ["Picked", "Touched", "Answered", "Studied"],
+            originalSentence: "The children Picked to pieces apples from the trees in the garden."
+        }
+    ],
+    "21-51": [
+        {
+            sentence: "Don't ______ the wet paint on the wall!",
+            options: ["Touch", "Answer", "Study", "Carry"],
+            originalSentence: "Don't Touch the wet paint on the wall!"
+        }
+    ],
+    "21-52": [
+        {
+            sentence: "Please complete all the exercises on this ______.",
+            options: ["Worksheet", "Past tense", "Regular verb", "Example"],
+            originalSentence: "Please complete all the exercises on this Worksheet."
+        }
+    ],
+    // استكمال gapfillDB.js - الدرس رقم 22
+    "22-1": [
+        {
+            sentence: "An ______ does not follow the -ed rule in the past tense.",
+            options: ["Irregular verb", "Regular verb", "Special", "Proud"],
+            originalSentence: "An Irregular verb does not follow the -ed rule in the past tense."
+        }
+    ],
+    "22-2": [
+        {
+            sentence: "Some verbs completely ______ their spelling when we talk about the past.",
+            options: ["Change", "Memorize", "Understand", "Choose"],
+            originalSentence: "Some verbs completely Change their spelling when we talk about the past."
+        }
+    ],
+    "22-3": [
+        {
+            sentence: "Irregular verbs are ______ because each one has its own past form.",
+            options: ["Special", "Tricky", "Proud", "Worksheet"],
+            originalSentence: "Irregular verbs are Special because each one has its own past form."
+        }
+    ],
+    "22-4": [
+        {
+            sentence: "You need to ______ these verbs because there is no simple rule for them.",
+            options: ["Memorize", "Change", "Throw", "Draw"],
+            originalSentence: "You need to Memorize these verbs because there is no simple rule for them."
+        }
+    ],
+    "22-5": [
+        {
+            sentence: "Yesterday, my brother ______ to the market to buy some fruit.",
+            options: ["Went", "Came", "Ran", "Flew"],
+            originalSentence: "Yesterday, my brother Went to the market to buy some fruit."
+        }
+    ],
+    "22-6": [
+        {
+            sentence: "I ______ a very large bird in the garden this morning.",
+            options: ["Saw", "Heard", "Told", "Thought"],
+            originalSentence: "I Saw a very large bird in the garden this morning."
+        }
+    ],
+    "22-7": [
+        {
+            sentence: "She ______ a new dress for the party last week.",
+            options: ["Bought", "Brought", "Caught", "Taught"],
+            originalSentence: "She Bought a new dress for the party last week."
+        }
+    ],
+    "22-8": [
+        {
+            sentence: "We ______ lunch at a small restaurant near the beach.",
+            options: ["Ate", "Drank", "Slept", "Sat"],
+            originalSentence: "We Ate lunch at a small restaurant near the beach."
+        }
+    ],
+    "22-9": [
+        {
+            sentence: "He was very thirsty, so he ______ a large glass of water.",
+            options: ["Drank", "Ate", "Took", "Gave"],
+            originalSentence: "He was very thirsty, so he Drank a large glass of water."
+        }
+    ],
+    "22-10": [
+        {
+            sentence: "Last night, I ______ an interesting story before going to bed.",
+            options: ["Read", "Wrote", "Spoke", "Said"],
+            originalSentence: "Last night, I Read an interesting story before going to bed."
+        }
+    ],
+    "22-11": [
+        {
+            sentence: "The student ______ his name on the top of the worksheet.",
+            options: ["Wrote", "Drew", "Knew", "Grew"],
+            originalSentence: "The student Wrote his name on the top of the worksheet."
+        }
+    ],
+    "22-12": [
+        {
+            sentence: "He ______ his umbrella with him because it was raining.",
+            options: ["Took", "Gave", "Kept", "Brought"],
+            originalSentence: "He Took his umbrella with him because it was raining."
+        }
+    ],
+    "22-13": [
+        {
+            sentence: "The teacher ______ us some extra time to finish the exam.",
+            options: ["Gave", "Took", "Taught", "Told"],
+            originalSentence: "The teacher Gave us some extra time to finish the exam."
+        }
+    ],
+    "22-14": [
+        {
+            sentence: "We ______ in the cold lake for two hours yesterday.",
+            options: ["Swam", "Ran", "Rode", "Drove"],
+            originalSentence: "We Swam in the cold lake for two hours yesterday."
+        }
+    ],
+    "22-15": [
+        {
+            sentence: "My cousins ______ to visit us all the way from another city.",
+            options: ["Came", "Went", "Flew", "Ran"],
+            originalSentence: "My cousins Came to visit us all the way from another city."
+        }
+    ],
+    "22-16": [
+        {
+            sentence: "The dog ______ after the ball as fast as it could.",
+            options: ["Ran", "Swam", "Rode", "Flew"],
+            originalSentence: "The dog Ran after the ball as fast as it could."
+        }
+    ],
+    "22-17": [
+        {
+            sentence: "She ______ a beautiful song at the school concert.",
+            options: ["Sang", "Spoke", "Said", "Told"],
+            originalSentence: "She Sang a beautiful song at the school concert."
+        }
+    ],
+    "22-18": [
+        {
+            sentence: "When I was a child, I ______ my bicycle every day.",
+            options: ["Rode", "Drove", "Flew", "Ran"],
+            originalSentence: "When I was a child, I Rode my bicycle every day."
+        }
+    ],
+    "22-19": [
+        {
+            sentence: "My father ______ us to the mountains last weekend.",
+            options: ["Drove", "Rode", "Flew", "Swam"],
+            originalSentence: "My father Drove us to the mountains last weekend."
+        }
+    ],
+    "22-20": [
+        {
+            sentence: "The pilot ______ the plane safely through the storm.",
+            options: ["Flew", "Drove", "Rode", "Came"],
+            originalSentence: "The pilot Flew the plane safely through the storm."
+        }
+    ],
+    "22-21": [
+        {
+            sentence: "The plants in the garden ______ very fast after the rain.",
+            options: ["Grew", "Knew", "Threw", "Drew"],
+            originalSentence: "The plants in the garden Grew very fast after the rain."
+        }
+    ],
+    "22-22": [
+        {
+            sentence: "I ______ the answer to the question, but I was too shy to speak.",
+            options: ["Knew", "Thought", "Understood", "Heard"],
+            originalSentence: "I Knew the answer to the question, but I was too shy to speak."
+        }
+    ],
+    "22-23": [
+        {
+            sentence: "He ______ the ball to his friend across the field.",
+            options: ["Threw", "Grew", "Knew", "Drew"],
+            originalSentence: "He Threw the ball to his friend across the field."
+        }
+    ],
+    "22-24": [
+        {
+            sentence: "The little girl ______ a picture of her family on the paper.",
+            options: ["Drew", "Wrote", "Taught", "Brought"],
+            originalSentence: "The little girl Drew a picture of her family on the paper."
+        }
+    ],
+    "22-25": [
+        {
+            sentence: "Yesterday, he ______ his favorite blue jacket.",
+            options: ["Wore", "Broke", "Chose", "Slept"],
+            originalSentence: "Yesterday, he Wore his favorite blue jacket."
+        }
+    ],
+    "22-26": [
+        {
+            sentence: "I was so tired that I ______ for ten hours last night.",
+            options: ["Slept", "Kept", "Felt", "Met"],
+            originalSentence: "I was so tired that I Slept for ten hours last night."
+        }
+    ],
+    "22-27": [
+        {
+            sentence: "She ______ all her old letters in a small wooden box.",
+            options: ["Kept", "Slept", "Felt", "Met"],
+            originalSentence: "She Kept all her old letters in a small wooden box."
+        }
+    ],
+    "22-28": [
+        {
+            sentence: "I ______ very happy when I heard the good news.",
+            options: ["Felt", "Slept", "Kept", "Met"],
+            originalSentence: "I Felt very happy when I heard the good news."
+        }
+    ],
+    "22-29": [
+        {
+            sentence: "We ______ our new neighbors for the first time yesterday.",
+            options: ["Met", "Spoke", "Said", "Told"],
+            originalSentence: "We Met our new neighbors for the first time yesterday."
+        }
+    ],
+    "22-30": [
+        {
+            sentence: "The manager ______ to the staff about the new rules.",
+            options: ["Spoke", "Said", "Told", "Heard"],
+            originalSentence: "The manager Spoke to the staff about the new rules."
+        }
+    ],
+    "22-31": [
+        {
+            sentence: "I ______ a strange noise coming from the kitchen.",
+            options: ["Heard", "Saw", "Said", "Thought"],
+            originalSentence: "I Heard a strange noise coming from the kitchen."
+        }
+    ],
+    "22-32": [
+        {
+            sentence: "She ______ that she would be late for the meeting.",
+            options: ["Said", "Told", "Spoke", "Heard"],
+            originalSentence: "She Said that she would be late for the meeting."
+        }
+    ],
+    "22-33": [
+        {
+            sentence: "He ______ me a secret and asked me not to share it.",
+            options: ["Told", "Said", "Spoke", "Understood"],
+            originalSentence: "He Told me a secret and asked me not to share it."
+        }
+    ],
+    "22-34": [
+        {
+            sentence: "I ______ about the problem all day, but I couldn't find a solution.",
+            options: ["Thought", "Brought", "Caught", "Taught"],
+            originalSentence: "I Thought about the problem all day, but I couldn't find a solution."
+        }
+    ],
+    "22-35": [
+        {
+            sentence: "Everyone ______ some food to share at the picnic.",
+            options: ["Brought", "Bought", "Caught", "Taught"],
+            originalSentence: "Everyone Brought some food to share at the picnic."
+        }
+    ],
+    "22-36": [
+        {
+            sentence: "The police ______ the thief after a long chase.",
+            options: ["Caught", "Bought", "Brought", "Taught"],
+            originalSentence: "The police Caught the thief after a long chase."
+        }
+    ],
+    "22-37": [
+        {
+            sentence: "My grandfather ______ me how to fish when I was young.",
+            options: ["Taught", "Thought", "Bought", "Caught"],
+            originalSentence: "My grandfather Taught me how to fish when I was young."
+        }
+    ],
+    "22-38": [
+        {
+            sentence: "We ______ on the floor because there were no chairs.",
+            options: ["Sat", "Stood", "Slept", "Met"],
+            originalSentence: "We Sat on the floor because there were no chairs."
+        }
+    ],
+    "22-39": [
+        {
+            sentence: "The soldiers ______ at attention during the ceremony.",
+            options: ["Stood", "Sat", "Slept", "Wore"],
+            originalSentence: "The soldiers Stood at attention during the ceremony."
+        }
+    ],
+    "22-40": [
+        {
+            sentence: "I finally ______ the lesson after the teacher explained it again.",
+            options: ["Understood", "Thought", "Knew", "Said"],
+            originalSentence: "I finally Understood the lesson after the teacher explained it again."
+        }
+    ],
+    "22-41": [
+        {
+            sentence: "She ______ the red dress instead of the blue one.",
+            options: ["Chose", "Broke", "Wore", "Bought"],
+            originalSentence: "She Chose the red dress instead of the blue one."
+        }
+    ],
+    "22-42": [
+        {
+            sentence: "He accidentally ______ the window while playing football.",
+            options: ["Broke", "Chose", "Threw", "Took"],
+            originalSentence: "He accidentally Broke the window while playing football."
+        }
+    ],
+    "22-43": [
+        {
+            sentence: "The film ______ at 8:00 PM and lasted for two hours.",
+            options: ["Began", "Came", "Went", "Ran"],
+            originalSentence: "The film Began at 8:00 PM and lasted for two hours."
+        }
+    ],
+    "22-44": [
+        {
+            sentence: "He ______ his coat on the hook behind the door.",
+            options: ["Hung", "Broke", "Kept", "Took"],
+            originalSentence: "He Hung his coat on the hook behind the door."
+        }
+    ],
+    "22-45": [
+        {
+            sentence: "Please complete the exercises on this ______ about irregular verbs.",
+            options: ["Worksheet", "Doctrine", "Trend", "Institution"],
+            originalSentence: "Please complete the exercises on this Worksheet about irregular verbs."
+        }
+    ],
+    "22-46": [
+        {
+            sentence: "English grammar can be ______ because of all the irregular forms.",
+            options: ["Tricky", "Special", "Proud", "Academic"],
+            originalSentence: "English grammar can be Tricky because of all the irregular forms."
+        }
+    ],
+    "22-47": [
+        {
+            sentence: "Your parents will be very ______ of your high marks in English.",
+            options: ["Proud", "Tricky", "Special", "Nebulous"],
+            originalSentence: "Your parents will be very Proud of your high marks in English."
+        }
+    ],
+    // استكمال gapfillDB.js - الدرس رقم 23
+    "23-1": [
+        {
+            sentence: "Computers ______ be even smaller and faster in the future.",
+            options: ["Will", "Went", "Did", "Full"],
+            originalSentence: "Computers Will be even smaller and faster in the future."
+        }
+    ],
+    "23-2": [
+        {
+            sentence: "I ______ call you as soon as I arrive at the station.",
+            options: ["Will", "Won't", "Maybe", "Later"],
+            originalSentence: "I Will call you as soon as I arrive at the station."
+        }
+    ],
+    "23-3": [
+        {
+            sentence: "I can't talk right now, but I will speak to you ______.",
+            options: ["Later", "Tonight", "Next year", "Soon"],
+            originalSentence: "I can't talk right now, but I will speak to you Later."
+        }
+    ],
+    "23-4": [
+        {
+            sentence: "We will watch a new movie at the cinema ______.",
+            options: ["Tonight", "Next year", "Full", "Far"],
+            originalSentence: "We will watch a new movie at the cinema Tonight."
+        }
+    ],
+    "23-5": [
+        {
+            sentence: "The doctor says the patient will feel better ______.",
+            options: ["Soon", "Later", "Maybe", "Full"],
+            originalSentence: "The doctor says the patient will feel better Soon."
+        }
+    ],
+    "23-6": [
+        {
+            sentence: "My brother will start his new job ______.",
+            options: ["Next week", "Next year", "Later", "Tonight"],
+            originalSentence: "My brother will start his new job Next week."
+        }
+    ],
+    "23-7": [
+        {
+            sentence: "I think people will travel to Mars ______.",
+            options: ["Next year", "Next week", "Soon", "Tonight"],
+            originalSentence: "I think people will travel to Mars Next year."
+        }
+    ],
+    "23-8": [
+        {
+            sentence: "It ______ rain tomorrow; the sky is very clear.",
+            options: ["Won't", "Will", "Maybe", "Far"],
+            originalSentence: "It Won't rain tomorrow; the sky is very clear."
+        }
+    ],
+    "23-9": [
+        {
+            sentence: "To make a ______ sentence in the future, we use 'will not'.",
+            options: ["Negative", "Question", "Full", "Short form"],
+            originalSentence: "To make a Negative sentence in the future, we use 'will not'."
+        }
+    ],
+    "23-10": [
+        {
+            sentence: "'Won't' is the ______ of 'will not'.",
+            options: ["Short form", "Negative", "Question", "Answer"],
+            originalSentence: "'Won't' is the Short form of 'will not'."
+        }
+    ],
+    "23-11": [
+        {
+            sentence: "Can I ask you a ______ about the future plans?",
+            options: ["Question", "Answer", "Project", "Possibility"],
+            originalSentence: "Can I ask you a Question about the future plans?"
+        }
+    ],
+    "23-12": [
+        {
+            sentence: "I will give you my ______ after I think about it.",
+            options: ["Answer", "Question", "Project", "Medal"],
+            originalSentence: "I will give you my Answer after I think about it."
+        }
+    ],
+    "23-13": [
+        {
+            sentence: "The team will finish the science ______ by Friday.",
+            options: ["Project", "Recipe", "Medal", "Player"],
+            originalSentence: "The team will finish the science Project by Friday."
+        }
+    ],
+    "23-14": [
+        {
+            sentence: "Scientists say that we will never see a living ______ again.",
+            options: ["Dinosaur", "Player", "Piano", "Bag"],
+            originalSentence: "Scientists say that we will never see a living Dinosaur again."
+        }
+    ],
+    "23-15": [
+        {
+            sentence: "She will practice the ______ for three hours today.",
+            options: ["Piano", "Recipe", "Medal", "Board"],
+            originalSentence: "She will practice the Piano for three hours today."
+        }
+    ],
+    "23-16": [
+        {
+            sentence: "The stars are very ______ away from the Earth.",
+            options: ["Far", "Full", "Soon", "Later"],
+            originalSentence: "The stars are very Far away from the Earth."
+        }
+    ],
+    "23-17": [
+        {
+            sentence: "The best ______ will win a gold medal at the end.",
+            options: ["Player", "Dinosaur", "Project", "Bag"],
+            originalSentence: "The best Player will win a gold medal at the end."
+        }
+    ],
+    "23-18": [
+        {
+            sentence: "The famous author will ______ his new book next month.",
+            options: ["Publish", "Explain", "Discuss", "Prepare"],
+            originalSentence: "The famous author will Publish his new book next month."
+        }
+    ],
+    "23-19": [
+        {
+            sentence: "I will follow this ______ to make a chocolate cake.",
+            options: ["Recipe", "Medal", "Board", "Project"],
+            originalSentence: "I will follow this Recipe to make a chocolate cake."
+        }
+    ],
+    "23-20": [
+        {
+            sentence: "He will receive a silver ______ for coming in second place.",
+            options: ["Medal", "Recipe", "Board", "Bag"],
+            originalSentence: "He will receive a silver Medal for coming in second place."
+        }
+    ],
+    "23-21": [
+        {
+            sentence: "There is a ______ that it will snow in the mountains.",
+            options: ["Possibility", "Question", "Answer", "Project"],
+            originalSentence: "There is a Possibility that it will snow in the mountains."
+        }
+    ],
+    "23-22": [
+        {
+            sentence: "We are so ______ about our trip to London next week!",
+            options: ["Excited", "Full", "Far", "Negative"],
+            originalSentence: "We are so Excited about our trip to London next week!"
+        }
+    ],
+    "23-23": [
+        {
+            sentence: "We must ______ everything before the party starts.",
+            options: ["Prepare", "Discuss", "Explain", "Pack"],
+            originalSentence: "We must Prepare everything before the party starts."
+        }
+    ],
+    "23-24": [
+        {
+            sentence: "We will ______ the new budget in the meeting tomorrow.",
+            options: ["Discuss", "Prepare", "Explain", "Publish"],
+            originalSentence: "We will Discuss the new budget in the meeting tomorrow."
+        }
+    ],
+    "23-25": [
+        {
+            sentence: "The teacher will ______ the difficult lesson on the board.",
+            options: ["Explain", "Discuss", "Pack", "Publish"],
+            originalSentence: "The teacher will Explain the difficult lesson on the board."
+        }
+    ],
+    "23-26": [
+        {
+            sentence: "Please look at the ______ to see the homework assignment.",
+            options: ["Board", "Bag", "Recipe", "Medal"],
+            originalSentence: "Please look at the Board to see the homework assignment."
+        }
+    ],
+    "23-27": [
+        {
+            sentence: "______ I will buy a new phone, but I'm not sure yet.",
+            options: ["Maybe", "Tonight", "Next week", "Soon"],
+            originalSentence: "Maybe I will buy a new phone, but I'm not sure yet."
+        }
+    ],
+    "23-28": [
+        {
+            sentence: "The bus is ______; we will have to wait for the next one.",
+            options: ["Full", "Far", "Excited", "Negative"],
+            originalSentence: "The bus is Full; we will have to wait for the next one."
+        }
+    ],
+    "23-29": [
+        {
+            sentence: "I need to ______ my suitcase for the flight tomorrow.",
+            options: ["Pack", "Prepare", "Discuss", "Explain"],
+            originalSentence: "I need to Pack my suitcase for the flight tomorrow."
+        }
+    ],
+    "23-30": [
+        {
+            sentence: "Don't forget to take your ______ with you to school.",
+            options: ["Bag", "Board", "Piano", "Project"],
+            originalSentence: "Don't forget to take your Bag with you to school."
+        }
+    ],
+    // استكمال gapfillDB.js - الدرس رقم 24
+    "24-1": [
+        {
+            sentence: "The small cat sat ______ the big dog near the fireplace.",
+            options: ["Beside", "Across", "Through", "Among"],
+            originalSentence: "The small cat sat Beside the big dog near the fireplace."
+        }
+    ],
+    "24-2": [
+        {
+            sentence: "The bank is located ______ the post office on the main street.",
+            options: ["Opposite", "Along", "Towards", "Onto"],
+            originalSentence: "The bank is located Opposite the post office on the main street."
+        }
+    ],
+    "24-3": [
+        {
+            sentence: "The children ran ______ the large tree in the park.",
+            options: ["Around", "Through", "Across", "Off"],
+            originalSentence: "The children ran Around the large tree in the park."
+        }
+    ],
+    "24-4": [
+        {
+            sentence: "The train went ______ the mountain through a long dark tunnel.",
+            options: ["Through", "Along", "Beside", "Among"],
+            originalSentence: "The train went Through the mountain through a long dark tunnel."
+        }
+    ],
+    "24-5": [
+        {
+            sentence: "We had to swim ______ the river to reach the other side.",
+            options: ["Across", "Along", "Towards", "Onto"],
+            originalSentence: "We had to swim Across the river to reach the other side."
+        }
+    ],
+    "24-6": [
+        {
+            sentence: "We enjoyed walking ______ the shore as the sun was setting.",
+            options: ["Along", "Through", "Across", "Around"],
+            originalSentence: "We enjoyed walking Along the shore as the sun was setting."
+        }
+    ],
+    "24-7": [
+        {
+            sentence: "The hikers continued walking ______ the top of the hill.",
+            options: ["Towards", "Off", "Out of", "Among"],
+            originalSentence: "The hikers continued walking Towards the top of the hill."
+        }
+    ],
+    "24-8": [
+        {
+            sentence: "The cat jumped ______ the kitchen table to get the food.",
+            options: ["Onto", "Beneath", "Underneath", "Among"],
+            originalSentence: "The cat jumped Onto the kitchen table to get the food."
+        }
+    ],
+    "24-9": [
+        {
+            sentence: "Please take your shoes ______ the rug before you enter the room.",
+            options: ["Off", "Onto", "Across", "Through"],
+            originalSentence: "Please take your shoes Off the rug before you enter the room."
+        }
+    ],
+    "24-10": [
+        {
+            sentence: "The bear suddenly came ______ the woods and frightened us.",
+            options: ["Out of", "Beneath", "Upon", "Around"],
+            originalSentence: "The bear suddenly came Out of the woods and frightened us."
+        }
+    ],
+    "24-11": [
+        {
+            sentence: "I found a rare flower ______ the many bushes in the garden.",
+            options: ["Among", "Beside", "Opposite", "Onto"],
+            originalSentence: "I found a rare flower Among the many bushes in the garden."
+        }
+    ],
+    "24-12": [
+        {
+            sentence: "The valley lay ______ the high snowy mountains.",
+            options: ["Beneath", "Upon", "Across", "Through"],
+            originalSentence: "The valley lay Beneath the high snowy mountains."
+        }
+    ],
+    "24-13": [
+        {
+            sentence: "The key was hidden ______ a heavy stone near the gate.",
+            options: ["Underneath", "Onto", "Towards", "Off"],
+            originalSentence: "The key was hidden Underneath a heavy stone near the gate."
+        }
+    ],
+    "24-14": [
+        {
+            sentence: "Once ______ a time, there lived a brave knight in a castle.",
+            options: ["Upon", "Beneath", "Among", "Beside"],
+            originalSentence: "Once Upon a time, there lived a brave knight in a castle."
+        }
+    ],
+    "24-15": [
+        {
+            sentence: "The rabbit hid behind a green ______ so the fox couldn't see it.",
+            options: ["Bush", "Fountain", "Tunnel", "Roof"],
+            originalSentence: "The rabbit hid behind a green Bush so the fox couldn't see it."
+        }
+    ],
+    "24-16": [
+        {
+            sentence: "The water in the park ______ is very beautiful at night.",
+            options: ["Fountain", "Stream", "Waterfall", "Hill"],
+            originalSentence: "The water in the park Fountain is very beautiful at night."
+        }
+    ],
+    "24-17": [
+        {
+            sentence: "The road goes through a deep ______ under the city.",
+            options: ["Tunnel", "Path", "Trail", "Fence"],
+            originalSentence: "The road goes through a deep Tunnel under the city."
+        }
+    ],
+    "24-18": [
+        {
+            sentence: "The cold ______ flows down from the mountains into the valley.",
+            options: ["Stream", "Waterfall", "Shore", "Ground"],
+            originalSentence: "The cold Stream flows down from the mountains into the valley."
+        }
+    ],
+    "24-19": [
+        {
+            sentence: "We followed the narrow ______ through the forest to the lake.",
+            options: ["Path", "Roof", "Fence", "Sidewalk"],
+            originalSentence: "We followed the narrow Path through the forest to the lake."
+        }
+    ],
+    "24-20": [
+        {
+            sentence: "It is a long walk to the top of the ______ to see the view.",
+            options: ["Hill", "Stream", "Mat", "Branch"],
+            originalSentence: "It is a long walk to the top of the Hill to see the view."
+        }
+    ],
+    "24-21": [
+        {
+            sentence: "The climber sat on a large ______ to rest for a while.",
+            options: ["Rock", "Branch", "Roof", "Fence"],
+            originalSentence: "The climber sat on a large Rock to rest for a while."
+        }
+    ],
+    "24-22": [
+        {
+            sentence: "The pirates spent years looking for the lost ______.",
+            options: ["Treasure", "Scenery", "Trail", "Fountain"],
+            originalSentence: "The pirates spent years looking for the lost Treasure."
+        }
+    ],
+    "24-23": [
+        {
+            sentence: "The ancient chest was ______ deep under the sand.",
+            options: ["Buried", "Explored", "Sailed", "Noticed"],
+            originalSentence: "The ancient chest was Buried deep under the sand."
+        }
+    ],
+    "24-24": [
+        {
+            sentence: "He sat on the ______ because there were no chairs in the room.",
+            options: ["Ground", "Roof", "Branch", "Fence"],
+            originalSentence: "He sat on the Ground because there were no chairs in the room."
+        }
+    ],
+    "24-25": [
+        {
+            sentence: "We put a ______ in front of the door to clean our shoes.",
+            options: ["Mat", "Fence", "Rock", "Stone"],
+            originalSentence: "We put a Mat in front of the door to clean our shoes."
+        }
+    ],
+    "24-26": [
+        {
+            sentence: "A bird was singing on a high ______ of the apple tree.",
+            options: ["Branch", "Roof", "Fence", "Hill"],
+            originalSentence: "A bird was singing on a high Branch of the apple tree."
+        }
+    ],
+    "24-27": [
+        {
+            sentence: "The heavy rain started to leak through the ______ of the old house.",
+            options: ["Roof", "Fence", "Ground", "Mat"],
+            originalSentence: "The heavy rain started to leak through the Roof of the old house."
+        }
+    ],
+    "24-28": [
+        {
+            sentence: "The farmer built a ______ to keep the cows in the field.",
+            options: ["Fence", "Tunnel", "Fountain", "Path"],
+            originalSentence: "The farmer built a Fence to keep the cows in the field."
+        }
+    ],
+    "24-29": [
+        {
+            sentence: "We walked along the ______ and collected sea shells.",
+            options: ["Shore", "Hill", "Branch", "Roof"],
+            originalSentence: "We walked along the Shore and collected sea shells."
+        }
+    ],
+    "24-30": [
+        {
+            sentence: "He threw a ______ into the water to see the ripples.",
+            options: ["Stone", "Treasure", "Bush", "Branch"],
+            originalSentence: "He threw a Stone into the water to see the ripples."
+        }
+    ],
+    "24-31": [
+        {
+            sentence: "The ______ was so loud that we couldn't hear each other speak.",
+            options: ["Waterfall", "Path", "Mat", "Roof"],
+            originalSentence: "The Waterfall was so loud that we couldn't hear each other speak."
+        }
+    ],
+    "24-32": [
+        {
+            sentence: "We followed the hiking ______ through the national park.",
+            options: ["Trail", "Sidewalk", "Fountain", "Fence"],
+            originalSentence: "We followed the hiking Trail through the national park."
+        }
+    ],
+    "24-33": [
+        {
+            sentence: "The mountain ______ in this part of the country is amazing.",
+            options: ["Scenery", "Treasure", "Tunnel", "Sidewalk"],
+            originalSentence: "The mountain Scenery in this part of the country is amazing."
+        }
+    ],
+    "24-34": [
+        {
+            sentence: "It is safer to walk on the ______ than in the middle of the road.",
+            options: ["Sidewalk", "Shore", "Waterfall", "Ground"],
+            originalSentence: "It is safer to walk on the Sidewalk than in the middle of the road."
+        }
+    ],
+    "24-35": [
+        {
+            sentence: "We decided to ______ up the mountain early in the morning.",
+            options: ["Hike", "Sail", "Explore", "Notice"],
+            originalSentence: "We decided to Hike up the mountain early in the morning."
+        }
+    ],
+    "24-36": [
+        {
+            sentence: "The scientists want to ______ the deep parts of the ocean.",
+            options: ["Explore", "Sail", "Hike", "Notice"],
+            originalSentence: "The scientists want to Explore the deep parts of the ocean."
+        }
+    ],
+    "24-37": [
+        {
+            sentence: "Did you ______ the small sign beside the entrance?",
+            options: ["Notice", "Explore", "Sail", "Hike"],
+            originalSentence: "Did you Notice the small sign beside the entrance?"
+        }
+    ],
+    "24-38": [
+        {
+            sentence: "They plan to ______ across the Atlantic Ocean next summer.",
+            options: ["Sail", "Hike", "Notice", "Buried"],
+            originalSentence: "They plan to Sail across the Atlantic Ocean next summer."
+        }
+    ],
+    "24-39": [
+        {
+            sentence: "The water in the mountain stream is very ______ and cold.",
+            options: ["Clear", "Amazing", "Buried", "Beside"],
+            originalSentence: "The water in the mountain stream is very Clear and cold."
+        }
+    ],
+    "24-40": [
+        {
+            sentence: "The view from the top of the waterfall is ______.",
+            options: ["Amazing", "Clear", "Buried", "Beside"],
+            originalSentence: "The view from the top of the waterfall is Amazing."
+        }
+    ],
+    // استكمال gapfillDB.js - الدرس رقم 25
+    "25-1": [
+        {
+            sentence: "I ______ tea over coffee because it helps me relax.",
+            options: ["Prefer", "Need", "Fail", "Connect"],
+            originalSentence: "I Prefer tea over coffee because it helps me relax."
+        }
+    ],
+    "25-2": [
+        {
+            sentence: "Be careful with that juice; it is very ______ and has a lot of sugar.",
+            options: ["Sweet", "Shady", "Dark", "Perfect"],
+            originalSentence: "Be careful with that juice; it is very Sweet and has a lot of sugar."
+        }
+    ],
+    "25-3": [
+        {
+            sentence: "We have a big math ______ tomorrow morning, so I must study.",
+            options: ["Test", "Idea", "Example", "Exercise"],
+            originalSentence: "We have a big math Test tomorrow morning, so I must study."
+        }
+    ],
+    "25-4": [
+        {
+            sentence: "You must drive carefully; ______, you might have an accident.",
+            options: ["Otherwise", "However", "Although", "Unless"],
+            originalSentence: "You must drive carefully; Otherwise, you might have an accident."
+        }
+    ],
+    "25-5": [
+        {
+            sentence: "If you don't study hard, you might ______ the final exam.",
+            options: ["Fail", "Save", "Buy", "Clap"],
+            originalSentence: "If you don't study hard, you might Fail the final exam."
+        }
+    ],
+    "25-6": [
+        {
+            sentence: "______ it was raining, the players continued the football match.",
+            options: ["Although", "Unless", "Otherwise", "Suddenly"],
+            originalSentence: "Although it was raining, the players continued the football match."
+        }
+    ],
+    "25-7": [
+        {
+            sentence: "Doing daily ______ is very important for a healthy heart.",
+            options: ["Exercise", "Test", "Gift", "Idea"],
+            originalSentence: "Doing daily Exercise is very important for a healthy heart."
+        }
+    ],
+    "25-8": [
+        {
+            sentence: "The internet is very ______ for finding information quickly.",
+            options: ["Useful", "Sweet", "Dark", "Shady"],
+            originalSentence: "The internet is very Useful for finding information quickly."
+        }
+    ],
+    "25-9": [
+        {
+            sentence: "My father bought a small ______ for us to play within the garden.",
+            options: ["Puppy", "Parent", "Cousin", "Woman"],
+            originalSentence: "My father bought a small Puppy for us to play within the garden."
+        }
+    ],
+    "25-10": [
+        {
+            sentence: "He studied a lot; ______, he didn't get the full mark.",
+            options: ["However", "Otherwise", "Unless", "Suddenly"],
+            originalSentence: "He studied a lot; However, he didn't get the full mark."
+        }
+    ],
+    "25-11": [
+        {
+            sentence: "I try to ______ some money every month for my future project.",
+            options: ["Save", "Fail", "Buy", "Clap"],
+            originalSentence: "I try to Save some money every month for my future project."
+        }
+    ],
+    "25-12": [
+        {
+            sentence: "She received a beautiful ______ from her friends on her birthday.",
+            options: ["Gift", "Idea", "Example", "Popcorn"],
+            originalSentence: "She received a beautiful Gift from her friends on her birthday."
+        }
+    ],
+    "25-13": [
+        {
+            sentence: "We love going to the ______ to swim and play in the sand.",
+            options: ["Beach", "Weekend", "Swing", "Tree"],
+            originalSentence: "We love going to the Beach to swim and play in the sand."
+        }
+    ],
+    "25-14": [
+        {
+            sentence: "We will go for a walk ______ it rains heavily.",
+            options: ["Unless", "Although", "Otherwise", "However"],
+            originalSentence: "We will go for a walk Unless it rains heavily."
+        }
+    ],
+    "25-15": [
+        {
+            sentence: "The children are playing on the ______ in the playground.",
+            options: ["Swing", "Tree", "Beach", "Puppy"],
+            originalSentence: "The children are playing on the Swing in the playground."
+        }
+    ],
+    "25-16": [
+        {
+            sentence: "Let's sit in a ______ spot under that big tree.",
+            options: ["Shady", "Sweet", "Dark", "Perfect"],
+            originalSentence: "Let's sit in a Shady spot under that big tree."
+        }
+    ],
+    "25-17": [
+        {
+            sentence: "My ______ is coming to visit us from another city.",
+            options: ["Cousin", "Puppy", "Woman", "Parent"],
+            originalSentence: "My Cousin is coming to visit us from another city."
+        }
+    ],
+    "25-18": [
+        {
+            sentence: "We always eat ______ while watching movies at home.",
+            options: ["Popcorn", "Gift", "Example", "Idea"],
+            originalSentence: "We always eat Popcorn while watching movies at home."
+        }
+    ],
+    "25-19": [
+        {
+            sentence: "It was so ______ inside the cave that we couldn't see anything.",
+            options: ["Dark", "Sweet", "Shady", "Perfect"],
+            originalSentence: "It was so Dark inside the cave that we couldn't see anything."
+        }
+    ],
+    "25-20": [
+        {
+            sentence: "I am very ______ of you for passing the exam with high grades.",
+            options: ["Proud", "Wonderful", "Perfect", "Shady"],
+            originalSentence: "I am very Proud of you for passing the exam with high grades."
+        }
+    ],
+    "25-21": [
+        {
+            sentence: "You should ______ your bag tonight so we can leave early.",
+            options: ["Pack", "Connect", "Nods", "Clap"],
+            originalSentence: "You should Pack your bag tonight so we can leave early."
+        }
+    ],
+    "25-22": [
+        {
+            sentence: "You need to ______ the computer to the internet first.",
+            options: ["Connect", "Prefer", "Pack", "Buy"],
+            originalSentence: "You need to Connect the computer to the internet first."
+        }
+    ],
+    "25-23": [
+        {
+            sentence: "That is a great ______ for our school project!",
+            options: ["Idea", "Example", "Test", "Weekend"],
+            originalSentence: "That is a great Idea for our school project!"
+        }
+    ],
+    "25-24": [
+        {
+            sentence: "Can you give me an ______ of a regular verb in the past?",
+            options: ["Example", "Idea", "Test", "Gift"],
+            originalSentence: "Can you give me an Example of a regular verb in the past?"
+        }
+    ],
+    "25-25": [
+        {
+            sentence: "The teacher ______ her head to show that she agrees with me.",
+            options: ["Nods", "Claps", "Fails", "Saves"],
+            originalSentence: "The teacher Nods her head to show that she agrees with me."
+        }
+    ],
+    "25-26": [
+        {
+            sentence: "The weather today is ______ for a picnic in the park.",
+            options: ["Perfect", "Dark", "Sweet", "Shady"],
+            originalSentence: "The weather today is Perfect for a picnic in the park."
+        }
+    ],
+    "25-27": [
+        {
+            sentence: "The lights went out ______ while we were eating dinner.",
+            options: ["Suddenly", "Otherwise", "However", "Unless"],
+            originalSentence: "The lights went out Suddenly while we were eating dinner."
+        }
+    ],
+    "25-28": [
+        {
+            sentence: "It is warm ______ the house, but very cold in the garden.",
+            options: ["Inside", "Outside", "Among", "Beneath"],
+            originalSentence: "It is warm Inside the house, but very cold in the garden."
+        }
+    ],
+    "25-29": [
+        {
+            sentence: "He worked very ______ to finish the task on time.",
+            options: ["Hard", "Perfect", "Wonderful", "Sweet"],
+            originalSentence: "He worked very Hard to finish the task on time."
+        }
+    ],
+    "25-30": [
+        {
+            sentence: "I ______ to go to the supermarket to buy some milk.",
+            options: ["Need", "Fail", "Clap", "Pack"],
+            originalSentence: "I Need to go to the supermarket to buy some milk."
+        }
+    ],
+    "25-31": [
+        {
+            sentence: "Every ______ wants their children to be happy and successful.",
+            options: ["Parent", "Cousin", "Woman", "Puppy"],
+            originalSentence: "Every Parent wants their children to be happy and successful."
+        }
+    ],
+    "25-32": [
+        {
+            sentence: "I don't have enough ______ to buy this expensive watch.",
+            options: ["Money", "Gift", "Idea", "Popcorn"],
+            originalSentence: "I don't have enough Money to buy this expensive watch."
+        }
+    ],
+    "25-33": [
+        {
+            sentence: "I will ______ a new book to read during the weekend.",
+            options: ["Buy", "Save", "Fail", "Connect"],
+            originalSentence: "I will Buy a new book to read during the weekend."
+        }
+    ],
+    "25-34": [
+        {
+            sentence: "The children are playing ______ because the sun is shining.",
+            options: ["Outside", "Inside", "Among", "Beneath"],
+            originalSentence: "The children are playing Outside because the sun is shining."
+        }
+    ],
+    "25-35": [
+        {
+            sentence: "The boys are playing ______ in the school field.",
+            options: ["Football", "Swing", "Beach", "Idea"],
+            originalSentence: "The boys are playing Football in the school field."
+        }
+    ],
+    "25-36": [
+        {
+            sentence: "A kind ______ helped the old man cross the busy street.",
+            options: ["Woman", "Puppy", "Parent", "Cousin"],
+            originalSentence: "A kind Woman helped the old man cross the busy street."
+        }
+    ],
+    "25-37": [
+        {
+            sentence: "Birds often build their nests high up in the ______.",
+            options: ["Tree", "Beach", "Swing", "Roof"],
+            originalSentence: "Birds often build their nests high up in the Tree."
+        }
+    ],
+    "25-38": [
+        {
+            sentence: "The audience began to ______ after the amazing show.",
+            options: ["Clap", "Nod", "Fail", "Save"],
+            originalSentence: "The audience began to Clap after the amazing show."
+        }
+    ],
+    "25-39": [
+        {
+            sentence: "We had a ______ time at the party last night.",
+            options: ["Wonderful", "Dark", "Hard", "Sweet"],
+            originalSentence: "We had a Wonderful time at the party last night."
+        }
+    ],
+    "25-40": [
+        {
+            sentence: "What are your plans for the ______?",
+            options: ["Weekend", "Test", "Exercise", "Gift"],
+            originalSentence: "What are your plans for the Weekend?"
+        }
+    ],
+    // استكمال gapfillDB.js - الدرس رقم 26
+    "26-1": [
+        {
+            sentence: "Can you ______ me the story of how you became a successful artist?",
+            options: ["Tell", "Explain", "Teach", "Practice"],
+            originalSentence: "Can you Tell me the story of how you became a successful artist?"
+        }
+    ],
+    "26-2": [
+        {
+            sentence: "I often talk to ______ when I am trying to solve a difficult problem.",
+            options: ["Myself", "Together", "Never", "Also"],
+            originalSentence: "I often talk to Myself when I am trying to solve a difficult problem."
+        }
+    ],
+    "26-3": [
+        {
+            sentence: "My ______ brother is still at university studying medicine.",
+            options: ["Younger", "Young", "Older", "Junior"],
+            originalSentence: "My Younger brother is still at university studying medicine."
+        }
+    ],
+    "26-4": [
+        {
+            sentence: "The new school was built ______ the large park in the city center.",
+            options: ["Near", "Far", "Through", "Across"],
+            originalSentence: "The new school was built Near the large park in the city center."
+        }
+    ],
+    "26-5": [
+        {
+            sentence: "We are finally ______ to start our new project next Monday.",
+            options: ["Ready", "Cheerful", "Polite", "Honest"],
+            originalSentence: "We are finally Ready to start our new project next Monday."
+        }
+    ],
+    "26-6": [
+        {
+            sentence: "The students were ______ quietly in the library, waiting for the teacher.",
+            options: ["Sitting", "Drawing", "Spending", "Learning"],
+            originalSentence: "The students were Sitting quietly in the library, waiting for the teacher."
+        }
+    ],
+    "26-7": [
+        {
+            sentence: "The engineer will ______ how the new machine works to the team.",
+            options: ["Explain", "Tell", "Bake", "Stay"],
+            originalSentence: "The engineer will Explain how the new machine works to the team."
+        }
+    ],
+    "26-8": [
+        {
+            sentence: "She started playing the ______ when she was only five years old.",
+            options: ["Piano", "Guitar", "Artist", "Musician"],
+            originalSentence: "She started playing the Piano when she was only five years old."
+        }
+    ],
+    "26-9": [
+        {
+            sentence: "The mother read a beautiful ______ to her children before they slept.",
+            options: ["Storybook", "Example", "Future", "Dream"],
+            originalSentence: "The mother read a beautiful Storybook to her children before they slept."
+        }
+    ],
+    "26-10": [
+        {
+            sentence: "______ others is the best way to feel happy and helpful.",
+            options: ["Helping", "Spending", "Sitting", "Learning"],
+            originalSentence: "Helping others is the best way to feel happy and helpful."
+        }
+    ],
+    "26-11": [
+        {
+            sentence: "We ______ the football match yesterday, although it was very cold.",
+            options: ["Enjoyed", "Practiced", "Stayed", "Baked"],
+            originalSentence: "We Enjoyed the football match yesterday, although it was very cold."
+        }
+    ],
+    "26-12": [
+        {
+            sentence: "The family always eats dinner ______ every evening.",
+            options: ["Together", "Myself", "Never", "Also"],
+            originalSentence: "The family always eats dinner Together every evening."
+        }
+    ],
+    "26-13": [
+        {
+            sentence: "The doctor told the patient to ______ in bed for three days.",
+            options: ["Stay", "Bake", "Practice", "Give up"],
+            originalSentence: "The doctor told the patient to Stay in bed for three days."
+        }
+    ],
+    "26-14": [
+        {
+            sentence: "My goal in the future is to ______ English to children.",
+            options: ["Teach", "Bake", "Tell", "Stay"],
+            originalSentence: "My goal in the future is to Teach English to children."
+        }
+    ],
+    "26-15": [
+        {
+            sentence: "I will ______ a cake for my sister's birthday party tonight.",
+            options: ["Bake", "Paint", "Draw", "Stay"],
+            originalSentence: "I will Bake a cake for my sister's birthday party tonight."
+        }
+    ],
+    "26-16": [
+        {
+            sentence: "Everyone was very ______ about the upcoming trip to Europe.",
+            options: ["Excited", "Cheerful", "Polite", "Honest"],
+            originalSentence: "Everyone was very Excited about the upcoming trip to Europe."
+        }
+    ],
+    "26-17": [
+        {
+            sentence: "I like ______ my free time reading about military history.",
+            options: ["Spending", "Drawing", "Learning", "Helping"],
+            originalSentence: "I like Spending my free time reading about military history."
+        }
+    ],
+    "26-18": [
+        {
+            sentence: "Reading and swimming are my favorite ______.",
+            options: ["Hobbies", "Artists", "Musicians", "Dreams"],
+            originalSentence: "Reading and swimming are my favorite Hobbies."
+        }
+    ],
+    "26-19": [
+        {
+            sentence: "He is very good at ______ portraits of people using charcoal.",
+            options: ["Drawing", "Baking", "Spending", "Learning"],
+            originalSentence: "He is very good at Drawing portraits of people using charcoal."
+        }
+    ],
+    "26-20": [
+        {
+            sentence: "______ is a wonderful hobby that allows you to use many colors.",
+            options: ["Painting", "Drawing", "Baking", "Spending"],
+            originalSentence: "Painting is a wonderful hobby that allows you to use many colors."
+        }
+    ],
+    "26-21": [
+        {
+            sentence: "He learned to play the ______ to perform at his friend's wedding.",
+            options: ["Guitar", "Piano", "Artist", "Musician"],
+            originalSentence: "He learned to play the Guitar to perform at his friend's wedding."
+        }
+    ],
+    "26-22": [
+        {
+            sentence: "______ the exam was difficult, he managed to pass with high marks.",
+            options: ["Although", "Therefore", "Furthermore", "Meanwhile"],
+            originalSentence: "Although the exam was difficult, he managed to pass with high marks."
+        }
+    ],
+    "26-23": [
+        {
+            sentence: "______ a new language opens many doors in the professional world.",
+            options: ["Learning", "Helping", "Baking", "Sitting"],
+            originalSentence: "Learning a new language opens many doors in the professional world."
+        }
+    ],
+    "26-24": [
+        {
+            sentence: "She has a ______ personality and always smiles at everyone.",
+            options: ["Cheerful", "Honest", "Helpful", "Polite"],
+            originalSentence: "She has a Cheerful personality and always smiles at everyone."
+        }
+    ],
+    "26-25": [
+        {
+            sentence: "The librarians were very ______ when I was looking for the book.",
+            options: ["Helpful", "Honest", "Polite", "Ready"],
+            originalSentence: "The librarians were very Helpful when I was looking for the book."
+        }
+    ],
+    "26-26": [
+        {
+            sentence: "You should always be ______ when you talk to your elders.",
+            options: ["Polite", "Cheerful", "Honest", "Excited"],
+            originalSentence: "You should always be Polite when you talk to your elders."
+        }
+    ],
+    "26-27": [
+        {
+            sentence: "An ______ person always tells the truth, even if it is difficult.",
+            options: ["Honest", "Cheerful", "Helpful", "Polite"],
+            originalSentence: "An Honest person always tells the truth, even if it is difficult."
+        }
+    ],
+    "26-28": [
+        {
+            sentence: "No one knows for sure what will happen in the ______.",
+            options: ["Future", "Weekend", "Dream", "Example"],
+            originalSentence: "No one knows for sure what will happen in the Future."
+        }
+    ],
+    "26-29": [
+        {
+            sentence: "The ______ used bright colors to show the beauty of the desert.",
+            options: ["Artist", "Musician", "Storybook", "Guitar"],
+            originalSentence: "The Artist used bright colors to show the beauty of the desert."
+        }
+    ],
+    "26-30": [
+        {
+            sentence: "A professional ______ must practice every day to remain skilled.",
+            options: ["Musician", "Artist", "Piano", "Guitar"],
+            originalSentence: "A professional Musician must practice every day to remain skilled."
+        }
+    ],
+    "26-31": [
+        {
+            sentence: "If you want to be a pilot, you must ______ on a flight simulator.",
+            options: ["Practice", "Bake", "Stay", "Explain"],
+            originalSentence: "If you want to be a pilot, you must Practice on a flight simulator."
+        }
+    ],
+    "26-32": [
+        {
+            sentence: "You should ______ tell a lie to your parents or teachers.",
+            options: ["Never", "Also", "Together", "Later"],
+            originalSentence: "You should Never tell a lie to your parents or teachers."
+        }
+    ],
+    "26-33": [
+        {
+            sentence: "Even if the task is hard, you must never ______.",
+            options: ["Give up", "Stay", "Practice", "Teach"],
+            originalSentence: "Even if the task is hard, you must never Give up."
+        }
+    ],
+    "26-34": [
+        {
+            sentence: "His ______ is to become a software developer and create his own app.",
+            options: ["Dream", "Future", "Weekend", "Hobby"],
+            originalSentence: "His Dream is to become a software developer and create his own app."
+        }
+    ],
+    "26-35": [
+        {
+            sentence: "The father was cooking dinner; ______, the children were doing homework.",
+            options: ["Meanwhile", "Therefore", "Furthermore", "Although"],
+            originalSentence: "The father was cooking dinner; Meanwhile, the children were doing homework."
+        }
+    ],
+    "26-36": [
+        {
+            sentence: "The old man needed some ______ to carry the heavy grocery bags.",
+            options: ["Assistance", "Dream", "Hobby", "Example"],
+            originalSentence: "The old man needed some Assistance to carry the heavy grocery bags."
+        }
+    ],
+    "26-37": [
+        {
+            sentence: "He is a good student; he is ______ a great football player.",
+            options: ["Also", "Never", "Together", "Later"],
+            originalSentence: "He is a good student; he is Also a great football player."
+        }
+    ],
+    "26-38": [
+        {
+            sentence: "The car is very fast; ______, it does not use much fuel.",
+            options: ["Furthermore", "Therefore", "Although", "Meanwhile"],
+            originalSentence: "The car is very fast; Furthermore, it does not use much fuel."
+        }
+    ],
+    "26-39": [
+        {
+            sentence: "The weather was very bad; ______, the flight was cancelled.",
+            options: ["Therefore", "Furthermore", "Although", "Meanwhile"],
+            originalSentence: "The weather was very bad; Therefore, the flight was cancelled."
+        }
+    ],
+    "26-40": [
+        {
+            sentence: "Can you give me an ______ of a polite word to use in an email?",
+            options: ["Example", "Assistance", "Hobby", "Future"],
+            originalSentence: "Can you give me an Example of a polite word to use in an email?"
+        }
+    ],
+    "26-41": [
+        {
+            sentence: "I am studying hard ______ I want to reach the B1 level in English.",
+            options: ["Because", "Therefore", "Furthermore", "Although"],
+            originalSentence: "I am studying hard Because I want to reach the B1 level in English."
+        }
+    ],
+    "26-42": [
+        {
+            sentence: "I will go to the library ______ my classmates to study for the test.",
+            options: ["With", "After", "Later", "Together"],
+            originalSentence: "I will go to the library With my classmates to study for the test."
+        }
+    ],
+    "26-43": [
+        {
+            sentence: "We will go to the park ______ we finish all our chores at home.",
+            options: ["After", "With", "Later", "Together"],
+            originalSentence: "We will go to the park After we finish all our chores at home."
+        }
+    ],
+    "26-44": [
+        {
+            sentence: "I will finish this report now and send it to you ______.",
+            options: ["Later", "Also", "Together", "Never"],
+            originalSentence: "I will finish this report now and send it to you Later."
+        }
+    ],
+    "26-45": [
+        {
+            sentence: "I usually spend my ______ visiting my relatives and resting.",
+            options: ["Weekend", "Future", "Dream", "Hobby"],
+            originalSentence: "I usually spend my Weekend visiting my relatives and resting."
+        }
+    ],
+    // استكمال gapfillDB.js - الدرس رقم 27
+    "27-1": [
+        {
+            sentence: "I am going on a trip with my best ______ this weekend.",
+            options: ["Pals", "Foxes", "Acorns", "Reeds"],
+            originalSentence: "I am going on a trip with my best Pals this weekend."
+        }
+    ],
+    "27-2": [
+        {
+            sentence: "It is very relaxing to ______ through the forest on a sunny day.",
+            options: ["Ramble", "Croak", "Chatter", "Sketch"],
+            originalSentence: "It is very relaxing to Ramble through the forest on a sunny day."
+        }
+    ],
+    "27-3": [
+        {
+            sentence: "The ______ is much quieter and cleaner than the busy city.",
+            options: ["Countryside", "Clearing", "Track", "Log"],
+            originalSentence: "The Countryside is much quieter and cleaner than the busy city."
+        }
+    ],
+    "27-4": [
+        {
+            sentence: "We need to ______ all our gear the night before we leave.",
+            options: ["Prepare", "Continue", "Reach", "Develop"],
+            originalSentence: "We need to Prepare all our gear the night before we leave."
+        }
+    ],
+    "27-5": [
+        {
+            sentence: "Make sure your ______ is not too heavy to carry on your back.",
+            options: ["Rucksack", "Flask", "Binoculars", "Sketchbook"],
+            originalSentence: "Make sure your Rucksack is not too heavy to carry on your back."
+        }
+    ],
+    "27-6": [
+        {
+            sentence: "I packed some healthy ______ like nuts and dried fruits for the walk.",
+            options: ["Snacks", "Logs", "Acorns", "Reeds"],
+            originalSentence: "I packed some healthy Snacks like nuts and dried fruits for the walk."
+        }
+    ],
+    "27-7": [
+        {
+            sentence: "He filled his ______ with hot coffee to stay warm during the hike.",
+            options: ["Flask", "Rucksack", "Binoculars", "Sketchbook"],
+            originalSentence: "He filled his Flask with hot coffee to stay warm during the hike."
+        }
+    ],
+    "27-8": [
+        {
+            sentence: "Use your ______ to see the rare birds at the top of the trees.",
+            options: ["Binoculars", "Flask", "Rucksack", "Sketchbook"],
+            originalSentence: "Use your Binoculars to see the rare birds at the top of the trees."
+        }
+    ],
+    "27-9": [
+        {
+            sentence: "We will ______ early in the morning before the sun gets too hot.",
+            options: ["Set off", "Ramble", "Continue", "Gather"],
+            originalSentence: "We will Set off early in the morning before the sun gets too hot."
+        }
+    ],
+    "27-10": [
+        {
+            sentence: "The path became very ______ as we entered the thick forest.",
+            options: ["Narrow", "Gentle", "Mossy", "Lovely"],
+            originalSentence: "The path became very Narrow as we entered the thick forest."
+        }
+    ],
+    "27-11": [
+        {
+            sentence: "Follow the muddy ______ until you reach the old stone bridge.",
+            options: ["Track", "Clearing", "Log", "Trunk"],
+            originalSentence: "Follow the muddy Track until you reach the old stone bridge."
+        }
+    ],
+    "27-12": [
+        {
+            sentence: "A ______ slope is much easier to climb than a steep mountain.",
+            options: ["Gentle", "Narrow", "Mossy", "Lovely"],
+            originalSentence: "A Gentle slope is much easier to climb than a steep mountain."
+        }
+    ],
+    "27-13": [
+        {
+            sentence: "The cool ______ from the lake felt wonderful on our faces.",
+            options: ["Breeze", "Clearing", "Outing", "Track"],
+            originalSentence: "The cool Breeze from the lake felt wonderful on our faces."
+        }
+    ],
+    "27-14": [
+        {
+            sentence: "Did you ______ the small wooden sign hidden behind the bushes?",
+            options: ["Notice", "Spot", "Sketch", "Develop"],
+            originalSentence: "Did you Notice the small sign hidden behind the bushes?"
+        }
+    ],
+    "27-15": [
+        {
+            sentence: "A small ______ jumped from one branch to another very quickly.",
+            options: ["Squirrel", "Fox", "Woodpecker", "Frog"],
+            originalSentence: "A small Squirrel jumped from one branch to another very quickly."
+        }
+    ],
+    "27-16": [
+        {
+            sentence: "In autumn, many animals ______ food to store for the winter.",
+            options: ["Gather", "Continue", "Reach", "Exclaim"],
+            originalSentence: "In autumn, many animals Gather food to store for the winter."
+        }
+    ],
+    "27-17": [
+        {
+            sentence: "The squirrel found an ______ and ran up the oak tree.",
+            options: ["Acorn", "Pine", "Log", "Reed"],
+            originalSentence: "The squirrel found an Acorn and ran up the oak tree."
+        }
+    ],
+    "27-18": [
+        {
+            sentence: "Birds often ______ loudly in the trees at sunrise.",
+            options: ["Chatter", "Croak", "Exclaim", "Ramble"],
+            originalSentence: "Birds often Chatter loudly in the trees at sunrise."
+        }
+    ],
+    "27-19": [
+        {
+            sentence: "The ______ forest smells very fresh after it rains.",
+            options: ["Pine", "Reed", "Mossy", "Gentle"],
+            originalSentence: "The Pine forest smells very fresh after it rains."
+        }
+    ],
+    "27-20": [
+        {
+            sentence: "Although we were tired, we decided to ______ our walk.",
+            options: ["Continue", "Prepare", "Set off", "Reach"],
+            originalSentence: "Although we were tired, we decided to Continue our walk."
+        }
+    ],
+    "27-21": [
+        {
+            sentence: "It took us three hours to ______ the waterfall at the end of the trail.",
+            options: ["Reach", "Continue", "Gather", "Spot"],
+            originalSentence: "It took us three hours to Reach the waterfall at the end of the trail."
+        }
+    ],
+    "27-22": [
+        {
+            sentence: "We found a beautiful ______ in the woods where we could sit and eat.",
+            options: ["Clearing", "Countryside", "Track", "Outing"],
+            originalSentence: "We found a beautiful Clearing in the woods where we could sit and eat."
+        }
+    ],
+    "27-23": [
+        {
+            sentence: "A green ______ sat on a lily pad in the middle of the pond.",
+            options: ["Frog", "Squirrel", "Fox", "Woodpecker"],
+            originalSentence: "A green Frog sat on a lily pad in the middle of the pond."
+        }
+    ],
+    "27-24": [
+        {
+            sentence: "We could hear the frogs ______ near the water at night.",
+            options: ["Croak", "Chatter", "Exclaim", "Ramble"],
+            originalSentence: "We could hear the frogs Croak near the water at night."
+        }
+    ],
+    "27-25": [
+        {
+            sentence: "Tall ______ grow all along the edges of the river.",
+            options: ["Reeds", "Acorns", "Pines", "Logs"],
+            originalSentence: "Tall Reeds grow all along the edges of the river."
+        }
+    ],
+    "27-26": [
+        {
+            sentence: "The artist took out her ______ to draw the mountain scenery.",
+            options: ["Sketchbook", "Rucksack", "Flask", "Binoculars"],
+            originalSentence: "The artist took out her Sketchbook to draw the mountain scenery."
+        }
+    ],
+    "27-27": [
+        {
+            sentence: "I was lucky to ______ a rare eagle flying high above us.",
+            options: ["Spot", "Notice", "Gather", "Prepare"],
+            originalSentence: "I was lucky to Spot a rare eagle flying high above us."
+        }
+    ],
+    "27-28": [
+        {
+            sentence: "A ______ was tapping its beak against the old oak tree.",
+            options: ["Woodpecker", "Fox", "Frog", "Squirrel"],
+            originalSentence: "A Woodpecker was tapping its beak against the old oak tree."
+        }
+    ],
+    "27-29": [
+        {
+            sentence: "The ______ of the ancient tree was so wide that three people couldn't hug it.",
+            options: ["Tree trunk", "Log", "Clearing", "Branch"],
+            originalSentence: "The Tree trunk of the ancient tree was so wide that three people couldn't hug it."
+        }
+    ],
+    "27-30": [
+        {
+            sentence: "I like to ______ the flowers I see during my nature walks.",
+            options: ["Sketch", "Develop", "Notice", "Spot"],
+            originalSentence: "I like to Sketch the flowers I see during my nature walks."
+        }
+    ],
+    "27-31": [
+        {
+            sentence: "We sat on a ______ rock near the stream to cool our feet.",
+            options: ["Mossy", "Narrow", "Gentle", "Clear"],
+            originalSentence: "We sat on a Mossy rock near the stream to cool our feet."
+        }
+    ],
+    "27-32": [
+        {
+            sentence: "Be careful not to trip over that fallen ______ on the path.",
+            options: ["Log", "Acorn", "Reed", "Clearing"],
+            originalSentence: "Be careful not to trip over that fallen Log on the path."
+        }
+    ],
+    "27-33": [
+        {
+            sentence: "I will ______ the photos I took today when I get home.",
+            options: ["Develop", "Sketch", "Prepare", "Notice"],
+            originalSentence: "I will Develop the photos I took today when I get home."
+        }
+    ],
+    "27-34": [
+        {
+            sentence: "'Look at that beautiful sunset!' she ______ with joy.",
+            options: ["Exclaimed", "Croaked", "Chattered", "Rambled"],
+            originalSentence: "'Look at that beautiful sunset!' she Exclaimed with joy."
+        }
+    ],
+    "27-35": [
+        {
+            sentence: "We had a ______ afternoon exploring the hidden valley.",
+            options: ["Lovely", "Narrow", "Mossy", "Gentle"],
+            originalSentence: "We had a Lovely afternoon exploring the hidden valley."
+        }
+    ],
+    "27-36": [
+        {
+            sentence: "Our school ______ to the national museum was very educational.",
+            options: ["Outing", "Countryside", "Track", "Clearing"],
+            originalSentence: "Our school Outing to the national museum was very educational."
+        }
+    ],
+    "27-37": [
+        {
+            sentence: "I ______ that the weather will be clear for our hike tomorrow.",
+            options: ["Hope", "Notice", "Spot", "Exclaim"],
+            originalSentence: "I Hope that the weather will be clear for our hike tomorrow."
+        }
+    ],
+    "27-38": [
+        {
+            sentence: "We saw a red ______ running quickly across the field at dusk.",
+            options: ["Fox", "Squirrel", "Frog", "Woodpecker"],
+            originalSentence: "We saw a red Fox running quickly across the field at dusk."
+        }
+    ],
+    // استكمال gapfillDB.js - الدرس رقم 28
+    "28-1": [
+        {
+            sentence: "Every morning when I wake up, I ______ my arms to feel more awake.",
+            options: ["Stretch", "Squeeze", "Rub", "Wipe"],
+            originalSentence: "Every morning when I wake up, I Stretch my arms to feel more awake."
+        }
+    ],
+    "28-2": [
+        {
+            sentence: "I didn't hear my ______ this morning, so I woke up late.",
+            options: ["Alarm clock", "Mirror", "Wardrobe", "Notebook"],
+            originalSentence: "I didn't hear my Alarm clock this morning, so I woke up late."
+        }
+    ],
+    "28-3": [
+        {
+            sentence: "Turn off the ______ while you are brushing your teeth to save water.",
+            options: ["Faucet", "Sink", "Gate", "Lace"],
+            originalSentence: "Turn off the Faucet while you are brushing your teeth to save water."
+        }
+    ],
+    "28-4": [
+        {
+            sentence: "I like to ______ cold water on my face to feel fresh in the morning.",
+            options: ["Splash", "Pour", "Rub", "Wipe"],
+            originalSentence: "I like to Splash cold water on my face to feel fresh in the morning."
+        }
+    ],
+    "28-5": [
+        {
+            sentence: "You should ______ your hands with soap for at least twenty seconds.",
+            options: ["Rub", "Stretch", "Yawn", "Tie"],
+            originalSentence: "You should Rub your hands with soap for at least twenty seconds."
+        }
+    ],
+    "28-6": [
+        {
+            sentence: "I couldn't stop myself from letting out a big ______ during the long meeting.",
+            options: ["Yawn", "Chat", "Splash", "Step outside"],
+            originalSentence: "I couldn't stop myself from letting out a big Yawn during the long meeting."
+        }
+    ],
+    "28-7": [
+        {
+            sentence: "You need to ______ the lemon to get all the juice out of it.",
+            options: ["Squeeze", "Rub", "Wipe", "Pour"],
+            originalSentence: "You need to Squeeze the lemon to get all the juice out of it."
+        }
+    ],
+    "28-8": [
+        {
+            sentence: "He looked at himself in the ______ to make sure his hair was neat.",
+            options: ["Mirror", "Wardrobe", "Sink", "Faucets"],
+            originalSentence: "He looked at himself in the Mirror to make sure his hair was neat."
+        }
+    ],
+    "28-9": [
+        {
+            sentence: "I keep all my formal suits and shirts in the large ______.",
+            options: ["Wardrobe", "Backpack", "Lunchbox", "Notebook"],
+            originalSentence: "I keep all my formal suits and shirts in the large Wardrobe."
+        }
+    ],
+    "28-10": [
+        {
+            sentence: "He wore a black suit with matching ______ for the graduation ceremony.",
+            options: ["Trousers", "Laces", "Napkins", "Lines"],
+            originalSentence: "He wore a black suit with matching Trousers for the graduation ceremony."
+        }
+    ],
+    "28-11": [
+        {
+            sentence: "Please finish your breakfast ______ or you will miss the school bus.",
+            options: ["Quickly", "Slowly", "Already", "Fresh"],
+            originalSentence: "Please finish your breakfast Quickly or you will miss the school bus."
+        }
+    ],
+    "28-12": [
+        {
+            sentence: "I have ______ finished my homework, so I can play video games now.",
+            options: ["Already", "Quickly", "Slowly", "Fresh"],
+            originalSentence: "I have Already finished my homework, so I can play video games now."
+        }
+    ],
+    "28-13": [
+        {
+            sentence: "Be careful not to ______ too much milk into your bowl.",
+            options: ["Pour", "Splash", "Squeeze", "Wipe"],
+            originalSentence: "Be careful not to Pour too much milk into your bowl."
+        }
+    ],
+    "28-14": [
+        {
+            sentence: "Cornflakes are a very popular type of ______ for breakfast.",
+            options: ["Cereal", "Napkin", "Lace", "Pavement"],
+            originalSentence: "Cornflakes are a very popular type of Cereal for breakfast."
+        }
+    ],
+    "28-15": [
+        {
+            sentence: "I like to eat ______ bread with honey and butter in the morning.",
+            options: ["Sliced", "Fresh", "Quickly", "Slowly"],
+            originalSentence: "I like to eat Sliced bread with honey and butter in the morning."
+        }
+    ],
+    "28-16": [
+        {
+            sentence: "The old man walked ______ down the street with his cane.",
+            options: ["Slowly", "Quickly", "Already", "Fresh"],
+            originalSentence: "The old man walked Slowly down the street with his cane."
+        }
+    ],
+    "28-17": [
+        {
+            sentence: "Please ______ the table after you finish eating your lunch.",
+            options: ["Wipe", "Rub", "Squeeze", "Stretch"],
+            originalSentence: "Please Wipe the table after you finish eating your lunch."
+        }
+    ],
+    "28-18": [
+        {
+            sentence: "Use a ______ to clean your mouth after drinking the milk.",
+            options: ["Napkin", "Notebook", "Pavement", "Lace"],
+            originalSentence: "Use a Napkin to clean your mouth after drinking the milk."
+        }
+    ],
+    "28-19": [
+        {
+            sentence: "Don't leave the dirty dishes in the ______; wash them now.",
+            options: ["Sink", "Faucet", "Gate", "Corner"],
+            originalSentence: "Don't leave the dirty dishes in the Sink; wash them now."
+        }
+    ],
+    "28-20": [
+        {
+            sentence: "I put all my school books and my ______ on my back.",
+            options: ["Backpack", "Lunchbox", "Wardrobe", "Mirror"],
+            originalSentence: "I put all my school books and my Backpack on my back."
+        }
+    ],
+    "28-21": [
+        {
+            sentence: "My mother packed a healthy sandwich and an apple in my ______.",
+            options: ["Lunchbox", "Backpack", "Notebook", "Napkin"],
+            originalSentence: "My mother packed a healthy sandwich and an apple in my Lunchbox."
+        }
+    ],
+    "28-22": [
+        {
+            sentence: "I need to ______ my shoes before I go out to play football.",
+            options: ["Tie", "Rub", "Stretch", "Wipe"],
+            originalSentence: "I need to Tie my shoes before I go out to play football."
+        }
+    ],
+    "28-23": [
+        {
+            sentence: "The ______ on my right shoe is broken, so I can't tie it properly.",
+            options: ["Lace", "Pavement", "Gate", "Line"],
+            originalSentence: "The Lace on my right shoe is broken, so I can't tie it properly."
+        }
+    ],
+    "28-24": [
+        {
+            sentence: "I usually ______ and breathe in the fresh air to start my day.",
+            options: ["Step outside", "Yawn", "Splash", "Greet"],
+            originalSentence: "I usually Step outside and breathe in the fresh air to start my day."
+        }
+    ],
+    "28-25": [
+        {
+            sentence: "The morning air feels very ______ and cool today.",
+            options: ["Fresh", "Sliced", "Slowly", "Quickly"],
+            originalSentence: "The morning air feels very Fresh and cool today."
+        }
+    ],
+    "28-26": [
+        {
+            sentence: "Wait for me on the ______; don't stand in the middle of the road.",
+            options: ["Pavement", "Corner", "Gate", "Schoolyard"],
+            originalSentence: "Wait for me on the Pavement; don't stand in the middle of the road."
+        }
+    ],
+    "28-27": [
+        {
+            sentence: "The grocery store is just around the ______ from my house.",
+            options: ["Corner", "Gate", "Line", "Pavement"],
+            originalSentence: "The grocery store is just around the Corner from my house."
+        }
+    ],
+    "28-28": [
+        {
+            sentence: "I always ______ my neighbors with a smile when I see them.",
+            options: ["Greet", "Chat", "Recite", "Tie"],
+            originalSentence: "I always Greet my neighbors with a smile when I see them."
+        }
+    ],
+    "28-29": [
+        {
+            sentence: "It's nice to have a quick ______ with friends before classes start.",
+            options: ["Chat", "Morning assembly", "National pledge", "Line"],
+            originalSentence: "It's nice to have a quick Chat with friends before classes start."
+        }
+    ],
+    "28-30": [
+        {
+            sentence: "The security guard stands at the school ______ every morning.",
+            options: ["Gate", "Corner", "Sink", "Faucets"],
+            originalSentence: "The security guard stands at the school Gate every morning."
+        }
+    ],
+    "28-31": [
+        {
+            sentence: "All the students gather in the ______ to play during the break.",
+            options: ["Schoolyard", "Pavement", "Wardrobe", "Sink"],
+            originalSentence: "All the students gather in the Schoolyard to play during the break."
+        }
+    ],
+    "28-32": [
+        {
+            sentence: "The teacher asked the children to stand in a straight ______.",
+            options: ["Line", "Corner", "Lace", "Gate"],
+            originalSentence: "The teacher asked the children to stand in a straight Line."
+        }
+    ],
+    "28-33": [
+        {
+            sentence: "We listen to the headmaster's speech during the ______.",
+            options: ["Morning assembly", "Chat", "National pledge", "Schoolyard"],
+            originalSentence: "We listen to the headmaster's speech during the Morning assembly."
+        }
+    ],
+    "28-34": [
+        {
+            sentence: "The student will ______ a beautiful poem in front of the whole school.",
+            options: ["Recite", "Greet", "Chat", "Tie"],
+            originalSentence: "The student will Recite a beautiful poem in front of the whole school."
+        }
+    ],
+    "28-35": [
+        {
+            sentence: "Everyone stands at attention when we say the ______.",
+            options: ["National pledge", "Morning assembly", "Line", "Notebook"],
+            originalSentence: "Everyone stands at attention when we say the National pledge."
+        }
+    ],
+    "28-36": [
+        {
+            sentence: "Make sure you write the date on the first page of your ______.",
+            options: ["Notebook", "Lunchbox", "Backpack", "Napkin"],
+            originalSentence: "Make sure you write the date on the first page of your Notebook."
+        }
+    ],
+    // استكمال gapfillDB.js - الدرس رقم 29
+    "29-1": [
+        {
+            sentence: "We must ______ at school before 7:30 AM every morning.",
+            options: ["Arrive", "Wave", "Discuss", "Praise"],
+            originalSentence: "We must Arrive at school before 7:30 AM every morning."
+        }
+    ],
+    "29-2": [
+        {
+            sentence: "The school bus dropped us off right in front of the ______.",
+            options: ["Main gate", "Whiteboard", "Canteen", "Library"],
+            originalSentence: "The school bus dropped us off right in front of the Main gate."
+        }
+    ],
+    "29-3": [
+        {
+            sentence: "Students gathered in the ______ to talk before the first bell.",
+            options: ["Courtyard", "Canteen", "Pencil case", "Carton"],
+            originalSentence: "Students gathered in the Courtyard to talk before the first bell."
+        }
+    ],
+    "29-4": [
+        {
+            sentence: "I saw my friend across the yard and decided to ______ at him.",
+            options: ["Wave", "Stamp", "Score", "Solve"],
+            originalSentence: "I saw my friend across the yard and decided to Wave at him."
+        }
+    ],
+    "29-5": [
+        {
+            sentence: "Don't forget to hand in your ______ to the teacher today.",
+            options: ["Homework", "Pencil case", "Goal", "Landscape"],
+            originalSentence: "Don't forget to hand in your Homework to the teacher today."
+        }
+    ],
+    "29-6": [
+        {
+            sentence: "I keep my pens, eraser, and ruler inside my ______.",
+            options: ["Pencil case", "Exercise book", "Carton", "Stamp"],
+            originalSentence: "I keep my pens, eraser, and ruler inside my Pencil case."
+        }
+    ],
+    "29-7": [
+        {
+            sentence: "You need to ______ your English speaking skills every day.",
+            options: ["Practice", "Examine", "Display", "Arrive"],
+            originalSentence: "You need to Practice your English speaking skills every day."
+        }
+    ],
+    "29-8": [
+        {
+            sentence: "The school ______ rang, signaling the start of the first lesson.",
+            options: ["Bell", "Hook", "Stamp", "Carton"],
+            originalSentence: "The school Bell rang, signaling the start of the first lesson."
+        }
+    ],
+    "29-9": [
+        {
+            sentence: "The teacher asked all students to ______ outside the classroom.",
+            options: ["Line up", "Raise hand", "Discuss", "Praise"],
+            originalSentence: "The teacher asked all students to Line up outside the classroom."
+        }
+    ],
+    "29-10": [
+        {
+            sentence: "Please hang your heavy backpack on the ______ behind the door.",
+            options: ["Hook", "Main gate", "Bell", "Goal"],
+            originalSentence: "Please hang your heavy backpack on the Hook behind the door."
+        }
+    ],
+    "29-11": [
+        {
+            sentence: "We are learning about geometry and numbers in ______ class.",
+            options: ["Mathematics", "Space exploration", "Landscape", "Canteen"],
+            originalSentence: "We are learning about geometry and numbers in Mathematics class."
+        }
+    ],
+    "29-12": [
+        {
+            sentence: "The teacher used a colorful marker to write on the ______.",
+            options: ["Whiteboard", "Pencil case", "Carton", "Library"],
+            originalSentence: "The teacher used a colorful marker to write on the Whiteboard."
+        }
+    ],
+    "29-13": [
+        {
+            sentence: "Can you help me ______ this difficult math equation?",
+            options: ["Solve", "Stamp", "Score", "Wave"],
+            originalSentence: "Can you help me Solve this difficult math equation?"
+        }
+    ],
+    "29-14": [
+        {
+            sentence: "Open your ______ and write down the new vocabulary words.",
+            options: ["Exercise book", "Whiteboard", "Pencil case", "Canteen"],
+            originalSentence: "Open your Exercise book and write down the new vocabulary words."
+        }
+    ],
+    "29-15": [
+        {
+            sentence: "If you know the answer, please ______ before speaking.",
+            options: ["Raise hand", "Line up", "Stamp", "Score"],
+            originalSentence: "If you know the answer, please Raise hand before speaking."
+        }
+    ],
+    "29-16": [
+        {
+            sentence: "I went to the ______ to buy a sandwich during the break.",
+            options: ["Canteen", "Courtyard", "Library", "Amusement park"],
+            originalSentence: "I went to the Canteen to buy a sandwich during the break."
+        }
+    ],
+    "29-17": [
+        {
+            sentence: "He bought a small ______ of orange juice with his lunch.",
+            options: ["Carton", "Pencil case", "Bell", "Stamp"],
+            originalSentence: "He bought a small Carton of orange juice with his lunch."
+        }
+    ],
+    "29-18": [
+        {
+            sentence: "In social studies, we often ______ important global issues.",
+            options: ["Discuss", "Examine", "Solve", "Arrive"],
+            originalSentence: "In social studies, we often Discuss important global issues."
+        }
+    ],
+    "29-19": [
+        {
+            sentence: "Our team managed to ______ a goal in the last minute of the game.",
+            options: ["Score", "Wave", "Stamp", "Praise"],
+            originalSentence: "Our team managed to Score a goal in the last minute of the game."
+        }
+    ],
+    "29-20": [
+        {
+            sentence: "The striker kicked the ball directly into the ______.",
+            options: ["Goal", "Hook", "Bell", "Main gate"],
+            originalSentence: "The striker kicked the ball directly into the Goal."
+        }
+    ],
+    "29-21": [
+        {
+            sentence: "In science class, we used a ______ to look at small insects.",
+            options: ["Magnifying glass", "Whiteboard", "Pencil case", "Stamp"],
+            originalSentence: "In science class, we used a Magnifying glass to look at small insects."
+        }
+    ],
+    "29-22": [
+        {
+            sentence: "Each ______ on the tree has a different shape and size.",
+            options: ["Leaf", "Vein", "Mountain", "River"],
+            originalSentence: "Each Leaf on the tree has a different shape and size."
+        }
+    ],
+    "29-23": [
+        {
+            sentence: "The students had to ______ the rock samples under the microscope.",
+            options: ["Examine", "Discuss", "Solve", "Arrive"],
+            originalSentence: "The students had to Examine the rock samples under the microscope."
+        }
+    ],
+    "29-24": [
+        {
+            sentence: "Bacteria are ______ organisms that cannot be seen with the naked eye.",
+            options: ["Tiny", "Satisfied", "Deciduous", "Evergreen"],
+            originalSentence: "Bacteria are Tiny organisms that cannot be seen with the naked eye."
+        }
+    ],
+    "29-25": [
+        {
+            sentence: "You can see the ______ of a leaf more clearly if you hold it to the light.",
+            options: ["Vein", "Leaf", "Bell", "Hook"],
+            originalSentence: "You can see the Vein of a leaf more clearly if you hold it to the light."
+        }
+    ],
+    "29-26": [
+        {
+            sentence: "A ______ tree loses its leaves every year during autumn.",
+            options: ["Deciduous", "Evergreen", "Tiny", "Satisfied"],
+            originalSentence: "A Deciduous tree loses its leaves every year during autumn."
+        }
+    ],
+    "29-27": [
+        {
+            sentence: "An ______ tree stays green throughout the entire year.",
+            options: ["Evergreen", "Deciduous", "Tiny", "Satisfied"],
+            originalSentence: "An Evergreen tree stays green throughout the entire year."
+        }
+    ],
+    "29-28": [
+        {
+            sentence: "The students waited ______ in line for their turn to use the computer.",
+            options: ["Patiently", "Quietly", "Tiny", "Praise"],
+            originalSentence: "The students waited Patiently in line for their turn to use the computer."
+        }
+    ],
+    "29-29": [
+        {
+            sentence: "I need to go to the ______ to return these borrowed books.",
+            options: ["Library", "Canteen", "Cafeteria", "Amusement park"],
+            originalSentence: "I need to go to the Library to return these borrowed books."
+        }
+    ],
+    "29-30": [
+        {
+            sentence: "I love reading books about ______ and life on other planets.",
+            options: ["Space exploration", "Mathematics", "Landscape", "Watercolor"],
+            originalSentence: "I love reading books about Space exploration and life on other planets."
+        }
+    ],
+    "29-31": [
+        {
+            sentence: "Please talk ______; people are trying to study in the library.",
+            options: ["Quietly", "Patiently", "Satisfied", "Praise"],
+            originalSentence: "Please talk Quietly; people are trying to study in the library."
+        }
+    ],
+    "29-32": [
+        {
+            sentence: "The ______ helped me find a book about historical battles.",
+            options: ["Librarian", "Lace", "Artist", "Musician"],
+            originalSentence: "The Librarian helped me find a book about historical battles."
+        }
+    ],
+    "29-33": [
+        {
+            sentence: "The librarian will ______ your book to show when it was borrowed.",
+            options: ["Stamp", "Wave", "Score", "Solve"],
+            originalSentence: "The librarian will Stamp your book to show when it was borrowed."
+        }
+    ],
+    "29-34": [
+        {
+            sentence: "You must return the book before the ______ or pay a fine.",
+            options: ["Due date", "Mathematics", "Landscape", "Goal"],
+            originalSentence: "You must return the book before the Due date or pay a fine."
+        }
+    ],
+    "29-35": [
+        {
+            sentence: "We usually have our lunch at the school ______ with our teachers.",
+            options: ["Cafeteria", "Library", "Amusement park", "Mountain"],
+            originalSentence: "We usually have our lunch at the school Cafeteria with our teachers."
+        }
+    ],
+    "29-36": [
+        {
+            sentence: "We had a lot of fun riding the attractions at the ______.",
+            options: ["Amusement park", "Courtyard", "Library", "Cafeteria"],
+            originalSentence: "We had a lot of fun riding the attractions at the Amusement park."
+        }
+    ],
+    "29-37": [
+        {
+            sentence: "The ______ was the most exciting and scary ride at the park.",
+            options: ["Roller coaster", "Landscape", "Mathematics", "Whiteboard"],
+            originalSentence: "The Roller coaster was the most exciting and scary ride at the park."
+        }
+    ],
+    "29-38": [
+        {
+            sentence: "The artist painted a beautiful ______ of the countryside.",
+            options: ["Landscape", "Mathematics", "Space exploration", "Canteen"],
+            originalSentence: "The artist painted a beautiful Landscape of the countryside."
+        }
+    ],
+    "29-39": [
+        {
+            sentence: "Mount Everest is the highest ______ in the world.",
+            options: ["Mountain", "River", "Landscape", "Goal"],
+            originalSentence: "Mount Everest is the highest Mountain in the world."
+        }
+    ],
+    "29-40": [
+        {
+            sentence: "The ______ flows through the valley and into the sea.",
+            options: ["River", "Mountain", "Landscape", "Bell"],
+            originalSentence: "The River flows through the valley and into the sea."
+        }
+    ],
+    "29-41": [
+        {
+            sentence: "She used ______ to paint a soft blue sky in her picture.",
+            options: ["Watercolor", "Pencil case", "Carton", "Stamp"],
+            originalSentence: "She used Watercolor to paint a soft blue sky in her picture."
+        }
+    ],
+    "29-42": [
+        {
+            sentence: "The teacher will ______ you if you work hard and do your best.",
+            options: ["Praise", "Discuss", "Solve", "Stamp"],
+            originalSentence: "The teacher will Praise you if you work hard and do your best."
+        }
+    ],
+    "29-43": [
+        {
+            sentence: "We will ______ our art projects on the wall for everyone to see.",
+            options: ["Display", "Solve", "Examine", "Arrive"],
+            originalSentence: "We will Display our art projects on the wall for everyone to see."
+        }
+    ],
+    "29-44": [
+        {
+            sentence: "I am very ______ with my exam results this semester.",
+            options: ["Satisfied", "Tiny", "Deciduous", "Evergreen"],
+            originalSentence: "I am very Satisfied with my exam results this semester."
+        }
+    ],
+    // استكمال gapfillDB.js - الدرس رقم 30
+    "30-1": [
+        {
+            sentence: "We decided to meet at the small ______ downtown to study together.",
+            options: ["Café", "Science project", "Team", "Counter"],
+            originalSentence: "We decided to meet at the small Café downtown to study together."
+        }
+    ],
+    "30-2": [
+        {
+            sentence: "The polite ______ brought us water before taking our food orders.",
+            options: ["Waiter", "Librarian", "Artist", "Musician"],
+            originalSentence: "The polite Waiter brought us water before taking our food orders."
+        }
+    ],
+    "30-3": [
+        {
+            sentence: "Please look at the ______ to see what drinks are available today.",
+            options: ["Menu", "Notepad", "Bill", "Wallet"],
+            originalSentence: "Please look at the Menu to see what drinks are available today."
+        }
+    ],
+    "30-4": [
+        {
+            sentence: "I love drinking ______ with extra marshmallows in the winter.",
+            options: ["Hot chocolate", "Espresso", "Lemonade", "Smoothie"],
+            originalSentence: "I love drinking Hot chocolate with extra marshmallows in the winter."
+        }
+    ],
+    "30-5": [
+        {
+            sentence: "Would you like some fresh ______ leaves in your green tea?",
+            options: ["Mint", "Strawberry", "Cocoa", "Slice"],
+            originalSentence: "Would you like some fresh Mint leaves in your green tea?"
+        }
+    ],
+    "30-6": [
+        {
+            sentence: "She ordered a ______ cake decorated with fresh red fruits.",
+            options: ["Strawberry", "Mint", "Cocoa", "Cheesecake"],
+            originalSentence: "She ordered a Strawberry cake decorated with fresh red fruits."
+        }
+    ],
+    "30-7": [
+        {
+            sentence: "This fruit ______ is made with bananas, yogurt, and honey.",
+            options: ["Smoothie", "Espresso", "Lemonade", "Hot chocolate"],
+            originalSentence: "This fruit Smoothie is made with bananas, yogurt, and honey."
+        }
+    ],
+    "30-8": [
+        {
+            sentence: "When it's hot outside, nothing is better than a cold glass of ______.",
+            options: ["Lemonade", "Espresso", "Cocoa", "Mug"],
+            originalSentence: "When it's hot outside, nothing is better than a cold glass of Lemonade."
+        }
+    ],
+    "30-9": [
+        {
+            sentence: "My father needs a strong ______ to wake up in the morning.",
+            options: ["Espresso", "Smoothie", "Lemonade", "Hot chocolate"],
+            originalSentence: "My father needs a strong Espresso to wake up in the morning."
+        }
+    ],
+    "30-10": [
+        {
+            sentence: "The waiter wrote our orders on a small ______.",
+            options: ["Notepad", "Wallet", "Bill", "Menu"],
+            originalSentence: "The waiter wrote our orders on a small Notepad."
+        }
+    ],
+    "30-11": [
+        {
+            sentence: "You can pay for your coffee at the ______ near the exit.",
+            options: ["Counter", "Dessert display", "Team", "Café"],
+            originalSentence: "You can pay for your coffee at the Counter near the exit."
+        }
+    ],
+    "30-12": [
+        {
+            sentence: "He continued to ______ at the rain through the café window.",
+            options: ["Gaze", "Inhale", "Taste", "Stir"],
+            originalSentence: "He continued to Gaze at the rain through the café window."
+        }
+    ],
+    "30-13": [
+        {
+            sentence: "I couldn't look away from the delicious cakes in the ______.",
+            options: ["Dessert display", "Counter", "Science project", "Team"],
+            originalSentence: "I couldn't look away from the delicious cakes in the Dessert display."
+        }
+    ],
+    "30-14": [
+        {
+            sentence: "The ______ was rich, dark, and very sweet.",
+            options: ["Chocolate cake", "Apple pie", "Cheesecake", "Mint"],
+            originalSentence: "The Chocolate cake was rich, dark, and very sweet."
+        }
+    ],
+    "30-15": [
+        {
+            sentence: "My grandmother makes the best ______ with cinnamon and sugar.",
+            options: ["Apple pie", "Chocolate cake", "Cheesecake", "Cocoa"],
+            originalSentence: "My grandmother makes the best Apple pie with cinnamon and sugar."
+        }
+    ],
+    "30-16": [
+        {
+            sentence: "Can I have a ______ of lemon in my water, please?",
+            options: ["Slice", "Mug", "Fork", "Striped straw"],
+            originalSentence: "Can I have a Slice of lemon in my water, please?"
+        }
+    ],
+    "30-17": [
+        {
+            sentence: "The ______ with blueberry topping is my favorite dessert.",
+            options: ["Cheesecake", "Apple pie", "Chocolate cake", "Cocoa"],
+            originalSentence: "The Cheesecake with blueberry topping is my favorite dessert."
+        }
+    ],
+    "30-18": [
+        {
+            sentence: "I ate a big lunch, but I always have ______.",
+            options: ["Room for dessert", "Science project", "Belongings", "Bill"],
+            originalSentence: "I ate a big lunch, but I always have Room for dessert."
+        }
+    ],
+    "30-19": [
+        {
+            sentence: "The waiter carried the tray ______ so he wouldn't spill the drinks.",
+            options: ["Carefully", "Enthusiastically", "Approvingly", "Enthusiastically"],
+            originalSentence: "The waiter carried the tray Carefully so he wouldn't spill the drinks."
+        }
+    ],
+    "30-20": [
+        {
+            sentence: "Could you ______ the leftover cake so I can take it home?",
+            options: ["Wrap", "Stir", "Dunk", "Squeeze"],
+            originalSentence: "Could you Wrap the leftover cake so I can take it home?"
+        }
+    ],
+    "30-21": [
+        {
+            sentence: "I held the warm ______ with both hands to heat my fingers.",
+            options: ["Mug", "Fork", "Wallet", "Notepad"],
+            originalSentence: "I held the warm Mug with both hands to heat my fingers."
+        }
+    ],
+    "30-22": [
+        {
+            sentence: "Close your eyes and ______ the wonderful smell of fresh coffee.",
+            options: ["Inhale", "Gaze", "Taste", "Squeeze"],
+            originalSentence: "Close your eyes and Inhale the wonderful smell of fresh coffee."
+        }
+    ],
+    "30-23": [
+        {
+            sentence: "This ______ powder is perfect for making cookies.",
+            options: ["Cocoa", "Mint", "Strawberry", "Lemonade"],
+            originalSentence: "This Cocoa powder is perfect for making cookies."
+        }
+    ],
+    "30-24": [
+        {
+            sentence: "He took a small ______ of his tea to check if it was too hot.",
+            options: ["Sip", "Slice", "Tip", "Fork"],
+            originalSentence: "He took a small Sip of his tea to check if it was too hot."
+        }
+    ],
+    "30-25": [
+        {
+            sentence: "I want to ______ the soup before I add any salt to it.",
+            options: ["Taste", "Stir", "Dunk", "Inhale"],
+            originalSentence: "I want to Taste the soup before I add any salt to it."
+        }
+    ],
+    "20-26": [
+        {
+            sentence: "Use a spoon to ______ the sugar into your coffee.",
+            options: ["Stir", "Wrap", "Dunk", "Squeeze"],
+            originalSentence: "Use a spoon to Stir the sugar into your coffee."
+        }
+    ],
+    "30-27": [
+        {
+            sentence: "The child drank his juice through a blue and white ______.",
+            options: ["Striped straw", "Fork", "Mug", "Slice"],
+            originalSentence: "The child drank his juice through a blue and white Striped straw."
+        }
+    ],
+    "30-28": [
+        {
+            sentence: "You should ______ the tea bag before you take it out of the cup.",
+            options: ["Squeeze", "Stir", "Wrap", "Dunk"],
+            originalSentence: "You should Squeeze the tea bag before you take it out of the cup."
+        }
+    ],
+    "30-29": [
+        {
+            sentence: "I like to ______ my biscuits into my milk to make them soft.",
+            options: ["Dunk", "Squeeze", "Stir", "Wrap"],
+            originalSentence: "I like to Dunk my biscuits into my milk to make them soft."
+        }
+    ],
+    "30-30": [
+        {
+            sentence: "Did the teacher ______ when the homework needs to be finished?",
+            options: ["Mention", "Suggest", "Assign", "Offer"],
+            originalSentence: "Did the teacher Mention when the homework needs to be finished?"
+        }
+    ],
+    "30-31": [
+        {
+            sentence: "Our ______ is about how plants grow in different types of soil.",
+            options: ["Science project", "Room for dessert", "Team", "Bill"],
+            originalSentence: "Our Science project is about how plants grow in different types of soil."
+        }
+    ],
+    "30-32": [
+        {
+            sentence: "The final report for the project is ______ next Thursday.",
+            options: ["Due", "Carefully", "Satisfied", "Perfect"],
+            originalSentence: "The final report for the project is Due next Thursday."
+        }
+    ],
+    "30-33": [
+        {
+            sentence: "I ______ that we divide the work so we can finish faster.",
+            options: ["Suggest", "Mention", "Assign", "Offer"],
+            originalSentence: "I Suggest that we divide the work so we can finish faster."
+        }
+    ],
+    "30-34": [
+        {
+            sentence: "The leader will ______ a specific task to each member of the group.",
+            options: ["Assign", "Mention", "Suggest", "Offer"],
+            originalSentence: "The leader will Assign a specific task to each member of the group."
+        }
+    ],
+    "30-35": [
+        {
+            sentence: "If we work as a ______, we can solve any difficult problem.",
+            options: ["Team", "Café", "Menu", "Science project"],
+            originalSentence: "If we work as a Team, we can solve any difficult problem."
+        }
+    ],
+    "30-36": [
+        {
+            sentence: "I need a ______ to eat my apple pie.",
+            options: ["Fork", "Mug", "Striped straw", "Slice"],
+            originalSentence: "I need a Fork to eat my apple pie."
+        }
+    ],
+    "30-37": [
+        {
+            sentence: "My friend decided to ______ her help with the research part.",
+            options: ["Offer", "Suggest", "Assign", "Mention"],
+            originalSentence: "My friend decided to Offer her help with the research part."
+        }
+    ],
+    "30-38": [
+        {
+            sentence: "The teacher nodded ______ when she saw our progress.",
+            options: ["Approvingly", "Enthusiastically", "Carefully", "Quickly"],
+            originalSentence: "The teacher nodded Approvingly when she saw our progress."
+        }
+    ],
+    "30-39": [
+        {
+            sentence: "Let's ______ all the books and go to the classroom.",
+            options: ["Gather", "Wrap", "Stir", "Inhale"],
+            originalSentence: "Let's Gather all the books and go to the classroom."
+        }
+    ],
+    "30-40": [
+        {
+            sentence: "Check the table to make sure you didn't leave any ______ behind.",
+            options: ["Belongings", "Science project", "Bill", "Wallet"],
+            originalSentence: "Check the table to make sure you didn't leave any Belongings behind."
+        }
+    ],
+    "30-41": [
+        {
+            sentence: "He reached into his pocket to take out his ______ and pay.",
+            options: ["Wallet", "Notepad", "Bill", "Mug"],
+            originalSentence: "He reached into his pocket to take out his Wallet and pay."
+        }
+    ],
+    "30-42": [
+        {
+            sentence: "The waiter put the ______ in a small leather folder.",
+            options: ["Bill", "Wallet", "Notepad", "Tip"],
+            originalSentence: "The waiter put the Bill in a small leather folder."
+        }
+    ],
+    "30-43": [
+        {
+            sentence: "We left a small ______ for the waiter because the service was excellent.",
+            options: ["Tip", "Bill", "Wallet", "Fork"],
+            originalSentence: "We left a small Tip for the waiter because the service was excellent."
+        }
+    ],
+    "30-44": [
+        {
+            sentence: "We had to ______ to our friends as they left the café.",
+            options: ["Wave goodbye", "Mention", "Suggest", "Offer"],
+            originalSentence: "We had to Wave goodbye to our friends as they left the café."
+        }
+    ],
+    "30-45": [
+        {
+            sentence: "The students started their new task ______ and with high energy.",
+            options: ["Enthusiastically", "Carefully", "Approvingly", "Slowly"],
+            originalSentence: "The students started their new task Enthusiastically and with high energy."
+        }
+    ],
     // استكمال gapfillDB.js - الدرس رقم 301
     "301-1": [
         {
