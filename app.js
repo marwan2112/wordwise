@@ -12,9 +12,10 @@ class App {
         this.jumbleCurrentSentence = '';
         this.lang = localStorage.getItem('appLang') || 'ar';
         this.skippedCards = [];
+        this.xpEarnedWords = JSON.parse(localStorage.getItem('xpEarnedWords') || '[]');
         document.documentElement.setAttribute('dir', this.lang === 'ar' ? 'rtl' : 'ltr');
 
-        this.userStats = { xp: 0, level: 1, badges: [], tier: this.lang === 'en' ? 'Beginner' : 'مبتدئ' };
+        this.userStats = { xp: 0, level: 1, badges: [], tier: 'برونزي' };
         this.placementResults = [];
         this.placementFullHistory = [];
         this.currentPlacementDetails = [];
@@ -147,6 +148,17 @@ class App {
         this.render();
     }
 
+    addXPOnce(amount, wordId) {
+        if (!this.xpEarnedWords.includes(String(wordId))) {
+            this.userStats.xp += amount;
+            this.xpEarnedWords.push(String(wordId));
+            localStorage.setItem('xpEarnedWords', JSON.stringify(this.xpEarnedWords));
+            this.updateLevelAndBadges();
+            return true;
+        }
+        return false;
+    }
+
     getBadgesData() {
         return [
             { icon: '🥉', id: 'b1', name: this.t('وسام برونزي', 'Bronze Medal'), req: this.t('فتح 3 دروس', 'Unlock 3 Lessons'), check: () => (this.unlockedLessons || []).length >= 3 },
@@ -169,10 +181,9 @@ class App {
             const earned = b.check();
             const opacity = earned ? '1' : '0.2';
             const filter = earned ? 'none' : 'grayscale(1)';
-            const cursor = earned ? 'pointer' : 'help';
             const n = b.name.replace(/'/g, "\\'");
             const r = b.req.replace(/'/g, "\\'");
-            html += '<span style="font-size:2.2rem; cursor:' + cursor + '; opacity:' + opacity + '; filter:' + filter + '; margin:5px; transition:0.3s; display:inline-block;" onclick="appInstance.showBadgeInfo(\'' + b.icon + '\', \'' + n + '\', \'' + r + '\', ' + earned + ')">' + b.icon + '</span>';
+            html += '<span style="font-size:2.2rem; cursor:pointer; opacity:' + opacity + '; filter:' + filter + '; margin:5px; transition:0.3s; display:inline-block;" onclick="appInstance.showBadgeInfo(\'' + b.icon + '\', \'' + n + '\', \'' + r + '\', ' + earned + ')">' + b.icon + '</span>';
         }
         return '<div style="display:flex; justify-content:center; flex-wrap:wrap; background:rgba(0,0,0,0.05); padding:10px; border-radius:15px; margin-top:10px;">' + html + '</div>';
     }
@@ -196,7 +207,7 @@ class App {
         this.hiddenFromCards = data.hiddenFromCards || [];
         this.customLessons = data.customLessons || {};
         this.generatedLessons = data.generatedLessons || {};
-        this.userStats = data.userStats || { xp: 0, level: 1, badges: [], tier: this.lang === 'en' ? 'Beginner' : 'مبتدئ' };
+        this.userStats = data.userStats || { xp: 0, level: 1, badges: [], tier: 'برونزي' };
         this.placementResults = data.placementResults || [];
         this.placementFullHistory = data.placementFullHistory || [];
         this.userCoins = data.userCoins || 0;
@@ -260,7 +271,7 @@ class App {
         this.hiddenFromCards = [];
         this.customLessons = {};
         this.generatedLessons = {};
-        this.userStats = { xp: 0, level: 1, badges: [], tier: this.lang === 'en' ? 'Beginner' : 'مبتدئ' };
+        this.userStats = { xp: 0, level: 1, badges: [], tier: 'برونزي' };
         this.placementResults = [];
         this.placementFullHistory = [];
         this.userCoins = 0;
@@ -338,7 +349,6 @@ class App {
         }
         this.userStats.badges = currentBadges;
         this.saveUserData();
-        this.render();
     }
 
 
@@ -2506,7 +2516,7 @@ class App {
                             if (!this.masteredWords.includes(String(param))) {
                                 this.masteredWords.push(String(param));
                                 this.updateProgress(10);
-                                this.addXP(1, 'إتقان كلمة (بطاقة)');
+                                this.addXPOnce(1, param);
                                 if (this.selectedLessonId) {
                                     this.grantLessonCompletionReward(this.selectedLessonId);
                                 }
@@ -2535,7 +2545,8 @@ class App {
                     break;
 
                 case 'nextC':
-                    if (!this.skippedCards.includes(allTerms[this.currentCardIndex].term)) this.skippedCards.push(allTerms[this.currentCardIndex].term);
+                    const currentWord = allTerms[this.currentCardIndex];
+                    if (currentWord && !this.skippedCards.includes(String(currentWord.id))) this.skippedCards.push(String(currentWord.id));
                     const cardNext = document.querySelector('.flashcard-container');
                     if (cardNext) {
                         cardNext.classList.add('slide-next');
@@ -2559,6 +2570,7 @@ class App {
 
                 case 'restartCards':
                     this.skippedCards = [];
+                    this.showAllCardsTemporary = false;
                     console.log('🔄 Restart cards clicked, param:', param);
                     const cardShuffle = document.querySelector('.flashcard-container');
                     if (cardShuffle) {
@@ -2733,7 +2745,7 @@ class App {
             this.hiddenFromCards = [];
             this.customLessons = {};
             this.generatedLessons = {};
-            this.userStats = { xp: 0, level: 1, badges: [], tier: this.lang === 'en' ? 'Beginner' : 'مبتدئ' };
+            this.userStats = { xp: 0, level: 1, badges: [], tier: 'برونزي' };
             this.placementResults = [];
             this.placementFullHistory = [];
             this.userCoins = 100;
@@ -2979,7 +2991,7 @@ class App {
             return `<main class="main-content">
                 <div class="reading-card welcome-banner" style="background: linear-gradient(135deg, #1e40af, #3b82f6); color: white; border: none; padding: 20px;">
                     <div style="display: flex; justify-content: space-between; align-items: center;">
-                        <h3 style="margin:0;">${this.t('مرحباً،', 'Hello,')} ${this.userData?.name || this.t('مستخدم', 'User')} 👋</h3>
+                        <h3 style="margin:0;">مرحباً، ${this.userData?.name || 'مستخدم'} 👋</h3>
                         <div style="background: rgba(255,255,255,0.2); padding: 5px 15px; border-radius: 20px; font-size: 0.9rem; font-weight: bold; border: 1px solid rgba(255,255,255,0.3);">
                             ⭐ مستوى ${progress.level}
                         </div>
