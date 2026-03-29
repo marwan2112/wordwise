@@ -149,9 +149,10 @@ class App {
     }
 
     addXPOnce(amount, wordId) {
-        if (!this.xpEarnedWords.includes(String(wordId))) {
+        const idStr = String(wordId);
+        if (!this.xpEarnedWords.includes(idStr)) {
             this.userStats.xp += amount;
-            this.xpEarnedWords.push(String(wordId));
+            this.xpEarnedWords.push(idStr);
             localStorage.setItem('xpEarnedWords', JSON.stringify(this.xpEarnedWords));
             this.updateLevelAndBadges();
             return true;
@@ -2516,7 +2517,7 @@ class App {
                             if (!this.masteredWords.includes(String(param))) {
                                 this.masteredWords.push(String(param));
                                 this.updateProgress(10);
-                                this.addXPOnce(1, param);
+                                this.addXPOnce(10, param);
                                 if (this.selectedLessonId) {
                                     this.grantLessonCompletionReward(this.selectedLessonId);
                                 }
@@ -2545,8 +2546,10 @@ class App {
                     break;
 
                 case 'nextC':
-                    const currentWord = allTerms[this.currentCardIndex];
-                    if (currentWord && !this.skippedCards.includes(String(currentWord.id))) this.skippedCards.push(String(currentWord.id));
+                    const curW = allTerms[this.currentCardIndex];
+                    if (curW && !this.skippedCards.includes(String(curW.id))) this.skippedCards.push(String(curW.id));
+                    this.currentCardIndex++;
+                    if (this.currentCardIndex >= allTerms.length) this.currentCardIndex = 0;
                     const cardNext = document.querySelector('.flashcard-container');
                     if (cardNext) {
                         cardNext.classList.add('slide-next');
@@ -2571,6 +2574,7 @@ class App {
                 case 'restartCards':
                     this.skippedCards = [];
                     this.showAllCardsTemporary = false;
+                    this.currentCardIndex = 0;
                     console.log('🔄 Restart cards clicked, param:', param);
                     const cardShuffle = document.querySelector('.flashcard-container');
                     if (cardShuffle) {
