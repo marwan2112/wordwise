@@ -152,8 +152,12 @@ class App {
             { icon: '🥉', id: 'b1', name: this.t('وسام برونزي', 'Bronze Medal'), req: this.t('فتح 3 دروس', 'Unlock 3 Lessons'), check: () => (this.unlockedLessons || []).length >= 3 },
             { icon: '🥈', id: 'b2', name: this.t('وسام فضي', 'Silver Medal'), req: this.t('فتح 10 دروس', 'Unlock 10 Lessons'), check: () => (this.unlockedLessons || []).length >= 10 },
             { icon: '🥇', id: 'b3', name: this.t('وسام ذهبي', 'Gold Medal'), req: this.t('فتح 25 درس', 'Unlock 25 Lessons'), check: () => (this.unlockedLessons || []).length >= 25 },
-            { icon: '🎖️', id: 'b4', name: this.t('وسام الشرف', 'Honor Badge'), req: this.t('50 درس + 1500 كلمة', '50 Lessons + 1500 Words'), check: () => (this.unlockedLessons || []).length >= 50 && (this.masteredWords || []).length >= 1500 },
-            { icon: '💎', id: 'b5', name: this.t('الوسام الماسي', 'Diamond Badge'), req: this.t('100 درس + 3000 كلمة', '100 Lessons + 3000 Words'), check: () => (this.unlockedLessons || []).length >= 100 && (this.masteredWords || []).length >= 3000 }
+            { icon: '🥉', id: 't1', name: this.t('تاج برونزي', 'Bronze Crown'), req: this.t('إتقان 50 كلمة', 'Master 50 Words'), check: () => (this.masteredWords || []).length >= 50 },
+            { icon: '🥈', id: 't2', name: this.t('تاج فضي', 'Silver Crown'), req: this.t('إتقان 200 كلمة', 'Master 200 Words'), check: () => (this.masteredWords || []).length >= 200 },
+            { icon: '🥇', id: 't3', name: this.t('تاج ذهبي', 'Gold Crown'), req: this.t('إتقان 500 كلمة', 'Master 500 Words'), check: () => (this.masteredWords || []).length >= 500 },
+            { icon: '💎', id: 't4', name: this.t('تاج ماسي', 'Diamond Crown'), req: this.t('إتقان 1000 كلمة', 'Master 1000 Words'), check: () => (this.masteredWords || []).length >= 1000 },
+            { icon: '🎖️', id: 'h1', name: this.t('وسام الشرف', 'Honor Badge'), req: this.t('50 درس + 1500 كلمة', '50 Lessons + 1500 Words'), check: () => (this.unlockedLessons || []).length >= 50 && (this.masteredWords || []).length >= 1500 },
+            { icon: '🏆', id: 'h2', name: this.t('كأس التميز', 'Excellence Trophy'), req: this.t('100 درس + 3000 كلمة', '100 Lessons + 3000 Words'), check: () => (this.unlockedLessons || []).length >= 100 && (this.masteredWords || []).length >= 3000 }
         ];
     }
 
@@ -168,7 +172,7 @@ class App {
             const cursor = earned ? 'pointer' : 'help';
             const n = b.name.replace(/'/g, "\\'");
             const r = b.req.replace(/'/g, "\\'");
-            html += '<span style="font-size:2.2rem; cursor:' + cursor + '; opacity:' + opacity + '; filter:' + filter + '; margin:5px; transition:0.3s;" onclick="appInstance.showBadgeInfo(\'' + b.icon + '\', \'' + n + '\', \'' + r + '\', ' + earned + ')">' + b.icon + '</span>';
+            html += '<span style="font-size:2.2rem; cursor:' + cursor + '; opacity:' + opacity + '; filter:' + filter + '; margin:5px; transition:0.3s; display:inline-block;" onclick="appInstance.showBadgeInfo(\'' + b.icon + '\', \'' + n + '\', \'' + r + '\', ' + earned + ')">' + b.icon + '</span>';
         }
         return '<div style="display:flex; justify-content:center; flex-wrap:wrap; background:rgba(0,0,0,0.05); padding:10px; border-radius:15px; margin-top:10px;">' + html + '</div>';
     }
@@ -1061,7 +1065,7 @@ class App {
         const isUnlocked = this.unlockedLessons.includes(String(lessonId)) || (list[0] && list[0].id == lessonId) || this.selectedLevel === 'custom_list';
         if (isUnlocked) {
             // إضافة مكافأة فتح الدرس إذا لم يكن قد فتح من قبل
-            const defaultLessonIds = [1, 101, 201];
+            const defaultLessonIds = [1, 61, 301];
             const isDefault = defaultLessonIds.includes(Number(lessonId));
             if (!isDefault && !this.unlockedLessons.includes(String(lessonId)) && this.selectedLevel !== 'custom_list') {
                 this.addLessonReward(lessonId);
@@ -3001,7 +3005,7 @@ class App {
                 <button class="hero-btn" data-action="setPage" data-param="placement_test" style="width:100%; background:#ec4899; margin:15px 0;">🧠 اختبار مستوى </button>
 
                 <div class="features-grid">
-                    ${window.levels.map(l => `<div class="feature-card" data-action="selLevel" data-param="${l.id}"><h3>${l.icon} ${this.t(l.name, l.enName || l.id)}</h3></div>`).join('')}
+                    ${window.levels.map(l => `<div class="feature-card" data-action="selLevel" data-param="${l.id}"><h3>${l.icon} ${this.lang === 'en' ? (l.id === 'beginner' ? 'Beginner' : l.id === 'intermediate' ? 'Intermediate' : 'Advanced') : l.name}</h3></div>`).join('')}
                     ${Object.keys(this.customLessons).length > 0 ? `<div class="feature-card" data-action="selLevel" data-param="custom_list" style="border:1px solid #f97316;"><h3>📂 نصوصي</h3></div>` : ''}
                 </div>
 
