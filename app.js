@@ -3552,3 +3552,5 @@ class App {
         this.render();
     }
 }
+
+const appInstance = new App();
