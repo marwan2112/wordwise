@@ -8,10 +8,11 @@ class App {
         this.placementHistory = [];
         this.placementScore = 0;
         this.theme = localStorage.getItem('theme') || 'light';
+        this.lang = localStorage.getItem('appLang') || 'ar';
         this.jumbleArabicHint = '';
         this.jumbleCurrentSentence = '';
 
-        this.userStats = { xp: 0, level: 1, badges: [], tier: 'برونزي' };
+        this.userStats = { xp: 0, level: 1, badges: [], tier: this.t('برونزي', 'Bronze') };
         this.placementResults = [];
         this.placementFullHistory = [];
         this.currentPlacementDetails = [];
@@ -104,7 +105,9 @@ class App {
         this.customLessons = {};
         this.generatedLessons = {};
 
-        this.showAllCardsTemporary = false;
+        this.isReviewingAll = false;
+        this.skippedCards = [];
+        this.isReviewingSkipped = false;
 
         if (!localStorage.getItem('users')) {
             localStorage.setItem('users', JSON.stringify({}));
@@ -133,6 +136,36 @@ class App {
         }
     }
 
+
+    t(ar, en) {
+        return this.lang === 'en' ? en : ar;
+    }
+
+    toggleLanguage() {
+        this.lang = this.lang === 'ar' ? 'en' : 'ar';
+        localStorage.setItem('appLang', this.lang);
+        document.documentElement.setAttribute('dir', this.lang === 'ar' ? 'rtl' : 'ltr');
+        this.render();
+    }
+
+
+    _getActiveCards() {
+        const lesson = this.getCurrentLessonData();
+        if (!lesson) return [];
+        const allTerms = [...lesson.terms, ...this.userVocabulary.filter(v => v.lessonId == this.selectedLessonId)];
+        if (this.isReviewingAll) {
+            return allTerms.filter(t => !this.hiddenFromCards.includes(String(t.id)));
+        } else if (this.isReviewingSkipped) {
+            return allTerms.filter(t =>
+                this.skippedCards.includes(String(t.id)) &&
+                !this.hiddenFromCards.includes(String(t.id)) &&
+                !this.masteredWords.includes(String(t.id))
+            );
+        } else {
+            return allTerms.filter(t => !this.masteredWords.includes(String(t.id)) && !this.hiddenFromCards.includes(String(t.id)));
+        }
+    }
+
     hashPassword(password) {
         return btoa(password);
     }
@@ -146,7 +179,7 @@ class App {
         this.hiddenFromCards = data.hiddenFromCards || [];
         this.customLessons = data.customLessons || {};
         this.generatedLessons = data.generatedLessons || {};
-        this.userStats = data.userStats || { xp: 0, level: 1, badges: [], tier: 'برونزي' };
+        this.userStats = data.userStats || { xp: 0, level: 1, badges: [], tier: this.t('برونزي', 'Bronze') };
         this.placementResults = data.placementResults || [];
         this.placementFullHistory = data.placementFullHistory || [];
         this.userCoins = data.userCoins || 0;
@@ -210,7 +243,7 @@ class App {
         this.hiddenFromCards = [];
         this.customLessons = {};
         this.generatedLessons = {};
-        this.userStats = { xp: 0, level: 1, badges: [], tier: 'برونزي' };
+        this.userStats = { xp: 0, level: 1, badges: [], tier: this.t('برونزي', 'Bronze') };
         this.placementResults = [];
         this.placementFullHistory = [];
         this.userCoins = 0;
@@ -294,11 +327,11 @@ class App {
         }
         this.userStats.badges = newBadges;
         
-        if (newBadges.includes('👑')) this.userStats.tier = 'ماسي';
-        else if (newBadges.includes('🥇')) this.userStats.tier = 'ذهبي';
-        else if (newBadges.includes('🥈')) this.userStats.tier = 'فضي';
-        else if (newBadges.includes('🥉')) this.userStats.tier = 'برونزي';
-        else this.userStats.tier = 'بدون';
+        if (newBadges.includes('👑')) this.userStats.tier = this.t('ماسي', 'Diamond');
+        else if (newBadges.includes('🥇')) this.userStats.tier = this.t('ذهبي', 'Gold');
+        else if (newBadges.includes('🥈')) this.userStats.tier = this.t('فضي', 'Silver');
+        else if (newBadges.includes('🥉')) this.userStats.tier = this.t('برونزي', 'Bronze');
+        else this.userStats.tier = this.t('بدون', 'None');
         
         this.saveUserData();
         this.render();
@@ -359,6 +392,7 @@ class App {
     init() {
         this.addThemeStyles();
         document.documentElement.setAttribute('data-theme', this.theme);
+        document.documentElement.setAttribute('dir', this.lang === 'ar' ? 'rtl' : 'ltr');
         if (!window.levels || !window.lessonsData || !window.placementBank || !window.lessonsList) {
             setTimeout(() => this.init(), 500);
             return;
@@ -1141,7 +1175,7 @@ class App {
         const lesson = this.getCurrentLessonData();
         if (!lesson) return;
 
-        const termWords = lesson.terms.map(t => t.english.toLowerCase());
+        const termWords = lesson.terms.filter(t => !this.hiddenFromCards.includes(String(t.id))).map(t => t.english.toLowerCase());
         const sentences = lesson.content.split(/[.!?]+/).map(s => s.trim()).filter(s => s.length > 0);
         const usefulSentences = sentences.filter(s => {
             const words = s.split(/\s+/).length;
@@ -2340,7 +2374,7 @@ class App {
                 case 'masterWord':
                     if (!this.masteredWords.includes(String(param))) {
                         this.masteredWords.push(String(param));
-                        this.updateProgress(10);
+                        // this.updateProgress(10);
                         // مكافأة 1 XP لكل كلمة متقنة (إضافة منفصلة)
                         this.addXP(1, 'إتقان كلمة');
                         if (this.selectedLessonId) {
@@ -2384,7 +2418,7 @@ class App {
                     break;
 
                 case 'logout':
-                    if (confirm('هل أنت متأكد من تسجيل الخروج؟')) {
+                    if (confirm(this.t('هل أنت متأكد من تسجيل الخروج؟', 'Are you sure you want to logout?'))) {
                         this.logout();
                     }
                     break;
@@ -2394,6 +2428,9 @@ class App {
                     this.currentPage = (param === 'custom_list') ? 'custom_lessons_view' : 'lessons';
                     break;
 
+                case 'toggleLanguage':
+                    this.toggleLanguage();
+                    break;
                 case 'toggleTheme':
                     this.toggleTheme();
                     break;
@@ -2465,7 +2502,9 @@ class App {
                         setTimeout(() => {
                             if (!this.masteredWords.includes(String(param))) {
                                 this.masteredWords.push(String(param));
-                                this.updateProgress(10);
+                                // Remove from skipped when mastered
+                                this.skippedCards = this.skippedCards.filter(id => id !== String(param));
+                                // this.updateProgress(10);
                                 this.addXP(1, 'إتقان كلمة (بطاقة)');
                                 if (this.selectedLessonId) {
                                     this.grantLessonCompletionReward(this.selectedLessonId);
@@ -2478,12 +2517,13 @@ class App {
                     return;
 
                 case 'deleteWord':
-                    this.showConfirmModal('هل أنت متأكد من حذف هذه الكلمة نهائياً من بطاقاتك؟', () => {
+                    this.showConfirmModal(this.t('هل أنت متأكد من حذف هذه الكلمة نهائياً من بطاقاتك؟', 'Are you sure you want to permanently delete this word from your cards?'), () => {
                         const cardD = document.querySelector('.flashcard-container');
                         if (cardD) {
                             cardD.classList.add('delete-anim');
                             setTimeout(() => {
                                 this.hiddenFromCards.push(String(param));
+                                this.skippedCards = this.skippedCards.filter(id => id !== String(param));
                                 this.saveUserData(); this.render();
                             }, 550);
                         }
@@ -2499,6 +2539,14 @@ class App {
                     if (cardNext) {
                         cardNext.classList.add('slide-next');
                         setTimeout(() => {
+                            // Track skipped card (not mastered, not deleted)
+                            const activeForSkip = this._getActiveCards();
+                            if (activeForSkip && activeForSkip[this.currentCardIndex]) {
+                                const skippedId = String(activeForSkip[this.currentCardIndex].id);
+                                if (!this.skippedCards.includes(skippedId)) {
+                                    this.skippedCards.push(skippedId);
+                                }
+                            }
                             if (this.currentCardIndex < (parseInt(total) - 1)) this.currentCardIndex++;
                             this.render();
                         }, 400);
@@ -2526,23 +2574,17 @@ class App {
                     setTimeout(() => {
                         if (param === 'all' && this.selectedLessonId) {
                             this.currentCardIndex = 0;
-                            this.showAllCardsTemporary = true;
+                            this.isReviewingAll = true;
+                            this.isReviewingSkipped = false;
+                            this.skippedCards = [];
+        this.isReviewingSkipped = false;
                             this.saveUserData();
                             this.render();
                         } else if (param === 'remaining') {
-                            const lessonId = this.selectedLessonId;
-                            const lesson = this.getLessonDataById(lessonId);
-                            const originalIds = lesson && lesson.terms ? lesson.terms.map(t => String(t.id)) : [];
-                            const userWordIds = this.userVocabulary
-                                .filter(v => v.lessonId == lessonId)
-                                .map(v => String(v.id));
-                            const allIds = [...originalIds, ...userWordIds];
-                            if (allIds.length > 0) {
-                                this.masteredWords = this.masteredWords.filter(id => !allIds.includes(id));
-                            }
                             this.currentCardIndex = 0;
-                            this.showAllCardsTemporary = false;
-                            this.saveUserData();
+                            this.isReviewingAll = false;
+        this.skippedCards = [];
+        this.isReviewingSkipped = false;
                             this.render();
                         }
                     }, delay);
@@ -2691,7 +2733,7 @@ class App {
             this.hiddenFromCards = [];
             this.customLessons = {};
             this.generatedLessons = {};
-            this.userStats = { xp: 0, level: 1, badges: [], tier: 'برونزي' };
+            this.userStats = { xp: 0, level: 1, badges: [], tier: this.t('برونزي', 'Bronze') };
             this.placementResults = [];
             this.placementFullHistory = [];
             this.userCoins = 100;
@@ -2750,7 +2792,7 @@ class App {
     }
 
     deleteCustomLesson(id) {
-        this.showConfirmModal('هل أنت متأكد من حذف هذا النص نهائياً؟', () => {
+        this.showConfirmModal(this.t('هل أنت متأكد من حذف هذا النص نهائياً؟', 'Are you sure you want to permanently delete this text?'), () => {
             delete this.customLessons[id];
             delete window.lessonsData[id];
             this.userVocabulary = this.userVocabulary.filter(v => v.lessonId !== String(id));
@@ -2760,7 +2802,7 @@ class App {
     }
 
     editLessonTitle(id) {
-        const newTitle = prompt("العنوان الجديد:", this.customLessons[id].title);
+        const newTitle = prompt(this.t('العنوان الجديد:', 'New Title:'), this.customLessons[id].title);
         if (newTitle && newTitle.trim()) {
             this.customLessons[id].title = newTitle.trim();
             if (window.lessonsData[id]) window.lessonsData[id].title = newTitle.trim();
@@ -2769,7 +2811,7 @@ class App {
     }
 
     editLessonContent(id) {
-        const newC = prompt("تعديل نص الموضوع:", this.customLessons[id].content);
+        const newC = prompt(this.t('تعديل نص الموضوع:', 'Edit Text Content:'), this.customLessons[id].content);
         if (newC && newC.trim()) {
             this.customLessons[id].content = newC.trim();
             if (window.lessonsData[id]) window.lessonsData[id].content = newC.trim();
@@ -2779,7 +2821,7 @@ class App {
 
     getBadgesDisplay() {
         const earnedBadges = this.userStats.badges || [];
-        const badgeNames = { '🥉': 'برونزي', '🥈': 'فضي', '🥇': 'ذهبي', '👑': 'ماسي' };
+        const badgeNames = { '🥉': this.t('برونزي', 'Bronze'), '🥈': this.t('فضي', 'Silver'), '🥇': this.t('ذهبي', 'Gold'), '👑': this.t('ماسي', 'Diamond') };
         if (earnedBadges.length > 0) {
             return `<div class="badges-container" onclick="appInstance.showBadgesModal()">
                 ${earnedBadges.map(b => `<span class="badge-item" title="${badgeNames[b]}">${b}</span>`).join('')}
@@ -2793,10 +2835,10 @@ class App {
 
     showBadgesModal() {
         const allBadges = [
-            { icon: '🥉', name: 'برونزي' },
-            { icon: '🥈', name: 'فضي' },
-            { icon: '🥇', name: 'ذهبي' },
-            { icon: '👑', name: 'ماسي' }
+            { icon: '🥉', name: this.t('برونزي', 'Bronze') },
+            { icon: '🥈', name: this.t('فضي', 'Silver') },
+            { icon: '🥇', name: this.t('ذهبي', 'Gold') },
+            { icon: '👑', name: this.t('ماسي', 'Diamond') }
         ];
         const earnedBadges = this.userStats.badges || [];
         let badgesHtml = '<div class="badges-grid">';
@@ -2833,15 +2875,15 @@ class App {
                 modalContent = `
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h3>💰 طلب شراء 300 لؤلؤة</h3>
+                            <h3>${this.t('💰 طلب شراء 300 لؤلؤة', '💰 Request 300 Pearls')}</h3>
                             <span class="close-btn" onclick="appInstance.toggleCoinModal()">&times;</span>
                         </div>
-                        <p style="text-align:center; margin-bottom:15px;">مقابل 1 دولار أمريكي</p>
+                        <p style="text-align:center; margin-bottom:15px;">${this.t('مقابل 1 دولار أمريكي', 'For 1 USD')}</p>
                         <div class="purchase-form">
-                            <input type="text" id="purchaseName" placeholder="الاسم الكامل" />
-                            <input type="email" id="purchaseEmail" placeholder="البريد الإلكتروني" />
-                            <input type="tel" id="purchasePhone" placeholder="رقم الهاتف" />
-                            <button class="hero-btn" data-action="submitPurchase" style="background:#10b981;">إرسال الطلب</button>
+                            <input type="text" id="purchaseName" placeholder="${this.t('الاسم الكامل', 'Full Name')}" />
+                            <input type="email" id="purchaseEmail" placeholder="${this.t('البريد الإلكتروني', 'Email')}" />
+                            <input type="tel" id="purchasePhone" placeholder="${this.t('رقم الهاتف', 'Phone Number')}" />
+                            <button class="hero-btn" data-action="submitPurchase" style="background:#10b981;">${this.t('إرسال الطلب', 'Submit Request')}</button>
                         </div>
                     </div>
                 `;
@@ -2849,18 +2891,18 @@ class App {
                 modalContent = `
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h3>💰 خيارات العملات</h3>
+                            <h3>${this.t('💰 خيارات العملات', '💰 Coin Options')}</h3>
                             <span class="close-btn" onclick="appInstance.toggleCoinModal()">&times;</span>
                         </div>
                         <div class="coin-option" onclick="appInstance.watchAdsForCoins()">
                             <div style="display:flex; justify-content:space-between; align-items:center;">
-                                <span style="font-size:1.2rem;">👁️ مشاهدة 3 إعلانات</span>
+                                <span style="font-size:1.2rem;">${this.t('👁️ مشاهدة 3 إعلانات', '👁️ Watch 3 Ads')}</span>
                                 <span style="background:#ffd700; padding:5px 10px; border-radius:20px;">+50</span>
                             </div>
                         </div>
                         <div class="coin-option" onclick="appInstance.requestPurchase()">
                             <div style="display:flex; justify-content:space-between; align-items:center;">
-                                <span style="font-size:1.2rem;">💳 شراء 300 لؤلؤة</span>
+                                <span style="font-size:1.2rem;">${this.t('💳 شراء 300 لؤلؤة', '💳 Buy 300 Pearls')}</span>
                                 <span style="background:#ffd700; padding:5px 10px; border-radius:20px;">1$</span>
                             </div>
                         </div>
@@ -2877,13 +2919,13 @@ class App {
         let nav = '';
         if (this.selectedLessonId && ['reading', 'flashcards', 'quiz', 'jumble', 'listening', 'spelling', 'gapfill'].includes(this.currentPage) && !this.isUnlockTest) {
             nav = `<nav class="nav-menu">
-                <button class="nav-btn ${this.currentPage === 'reading' ? 'active' : ''}" data-action="setPage" data-param="reading">📖 النص</button>
-                <button class="nav-btn ${this.currentPage === 'flashcards' ? 'active' : ''}" data-action="setPage" data-param="flashcards">🎴 بطاقات</button>
-                <button class="nav-btn ${this.currentPage === 'quiz' ? 'active' : ''}" data-action="setPage" data-param="quiz">🧩 اختبار</button>
-                <button class="nav-btn ${this.currentPage === 'jumble' ? 'active' : ''}" data-action="setPage" data-param="jumble">🔤 ترتيب</button>
-                <button class="nav-btn ${this.currentPage === 'listening' ? 'active' : ''}" data-action="setPage" data-param="listening">🎧 استماع</button>
-                <button class="nav-btn ${this.currentPage === 'spelling' ? 'active' : ''}" data-action="setPage" data-param="spelling">✍️ كتابة</button>
-                <button class="nav-btn ${this.currentPage === 'gapfill' ? 'active' : ''}" data-action="setPage" data-param="gapfill">📝 ملء فراغ</button>
+                <button class="nav-btn ${this.currentPage === 'reading' ? 'active' : ''}" data-action="setPage" data-param="reading">${this.t('📖 النص', '📖 Text')}</button>
+                <button class="nav-btn ${this.currentPage === 'flashcards' ? 'active' : ''}" data-action="setPage" data-param="flashcards">${this.t('🎴 بطاقات', '🎴 Cards')}</button>
+                <button class="nav-btn ${this.currentPage === 'quiz' ? 'active' : ''}" data-action="setPage" data-param="quiz">${this.t('🧩 اختبار', '🧩 Quiz')}</button>
+                <button class="nav-btn ${this.currentPage === 'jumble' ? 'active' : ''}" data-action="setPage" data-param="jumble">${this.t('🔤 ترتيب', '🔤 Jumble')}</button>
+                <button class="nav-btn ${this.currentPage === 'listening' ? 'active' : ''}" data-action="setPage" data-param="listening">${this.t('🎧 استماع', '🎧 Listen')}</button>
+                <button class="nav-btn ${this.currentPage === 'spelling' ? 'active' : ''}" data-action="setPage" data-param="spelling">${this.t('✍️ كتابة', '✍️ Spell')}</button>
+                <button class="nav-btn ${this.currentPage === 'gapfill' ? 'active' : ''}" data-action="setPage" data-param="gapfill">${this.t('📝 ملء فراغ', '📝 Gap Fill')}</button>
             </nav>`;
         }
 
@@ -2894,6 +2936,9 @@ class App {
             <h2>WordWise</h2>
         </div>
         <div style="display:flex; align-items:center; gap:12px;">
+            <button data-action="toggleLanguage" style="background:none; border:none; font-size:1.1rem; cursor:pointer; padding:5px; font-weight:bold; color:var(--text-main);">
+                ${this.lang === 'ar' ? 'EN' : 'عربي'}
+            </button>
             <button data-action="toggleTheme" style="background:none; border:none; font-size:1.3rem; cursor:pointer; padding:5px;">
                 ${this.theme === 'light' ? '🌙' : '☀️'}
             </button>
@@ -2914,15 +2959,15 @@ class App {
                 <div class="auth-container">
                     <img src="wordwise_logo.png" alt="WordWise">
                     <h1>WordWise</h1>
-                    <p>كن حكيماً في اختيار كلماتك</p>
+                    <p>${this.t('كن حكيماً في اختيار كلماتك', 'Be wise in choosing your words')}</p>
                 </div>
                 <div class="reading-card auth-card">
-                    <h2>🚀 مرحباً بك</h2>
-                    <input id="authName" placeholder="الاسم الكامل" class="auth-input">
-                    <input id="authEmail" placeholder="البريد الإلكتروني" class="auth-input">
-                    <input type="password" id="authPass" placeholder="كلمة المرور" class="auth-input">
-                    <button class="hero-btn" data-action="doAuth" style="width:100%;">تسجيل الدخول / إنشاء حساب</button>
-                    <p style="margin-top:10px; font-size:0.9rem; color:#666;">جميع بياناتك محفوظة ومرتبطة بهذا البريد.</p>
+                    <h2>${this.t('🚀 مرحباً بك', '🚀 Welcome')}</h2>
+                    <input id="authName" placeholder="${this.t('الاسم الكامل', 'Full Name')}" class="auth-input">
+                    <input id="authEmail" placeholder="${this.t('البريد الإلكتروني', 'Email')}" class="auth-input">
+                    <input type="password" id="authPass" placeholder="${this.t('كلمة المرور', 'Password')}" class="auth-input">
+                    <button class="hero-btn" data-action="doAuth" style="width:100%;">${this.t('تسجيل الدخول / إنشاء حساب', 'Login / Sign Up')}</button>
+                    <p style="margin-top:10px; font-size:0.9rem; color:#666;">${this.t('جميع بياناتك محفوظة ومرتبطة بهذا البريد.', 'All your data is saved and linked to this email.')}</p>
                 </div>
             </main>`;
         }
@@ -2937,7 +2982,7 @@ class App {
             return `<main class="main-content">
                 <div class="reading-card welcome-banner" style="background: linear-gradient(135deg, #1e40af, #3b82f6); color: white; border: none; padding: 20px;">
                     <div style="display: flex; justify-content: space-between; align-items: center;">
-                        <h3 style="margin:0;">مرحباً، ${this.userData?.name || 'مستخدم'} 👋</h3>
+                        <h3 style="margin:0;">مرحباً، ${this.userData?.name || this.t('مستخدم', 'User')} 👋</h3>
                         <div style="background: rgba(255,255,255,0.2); padding: 5px 15px; border-radius: 20px; font-size: 0.9rem; font-weight: bold; border: 1px solid rgba(255,255,255,0.3);">
                             ⭐ مستوى ${progress.level}
                         </div>
@@ -2945,7 +2990,7 @@ class App {
 
                     <div style="margin-top: 20px;">
                         <div style="display: flex; justify-content: space-between; font-size: 0.85rem; margin-bottom: 8px;">
-                            <span>نقاط الخبرة (XP)</span>
+                            <span>${this.t('نقاط الخبرة (XP)', 'Experience Points (XP)')}</span>
                             <span>${xpProgress}</span>
                         </div>
                         <div style="width: 100%; height: 10px; background: rgba(0,0,0,0.2); border-radius: 10px; overflow: hidden; border: 1px solid rgba(255,255,255,0.1);">
@@ -2955,19 +3000,19 @@ class App {
 
                     ${this.getBadgesDisplay()}
 
-                    <div style="margin-top: 10px; font-size:0.9rem;">التاج الحالي: ${this.userStats.tier}</div>
-                    <div style="margin-top: 5px; font-size:0.9rem;">الدروس المفتوحة: ${totalLessons} | الكلمات المتقنة: ${totalMastered}</div>
+                    <div style="margin-top: 10px; font-size:0.9rem;">${this.t('التاج الحالي:', 'Current Tier:')} ${this.userStats.tier}</div>
+                    <div style="margin-top: 5px; font-size:0.9rem;">${this.t('الدروس المفتوحة:', 'Unlocked Lessons:')} ${totalLessons} | الكلمات المتقنة: ${totalMastered}</div>
                 </div>
 
-                <button class="hero-btn" data-action="setPage" data-param="addLesson" style="width:100%; background:#8b5cf6; margin-top:15px;">📸 إضافة من الكاميرا أو الهاتف</button>
-                <button class="hero-btn" data-action="setPage" data-param="placement_test" style="width:100%; background:#ec4899; margin:15px 0;">🧠 اختبار مستوى </button>
+                <button class="hero-btn" data-action="setPage" data-param="addLesson" style="width:100%; background:#8b5cf6; margin-top:15px;">${this.t('📸 إضافة من الكاميرا أو الهاتف', '📸 Add from Camera or Phone')}</button>
+                <button class="hero-btn" data-action="setPage" data-param="placement_test" style="width:100%; background:#ec4899; margin:15px 0;">${this.t('🧠 اختبار مستوى', '🧠 Placement Test')} </button>
 
                 <div class="features-grid">
                     ${window.levels.map(l => `<div class="feature-card" data-action="selLevel" data-param="${l.id}"><h3>${l.icon} ${l.name}</h3></div>`).join('')}
-                    ${Object.keys(this.customLessons).length > 0 ? `<div class="feature-card" data-action="selLevel" data-param="custom_list" style="border:1px solid #f97316;"><h3>📂 نصوصي</h3></div>` : ''}
+                    ${Object.keys(this.customLessons).length > 0 ? `<div class="feature-card" data-action="selLevel" data-param="custom_list" style="border:1px solid #f97316;"><h3>${this.t('📂 نصوصي', '📂 My Texts')}</h3></div>` : ''}
                 </div>
 
-                <button data-action="logout" class="logout-btn" style="margin-top: 20px; background: #dc2626; color: white; padding: 14px 20px; font-size: 1.2rem; font-weight: bold; border-radius: 10px; width: 100%; border: none; cursor: pointer;">تسجيل الخروج</button>
+                <button data-action="logout" class="logout-btn" style="margin-top: 20px; background: #dc2626; color: white; padding: 14px 20px; font-size: 1.2rem; font-weight: bold; border-radius: 10px; width: 100%; border: none; cursor: pointer;">${this.t('تسجيل الخروج', 'Logout')}</button>
             </main>`;
         }
         if (this.currentPage === 'profile') {
@@ -2977,7 +3022,7 @@ class App {
             const progressPercent = (totalLessons / 100) * 100;
 
             return `<main class="main-content">
-                <button class="hero-btn" data-action="goHome" style="margin-bottom:15px; background:#64748b;">← رجوع</button>
+                <button class="hero-btn" data-action="goHome" style="margin-bottom:15px; background:#64748b;">${this.t('← رجوع', '← Back')}</button>
                 <div class="reading-card profile-container">
                     <div class="profile-image" onclick="document.getElementById('profileImage').click()">
                         ${this.userProfile.image ?
@@ -2988,17 +3033,17 @@ class App {
                     <input type="file" id="profileImage" accept="image/*" style="display:none;" onchange="appInstance.updateProfile()">
 
                     <div class="profile-info">
-                        <div class="info-row"><span>الاسم:</span> <span><input type="text" id="profileName" value="${this.userProfile.name || this.userData?.name || ''}" placeholder="الاسم"></span></div>
-                        <div class="info-row"><span>العمر:</span> <span><input type="number" id="profileAge" value="${this.userProfile.age || ''}" placeholder="العمر"></span></div>
-                        <div class="info-row"><span>تاريخ الانضمام:</span> <span>${this.userProfile.joinDate}</span></div>
-                        <div class="info-row"><span>المستوى في التطبيق:</span> <span>${this.userStats.level}</span></div>
-                        <div class="info-row"><span>مستوى اللغة:</span> <span>${englishLevel}</span></div>
-                        <div class="info-row"><span>كلمة المرور:</span> <span><input type="password" id="profilePassword" placeholder="جديدة"></span></div>
+                        <div class="info-row"><span>${this.t('الاسم:', 'Name:')}</span> <span><input type="text" id="profileName" value="${this.userProfile.name || this.userData?.name || ''}" placeholder="${this.t('الاسم', 'Name')}"></span></div>
+                        <div class="info-row"><span>${this.t('العمر:', 'Age:')}</span> <span><input type="number" id="profileAge" value="${this.userProfile.age || ''}" placeholder="${this.t('العمر', 'Age')}"></span></div>
+                        <div class="info-row"><span>${this.t('تاريخ الانضمام:', 'Join Date:')}</span> <span>${this.userProfile.joinDate}</span></div>
+                        <div class="info-row"><span>${this.t('المستوى في التطبيق:', 'App Level:')}</span> <span>${this.userStats.level}</span></div>
+                        <div class="info-row"><span>${this.t('مستوى اللغة:', 'Language Level:')}</span> <span>${englishLevel}</span></div>
+                        <div class="info-row"><span>كلمة المرور:</span> <span><input type="password" id="profilePassword" placeholder="${this.t('جديدة', 'New')}"></span></div>
                     </div>
 
                     <div style="width:100%; margin:15px 0;">
                         <div style="display:flex; justify-content:space-between;">
-                            <span>التقدم العام</span>
+                            <span>${this.t('التقدم العام', 'General Progress')}</span>
                             <span>${totalLessons} درس / 100</span>
                         </div>
                         <div class="progress-bar-container">
@@ -3006,9 +3051,9 @@ class App {
                         </div>
                     </div>
 
-                    <button class="hero-btn" data-action="updateProfile" style="background:#10b981;">حفظ التغييرات</button>
+                    <button class="hero-btn" data-action="updateProfile" style="background:#10b981;">${this.t('حفظ التغييرات', 'Save Changes')}</button>
 
-                    <h4 style="margin:15px 0 10px;">📜 سجل الاختبارات</h4>
+                    <h4 style="margin:15px 0 10px;">${this.t('📜 سجل الاختبارات', '📜 Test History')}</h4>
                     <button class="hero-btn" data-action="setPage" data-param="test_history" style="background:#3b82f6;">عرض سجل الاختبارات</button>
                 </div>
             </main>`;
@@ -3063,7 +3108,7 @@ class App {
                     </div>
                     <div style="display:flex; gap:10px;">
                         <button class="hero-btn" onclick="appInstance.resetPlacement()" style="background:#ec4899; flex:1;">إعادة الاختبار 🔄</button>
-                        <button class="hero-btn" data-action="goHome" style="background:#64748b; flex:1;">الرئيسية</button>
+                        <button class="hero-btn" data-action="goHome" style="background:#64748b; flex:1;">${this.t('الرئيسية', 'Home')}</button>
                     </div>
                 </div>`;
             }
@@ -3094,7 +3139,7 @@ class App {
         if (this.currentPage === 'placement_details' && this.viewingPlacementDetails) {
             const details = this.viewingPlacementDetails.details || [];
             return `<div class="reading-card">
-                <button class="hero-btn" data-action="backFromDetails" style="margin-bottom:15px; background:#64748b;">← رجوع</button>
+                <button class="hero-btn" data-action="backFromDetails" style="margin-bottom:15px; background:#64748b;">${this.t('← رجوع', '← Back')}</button>
                 <h2 style="text-align:center;">تفاصيل اختبار ${this.viewingPlacementDetails.date}</h2>
                 <p style="text-align:center;">المستوى النهائي: <strong>${this.viewingPlacementDetails.level}</strong> | الدرجة: ${this.viewingPlacementDetails.score}/35</p>
                 <div style="max-height:400px; overflow-y:auto; border:1px solid #e2e8f0; border-radius:8px; padding:10px;">
@@ -3119,16 +3164,16 @@ class App {
 
             const addLessonButton = `
                 <div class="feature-card" data-action="setPage" data-param="addLesson" style="border: 2px dashed #10b981; background: linear-gradient(135deg, #e0f2e9, #d1fae5);">
-                    <h3>📝 إضافة درس يدوي</h3>
-                    <p style="font-size:0.9rem; margin-top:5px;">أضف درساً خاصاً بك عن طريق لصق النص والكلمات</p>
+                    <h3>${this.t('📝 إضافة درس يدوي', '📝 Add Manual Lesson')}</h3>
+                    <p style="font-size:0.9rem; margin-top:5px;">${this.t('أضف درساً خاصاً بك عن طريق لصق النص والكلمات', 'Add your own lesson by pasting text and words')}</p>
                 </div>
             `;
 
             return `<main class="main-content">
-                <button class="hero-btn" data-action="goHome" style="margin-bottom:15px; background:#64748b;">← رجوع</button>
+                <button class="hero-btn" data-action="goHome" style="margin-bottom:15px; background:#64748b;">${this.t('← رجوع', '← Back')}</button>
                 ${testLevelParam ? `
                 <div style="margin-bottom:20px; text-align:center;">
-                    <button class="hero-btn" data-action="startLevelTest" data-param="${testLevelParam}" style="background:#8b5cf6;">📊 اختبار المستوى الشامل (100 سؤال)</button>
+                    <button class="hero-btn" data-action="startLevelTest" data-param="${testLevelParam}" style="background:#8b5cf6;">${this.t('📊 اختبار المستوى الشامل (100 سؤال)', '📊 Comprehensive Level Test (100 Qs)')}</button>
                 </div>
                 ` : ''}
                 <div class="features-grid">
@@ -3139,8 +3184,8 @@ class App {
                             <h3>${displayLock}${l.title}</h3>
                             ${l.isGenerated ? `
                                 <div style="display:flex; justify-content:center; gap:10px; margin-top:10px;">
-                                    <button class="hero-btn" data-action="deleteGeneratedLesson" data-param="${l.id}" style="background:#ef4444; padding:5px 10px; font-size:0.8rem;">🗑️ حذف</button>
-                                    <button class="hero-btn" data-action="regenerateAILesson" data-param="${this.selectedLevel},${l.id}" style="background:#f59e0b; padding:5px 10px; font-size:0.8rem;">🔄 إعادة توليد</button>
+                                    <button class="hero-btn" data-action="deleteGeneratedLesson" data-param="${l.id}" style="background:#ef4444; padding:5px 10px; font-size:0.8rem;">${this.t('🗑️ حذف', '🗑️ Delete')}</button>
+                                    <button class="hero-btn" data-action="regenerateAILesson" data-param="${this.selectedLevel},${l.id}" style="background:#f59e0b; padding:5px 10px; font-size:0.8rem;">${this.t('🔄 إعادة توليد', '🔄 Regenerate')}</button>
                                 </div>
                             ` : ''}
                           </div>`;
@@ -3152,23 +3197,22 @@ class App {
 
         if (this.currentPage === 'unlock_choice') {
             return `<div class="reading-card" style="text-align:center;">
-                <h3>🔓 فتح الدرس</h3>
-                <p>اختر طريقة فتح الدرس:</p>
+                <h3>${this.t('🔓 فتح الدرس', '🔓 Unlock Lesson')}</h3>
+                <p>${this.t('اختر طريقة فتح الدرس:', 'Choose how to unlock the lesson:')}</p>
                 <div class="unlock-choice">
-                    <button class="hero-btn" data-action="unlockWithTest" data-param="${this.tempLessonToUnlock}" style="background:#3b82f6;">🧪 خوض الاختبار</button>
-                    <button class="hero-btn" data-action="unlockWithCoins" data-param="${this.tempLessonToUnlock}" style="background:#ffd700; color:#000;">💰 دفع 100 لؤلؤة (رصيدك: ${this.userCoins})</button>
+                    <button class="hero-btn" data-action="unlockWithTest" data-param="${this.tempLessonToUnlock}" style="background:#3b82f6;">${this.t('🧪 خوض الاختبار', '🧪 Take Test')}</button>
+                    <button class="hero-btn" data-action="unlockWithCoins" data-param="${this.tempLessonToUnlock}" style="background:#ffd700; color:#000;">💰 ${this.t('دفع 100 لؤلؤة (رصيدك:', 'Pay 100 Pearls (Balance:')} ${this.userCoins})</button>
                 </div>
-                <button class="hero-btn" data-action="goHome" style="margin-top:15px; background:#64748b;">الرئيسية</button>
+                <button class="hero-btn" data-action="goHome" style="margin-top:15px; background:#64748b;">${this.t('الرئيسية', 'Home')}</button>
             </div>`;
         }
 
         if (this.currentPage === 'custom_lessons_view') {
             const lessons = Object.values(this.customLessons);
             return `<main class="main-content">
-                <button class="hero-btn" data-action="goHome" style="margin-bottom:15px; background:#64748b;">← العودة للرئيسية</button>
-                <h2 style="margin-bottom: 20px; text-align:center;">📂 نصوصي الخاصة</h2>
-                ${lessons.length === 0 ? '<div class="reading-card" style="text-align:center; padding:30px; color:#666;">لا توجد نصوص محفوظة. صوّر نصك الأول الآن!</div>' : ''}
-                <div style="display: flex; flex-direction: column; gap: 15px;">
+                <button class="hero-btn" data-action="goHome" style="margin-bottom:15px; background:#64748b;">← ${this.t('العودة للرئيسية', 'Back to Home')}</button>
+                <h2 style="margin-bottom: 20px; text-align:center;">${this.t('📂 نصوصي', '📂 My Texts')} الخاصة</h2>
+                ${lessons.length === 0 ? `<div class="reading-card" style="text-align:center; padding:30px; color:#666;">${this.t('لا توجد نصوص محفوظة. صوّر نصك الأول الآن!', 'No saved texts. Capture your first text now!')}</div>` : ''}             <div style="display: flex; flex-direction: column; gap: 15px;">
                     ${lessons.map(l => `
                         <div class="reading-card" style="border-right: 5px solid #6366f1; text-align: right; direction: rtl;">
                             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
@@ -3182,7 +3226,7 @@ class App {
                             <p style="font-size: 0.9rem; color: #555; margin-bottom: 15px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; direction: ltr; text-align: left;">
                                 ${l.content}
                             </p>
-                            <button class="hero-btn" data-action="selLesson" data-param="${l.id}" style="width:100%; padding: 12px; font-size: 1rem; background: #6366f1;">📖 فتح النص للدراسة</button>
+                            <button class="hero-btn" data-action="selLesson" data-param="${l.id}" style="width:100%; padding: 12px; font-size: 1rem; background: #6366f1;">${this.t('📖 فتح النص للدراسة', '📖 Open Text for Study')}</button>
                         </div>
                     `).join('')}
                 </div>
@@ -3194,11 +3238,11 @@ class App {
 
             return `<main class="main-content">
                 <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px; flex-wrap: wrap;">
-                    <button class="hero-btn" data-action="backToLessons" style="background:#64748b;">⬅ تراجع</button>
+                    <button class="hero-btn" data-action="backToLessons" style="background:#64748b;">${this.t('⬅ تراجع', '⬅ Back')}</button>
                     <div style="display: flex; gap: 5px; background: #f0f0f0; padding: 5px; border-radius: 8px; flex-wrap: wrap;">
-                        <button class="hero-btn" data-action="playAudio" data-param="${audioSrc}" style="background:#3b82f6; padding: 5px 10px;">▶️ تشغيل</button>
-                        <button class="hero-btn" data-action="pauseAudio" style="background:#f59e0b; padding: 5px 10px;">⏸️ إيقاف مؤقت</button>
-                        <button class="hero-btn" data-action="stopAudio" style="background:#ef4444; padding: 5px 10px;">⏹️ إيقاف</button>
+                        <button class="hero-btn" data-action="playAudio" data-param="${audioSrc}" style="background:#3b82f6; padding: 5px 10px;">${this.t('▶️ تشغيل', '▶️ Play')}</button>
+                        <button class="hero-btn" data-action="pauseAudio" style="background:#f59e0b; padding: 5px 10px;">${this.t('⏸️ إيقاف مؤقت', '⏸️ Pause')}</button>
+                        <button class="hero-btn" data-action="stopAudio" style="background:#ef4444; padding: 5px 10px;">${this.t('⏹️ إيقاف', '⏹️ Stop')}</button>
                         <button class="hero-btn" data-action="skipBack10" style="background:#8b5cf6; padding: 5px 10px;">⏪ 10</button>
                         <button class="hero-btn" data-action="skipForward10" style="background:#8b5cf6; padding: 5px 10px;">10 ⏩</button>
                         <button class="hero-btn" data-action="speedDown" style="background:#8b5cf6; padding: 5px 10px;">🐢</button>
@@ -3211,27 +3255,36 @@ class App {
                     <div class="scrollable-text" style="direction:ltr; text-align:left; margin-top:10px;">${lesson.content}</div>
                 </div>
                 <div class="reading-card" style="margin-top:20px; border:1px dashed #6366f1; background:#f0f7ff;">
-                    <h4 style="margin-bottom:10px;">إضافة كلمة جديدة:</h4>
-                    <input id="newEng" placeholder="اكتب بالإنجليزية هنا..." style="width:100%; padding:12px; border-radius:8px; border:1px solid #ddd;" oninput="appInstance.translateAuto(this.value, 'newArb')">
-                    <input id="newArb" placeholder="الترجمة تظهر هنا..." style="width:100%; padding:12px; margin:10px 0; border-radius:8px; border:1px solid #ddd; background:#fff;">
-                    <button class="hero-btn" data-action="addNewWord" style="width:100%; background:#10b981;">إضافة للقائمة ✅</button>
+                    <h4 style="margin-bottom:10px;">${this.t('إضافة كلمة جديدة:', 'Add New Word:')}</h4>
+                    <input id="newEng" placeholder="${this.t('اكتب بالإنجليزية هنا...', 'Type in English here...')}" style="width:100%; padding:12px; border-radius:8px; border:1px solid #ddd;" oninput="appInstance.translateAuto(this.value, 'newArb')">
+                    <input id="newArb" placeholder="${this.t('الترجمة تظهر هنا...', 'Translation appears here...')}" style="width:100%; padding:12px; margin:10px 0; border-radius:8px; border:1px solid #ddd; background:#fff;">
+                    <button class="hero-btn" data-action="addNewWord" style="width:100%; background:#10b981;">${this.t('إضافة للقائمة ✅', 'Add to List ✅')}</button>
                 </div>
             </main>`;
         }
 
         if (this.currentPage === 'flashcards') {
             let active;
-            if (this.showAllCardsTemporary) {
+            if (this.isReviewingAll) {
                 active = allTerms.filter(t => !this.hiddenFromCards.includes(String(t.id)));
-                this.showAllCardsTemporary = false;
+                this.isReviewingAll = false;
+        this.skippedCards = [];
+        this.isReviewingSkipped = false;
             } else {
                 active = allTerms.filter(t => !this.masteredWords.includes(String(t.id)) && !this.hiddenFromCards.includes(String(t.id)));
             }
+            if (this.currentCardIndex >= active.length) {
+                this.currentCardIndex = Math.max(0, active.length - 1);
+            }
             if (active.length === 0) {
+                const msg = this.isReviewingSkipped
+                    ? this.t('لا توجد كلمات مخطأة للتكرار', 'No skipped words to repeat')
+                    : this.t('🎉 اكتملت المراجعة!', '🎉 Review Completed!');
+                this.isReviewingSkipped = false;
                 return `<div class="reading-card" style="text-align:center;">
                     <div style="font-size:3rem; margin-bottom:10px;">🧠</div>
-                    <h3>🎉 اكتملت المراجعة!</h3>
-                    <button class="hero-btn" data-action="restartCards" data-param="all" style="background:#f59e0b;">إعادة تكرار الكل 🔁</button>
+                    <h3>${msg}</h3>
+                    <button class="hero-btn" data-action="restartCards" data-param="all" style="background:#f59e0b;">${this.t('إعادة تكرار الكل 🔁', 'Repeat All 🔁')}</button>
                 </div>`;
             }
             const t = active[this.currentCardIndex];
@@ -3245,14 +3298,14 @@ class App {
                     </div>
                 </div>
                 <div class="card-controls-row" style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; margin-top: 20px;">
-                    <button class="hero-btn" data-action="speak" data-param="${t.english}" style="background:#6366f1;">🔊 نطق</button>
-                    <button class="hero-btn" data-action="masterWordFlash" data-param="${t.id}" style="background:#10b981;">✅ اعرفها</button>
-                    <button class="hero-btn" data-action="deleteWord" data-param="${t.id}" style="background:#ef4444;">🗑️ حذف</button>
+                    <button class="hero-btn" data-action="speak" data-param="${t.english}" style="background:#6366f1;">${this.t('🔊 نطق', '🔊 Pronounce')}</button>
+                    <button class="hero-btn" data-action="masterWordFlash" data-param="${t.id}" style="background:#10b981;">${this.t('✅ اعرفها', '✅ I Know It')}</button>
+                    <button class="hero-btn" data-action="deleteWord" data-param="${t.id}" style="background:#ef4444;">${this.t('🗑️ حذف', '🗑️ Delete')}</button>
                 </div>
-                <button class="hero-btn" data-action="restartCards" data-param="remaining" style="width:100%; margin: 15px 0; background:#f59e0b;">🔁 تكرار المتبقي</button>
+                <button class="hero-btn" data-action="restartCards" data-param="remaining" style="width:100%; margin: 15px 0; background:#f59e0b;">${this.t('🔁 تكرار المتبقي', '🔁 Repeat Remaining')}</button>
                 <div class="card-nav-row" style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
-                    <button class="hero-btn" data-action="prevC" style="background:#64748b;">السابق</button>
-                    <button class="hero-btn" data-action="nextC" data-total="${active.length}" style="background:#64748b;">التالي</button>
+                    <button class="hero-btn" data-action="prevC" style="background:#64748b;">${this.t('السابق', 'Previous')}</button>
+                    <button class="hero-btn" data-action="nextC" data-total="${active.length}" style="background:#64748b;">${this.t('التالي', 'Next')}</button>
                 </div>
                 <div style="text-align:center; margin-top:10px; color:#666;">${this.currentCardIndex + 1} / ${active.length}</div>
             </main>`;
@@ -3270,13 +3323,13 @@ class App {
                 }
                 this.saveUserData();
                 return `<div class="reading-card finish-box">
-                    <h2>${pass ? "نجحت! 🎉" : "حاول مجدداً"}</h2>
-                    <button class="hero-btn" data-action="backToLessons">متابعة</button>
+                    <h2>${pass ? this.t('نجحت! 🎉', 'Success! 🎉') : this.t('حاول مجدداً', 'Try Again')}</h2>
+                    <button class="hero-btn" data-action="backToLessons">${this.t('متابعة', 'Continue')}</button>
                 </div>`;
             }
             const q = this.quizQuestions[this.quizIndex];
             return `<div class="reading-card quiz-box">
-                <div class="quiz-info">السؤال ${this.quizIndex + 1}/${this.quizQuestions.length}</div>
+                <div class="quiz-info">${this.t('السؤال', 'Question')} ${this.quizIndex + 1}/${this.quizQuestions.length}</div>
                 <div class="quiz-question-row">
                     <h2>${q.english}</h2>
                     <button class="quiz-speak-btn" data-action="speak" data-param="${q.english}">🔊</button>
@@ -3290,14 +3343,14 @@ class App {
         if (this.currentPage === 'jumble') {
             if (!this.jumbleUnlocked[this.selectedLessonId]) {
                 return `<div class="reading-card" style="text-align: center;">
-                    <h3>🔤 ترتيب الجمل</h3>
-                    <p>لفتح هذا التمرين تحتاج 50 💎 لؤلؤة (مرة واحدة فقط للدرس).</p>
-                    <p>رصيدك الحالي: ${this.userCoins} 💎</p>
-                    <button class="hero-btn" onclick="appInstance.unlockJumble('${this.selectedLessonId}')" style="background: #8b5cf6;">فتح (50 💎)</button>
+                    <h3>${this.t('🔤 ترتيب', '🔤 Jumble')} الجمل</h3>
+                    <p>${this.t('لفتح هذا التمرين تحتاج 50 💎 لؤلؤة (مرة واحدة فقط للدرس).', 'To unlock this exercise you need 50 💎 pearls (once per lesson).')}</p>
+                    <p>${this.t('رصيدك الحالي:', 'Current Balance:')} ${this.userCoins} 💎</p>
+                    <button class="hero-btn" onclick="appInstance.unlockJumble('${this.selectedLessonId}')" style="background: #8b5cf6;">${this.t('فتح (50 💎)', 'Unlock (50 💎)')}</button>
                 </div>`;
             }
             return `<div class="reading-card">
-                <h3>🔤 رتب الكلمات لتكوين جملة صحيحة</h3>
+                <h3>${this.t('🔤 رتب الكلمات لتكوين جملة صحيحة', '🔤 Arrange words to form a correct sentence')}</h3>
                 <div style="display: flex; flex-wrap: wrap; gap: 10px; margin: 20px 0; padding: 15px; background: ${this.jumbleChecked ? (this.jumbleCorrect ? '#d1fae5' : '#fee2e2') : '#f1f5f9'}; border-radius: 8px; min-height: 60px; border: ${this.jumbleChecked ? (this.jumbleCorrect ? '2px solid #10b981' : '2px solid #ef4444') : 'none'};">
                     ${this.jumbleUserAnswer.map(word => `
                         <span class="jumble-word-top" data-action="jumbleRemove" data-param="${word}" style="cursor: pointer; background: #3b82f6; color: white; padding: 8px 15px; border-radius: 20px; font-size: 1.2rem;">${word}</span>
@@ -3309,12 +3362,12 @@ class App {
                     `).join('')}
                 </div>
                 <div style="display: flex; gap: 10px; justify-content: center; flex-wrap: wrap;">
-                    <button class="hero-btn" data-action="jumbleReset" style="background:#f59e0b;">🔄 إعادة</button>
-                    <button class="hero-btn" data-action="jumbleCheck" style="background:#10b981;" ${this.jumbleChecked ? 'disabled' : ''}>✅ تحقق</button>
-                    <button class="hero-btn" data-action="jumbleHint" style="background:#3b82f6;" ${this.jumbleChecked || this.jumbleHintUsed ? 'disabled' : ''}>💡 تلميح</button>
-                    ${this.jumbleChecked ? `<button class="hero-btn" data-action="jumbleNext" style="background:#3b82f6;">➡️ التالي</button>` : ''}
+                    <button class="hero-btn" data-action="jumbleReset" style="background:#f59e0b;">${this.t('🔄 إعادة', '🔄 Reset')}</button>
+                    <button class="hero-btn" data-action="jumbleCheck" style="background:#10b981;" ${this.jumbleChecked ? 'disabled' : ''}>${this.t('✅ تحقق', '✅ Check')}</button>
+                    <button class="hero-btn" data-action="jumbleHint" style="background:#3b82f6;" ${this.jumbleChecked || this.jumbleHintUsed ? 'disabled' : ''}>${this.t('💡 تلميح', '💡 Hint')}</button>
+                    ${this.jumbleChecked ? `<button class="hero-btn" data-action="jumbleNext" style="background:#3b82f6;">➡️ ${this.t('التالي', 'Next')}</button>` : ''}
                 </div>
-                ${this.jumbleArabicHint ? `<div style="margin-top: 15px; padding: 10px; background: #e0f2fe; border-radius: 8px; text-align: center; font-size: 1.1rem; color: #0369a1;">🔍 الترجمة: ${this.jumbleArabicHint}</div>` : ''}
+                ${this.jumbleArabicHint ? `<div style="margin-top: 15px; padding: 10px; background: #e0f2fe; border-radius: 8px; text-align: center; font-size: 1.1rem; color: #0369a1;">${this.t('🔍 الترجمة:', '🔍 Translation:')} ${this.jumbleArabicHint}</div>` : ''}
                 ${this.jumbleHintUsed ? `<p style="margin-top: 10px; color: #f59e0b;">🔎 تلميح: أول كلمة هي "${this.jumbleOriginalSentence.split(/\s+/)[0]}"</p>` : ''}
             </div>`;
         }
@@ -3322,19 +3375,19 @@ class App {
         if (this.currentPage === 'listening') {
             if (!this.listeningUnlocked[this.selectedLessonId]) {
                 return `<div class="reading-card" style="text-align: center;">
-                    <h3>🎧 اختبار الاستماع</h3>
+                    <h3>${this.t('🎧 اختبار الاستماع', '🎧 Listening Test')}</h3>
                     <p>لفتح هذا الاختبار تحتاج 50 💎 لؤلؤة (مرة واحدة فقط للدرس).</p>
-                    <p>رصيدك الحالي: ${this.userCoins} 💎</p>
-                    <button class="hero-btn" onclick="appInstance.unlockListening('${this.selectedLessonId}')" style="background: #8b5cf6;">فتح (50 💎)</button>
+                    <p>${this.t('رصيدك الحالي:', 'Current Balance:')} ${this.userCoins} 💎</p>
+                    <button class="hero-btn" onclick="appInstance.unlockListening('${this.selectedLessonId}')" style="background: #8b5cf6;">${this.t('فتح (50 💎)', 'Unlock (50 💎)')}</button>
                 </div>`;
             }
             if (!this.listeningCurrent) {
-                return `<div class="reading-card"><p>لا توجد كلمات متاحة. حاول مرة أخرى.</p></div>`;
+                return `<div class="reading-card"><p>${this.t('لا توجد كلمات متاحة. حاول مرة أخرى.', 'No words available. Try again.')}</p></div>`;
             }
             return `<div class="reading-card">
-                <h3>🎧 استمع واختر الكلمة الصحيحة</h3>
+                <h3>${this.t('🎧 استمع واختر الكلمة الصحيحة', '🎧 Listen and choose the correct word')}</h3>
                 <div style="text-align: center; margin: 30px 0;">
-                    <button class="hero-btn" data-action="speak" data-param="${this.listeningCurrent.english}" style="font-size: 2rem; padding: 20px; background: #6366f1;">🔊 استمع مرة أخرى</button>
+                    <button class="hero-btn" data-action="speak" data-param="${this.listeningCurrent.english}" style="font-size: 2rem; padding: 20px; background: #6366f1;">${this.t('🔊 استمع مرة أخرى', '🔊 Listen Again')}</button>
                 </div>
                 <div class="quiz-options">
                     ${this.listeningOptions.map(opt => `
@@ -3347,36 +3400,36 @@ class App {
         if (this.currentPage === 'spelling') {
             if (!this.spellingUnlocked[this.selectedLessonId]) {
                 return `<div class="reading-card" style="text-align: center;">
-                    <h3>✍️ تمرين الكتابة</h3>
-                    <p>لفتح هذا التمرين تحتاج 50 💎 لؤلؤة (مرة واحدة فقط للدرس).</p>
-                    <p>رصيدك الحالي: ${this.userCoins} 💎</p>
-                    <button class="hero-btn" onclick="appInstance.unlockSpelling('${this.selectedLessonId}')" style="background: #8b5cf6;">فتح (50 💎)</button>
+                    <h3>${this.t('✍️ تمرين الكتابة', '✍️ Spelling Exercise')}</h3>
+                    <p>${this.t('لفتح هذا التمرين تحتاج 50 💎 لؤلؤة (مرة واحدة فقط للدرس).', 'To unlock this exercise you need 50 💎 pearls (once per lesson).')}</p>
+                    <p>${this.t('رصيدك الحالي:', 'Current Balance:')} ${this.userCoins} 💎</p>
+                    <button class="hero-btn" onclick="appInstance.unlockSpelling('${this.selectedLessonId}')" style="background: #8b5cf6;">${this.t('فتح (50 💎)', 'Unlock (50 💎)')}</button>
                 </div>`;
             }
             if (!this.spellingCurrent) {
-                return `<div class="reading-card"><p>لا توجد كلمات متاحة. حاول مرة أخرى.</p></div>`;
+                return `<div class="reading-card"><p>${this.t('لا توجد كلمات متاحة. حاول مرة أخرى.', 'No words available. Try again.')}</p></div>`;
             }
             return `<div class="reading-card spelling-card">
-                <h3>✍️ اكتب الكلمة بالانجليزية</h3>
+                <h3>${this.t('✍️ اكتب الكلمة بالانجليزية', '✍️ Write the word in English')}</h3>
                 <div style="font-size: 2rem; text-align: center; margin: 20px 0; padding: 20px; background: #f0f7ff; border-radius: 12px;">
                     ${this.spellingCurrent.arabic}
                 </div>
-                <input type="text" id="spellingInput" class="spelling-input" placeholder="اكتب الكلمة هنا..." value="${this.spellingUserAnswer}" ${this.spellingAnswered ? 'disabled' : ''}>
+                <input type="text" id="spellingInput" class="spelling-input" placeholder="${this.t('اكتب الكلمة هنا...', 'Type the word here...')}" value="${this.spellingUserAnswer}" ${this.spellingAnswered ? 'disabled' : ''}>
                 ${this.spellingResult ? `
                     <div class="spelling-feedback ${this.spellingResult === 'correct' ? 'correct-feedback' : 'wrong-feedback'}">
-                        ${this.spellingResult === 'correct' ? '✅ إجابة صحيحة!' : '❌ إجابة خاطئة!'}
+                        ${this.spellingResult === 'correct' ? this.t('✅ إجابة صحيحة!', '✅ Correct Answer!') : this.t('❌ إجابة خاطئة!', '❌ Wrong Answer!')}
                     </div>
                 ` : ''}
                 <div style="display: flex; gap: 10px; justify-content: center;">
-                    <button class="hero-btn" data-action="spellingCheck" style="background:#10b981;" ${this.spellingAnswered ? 'disabled' : ''}>✅ تحقق</button>
-                    ${this.spellingAnswered ? `<button class="hero-btn" data-action="spellingNext" style="background:#3b82f6;">➡️ التالي</button>` : ''}
+                    <button class="hero-btn" data-action="spellingCheck" style="background:#10b981;" ${this.spellingAnswered ? 'disabled' : ''}>${this.t('✅ تحقق', '✅ Check')}</button>
+                    ${this.spellingAnswered ? `<button class="hero-btn" data-action="spellingNext" style="background:#3b82f6;">➡️ ${this.t('التالي', 'Next')}</button>` : ''}
                 </div>
             </div>`;
         }
 
         if (this.currentPage === 'level_test') {
             if (!this.levelTestCurrentQuestion) {
-                return `<div class="reading-card"><p>جاري تحضير الاختبار...</p></div>`;
+                return `<div class="reading-card"><p>${this.t('جاري تحضير الاختبار...', 'Preparing test...')}</p></div>`;
             }
             const q = this.levelTestCurrentQuestion;
             const options = this.levelTestCurrentOptions || [];
@@ -3384,9 +3437,9 @@ class App {
             return `<div class="reading-card">
                 <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px;">
                     <span style="background:#e2e8f0; color:#475569; padding:5px 15px; border-radius:20px; font-weight:bold; font-size:0.85rem;">
-                        السؤال ${this.levelTestQuestionsAnswered + 1} / ${this.levelTestMaxQuestions}
+                        ${this.t('السؤال', 'Question')} ${this.levelTestQuestionsAnswered + 1} / ${this.levelTestMaxQuestions}
                     </span>
-                    <button class="hero-btn" data-action="finishLevelTest" style="background:#ef4444; padding:5px 15px;">⏹️ إنهاء الاختبار</button>
+                    <button class="hero-btn" data-action="finishLevelTest" style="background:#ef4444; padding:5px 15px;">${this.t('⏹️ إنهاء الاختبار', '⏹️ End Test')}</button>
                 </div>
                 <div class="quiz-question-row">
                     <h2>${q.english}</h2>
@@ -3407,25 +3460,25 @@ class App {
 
         if (this.currentPage === 'level_test_result') {
             return `<div class="reading-card">
-                <h2 style="text-align:center;">🏁 نتيجة الاختبار الشامل</h2>
+                <h2 style="text-align:center;">${this.t('🏁 نتيجة الاختبار الشامل', '🏁 Comprehensive Test Result')}</h2>
                 <div style="background:#f0f7ff; padding:15px; border-radius:10px; margin:20px 0; text-align:center;">
                     <p style="font-size:1.2rem;">${this.levelTestResultMessage}</p>
                 </div>
-                <button class="hero-btn" data-action="goHome" style="background:#64748b;">العودة للرئيسية</button>
+                <button class="hero-btn" data-action="goHome" style="background:#64748b;">${this.t('العودة للرئيسية', 'Back to Home')}</button>
             </div>`;
         }
 
         if (this.currentPage === 'addLesson') {
             return `<main class="main-content" style="height: 90vh; display: flex; flex-direction: column; gap: 10px;">
-                <button class="hero-btn" data-action="goHome" style="background:#64748b; flex-shrink: 0;">← رجوع للرئيسية</button>
+                <button class="hero-btn" data-action="goHome" style="background:#64748b; flex-shrink: 0;">${this.t('← رجوع', '← Back')} للرئيسية</button>
                 <div class="reading-card" style="flex-grow: 1; display: flex; flex-direction: column; gap: 12px; overflow: hidden;">
-                    <h3 style="flex-shrink: 0;">📸 إضافة نص ذكي</h3>
+                    <h3 style="flex-shrink: 0;">${this.t('📸 إضافة نص ذكي', '📸 Add Smart Text')}</h3>
                     <div style="background: #f8fafc; padding: 10px; border-radius: 8px; border: 1px dashed #6366f1; flex-shrink: 0;">
                         <input type="file" id="fileInput" accept="image/*" onchange="appInstance.processOCR(this)" style="width: 100%;">
                     </div>
-                    <input id="newLessonTitle" placeholder="عنوان النص" style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; flex-shrink: 0;">
-                    <textarea id="ocrText" placeholder="النص سيظهر هنا..." style="width: 100%; flex-grow: 1; padding: 12px; border: 1px solid #ddd; border-radius: 8px; font-size: 1rem; line-height: 1.5; resize: none;"></textarea>
-                    <button class="hero-btn" onclick="appInstance.saveNewCustomLesson()" style="width: 100%; background:#10b981; padding: 15px; font-size: 1.1rem; flex-shrink: 0;">💾 حفظ النص</button>
+                    <input id="newLessonTitle" placeholder="${this.t('عنوان النص', 'Text Title')}" style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; flex-shrink: 0;">
+                    <textarea id="ocrText" placeholder="${this.t('النص سيظهر هنا...', 'Text will appear here...')}" style="width: 100%; flex-grow: 1; padding: 12px; border: 1px solid #ddd; border-radius: 8px; font-size: 1rem; line-height: 1.5; resize: none;"></textarea>
+                    <button class="hero-btn" onclick="appInstance.saveNewCustomLesson()" style="width: 100%; background:#10b981; padding: 15px; font-size: 1.1rem; flex-shrink: 0;">${this.t('💾 حفظ النص', '💾 Save Text')}</button>
                 </div>
             </main>`;
         }
@@ -3435,16 +3488,16 @@ class App {
                 return `<div class="reading-card" style="text-align: center;">
                     <h3>📝 ملء الفراغ</h3>
                     <p>لفتح هذا التمرين تحتاج 75 💎 لؤلؤة (مرة واحدة فقط للدرس).</p>
-                    <p>رصيدك الحالي: ${this.userCoins} 💎</p>
-                    <button class="hero-btn" onclick="appInstance.unlockGapFill('${this.selectedLessonId}')" style="background: #8b5cf6;">فتح (75 💎)</button>
+                    <p>${this.t('رصيدك الحالي:', 'Current Balance:')} ${this.userCoins} 💎</p>
+                    <button class="hero-btn" onclick="appInstance.unlockGapFill('${this.selectedLessonId}')" style="background: #8b5cf6;">${this.t('فتح (75 💎)', 'Unlock (75 💎)')}</button>
                 </div>`;
             }
             if (!this.gapFillCurrentQuestion) {
-                return `<div class="reading-card"><p>جاري تحضير السؤال...</p></div>`;
+                return `<div class="reading-card"><p>${this.t('جاري تحضير السؤال...', 'Preparing question...')}</p></div>`;
             }
             const q = this.gapFillCurrentQuestion;
             return `<div class="reading-card">
-                <h3>📝 اختر الكلمة المناسبة لملء الفراغ</h3>
+                <h3>${this.t('📝 اختر الكلمة المناسبة لملء الفراغ', '📝 Choose the suitable word to fill the gap')}</h3>
                 <div class="gapfill-sentence" style="font-size: 1.8rem; font-weight: bold; text-align: center; margin: 30px 0; padding: 20px; background: ${this.theme === 'dark' ? '#2d2d2d' : '#f8fafc'}; border-radius: 16px;">
                     ${q.text}
                 </div>
@@ -3459,7 +3512,7 @@ class App {
                 </div>
                 ${this.gapFillResult !== null ? `
                     <div class="spelling-feedback ${this.gapFillResult === 'correct' ? 'correct-feedback' : 'wrong-feedback'}">
-                        ${this.gapFillResult === 'correct' ? '✅ إجابة صحيحة!' : '❌ إجابة خاطئة!'}
+                        ${this.gapFillResult === 'correct' ? this.t('✅ إجابة صحيحة!', '✅ Correct Answer!') : this.t('❌ إجابة خاطئة!', '❌ Wrong Answer!')}
                     </div>
                     <div style="display: flex; justify-content: center; gap: 10px; margin: 10px 0;">
                         <button class="hero-btn" data-action="gapfillShowExplanation" style="background:#6366f1;">💡 شرح مفصل</button>
@@ -3481,7 +3534,7 @@ class App {
                         </div>
                     ` : ''}
                     <div class="gapfill-controls">
-                        <button class="hero-btn" data-action="gapfillNext" style="background:#3b82f6;">➡️ التالي</button>
+                        <button class="hero-btn" data-action="gapfillNext" style="background:#3b82f6;">➡️ ${this.t('التالي', 'Next')}</button>
                     </div>
                 ` : ''}
             </div>`;
@@ -3493,6 +3546,7 @@ class App {
     toggleTheme() {
         this.theme = this.theme === 'light' ? 'dark' : 'light';
         document.documentElement.setAttribute('data-theme', this.theme);
+        document.documentElement.setAttribute('dir', this.lang === 'ar' ? 'rtl' : 'ltr');
         localStorage.setItem('theme', this.theme);
         const logoImg = document.querySelector('.logo-container img');
         if (logoImg) {
