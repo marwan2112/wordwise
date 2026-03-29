@@ -205,6 +205,21 @@ class App {
         this.updateBadgesAndTier(); // سيتم تحديث الأوسمة والمستوى بناءً على البيانات
     }
 
+
+    // ================== Firebase Integration (Placeholders) ==================
+    // للربط مع Firebase مستقبلاً، ستحتاج لاستبدال هذه الدوال بـ Firebase SDK
+    async syncWithCloud() {
+        if (!this.currentUserEmail) return;
+        console.log("☁️ Syncing data for " + this.currentUserEmail + " with cloud...");
+        // firebase.database().ref('users/' + userId).set(this.getSaveData());
+    }
+
+    async verifyRealEmail(email) {
+        // التحقق من أن الإيميل حقيقي (Regex بسيط)
+        const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return re.test(email);
+    }
+
     saveUserData() {
         if (!this.currentUserEmail) return;
         const key = `userData_${this.currentUserEmail}`;
@@ -283,13 +298,21 @@ class App {
     getCurrentLevelProgress() {
         const currentXP = this.userStats.xp;
         let level = 1;
-        let xpForNext = 100;
         let totalRequired = 0;
+        
+        // Formula: Level 1->2: 100, 2->3: 250, 3->4: 450, 4->5: 700...
+        // Step increases by 50 each level: 100, 150, 200, 250...
+        function getXPForNext(l) {
+            return 100 + (l - 1) * 50;
+        }
+
+        let xpForNext = getXPForNext(level);
         while (currentXP >= totalRequired + xpForNext) {
             totalRequired += xpForNext;
             level++;
-            xpForNext = 100 + (level - 1) * 150;
+            xpForNext = getXPForNext(level);
         }
+        
         const currentProgress = currentXP - totalRequired;
         const neededForNext = xpForNext;
         return { level, currentProgress, neededForNext, totalXP: currentXP };
@@ -299,39 +322,39 @@ class App {
         const oldLevel = this.userStats.level;
         const newProgress = this.getCurrentLevelProgress();
         const newLevel = newProgress.level;
-        const oldXP = this.userStats.xp;
         
         if (newLevel > oldLevel) {
-            // انتقل المستخدم إلى مستوى أعلى
             this.userStats.level = newLevel;
-            // مكافأة 100 لؤلؤة لكل مستوى جديد
             const levelsGained = newLevel - oldLevel;
             this.userCoins += levelsGained * 100;
-            this.showCustomModal('success', '🎉', `تهانينا! لقد وصلت إلى المستوى ${newLevel} وحصلت على ${levelsGained * 100} لؤلؤة!`);
+            this.showCustomModal('success', '🎉', `${this.t('تهانينا! لقد وصلت إلى المستوى', 'Congrats! You reached level')} ${newLevel} ${this.t('وحصلت على', 'and earned')} ${levelsGained * 100} ${this.t('لؤلؤة!', 'pearls!')}`);
         }
         
-        // تحديث الأوسمة بناءً على الإنجازات
         const totalLessonsUnlocked = this.unlockedLessons ? this.unlockedLessons.length : 0;
         const totalMastered = this.masteredWords ? this.masteredWords.length : 0;
         let newBadges = [];
-        if (totalLessonsUnlocked >= 10 && totalMastered >= 100) newBadges.push('🥉');
-        if (totalLessonsUnlocked >= 20 && totalMastered >= 500) newBadges.push('🥈');
-        if (totalLessonsUnlocked >= 50 && totalMastered >= 1500) newBadges.push('🥇');
-        if (totalLessonsUnlocked >= 100 && totalMastered >= 3000) newBadges.push('👑');
+        
+        // Medals based on Lessons
+        if (totalLessonsUnlocked >= 5) newBadges.push('🥉');
+        if (totalLessonsUnlocked >= 15) newBadges.push('🥈');
+        if (totalLessonsUnlocked >= 30) newBadges.push('🥇');
+        if (totalLessonsUnlocked >= 50) newBadges.push('👑');
+        if (totalLessonsUnlocked >= 100) newBadges.push('💎');
+
+        // Tiers based on Mastered Words
+        if (totalMastered >= 1000) this.userStats.tier = this.t('ماسي', 'Diamond');
+        else if (totalMastered >= 500) this.userStats.tier = this.t('ذهبي', 'Gold');
+        else if (totalMastered >= 200) this.userStats.tier = this.t('فضي', 'Silver');
+        else if (totalMastered >= 50) this.userStats.tier = this.t('برونزي', 'Bronze');
+        else this.userStats.tier = this.t('مبتدئ', 'Beginner');
         
         const oldBadges = this.userStats.badges || [];
         const newBadgeEarned = newBadges.find(b => !oldBadges.includes(b));
         if (newBadgeEarned) {
-            this.userCoins += 100; // مكافأة 100 لؤلؤة لكل وسام جديد
-            this.showCustomModal('success', '🏅', `تهانينا! حصلت على وسام ${newBadgeEarned} و 100 لؤلؤة إضافية!`);
+            this.userCoins += 150; 
+            this.showCustomModal('success', '🏅', `${this.t('تهانينا! حصلت على وسام جديد', 'Congrats! You earned a new badge')} ${newBadgeEarned}`);
         }
         this.userStats.badges = newBadges;
-        
-        if (newBadges.includes('👑')) this.userStats.tier = this.t('ماسي', 'Diamond');
-        else if (newBadges.includes('🥇')) this.userStats.tier = this.t('ذهبي', 'Gold');
-        else if (newBadges.includes('🥈')) this.userStats.tier = this.t('فضي', 'Silver');
-        else if (newBadges.includes('🥉')) this.userStats.tier = this.t('برونزي', 'Bronze');
-        else this.userStats.tier = this.t('بدون', 'None');
         
         this.saveUserData();
         this.render();
@@ -386,7 +409,7 @@ class App {
     updateProgress(points) {
         // هذه الدالة كانت تستخدم للنقاط القديمة، سنحولها إلى XP
         // لكننا سنستخدم addXP بدلاً منها
-        this.addXP(points, 'تقدم عام');
+        if(points > 0) this.addXP(points, this.t('إنجاز تمرين', 'Exercise Completion'));
     }
 
     init() {
