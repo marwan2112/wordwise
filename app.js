@@ -104,7 +104,6 @@ class App {
         this.customLessons = {};
         this.generatedLessons = {};
 
-        // متغير مؤقت لعرض جميع البطاقات عند إعادة التكرار
         this.showAllCardsTemporary = false;
 
         if (!localStorage.getItem('users')) {
@@ -170,7 +169,7 @@ class App {
         if (this.placementResults.length > 0) {
             this.userProfile.level = this.placementResults[0].level;
         }
-        this.updateBadgesAndTier();
+        this.updateBadgesAndTier(); // سيتم تحديث الأوسمة والمستوى بناءً على البيانات
     }
 
     saveUserData() {
@@ -235,7 +234,50 @@ class App {
         this.render();
     }
 
-    updateBadgesAndTier() {
+    // ================== نظام XP والمستويات الجديد ==================
+    getRequiredXPForLevel(level) {
+        if (level <= 1) return 0;
+        // المستوى 1 -> 2 يحتاج 100
+        // المستوى 2 -> 3 يحتاج 250 إضافية (مجموع 350)
+        // الصيغة: النقاط المطلوبة للانتقال من المستوى n إلى n+1 = 100 + (n-1)*150
+        let totalRequired = 0;
+        for (let i = 1; i < level; i++) {
+            totalRequired += 100 + (i - 1) * 150;
+        }
+        return totalRequired;
+    }
+
+    getCurrentLevelProgress() {
+        const currentXP = this.userStats.xp;
+        let level = 1;
+        let xpForNext = 100;
+        let totalRequired = 0;
+        while (currentXP >= totalRequired + xpForNext) {
+            totalRequired += xpForNext;
+            level++;
+            xpForNext = 100 + (level - 1) * 150;
+        }
+        const currentProgress = currentXP - totalRequired;
+        const neededForNext = xpForNext;
+        return { level, currentProgress, neededForNext, totalXP: currentXP };
+    }
+
+    updateLevelAndBadges() {
+        const oldLevel = this.userStats.level;
+        const newProgress = this.getCurrentLevelProgress();
+        const newLevel = newProgress.level;
+        const oldXP = this.userStats.xp;
+        
+        if (newLevel > oldLevel) {
+            // انتقل المستخدم إلى مستوى أعلى
+            this.userStats.level = newLevel;
+            // مكافأة 100 لؤلؤة لكل مستوى جديد
+            const levelsGained = newLevel - oldLevel;
+            this.userCoins += levelsGained * 100;
+            this.showCustomModal('success', '🎉', `تهانينا! لقد وصلت إلى المستوى ${newLevel} وحصلت على ${levelsGained * 100} لؤلؤة!`);
+        }
+        
+        // تحديث الأوسمة بناءً على الإنجازات
         const totalLessonsUnlocked = this.unlockedLessons ? this.unlockedLessons.length : 0;
         const totalMastered = this.masteredWords ? this.masteredWords.length : 0;
         let newBadges = [];
@@ -243,23 +285,75 @@ class App {
         if (totalLessonsUnlocked >= 20 && totalMastered >= 500) newBadges.push('🥈');
         if (totalLessonsUnlocked >= 50 && totalMastered >= 1500) newBadges.push('🥇');
         if (totalLessonsUnlocked >= 100 && totalMastered >= 3000) newBadges.push('👑');
+        
+        const oldBadges = this.userStats.badges || [];
+        const newBadgeEarned = newBadges.find(b => !oldBadges.includes(b));
+        if (newBadgeEarned) {
+            this.userCoins += 100; // مكافأة 100 لؤلؤة لكل وسام جديد
+            this.showCustomModal('success', '🏅', `تهانينا! حصلت على وسام ${newBadgeEarned} و 100 لؤلؤة إضافية!`);
+        }
         this.userStats.badges = newBadges;
+        
         if (newBadges.includes('👑')) this.userStats.tier = 'ماسي';
         else if (newBadges.includes('🥇')) this.userStats.tier = 'ذهبي';
         else if (newBadges.includes('🥈')) this.userStats.tier = 'فضي';
         else if (newBadges.includes('🥉')) this.userStats.tier = 'برونزي';
         else this.userStats.tier = 'بدون';
-        if (totalLessonsUnlocked >= 100) this.userStats.level = 5;
-        else if (totalLessonsUnlocked >= 60) this.userStats.level = 4;
-        else if (totalLessonsUnlocked >= 30) this.userStats.level = 3;
-        else if (totalLessonsUnlocked >= 10) this.userStats.level = 2;
-        else this.userStats.level = 1;
+        
+        this.saveUserData();
+        this.render();
+    }
+
+    addXP(amount, source = '') {
+        if (amount <= 0) return;
+        this.userStats.xp += amount;
+        // تحديث المستوى والأوسمة
+        this.updateLevelAndBadges();
+        this.saveUserData();
+        // اختياري: يمكن عرض رسالة صغيرة
+        console.log(`+${amount} XP من ${source}`);
+    }
+
+    // ================== دوال مكافآت التمارين ==================
+    addLessonReward(lessonId) {
+        const key = `lesson_opened_${lessonId}`;
+        if (!localStorage.getItem(key)) {
+            localStorage.setItem(key, 'true');
+            this.addXP(50, 'فتح درس جديد');
+        }
+    }
+
+    addMasteredWordReward(wordId) {
+        // تضاف نقطة واحدة لكل كلمة متقنة (تتم إضافة النقطة فقط عند الضغط على "اعرفها" لأول مرة)
+        // يتم تنفيذها في handleMasterWord
+    }
+
+    addQuizCorrectReward() {
+        this.addXP(2, 'إجابة صحيحة في اختبار');
+    }
+
+    addSpellingCorrectReward() {
+        this.addXP(3, 'كتابة صحيحة');
+    }
+
+    addListeningCorrectReward() {
+        this.addXP(3, 'استماع صحيح');
+    }
+
+    addGapFillCorrectReward() {
+        this.addXP(5, 'ملء فراغ صحيح');
+    }
+
+    // ================== الدوال الأساسية (بدون تغيير كبير) ==================
+    updateBadgesAndTier() {
+        // تم استبدالها بـ updateLevelAndBadges، لكن نحتفظ بها للتوافق
+        this.updateLevelAndBadges();
     }
 
     updateProgress(points) {
-        this.userStats.xp += points;
-        this.updateBadgesAndTier();
-        this.saveUserData();
+        // هذه الدالة كانت تستخدم للنقاط القديمة، سنحولها إلى XP
+        // لكننا سنستخدم addXP بدلاً منها
+        this.addXP(points, 'تقدم عام');
     }
 
     init() {
@@ -730,7 +824,6 @@ class App {
     }
 
     showAd(type, callback) {
-        // مودال إعلان جذاب
         const modalDiv = document.createElement('div');
         modalDiv.className = 'modal-overlay';
         modalDiv.onclick = (e) => {
@@ -933,6 +1026,10 @@ class App {
         const list = this.getLessonsForCurrentLevel();
         const isUnlocked = this.unlockedLessons.includes(String(lessonId)) || (list[0] && list[0].id == lessonId) || this.selectedLevel === 'custom_list';
         if (isUnlocked) {
+            // إضافة مكافأة فتح الدرس إذا لم يكن قد فتح من قبل
+            if (!this.unlockedLessons.includes(String(lessonId)) && this.selectedLevel !== 'custom_list') {
+                this.addLessonReward(lessonId);
+            }
             this.selectedLessonId = lessonId;
             this.currentPage = 'reading';
             this.isUnlockTest = false;
@@ -1238,6 +1335,7 @@ class App {
         if (isCorrect) {
             this.listeningRemaining.shift();
             this.updateProgress(5);
+            this.addListeningCorrectReward();
 
             this.listeningTimer = setTimeout(() => {
                 this.listeningTimer = null;
@@ -1351,6 +1449,7 @@ class App {
         this.playTone(isCorrect ? 'correct' : 'error');
         if (isCorrect) {
             this.updateProgress(5);
+            this.addSpellingCorrectReward();
             this.spellingRemaining.shift();
         } else {
             if (this.spellingRemaining.length > 1) {
@@ -1568,6 +1667,8 @@ class App {
                         passed: true,
                         attempts: this.levelTestCurrentTotal
                     });
+                    // مكافأة فتح الدرس
+                    this.addLessonReward(this.levelTestCurrentLessonId);
                 }
                 this.moveToNextLesson();
             } else {
@@ -1925,6 +2026,7 @@ class App {
         if (isCorrect) {
             this.quizScore++;
             this.playTone('correct');
+            this.addQuizCorrectReward();
         } else {
             this.playTone('error');
         }
@@ -2090,6 +2192,7 @@ class App {
                 this.gapFillRemainingWords.shift();
             }
             this.updateProgress(5);
+            this.addGapFillCorrectReward();
         } else {
             if (this.gapFillRemainingWords && this.gapFillRemainingWords.length > 0) {
                 const currentWord = this.gapFillRemainingWords.shift();
@@ -2238,6 +2341,8 @@ class App {
                     if (!this.masteredWords.includes(String(param))) {
                         this.masteredWords.push(String(param));
                         this.updateProgress(10);
+                        // مكافأة 1 XP لكل كلمة متقنة (إضافة منفصلة)
+                        this.addXP(1, 'إتقان كلمة');
                         if (this.selectedLessonId) {
                             this.grantLessonCompletionReward(this.selectedLessonId);
                         }
@@ -2361,6 +2466,7 @@ class App {
                             if (!this.masteredWords.includes(String(param))) {
                                 this.masteredWords.push(String(param));
                                 this.updateProgress(10);
+                                this.addXP(1, 'إتقان كلمة (بطاقة)');
                                 if (this.selectedLessonId) {
                                     this.grantLessonCompletionReward(this.selectedLessonId);
                                 }
@@ -2419,13 +2525,11 @@ class App {
                     const delay = cardShuffle ? 600 : 0;
                     setTimeout(() => {
                         if (param === 'all' && this.selectedLessonId) {
-                            // إعادة ضبط المؤشر وتفعيل عرض جميع البطاقات مؤقتاً
                             this.currentCardIndex = 0;
                             this.showAllCardsTemporary = true;
                             this.saveUserData();
                             this.render();
                         } else if (param === 'remaining') {
-                            // إعادة ضبط الكلمات المتقنة الخاصة بهذا الدرس فقط (لإعادة التدريب)
                             const lessonId = this.selectedLessonId;
                             const lesson = this.getLessonDataById(lessonId);
                             const originalIds = lesson && lesson.terms ? lesson.terms.map(t => String(t.id)) : [];
@@ -2824,26 +2928,28 @@ class App {
         }
 
         if (this.currentPage === 'home') {
-            const progressLevel = this.userStats.xp % 100;
-            const totalLessons = this.unlockedLessons ? this.unlockedLessons.length : 0;
+            const progress = this.getCurrentLevelProgress();
             const totalMastered = this.masteredWords ? this.masteredWords.length : 0;
+            const totalLessons = this.unlockedLessons ? this.unlockedLessons.length : 0;
+            const xpProgress = `${progress.currentProgress}/${progress.neededForNext}`;
+            const xpPercent = (progress.currentProgress / progress.neededForNext) * 100;
 
             return `<main class="main-content">
                 <div class="reading-card welcome-banner" style="background: linear-gradient(135deg, #1e40af, #3b82f6); color: white; border: none; padding: 20px;">
                     <div style="display: flex; justify-content: space-between; align-items: center;">
                         <h3 style="margin:0;">مرحباً، ${this.userData?.name || 'مستخدم'} 👋</h3>
                         <div style="background: rgba(255,255,255,0.2); padding: 5px 15px; border-radius: 20px; font-size: 0.9rem; font-weight: bold; border: 1px solid rgba(255,255,255,0.3);">
-                            ⭐ مستوى ${this.userStats.level}
+                            ⭐ مستوى ${progress.level}
                         </div>
                     </div>
 
                     <div style="margin-top: 20px;">
                         <div style="display: flex; justify-content: space-between; font-size: 0.85rem; margin-bottom: 8px;">
-                            <span>التقدم للمستوى التالي</span>
-                            <span>${progressLevel}%</span>
+                            <span>نقاط الخبرة (XP)</span>
+                            <span>${xpProgress}</span>
                         </div>
                         <div style="width: 100%; height: 10px; background: rgba(0,0,0,0.2); border-radius: 10px; overflow: hidden; border: 1px solid rgba(255,255,255,0.1);">
-                            <div style="width: ${progressLevel}%; height: 100%; background: #10b981; box-shadow: 0 0 10px #10b981; transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);"></div>
+                            <div style="width: ${xpPercent}%; height: 100%; background: #10b981; box-shadow: 0 0 10px #10b981; transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);"></div>
                         </div>
                     </div>
 
@@ -2864,7 +2970,6 @@ class App {
                 <button data-action="logout" class="logout-btn" style="margin-top: 20px; background: #dc2626; color: white; padding: 14px 20px; font-size: 1.2rem; font-weight: bold; border-radius: 10px; width: 100%; border: none; cursor: pointer;">تسجيل الخروج</button>
             </main>`;
         }
-
         if (this.currentPage === 'profile') {
             const englishLevel = this.getEnglishLevel();
             const totalLessons = this.unlockedLessons.length;
@@ -3115,11 +3220,9 @@ class App {
         }
 
         if (this.currentPage === 'flashcards') {
-            // اختيار الكلمات: إذا كان العرض المؤقت لجميع البطاقات مفعّلاً، نعرض الكل بدون فلترة، وإلا نعرض المتبقي فقط
             let active;
             if (this.showAllCardsTemporary) {
                 active = allTerms.filter(t => !this.hiddenFromCards.includes(String(t.id)));
-                // إلغاء تفعيل العرض المؤقت بعد التصيير (لأنه سيعاد تعيينه عند الخروج من الشاشة)
                 this.showAllCardsTemporary = false;
             } else {
                 active = allTerms.filter(t => !this.masteredWords.includes(String(t.id)) && !this.hiddenFromCards.includes(String(t.id)));
