@@ -12,7 +12,7 @@ class App {
         this.jumbleArabicHint = '';
         this.jumbleCurrentSentence = '';
 
-        this.userStats = { xp: 0, level: 1, badges: [], tier: this.t('برونزي', 'Bronze') };
+        this.userStats = { xp: 0, level: 1, badges: [], tier: this.t('مبتدئ', 'Beginner') };
         this.placementResults = [];
         this.placementFullHistory = [];
         this.currentPlacementDetails = [];
@@ -82,7 +82,7 @@ class App {
         this.levelTestUnlockedCount = 0;
         this.levelTestCoinsEarned = 0;
 
-        this.lastTestedLesson = { beginner: 0, intermediate: 0, advanced: 0 };
+        this.lastTestedLesson = { beginner: 1, intermediate: 1, advanced: 1 };
         this.newWordsAddedCount = 0;
         this.adWatchedCount = 0;
         this.purchaseRequests = [];
@@ -198,7 +198,7 @@ class App {
             image: '',
             testsHistory: []
         };
-        this.lastTestedLesson = data.lastTestedLesson || { beginner: 0, intermediate: 0, advanced: 0 };
+        this.lastTestedLesson = data.lastTestedLesson || { beginner: 1, intermediate: 1, advanced: 1 };
         if (this.placementResults.length > 0) {
             this.userProfile.level = this.placementResults[0].level;
         }
@@ -258,7 +258,7 @@ class App {
         this.hiddenFromCards = [];
         this.customLessons = {};
         this.generatedLessons = {};
-        this.userStats = { xp: 0, level: 1, badges: [], tier: this.t('برونزي', 'Bronze') };
+        this.userStats = { xp: 0, level: 1, badges: [], tier: this.t('مبتدئ', 'Beginner') };
         this.placementResults = [];
         this.placementFullHistory = [];
         this.userCoins = 0;
@@ -277,7 +277,7 @@ class App {
             image: '',
             testsHistory: []
         };
-        this.lastTestedLesson = { beginner: 0, intermediate: 0, advanced: 0 };
+        this.lastTestedLesson = { beginner: 1, intermediate: 1, advanced: 1 };
         this.currentPage = 'auth';
         this.render();
     }
@@ -334,19 +334,22 @@ class App {
         const totalMastered = this.masteredWords ? this.masteredWords.length : 0;
         let newBadges = [];
         
-        // Medals based on Lessons
-        if (totalLessonsUnlocked >= 5) newBadges.push('🥉');
-        if (totalLessonsUnlocked >= 15) newBadges.push('🥈');
-        if (totalLessonsUnlocked >= 30) newBadges.push('🥇');
-        if (totalLessonsUnlocked >= 50) newBadges.push('👑');
-        if (totalLessonsUnlocked >= 100) newBadges.push('💎');
-
-        // Tiers based on Mastered Words
-        if (totalMastered >= 1000) this.userStats.tier = this.t('ماسي', 'Diamond');
-        else if (totalMastered >= 500) this.userStats.tier = this.t('ذهبي', 'Gold');
-        else if (totalMastered >= 200) this.userStats.tier = this.t('فضي', 'Silver');
-        else if (totalMastered >= 50) this.userStats.tier = this.t('برونزي', 'Bronze');
+        // 1. Medals (🥉, 🥈, 🥇) - Based on Lessons
+        if (totalLessonsUnlocked >= 3) newBadges.push('🥉');
+        if (totalLessonsUnlocked >= 10) newBadges.push('🥈');
+        if (totalLessonsUnlocked >= 25) newBadges.push('🥇');
+        
+        // 2. Tiers (Crowns/Status) - Based on Mastered Words
+        if (totalMastered >= 1000) this.userStats.tier = this.t('👑 تاج ماسي', '👑 Diamond Crown');
+        else if (totalMastered >= 500) this.userStats.tier = this.t('👑 تاج ذهبي', '👑 Gold Crown');
+        else if (totalMastered >= 200) this.userStats.tier = this.t('👑 تاج فضي', '👑 Silver Crown');
+        else if (totalMastered >= 50) this.userStats.tier = this.t('👑 تاج برونزي', '👑 Bronze Crown');
+        else if (totalMastered >= 10) this.userStats.tier = this.t('طالب مجتهد', 'Diligent Student');
         else this.userStats.tier = this.t('مبتدئ', 'Beginner');
+
+        // 3. Ultra Badges for experts
+        if (totalLessonsUnlocked >= 50 && totalMastered >= 1500) newBadges.push('🎖️');
+        if (totalLessonsUnlocked >= 100 && totalMastered >= 3000) newBadges.push('💎');
         
         const oldBadges = this.userStats.badges || [];
         const newBadgeEarned = newBadges.find(b => !oldBadges.includes(b));
@@ -372,10 +375,14 @@ class App {
 
     // ================== دوال مكافآت التمارين ==================
     addLessonReward(lessonId) {
+        // الدروس الأولى من كل مستوى لا تعطي XP لأنها مفتوحة تلقائياً
+        const defaultLessons = [1, 101, 201]; 
+        if (defaultLessons.includes(Number(lessonId))) return;
+
         const key = `lesson_opened_${lessonId}`;
         if (!localStorage.getItem(key)) {
             localStorage.setItem(key, 'true');
-            this.addXP(50, 'فتح درس جديد');
+            this.addXP(50, this.t('فتح درس جديد', 'Unlock New Lesson'));
         }
     }
 
@@ -2756,7 +2763,7 @@ class App {
             this.hiddenFromCards = [];
             this.customLessons = {};
             this.generatedLessons = {};
-            this.userStats = { xp: 0, level: 1, badges: [], tier: this.t('برونزي', 'Bronze') };
+            this.userStats = { xp: 0, level: 1, badges: [], tier: this.t('مبتدئ', 'Beginner') };
             this.placementResults = [];
             this.placementFullHistory = [];
             this.userCoins = 100;
@@ -2775,7 +2782,7 @@ class App {
                 image: '',
                 testsHistory: []
             };
-            this.lastTestedLesson = { beginner: 0, intermediate: 0, advanced: 0 };
+            this.lastTestedLesson = { beginner: 1, intermediate: 1, advanced: 1 };
             this.saveUserData();
             this.currentPage = 'home';
             this.render();
@@ -3005,9 +3012,9 @@ class App {
             return `<main class="main-content">
                 <div class="reading-card welcome-banner" style="background: linear-gradient(135deg, #1e40af, #3b82f6); color: white; border: none; padding: 20px;">
                     <div style="display: flex; justify-content: space-between; align-items: center;">
-                        <h3 style="margin:0;">مرحباً، ${this.userData?.name || this.t('مستخدم', 'User')} 👋</h3>
+                        <h3 style="margin:0;">${this.t('مرحباً،', 'Hello,')} ${this.userData?.name || this.t('مستخدم', 'User')} 👋</h3>
                         <div style="background: rgba(255,255,255,0.2); padding: 5px 15px; border-radius: 20px; font-size: 0.9rem; font-weight: bold; border: 1px solid rgba(255,255,255,0.3);">
-                            ⭐ مستوى ${progress.level}
+                            ⭐ ${this.t('مستوى', 'Level')} ${progress.level}
                         </div>
                     </div>
 
@@ -3024,14 +3031,14 @@ class App {
                     ${this.getBadgesDisplay()}
 
                     <div style="margin-top: 10px; font-size:0.9rem;">${this.t('التاج الحالي:', 'Current Tier:')} ${this.userStats.tier}</div>
-                    <div style="margin-top: 5px; font-size:0.9rem;">${this.t('الدروس المفتوحة:', 'Unlocked Lessons:')} ${totalLessons} | الكلمات المتقنة: ${totalMastered}</div>
+                    <div style="margin-top: 5px; font-size:0.9rem;">${this.t('الدروس المفتوحة:', 'Unlocked Lessons:')} ${totalLessons} | ${this.t('الكلمات المتقنة:', 'Mastered Words:')} ${totalMastered}</div>
                 </div>
 
                 <button class="hero-btn" data-action="setPage" data-param="addLesson" style="width:100%; background:#8b5cf6; margin-top:15px;">${this.t('📸 إضافة من الكاميرا أو الهاتف', '📸 Add from Camera or Phone')}</button>
                 <button class="hero-btn" data-action="setPage" data-param="placement_test" style="width:100%; background:#ec4899; margin:15px 0;">${this.t('🧠 اختبار مستوى', '🧠 Placement Test')} </button>
 
                 <div class="features-grid">
-                    ${window.levels.map(l => `<div class="feature-card" data-action="selLevel" data-param="${l.id}"><h3>${l.icon} ${l.name}</h3></div>`).join('')}
+                    ${window.levels.map(l => `<div class="feature-card" data-action="selLevel" data-param="${l.id}"><h3>${l.icon} ${this.t(l.name, l.enName || l.name)}</h3></div>`).join('')}
                     ${Object.keys(this.customLessons).length > 0 ? `<div class="feature-card" data-action="selLevel" data-param="custom_list" style="border:1px solid #f97316;"><h3>${this.t('📂 نصوصي', '📂 My Texts')}</h3></div>` : ''}
                 </div>
 
@@ -3061,7 +3068,7 @@ class App {
                         <div class="info-row"><span>${this.t('تاريخ الانضمام:', 'Join Date:')}</span> <span>${this.userProfile.joinDate}</span></div>
                         <div class="info-row"><span>${this.t('المستوى في التطبيق:', 'App Level:')}</span> <span>${this.userStats.level}</span></div>
                         <div class="info-row"><span>${this.t('مستوى اللغة:', 'Language Level:')}</span> <span>${englishLevel}</span></div>
-                        <div class="info-row"><span>كلمة المرور:</span> <span><input type="password" id="profilePassword" placeholder="${this.t('جديدة', 'New')}"></span></div>
+                        <div class="info-row"><span>${this.t('كلمة المرور:', 'Password:')}</span> <span><input type="password" id="profilePassword" placeholder="${this.t('جديدة', 'New')}"></span></div>
                     </div>
 
                     <div style="width:100%; margin:15px 0;">
@@ -3077,18 +3084,18 @@ class App {
                     <button class="hero-btn" data-action="updateProfile" style="background:#10b981;">${this.t('حفظ التغييرات', 'Save Changes')}</button>
 
                     <h4 style="margin:15px 0 10px;">${this.t('📜 سجل الاختبارات', '📜 Test History')}</h4>
-                    <button class="hero-btn" data-action="setPage" data-param="test_history" style="background:#3b82f6;">عرض سجل الاختبارات</button>
+                    <button class="hero-btn" data-action="setPage" data-param="test_history" style="background:#3b82f6;">${this.t('عرض سجل الاختبارات', 'View Test History')}</button>
                 </div>
             </main>`;
         }
 
         if (this.currentPage === 'test_history') {
             return `<main class="main-content">
-                <button class="hero-btn" data-action="goHome" style="margin-bottom:15px; background:#64748b;">← الرجوع للرئيسية</button>
+                <button class="hero-btn" data-action="goHome" style="margin-bottom:15px; background:#64748b;">${this.t('← الرجوع للرئيسية', '← Back to Home')}</button>
                 <div class="reading-card">
-                    <h2 style="text-align:center;">📋 سجل اختبارات المستوى</h2>
+                    <h2 style="text-align:center;">${this.t('📋 سجل اختبارات المستوى', '📋 Level Test History')}</h2>
                     ${this.placementResults.length === 0 ?
-                    '<p style="text-align:center; color:#666;">لا توجد اختبارات سابقة</p>' :
+                    `<p style="text-align:center; color:#666;">${this.t('لا توجد اختبارات سابقة', 'No previous tests')}</p>` :
                     `<div class="history-list">
                         ${this.placementResults.map((r, idx) => `
                             <div class="history-item" onclick="appInstance.viewTestDetails(${idx})">
