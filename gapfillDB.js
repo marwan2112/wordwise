@@ -9627,6 +9627,2563 @@ window.gapfillDB = {
             originalSentence: "Every great achievement starts with a small Beginning."
         }
     ],
+    // استكمال gapfillDB.js - الدرس رقم 62
+    "62-1": [
+        {
+            sentence: "I want to open a ______ to keep my money safe and earn some interest.",
+            options: ["Savings account", "Debit card", "Laptop", "Formal suit"],
+            originalSentence: "I want to open a Savings account to keep my money safe and earn some interest."
+        }
+    ],
+    "62-2": [
+        {
+            sentence: "I saved all the money I earned from my ______ at the local supermarket.",
+            options: ["Summer job", "Financial journey", "Online shopping", "Payment"],
+            originalSentence: "I saved all the money I earned from my Summer job at the local supermarket."
+        }
+    ],
+    "62-3": [
+        {
+            sentence: "Learning how to ______ is a vital skill for every teenager.",
+            options: ["Manage money", "Sign", "Swipe", "Withdraw"],
+            originalSentence: "Learning how to Manage money is a vital skill for every teenager."
+        }
+    ],
+    "62-4": [
+        {
+            sentence: "The ______ at the bank entrance asked to see my bag for safety.",
+            options: ["Security guard", "Bank employee", "Real adult", "Customer service desk"],
+            originalSentence: "The Security guard at the bank entrance asked to see my bag for safety."
+        }
+    ],
+    "62-5": [
+        {
+            sentence: "If you have a problem with your account, go to the ______.",
+            options: ["Customer service desk", "ATM", "Machine", "Safe place"],
+            originalSentence: "If you have a problem with your account, go to the Customer service desk."
+        }
+    ],
+    "62-6": [
+        {
+            sentence: "The ______ was very helpful and explained the different types of accounts.",
+            options: ["Bank employee", "Security guard", "Real adult", "Librarian"],
+            originalSentence: "The Bank employee was very helpful and explained the different types of accounts."
+        }
+    ],
+    "62-7": [
+        {
+            sentence: "All the staff at the bank were wearing a ______ to look professional.",
+            options: ["Formal suit", "Debit card", "ID", "Laptop"],
+            originalSentence: "All the staff at the bank were wearing a Formal suit to look professional."
+        }
+    ],
+    "62-8": [
+        {
+            sentence: "He waited ______ for his turn to speak to the manager.",
+            options: ["Nervously", "Encouragingly", "Wisely", "Gratefully"],
+            originalSentence: "He waited Nervously for his turn to speak to the manager."
+        }
+    ],
+    "62-9": [
+        {
+            sentence: "The teacher smiled ______ when the student finally gave the right answer.",
+            options: ["Encouragingly", "Nervously", "Wisely", "Gratefully"],
+            originalSentence: "The teacher smiled Encouragingly when the student finally gave the right answer."
+        }
+    ],
+    "62-10": [
+        {
+            sentence: "Starting to save money at a young age is a ______.",
+            options: ["Wise choice", "Summer job", "Safe place", "Financial journey"],
+            originalSentence: "Starting to save money at a young age is a Wise choice."
+        }
+    ],
+    "62-11": [
+        {
+            sentence: "Check which bank offers the best ______ for your savings.",
+            options: ["Interest rate", "Account number", "PIN", "Payment"],
+            originalSentence: "Check which bank offers the best Interest rate for your savings."
+        }
+    ],
+    "62-12": [
+        {
+            sentence: "I need to ______ some cash from my account to buy some groceries.",
+            options: ["Withdraw", "Deposit", "Sign", "Swipe"],
+            originalSentence: "I need to Withdraw some cash from my account to buy some groceries."
+        }
+    ],
+    "62-13": [
+        {
+            sentence: "I went to the bank to ______ my monthly salary into my account.",
+            options: ["Deposit", "Withdraw", "Sign", "Budget"],
+            originalSentence: "I went to the bank to Deposit my monthly salary into my account."
+        }
+    ],
+    "62-14": [
+        {
+            sentence: "You must keep a ______ of 100 dollars in your account to keep it active.",
+            options: ["Minimum", "Payment", "Interest rate", "Budget"],
+            originalSentence: "You must keep a Minimum of 100 dollars in your account to keep it active."
+        }
+    ],
+    "62-15": [
+        {
+            sentence: "I felt ______ after I checked my balance and saw I had enough money.",
+            options: ["Relieved", "Nervous", "Responsible", "Grateful"],
+            originalSentence: "I felt Relieved after I checked my balance and saw I had enough money."
+        }
+    ],
+    "62-16": [
+        {
+            sentence: "The first step to opening an account is to ______.",
+            options: ["Fill out forms", "Swipe", "Withdraw", "Manage money"],
+            originalSentence: "The first step to opening an account is to Fill out forms."
+        }
+    ],
+    "62-17": [
+        {
+            sentence: "Please make sure all your ______ on this application is correct.",
+            options: ["Personal information", "Interest rate", "Account number", "Official"],
+            originalSentence: "Please make sure all your Personal information on this application is correct."
+        }
+    ],
+    "62-18": [
+        {
+            sentence: "You need to provide your home ______ so the bank can mail your statements.",
+            options: ["Address", "Phone number", "ID", "PIN"],
+            originalSentence: "You need to provide your home Address so the bank can mail your statements."
+        }
+    ],
+    "62-19": [
+        {
+            sentence: "The bank will call you on your ______ if there is any suspicious activity.",
+            options: ["Phone number", "Account number", "ID", "PIN"],
+            originalSentence: "The bank will call you on your Phone number if there is any suspicious activity."
+        }
+    ],
+    "62-20": [
+        {
+            sentence: "The company is ______ high-quality services to all its customers.",
+            options: ["Providing", "Linking to", "Going through", "Patting"],
+            originalSentence: "The company is Providing high-quality services to all its customers."
+        }
+    ],
+    "62-21": [
+        {
+            sentence: "You cannot enter the exam hall without showing your national ______.",
+            options: ["ID", "Address", "Payment", "Official"],
+            originalSentence: "You cannot enter the exam hall without showing your national ID."
+        }
+    ],
+    "62-22": [
+        {
+            sentence: "Don't forget to ______ your name at the bottom of the contract.",
+            options: ["Sign", "Deposit", "Withdraw", "Swipe"],
+            originalSentence: "Don't forget to Sign your name at the bottom of the contract."
+        }
+    ],
+    "62-23": [
+        {
+            sentence: "This is an ______ document; keep it in a safe place.",
+            options: ["Official", "Formal suit", "Grateful", "Responsible"],
+            originalSentence: "This is an Official document; keep it in a safe place."
+        }
+    ],
+    "62-24": [
+        {
+            sentence: "The machine is ______ your bank statement right now; please wait.",
+            options: ["Printing", "Swiping", "Providing", "Signing"],
+            originalSentence: "The machine is Printing your bank statement right now; please wait."
+        }
+    ],
+    "62-25": [
+        {
+            sentence: "You will need to provide your ______ to receive the wire transfer.",
+            options: ["Account number", "PIN", "Debit card", "ID"],
+            originalSentence: "You will need to provide your Account number to receive the wire transfer."
+        }
+    ],
+    "62-26": [
+        {
+            sentence: "I used my ______ to pay for the books at the shop.",
+            options: ["Debit card", "Savings account", "Machine", "ATM"],
+            originalSentence: "I used my Debit card to pay for the books at the shop."
+        }
+    ],
+    "62-27": [
+        {
+            sentence: "Your new card is ______ your savings account automatically.",
+            options: ["Linked to", "Grateful", "Responsible", "Printing"],
+            originalSentence: "Your new card is Linked to your savings account automatically."
+        }
+    ],
+    "62-28": [
+        {
+            sentence: "I need to find an ______ to get some cash before the mall closes.",
+            options: ["ATM", "Customer service desk", "Formal suit", "Safe place"],
+            originalSentence: "I need to find an ATM to get some cash before the mall closes."
+        }
+    ],
+    "62-29": [
+        {
+            sentence: "My sister loves ______, especially for clothes and electronics.",
+            options: ["Online shopping", "Summer job", "Interest rate", "Savings account"],
+            originalSentence: "My sister loves Online shopping, especially for clothes and electronics."
+        }
+    ],
+    "62-30": [
+        {
+            sentence: "When I opened my first account, I finally felt like a ______.",
+            options: ["Real adult", "Security guard", "Bank employee", "Student"],
+            originalSentence: "When I opened my first account, I finally felt like a Real adult."
+        }
+    ],
+    "62-31": [
+        {
+            sentence: "My father was ______ me on the back to show he was proud of my job.",
+            options: ["Patting", "Swiping", "Signing", "Managing"],
+            originalSentence: "My father was Patting me on the back to show he was proud of my job."
+        }
+    ],
+    "62-32": [
+        {
+            sentence: "He carried the heavy backpack on his left ______.",
+            options: ["Shoulder", "ID", "ATM", "Formal suit"],
+            originalSentence: "He carried the heavy backpack on his left Shoulder."
+        }
+    ],
+    "62-33": [
+        {
+            sentence: "It's important to ______ your expenses so you don't spend too much.",
+            options: ["Budget", "Deposit", "Withdraw", "Swipe"],
+            originalSentence: "It's important to Budget your expenses so you don't spend too much."
+        }
+    ],
+    "62-34": [
+        {
+            sentence: "I am very ______ for all the help my parents gave me.",
+            options: ["Grateful", "Responsible", "Official", "Nervous"],
+            originalSentence: "I am very Grateful for all the help my parents gave me."
+        }
+    ],
+    "62-35": [
+        {
+            sentence: "Try ______ your card again; the first time it didn't work.",
+            options: ["Swiping", "Printing", "Signing", "Budgeting"],
+            originalSentence: "Try Swiping your card again; the first time it didn't work."
+        }
+    ],
+    "62-36": [
+        {
+            sentence: "The coffee ______ at the office is broken again.",
+            options: ["Machine", "ATM", "Laptop", "Account"],
+            originalSentence: "The coffee Machine at the office is broken again."
+        }
+    ],
+    "62-37": [
+        {
+            sentence: "Never share your ______ with anyone, not even the bank staff.",
+            options: ["PIN", "ID", "Address", "Account number"],
+            originalSentence: "Never share your PIN with anyone, not even the bank staff."
+        }
+    ],
+    "62-38": [
+        {
+            sentence: "The ______ for the new laptop will be made in three installments.",
+            options: ["Payment", "Minimum", "Interest rate", "Budget"],
+            originalSentence: "The Payment for the new laptop will be made in three installments."
+        }
+    ],
+    "62-39": [
+        {
+            sentence: "Is the transaction ______ successfully? I didn't get a message.",
+            options: ["Going through", "Linking to", "Patting", "Providing"],
+            originalSentence: "Is the transaction Going through successfully? I didn't get a message."
+        }
+    ],
+    "62-40": [
+        {
+            sentence: "If you invest your money ______, you will have a comfortable future.",
+            options: ["Wisely", "Nervously", "Encouragingly", "Gratefully"],
+            originalSentence: "If you invest your money Wisely, you will have a comfortable future."
+        }
+    ],
+    "62-41": [
+        {
+            sentence: "I use my ______ for both my university studies and my personal projects.",
+            options: ["Laptop", "Debit card", "Formal suit", "Machine"],
+            originalSentence: "I use my Laptop for both my university studies and my personal projects."
+        }
+    ],
+    "62-42": [
+        {
+            sentence: "You are ______ for keeping your password secret and safe.",
+            options: ["Responsible", "Grateful", "Official", "Nervous"],
+            originalSentence: "You are Responsible for keeping your password secret and safe."
+        }
+    ],
+    "62-43": [
+        {
+            sentence: "A bank vault is a ______ to keep valuable jewelry and documents.",
+            options: ["Safe place", "Customer service desk", "ATM", "Formal suit"],
+            originalSentence: "A bank vault is a Safe place to keep valuable jewelry and documents."
+        }
+    ],
+    "62-44": [
+        {
+            sentence: "Opening this account is just the start of your ______.",
+            options: ["Financial journey", "Summer job", "Wise choice", "Online shopping"],
+            originalSentence: "Opening this account is just the start of your Financial journey."
+        }
+    ], 
+    // استكمال gapfillDB.js - الدرس رقم 63
+    "63-1": [
+        {
+            sentence: "I am preparing for a ______ tomorrow at a famous bookstore.",
+            options: ["Job interview", "Resume", "Training", "Solution"],
+            originalSentence: "I am preparing for a Job interview tomorrow at a famous bookstore."
+        }
+    ],
+    "63-2": [
+        {
+            sentence: "I want to find a ______ so I can work while I am still studying.",
+            options: ["Part-time job", "Working world", "Typical day", "Schedule"],
+            originalSentence: "I want to find a Part-time job so I can work while I am still studying."
+        }
+    ],
+    "63-3": [
+        {
+            sentence: "She loves reading, so working in a ______ is her dream job.",
+            options: ["Bookstore", "Cash register", "Team", "Position"],
+            originalSentence: "She loves reading, so working in a Bookstore is her dream job."
+        }
+    ],
+    "63-4": [
+        {
+            sentence: "Even for a small shop, you should dress well for a ______.",
+            options: ["Formal interview", "Part-time job", "Training", "Team"],
+            originalSentence: "Even for a small shop, you should dress well for a Formal interview."
+        }
+    ],
+    "63-5": [
+        {
+            sentence: "He was ______ to be calm, but his hands were shaking from fear.",
+            options: ["Pretending", "Shaking hands", "Contacting", "Providing"],
+            originalSentence: "He was Pretending to be calm, but his hands were shaking from fear."
+        }
+    ],
+    "63-6": [
+        {
+            sentence: "The ______ asked me several questions about my previous experience.",
+            options: ["Manager", "Employer", "Difficult customer", "Team"],
+            originalSentence: "The Manager asked me several questions about my previous experience."
+        }
+    ],
+    "63-7": [
+        {
+            sentence: "A librarian must be very ______ to keep all the books in the right places.",
+            options: ["Organized", "Nervous", "Reliable", "Overwhelmed"],
+            originalSentence: "A librarian must be very Organized to keep all the books in the right places."
+        }
+    ],
+    "63-8": [
+        {
+            sentence: "During the interview, don't be afraid to talk about your ______.",
+            options: ["Strengths", "Weaknesses", "Tips", "Contact"],
+            originalSentence: "During the interview, don't be afraid to talk about your Strengths."
+        }
+    ],
+    "63-9": [
+        {
+            sentence: "Employers look for ______ people who show up for work on time.",
+            options: ["Reliable", "Nervous", "Overwhelmed", "Positive"],
+            originalSentence: "Employers look for Reliable people who show up for work on time."
+        }
+    ],
+    "63-10": [
+        {
+            sentence: "He is a ______ student who spends all his night studying for exams.",
+            options: ["Hardworking", "Honest", "Nervous", "Positive"],
+            originalSentence: "He is a Hardworking student who spends all his night studying for exams."
+        }
+    ],
+    "63-11": [
+        {
+            sentence: "When asked about your ______, talk about how you are trying to improve them.",
+            options: ["Weaknesses", "Strengths", "Tips", "Training"],
+            originalSentence: "When asked about your Weaknesses, talk about how you are trying to improve them."
+        }
+    ],
+    "63-12": [
+        {
+            sentence: "It is normal to feel ______ before a big presentation or a job interview.",
+            options: ["Nervous", "Organized", "Hardworking", "Honest"],
+            originalSentence: "It is normal to feel Nervous before a big presentation or a job interview."
+        }
+    ],
+    "63-13": [
+        {
+            sentence: "Always be ______ about your skills; never lie on your resume.",
+            options: ["Honest", "Nervous", "Organized", "Hardworking"],
+            originalSentence: "Always be Honest about your skills; never lie on your resume."
+        }
+    ],
+    "63-14": [
+        {
+            sentence: "Most ______ prefer candidates who have a positive attitude.",
+            options: ["Employers", "Managers", "Teams", "Difficult customers"],
+            originalSentence: "Most Employers prefer candidates who have a positive attitude."
+        }
+    ],
+    "63-15": [
+        {
+            sentence: "I really ______ all the help you gave me with my application.",
+            options: ["Appreciate", "Contact", "Operate", "Handle stress"],
+            originalSentence: "I really Appreciate all the help you gave me with my application."
+        }
+    ],
+    "63-16": [
+        {
+            sentence: "In a busy shop, you must know how to ______ when there are many customers.",
+            options: ["Handle stress", "Stock shelves", "Jumping with joy", "Contact"],
+            originalSentence: "In a busy shop, you must know how to Handle stress when there are many customers."
+        }
+    ],
+    "63-17": [
+        {
+            sentence: "He felt ______ with the amount of work he had to do in one day.",
+            options: ["Overwhelmed", "Organized", "Hardworking", "Positive"],
+            originalSentence: "He felt Overwhelmed with the amount of work he had to do in one day."
+        }
+    ],
+    "63-18": [
+        {
+            sentence: "You should check your ______ to see if you have time for a meeting.",
+            options: ["Schedule", "Resume", "Solution", "Position"],
+            originalSentence: "You should check your Schedule to see if you have time for a meeting."
+        }
+    ],
+    "63-19": [
+        {
+            sentence: "Can you describe what a ______ at this company looks like?",
+            options: ["Typical day", "Working world", "Job interview", "Part-time job"],
+            originalSentence: "Can you describe what a Typical day at this company looks like?"
+        }
+    ],
+    "63-20": [
+        {
+            sentence: "The new employee's first task was to ______ with the new arrivals.",
+            options: ["Stock shelves", "Handle stress", "Shaking hands", "Jumping with joy"],
+            originalSentence: "The new employee's first task was to Stock shelves with the new arrivals."
+        }
+    ],
+    "63-21": [
+        {
+            sentence: "Do you know how to ______ this printing machine?",
+            options: ["Operate", "Contact", "Appreciate", "Deal with"],
+            originalSentence: "Do you know how to Operate this printing machine?"
+        }
+    ],
+    "63-22": [
+        {
+            sentence: "I learned how to use the ______ to take payments from customers.",
+            options: ["Cash register", "Resume", "Bookstore", "Solution"],
+            originalSentence: "I learned how to use the Cash register to take payments from customers."
+        }
+    ],
+    "63-23": [
+        {
+            sentence: "Make sure your ______ is updated with your latest contact information.",
+            options: ["Resume", "Schedule", "Tips", "Position"],
+            originalSentence: "Make sure your Resume is updated with your latest contact information."
+        }
+    ],
+    "63-24": [
+        {
+            sentence: "The career counselor gave me some great ______ for the interview.",
+            options: ["Tips", "Weaknesses", "Solutions", "Strengths"],
+            originalSentence: "The career counselor gave me some great Tips for the interview."
+        }
+    ],
+    "63-25": [
+        {
+            sentence: "Drinking a warm cup of tea can be very ______ after a long day.",
+            options: ["Calming", "Positive", "Organized", "Relieved"],
+            originalSentence: "Drinking a warm cup of tea can be very Calming after a long day."
+        }
+    ],
+    "63-26": [
+        {
+            sentence: "Her ______ for art is clear in every painting she creates.",
+            options: ["Passion", "Schedule", "Resume", "Position"],
+            originalSentence: "Her Passion for art is clear in every painting she creates."
+        }
+    ],
+    "63-27": [
+        {
+            sentence: "The manager told me how to ______ angry people politely.",
+            options: ["Deal with", "Operate", "Handle stress", "Appreciate"],
+            originalSentence: "The manager told me how to Deal with angry people politely."
+        }
+    ],
+    "63-28": [
+        {
+            sentence: "A ______ can be a challenge, but you must remain calm.",
+            options: ["Difficult customer", "Manager", "Employer", "Team"],
+            originalSentence: "A Difficult customer can be a challenge, but you must remain calm."
+        }
+    ],
+    "63-29": [
+        {
+            sentence: "We need to find a ______ to this problem before the shop opens.",
+            options: ["Solution", "Resume", "Position", "Passion"],
+            originalSentence: "We need to find a Solution to this problem before the shop opens."
+        }
+    ],
+    "63-30": [
+        {
+            sentence: "Are you ______ to work on weekends and public holidays?",
+            options: ["Available", "Organized", "Reliable", "Positive"],
+            originalSentence: "Are you Available to work on weekends and public holidays?"
+        }
+    ],
+    "63-31": [
+        {
+            sentence: "I am very happy to be part of such a talented ______.",
+            options: ["Team", "Manager", "Employer", "Position"],
+            originalSentence: "I am very happy to be part of such a talented Team."
+        }
+    ],
+    "63-32": [
+        {
+            sentence: "New employees will receive two weeks of ______ before they start.",
+            options: ["Training", "Job interview", "Part-time job", "Resume"],
+            originalSentence: "New employees will receive two weeks of Training before they start."
+        }
+    ],
+    "63-33": [
+        {
+            sentence: "The tools and materials are ______ by the company for free.",
+            options: ["Provided", "Shaking hands", "Jumping with joy", "Contacted"],
+            originalSentence: "The tools and materials are Provided by the company for free."
+        }
+    ],
+    "63-34": [
+        {
+            sentence: "A ______ attitude can make your work much more enjoyable.",
+            options: ["Positive", "Nervous", "Overwhelmed", "Calming"],
+            originalSentence: "A Positive attitude can make your work much more enjoyable."
+        }
+    ],
+    "63-35": [
+        {
+            sentence: "They were ______ after they agreed on the final contract.",
+            options: ["Shaking hands", "Jumping with joy", "Hugging tightly", "Congratulating"],
+            originalSentence: "They were Shaking hands after they agreed on the final contract."
+        }
+    ],
+    "63-36": [
+        {
+            sentence: "The manager said he would ______ me by the end of the week.",
+            options: ["Contact", "Appreciate", "Operate", "Deal with"],
+            originalSentence: "The manager said he would Contact me by the end of the week."
+        }
+    ],
+    "63-37": [
+        {
+            sentence: "I was ______ when I heard that everyone was safe after the storm.",
+            options: ["Relieved", "Positive", "Nervous", "Organized"],
+            originalSentence: "I was Relieved when I heard that everyone was safe after the storm."
+        }
+    ],
+    "63-38": [
+        {
+            sentence: "I spend a lot of time ______ for important messages from the university.",
+            options: ["Checking email", "Contacting", "Providing", "Scrolling"],
+            originalSentence: "I spend a lot of time Checking email for important messages from the university."
+        }
+    ],
+    "63-39": [
+        {
+            sentence: "My heart was ______ as I waited for the interview results.",
+            options: ["Beating fast", "Jumping with joy", "Shaking hands", "Hugging tightly"],
+            originalSentence: "My heart was Beating fast as I waited for the interview results."
+        }
+    ],
+    "63-40": [
+        {
+            sentence: "We are ______ you the job of assistant manager at our store.",
+            options: ["Pleased to offer", "Surrounded by", "Congratulating", "Providing"],
+            originalSentence: "We are Pleased to offer you the job of assistant manager at our store."
+        }
+    ],
+    "63-41": [
+        {
+            sentence: "He applied for the ______ of a senior engineer at the tech company.",
+            options: ["Position", "Resume", "Schedule", "Passion"],
+            originalSentence: "He applied for the Position of a senior engineer at the tech company."
+        }
+    ],
+    "63-42": [
+        {
+            sentence: "When she saw her name on the list, she started ______.",
+            options: ["Jumping with joy", "Shaking hands", "Hugging tightly", "Beating fast"],
+            originalSentence: "When she saw her name on the list, she started Jumping with joy."
+        }
+    ],
+    "63-43": [
+        {
+            sentence: "The little boy was ______ his teddy bear because he was scared.",
+            options: ["Hugging tightly", "Shaking hands", "Congratulating", "Jumping with joy"],
+            originalSentence: "The little boy was Hugging tightly his teddy bear because he was scared."
+        }
+    ],
+    "63-44": [
+        {
+            sentence: "The famous actor was ______ fans and photographers.",
+            options: ["Surrounded by", "Congratulating", "Provided by", "Shaking hands"],
+            originalSentence: "The famous actor was Surrounded by fans and photographers."
+        }
+    ],
+    "63-45": [
+        {
+            sentence: "Everyone was ______ him on his success in the final competition.",
+            options: ["Congratulating", "Contacting", "Providing", "Appreciating"],
+            originalSentence: "Everyone was Congratulating him on his success in the final competition."
+        }
+    ],
+    "63-46": [
+        {
+            sentence: "Getting your first job is your big step into the ______.",
+            options: ["Working world", "Typical day", "Job interview", "Part-time job"],
+            originalSentence: "Getting your first job is your big step into the Working world."
+        }
+    ],
+    // استكمال gapfillDB.js - الدرس رقم 64
+    "64-1": [
+        {
+            sentence: "After getting a new job, I decided to look for a small ______ near the city center.",
+            options: ["Apartment", "Lobby", "Elevator", "Balcony"],
+            originalSentence: "After getting a new job, I decided to look for a small Apartment near the city center."
+        }
+    ],
+    "64-2": [
+        {
+            sentence: "______ an apartment is often easier than buying one if you move frequently.",
+            options: ["Renting", "Renewing", "Calculating", "Imagining"],
+            originalSentence: "Renting an apartment is often easier than buying one if you move frequently."
+        }
+    ],
+    "64-3": [
+        {
+            sentence: "We spent the whole weekend doing ______ to find the perfect place to live.",
+            options: ["Viewings", "Utilities", "Application forms", "Viewings"],
+            originalSentence: "We spent the whole weekend doing Viewings to find the perfect place to live."
+        }
+    ],
+    "64-4": [
+        {
+            sentence: "The ______ showed us three different properties in the same neighborhood.",
+            options: ["Real estate agent", "Guarantor", "Security deposit", "Lobby"],
+            originalSentence: "The Real estate agent showed us three different properties in the same neighborhood."
+        }
+    ],
+    "64-5": [
+        {
+            sentence: "The building has a beautiful ______ with plants and a comfortable seating area.",
+            options: ["Lobby", "Elevator", "Cabinets", "Balcony"],
+            originalSentence: "The building has a beautiful Lobby with plants and a comfortable seating area."
+        }
+    ],
+    "64-6": [
+        {
+            sentence: "I prefer to live on the first floor so I don't have to wait for the ______.",
+            options: ["Elevator", "Lobby", "Bus stop", "Apartment"],
+            originalSentence: "I prefer to live on the first floor so I don't have to wait for the Elevator."
+        }
+    ],
+    "64-7": [
+        {
+            sentence: "The kitchen has plenty of ______ to store all your plates and glasses.",
+            options: ["Cabinets", "Appliances", "Furniture", "Utilities"],
+            originalSentence: "The kitchen has plenty of Cabinets to store all your plates and glasses."
+        }
+    ],
+    "64-8": [
+        {
+            sentence: "Always check the ______ in the bathroom before you sign the lease.",
+            options: ["Water pressure", "City skyline", "Credit history", "Security deposit"],
+            originalSentence: "Always check the Water pressure in the bathroom before you sign the lease."
+        }
+    ],
+    "64-9": [
+        {
+            sentence: "The monthly ______ is due on the first day of every month.",
+            options: ["Rent", "Utilities", "Furniture", "Paperwork"],
+            originalSentence: "The monthly Rent is due on the first day of every month."
+        }
+    ],
+    "64-10": [
+        {
+            sentence: "Don't forget to pay your ______, like electricity and water, on time.",
+            options: ["Utilities", "Lease", "Application forms", "Appliances"],
+            originalSentence: "Don't forget to pay your Utilities, like electricity and water, on time."
+        }
+    ],
+    "64-11": [
+        {
+            sentence: "Heating and high-speed internet are ______ in the price of the room.",
+            options: ["Included", "Approved", "Standard", "Prepared"],
+            originalSentence: "Heating and high-speed internet are Included in the price of the room."
+        }
+    ],
+    "64-12": [
+        {
+            sentence: "I love sitting on the ______ in the evening to enjoy the fresh air.",
+            options: ["Balcony", "Lobby", "Elevator", "Cabinets"],
+            originalSentence: "I love sitting on the Balcony in the evening to enjoy the fresh air."
+        }
+    ],
+    "64-13": [
+        {
+            sentence: "The bedroom window offers a spectacular view of the ______ at night.",
+            options: ["City skyline", "Neighborhood", "Sunset", "Process"],
+            originalSentence: "The bedroom window offers a spectacular view of the City skyline at night."
+        }
+    ],
+    "64-14": [
+        {
+            sentence: "The apartment comes with modern ______, including a fridge and a dishwasher.",
+            options: ["Appliances", "Furniture", "Cabinets", "Utilities"],
+            originalSentence: "The apartment comes with modern Appliances, including a fridge and a dishwasher."
+        }
+    ],
+    "64-15": [
+        {
+            sentence: "She is ______ how much she can afford to spend on rent each month.",
+            options: ["Calculating", "Imagining", "Renting", "Renewing"],
+            originalSentence: "She is Calculating how much she can afford to spend on rent each month."
+        }
+    ],
+    "64-16": [
+        {
+            sentence: "Living in the city center can be very ______, so many people live in the suburbs.",
+            options: ["Expensive", "Incredible", "Safe", "Freshly painted"],
+            originalSentence: "Living in the city center can be very Expensive, so many people live in the suburbs."
+        }
+    ],
+    "64-17": [
+        {
+            sentence: "This ______ is very quiet and has many beautiful parks for children.",
+            options: ["Neighborhood", "Apartment", "Lobby", "Bus stop"],
+            originalSentence: "This Neighborhood is very quiet and has many beautiful parks for children."
+        }
+    ],
+    "64-18": [
+        {
+            sentence: "It is important to feel ______ and comfortable in your own home.",
+            options: ["Safe", "Expensive", "Standard", "Approved"],
+            originalSentence: "It is important to feel Safe and comfortable in your own home."
+        }
+    ],
+    "64-19": [
+        {
+            sentence: "The nearest ______ is only a two-minute walk from the building.",
+            options: ["Bus stop", "Lobby", "Neighborhood", "Elevator"],
+            originalSentence: "The nearest Bus stop is only a two-minute walk from the building."
+        }
+    ],
+    "64-20": [
+        {
+            sentence: "There is a great supermarket just ______ from our new house.",
+            options: ["Around the corner", "Included", "Equal to", "Standard"],
+            originalSentence: "There is a great supermarket just Around the corner from our new house."
+        }
+    ],
+    "64-21": [
+        {
+            sentence: "The walls are ______ and the floor is perfectly clean.",
+            options: ["Freshly painted", "Expensive", "Incredible", "Standard"],
+            originalSentence: "The walls are Freshly painted and the floor is perfectly clean."
+        }
+    ],
+    "64-22": [
+        {
+            sentence: "I am ______ where I should put the sofa in the living room.",
+            options: ["Imagining", "Calculating", "Renting", "Renewing"],
+            originalSentence: "I am Imagining where I should put the sofa in the living room."
+        }
+    ],
+    "64-23": [
+        {
+            sentence: "We need to buy some new ______ for the guest bedroom.",
+            options: ["Furniture", "Appliances", "Cabinets", "Paperwork"],
+            originalSentence: "We need to buy some new Furniture for the guest bedroom."
+        }
+    ],
+    "64-24": [
+        {
+            sentence: "You need to fill out these ______ before the manager can review your case.",
+            options: ["Application forms", "Utilities", "Cabinets", "Viewings"],
+            originalSentence: "You need to fill out these Application forms before the manager can review your case."
+        }
+    ],
+    "64-25": [
+        {
+            sentence: "The landlord asked for ______ to make sure I could pay the rent.",
+            options: ["Proof of income", "Credit history", "Identification", "Security deposit"],
+            originalSentence: "The landlord asked for Proof of income to make sure I could pay the rent."
+        }
+    ],
+    "64-26": [
+        {
+            sentence: "Please bring some form of ______, like a passport or driver's license.",
+            options: ["Identification", "Proof of income", "Guarantor", "Lease"],
+            originalSentence: "Please bring some form of Identification, like a passport or driver's license."
+        }
+    ],
+    "64-27": [
+        {
+            sentence: "Read the ______ carefully before you sign it to avoid any future problems.",
+            options: ["Lease", "Process", "Goal", "Rent"],
+            originalSentence: "Read the Lease carefully before you sign it to avoid any future problems."
+        }
+    ],
+    "64-28": [
+        {
+            sentence: "This is a ______ contract for renting property in this country.",
+            options: ["Standard", "Expensive", "Freshly painted", "Incredible"],
+            originalSentence: "This is a Standard contract for renting property in this country."
+        }
+    ],
+    "64-29": [
+        {
+            sentence: "My lease is about to end, so I need to ______ it for another year.",
+            options: ["Renew", "Move in", "Calculate", "Imagine"],
+            originalSentence: "My lease is about to end, so I need to Renew it for another year."
+        }
+    ],
+    "64-30": [
+        {
+            sentence: "You have to pay a ______ that you will get back when you move out.",
+            options: ["Security deposit", "Rent", "Interest rate", "Utility"],
+            originalSentence: "You have to pay a Security deposit that you will get back when you move out."
+        }
+    ],
+    "64-31": [
+        {
+            sentence: "The deposit is usually ______ one or two months of rent.",
+            options: ["Equal to", "Around the corner", "Included", "Standard"],
+            originalSentence: "The deposit is usually Equal to one or two months of rent."
+        }
+    ],
+    "64-32": [
+        {
+            sentence: "Since I don't have a job yet, my father will be my ______.",
+            options: ["Guarantor", "Real estate agent", "Manager", "Employer"],
+            originalSentence: "Since I don't have a job yet, my father will be my Guarantor."
+        }
+    ],
+    "64-33": [
+        {
+            sentence: "The bank will check your ______ before they give you a loan.",
+            options: ["Credit history", "Identification", "Proof of income", "Lease"],
+            originalSentence: "The bank will check your Credit history before they give you a loan."
+        }
+    ],
+    "64-34": [
+        {
+            sentence: "There is so much ______ to do when you move to a new country.",
+            options: ["Paperwork", "Furniture", "Utilities", "Viewings"],
+            originalSentence: "There is so much Paperwork to do when you move to a new country."
+        }
+    ],
+    "64-35": [
+        {
+            sentence: "Great news! Our application for the apartment has been ______.",
+            options: ["Approved", "Expensive", "Freshly painted", "Standard"],
+            originalSentence: "Great news! Our application for the apartment has been Approved."
+        }
+    ],
+    "64-36": [
+        {
+            sentence: "We are finally ready to ______ to our new home this weekend.",
+            options: ["Move in", "Renew", "Imagine", "Calculate"],
+            originalSentence: "We are finally ready to Move in to our new home this weekend."
+        }
+    ],
+    "64-37": [
+        {
+            sentence: "The view from the top of the mountain was absolutely ______.",
+            options: ["Incredible", "Safe", "Standard", "Expensive"],
+            originalSentence: "The view from the top of the mountain was absolutely Incredible."
+        }
+    ],
+    "64-38": [
+        {
+            sentence: "We watched the ______ from the balcony every day.",
+            options: ["Sunset", "City skyline", "Process", "Goal"],
+            originalSentence: "We watched the Sunset from the balcony every day."
+        }
+    ],
+    "64-39": [
+        {
+            sentence: "He is ______ a life where he can travel the world for free.",
+            options: ["Imagining", "Calculating", "Renting", "Renewing"],
+            originalSentence: "He is Imagining a life where he can travel the world for free."
+        }
+    ],
+    "64-40": [
+        {
+            sentence: "The whole ______ of finding a home took much longer than I expected.",
+            options: ["Process", "Lease", "Rent", "Goal"],
+            originalSentence: "The whole Process of finding a home took much longer than I expected."
+        }
+    ],
+    "64-41": [
+        {
+            sentence: "You should always be ______ for any unexpected expenses.",
+            options: ["Prepared", "Approved", "Standard", "Included"],
+            originalSentence: "You should always be Prepared for any unexpected expenses."
+        }
+    ],
+    "64-42": [
+        {
+            sentence: "My main ______ is to save enough money to buy my own house.",
+            options: ["Goal", "Process", "Lease", "Rent"],
+            originalSentence: "My main Goal is to save enough money to buy my own house."
+        }
+    ],
+    "64-43": [
+        {
+            sentence: "I am very ______ for all the help my friends gave me during the move.",
+            options: ["Grateful", "Safe", "Prepared", "Relieved"],
+            originalSentence: "I am very Grateful for all the help my friends gave me during the move."
+        }
+    ],
+    // استكمال gapfillDB.js - الدرس رقم 65
+    "65-1": [
+        {
+            sentence: "I had to file a ______ because the laptop I bought was broken.",
+            options: ["Complaint", "Replacement", "Refund", "Discount"],
+            originalSentence: "I had to file a Complaint because the laptop I bought was broken."
+        }
+    ],
+    "65-2": [
+        {
+            sentence: "The customer was very ______ when he realized his order was lost.",
+            options: ["Upset", "Polite", "Confident", "Relieved"],
+            originalSentence: "The customer was very Upset when he realized his order was lost."
+        }
+    ],
+    "65-3": [
+        {
+            sentence: "This machine is not working ______; it keeps making a strange noise.",
+            options: ["Properly", "Effectively", "Immediately", "In writing"],
+            originalSentence: "This machine is not working Properly; it keeps making a strange noise."
+        }
+    ],
+    "65-4": [
+        {
+            sentence: "The computer screen is ______ every time I try to open this app.",
+            options: ["Freezing", "Restarting", "Texting", "Sending"],
+            originalSentence: "The computer screen is Freezing every time I try to open this app."
+        }
+    ],
+    "65-5": [
+        {
+            sentence: "It is very ______ when you pay for a service and it doesn't work.",
+            options: ["Frustrating", "Valuable", "Confident", "Practical"],
+            originalSentence: "It is very Frustrating when you pay for a service and it doesn't work."
+        }
+    ],
+    "65-6": [
+        {
+            sentence: "I ______ the company twice, but nobody has answered my calls yet.",
+            options: ["Contacted", "Apologized", "Restarted", "Followed up"],
+            originalSentence: "I Contacted the company twice, but nobody has answered my calls yet."
+        }
+    ],
+    "65-7": [
+        {
+            sentence: "I was ______ for thirty minutes before a human finally spoke to me.",
+            options: ["On hold", "Disconnected", "Unresponsive", "On record"],
+            originalSentence: "I was On hold for thirty minutes before a human finally spoke to me."
+        }
+    ],
+    "65-8": [
+        {
+            sentence: "Our call was ______ while I was explaining the problem to the agent.",
+            options: ["Disconnected", "Restarted", "Texted", "Contacted"],
+            originalSentence: "Our call was Disconnected while I was explaining the problem to the agent."
+        }
+    ],
+    "65-9": [
+        {
+            sentence: "If you don't get an answer by phone, you should send a ______.",
+            options: ["Complaint email", "Formal email", "Purchase", "Refund"],
+            originalSentence: "If you don't get an answer by phone, you should send a Complaint email."
+        }
+    ],
+    "65-10": [
+        {
+            sentence: "The manager asked me to submit my request ______ for their files.",
+            options: ["In writing", "Properly", "Immediately", "Effectively"],
+            originalSentence: "The manager asked me to submit my request In writing for their files."
+        }
+    ],
+    "65-11": [
+        {
+            sentence: "Please provide your ______ so we can find your transaction in our system.",
+            options: ["Order number", "Contact information", "Billing error", "Refund"],
+            originalSentence: "Please provide your Order number so we can find your transaction in our system."
+        }
+    ],
+    "65-12": [
+        {
+            sentence: "Good ______ is what makes customers come back to a store.",
+            options: ["Customer service", "Complaint", "Communication skills", "Purchase"],
+            originalSentence: "Good Customer service is what makes customers come back to a store."
+        }
+    ],
+    "65-13": [
+        {
+            sentence: "You should always keep the receipt as proof of ______.",
+            options: ["Purchase", "Refund", "Replacement", "Discount"],
+            originalSentence: "You should always keep the receipt as proof of Purchase."
+        }
+    ],
+    "65-14": [
+        {
+            sentence: "The technical support team was ______ to my emails for three days.",
+            options: ["Unresponsive", "Polite", "Confident", "Grateful"],
+            originalSentence: "The technical support team was Unresponsive to my emails for three days."
+        }
+    ],
+    "65-15": [
+        {
+            sentence: "Sometimes ______ your phone can solve simple software problems.",
+            options: ["Restarting", "Texting", "Sending", "Freezing"],
+            originalSentence: "Sometimes Restarting your phone can solve simple software problems."
+        }
+    ],
+    "65-16": [
+        {
+            sentence: "If the item is broken, the store should offer you a free ______.",
+            options: ["Replacement", "Refund", "Discount", "Purchase"],
+            originalSentence: "If the item is broken, the store should offer you a free Replacement."
+        }
+    ],
+    "65-17": [
+        {
+            sentence: "I don't want a new one; I just want a full ______ of my money.",
+            options: ["Refund", "Replacement", "Discount", "Billing error"],
+            originalSentence: "I don't want a new one; I just want a full Refund of my money."
+        }
+    ],
+    "65-18": [
+        {
+            sentence: "Make sure your ______ includes your phone number and email.",
+            options: ["Contact information", "Order number", "Record", "Address"],
+            originalSentence: "Make sure your Contact information includes your phone number and email."
+        }
+    ],
+    "65-19": [
+        {
+            sentence: "Could you please ______ me the photos of the damaged product?",
+            options: ["Send", "Reply", "Restart", "Text"],
+            originalSentence: "Could you please Send me the photos of the damaged product?"
+        }
+    ],
+    "65-20": [
+        {
+            sentence: "I am waiting for a ______ from the manager regarding my complaint.",
+            options: ["Reply", "Refund", "Replacement", "Purchase"],
+            originalSentence: "I am waiting for a Reply from the manager regarding my complaint."
+        }
+    ],
+    "65-21": [
+        {
+            sentence: "When there is a gas leak, you must leave the building ______.",
+            options: ["Immediately", "Properly", "Effectively", "In writing"],
+            originalSentence: "When there is a gas leak, you must leave the building Immediately."
+        }
+    ],
+    "65-22": [
+        {
+            sentence: "The waiter was ______ for the mistake and offered us free drinks.",
+            options: ["Apologizing", "Texting", "Restarting", "Contacting"],
+            originalSentence: "The waiter was Apologizing for the mistake and offered us free drinks."
+        }
+    ],
+    "65-23": [
+        {
+            sentence: "We are very sorry for any ______ this delay has caused you.",
+            options: ["Inconvenience", "Complaint", "Billing error", "Purchase"],
+            originalSentence: "We are very sorry for any Inconvenience this delay has caused you."
+        }
+    ],
+    "65-24": [
+        {
+            sentence: "The hotel is ______ a special price for students this summer.",
+            options: ["Offering", "Restarting", "Sending", "Reply"],
+            originalSentence: "The hotel is Offering a special price for students this summer."
+        }
+    ],
+    "65-25": [
+        {
+            sentence: "If you buy two shirts, you will get a 20% ______ on the total price.",
+            options: ["Discount", "Refund", "Replacement", "Purchase"],
+            originalSentence: "If you buy two shirts, you will get a 20% Discount on the total price."
+        }
+    ],
+    "65-26": [
+        {
+            sentence: "She felt ______ when the doctor told her the test results were normal.",
+            options: ["Relieved", "Upset", "Frustrating", "Unresponsive"],
+            originalSentence: "She felt Relieved when the doctor told her the test results were normal."
+        }
+    ],
+    "65-27": [
+        {
+            sentence: "Please write your full ______ so we can ship the new item to you.",
+            options: ["Address", "Contact information", "Record", "Order number"],
+            originalSentence: "Please write your full Address so we can ship the new item to you."
+        }
+    ],
+    "65-28": [
+        {
+            sentence: "The bank keeps a ______ of every transaction you make.",
+            options: ["Record", "Reply", "Refund", "Complaint"],
+            originalSentence: "The bank keeps a Record of every transaction you make."
+        }
+    ],
+    "65-29": [
+        {
+            sentence: "Even when you are angry, it is important to remain ______.",
+            options: ["Polite", "Confident", "Grateful", "Upset"],
+            originalSentence: "Even when you are angry, it is important to remain Polite."
+        }
+    ],
+    "65-30": [
+        {
+            sentence: "You need to manage your time ______ to finish the project on time.",
+            options: ["Effectively", "Immediately", "Properly", "In writing"],
+            originalSentence: "You need to manage your time Effectively to finish the project on time."
+        }
+    ],
+    "65-31": [
+        {
+            sentence: "Strong ______ are essential for working in any office environment.",
+            options: ["Communication skills", "Practical skills", "Faulty products", "Billing errors"],
+            originalSentence: "Strong Communication skills are essential for working in any office environment."
+        }
+    ],
+    "65-32": [
+        {
+            sentence: "This old book is a ______ part of my family's history.",
+            options: ["Valuable", "Faulty", "Upset", "Frustrating"],
+            originalSentence: "This old book is a Valuable part of my family's history."
+        }
+    ],
+    "65-33": [
+        {
+            sentence: "Companies usually have a department to deal with ______ returned by customers.",
+            options: ["Faulty products", "Billing errors", "Communication skills", "Order numbers"],
+            originalSentence: "Companies usually have a department to deal with Faulty products returned by customers."
+        }
+    ],
+    "65-34": [
+        {
+            sentence: "I called the bank because there were two ______ on my credit card statement.",
+            options: ["Billing errors", "Faulty products", "Refunds", "Replacements"],
+            originalSentence: "I called the bank because there were two Billing errors on my credit card statement."
+        }
+    ],
+    "65-35": [
+        {
+            sentence: "He felt ______ that he would pass the exam because he studied very hard.",
+            options: ["Confident", "Grateful", "Relieved", "Upset"],
+            originalSentence: "He felt Confident that he would pass the exam because he studied very hard."
+        }
+    ],
+    "65-36": [
+        {
+            sentence: "Please stop ______ while we are having a family dinner.",
+            options: ["Texting", "Restarting", "Apologizing", "Sending"],
+            originalSentence: "Please stop Texting while we are having a family dinner."
+        }
+    ],
+    "65-37": [
+        {
+            sentence: "I took a ______ of the broken screen to show it to the repair shop.",
+            options: ["Photo", "Record", "Reply", "Purchase"],
+            originalSentence: "I took a Photo of the broken screen to show it to the repair shop."
+        }
+    ],
+    "65-38": [
+        {
+            sentence: "The vocational school focuses on ______ like carpentry and plumbing.",
+            options: ["Practical skills", "Communication skills", "Valuable", "Inconvenience"],
+            originalSentence: "The vocational school focuses on Practical skills like carpentry and plumbing."
+        }
+    ],
+    "65-39": [
+        {
+            sentence: "When applying for a job, you must write a ______ to the manager.",
+            options: ["Formal email", "Complaint email", "Record", "Reply"],
+            originalSentence: "When applying for a job, you must write a Formal email to the manager."
+        }
+    ],
+    "65-40": [
+        {
+            sentence: "I need to ______ with the doctor about my medical results.",
+            options: ["Follow up", "Restart", "Send", "Reply"],
+            originalSentence: "I need to Follow up with the doctor about my medical results."
+        }
+    ],
+    "65-41": [
+        {
+            sentence: "We are very ______ for the support you showed us during the difficult time.",
+            options: ["Grateful", "Confident", "Relieved", "Polite"],
+            originalSentence: "We are very Grateful for the support you showed us during the difficult time."
+        }
+    ],
+    // استكمال gapfillDB.js - الدرس رقم 66
+    "66-1": [
+        {
+            sentence: "A large ______ gathered at the corner of the street after the loud noise.",
+            options: ["Crowd", "Bystander", "Cyclist", "Teenager"],
+            originalSentence: "A large Crowd gathered at the corner of the street after the loud noise."
+        }
+    ],
+    "66-2": [
+        {
+            sentence: "Many people were ______ around the park to watch the fireworks.",
+            options: ["Gathered", "Approaching", "Clearing", "Shaken"],
+            originalSentence: "Many people were Gathered around the park to watch the fireworks."
+        }
+    ],
+    "66-3": [
+        {
+            sentence: "The ______ arrived quickly to take the injured man to the hospital.",
+            options: ["Ambulance", "Intersection", "Helmet", "Memorial"],
+            originalSentence: "The Ambulance arrived quickly to take the injured man to the hospital."
+        }
+    ],
+    "66-4": [
+        {
+            sentence: "A ______ who saw the whole thing called the police immediately.",
+            options: ["Bystander", "Cyclist", "Teenager", "Crowd"],
+            originalSentence: "A Bystander who saw the whole thing called the police immediately."
+        }
+    ],
+    "66-5": [
+        {
+            sentence: "The ______ was wearing a bright yellow jacket so drivers could see him.",
+            options: ["Cyclist", "Bystander", "Teenager", "Crowd"],
+            originalSentence: "The Cyclist was wearing a bright yellow jacket so drivers could see him."
+        }
+    ],
+    "66-6": [
+        {
+            sentence: "The car ______ a metal pole while trying to avoid the cat in the road.",
+            options: ["Hit", "Witnessed", "Measured", "Touched"],
+            originalSentence: "The car Hit a metal pole while trying to avoid the cat in the road."
+        }
+    ],
+    "66-7": [
+        {
+            sentence: "The driver was ______ and couldn't speak for a few minutes after the crash.",
+            options: ["Shocked", "Concerned", "Emotional", "Touched"],
+            originalSentence: "The driver was Shocked and couldn't speak for a few minutes after the crash."
+        }
+    ],
+    "66-8": [
+        {
+            sentence: "Fortunately, no one was killed in the car ______ this morning.",
+            options: ["Accident", "Intersection", "Distance", "Memorial"],
+            originalSentence: "Fortunately, no one was killed in the car Accident this morning."
+        }
+    ],
+    "66-9": [
+        {
+            sentence: "I could hear the sound of the train ______ the station.",
+            options: ["Approaching", "Clearing", "Investigating", "Realizing"],
+            originalSentence: "I could hear the sound of the train Approaching the station."
+        }
+    ],
+    "66-10": [
+        {
+            sentence: "The little girl was ______ because she lost her favorite doll.",
+            options: ["Crying", "Shaken", "Concerned", "Emotional"],
+            originalSentence: "The little girl was Crying because she lost her favorite doll."
+        }
+    ],
+    "66-11": [
+        {
+            sentence: "He stopped walking after ______ that he was going the wrong way.",
+            options: ["Realizing", "Measuring", "Investigating", "Witnessing"],
+            originalSentence: "He stopped walking after Realizing that he was going the wrong way."
+        }
+    ],
+    "66-12": [
+        {
+            sentence: "Being a ______ can be difficult because of school stress and changes.",
+            options: ["Teenager", "Bystander", "Cyclist", "Crowd"],
+            originalSentence: "Being a Teenager can be difficult because of school stress and changes."
+        }
+    ],
+    "66-13": [
+        {
+            sentence: "The cat only had a few ______ on its leg after the fight.",
+            options: ["Scratches", "Memorials", "Notes", "Helmets"],
+            originalSentence: "The cat only had a few Scratches on its leg after the fight."
+        }
+    ],
+    "66-14": [
+        {
+            sentence: "She was ______ her son when he returned safely from the trip.",
+            options: ["Hugging tightly", "Handing a card", "Looking out for", "Clearing"],
+            originalSentence: "She was Hugging tightly her son when he returned safely from the trip."
+        }
+    ],
+    "66-15": [
+        {
+            sentence: "The movie was so ______ that many people in the cinema were crying.",
+            options: ["Emotional", "Dangerous", "Valuable", "Concerned"],
+            originalSentence: "The movie was so Emotional that many people in the cinema were crying."
+        }
+    ],
+    "66-16": [
+        {
+            sentence: "The police confirmed that the driver was not ______ in the accident.",
+            options: ["Seriously hurt", "Shaken", "Touched", "Injured"],
+            originalSentence: "The police confirmed that the driver was not Seriously hurt in the accident."
+        }
+    ],
+    "66-17": [
+        {
+            sentence: "She was visibly ______ after the earthquake, though she wasn't injured.",
+            options: ["Shaken", "Shocked", "Concerned", "Emotional"],
+            originalSentence: "She was visibly Shaken after the earthquake, though she wasn't injured."
+        }
+    ],
+    "66-18": [
+        {
+            sentence: "The scientist is ______ the temperature of the water for the experiment.",
+            options: ["Measuring", "Investigating", "Realizing", "Witnessing"],
+            originalSentence: "The scientist is Measuring the temperature of the water for the experiment."
+        }
+    ],
+    "66-19": [
+        {
+            sentence: "What is the ______ between the earth and the moon?",
+            options: ["Distance", "Intersection", "Pact", "Fragility of life"],
+            originalSentence: "What is the Distance between the earth and the moon?"
+        }
+    ],
+    "66-20": [
+        {
+            sentence: "Detectives are at the scene to ______ the cause of the fire.",
+            options: ["Investigate", "Witness", "Realize", "Measure"],
+            originalSentence: "Detectives are at the scene to Investigate the cause of the fire."
+        }
+    ],
+    "66-21": [
+        {
+            sentence: "The storm is ______ and the sun is starting to come out.",
+            options: ["Clearing", "Approaching", "Gathering", "Shaking"],
+            originalSentence: "The storm is Clearing and the sun is starting to come out."
+        }
+    ],
+    "66-22": [
+        {
+            sentence: "The businessman was ______ to the manager after the meeting.",
+            options: ["Handing a card", "Storing information", "Looking out for", "Hugging tightly"],
+            originalSentence: "The businessman was Handing a card to the manager after the meeting."
+        }
+    ],
+    "66-23": [
+        {
+            sentence: "The neighbor ______ the robbery and gave a description to the police.",
+            options: ["Witnessed", "Investigated", "Measured", "Touched"],
+            originalSentence: "The neighbor Witnessed the robbery and gave a description to the police."
+        }
+    ],
+    "66-24": [
+        {
+            sentence: "The ______ players were taken off the field by the medical team.",
+            options: ["Injured", "Concerned", "Shaken", "Seriously hurt"],
+            originalSentence: "The Injured players were taken off the field by the medical team."
+        }
+    ],
+    "66-25": [
+        {
+            sentence: "The parents were very ______ when their daughter didn't come home on time.",
+            options: ["Concerned", "Shocked", "Emotional", "Touched"],
+            originalSentence: "The parents were very Concerned when their daughter didn't come home on time."
+        }
+    ],
+    "66-26": [
+        {
+            sentence: "Drivers must be very careful when turning at a busy ______.",
+            options: ["Intersection", "Distance", "Memorial", "Accident"],
+            originalSentence: "Drivers must be very careful when turning at a busy Intersection."
+        }
+    ],
+    "66-27": [
+        {
+            sentence: "It is ______ to swim in this river because of the strong current.",
+            options: ["Dangerous", "Valuable", "Emotional", "Seriously hurt"],
+            originalSentence: "It is Dangerous to swim in this river because of the strong current."
+        }
+    ],
+    "66-28": [
+        {
+            sentence: "Computers are excellent at ______ large amounts of data for a long time.",
+            options: ["Storing information", "Investigating", "Measuring", "Witnessing"],
+            originalSentence: "Computers are excellent at Storing information large amounts of data for a long time."
+        }
+    ],
+    "66-29": [
+        {
+            sentence: "They built a ______ in the center of the city to remember the soldiers.",
+            options: ["Memorial", "Intersection", "Distance", "Pact"],
+            originalSentence: "They built a Memorial in the center of the city to remember the soldiers."
+        }
+    ],
+    "66-30": [
+        {
+            sentence: "He left a ______ on the fridge to tell his wife he would be late.",
+            options: ["Note", "Helmet", "Card", "Scratches"],
+            originalSentence: "He left a Note on the fridge to tell his wife he would be late."
+        }
+    ],
+    "66-31": [
+        {
+            sentence: "I was deeply ______ by the kindness of the strangers who helped me.",
+            options: ["Touched", "Shocked", "Dangerous", "Shaken"],
+            originalSentence: "I was deeply Touched by the kindness of the strangers who helped me."
+        }
+    ],
+    "66-32": [
+        {
+            sentence: "The accident reminded everyone about the ______.",
+            options: ["Fragility of life", "Road safety", "Intersection", "Pact"],
+            originalSentence: "The accident reminded everyone about the Fragility of life."
+        }
+    ],
+    "66-33": [
+        {
+            sentence: "The school is teaching children about ______ and how to cross the street.",
+            options: ["Road safety", "Distance", "Pact", "Memorial"],
+            originalSentence: "The school is teaching children about Road safety and how to cross the street."
+        }
+    ],
+    "66-34": [
+        {
+            sentence: "You should always wear a ______ when you are riding a motorcycle.",
+            options: ["Helmet", "Note", "Card", "Scratches"],
+            originalSentence: "You should always wear a Helmet when you are riding a motorcycle."
+        }
+    ],
+    "66-35": [
+        {
+            sentence: "The two countries signed a ______ to stop the war and help each other.",
+            options: ["Pact", "Memorial", "Intersection", "Note"],
+            originalSentence: "The two countries signed a Pact to stop the war and help each other."
+        }
+    ],
+    "66-36": [
+        {
+            sentence: "Big brothers should always ______ their younger siblings at the park.",
+            options: ["Look out for", "Hugging tightly", "Handing a card", "Clearing"],
+            originalSentence: "Big brothers should always Look out for their younger siblings at the park."
+        }
+    ],
+    "66-37": [
+        {
+            sentence: "Life often teaches us ______ through difficult experiences.",
+            options: ["Valuable lessons", "Fragility of life", "Road safety", "Scratches"],
+            originalSentence: "Life often teaches us Valuable lessons through difficult experiences."
+        }
+    ],
+    // استكمال gapfillDB.js - الدرس رقم 67
+    "67-1": [
+        {
+            sentence: "I received a beautiful ______ to my cousin's wedding in the mail yesterday.",
+            options: ["Invitation", "Tradition", "Culture", "Album"],
+            originalSentence: "I received a beautiful Invitation to my cousin's wedding in the mail yesterday."
+        }
+    ],
+    "67-2": [
+        {
+            sentence: "A ______ is a wonderful time for family and friends to celebrate love.",
+            options: ["Wedding", "Honeymoon", "Reception", "Celebration"],
+            originalSentence: "A Wedding is a wonderful time for family and friends to celebrate love."
+        }
+    ],
+    "67-3": [
+        {
+            sentence: "Every country has its own unique ______ when it comes to marriage.",
+            options: ["Traditions", "Pastries", "Petals", "Rings"],
+            originalSentence: "Every country has its own unique Traditions when it comes to marriage."
+        }
+    ],
+    "67-4": [
+        {
+            sentence: "He went to the tailor to get a new black ______ for the big night.",
+            options: ["Suit", "Bouquet", "Aisle", "Venue"],
+            originalSentence: "He went to the tailor to get a new black Suit for the big night."
+        }
+    ],
+    "67-5": [
+        {
+            sentence: "I haven't seen you in years; you have become a real ______ now!",
+            options: ["Grown-up", "Princess", "Groom", "Officiant"],
+            originalSentence: "I haven't seen you in years; you have become a real Grown-up now!"
+        }
+    ],
+    "67-6": [
+        {
+            sentence: "The groom looked very ______ in his official wedding photos.",
+            options: ["Handsome", "Elegant", "Shy", "Sweet tooth"],
+            originalSentence: "The groom looked very Handsome in his official wedding photos."
+        }
+    ],
+    "67-7": [
+        {
+            sentence: "The ______ for the party was a large hall decorated with white roses.",
+            options: ["Venue", "Background", "Aisle", "Reception"],
+            originalSentence: "The Venue for the party was a large hall decorated with white roses."
+        }
+    ],
+    "67-8": [
+        {
+            sentence: "The entire room was ______ with fairy lights and colorful ribbons.",
+            options: ["Decorated", "Exchanging vows", "Clapping", "Pulling"],
+            originalSentence: "The entire room was Decorated with fairy lights and colorful ribbons."
+        }
+    ],
+    "67-9": [
+        {
+            sentence: "There were more than two hundred ______ at the dinner party.",
+            options: ["Guests", "Relatives", "Photographers", "Brides"],
+            originalSentence: "There were more than two hundred Guests at the dinner party."
+        }
+    ],
+    "67-10": [
+        {
+            sentence: "She wore an ______ silk dress that everyone admired.",
+            options: ["Elegant", "Handsome", "Shy", "Grown-up"],
+            originalSentence: "She wore an Elegant silk dress that everyone admired."
+        }
+    ],
+    "67-11": [
+        {
+            sentence: "The soft music in the ______ created a very relaxing atmosphere.",
+            options: ["Background", "Venue", "Aisle", "Dance floor"],
+            originalSentence: "The soft music in the Background created a very relaxing atmosphere."
+        }
+    ],
+    "67-12": [
+        {
+            sentence: "We all stood in line to ______ the couple on their marriage.",
+            options: ["Congratulate", "Spot", "Clap", "Toast"],
+            originalSentence: "We all stood in line to Congratulate the couple on their marriage."
+        }
+    ],
+    "67-13": [
+        {
+            sentence: "It was hard to ______ my friend in the large crowd of people.",
+            options: ["Spot", "Congratulate", "Exchanging vows", "Pulling"],
+            originalSentence: "It was hard to Spot my friend in the large crowd of people."
+        }
+    ],
+    "67-14": [
+        {
+            sentence: "In her white dress, the bride looked like a ______ from a storybook.",
+            options: ["Princess", "Grown-up", "Officiant", "Bride"],
+            originalSentence: "In her white dress, the bride looked like a Princess from a storybook."
+        }
+    ],
+    "67-15": [
+        {
+            sentence: "The bride walked slowly down the ______ towards the groom.",
+            options: ["Aisle", "Venue", "Dance floor", "Buffet"],
+            originalSentence: "The bride walked slowly down the Aisle towards the groom."
+        }
+    ],
+    "67-16": [
+        {
+            sentence: "The ______ asked the couple if they were ready to take their vows.",
+            options: ["Officiant", "Photographer", "Groom", "Guest"],
+            originalSentence: "The Officiant asked the couple if they were ready to take their vows."
+        }
+    ],
+    "67-17": [
+        {
+            sentence: "Marriage is a lifelong ______ between two people who love each other.",
+            options: ["Commitment", "Tradition", "Culture", "Celebration"],
+            originalSentence: "Marriage is a lifelong Commitment between two people who love each other."
+        }
+    ],
+    "67-18": [
+        {
+            sentence: "The most touching part of the ceremony was when they were ______.",
+            options: ["Exchanging vows", "Clapping", "Pulling", "Congratulating"],
+            originalSentence: "The most touching part of the ceremony was when they were Exchanging vows."
+        }
+    ],
+    "67-19": [
+        {
+            sentence: "The couple put gold ______ on each other's fingers as a symbol of love.",
+            options: ["Rings", "Petals", "Pastries", "Traditions"],
+            originalSentence: "The couple put gold Rings on each other's fingers as a symbol of love."
+        }
+    ],
+    "67-20": [
+        {
+            sentence: "Everyone started ______ when the couple was officially married.",
+            options: ["Clapping", "Pulling", "Congratulating", "Spotting"],
+            originalSentence: "Everyone started Clapping when the couple was officially married."
+        }
+    ],
+    "67-21": [
+        {
+            sentence: "The ______ had a wide variety of delicious food from all over the world.",
+            options: ["Buffet", "Pastries", "Reception", "Venue"],
+            originalSentence: "The Buffet had a wide variety of delicious food from all over the world."
+        }
+    ],
+    "67-22": [
+        {
+            sentence: "We had coffee and some sweet ______ after the main meal.",
+            options: ["Pastries", "Petals", "Rings", "Bouquet"],
+            originalSentence: "We had coffee and some sweet Pastries after the main meal."
+        }
+    ],
+    "67-23": [
+        {
+            sentence: "The music started and everyone ran to the ______ to celebrate.",
+            options: ["Dance floor", "Aisle", "Background", "Venue"],
+            originalSentence: "The music started and everyone ran to the Dance floor to celebrate."
+        }
+    ],
+    "67-24": [
+        {
+            sentence: "He was too ______ to dance in front of so many strangers.",
+            options: ["Shy", "Handsome", "Elegant", "Grown-up"],
+            originalSentence: "He was too Shy to dance in front of so many strangers."
+        }
+    ],
+    "67-25": [
+        {
+            sentence: "The children were ______ their father's hand to show him the cake.",
+            options: ["Pulling", "Clapping", "Congratulating", "Exchanging vows"],
+            originalSentence: "The children were Pulling their father's hand to show him the cake."
+        }
+    ],
+    "67-26": [
+        {
+            sentence: "I met many ______ I hadn't seen since I was a child at the wedding.",
+            options: ["Relatives", "Guests", "Officiants", "Grooms"],
+            originalSentence: "I met many Relatives I hadn't seen since I was a child at the wedding."
+        }
+    ],
+    "67-27": [
+        {
+            sentence: "The flower girl threw rose ______ on the ground for the bride.",
+            options: ["Petals", "Pastries", "Rings", "Traditions"],
+            originalSentence: "The flower girl threw rose Petals on the ground for the bride."
+        }
+    ],
+    "67-28": [
+        {
+            sentence: "They are planning to go to Italy for their ______ next week.",
+            options: ["Honeymoon", "Wedding", "Reception", "Celebration"],
+            originalSentence: "They are planning to go to Italy for their Honeymoon next week."
+        }
+    ],
+    "67-29": [
+        {
+            sentence: "I have a big ______, so I ate three pieces of the wedding cake.",
+            options: ["Sweet tooth", "Commitment", "Culture", "Background"],
+            originalSentence: "I have a big Sweet tooth, so I ate three pieces of the wedding cake."
+        }
+    ],
+    "67-30": [
+        {
+            sentence: "We took many photos to keep the ______ of this special day forever.",
+            options: ["Memories", "Traditions", "Cultures", "Albums"],
+            originalSentence: "We took many photos to keep the Memories of this special day forever."
+        }
+    ],
+    "67-31": [
+        {
+            sentence: "The ______ looked stunning in her long white lace dress.",
+            options: ["Bride", "Groom", "Officiant", "Princess"],
+            originalSentence: "The Bride looked stunning in her long white lace dress."
+        }
+    ],
+    "67-32": [
+        {
+            sentence: "The ______ waited at the front of the hall for his future wife.",
+            options: ["Groom", "Bride", "Guest", "Photographer"],
+            originalSentence: "The Groom waited at the front of the hall for his future wife."
+        }
+    ],
+    "67-33": [
+        {
+            sentence: "The bride carried a beautiful ______ of lilies and white roses.",
+            options: ["Bouquet", "Suit", "Rings", "Pastries"],
+            originalSentence: "The bride carried a beautiful Bouquet of lilies and white roses."
+        }
+    ],
+    "67-34": [
+        {
+            sentence: "After the ceremony, there was a ______ with music and dancing.",
+            options: ["Reception", "Venue", "Aisle", "Buffet"],
+            originalSentence: "After the ceremony, there was a Reception with music and dancing."
+        }
+    ],
+    "67-35": [
+        {
+            sentence: "The best man stood up to make a ______ to the happy couple.",
+            options: ["Toast", "Invitation", "Tradition", "Culture"],
+            originalSentence: "The best man stood up to make a Toast to the happy couple."
+        }
+    ],
+    "67-36": [
+        {
+            sentence: "The ______ asked everyone to smile for a group picture.",
+            options: ["Photographer", "Officiant", "Groom", "Guest"],
+            originalSentence: "The Photographer asked everyone to smile for a group picture."
+        }
+    ],
+    "67-37": [
+        {
+            sentence: "My mother still keeps her wedding ______ on the bookshelf.",
+            options: ["Album", "Suit", "Bouquet", "Tradition"],
+            originalSentence: "My mother still keeps her wedding Album on the bookshelf."
+        }
+    ],
+    "67-38": [
+        {
+            sentence: "A birthday is a great ______ for friends to get together.",
+            options: ["Celebration", "Commitment", "Culture", "Honeymoon"],
+            originalSentence: "A birthday is a great Celebration for friends to get together."
+        }
+    ],
+    "67-39": [
+        {
+            sentence: "It is a ______ in our family to eat fish on Friday nights.",
+            options: ["Tradition", "Culture", "Commitment", "Honeymoon"],
+            originalSentence: "It is a Tradition in our family to eat fish on Friday nights."
+        }
+    ],
+    "67-40": [
+        {
+            sentence: "Learning about a new ______ helps you understand people better.",
+            options: ["Culture", "Tradition", "Commitment", "Background"],
+            originalSentence: "Learning about a new Culture helps you understand people better."
+        }
+    ],
+    // استكمال gapfillDB.js - الدرس رقم 68
+    "68-1": [
+        {
+            sentence: "The house felt very ______ after all the furniture was moved out.",
+            options: ["Empty", "Cozy", "Strange", "Ready"],
+            originalSentence: "The house felt very Empty after all the furniture was moved out."
+        }
+    ],
+    "68-2": [
+        {
+            sentence: "Books and clothes were ______ high in the corner of the room.",
+            options: ["Piled", "Unpacked", "Arranged", "Loaded"],
+            originalSentence: "Books and clothes were Piled high in the corner of the room."
+        }
+    ],
+    "68-3": [
+        {
+            sentence: "The children were jumping with ______ when they saw the new puppy.",
+            options: ["Excitement", "Sadness", "Memory", "Atmosphere"],
+            originalSentence: "The children were jumping with Excitement when they saw the new puppy."
+        }
+    ],
+    "68-4": [
+        {
+            sentence: "Leaving my old friends behind filled me with a deep ______.",
+            options: ["Sadness", "Excitement", "Memory", "Atmosphere"],
+            originalSentence: "Leaving my old friends behind filled me with a deep Sadness."
+        }
+    ],
+    "68-5": [
+        {
+            sentence: "My favorite childhood ______ is playing football in the garden with my brother.",
+            options: ["Memory", "Atmosphere", "Photo album", "New chapter"],
+            originalSentence: "My favorite childhood Memory is playing football in the garden with my brother."
+        }
+    ],
+    "68-6": [
+        {
+            sentence: "The candles and soft music created a very romantic ______.",
+            options: ["Atmosphere", "Landscape", "Memory", "Excitement"],
+            originalSentence: "The candles and soft music created a very romantic Atmosphere."
+        }
+    ],
+    "68-7": [
+        {
+            sentence: "She was the first one to speak, finally ______ in the room.",
+            options: ["Breaking the silence", "Hugging tightly", "Setting up", "Taking care"],
+            originalSentence: "She was the first one to speak, finally Breaking the silence in the room."
+        }
+    ],
+    "68-8": [
+        {
+            sentence: "I will really ______ my mom's cooking when I go to university.",
+            options: ["Miss", "Await", "Promise", "Unpack"],
+            originalSentence: "I will really Miss my mom's cooking when I go to university."
+        }
+    ],
+    "68-9": [
+        {
+            sentence: "We had a long ______ to see each other's faces while we talked.",
+            options: ["Video call", "Photo album", "New chapter", "Memory"],
+            originalSentence: "We had a long Video call to see each other's faces while we talked."
+        }
+    ],
+    "68-10": [
+        {
+            sentence: "She tried to smile ______ as she said goodbye at the airport.",
+            options: ["Through her tears", "Nostalgic", "Cozy", "Strange"],
+            originalSentence: "She tried to smile Through her tears as she said goodbye at the airport."
+        }
+    ],
+    "68-11": [
+        {
+            sentence: "We spent the evening looking at an old ______ from our primary school days.",
+            options: ["Photo album", "Backpack", "Landscape", "Prom"],
+            originalSentence: "We spent the evening looking at an old Photo album from our primary school days."
+        }
+    ],
+    "68-12": [
+        {
+            sentence: "Everyone wore beautiful dresses and suits for the high school ______.",
+            options: ["Prom", "Atmosphere", "New chapter", "Landscape"],
+            originalSentence: "Everyone wore beautiful dresses and suits for the high school Prom."
+        }
+    ],
+    "68-13": [
+        {
+            sentence: "Looking at these old toys makes me feel very ______.",
+            options: ["Nostalgic", "Amazing", "Cozy", "Strange"],
+            originalSentence: "Looking at these old toys makes me feel very Nostalgic."
+        }
+    ],
+    "68-14": [
+        {
+            sentence: "The view from the top of the mountain was absolutely ______.",
+            options: ["Amazing", "Empty", "Nostalgic", "Strange"],
+            originalSentence: "The view from the top of the mountain was absolutely Amazing."
+        }
+    ],
+    "68-15": [
+        {
+            sentence: "I ______ to call you as soon as I arrive at the hotel.",
+            options: ["Promise", "Await", "Miss", "Unpack"],
+            originalSentence: "I Promise to call you as soon as I arrive at the hotel."
+        }
+    ],
+    "68-16": [
+        {
+            sentence: "We spent the morning ______ all the heavy boxes into the truck.",
+            options: ["Loading", "Unpacking", "Arranging", "Setting up"],
+            originalSentence: "We spent the morning Loading all the heavy boxes into the truck."
+        }
+    ],
+    "68-17": [
+        {
+            sentence: "I put my laptop and some water in my ______ before leaving.",
+            options: ["Backpack", "Photo album", "Memory", "Landscape"],
+            originalSentence: "I put my laptop and some water in my Backpack before leaving."
+        }
+    ],
+    "68-18": [
+        {
+            sentence: "The desert ______ is beautiful, especially during the sunset.",
+            options: ["Landscape", "Atmosphere", "Memory", "New chapter"],
+            originalSentence: "The desert Landscape is beautiful, especially during the sunset."
+        }
+    ],
+    "68-19": [
+        {
+            sentence: "The small wooden cabin was very ______ and warm during the winter.",
+            options: ["Cozy", "Empty", "Strange", "Ready"],
+            originalSentence: "The small wooden cabin was very Cozy and warm during the winter."
+        }
+    ],
+    "68-20": [
+        {
+            sentence: "It took me three days to ______ all my bags in the new apartment.",
+            options: ["Unpack", "Load", "Arrange", "Set up"],
+            originalSentence: "It took me three days to Unpack all my bags in the new apartment."
+        }
+    ],
+    "68-21": [
+        {
+            sentence: "She is ______ the flowers in a vase to decorate the table.",
+            options: ["Arranging", "Loading", "Setting up", "Unpacking"],
+            originalSentence: "She is Arranging the flowers in a vase to decorate the table."
+        }
+    ],
+    "68-22": [
+        {
+            sentence: "The mother was ______ her daughter before she got on the bus.",
+            options: ["Hugging tightly", "Breaking the silence", "Taking care", "Setting up"],
+            originalSentence: "The mother was Hugging tightly her daughter before she got on the bus."
+        }
+    ],
+    "68-23": [
+        {
+            sentence: "Goodbye! ______ and don't forget to wear your jacket.",
+            options: ["Take care", "Make the most of", "Set up", "Await"],
+            originalSentence: "Goodbye! Take care and don't forget to wear your jacket."
+        }
+    ],
+    "68-24": [
+        {
+            sentence: "You should ______ your time while you are on vacation.",
+            options: ["Make the most of", "Take care", "Set up", "Breaking the silence"],
+            originalSentence: "You should Make the most of your time while you are on vacation."
+        }
+    ],
+    "68-25": [
+        {
+            sentence: "I had a ______ when I said goodbye to my parents.",
+            options: ["Lump in throat", "New chapter", "Memory", "Excitement"],
+            originalSentence: "I had a Lump in throat when I said goodbye to my parents."
+        }
+    ],
+    "68-26": [
+        {
+            sentence: "Starting university is the beginning of an exciting ______ in your life.",
+            options: ["New chapter", "Memory", "Photo album", "Prom"],
+            originalSentence: "Starting university is the beginning of an exciting New chapter in your life."
+        }
+    ],
+    "68-27": [
+        {
+            sentence: "We are ______ the new computer system in the office today.",
+            options: ["Setting up", "Unpacking", "Loading", "Arranging"],
+            originalSentence: "Setting up the new computer system in the office today."
+        }
+    ],
+    "68-28": [
+        {
+            sentence: "It felt ______ to sleep in a different bed for the first time.",
+            options: ["Strange", "Cozy", "Amazing", "Nostalgic"],
+            originalSentence: "It felt Strange to sleep in a different bed for the first time."
+        }
+    ],
+    "68-29": [
+        {
+            sentence: "Many great adventures ______ you in the coming years.",
+            options: ["Await", "Promise", "Miss", "Unpack"],
+            originalSentence: "Many great adventures Await you in the coming years."
+        }
+    ],
+    "68-30": [
+        {
+            sentence: "Are you ______ to start your first day of work tomorrow?",
+            options: ["Ready", "Empty", "Strange", "Amazing"],
+            originalSentence: "Are you Ready to start your first day of work tomorrow?"
+        }
+    ],
+    // استكمال gapfillDB.js - الدرس رقم 69
+    "69-1": [
+        {
+            sentence: "The whole team is waiting for the manager in the ______.",
+            options: ["Conference room", "Shopping mall project", "Location", "Community"],
+            originalSentence: "The whole team is waiting for the manager in the Conference room."
+        }
+    ],
+    "69-2": [
+        {
+            sentence: "He works as a senior engineer for a large ______ in Dubai.",
+            options: ["Construction company", "Financial officer", "Supplier", "Architect"],
+            originalSentence: "He works as a senior engineer for a large Construction company in Dubai."
+        }
+    ],
+    "69-3": [
+        {
+            sentence: "Last week, I ______ an international seminar about green energy.",
+            options: ["Attended", "Presented", "Allocated", "Secured"],
+            originalSentence: "Last week, I Attended an international seminar about green energy."
+        }
+    ],
+    "69-4": [
+        {
+            sentence: "You should wear a suit because it is a ______ with the director.",
+            options: ["Formal meeting", "Timeline", "Context", "Opportunity"],
+            originalSentence: "You should wear a suit because it is a Formal meeting with the director."
+        }
+    ],
+    "69-5": [
+        {
+            sentence: "This workshop is designed for ______ who want to improve their leadership skills.",
+            options: ["Professionals", "Colleagues", "Contractors", "Suppliers"],
+            originalSentence: "This workshop is designed for Professionals who want to improve their leadership skills."
+        }
+    ],
+    "69-6": [
+        {
+            sentence: "I enjoy having lunch with my ______ after a long morning of work.",
+            options: ["Colleagues", "Professionals", "Architects", "Contractors"],
+            originalSentence: "I enjoy having lunch with my Colleagues after a long morning of work."
+        }
+    ],
+    "69-7": [
+        {
+            sentence: "Even if you are nervous, you must ______ during the presentation.",
+            options: ["Appear confident", "Take notes", "Secure", "Motivated"],
+            originalSentence: "Even if you are nervous, you must Appear confident during the presentation."
+        }
+    ],
+    "69-8": [
+        {
+            sentence: "He felt his ______ as he stood up to speak in front of the CEO.",
+            options: ["Palms sweating", "Safety regulations", "Financial projections", "Green spaces"],
+            originalSentence: "He felt his Palms sweating as he stood up to speak in front of the CEO."
+        }
+    ],
+    "69-9": [
+        {
+            sentence: "The ______ is responsible for making sure the building is finished on time.",
+            options: ["Project manager", "Financial officer", "Architect", "Supplier"],
+            originalSentence: "The Project manager is responsible for making sure the building is finished on time."
+        }
+    ],
+    "69-10": [
+        {
+            sentence: "Our company just started a new ______ that will include 200 shops.",
+            options: ["Shopping mall project", "Construction company", "Safety regulation", "Timeline"],
+            originalSentence: "Our company just started a new Shopping mall project that will include 200 shops."
+        }
+    ],
+    "69-11": [
+        {
+            sentence: "I saw her ______ while the boss was explaining the new strategy.",
+            options: ["Taking notes", "Presenting", "Allocating", "Securing"],
+            originalSentence: "I saw her Taking notes while the boss was explaining the new strategy."
+        }
+    ],
+    "69-12": [
+        {
+            sentence: "The designer will be ______ his new ideas to the client this afternoon.",
+            options: ["Presenting", "Attending", "Allocating", "Securing"],
+            originalSentence: "The designer will be Presenting his new ideas to the client this afternoon."
+        }
+    ],
+    "69-13": [
+        {
+            sentence: "Can you turn on the ______? I want to show everyone these images.",
+            options: ["Projector", "Blueprint", "Chart", "Graph"],
+            originalSentence: "Can you turn on the Projector? I want to show everyone these images."
+        }
+    ],
+    "69-14": [
+        {
+            sentence: "The engineers studied the ______ to understand the electrical wiring.",
+            options: ["Blueprints", "Materials", "Charts", "Permits"],
+            originalSentence: "The Blueprints to understand the electrical wiring."
+        }
+    ],
+    "69-15": [
+        {
+            sentence: "The children were ______ by the colorful fish at the aquarium.",
+            options: ["Fascinated", "Motivated", "Complex", "Modern look"],
+            originalSentence: "The children were Fascinated by the colorful fish at the aquarium."
+        }
+    ],
+    "69-16": [
+        {
+            sentence: "We need to approve the ______ before we start digging the foundation.",
+            options: ["Architectural plans", "Financial projections", "Safety regulations", "Contributions"],
+            originalSentence: "We need to approve the Architectural plans before we start digging the foundation."
+        }
+    ],
+    "69-17": [
+        {
+            sentence: "The ______ for this project shows that we should finish by December.",
+            options: ["Timeline", "Budget", "Location", "Context"],
+            originalSentence: "The Timeline for this project shows that we should finish by December."
+        }
+    ],
+    "69-18": [
+        {
+            sentence: "The bank ______ the funds necessary to start the construction.",
+            options: ["Secured", "Allocated", "Attended", "Presented"],
+            originalSentence: "The bank Secured the funds necessary to start the construction."
+        }
+    ],
+    "69-19": [
+        {
+            sentence: "We have a very tight ______ and cannot afford any extra expenses.",
+            options: ["Budget", "Timeline", "Context", "Function"],
+            originalSentence: "We have a very tight Budget and cannot afford any extra expenses."
+        }
+    ],
+    "69-20": [
+        {
+            sentence: "The project uses several ______ to handle the plumbing and electricity.",
+            options: ["Contractors", "Suppliers", "Professionals", "Colleagues"],
+            originalSentence: "The project uses several Contractors to handle the plumbing and electricity."
+        }
+    ],
+    "69-21": [
+        {
+            sentence: "The government ______ millions of dollars for the new highway.",
+            options: ["Allocated", "Secured", "Presented", "Attended"],
+            originalSentence: "The government Allocated millions of dollars for the new highway."
+        }
+    ],
+    "69-22": [
+        {
+            sentence: "The workers need high-quality ______ like steel and cement.",
+            options: ["Materials", "Blueprints", "Permits", "Charts"],
+            originalSentence: "The workers need high-quality Materials like steel and cement."
+        }
+    ],
+    "69-23": [
+        {
+            sentence: "The ______ warned that we are spending too much on equipment.",
+            options: ["Financial officer", "Project manager", "Architect", "Contractor"],
+            originalSentence: "The Financial officer warned that we are spending too much on equipment."
+        }
+    ],
+    "69-24": [
+        {
+            sentence: "According to our ______, the company will be profitable next year.",
+            options: ["Financial projections", "Architectural plans", "Safety regulations", "Green spaces"],
+            originalSentence: "According to our Financial projections, the company will be profitable next year."
+        }
+    ],
+    "69-25": [
+        {
+            sentence: "The presentation included ______ showing the increase in sales.",
+            options: ["Charts", "Blueprints", "Permits", "Materials"],
+            originalSentence: "The presentation included Charts showing the increase in sales."
+        }
+    ],
+    "69-26": [
+        {
+            sentence: "You can see the difference between the two years in these ______.",
+            options: ["Graphs", "Blueprints", "Permits", "Blueprints"],
+            originalSentence: "You can see the difference between the two years in these Graphs."
+        }
+    ],
+    "69-27": [
+        {
+            sentence: "You cannot start building until you receive all the legal ______.",
+            options: ["Permits", "Materials", "Charts", "Blueprints"],
+            originalSentence: "You cannot start building until you receive all the legal Permits."
+        }
+    ],
+    "69-28": [
+        {
+            sentence: "Meeting ______ is essential if you want to keep your clients happy.",
+            options: ["Deadlines", "Timelines", "Budgets", "Locations"],
+            originalSentence: "Meeting Deadlines is essential if you want to keep your clients happy."
+        }
+    ],
+    "69-29": [
+        {
+            sentence: "We are looking for reliable ______ for our restaurant's vegetables.",
+            options: ["Suppliers", "Contractors", "Professionals", "Colleagues"],
+            originalSentence: "We are looking for reliable Suppliers for our restaurant's vegetables."
+        }
+    ],
+    "69-30": [
+        {
+            sentence: "All workers must follow ______ to prevent accidents on site.",
+            options: ["Safety regulations", "Financial projections", "Architectural plans", "Green spaces"],
+            originalSentence: "All workers must follow Safety regulations to prevent accidents on site."
+        }
+    ],
+    "69-31": [
+        {
+            sentence: "The human brain is the most ______ organ in the body.",
+            options: ["Complex", "Modern look", "Motivated", "Fascinated"],
+            originalSentence: "The human brain is the most Complex organ in the body."
+        }
+    ],
+    "69-32": [
+        {
+            sentence: "It is important to treat everyone with ______ regardless of their job.",
+            options: ["Respect", "Aesthetics", "Context", "Opportunity"],
+            originalSentence: "It is important to treat everyone with Respect regardless of their job."
+        }
+    ],
+    "69-33": [
+        {
+            sentence: "The ______ designed a building that uses natural light perfectly.",
+            options: ["Architect", "Financial officer", "Project manager", "Supplier"],
+            originalSentence: "The Architect designed a building that uses natural light perfectly."
+        }
+    ],
+    "69-34": [
+        {
+            sentence: "The new library has a very ______ with lots of glass and metal.",
+            options: ["Modern look", "Green space", "Complex", "Motivated"],
+            originalSentence: "The new library has a very Modern look with lots of glass and metal."
+        }
+    ],
+    "69-35": [
+        {
+            sentence: "Parks and ______ make the city much more pleasant to live in.",
+            options: ["Green spaces", "Architectural plans", "Safety regulations", "Financial projections"],
+            originalSentence: "Parks and Green spaces make the city much more pleasant to live in."
+        }
+    ],
+    "69-36": [
+        {
+            sentence: "The ______ of the new school is perfect for families in this area.",
+            options: ["Location", "Timeline", "Budget", "Context"],
+            originalSentence: "The Location of the new school is perfect for families in this area."
+        }
+    ],
+    "69-37": [
+        {
+            sentence: "The local ______ worked together to clean up the neighborhood park.",
+            options: ["Community", "Budget", "Context", "Function"],
+            originalSentence: "The local Community worked together to clean up the neighborhood park."
+        }
+    ],
+    "69-38": [
+        {
+            sentence: "In architecture, ______ are just as important as the building's strength.",
+            options: ["Aesthetics", "Contributions", "Opportunities", "Deadlines"],
+            originalSentence: "In architecture, Aesthetics are just as important as the building's strength."
+        }
+    ],
+    "69-39": [
+        {
+            sentence: "The main ______ of a chair is to provide a place to sit.",
+            options: ["Function", "Aesthetics", "Context", "Budget"],
+            originalSentence: "The main Function of a chair is to provide a place to sit."
+        }
+    ],
+    "69-40": [
+        {
+            sentence: "You must understand the ______ of the sentence to know its meaning.",
+            options: ["Context", "Function", "Location", "Budget"],
+            originalSentence: "You must understand the Context of the sentence to know its meaning."
+        }
+    ],
+    "69-41": [
+        {
+            sentence: "We appreciate all your ______ to the success of this project.",
+            options: ["Contributions", "Permits", "Deadlines", "Blueprints"],
+            originalSentence: "We appreciate all your Contributions to the success of this project."
+        }
+    ],
+    "69-42": [
+        {
+            sentence: "Traveling to another country is a great ______ to learn a new language.",
+            options: ["Opportunity", "Aesthetics", "Context", "Contribution"],
+            originalSentence: "Traveling to another country is a great Opportunity to learn a new language."
+        }
+    ],
+    "69-43": [
+        {
+            sentence: "Seeing my grades improve made me very ______ to study even harder.",
+            options: ["Motivated", "Complex", "Fascinated", "Secured"],
+            originalSentence: "Seeing my grades improve made me very Motivated to study even harder."
+        }
+    ],
+    // استكمال gapfillDB.js - الدرس رقم 70
+    "70-1": [
+        {
+            sentence: "My company asked me to ______ to the New York office for two years.",
+            options: ["Relocate", "Replace", "Disappear", "Sorting"],
+            originalSentence: "My company asked me to Relocate to the New York office for two years."
+        }
+    ],
+    "70-2": [
+        {
+            sentence: "I have known my best friend since we were in ______ together.",
+            options: ["Kindergarten", "Science museum", "Moving truck", "Chapter"],
+            originalSentence: "I have known my best friend since we were in Kindergarten together."
+        }
+    ],
+    "70-3": [
+        {
+            sentence: "We went on a ______ to the mountains and slept in a tent.",
+            options: ["Camping trip", "Farewell", "Distance", "Childhood"],
+            originalSentence: "We went on a Camping trip to the mountains and slept in a tent."
+        }
+    ],
+    "70-4": [
+        {
+            sentence: "My grandfather gave me his old ______ to use at the lake.",
+            options: ["Fishing rod", "Model airplane", "Shelf", "Box"],
+            originalSentence: "My grandfather gave me his old Fishing rod to use at the lake."
+        }
+    ],
+    "70-5": [
+        {
+            sentence: "This photo ______ contains pictures of our family vacations since 1990.",
+            options: ["Album", "Keepsake", "Text", "Bond"],
+            originalSentence: "This photo Album contains pictures of our family vacations since 1990."
+        }
+    ],
+    "70-6": [
+        {
+            sentence: "Summer holidays always leave us with wonderful ______.",
+            options: ["Memories", "Mess", "Boxes", "Neighbors"],
+            originalSentence: "Summer holidays always leave us with wonderful Memories."
+        }
+    ],
+    "70-7": [
+        {
+            sentence: "When I asked him if he knew the answer, he just ______ his shoulders.",
+            options: ["Shrugging", "Waving", "Hugging", "Disappearing"],
+            originalSentence: "When I asked him if he knew the answer, he just Shrugging his shoulders."
+        }
+    ],
+    "70-8": [
+        {
+            sentence: "Since we live in different countries, we have a ______ every Sunday.",
+            options: ["Video call", "Text", "Bond", "Farewell"],
+            originalSentence: "Since we live in different countries, we have a Video call every Sunday."
+        }
+    ],
+    "70-9": [
+        {
+            sentence: "We ______ before the meeting ended so we could stay in touch.",
+            options: ["Exchanged numbers", "Promised", "Relocated", "Sorted"],
+            originalSentence: "We Exchanged numbers before the meeting ended so we could stay in touch."
+        }
+    ],
+    "70-10": [
+        {
+            sentence: "He ______ to help me with my homework after dinner.",
+            options: ["Promised", "Survived", "Replaced", "Disappeared"],
+            originalSentence: "He Promised to help me with my homework after dinner."
+        }
+    ],
+    "70-11": [
+        {
+            sentence: "The children made a huge ______ in the living room with their toys.",
+            options: ["Mess", "Keepsake", "Bond", "Distance"],
+            originalSentence: "The children made a huge Mess in the living room with their toys."
+        }
+    ],
+    "70-12": [
+        {
+            sentence: "We need more cardboard ______ to pack the kitchen items.",
+            options: ["Boxes", "Shelves", "Fishing rods", "Albums"],
+            originalSentence: "We need more cardboard Boxes to pack the kitchen items."
+        }
+    ],
+    "70-13": [
+        {
+            sentence: "He spent hours building a ______ of a World War II fighter jet.",
+            options: ["Model airplane", "Keepsake", "Fishing rod", "Album"],
+            originalSentence: "He spent hours building a Model airplane of a World War II fighter jet."
+        }
+    ],
+    "70-14": [
+        {
+            sentence: "The small plant ______ the cold winter and started growing again in spring.",
+            options: ["Survived", "Relocated", "Sorted", "Disappeared"],
+            originalSentence: "The small plant Survived the cold winter and started growing again in spring."
+        }
+    ],
+    "70-15": [
+        {
+            sentence: "The ______ has an amazing exhibit about space exploration.",
+            options: ["Science museum", "Kindergarten", "Moving truck", "Neighborhood"],
+            originalSentence: "The Science museum has an amazing exhibit about space exploration."
+        }
+    ],
+    "70-16": [
+        {
+            sentence: "We all ______ that the situation will improve very soon.",
+            options: ["Hope", "Anticipation", "Memory", "Bond"],
+            originalSentence: "We all Hope that the situation will improve very soon."
+        }
+    ],
+    "70-17": [
+        {
+            sentence: "She is ______ her old clothes into groups to sell or give away.",
+            options: ["Sorting", "Donating", "Replacing", "Hugging"],
+            originalSentence: "She is Sorting her old clothes into groups to sell or give away."
+        }
+    ],
+    "70-18": [
+        {
+            sentence: "My sister is ______ some of her old books to the local library.",
+            options: ["Donating", "Sorting", "Waving", "Shrugging"],
+            originalSentence: "My sister is Donating some of her old books to the local library."
+        }
+    ],
+    "70-19": [
+        {
+            sentence: "I keep all my childhood ______ in a wooden chest under my bed.",
+            options: ["Keepsakes", "Mess", "Boxes", "Neighbors"],
+            originalSentence: "I keep all my childhood Keepsakes in a wooden chest under my bed."
+        }
+    ],
+    "70-20": [
+        {
+            sentence: "The ______ is parked outside, ready to take our furniture to the new house.",
+            options: ["Moving truck", "Science museum", "Kindergarten", "Chapter"],
+            originalSentence: "The Moving truck is parked outside, ready to take our furniture to the new house."
+        }
+    ],
+    "70-21": [
+        {
+            sentence: "He stood on the platform, ______ goodbye as the train pulled away.",
+            options: ["Waving", "Hugging", "Shrugging", "Disappearing"],
+            originalSentence: "He stood on the platform, Waving goodbye as the train pulled away."
+        }
+    ],
+    "70-22": [
+        {
+            sentence: "The two friends were ______ each other tightly before saying goodbye.",
+            options: ["Hugging", "Waving", "Sorting", "Donating"],
+            originalSentence: "The two friends were Hugging each other tightly before saying goodbye."
+        }
+    ],
+    "70-23": [
+        {
+            sentence: "The sun slowly ______ behind the mountains at the end of the day.",
+            options: ["Disappears", "Survives", "Relocates", "Replaces"],
+            originalSentence: "The sun slowly Disappears behind the mountains at the end of the day."
+        }
+    ],
+    "70-24": [
+        {
+            sentence: "I had a ______ when I watched the sad ending of the movie.",
+            options: ["Lump in throat", "Anticipation", "Farewell", "Bond"],
+            originalSentence: "I had a Lump in throat when I watched the sad ending of the movie."
+        }
+    ],
+    "70-25": [
+        {
+            sentence: "I am so ______ for all the support you gave me during the exam.",
+            options: ["Grateful", "Emotional", "Bitter", "Sweet"],
+            originalSentence: "I am so Grateful for all the support you gave me during the exam."
+        }
+    ],
+    "70-26": [
+        {
+            sentence: "You need to ______ the old batteries with new ones for the remote to work.",
+            options: ["Replace", "Relocate", "Sorted", "Survived"],
+            originalSentence: "You need to Replace the old batteries with new ones for the remote to work."
+        }
+    ],
+    "70-27": [
+        {
+            sentence: "Could you help me put these heavy books on the top ______?",
+            options: ["Shelf", "Box", "Album", "Keepsake"],
+            originalSentence: "Could you help me put these heavy books on the top Shelf?"
+        }
+    ],
+    "70-28": [
+        {
+            sentence: "Send me a ______ when you get home so I know you are safe.",
+            options: ["Text", "Video call", "Farewell", "Chapter"],
+            originalSentence: "Send me a Text when you get home so I know you are safe."
+        }
+    ],
+    "70-29": [
+        {
+            sentence: "We hugged our friends and wished them ______ before they drove away.",
+            options: ["Safe travels", "Farewell", "Anticipation", "Distance"],
+            originalSentence: "We hugged our friends and wished them Safe travels before they drove away."
+        }
+    ],
+    "70-30": [
+        {
+            sentence: "Graduating from high school is the end of one ______ and the start of another.",
+            options: ["Chapter", "Farewell", "Distance", "Bond"],
+            originalSentence: "Graduating from high school is the end of one Chapter and the start of another."
+        }
+    ],
+    "70-31": [
+        {
+            sentence: "With modern technology, ______ is no longer a problem for communication.",
+            options: ["Distance", "Bond", "Anticipation", "Chapter"],
+            originalSentence: "With modern technology, Distance is no longer a problem for communication."
+        }
+    ],
+    "70-32": [
+        {
+            sentence: "The whole office gathered to say ______ to the retiring manager.",
+            options: ["Farewell", "Anticipation", "Distance", "Chapter"],
+            originalSentence: "The whole office gathered to say Farewell to the retiring manager."
+        }
+    ],
+    "70-33": [
+        {
+            sentence: "Our ______ are very friendly and always help us water our plants.",
+            options: ["Neighbors", "Contractors", "Suppliers", "Guests"],
+            originalSentence: "Our Neighbors are very friendly and always help us water our plants."
+        }
+    ],
+    "70-34": [
+        {
+            sentence: "The ______ of old clothes helped many people during the cold winter.",
+            options: ["Donating", "Sorting", "Relocating", "Replacing"],
+            originalSentence: "The Donating of old clothes helped many people during the cold winter."
+        }
+    ],
+    "70-35": [
+        {
+            sentence: "I had a very happy ______ playing outside in the village.",
+            options: ["Childhood", "Distance", "Chapter", "Anticipation"],
+            originalSentence: "I had a very happy Childhood playing outside in the village."
+        }
+    ],
+    "70-36": [
+        {
+            sentence: "There is a very strong ______ between the two brothers.",
+            options: ["Bond", "Mess", "Distance", "Anticipation"],
+            originalSentence: "There is a very strong Bond between the two brothers."
+        }
+    ],
+    "70-37": [
+        {
+            sentence: "The final scene of the play was very ______ and made people cry.",
+            options: ["Emotional", "Grateful", "Sweet", "Bitter"],
+            originalSentence: "The final scene of the play was very Emotional and made people cry."
+        }
+    ],
+    "70-38": [
+        {
+            sentence: "The coffee was too ______ because she forgot to add sugar.",
+            options: ["Bitter", "Sweet", "Grateful", "Emotional"],
+            originalSentence: "The coffee was too Bitter because she forgot to add sugar."
+        }
+    ],
+    "60-39": [
+        {
+            sentence: "This orange is very ______ and juicy.",
+            options: ["Sweet", "Bitter", "Emotional", "Grateful"],
+            originalSentence: "This orange is very Sweet and juicy."
+        }
+    ],
+    "70-40": [
+        {
+            sentence: "The crowd waited in ______ for the famous singer to appear.",
+            options: ["Anticipation", "Farewell", "Distance", "Bond"],
+            originalSentence: "The crowd waited in Anticipation for the famous singer to appear."
+        }
+    ],
     // استكمال gapfillDB.js - الدرس رقم 301
     "301-1": [
         {
