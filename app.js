@@ -160,164 +160,31 @@ class App {
         return false;
     }
 
-    getBadgesData() {
-        return [
-            { icon: '🥉', id: 'b1', name: this.t('وسام برونزي', 'Bronze Medal'), req: this.t('فتح 3 دروس', 'Unlock 3 Lessons'), check: () => (this.unlockedLessons || []).length >= 3 },
-            { icon: '🥈', id: 'b2', name: this.t('وسام فضي', 'Silver Medal'), req: this.t('فتح 10 دروس', 'Unlock 10 Lessons'), check: () => (this.unlockedLessons || []).length >= 10 },
-            { icon: '🥇', id: 'b3', name: this.t('وسام ذهبي', 'Gold Medal'), req: this.t('فتح 25 درس', 'Unlock 25 Lessons'), check: () => (this.unlockedLessons || []).length >= 25 },
-            { icon: '🥉', id: 't1', name: this.t('تاج برونزي', 'Bronze Crown'), req: this.t('إتقان 50 كلمة', 'Master 50 Words'), check: () => (this.masteredWords || []).length >= 50 },
-            { icon: '🥈', id: 't2', name: this.t('تاج فضي', 'Silver Crown'), req: this.t('إتقان 200 كلمة', 'Master 200 Words'), check: () => (this.masteredWords || []).length >= 200 },
-            { icon: '🥇', id: 't3', name: this.t('تاج ذهبي', 'Gold Crown'), req: this.t('إتقان 500 كلمة', 'Master 500 Words'), check: () => (this.masteredWords || []).length >= 500 },
-            { icon: '💎', id: 't4', name: this.t('تاج ماسي', 'Diamond Crown'), req: this.t('إتقان 1000 كلمة', 'Master 1000 Words'), check: () => (this.masteredWords || []).length >= 1000 },
-            { icon: '🎖️', id: 'h1', name: this.t('وسام الشرف', 'Honor Badge'), req: this.t('50 درس + 1500 كلمة', '50 Lessons + 1500 Words'), check: () => (this.unlockedLessons || []).length >= 50 && (this.masteredWords || []).length >= 1500 },
-            { icon: '🏆', id: 'h2', name: this.t('كأس التميز', 'Excellence Trophy'), req: this.t('100 درس + 3000 كلمة', '100 Lessons + 3000 Words'), check: () => (this.unlockedLessons || []).length >= 100 && (this.masteredWords || []).length >= 3000 }
-        ];
-    }
-
-    getBadgesDisplay() {
-        const all = this.getBadgesData();
-        let html = '';
-        for (let i = 0; i < all.length; i++) {
-            const b = all[i];
-            const earned = b.check();
-            const opacity = earned ? '1' : '0.2';
-            const filter = earned ? 'none' : 'grayscale(1)';
-            const n = b.name.replace(/'/g, "\\'");
-            const r = b.req.replace(/'/g, "\\'");
-            html += `<span style="font-size:2.2rem; cursor:pointer; opacity:${opacity}; filter:${filter}; margin:5px; display:inline-block;" onclick="appInstance.showBadgeInfo('${b.icon}', '${n}', '${r}', ${earned})">${b.icon}</span>`;
-        }
-        return '<div style="display:flex; justify-content:center; flex-wrap:wrap; background:rgba(0,0,0,0.05); padding:10px; border-radius:15px; margin-top:10px;">' + html + '</div>';
-    }
-
-    showBadgeInfo(icon, name, req, earned) {
-        const status = earned ? this.t('✅ تم الحصول عليه', '✅ Earned') : this.t('🔒 لم يتم الحصول عليه بعد', '🔒 Not earned yet');
-        const msg = name + '\n' + status + '\n' + this.t('المتطلب:', 'Requirement:') + ' ' + req;
-        this.showCustomModal('info', icon, msg);
-    }
-
-    hashPassword(password) {
-        return btoa(password);
-    }
-
-    loadUserData(email) {
-        const key = `userData_${email}`;
-        const data = JSON.parse(localStorage.getItem(key)) || {};
-        this.userVocabulary = data.userVocabulary || [];
-        this.masteredWords = data.masteredWords || [];
-        this.unlockedLessons = data.unlockedLessons || [];
-        this.hiddenFromCards = data.hiddenFromCards || [];
-        this.customLessons = data.customLessons || {};
-        this.generatedLessons = data.generatedLessons || {};
-        this.userStats = data.userStats || { xp: 0, level: 1, badges: [], tier: 'برونزي' };
-        this.placementResults = data.placementResults || [];
-        this.placementFullHistory = data.placementFullHistory || [];
-        this.userCoins = data.userCoins || 0;
-        this.jumbleUnlocked = data.jumbleUnlocked || {};
-        this.listeningUnlocked = data.listeningUnlocked || {};
-        this.spellingUnlocked = data.spellingUnlocked || {};
-        this.gapFillUnlocked = data.gapFillUnlocked || {};
-        this.newWordsAddedCount = data.newWordsAddedCount || 0;
-        this.adWatchedCount = data.adWatchedCount || 0;
-        this.purchaseRequests = data.purchaseRequests || [];
-        this.userProfile = data.userProfile || {
-            name: this.userData?.name || '',
-            age: '',
-            joinDate: new Date().toLocaleDateString('ar-EG'),
-            level: 'A1',
-            image: '',
-            testsHistory: []
-        };
-        this.lastTestedLesson = data.lastTestedLesson || { beginner: 0, intermediate: 0, advanced: 0 };
-        if (this.placementResults.length > 0) {
-            this.userProfile.level = this.placementResults[0].level;
-        }
-        this.updateLevelAndBadges();
-    }
-
-    saveUserData() {
-        if (!this.currentUserEmail) return;
-        const key = `userData_${this.currentUserEmail}`;
-        const data = {
-            userVocabulary: this.userVocabulary,
-            masteredWords: this.masteredWords,
-            unlockedLessons: this.unlockedLessons,
-            hiddenFromCards: this.hiddenFromCards,
-            customLessons: this.customLessons,
-            generatedLessons: this.generatedLessons,
-            userStats: this.userStats,
-            placementResults: this.placementResults,
-            placementFullHistory: this.placementFullHistory,
-            userCoins: this.userCoins,
-            jumbleUnlocked: this.jumbleUnlocked,
-            listeningUnlocked: this.listeningUnlocked,
-            spellingUnlocked: this.spellingUnlocked,
-            gapFillUnlocked: this.gapFillUnlocked,
-            newWordsAddedCount: this.newWordsAddedCount,
-            adWatchedCount: this.adWatchedCount,
-            purchaseRequests: this.purchaseRequests,
-            userProfile: this.userProfile,
-            lastTestedLesson: this.lastTestedLesson
-        };
-        localStorage.setItem(key, JSON.stringify(data));
-    }
-
-    logout() {
-        this.saveUserData();
-        localStorage.removeItem('currentUser');
-        this.currentUserEmail = null;
-        this.userData = null;
-        this.userVocabulary = [];
-        this.masteredWords = [];
-        this.unlockedLessons = [];
-        this.hiddenFromCards = [];
-        this.customLessons = {};
-        this.generatedLessons = {};
-        this.userStats = { xp: 0, level: 1, badges: [], tier: 'برونزي' };
-        this.placementResults = [];
-        this.placementFullHistory = [];
-        this.userCoins = 0;
-        this.jumbleUnlocked = {};
-        this.listeningUnlocked = {};
-        this.spellingUnlocked = {};
-        this.gapFillUnlocked = {};
-        this.newWordsAddedCount = 0;
-        this.adWatchedCount = 0;
-        this.purchaseRequests = [];
-        this.userProfile = {
-            name: '',
-            age: '',
-            joinDate: new Date().toLocaleDateString('ar-EG'),
-            level: 'A1',
-            image: '',
-            testsHistory: []
-        };
-        this.lastTestedLesson = { beginner: 0, intermediate: 0, advanced: 0 };
-        this.currentPage = 'auth';
-        this.render();
-    }
-
     getRequiredXPForLevel(level) {
         if (level <= 1) return 0;
-        let totalRequired = 0;
+        // صيغة تصاعدية: 100, 250, 500, 800, 1200, 1700, 2300, 3000, 3800, ...
+        // الصيغة: 100 + (level-1)*100 + Math.pow(level-1, 2)*10
+        let total = 0;
         for (let i = 1; i < level; i++) {
-            totalRequired += 100 + (i - 1) * 50;
+            total += 100 + (i - 1) * 100 + Math.pow(i - 1, 2) * 10;
         }
-        return totalRequired;
+        return total;
     }
 
     getCurrentLevelProgress() {
         const currentXP = this.userStats.xp;
         let level = 1;
-        let xpForNext = 100;
         let totalRequired = 0;
-        while (currentXP >= totalRequired + xpForNext) {
-            totalRequired += xpForNext;
+        while (true) {
+            const nextRequired = 100 + (level - 1) * 100 + Math.pow(level - 1, 2) * 10;
+            if (currentXP < totalRequired + nextRequired) {
+                const currentProgress = currentXP - totalRequired;
+                const neededForNext = nextRequired;
+                return { level, currentProgress, neededForNext, totalXP: currentXP };
+            }
+            totalRequired += nextRequired;
             level++;
-            xpForNext = 100 + (level - 1) * 50;
         }
-        const currentProgress = currentXP - totalRequired;
-        const neededForNext = xpForNext;
-        return { level, currentProgress, neededForNext, totalXP: currentXP };
     }
 
     updateLevelAndBadges() {
@@ -331,23 +198,46 @@ class App {
             const congratsMsg = this.t('تهانينا! لقد وصلت إلى المستوى', 'Congrats! You reached level') + ' ' + newLevel + ' ' + this.t('وحصلت على', 'and earned') + ' ' + (levelsGained * 100) + ' ' + this.t('لؤلؤة!', 'pearls!');
             this.showCustomModal('success', '🎉', congratsMsg);
         }
+        
+        // تحديث الأوسمة والتيجان بناءً على شروط أكثر واقعية
+        const totalLessons = (this.unlockedLessons || []).length;
         const totalMastered = (this.masteredWords || []).length;
-        if (totalMastered >= 1000) this.userStats.tier = this.t('👑 تاج ماسي', '👑 Diamond Crown');
-        else if (totalMastered >= 500) this.userStats.tier = this.t('👑 تاج ذهبي', '👑 Gold Crown');
-        else if (totalMastered >= 200) this.userStats.tier = this.t('👑 تاج فضي', '👑 Silver Crown');
-        else if (totalMastered >= 50) this.userStats.tier = this.t('👑 تاج برونزي', '👑 Bronze Crown');
-        else if (totalMastered >= 10) this.userStats.tier = this.t('طالب مجتهد', 'Diligent Student');
-        else this.userStats.tier = this.t('مبتدئ', 'Beginner');
-        const allBadges = this.getBadgesData();
-        const currentBadges = allBadges.filter(b => b.check()).map(b => b.icon);
+        
+        // التيجان (مرتبطة فقط بالكلمات المتقنة)
+        let crown = '';
+        if (totalMastered >= 1200) crown = this.t('👑 تاج ماسي', '👑 Diamond Crown');
+        else if (totalMastered >= 500) crown = this.t('👑 تاج ذهبي', '👑 Gold Crown');
+        else if (totalMastered >= 200) crown = this.t('👑 تاج فضي', '👑 Silver Crown');
+        else if (totalMastered >= 50) crown = this.t('👑 تاج برونزي', '👑 Bronze Crown');
+        else if (totalMastered >= 10) crown = this.t('طالب مجتهد', 'Diligent Student');
+        else crown = this.t('مبتدئ', 'Beginner');
+        this.userStats.tier = crown;
+        
+        // الأوسمة (مرتبطة بالدروس والكلمات معاً)
+        const badgesList = [];
+        if (totalLessons >= 5 && totalMastered >= 100) badgesList.push('🥉'); // برونزي
+        if (totalLessons >= 15 && totalMastered >= 300) badgesList.push('🥈'); // فضي
+        if (totalLessons >= 35 && totalMastered >= 800) badgesList.push('🥇'); // ذهبي
+        if (totalLessons >= 60 && totalMastered >= 2000) badgesList.push('🎖️'); // وسام الشرف
+        if (totalLessons >= 120 && totalMastered >= 4000) badgesList.push('🏆'); // كأس التميز
+        
+        // أوسمة المستويات اللغوية
+        const levelMap = { 'A1': 5, 'A2': 15, 'B1': 30, 'B2': 50, 'C1': 75, 'C2': 100 };
+        for (let lvl in levelMap) {
+            if (totalLessons >= levelMap[lvl]) {
+                badgesList.push(lvl);
+            }
+        }
+        
         const oldBadges = this.userStats.badges || [];
-        const newBadgeEarned = currentBadges.find(b => !oldBadges.includes(b));
+        const newBadgeEarned = badgesList.find(b => !oldBadges.includes(b));
         if (newBadgeEarned) {
             this.userCoins += 150;
             const badgeMsg = this.t('تهانينا! حصلت على وسام جديد', 'Congrats! You earned a new badge') + ' ' + newBadgeEarned;
             this.showCustomModal('success', '🏅', badgeMsg);
         }
-        this.userStats.badges = currentBadges;
+        this.userStats.badges = badgesList;
+        
         this.saveUserData();
     }
 
@@ -2528,7 +2418,7 @@ class App {
                     let activeCards;
                     if (this.showAllCardsTemporary) {
                         activeCards = allWords.filter(t => !this.hiddenFromCards.includes(String(t.id)));
-                        this.showAllCardsTemporary = false;
+                        // لا نعطل showAllCardsTemporary هنا لأننا قد نستخدمه في نفس الجلسة
                     } else {
                         activeCards = allWords.filter(t => !this.masteredWords.includes(String(t.id)) && !this.hiddenFromCards.includes(String(t.id)));
                     }
@@ -2551,7 +2441,6 @@ class App {
                     let activePrev;
                     if (this.showAllCardsTemporary) {
                         activePrev = allWordsPrev.filter(t => !this.hiddenFromCards.includes(String(t.id)));
-                        this.showAllCardsTemporary = false;
                     } else {
                         activePrev = allWordsPrev.filter(t => !this.masteredWords.includes(String(t.id)) && !this.hiddenFromCards.includes(String(t.id)));
                     }
@@ -2579,8 +2468,7 @@ class App {
                             this.saveUserData();
                             this.render();
                         } else if (param === 'remaining') {
-                            // "Repeat remaining" should only repeat skipped cards (cards that were passed but not mastered)
-                            // Do not reset mastered words, just reset the list to show only skipped cards
+                            // تكرار المتبقي فقط: إعادة ضبط قائمة البطاقات لإظهار الكلمات التي لم تُتقن
                             this.showAllCardsTemporary = false;
                             this.currentCardIndex = 0;
                             this.saveUserData();
@@ -2819,35 +2707,49 @@ class App {
     }
 
     getBadgesDisplay() {
-        const earnedBadges = this.userStats.badges || [];
-        const badgeNames = { '🥉': this.t('برونزي', 'Bronze'), '🥈': this.t('فضي', 'Silver'), '🥇': this.t('ذهبي', 'Gold'), '👑': this.t('ماسي', 'Diamond') };
-        if (earnedBadges.length > 0) {
-            return `<div class="badges-container" onclick="appInstance.showBadgesModal()">
-                ${earnedBadges.map(b => `<span class="badge-item" title="${badgeNames[b]}">${b}</span>`).join('')}
-            </div>`;
-        } else {
+        const badges = this.userStats.badges || [];
+        if (badges.length === 0) {
             return `<div class="badges-container" onclick="appInstance.showBadgesModal()" style="justify-content:center; color:#aaa; cursor:pointer;">
                 <span>🏅 ${this.t('اضغط لعرض الأوسمة', 'Click to view badges')}</span>
             </div>`;
         }
+        return `<div class="badges-container" onclick="appInstance.showBadgesModal()">
+            ${badges.map(b => `<span class="badge-item">${b}</span>`).join('')}
+        </div>`;
     }
 
     showBadgesModal() {
-        const allBadges = this.getBadgesData();
-        let badgesHtml = '<div class="badges-grid">';
-        allBadges.forEach(badge => {
-            const isEarned = badge.check();
-            badgesHtml += `
-                <div class="badge-modal-item ${isEarned ? 'earned' : ''}" style="text-align:center;">
-                    <span class="badge-icon">${badge.icon}</span>
-                    <span class="badge-name">${badge.name}</span>
-                    <div style="font-size:0.7rem;">${badge.req}</div>
-                    <div>${isEarned ? '✅' : '🔒'}</div>
+        const badges = this.userStats.badges || [];
+        let html = '<div class="badges-grid">';
+        
+        // تعريف الأوسمة مع شروطها
+        const badgeDefinitions = [
+            { icon: '🥉', name: this.t('وسام برونزي', 'Bronze Medal'), req: this.t('5 دروس + 100 كلمة', '5 Lessons + 100 Words') },
+            { icon: '🥈', name: this.t('وسام فضي', 'Silver Medal'), req: this.t('15 درس + 300 كلمة', '15 Lessons + 300 Words') },
+            { icon: '🥇', name: this.t('وسام ذهبي', 'Gold Medal'), req: this.t('35 درس + 800 كلمة', '35 Lessons + 800 Words') },
+            { icon: '🎖️', name: this.t('وسام الشرف', 'Honor Badge'), req: this.t('60 درس + 2000 كلمة', '60 Lessons + 2000 Words') },
+            { icon: '🏆', name: this.t('كأس التميز', 'Excellence Trophy'), req: this.t('120 درس + 4000 كلمة', '120 Lessons + 4000 Words') },
+            { icon: 'A1', name: this.t('مستوى A1', 'Level A1'), req: this.t('5 دروس', '5 Lessons') },
+            { icon: 'A2', name: this.t('مستوى A2', 'Level A2'), req: this.t('15 درس', '15 Lessons') },
+            { icon: 'B1', name: this.t('مستوى B1', 'Level B1'), req: this.t('30 درس', '30 Lessons') },
+            { icon: 'B2', name: this.t('مستوى B2', 'Level B2'), req: this.t('50 درس', '50 Lessons') },
+            { icon: 'C1', name: this.t('مستوى C1', 'Level C1'), req: this.t('75 درس', '75 Lessons') },
+            { icon: 'C2', name: this.t('مستوى C2', 'Level C2'), req: this.t('100 درس', '100 Lessons') }
+        ];
+        
+        for (let b of badgeDefinitions) {
+            const earned = badges.includes(b.icon);
+            html += `
+                <div class="badge-modal-item ${earned ? 'earned' : ''}" style="text-align:center;">
+                    <span class="badge-icon">${b.icon}</span>
+                    <span class="badge-name">${b.name}</span>
+                    <div style="font-size:0.7rem;">${b.req}</div>
+                    <div>${earned ? '✅' : '🔒'}</div>
                 </div>
             `;
-        });
-        badgesHtml += '</div>';
-        this.showCustomModal('info', '🏅', badgesHtml);
+        }
+        html += '</div>';
+        this.showCustomModal('info', '🏅', html);
     }
 
     render() {
@@ -3264,7 +3166,7 @@ class App {
             let active;
             if (this.showAllCardsTemporary) {
                 active = allTerms.filter(t => !this.hiddenFromCards.includes(String(t.id)));
-                this.showAllCardsTemporary = false;
+                // لا نعطل showAllCardsTemporary هنا لأننا قد نستخدمه في نفس الجلسة
             } else {
                 active = allTerms.filter(t => !this.masteredWords.includes(String(t.id)) && !this.hiddenFromCards.includes(String(t.id)));
             }
