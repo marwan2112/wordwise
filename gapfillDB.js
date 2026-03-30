@@ -12184,6 +12184,1502 @@ window.gapfillDB = {
             originalSentence: "The crowd waited in Anticipation for the famous singer to appear."
         }
     ],
+    // استكمال gapfillDB.js - الدرس رقم 71
+    "71-1": [
+        {
+            sentence: "Completing your ______ is the first step toward your professional future.",
+            options: ["University application", "Internship", "Draft", "Adventure"],
+            originalSentence: "Completing your University application is the first step toward your professional future."
+        }
+    ],
+    "71-2": [
+        {
+            sentence: "If you miss the ______, the university will not accept your documents.",
+            options: ["Deadline", "Reputation", "Requirement", "Draft"],
+            originalSentence: "If you miss the Deadline, the university will not accept your documents."
+        }
+    ],
+    "71-3": [
+        {
+            sentence: "The exams are ______, so we need to start studying more seriously.",
+            options: ["Approaching", "Revising", "Cheering", "Pounding"],
+            originalSentence: "The exams are Approaching, so we need to start studying more seriously."
+        }
+    ],
+    "71-4": [
+        {
+            sentence: "I feel very ______ when I have too much work and very little time.",
+            options: ["Stressed", "Accepted", "Encouraged", "On top of the world"],
+            originalSentence: "I feel very Stressed when I have too much work and very little time."
+        }
+    ],
+    "71-5": [
+        {
+            sentence: "She wants to join the ______ to learn how to design modern skyscrapers.",
+            options: ["Architecture program", "University application", "Personal statement", "Waiting period"],
+            originalSentence: "She wants to join the Architecture program to learn how to design modern skyscrapers."
+        }
+    ],
+    "71-6": [
+        {
+            sentence: "This college has a great ______ for producing world-class doctors.",
+            options: ["Reputation", "Requirement", "Candidate", "Passion"],
+            originalSentence: "This college has a great Reputation for producing world-class doctors."
+        }
+    ],
+    "71-7": [
+        {
+            sentence: "One of the main ______ for the job is having five years of experience.",
+            options: ["Requirements", "Grades", "Drafts", "Final edits"],
+            originalSentence: "One of the main Requirements for the job is having five years of experience."
+        }
+    ],
+    "71-8": [
+        {
+            sentence: "You need to get high ______ in math if you want to be an engineer.",
+            options: ["Grades", "Sketches", "Requirements", "Letters of recommendation"],
+            originalSentence: "You need to get high Grades in math if you want to be an engineer."
+        }
+    ],
+    "71-9": [
+        {
+            sentence: "The ______ is your chance to tell the university who you really are.",
+            options: ["Personal statement", "Deadline", "Architecture program", "Distraction"],
+            originalSentence: "The Personal statement is your chance to tell the university who you really are."
+        }
+    ],
+    "71-10": [
+        {
+            sentence: "Most universities ask for two ______ from your previous teachers.",
+            options: ["Letters of recommendation", "Personal statements", "Final edits", "Sketches"],
+            originalSentence: "Most universities ask for two Letters of recommendation from your previous teachers."
+        }
+    ],
+    "71-11": [
+        {
+            sentence: "I ______ a refund after the flight was canceled, but they refused.",
+            options: ["Requested", "Focusing", "Revising", "Cheering"],
+            originalSentence: "I Requested a refund after the flight was canceled, but they refused."
+        }
+    ],
+    "71-12": [
+        {
+            sentence: "The ______ explained the laws of motion using a simple experiment.",
+            options: ["Physics teacher", "Candidate", "Relative", "Architect"],
+            originalSentence: "The Physics teacher explained the laws of motion using a simple experiment."
+        }
+    ],
+    "71-13": [
+        {
+            sentence: "Stop talking and start ______ on your exam paper.",
+            options: ["Focusing", "Approaching", "Pounding", "Screaming with joy"],
+            originalSentence: "Stop talking and start Focusing on your exam paper."
+        }
+    ],
+    "71-14": [
+        {
+            sentence: "The teacher gave us a writing ______ about the importance of technology.",
+            options: ["Prompt", "Draft", "Deadline", "Requirement"],
+            originalSentence: "The teacher gave us a writing Prompt about the importance of technology."
+        }
+    ],
+    "71-15": [
+        {
+            sentence: "He is a very strong ______ for the position of team leader.",
+            options: ["Candidate", "Physics teacher", "Relative", "Architect"],
+            originalSentence: "He is a very strong Candidate for the position of team leader."
+        }
+    ],
+    "71-16": [
+        {
+            sentence: "I have many happy memories of playing in the park during my ______.",
+            options: ["Childhood", "Waiting period", "Adventure", "Passion"],
+            originalSentence: "I have many happy memories of playing in the park during my Childhood."
+        }
+    ],
+    "71-17": [
+        {
+            sentence: "The kids built a ______ in the large oak tree in the backyard.",
+            options: ["Treehouse", "Architecture program", "Personal statement", "Draft"],
+            originalSentence: "The kids built a Treehouse in the large oak tree in the backyard."
+        }
+    ],
+    "71-18": [
+        {
+            sentence: "The artist made several ______ before starting the actual painting.",
+            options: ["Sketches", "Grades", "Final edits", "Letters of recommendation"],
+            originalSentence: "The artist made several Sketches before starting the actual painting."
+        }
+    ],
+    "71-19": [
+        {
+            sentence: "Her ______ for music led her to become a famous pianist.",
+            options: ["Passion", "Anxiety", "Relief", "Distraction"],
+            originalSentence: "Her Passion for music led her to become a famous pianist."
+        }
+    ],
+    "71-20": [
+        {
+            sentence: "Doing an ______ at a law firm helped him decide his career path.",
+            options: ["Internship", "Adventure", "Draft", "Prompt"],
+            originalSentence: "Doing an Internship at a law firm helped him decide his career path."
+        }
+    ],
+    "71-21": [
+        {
+            sentence: "You should spend time ______ your essay to fix any mistakes.",
+            options: ["Revising", "Pounding", "Cheering", "Approaching"],
+            originalSentence: "You should spend time Revising your essay to fix any mistakes."
+        }
+    ],
+    "71-22": [
+        {
+            sentence: "This is just a ______; I will write the final version tomorrow.",
+            options: ["Draft", "Prompt", "Deadline", "Final edit"],
+            originalSentence: "This is just a Draft; I will write the final version tomorrow."
+        }
+    ],
+    "71-23": [
+        {
+            sentence: "My parents ______ me to follow my dreams of becoming a chef.",
+            options: ["Encouraged", "Requested", "Accepted", "Celebrated"],
+            originalSentence: "My parents Encouraged me to follow my dreams of becoming a chef."
+        }
+    ],
+    "71-24": [
+        {
+            sentence: "After making the ______, the book was finally ready for printing.",
+            options: ["Final edits", "Sketches", "Grades", "Letters of recommendation"],
+            originalSentence: "After making the Final edits, the book was finally ready for printing."
+        }
+    ],
+    "71-25": [
+        {
+            sentence: "Double-check your information before ______ on the website.",
+            options: ["Clicking submit", "Holding breath", "Focusing", "Revising"],
+            originalSentence: "Double-check your information before Clicking submit on the website."
+        }
+    ],
+    "71-26": [
+        {
+            sentence: "The crowd was ______ while the referee checked the final score.",
+            options: ["Holding breath", "Screaming with joy", "Cheering", "Pounding"],
+            originalSentence: "The crowd was Holding breath while the referee checked the final score."
+        }
+    ],
+    "71-27": [
+        {
+            sentence: "I felt a huge sense of ______ when the doctor said I was healthy.",
+            options: ["Relief", "Anxiety", "Passion", "Distraction"],
+            originalSentence: "I felt a huge sense of Relief when the doctor said I was healthy."
+        }
+    ],
+    "71-28": [
+        {
+            sentence: "Social ______ can make it difficult for people to speak in public.",
+            options: ["Anxiety", "Relief", "Passion", "Childhood"],
+            originalSentence: "Social Anxiety can make it difficult for people to speak in public."
+        }
+    ],
+    "71-29": [
+        {
+            sentence: "The ______ after an interview is always the most stressful time.",
+            options: ["Waiting period", "Internship", "Adventure", "Childhood"],
+            originalSentence: "The Waiting period after an interview is always the most stressful time."
+        }
+    ],
+    "71-30": [
+        {
+            sentence: "Thousands of fans were ______ when the team scored the winning goal.",
+            options: ["Cheering", "Pounding", "Revising", "Holding breath"],
+            originalSentence: "Thousands of fans were Cheering when the team scored the winning goal."
+        }
+    ],
+    "71-31": [
+        {
+            sentence: "Turn off the TV so you can work without any ______.",
+            options: ["Distraction", "Relief", "Anxiety", "Passion"],
+            originalSentence: "Turn off the TV so you can work without any Distraction."
+        }
+    ],
+    "71-32": [
+        {
+            sentence: "My heart was ______ against my chest before the race started.",
+            options: ["Pounding", "Cheering", "Focusing", "Approaching"],
+            originalSentence: "My heart was Pounding against my chest before the race started."
+        }
+    ],
+    "71-33": [
+        {
+            sentence: "I am so happy that my application was ______ by the university.",
+            options: ["Accepted", "Encouraged", "Requested", "Celebrated"],
+            originalSentence: "I am so happy that my application was Accepted by the university."
+        }
+    ],
+    "71-34": [
+        {
+            sentence: "When she saw she won the lottery, she started ______.",
+            options: ["Screaming with joy", "Holding breath", "Focusing", "Pounding"],
+            originalSentence: "When she saw she won the lottery, she started Screaming with joy."
+        }
+    ],
+    "71-35": [
+        {
+            sentence: "We are going to a fancy restaurant to ______ my graduation.",
+            options: ["Celebrate", "Encourage", "Request", "Accept"],
+            originalSentence: "We are going to a fancy restaurant to Celebrate my graduation."
+        }
+    ],
+    "71-36": [
+        {
+            sentence: "Many of my ______ live in different cities across the country.",
+            options: ["Relatives", "Candidates", "Architects", "Physics teachers"],
+            originalSentence: "Many of my Relatives live in different cities across the country."
+        }
+    ],
+    "71-37": [
+        {
+            sentence: "After winning the gold medal, the athlete felt ______.",
+            options: ["On top of the world", "Stressed", "Nervous", "Anxious"],
+            originalSentence: "After winning the gold medal, the athlete felt On top of the world."
+        }
+    ],
+    "71-38": [
+        {
+            sentence: "All those long nights of studying are finally ______ with these high grades.",
+            options: ["Paying off", "Revising", "Approaching", "Pounding"],
+            originalSentence: "All those long nights of studying are finally Paying off with these high grades."
+        }
+    ],
+    "71-39": [
+        {
+            sentence: "Moving to a new country is a big ______ that teaches you a lot.",
+            options: ["Adventure", "Draft", "Requirement", "Personal statement"],
+            originalSentence: "Moving to a new country is a big Adventure that teaches you a lot."
+        }
+    ],
+    // استكمال gapfillDB.js - الدرس رقم 72
+    "72-1": [
+        {
+            sentence: "Learning ______ is a necessary skill for success in college and beyond.",
+            options: ["Academic writing", "Supporting evidence", "Sustainable design", "Sustainable design"],
+            originalSentence: "Learning Academic writing is a necessary skill for success in college and beyond."
+        }
+    ],
+    "72-2": [
+        {
+            sentence: "Hard work and consistency are ______ for reaching your long-term goals.",
+            options: ["Essential", "Challenging", "Rewarding", "Specific"],
+            originalSentence: "Hard work and consistency are Essential for reaching your long-term goals."
+        }
+    ],
+    "72-3": [
+        {
+            sentence: "The teacher gave us a ______ of papers containing all the study materials.",
+            options: ["Packet", "Folder", "Margin", "Database"],
+            originalSentence: "The teacher gave us a Packet of papers containing all the study materials."
+        }
+    ],
+    "72-4": [
+        {
+            sentence: "Please read the ______ carefully before you begin the laboratory experiment.",
+            options: ["Guidelines", "Citations", "Key terms", "Body paragraphs"],
+            originalSentence: "Please read the Guidelines carefully before you begin the laboratory experiment."
+        }
+    ],
+    "72-5": [
+        {
+            sentence: "The main point of your essay should be stated clearly in your ______.",
+            options: ["Thesis", "Conclusion", "Outline", "Draft"],
+            originalSentence: "The main point of your essay should be stated clearly in your Thesis."
+        }
+    ],
+    "72-6": [
+        {
+            sentence: "Every argument in your paper must be backed by ______ from reliable sources.",
+            options: ["Supporting evidence", "Academic writing", "Final version", "Plagiarism"],
+            originalSentence: "Every argument in your paper must be backed by Supporting evidence from reliable sources."
+        }
+    ],
+    "72-7": [
+        {
+            sentence: "Before starting the lesson, let's define some ______ related to economics.",
+            options: ["Key terms", "References", "Margins", "Grammar"],
+            originalSentence: "Before starting the lesson, let's define some Key terms related to economics."
+        }
+    ],
+    "72-8": [
+        {
+            sentence: "You need to be more ______ about what you want to order for dinner.",
+            options: ["Specific", "Essential", "Graded", "Challenging"],
+            originalSentence: "You need to be more Specific about what you want to order for dinner."
+        }
+    ],
+    "72-9": [
+        {
+            sentence: "Always use multiple ______ to ensure the information in your report is correct.",
+            options: ["Sources", "Margins", "Key terms", "Packet"],
+            originalSentence: "Always use multiple Sources to ensure the information in your report is correct."
+        }
+    ],
+    "72-10": [
+        {
+            sentence: "Writing a ten-page ______ is the final requirement for this course.",
+            options: ["Research paper", "Thesis", "Conclusion", "Assignment"],
+            originalSentence: "Writing a ten-page Research paper is the final requirement for this course."
+        }
+    ],
+    "72-11": [
+        {
+            sentence: "Modern architects focus on ______ to save energy and protect the environment.",
+            options: ["Sustainable design", "Academic writing", "Flow", "Supporting evidence"],
+            originalSentence: "Modern architects focus on Sustainable design to save energy and protect the environment."
+        }
+    ],
+    "72-12": [
+        {
+            sentence: "I used the online ______ to find old news reports from the 1950s.",
+            options: ["Database", "Folder", "Packet", "Outline"],
+            originalSentence: "I used the online Database to find old news reports from the 1950s."
+        }
+    ],
+    "72-13": [
+        {
+            sentence: "He spent the whole afternoon reading ______ about the history of medicine.",
+            options: ["Journal articles", "Body paragraphs", "Key terms", "Guidelines"],
+            originalSentence: "He spent the whole afternoon reading Journal articles about the history of medicine."
+        }
+    ],
+    "72-14": [
+        {
+            sentence: "I felt ______ by the amount of homework I had to finish by Monday.",
+            options: ["Overwhelmed", "Discouraged", "Beaming", "Graded"],
+            originalSentence: "I felt Overwhelmed by the amount of homework I had to finish by Monday."
+        }
+    ],
+    "72-15": [
+        {
+            sentence: "It is much easier to write an essay if you make an ______ first.",
+            options: ["Outline", "Draft", "Final version", "Flow"],
+            originalSentence: "It is much easier to write an essay if you make an Outline first."
+        }
+    ],
+    "72-16": [
+        {
+            sentence: "The ______ are where you explain your ideas in detail with evidence.",
+            options: ["Body paragraphs", "Conclusions", "References", "Margins"],
+            originalSentence: "The Body paragraphs are where you explain your ideas in detail with evidence."
+        }
+    ],
+    "72-17": [
+        {
+            sentence: "In your ______, you should summarize your main points and final thoughts.",
+            options: ["Conclusion", "Thesis", "Outline", "Assignment"],
+            originalSentence: "In your Conclusion, you should summarize your main points and final thoughts."
+        }
+    ],
+    "72-18": [
+        {
+            sentence: "The teacher gave me some very helpful ______ on how to improve my speech.",
+            options: ["Feedback", "Clarification", "Argument", "Plagiarism"],
+            originalSentence: "The teacher gave me some very helpful Feedback on how to improve my speech."
+        }
+    ],
+    "72-19": [
+        {
+            sentence: "The lawyer presented a very strong ______ to prove the man's innocence.",
+            options: ["Argument", "Thesis", "Clarification", "Outline"],
+            originalSentence: "The lawyer presented a very strong Argument to prove the man's innocence."
+        }
+    ],
+    "72-20": [
+        {
+            sentence: "Saving a little money every day will help you ______.",
+            options: ["In the long run", "Flow", "Beaming", "Specifically"],
+            originalSentence: "Saving a little money every day will help you In the long run."
+        }
+    ],
+    "72-21": [
+        {
+            sentence: "You must ______ every website you used in your research paper.",
+            options: ["Cite", "Revising", "Graded", "Effort"],
+            originalSentence: "You must Cite every website you used in your research paper."
+        }
+    ],
+    "72-22": [
+        {
+            sentence: "Make sure all your ______ are formatted according to the style guide.",
+            options: ["Citations", "References", "Body paragraphs", "Margins"],
+            originalSentence: "Make sure all your Citations are formatted according to the style guide."
+        }
+    ],
+    "72-23": [
+        {
+            sentence: "Copying someone else's work without giving credit is called ______.",
+            options: ["Plagiarism", "Grammar", "Feedback", "Clarification"],
+            originalSentence: "Copying someone else's work without giving credit is called Plagiarism."
+        }
+    ],
+    "72-24": [
+        {
+            sentence: "The police warned that driving without a license is a ______.",
+            options: ["Serious offense", "Challenging", "Sustainable design", "Powerful tool"],
+            originalSentence: "The police warned that driving without a license is a Serious offense."
+        }
+    ],
+    "72-25": [
+        {
+            sentence: "The last page of your paper should list all your ______ in alphabetical order.",
+            options: ["References", "Key terms", "Sources", "Citations"],
+            originalSentence: "The last page of your paper should list all your References in alphabetical order."
+        }
+    ],
+    "72-26": [
+        {
+            sentence: "I need to show my first ______ to my professor to get his opinion.",
+            options: ["Draft", "Final version", "Outline", "Conclusion"],
+            originalSentence: "I need to show my first Draft to my professor to get his opinion."
+        }
+    ],
+    "72-27": [
+        {
+            sentence: "The teacher wrote some notes in the ______ of my essay.",
+            options: ["Margins", "Body paragraphs", "Guidelines", "Folder"],
+            originalSentence: "The teacher wrote some notes in the Margins of my essay."
+        }
+    ],
+    "72-28": [
+        {
+            sentence: "I asked the manager for some ______ because I didn't understand the rules.",
+            options: ["Clarification", "Feedback", "Argument", "Effort"],
+            originalSentence: "I asked the manager for some Clarification because I didn't understand the rules."
+        }
+    ],
+    "72-29": [
+        {
+            sentence: "Don't get ______ if you fail the first time; just keep trying.",
+            options: ["Discouraged", "Overwhelmed", "Beaming", "Graded"],
+            originalSentence: "Don't get Discouraged if you fail the first time; just keep trying."
+        }
+    ],
+    "72-30": [
+        {
+            sentence: "I spent hours ______ my story until every word was perfect.",
+            options: ["Revising", "Citing", "Grades", "Efforts"],
+            originalSentence: "I spent hours Revising my story until every word was perfect."
+        }
+    ],
+    "72-31": [
+        {
+            sentence: "Using correct ______ makes your writing much professional and clear.",
+            options: ["Grammar", "Feedback", "Margins", "Key terms"],
+            originalSentence: "Using correct Grammar makes your writing much professional and clear."
+        }
+    ],
+    "72-32": [
+        {
+            sentence: "Transition words like 'however' help improve the ______ of your essay.",
+            options: ["Flow", "Argument", "Clarification", "Packet"],
+            originalSentence: "Transition words like 'however' help improve the Flow of your essay."
+        }
+    ],
+    "72-33": [
+        {
+            sentence: "I am finally printing the ______ of my book to send it to the publisher.",
+            options: ["Final version", "Outline", "Draft", "Packet"],
+            originalSentence: "I am finally printing the Final version of my book to send it to the publisher."
+        }
+    ],
+    "72-34": [
+        {
+            sentence: "I put all my certificates and important documents in a blue ______.",
+            options: ["Folder", "Packet", "Database", "Shelf"],
+            originalSentence: "I put all my certificates and important documents in a blue Folder."
+        }
+    ],
+    "72-35": [
+        {
+            sentence: "If you put enough ______ into your work, you will definitely see results.",
+            options: ["Effort", "Feedback", "Clarification", "Plagiarism"],
+            originalSentence: "If you put enough Effort into your work, you will definitely see results."
+        }
+    ],
+    "72-36": [
+        {
+            sentence: "The tests were ______ and returned to the students the following morning.",
+            options: ["Graded", "Revising", "Citing", "Overwhelmed"],
+            originalSentence: "The tests were Graded and returned to the students the following morning."
+        }
+    ],
+    "72-37": [
+        {
+            sentence: "The little girl was ______ with happiness when she got a new bicycle.",
+            options: ["Beaming", "Discouraged", "Specific", "Overwhelmed"],
+            originalSentence: "The little girl was Beaming with happiness when she got a new bicycle."
+        }
+    ],
+    "72-38": [
+        {
+            sentence: "A ______ essay uses facts and statistics to prove a point.",
+            options: ["Well-supported", "Challenging", "Rewarding", "Specific"],
+            originalSentence: "A Well-supported essay uses facts and statistics to prove a point."
+        }
+    ],
+    "72-39": [
+        {
+            sentence: "Learning a new language is ______ but very exciting at the same time.",
+            options: ["Challenging", "Essential", "Graded", "Beaming"],
+            originalSentence: "Learning a new language is Challenging but very exciting at the same time."
+        }
+    ],
+    "72-40": [
+        {
+            sentence: "Helping others can be a very ______ experience for anyone.",
+            options: ["Rewarding", "Overwhelmed", "Discouraged", "Specific"],
+            originalSentence: "Helping others can be a very Rewarding experience for anyone."
+        }
+    ],
+    "72-41": [
+        {
+            sentence: "Education is a ______ that can change your life and the world.",
+            options: ["Powerful tool", "Serious offense", "Research paper", "Key term"],
+            originalSentence: "Education is a Powerful tool that can change your life and the world."
+        }
+    ],
+    "72-42": [
+        {
+            sentence: "I need to complete this ______ before the end of the week.",
+            options: ["Assignment", "Thesis", "Conclusion", "Outline"],
+            originalSentence: "I need to complete this Assignment before the end of the week."
+        }
+    ],
+    // استكمال gapfillDB.js - الدرس رقم 73
+    "73-1": [
+        {
+            sentence: "I have to give a ten-minute ______ about climate change in front of the class.",
+            options: ["Presentation", "Conclusion", "Growth", "Irrigation"],
+            originalSentence: "I have to give a ten-minute Presentation about climate change in front of the class."
+        }
+    ],
+    "73-2": [
+        {
+            sentence: "He used a wireless ______ to change the slides without touching the laptop.",
+            options: ["Clicker", "Solar panel", "Green roof", "Trend"],
+            originalSentence: "He used a wireless Clicker to change the slides without touching the laptop."
+        }
+    ],
+    "73-3": [
+        {
+            sentence: "My heart was ______ because I was very nervous about speaking in public.",
+            options: ["Racing", "Reflecting", "Clapping", "Absorbing"],
+            originalSentence: "My heart was Racing because I was very nervous about speaking in public."
+        }
+    ],
+    "73-4": [
+        {
+            sentence: "The project focuses on ______ to reduce the carbon footprint of new cities.",
+            options: ["Sustainable architecture", "Regional science fair", "Long-term investment", "Natural insulation"],
+            originalSentence: "The project focuses on Sustainable architecture to reduce the carbon footprint of new cities."
+        }
+    ],
+    "73-5": [
+        {
+            sentence: "Make sure the text on your ______ is large enough for everyone to read.",
+            options: ["Slides", "Graphs", "Solar panels", "Thumbs up"],
+            originalSentence: "Make sure the text on your Slides is large enough for everyone to read."
+        }
+    ],
+    "73-6": [
+        {
+            sentence: "The report includes several ______ showing the increase in temperatures.",
+            options: ["Graphs", "Slides", "Solar panels", "Green roofs"],
+            originalSentence: "The report includes several Graphs showing the increase in temperatures."
+        }
+    ],
+    "73-7": [
+        {
+            sentence: "She ______ her speech many times in front of the mirror to be ready.",
+            options: ["Practiced", "Admitted", "Absorbed", "Congratulated"],
+            originalSentence: "She Practiced her speech many times in front of the mirror to be ready."
+        }
+    ],
+    "73-8": [
+        {
+            sentence: "Instead of running away, he decided to start ______ his fears.",
+            options: ["Facing", "Racing", "Wrapping up", "Considering"],
+            originalSentence: "Instead of running away, he decided to start Facing his fears."
+        }
+    ],
+    "73-9": [
+        {
+            sentence: "My teacher smiled ______ at me when I forgot my words during the play.",
+            options: ["Encouragingly", "Thoroughly", "Passionate", "Initially"],
+            originalSentence: "My teacher smiled Encouragingly at me when I forgot my words during the play."
+        }
+    ],
+    "73-10": [
+        {
+            sentence: "Before you start the race, take a ______ to calm your nerves.",
+            options: ["Deep breath", "Rush of relief", "Long-term investment", "Conclusion"],
+            originalSentence: "Before you start the race, take a Deep breath to calm your nerves."
+        }
+    ],
+    "73-11": [
+        {
+            sentence: "Using paper bags instead of plastic is much more ______.",
+            options: ["Environmentally friendly", "Thorough", "Impressive", "Necessary"],
+            originalSentence: "Using paper bags instead of plastic is much more Environmentally friendly."
+        }
+    ],
+    "73-12": [
+        {
+            sentence: "Switching off the lights when you leave a room helps save ______.",
+            options: ["Energy", "Waste", "Irrigation", "Growth"],
+            originalSentence: "Switching off the lights when you leave a room helps save Energy."
+        }
+    ],
+    "73-13": [
+        {
+            sentence: "We should try to recycle as much ______ as possible to protect the ocean.",
+            options: ["Waste", "Energy", "Irrigation", "Confidence"],
+            originalSentence: "We should try to recycle as much Waste as possible to protect the ocean."
+        }
+    ],
+    "73-14": [
+        {
+            sentence: "A ______ uses materials and systems that do not harm the nature.",
+            options: ["Green building", "Regional science fair", "Long-term investment", "Green roof"],
+            originalSentence: "A Green building uses materials and systems that do not harm the nature."
+        }
+    ],
+    "73-15": [
+        {
+            sentence: "Success in an interview often depends on your ______ and preparation.",
+            options: ["Confidence", "Waste", "Irrigation", "Challenge"],
+            originalSentence: "Success in an interview often depends on your Confidence and preparation."
+        }
+    ],
+    "73-16": [
+        {
+            sentence: "Installing ______ on the roof can significantly reduce your electricity bill.",
+            options: ["Solar panels", "Green roofs", "Graphs", "Slides"],
+            originalSentence: "Installing Solar panels on the roof can significantly reduce your electricity bill."
+        }
+    ],
+    "73-17": [
+        {
+            sentence: "The building uses ______ to provide water for all the plants in the garden.",
+            options: ["Rainwater collection", "Sustainable architecture", "Natural insulation", "Renewable energy"],
+            originalSentence: "The building uses Rainwater collection to provide water for all the plants in the garden."
+        }
+    ],
+    "73-18": [
+        {
+            sentence: "Using wool or cork is a great way to provide ______ for a house.",
+            options: ["Natural insulation", "Renewable energy", "Sustainable architecture", "Rainwater collection"],
+            originalSentence: "Using wool or cork is a great way to provide Natural insulation for a house."
+        }
+    ],
+    "73-19": [
+        {
+            sentence: "Farmers use modern ______ systems to water their crops more efficiently.",
+            options: ["Irrigation", "Waste", "Energy", "Growth"],
+            originalSentence: "Farmers use modern Irrigation systems to water their crops more efficiently."
+        }
+    ],
+    "73-20": [
+        {
+            sentence: "The system uses recycled water for ______ and other non-drinking purposes.",
+            options: ["Flushing toilets", "Renewable energy", "Solar panels", "Natural insulation"],
+            originalSentence: "The system uses recycled water for Flushing toilets and other non-drinking purposes."
+        }
+    ],
+    "73-21": [
+        {
+            sentence: "The task seemed difficult ______, but it became easier with practice.",
+            options: ["Initially", "Encouragingly", "Thoroughly", "Passionate"],
+            originalSentence: "The task seemed difficult Initially, but it became easier with practice."
+        }
+    ],
+    "73-22": [
+        {
+            sentence: "Buying high-quality tools is a ______ that saves money in the future.",
+            options: ["Long-term investment", "Regional science fair", "Green building", "Presentation"],
+            originalSentence: "Buying high-quality tools is a Long-term investment that saves money in the future."
+        }
+    ],
+    "73-23": [
+        {
+            sentence: "Everyone in the office ______ her for her hard work and honesty.",
+            options: ["Admires", "Absorbs", "Reflects", "Congratulates"],
+            originalSentence: "Everyone in the office Admires her for her hard work and honesty."
+        }
+    ],
+    "73-24": [
+        {
+            sentence: "Wind and water are excellent sources of ______ for the future.",
+            options: ["Renewable energy", "Rainwater collection", "Natural insulation", "Sustainable architecture"],
+            originalSentence: "Wind and water are excellent sources of Renewable energy for the future."
+        }
+    ],
+    "73-25": [
+        {
+            sentence: "A ______ can help keep a building cool during the hot summer months.",
+            options: ["Green roof", "Solar panel", "Clicker", "Conclusion"],
+            originalSentence: "A Green roof can help keep a building cool during the hot summer months."
+        }
+    ],
+    "73-26": [
+        {
+            sentence: "A sponge ______ water very quickly when it is placed in a puddle.",
+            options: ["Absorbs", "Reflects", "Admires", "Practices"],
+            originalSentence: "A sponge Absorbs water very quickly when it is placed in a puddle."
+        }
+    ],
+    "73-27": [
+        {
+            sentence: "He is very ______ about animal rights and volunteers at the shelter.",
+            options: ["Passionate", "Initially", "Encouragingly", "Environmentally friendly"],
+            originalSentence: "He is very Passionate about animal rights and volunteers at the shelter."
+        }
+    ],
+    "73-28": [
+        {
+            sentence: "I am ______ this project and will submit it in five minutes.",
+            options: ["Wrapping up", "Facing", "Considering", "Racing"],
+            originalSentence: "I am Wrapping up this project and will submit it in five minutes."
+        }
+    ],
+    "73-29": [
+        {
+            sentence: "The ______ of the movie was very surprising and made everyone cry.",
+            options: ["Conclusion", "Presentation", "Growth", "Waste"],
+            originalSentence: "The Conclusion of the movie was very surprising and made everyone cry."
+        }
+    ],
+    "73-30": [
+        {
+            sentence: "Working from home has become a major ______ in the modern business world.",
+            options: ["Trend", "Support", "Challenge", "Practice"],
+            originalSentence: "Working from home has become a major Trend in the modern business world."
+        }
+    ],
+    "73-31": [
+        {
+            sentence: "It is ______ to have a passport if you want to travel to another country.",
+            options: ["Necessary", "Impressive", "Passionate", "Thorough"],
+            originalSentence: "It is Necessary to have a passport if you want to travel to another country."
+        }
+    ],
+    "73-32": [
+        {
+            sentence: "You should ______ your parents and listen to their advice.",
+            options: ["Respect", "Reflect", "Admire", "Congratulate"],
+            originalSentence: "You should Respect your parents and listen to their advice."
+        }
+    ],
+    "73-33": [
+        {
+            sentence: "The audience started ______ loudly after the singer finished the song.",
+            options: ["Clapping", "Facing", "Wrapping up", "Reflecting"],
+            originalSentence: "The audience started Clapping loudly after the singer finished the song."
+        }
+    ],
+    "73-34": [
+        {
+            sentence: "I felt a ______ when I finally found my lost car keys.",
+            options: ["Rush of relief", "Deep breath", "Long-term investment", "Conclusion"],
+            originalSentence: "I felt a Rush of relief when I finally found my lost car keys."
+        }
+    ],
+    "73-35": [
+        {
+            sentence: "The police did a ______ investigation to find the missing painting.",
+            options: ["Thorough", "Initially", "Passionate", "Necessary"],
+            originalSentence: "The police did a Thorough investigation to find the missing painting."
+        }
+    ],
+    "73-36": [
+        {
+            sentence: "She was ______ with pride when her son received his diploma.",
+            options: ["Beaming", "Scared", "Impressive", "Necessary"],
+            originalSentence: "She was Beaming with pride when her son received his diploma."
+        }
+    ],
+    "73-37": [
+        {
+            sentence: "The boss gave me a ______ to show that he liked my new idea.",
+            options: ["Thumbs up", "Clicker", "Solar panel", "Slide"],
+            originalSentence: "The boss gave me a Thumbs up to show that he liked my new idea."
+        }
+    ],
+    "73-38": [
+        {
+            sentence: "Everyone was ______ the couple on their 50th wedding anniversary.",
+            options: ["Congratulating", "Respecting", "Reflecting", "Admitting"],
+            originalSentence: "Everyone was Congratulating the couple on their 50th wedding anniversary."
+        }
+    ],
+    "73-39": [
+        {
+            sentence: "Our school won first prize at the ______ for our robot project.",
+            options: ["Regional science fair", "Green building", "Sustainable architecture", "Presentation"],
+            originalSentence: "Our school won first prize at the Regional science fair for our robot project."
+        }
+    ],
+    "73-40": [
+        {
+            sentence: "I am ______ moving to a bigger house closer to the city center.",
+            options: ["Considering", "Wrapping up", "Facing", "Racing"],
+            originalSentence: "I am Considering moving to a bigger house closer to the city center."
+        }
+    ],
+    "73-41": [
+        {
+            sentence: "His ability to speak five different languages is very ______.",
+            options: ["Impressive", "Scared", "Environmentally friendly", "Necessary"],
+            originalSentence: "His ability to speak five different languages is very Impressive."
+        }
+    ],
+    "73-42": [
+        {
+            sentence: "Living in a foreign country is a great ______ to learn a new culture.",
+            options: ["Opportunity", "Trend", "Practice", "Support"],
+            originalSentence: "Living in a foreign country is a great Opportunity to learn a new culture."
+        }
+    ],
+    "73-43": [
+        {
+            sentence: "The quiet lake was ______ the beautiful colors of the sunset.",
+            options: ["Reflecting", "Absorbing", "Admitting", "Congratulating"],
+            originalSentence: "The quiet lake was Reflecting the beautiful colors of the sunset."
+        }
+    ],
+    "73-44": [
+        {
+            sentence: "The ______ of the company has been very fast over the last three years.",
+            options: ["Growth", "Conclusion", "Opportunity", "Trend"],
+            originalSentence: "The Growth of the company has been very fast over the last three years."
+        }
+    ],
+    "73-45": [
+        {
+            sentence: "The little boy was ______ of the dark, so he kept the light on.",
+            options: ["Scared", "Beaming", "Impressive", "Necessary"],
+            originalSentence: "The little boy was Scared of the dark, so he kept the light on."
+        }
+    ],
+    "73-46": [
+        {
+            sentence: "You need to ______ every day if you want to become a professional pianist.",
+            options: ["Practice", "Respect", "Reflect", "Admire"],
+            originalSentence: "You need to Practice every day if you want to become a professional pianist."
+        }
+    ],
+    "73-47": [
+        {
+            sentence: "The ______ for the wedding took several months of hard work.",
+            options: ["Preparation", "Conclusion", "Growth", "Confidence"],
+            originalSentence: "The Preparation for the wedding took several months of hard work."
+        }
+    ],
+    "73-48": [
+        {
+            sentence: "I am grateful for all the ______ my friends gave me during the difficult time.",
+            options: ["Support", "Trend", "Practice", "Opportunity"],
+            originalSentence: "I am grateful for all the Support my friends gave me during the difficult time."
+        }
+    ],
+    "73-49": [
+        {
+            sentence: "Climbing Mount Everest is the ultimate ______ for any mountain climber.",
+            options: ["Challenge", "Opportunity", "Trend", "Practice"],
+            originalSentence: "Climbing Mount Everest is the ultimate Challenge for any mountain climber."
+        }
+    ],
+    // استكمال gapfillDB.js - الدرس رقم 74
+    "74-1": [
+        {
+            sentence: "Learning the art of ______ helps you communicate your ideas more effectively.",
+            options: ["Debating", "Huddling", "Voting", "Adjusting"],
+            originalSentence: "Learning the art of Debating helps you communicate your ideas more effectively."
+        }
+    ],
+    "74-2": [
+        {
+            sentence: "The students sat in long ______ waiting for the lecture to begin.",
+            options: ["Rows", "Teams", "Uniforms", "Backgrounds"],
+            originalSentence: "The students sat in long Rows waiting for the lecture to begin."
+        }
+    ],
+    "74-3": [
+        {
+            sentence: "To solve a complex problem, you need to look at it from different ______.",
+            options: ["Perspectives", "Counterarguments", "Distractions", "Identities"],
+            originalSentence: "To solve a complex problem, you need to look at it from different Perspectives."
+        }
+    ],
+    "74-4": [
+        {
+            sentence: "More than fifty students ______ in the annual science competition.",
+            options: ["Participated", "Rebutted", "Judged", "Attended"],
+            originalSentence: "More than fifty students Participated in the annual science competition."
+        }
+    ],
+    "74-5": [
+        {
+            sentence: "We are preparing for a ______ against the neighboring school next week.",
+            options: ["Formal debate", "Brainstorming", "Natural talent", "Show of hands"],
+            originalSentence: "We are preparing for a Formal debate against the neighboring school next week."
+        }
+    ],
+    "74-6": [
+        {
+            sentence: "The class was divided into four ______ to play the game.",
+            options: ["Teams", "Rows", "Uniforms", "Backgrounds"],
+            originalSentence: "The class was divided into four Teams to play the game."
+        }
+    ],
+    "74-7": [
+        {
+            sentence: "The ______ of today's discussion is the importance of renewable energy.",
+            options: ["Topic", "Identity", "Asset", "Equality"],
+            originalSentence: "The Topic of today's discussion is the importance of renewable energy."
+        }
+    ],
+    "74-8": [
+        {
+            sentence: "Some people believe that school ______ help students focus on their studies.",
+            options: ["Uniforms", "Distractions", "Perspectives", "Counterarguments"],
+            originalSentence: "Some people believe that school Uniforms help students focus on their studies."
+        }
+    ],
+    "74-9": [
+        {
+            sentence: "The two neighbors were ______ about where to build the new fence.",
+            options: ["Arguing", "Brainstorming", "Voting", "Huddling"],
+            originalSentence: "The two neighbors were Arguing about where to build the new fence."
+        }
+    ],
+    "74-10": [
+        {
+            sentence: "Many people spoke ______ the new law because they thought it was fair.",
+            options: ["In favor of", "Against", "Left out", "Uncomfortable"],
+            originalSentence: "Many people spoke In favor of the new law because they thought it was fair."
+        }
+    ],
+    "74-11": [
+        {
+            sentence: "It is important to listen to those who are ______ your opinion.",
+            options: ["Against", "In favor of", "Belong", "Participated"],
+            originalSentence: "It is important to listen to those who are Against your opinion."
+        }
+    ],
+    "74-12": [
+        {
+            sentence: "The players were ______ together to discuss their strategy before the game.",
+            options: ["Huddling", "Rebutting", "Adjusting", "Participating"],
+            originalSentence: "The players were Huddling together to discuss their strategy before the game."
+        }
+    ],
+    "74-13": [
+        {
+            sentence: "We spent the morning ______ new ideas for our marketing campaign.",
+            options: ["Brainstorming", "Arguing", "Voting", "Adjusting"],
+            originalSentence: "We spent the morning Brainstorming new ideas for our marketing campaign."
+        }
+    ],
+    "74-14": [
+        {
+            sentence: "The goal of the movement is to achieve ______ for all citizens.",
+            options: ["Equality", "Individuality", "Personality", "Identity"],
+            originalSentence: "The goal of the movement is to achieve Equality for all citizens."
+        }
+    ],
+    "74-15": [
+        {
+            sentence: "He felt ______ when his friends went to the cinema without asking him.",
+            options: ["Left out", "Gracious", "Uncomfortable", "Judged"],
+            originalSentence: "He felt Left out when his friends went to the cinema without asking him."
+        }
+    ],
+    "74-16": [
+        {
+            sentence: "Winning the national trophy brought a lot of ______ to our school.",
+            options: ["School pride", "Sense of community", "Financial burden", "Public speaking"],
+            originalSentence: "Winning the national trophy brought a lot of School pride."
+        }
+    ],
+    "74-17": [
+        {
+            sentence: "The keys don't ______ to me; I found them on the floor.",
+            options: ["Belong", "Participate", "Attend", "Rebut"],
+            originalSentence: "The keys don't Belong to me; I found them on the floor."
+        }
+    ],
+    "74-18": [
+        {
+            sentence: "A good debater always prepares strong ______ to their opponent's points.",
+            options: ["Counterarguments", "Uniforms", "Perspectives", "Topics"],
+            originalSentence: "A good debater always prepares strong Counterarguments to their opponent's points."
+        }
+    ],
+    "74-19": [
+        {
+            sentence: "Painting and music are wonderful forms of ______.",
+            options: ["Self-expression", "Financial burden", "Critical thinking", "Distraction"],
+            originalSentence: "Painting and music are wonderful forms of Self-expression."
+        }
+    ],
+    "74-20": [
+        {
+            sentence: "The school encourages ______, allowing students to follow their own interests.",
+            options: ["Individuality", "Equality", "Identity", "Personality"],
+            originalSentence: "The school encourages Individuality, allowing students to follow their own interests."
+        }
+    ],
+    "74-21": [
+        {
+            sentence: "I felt ______ sitting in the small chair for three hours.",
+            options: ["Uncomfortable", "Gracious", "Left out", "Judged"],
+            originalSentence: "I felt Uncomfortable sitting in the small chair for three hours."
+        }
+    ],
+    "74-22": [
+        {
+            sentence: "Buying a new car can be a heavy ______ for a young family.",
+            options: ["Financial burden", "Asset", "Topic", "Sense of community"],
+            originalSentence: "Buying a new car can be a heavy Financial burden for a young family."
+        }
+    ],
+    "74-23": [
+        {
+            sentence: "It took some time ______ to the cold weather in the mountains.",
+            options: ["Adjusting", "Rebutting", "Huddling", "Voting"],
+            originalSentence: "It took some time Adjusting to the cold weather in the mountains."
+        }
+    ],
+    "74-24": [
+        {
+            sentence: "You should not be ______ by your appearance, but by your actions.",
+            options: ["Judged", "Participated", "Belonged", "Attended"],
+            originalSentence: "You should not be Judged by your appearance, but by your actions."
+        }
+    ],
+    "74-25": [
+        {
+            sentence: "Our students come from many different ______ and cultures.",
+            options: ["Backgrounds", "Uniforms", "Rows", "Teams"],
+            originalSentence: "Our students come from many different Backgrounds and cultures."
+        }
+    ],
+    "74-26": [
+        {
+            sentence: "Loud noises can be major ______ when you are trying to study.",
+            options: ["Distractions", "Perspectives", "Counterarguments", "Topics"],
+            originalSentence: "Loud noises can be major Distractions when you are trying to study."
+        }
+    ],
+    "74-27": [
+        {
+            sentence: "She is very interested in ______ and always wears the latest styles.",
+            options: ["Fashion", "Equality", "Individuality", "Personality"],
+            originalSentence: "She is very interested in Fashion and always wears the latest styles."
+        }
+    ],
+    "74-28": [
+        {
+            sentence: "Living in a small village gives you a strong ______.",
+            options: ["Sense of community", "School pride", "Financial burden", "Natural talent"],
+            originalSentence: "Living in a small village gives you a strong Sense of community."
+        }
+    ],
+    "74-29": [
+        {
+            sentence: "He spent his time ______ the false claims made by the other politician.",
+            options: ["Rebutting", "Brainstorming", "Voting", "Adjusting"],
+            originalSentence: "He spent his time Rebutting the false claims made by the other politician."
+        }
+    ],
+    "74-30": [
+        {
+            sentence: "Language is an important part of a person's cultural ______.",
+            options: ["Identity", "Topic", "Equality", "Fashion"],
+            originalSentence: "Language is an important part of a person's cultural Identity."
+        }
+    ],
+    "74-31": [
+        {
+            sentence: "She has a very friendly ______ and makes friends easily.",
+            options: ["Personality", "Asset", "Distraction", "Identity"],
+            originalSentence: "She has a very friendly Personality and makes friends easily."
+        }
+    ],
+    "74-32": [
+        {
+            sentence: "Countries with ______ usually invest heavily in teacher training.",
+            options: ["Top education systems", "Financial burdens", "Public speaking", "Sense of community"],
+            originalSentence: "Countries with Top education systems usually invest heavily in teacher training."
+        }
+    ],
+    "74-33": [
+        {
+            sentence: "The committee is ______ today to choose the new chairperson.",
+            options: ["Voting", "Arguing", "Adjusting", "Huddling"],
+            originalSentence: "The committee is Voting today to choose the new chairperson."
+        }
+    ],
+    "74-34": [
+        {
+            sentence: "We decided the winner by a ______ among the audience members.",
+            options: ["Show of hands", "Brainstorming", "Formal debate", "Topic"],
+            originalSentence: "We decided the winner by a Show of hands among the audience members."
+        }
+    ],
+    "74-35": [
+        {
+            sentence: "He was very ______ and thanked everyone for their help after he won.",
+            options: ["Gracious", "Uncomfortable", "Left out", "Judged"],
+            originalSentence: "He was very Gracious and thanked everyone for their help after he won."
+        }
+    ],
+    "74-36": [
+        {
+            sentence: "She has a ______ for playing the piano and never needed many lessons.",
+            options: ["Natural talent", "Asset", "Financial burden", "Identity"],
+            originalSentence: "She has a Natural talent for playing the piano and never needed many lessons."
+        }
+    ],
+    "74-37": [
+        {
+            sentence: "When someone criticizes you, it is best to ______ instead of getting angry.",
+            options: ["Respond thoughtfully", "Rebutting", "Huddling", "Voting"],
+            originalSentence: "When someone criticizes you, it is best to Respond thoughtfully instead of getting angry."
+        }
+    ],
+    "74-38": [
+        {
+            sentence: "Joining the ______ is a great way to improve your logical thinking.",
+            options: ["Debate team", "School pride", "Financial burden", "Background"],
+            originalSentence: "Joining the Debate team is a great way to improve your logical thinking."
+        }
+    ],
+    "74-39": [
+        {
+            sentence: "His ability to speak three languages is a great ______ to the company.",
+            options: ["Asset", "Topic", "Identity", "Personality"],
+            originalSentence: "His ability to speak three languages is a great Asset to the company."
+        }
+    ],
+    "74-40": [
+        {
+            sentence: "Many people are afraid of ______, but it gets easier with practice.",
+            options: ["Public speaking", "Critical thinking", "Self-expression", "Individuality"],
+            originalSentence: "Many people are afraid of Public speaking, but it gets easier with practice."
+        }
+    ],
+    "74-41": [
+        {
+            sentence: "Philosophy students are trained in ______ and logical analysis.",
+            options: ["Critical thinking", "Financial burden", "Distraction", "Fashion"],
+            originalSentence: "Philosophy students are trained in Critical thinking and logical analysis."
+        }
+    ],
+    "74-42": [
+        {
+            sentence: "Will you ______ the graduation ceremony this evening?",
+            options: ["Attend", "Participate", "Judged", "Adjusting"],
+            originalSentence: "Will you Attend the graduation ceremony this evening?"
+        }
+    ],
+    // استكمال gapfillDB.js - الدرس رقم 75
+    "75-1": [
+        {
+            sentence: "Developing ______ allows you to analyze facts and form a judgment.",
+            options: ["Critical thinking", "Social media", "Climate change", "Energy drink"],
+            originalSentence: "Developing Critical thinking allows you to analyze facts and form a judgment."
+        }
+    ],
+    "75-2": [
+        {
+            sentence: "In a crisis, it is vital to stay calm and think ______.",
+            options: ["Rationally", "Instantly", "Temporarily", "Approvingly"],
+            originalSentence: "In a crisis, it is vital to stay calm and think Rationally."
+        }
+    ],
+    "75-3": [
+        {
+            sentence: "The journalist was ______ the official's statement to find inconsistencies.",
+            options: ["Questioning", "Applying", "Demonstrating", "Evaluating"],
+            originalSentence: "The journalist was Questioning the official's statement to find inconsistencies."
+        }
+    ],
+    "75-4": [
+        {
+            sentence: "We must challenge our ______ before we can reach a true conclusion.",
+            options: ["Assumptions", "Decisions", "Terms", "Sources"],
+            originalSentence: "We must challenge our Assumptions before we can reach a true conclusion."
+        }
+    ],
+    "75-5": [
+        {
+            sentence: "The committee is ______ the success of the new educational program.",
+            options: ["Evaluating", "Applying", "Demonstrating", "Questioning"],
+            originalSentence: "The committee is Evaluating the success of the new educational program."
+        }
+    ],
+    "75-6": [
+        {
+            sentence: "The police found no ______ that the man was involved in the crime.",
+            options: ["Evidence", "Bias", "Hoax", "Proof"],
+            originalSentence: "The police found no Evidence that the man was involved in the crime."
+        }
+    ],
+    "75-7": [
+        {
+            sentence: "What is the exact definition of this technical ______?",
+            options: ["Term", "Pact", "Claim", "Source"],
+            originalSentence: "What is the exact definition of this technical Term?"
+        }
+    ],
+    "75-8": [
+        {
+            sentence: "The manager has to make very difficult ______ regarding the company's future.",
+            options: ["Decisions", "Assumptions", "Claims", "Situations"],
+            originalSentence: "The manager has to make very difficult Decisions regarding the company's future."
+        }
+    ],
+    "75-9": [
+        {
+            sentence: "Don't believe every ______ you see on TV; some are misleading.",
+            options: ["Advertisement", "Pact", "Hoax", "Factual accuracy"],
+            originalSentence: "Don't believe every Advertisement you see on TV; some are misleading."
+        }
+    ],
+    "75-10": [
+        {
+            sentence: "This ______ claims it can regrow hair in just twenty-four hours.",
+            options: ["Miracle product", "Scientific evidence", "Life skill", "Source"],
+            originalSentence: "This Miracle product claims it can regrow hair in just twenty-four hours."
+        }
+    ],
+    "75-11": [
+        {
+            sentence: "The company ______ that its new car is the fastest in the world.",
+            options: ["Claims", "Evaluates", "Quotes", "Demonstrates"],
+            originalSentence: "The company Claims that its new car is the fastest in the world."
+        }
+    ],
+    "75-12": [
+        {
+            sentence: "The doctor advised him that he needs to ______ to improve his heart health.",
+            options: ["Lose weight", "Boost brain power", "Question before believing", "Apply"],
+            originalSentence: "The doctor advised him that he needs to Lose weight to improve his heart health."
+        }
+    ],
+    "75-13": [
+        {
+            sentence: "The judge was accused of ______ because he was a friend of the defendant.",
+            options: ["Bias", "Evidence", "Proof", "Factual accuracy"],
+            originalSentence: "The judge was accused of Bias because he was a friend of the defendant."
+        }
+    ],
+    "75-14": [
+        {
+            sentence: "I need to verify the ______ of this news article before I share it.",
+            options: ["Factual accuracy", "Scientific evidence", "Miracle product", "Climate change"],
+            originalSentence: "I need to verify the Factual accuracy of this news article before I share it."
+        }
+    ],
+    "75-15": [
+        {
+            sentence: "Scientists believe ______ is the biggest threat to our planet's future.",
+            options: ["Climate change", "Social media", "Energy drink", "Hoax"],
+            originalSentence: "Scientists believe Climate change is the biggest threat to our planet's future."
+        }
+    ],
+    "75-16": [
+        {
+            sentence: "The story about the flying car turned out to be a clever ______.",
+            options: ["Hoax", "Proof", "Evidence", "Pact"],
+            originalSentence: "The story about the flying car turned out to be a clever Hoax."
+        }
+    ],
+    "75-17": [
+        {
+            sentence: "There is no ______ to support the idea that the moon is made of cheese.",
+            options: ["Scientific evidence", "Factual accuracy", "Miracle product", "Life skill"],
+            originalSentence: "There is no Scientific evidence to support the idea that the moon is made of cheese."
+        }
+    ],
+    "75-18": [
+        {
+            sentence: "The student ______ three different authors in his final essay.",
+            options: ["Quotes", "Claims", "Demonstrates", "Questions"],
+            originalSentence: "The student Quotes three different authors in his final essay."
+        }
+    ],
+    "75-19": [
+        {
+            sentence: "It is hard to find ______ information on the internet these days.",
+            options: ["Reliable", "Fake", "Exaggerated", "Approvingly"],
+            originalSentence: "It is hard to find Reliable information on the internet these days."
+        }
+    ],
+    "75-20": [
+        {
+            sentence: "The experiment ______ that the new medicine is safe for humans.",
+            options: ["Demonstrated", "Evaluated", "Questioned", "Applied"],
+            originalSentence: "The experiment Demonstrated that the new medicine is safe for humans."
+        }
+    ],
+    "75-21": [
+        {
+            sentence: "You must always name the ______ of your information in a research paper.",
+            options: ["Source", "Pact", "Hoax", "Term"],
+            originalSentence: "You must always name the Source of your information in a research paper."
+        }
+    ],
+    "75-22": [
+        {
+            sentence: "He drank an ______ to stay awake during the long night shift.",
+            options: ["Energy drink", "Caffeine", "Miracle product", "Hoax"],
+            originalSentence: "He drank an Energy drink to stay awake during the long night shift."
+        }
+    ],
+    "75-23": [
+        {
+            sentence: "Some apps claim they can ______ through daily mental exercises.",
+            options: ["Boost brain power", "Lose weight", "Question before believing", "Exaggerate"],
+            originalSentence: "Some apps claim they can Boost brain power through daily mental exercises."
+        }
+    ],
+    "75-24": [
+        {
+            sentence: "The internet allows us to send messages to the other side of the world ______.",
+            options: ["Instantly", "Temporarily", "Rationally", "Approvingly"],
+            originalSentence: "The internet allows us to send messages to the other side of the world Instantly."
+        }
+    ],
+    "75-25": [
+        {
+            sentence: "Do you have any ______ that you were at home at 10 PM last night?",
+            options: ["Proof", "Bias", "Hoax", "Term"],
+            originalSentence: "Do you have any Proof that you were at home at 10 PM last night?"
+        }
+    ],
+    "75-26": [
+        {
+            sentence: "The impact of the small fire was ______ by the local newspapers.",
+            options: ["Exaggerated", "Demonstrated", "Applied", "Questioned"],
+            originalSentence: "The impact of the small fire was Exaggerated by the local newspapers."
+        }
+    ],
+    "75-27": [
+        {
+            sentence: "Too much ______ can make your heart beat too fast.",
+            options: ["Caffeine", "Energy drink", "Miracle product", "Climate change"],
+            originalSentence: "Too much Caffeine can make your heart beat too fast."
+        }
+    ],
+    "75-28": [
+        {
+            sentence: "The electricity was cut ______ while they fixed the power line.",
+            options: ["Temporarily", "Instantly", "Rationally", "Approvingly"],
+            originalSentence: "The electricity was cut Temporarily while they fixed the power line."
+        }
+    ],
+    "75-29": [
+        {
+            sentence: "The teacher looked ______ at the student's creative art project.",
+            options: ["Approvingly", "Rationally", "Instantly", "Temporarily"],
+            originalSentence: "The teacher looked Approvingly at the student's creative art project."
+        }
+    ],
+    "75-30": [
+        {
+            sentence: "Problem-solving is a ______ that is useful in every job.",
+            options: ["Life skill", "Career", "Pact", "Term"],
+            originalSentence: "Problem-solving is a Life skill that is useful in every job."
+        }
+    ],
+    "75-31": [
+        {
+            sentence: "Are you ______ for a new job or staying with your current company?",
+            options: ["Applying", "Evaluating", "Demonstrating", "Questioning"],
+            originalSentence: "Are you Applying for a new job or staying with your current company?"
+        }
+    ],
+    "75-32": [
+        {
+            sentence: "I have been in many difficult ______ but I always find a way out.",
+            options: ["Situations", "Decisions", "Claims", "Terms"],
+            originalSentence: "I have been in many difficult Situations but I always find a way out."
+        }
+    ],
+    "75-33": [
+        {
+            sentence: "A good researcher always checks ______ to verify a fact.",
+            options: ["Multiple sources", "Life skill", "Miracle product", "Scientific evidence"],
+            originalSentence: "A good researcher always checks Multiple sources to verify a fact."
+        }
+    ],
+    "75-34": [
+        {
+            sentence: "The website was closed for spreading ______ about the election.",
+            options: ["False information", "Climate change", "Factual accuracy", "Scientific evidence"],
+            originalSentence: "The website was closed for spreading False information about the election."
+        }
+    ],
+    "75-35": [
+        {
+            sentence: "News travels very fast today because of ______ like Facebook and X.",
+            options: ["Social media", "Advertisement", "Climate change", "Hoax"],
+            originalSentence: "News travels very fast today because of Social media like Facebook and X."
+        }
+    ],
+    "75-36": [
+        {
+            sentence: "He tried to pay with a ______ hundred-dollar bill, but the cashier noticed.",
+            options: ["Fake", "Reliable", "Exaggerated", "Grateful"],
+            originalSentence: "He tried to pay with a Fake hundred-dollar bill, but the cashier noticed."
+        }
+    ],
+    "75-37": [
+        {
+            sentence: "The two companies made a ______ to help each other grow.",
+            options: ["Pact", "Source", "Term", "Claim"],
+            originalSentence: "The two companies made a Pact to help each other grow."
+        }
+    ],
+    "75-38": [
+        {
+            sentence: "My father taught me to ______ any strange news I hear.",
+            options: ["Question before believing", "Lose weight", "Boost brain power", "Exaggerate"],
+            originalSentence: "My father taught me to Question before believing any strange news I hear."
+        }
+    ],
+    "75-39": [
+        {
+            sentence: "He has had a very successful ______ as a civil engineer.",
+            options: ["Career", "Life skill", "Situation", "Pact"],
+            originalSentence: "He has had a very successful Career as a civil engineer."
+        }
+    ],
+    "75-40": [
+        {
+            sentence: "I am very ______ for the opportunity to study at this university.",
+            options: ["Grateful", "Reliable", "Fake", "Exaggerated"],
+            originalSentence: "I am very Grateful for the opportunity to study at this university."
+        }
+    ],
+    "75-41": [
+        {
+            sentence: "Children have a ______ that makes them want to know everything.",
+            options: ["Questioning mind", "Factual accuracy", "Scientific evidence", "Miracle product"],
+            originalSentence: "Children have a Questioning mind that makes them want to know everything."
+        }
+    ],
     // استكمال gapfillDB.js - الدرس رقم 301
     "301-1": [
         {
