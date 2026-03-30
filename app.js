@@ -11,7 +11,7 @@ class App {
         this.jumbleArabicHint = '';
         this.jumbleCurrentSentence = '';
         this.lang = localStorage.getItem('appLang') || 'ar';
-        this.skippedCards = []; // IDs of cards skipped via "التالي" button
+        this.skippedCards = [];
         this.xpEarnedWords = JSON.parse(localStorage.getItem('xpEarnedWords') || '[]');
         document.documentElement.setAttribute('dir', this.lang === 'ar' ? 'rtl' : 'ltr');
 
@@ -108,7 +108,7 @@ class App {
         this.customLessons = {};
         this.generatedLessons = {};
 
-        this.showAllCardsTemporary = false; // for "Repeat All" to show all cards
+        this.showAllCardsTemporary = false;
 
         if (!localStorage.getItem('users')) {
             localStorage.setItem('users', JSON.stringify({}));
@@ -137,7 +137,6 @@ class App {
         }
     }
 
-    // ================== Language Support ==================
     t(ar, en) {
         return this.lang === 'en' ? en : ar;
     }
@@ -149,7 +148,6 @@ class App {
         this.render();
     }
 
-    // ================== XP System (once per word) ==================
     addXPOnce(amount, wordId) {
         const idStr = String(wordId);
         if (!this.xpEarnedWords.includes(idStr)) {
@@ -162,7 +160,6 @@ class App {
         return false;
     }
 
-    // ================== Badges System ==================
     getBadgesData() {
         return [
             { icon: '🥉', id: 'b1', name: this.t('وسام برونزي', 'Bronze Medal'), req: this.t('فتح 3 دروس', 'Unlock 3 Lessons'), check: () => (this.unlockedLessons || []).length >= 3 },
@@ -198,7 +195,6 @@ class App {
         this.showCustomModal('info', icon, msg);
     }
 
-    // ================== Data persistence ==================
     hashPassword(password) {
         return btoa(password);
     }
@@ -300,7 +296,6 @@ class App {
         this.render();
     }
 
-    // ================== XP & Level System ==================
     getRequiredXPForLevel(level) {
         if (level <= 1) return 0;
         let totalRequired = 0;
@@ -364,7 +359,6 @@ class App {
         console.log(`+${amount} XP from ${source}`);
     }
 
-    // ================== Reward Helpers ==================
     addLessonReward(lessonId) {
         const key = `lesson_opened_${lessonId}`;
         if (!localStorage.getItem(key)) {
@@ -393,7 +387,6 @@ class App {
         this.addXPOnce(1, wordId);
     }
 
-    // ================== Initialization ==================
     init() {
         this.addThemeStyles();
         document.documentElement.setAttribute('data-theme', this.theme);
@@ -415,8 +408,450 @@ class App {
     }
 
     addThemeStyles() {
-        // ... (same as before, omitted for brevity)
-        // (Keep the existing CSS from the previous version)
+        const styleId = 'theme-dynamic-styles';
+        if (document.getElementById(styleId)) return;
+        const style = document.createElement('style');
+        style.id = styleId;
+        style.textContent = `
+            [data-theme="dark"] {
+                --bg-main: #121212;
+                --bg-card: #1e1e1e;
+                --text-main: #ffffff;
+                --text-muted: #cccccc;
+                --border-color: #444;
+            }
+            [data-theme="dark"] body {
+                background-color: #121212 !important;
+                color: #ffffff !important;
+            }
+            [data-theme="dark"] .main-content,
+            [data-theme="dark"] .reading-card,
+            [data-theme="dark"] .feature-card,
+            [data-theme="dark"] .quiz-box,
+            [data-theme="dark"] .flashcard-container,
+            [data-theme="dark"] .jumble-card,
+            [data-theme="dark"] .spelling-card,
+            [data-theme="dark"] .profile-container,
+            [data-theme="dark"] .auth-card,
+            [data-theme="dark"] .badges-container,
+            [data-theme="dark"] .gapfill-sentence,
+            [data-theme="dark"] .scrollable-text {
+                background-color: #1e1e1e !important;
+                color: #ffffff !important;
+                border-color: #444 !important;
+            }
+            [data-theme="dark"] .reading-card *,
+            [data-theme="dark"] .feature-card *,
+            [data-theme="dark"] .quiz-box *,
+            [data-theme="dark"] .flashcard-container *,
+            [data-theme="dark"] .jumble-card *,
+            [data-theme="dark"] .spelling-card *,
+            [data-theme="dark"] .profile-container *,
+            [data-theme="dark"] .auth-card *,
+            [data-theme="dark"] .badges-container *,
+            [data-theme="dark"] .scrollable-text * {
+                color: #ffffff !important;
+            }
+            [data-theme="dark"] input,
+            [data-theme="dark"] textarea,
+            [data-theme="dark"] .spelling-input,
+            [data-theme="dark"] input:not([type="checkbox"]):not([type="radio"]) {
+                background-color: #2d2d2d !important;
+                color: #000000 !important;
+                border-color: #555 !important;
+            }
+            [data-theme="dark"] input::placeholder,
+            [data-theme="dark"] textarea::placeholder {
+                color: #aaa !important;
+            }
+            [data-theme="dark"] .header {
+                background-color: #1e1e1e !important;
+                border-bottom: 1px solid #333 !important;
+            }
+            [data-theme="dark"] .hero-btn,
+            [data-theme="dark"] .quiz-opt-btn,
+            [data-theme="dark"] .nav-btn {
+                background-color: #333 !important;
+                color: #fff !important;
+                border-color: #555 !important;
+            }
+            [data-theme="dark"] .hero-btn:hover,
+            [data-theme="dark"] .quiz-opt-btn:hover {
+                background-color: #444 !important;
+            }
+            [data-theme="dark"] .flashcard-front,
+            [data-theme="dark"] .flashcard-back {
+                background-color: #2d2d2d !important;
+                color: #fff !important;
+            }
+            [data-theme="dark"] .logout-btn {
+                background-color: #4a4a4a !important;
+                color: #fff !important;
+            }
+            [data-theme="dark"] .welcome-banner {
+                background: linear-gradient(135deg, #1a1a2e, #16213e) !important;
+            }
+            [data-theme="dark"] .quiz-question-row h2 {
+                color: #ffffff !important;
+            }
+            [data-theme="dark"] .gapfill-sentence {
+                background: #2d2d2d !important;
+                color: #fff !important;
+            }
+            [data-theme="dark"] .gapfill-explanation {
+                background-color: #2d2d2d !important;
+                color: #ffffff !important;
+                border: 1px solid #555 !important;
+            }
+            [data-theme="dark"] .spelling-feedback {
+                background-color: #2d2d2d !important;
+                color: #ffffff !important;
+            }
+            [data-theme="dark"] .spelling-feedback.correct-feedback {
+                color: #10b981 !important;
+            }
+            [data-theme="dark"] .spelling-feedback.wrong-feedback {
+                color: #ef4444 !important;
+            }
+            .header-content {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding: 10px 20px;
+            }
+            .logo-container {
+                display: flex;
+                align-items: center;
+                gap: 10px;
+                cursor: pointer;
+            }
+            .logo-container img {
+                height: 40px;
+                width: auto;
+                transition: transform 0.3s;
+            }
+            .logo-container:hover img {
+                transform: scale(1.05);
+            }
+            .logo-container h2 {
+                margin: 0;
+                font-size: 1.5rem;
+                font-weight: bold;
+                background: linear-gradient(135deg, #1e40af, #3b82f6);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+            }
+            [data-theme="dark"] .logo-container h2 {
+                background: linear-gradient(135deg, #ffd700, #fbbf24);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+            }
+            .auth-container {
+                text-align: center;
+                margin-bottom: 30px;
+            }
+            .auth-container img {
+                max-width: 120px;
+                height: auto;
+                margin-bottom: 15px;
+            }
+            .auth-container h1 {
+                font-size: 2.5rem;
+                margin: 0;
+                color: #1e40af;
+            }
+            .auth-container p {
+                font-size: 1.2rem;
+                color: #64748b;
+            }
+            [data-theme="dark"] .auth-container h1 {
+                color: #ffd700;
+            }
+            [data-theme="dark"] .auth-container p {
+                color: #ccc;
+            }
+            .auth-card {
+                max-width: 400px;
+                margin: 0 auto;
+            }
+            .spelling-input {
+                width: 100%;
+                padding: 15px;
+                font-size: 1.2rem;
+                border: 2px solid #ddd;
+                border-radius: 8px;
+                margin: 20px 0;
+                direction: ltr;
+                text-align: left;
+            }
+            .spelling-feedback {
+                font-size: 1.2rem;
+                font-weight: bold;
+                margin: 10px 0;
+            }
+            .correct-feedback {
+                color: #10b981;
+            }
+            .wrong-feedback {
+                color: #ef4444;
+            }
+            .ad-container {
+                margin: 20px 0;
+                padding: 15px;
+                background: #f0f0f0;
+                border-radius: 10px;
+                text-align: center;
+                border: 1px dashed #ffd700;
+            }
+            .bank-info {
+                background: #e3f2fd;
+                padding: 15px;
+                border-radius: 10px;
+                font-size: 0.9rem;
+                margin: 10px 0;
+            }
+            .modal-overlay {
+                position: fixed;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background: rgba(0,0,0,0.6);
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                z-index: 1000;
+                animation: fadeIn 0.3s;
+                backdrop-filter: blur(2px);
+            }
+            .modal-content {
+                background: white;
+                border-radius: 28px;
+                padding: 28px;
+                max-width: 380px;
+                width: 90%;
+                max-height: 80vh;
+                overflow-y: auto;
+                box-shadow: 0 20px 35px rgba(0,0,0,0.3);
+                animation: slideUp 0.3s;
+                position: relative;
+                text-align: center;
+                border: 1px solid rgba(255,255,255,0.2);
+            }
+            [data-theme="dark"] .modal-content {
+                background: #1e1e1e;
+                color: white;
+                border-color: #333;
+            }
+            @keyframes fadeIn {
+                from { opacity: 0; }
+                to { opacity: 1; }
+            }
+            @keyframes slideUp {
+                from { transform: translateY(30px); opacity: 0; }
+                to { transform: translateY(0); opacity: 1; }
+            }
+            .modal-header {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                margin-bottom: 20px;
+            }
+            .modal-header h3 {
+                margin: 0;
+            }
+            .close-btn {
+                font-size: 1.5rem;
+                cursor: pointer;
+                padding: 0 5px;
+                color: #999;
+                transition: color 0.2s;
+            }
+            .close-btn:hover {
+                color: #333;
+            }
+            [data-theme="dark"] .close-btn:hover {
+                color: white;
+            }
+            .coin-option {
+                background: #f5f5f5;
+                border-radius: 16px;
+                padding: 15px;
+                margin-bottom: 15px;
+                cursor: pointer;
+                transition: transform 0.2s, box-shadow 0.2s;
+                border: 1px solid #e0e0e0;
+            }
+            [data-theme="dark"] .coin-option {
+                background: #2d2d2d;
+                border-color: #444;
+            }
+            .coin-option:hover {
+                transform: scale(1.02);
+                box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            }
+            .profile-container {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 15px;
+            }
+            .profile-image {
+                width: 150px;
+                height: 150px;
+                border-radius: 50%;
+                background: #e0e0e0;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                overflow: hidden;
+                border: 4px solid #ffd700;
+                cursor: pointer;
+                margin: 10px auto;
+            }
+            .profile-image img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+            .profile-image svg {
+                width: 70px;
+                height: 70px;
+                fill: #aaa;
+            }
+            .profile-info {
+                width: 100%;
+                background: #f9f9f9;
+                border-radius: 12px;
+                padding: 15px;
+                margin: 5px 0;
+            }
+            [data-theme="dark"] .profile-info {
+                background: #2d2d2d;
+            }
+            .info-row {
+                display: flex;
+                justify-content: space-between;
+                padding: 8px 0;
+                border-bottom: 1px solid #eee;
+            }
+            [data-theme="dark"] .info-row {
+                border-bottom-color: #444;
+            }
+            .info-row:last-child {
+                border-bottom: none;
+            }
+            .progress-bar-container {
+                width: 100%;
+                height: 10px;
+                background: #e0e0e0;
+                border-radius: 5px;
+                margin: 10px 0;
+            }
+            .progress-bar-fill {
+                height: 100%;
+                background: linear-gradient(90deg, #ffd700, #ffa500);
+                border-radius: 5px;
+                transition: width 0.3s;
+            }
+            .result-modal {
+                text-align: center;
+            }
+            .result-icon {
+                font-size: 4rem;
+                margin-bottom: 15px;
+            }
+            .result-message {
+                font-size: 1.2rem;
+                margin-bottom: 20px;
+            }
+            .unlock-choice {
+                display: flex;
+                gap: 15px;
+                flex-direction: column;
+                margin: 20px 0;
+            }
+            .badges-container {
+                display: flex;
+                gap: 10px;
+                flex-wrap: wrap;
+                margin: 15px 0;
+                padding: 10px;
+                background: rgba(255,255,255,0.1);
+                border-radius: 12px;
+                cursor: pointer;
+            }
+            .badge-item {
+                font-size: 2rem;
+                transition: transform 0.2s;
+            }
+            .badge-item:hover {
+                transform: scale(1.1);
+            }
+            .badges-grid {
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                gap: 15px;
+                padding: 10px;
+            }
+            .badge-modal-item {
+                text-align: center;
+                padding: 15px;
+                border-radius: 12px;
+                background: #f5f5f5;
+                transition: 0.2s;
+            }
+            [data-theme="dark"] .badge-modal-item {
+                background: #2d2d2d;
+            }
+            .badge-modal-item.earned {
+                background: #ffd700;
+                color: #000;
+                font-weight: bold;
+            }
+            .badge-modal-item:not(.earned) {
+                opacity: 0.4;
+                filter: grayscale(1);
+            }
+            .badge-modal-item .badge-icon {
+                font-size: 3rem;
+                display: block;
+                margin-bottom: 5px;
+            }
+            .badge-modal-item .badge-name {
+                font-size: 1rem;
+                font-weight: bold;
+            }
+            .gapfill-controls {
+                display: flex;
+                gap: 10px;
+                justify-content: center;
+                margin-top: 20px;
+            }
+            [data-theme="dark"] .quiz-question-row h2,
+            [data-theme="dark"] .quiz-opt-btn,
+            [data-theme="dark"] .spelling-input,
+            [data-theme="dark"] .gapfill-sentence,
+            [data-theme="dark"] .gapfill-sentence *,
+            [data-theme="dark"] .spelling-feedback,
+            [data-theme="dark"] .gapfill-controls + div {
+                color: #ffffff !important;
+            }
+            [data-theme="dark"] .quiz-opt-btn {
+                background-color: #333 !important;
+                border-color: #555 !important;
+            }
+            [data-theme="dark"] .quiz-opt-btn.correct-answer {
+                background-color: #10b981 !important;
+            }
+            [data-theme="dark"] .quiz-opt-btn.wrong-answer {
+                background-color: #ef4444 !important;
+            }
+            [data-theme="dark"] .quiz-opt-btn.other-option {
+                background-color: #6b7280 !important;
+            }
+        `;
+        document.head.appendChild(style);
     }
 
     showAd(type, callback) {
@@ -734,7 +1169,6 @@ class App {
         return this.userProfile.level || 'A1';
     }
 
-    // ================== Jumble ==================
     prepareJumble() {
         const lesson = this.getCurrentLessonData();
         if (!lesson) return;
@@ -833,7 +1267,7 @@ class App {
         this.jumbleCorrect = isCorrect;
         this.playTone(isCorrect ? 'correct' : 'error');
         if (isCorrect) {
-            // No XP for jumble (or add if you want)
+            // No XP for jumble
         }
         this.render();
     }
@@ -873,7 +1307,6 @@ class App {
         this.render();
     }
 
-    // ================== Listening ==================
     prepareListeningQuiz() {
         if (this.listeningTimer) {
             clearTimeout(this.listeningTimer);
@@ -1014,7 +1447,6 @@ class App {
         return false;
     }
 
-    // ================== Spelling ==================
     prepareSpelling() {
         const lesson = this.getCurrentLessonData();
         if (!lesson) return;
@@ -1075,7 +1507,6 @@ class App {
         this.spellingUserAnswer = e.target.value;
     }
 
-    // ================== Level Test ==================
     prepareLevelTest(levelParam) {
         let lessonIds = [];
         let levelName = '';
@@ -1650,7 +2081,6 @@ class App {
         }, 1100);
     }
 
-    // ================== Gap Fill ==================
     generateDynamicGapFillQuestion(wordObj) {
         const { english, arabic } = wordObj;
         const sentence = this.t(`The word "______" means "${arabic}".`, `The word "______" means "${arabic}".`);
@@ -2092,20 +2522,17 @@ class App {
                     break;
 
                 case 'nextC':
-                    const lesson = this.getCurrentLessonData();
-                    const added = this.userVocabulary.filter(v => v.lessonId == this.selectedLessonId);
-                    const allTermsLocal = lesson ? [...lesson.terms, ...added] : [];
+                    const lessonData = this.getCurrentLessonData();
+                    const addedWords = this.userVocabulary.filter(v => v.lessonId == this.selectedLessonId);
+                    const allWords = lessonData ? [...lessonData.terms, ...addedWords] : [];
                     let activeCards;
                     if (this.showAllCardsTemporary) {
-                        activeCards = allTermsLocal.filter(t => !this.hiddenFromCards.includes(String(t.id)));
+                        activeCards = allWords.filter(t => !this.hiddenFromCards.includes(String(t.id)));
                         this.showAllCardsTemporary = false;
                     } else {
-                        activeCards = allTermsLocal.filter(t => !this.masteredWords.includes(String(t.id)) && !this.hiddenFromCards.includes(String(t.id)));
+                        activeCards = allWords.filter(t => !this.masteredWords.includes(String(t.id)) && !this.hiddenFromCards.includes(String(t.id)));
                     }
-                    if (activeCards.length === 0) {
-                        // No more cards to show, do nothing
-                        break;
-                    }
+                    if (activeCards.length === 0) break;
                     const currentCard = activeCards[this.currentCardIndex];
                     if (currentCard && !this.skippedCards.includes(String(currentCard.id))) {
                         this.skippedCards.push(String(currentCard.id));
@@ -2120,18 +2547,18 @@ class App {
                 case 'prevC':
                     const lessonPrev = this.getCurrentLessonData();
                     const addedPrev = this.userVocabulary.filter(v => v.lessonId == this.selectedLessonId);
-                    const allTermsPrev = lessonPrev ? [...lessonPrev.terms, ...addedPrev] : [];
-                    let activeCardsPrev;
+                    const allWordsPrev = lessonPrev ? [...lessonPrev.terms, ...addedPrev] : [];
+                    let activePrev;
                     if (this.showAllCardsTemporary) {
-                        activeCardsPrev = allTermsPrev.filter(t => !this.hiddenFromCards.includes(String(t.id)));
+                        activePrev = allWordsPrev.filter(t => !this.hiddenFromCards.includes(String(t.id)));
                         this.showAllCardsTemporary = false;
                     } else {
-                        activeCardsPrev = allTermsPrev.filter(t => !this.masteredWords.includes(String(t.id)) && !this.hiddenFromCards.includes(String(t.id)));
+                        activePrev = allWordsPrev.filter(t => !this.masteredWords.includes(String(t.id)) && !this.hiddenFromCards.includes(String(t.id)));
                     }
-                    if (activeCardsPrev.length === 0) break;
+                    if (activePrev.length === 0) break;
                     this.currentCardIndex--;
                     if (this.currentCardIndex < 0) {
-                        this.currentCardIndex = activeCardsPrev.length - 1;
+                        this.currentCardIndex = activePrev.length - 1;
                     }
                     this.render();
                     break;
@@ -2584,12 +3011,255 @@ class App {
             </main>`;
         }
 
-        // For brevity, I'll keep the rest of the views largely as they were, but with translation calls added.
-        // Since the code is huge, I'll only show the first few views to save space, but the full version would contain all views with translations.
-        // In practice, you would replace all static Arabic strings with `this.t('arabic', 'english')`.
-        // However, given the length, I'll assume the user will integrate the translation calls similarly.
+        if (this.currentPage === 'profile') {
+            const englishLevel = this.getEnglishLevel();
+            const totalLessons = this.unlockedLessons.length;
+            const totalMastered = this.masteredWords.length;
+            const progressPercent = (totalLessons / 100) * 100;
 
-        // For demonstration, I'll show the flashcards view which is heavily used.
+            return `<main class="main-content">
+                <button class="hero-btn" data-action="goHome" style="margin-bottom:15px; background:#64748b;">← ${this.t('رجوع', 'Back')}</button>
+                <div class="reading-card profile-container">
+                    <div class="profile-image" onclick="document.getElementById('profileImage').click()">
+                        ${this.userProfile.image ?
+                    `<img src="${this.userProfile.image}" alt="profile">` :
+                    `<svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" viewBox="0 0 24 24" fill="#aaa"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>`
+                }
+                    </div>
+                    <input type="file" id="profileImage" accept="image/*" style="display:none;" onchange="appInstance.updateProfile()">
+
+                    <div class="profile-info">
+                        <div class="info-row"><span>${this.t('الاسم:', 'Name:')}</span> <span><input type="text" id="profileName" value="${this.userProfile.name || this.userData?.name || ''}" placeholder="${this.t('الاسم', 'Name')}"></span></div>
+                        <div class="info-row"><span>${this.t('العمر:', 'Age:')}</span> <span><input type="number" id="profileAge" value="${this.userProfile.age || ''}" placeholder="${this.t('العمر', 'Age')}"></span></div>
+                        <div class="info-row"><span>${this.t('تاريخ الانضمام:', 'Join Date:')}</span> <span>${this.userProfile.joinDate}</span></div>
+                        <div class="info-row"><span>${this.t('المستوى في التطبيق:', 'App Level:')}</span> <span>${this.userStats.level}</span></div>
+                        <div class="info-row"><span>${this.t('مستوى اللغة:', 'Language Level:')}</span> <span>${englishLevel}</span></div>
+                        <div class="info-row"><span>${this.t('كلمة المرور:', 'Password:')}</span> <span><input type="password" id="profilePassword" placeholder="${this.t('جديدة', 'New')}"></span></div>
+                    </div>
+
+                    <div style="width:100%; margin:15px 0;">
+                        <div style="display:flex; justify-content:space-between;">
+                            <span>${this.t('التقدم العام', 'Overall Progress')}</span>
+                            <span>${totalLessons} ${this.t('درس', 'Lesson')} / 100</span>
+                        </div>
+                        <div class="progress-bar-container">
+                            <div class="progress-bar-fill" style="width: ${progressPercent}%;"></div>
+                        </div>
+                    </div>
+
+                    <button class="hero-btn" data-action="updateProfile" style="background:#10b981;">${this.t('حفظ التغييرات', 'Save Changes')}</button>
+
+                    <h4 style="margin:15px 0 10px;">${this.t('🏅 الأوسمة والإنجازات', '🏅 Badges & Achievements')}</h4>${this.getBadgesDisplay()}<h4 style="margin:15px 0 10px;">${this.t('📜 سجل الاختبارات', '📜 Test History')}</h4>
+                    <button class="hero-btn" data-action="setPage" data-param="test_history" style="background:#3b82f6;">${this.t('عرض سجل الاختبارات', 'View Test History')}</button>
+                </div>
+            </main>`;
+        }
+
+        if (this.currentPage === 'test_history') {
+            return `<main class="main-content">
+                <button class="hero-btn" data-action="goHome" style="margin-bottom:15px; background:#64748b;">← ${this.t('الرجوع للرئيسية', 'Back to Home')}</button>
+                <div class="reading-card">
+                    <h2 style="text-align:center;">📋 ${this.t('سجل اختبارات المستوى', 'Level Test History')}</h2>
+                    ${this.placementResults.length === 0 ?
+                    `<p style="text-align:center; color:#666;">${this.t('لا توجد اختبارات سابقة', 'No previous tests')}</p>` :
+                    `<div class="history-list">
+                        ${this.placementResults.map((r, idx) => `
+                            <div class="history-item" onclick="appInstance.viewTestDetails(${idx})">
+                                <div style="display:flex; justify-content:space-between;">
+                                    <span><strong>${r.date}</strong></span>
+                                    <span>${this.t('المستوى:', 'Level:')} ${r.level}</span>
+                                </div>
+                                <div style="display:flex; justify-content:space-between; margin-top:5px;">
+                                    <span>${this.t('الدرجة:', 'Score:')} ${r.score}/35</span>
+                                    <span>IELTS: ${r.ielts}</span>
+                                </div>
+                            </div>
+                        `).join('')}
+                    </div>`
+                }
+                </div>
+            </main>`;
+        }
+
+        if (this.currentPage === 'placement_test') {
+            if (this.placementStep >= 35) {
+                return `<div class="reading-card result-card">
+                    <h2 style="text-align:center;">🏁 ${this.t('نتيجة الاختبار', 'Test Result')}</h2>
+                    <div style="background:#f0f7ff; padding:15px; border-radius:10px; margin:10px 0; text-align:center;">
+                        <h1 style="color:#1e40af; margin-bottom:5px;">${this.currentDifficulty}</h1>
+                        <p style="font-weight:bold; color:#3b82f6;">IELTS: ${this.getIeltsEquivalent(this.currentDifficulty)}</p>
+                        <p style="font-size:0.9rem; color:#64748b;">${this.t('مجموع الإجابات الصحيحة:', 'Total correct answers:')} ${this.placementScore} / 35</p>
+                    </div>
+                    <h4 style="margin-top:15px;">📜 ${this.t('سجل نتائجك السابقة:', 'Your previous results:')}</h4>
+                    <div style="max-height:200px; overflow-y:auto; font-size:0.9rem; margin-bottom:15px; border:1px solid #e2e8f0; border-radius:8px;">
+                        ${this.placementResults.map((r, idx) => `
+                            <div style="border-bottom:1px solid #e2e8f0; padding:12px; display:flex; justify-content:space-between; align-items:center;">
+                                <div>
+                                    <span>📅 ${r.date}</span><br>
+                                    <strong>${this.t('المستوى:', 'Level:')} ${r.level}</strong> (${r.score}/35)
+                                </div>
+                                <button class="hero-btn" data-action="viewPlacementDetails" data-index="${idx}" style="padding:5px 10px; font-size:0.8rem; background:#3b82f6;">${this.t('عرض التفاصيل', 'Details')}</button>
+                            </div>
+                        `).join('')}
+                    </div>
+                    <div style="display:flex; gap:10px;">
+                        <button class="hero-btn" onclick="appInstance.resetPlacement()" style="background:#ec4899; flex:1;">${this.t('إعادة الاختبار 🔄', 'Retake Test 🔄')}</button>
+                        <button class="hero-btn" data-action="goHome" style="background:#64748b; flex:1;">${this.t('الرئيسية', 'Home')}</button>
+                    </div>
+                </div>`;
+            }
+
+            const q = this.getAdaptiveQuestion();
+            const rawOpts = q.options ? q.options : [q.a, q.b, q.c, q.d];
+            const opts = rawOpts.filter(o => o !== undefined).sort(() => 0.5 - Math.random());
+            const correctAnswer = this.getCorrectAnswer(q);
+
+            return `<div class="reading-card">
+                <div style="display:flex; justify-content:center; margin-bottom:20px;">
+                    <span style="background:#e2e8f0; color:#475569; padding:5px 15px; border-radius:20px; font-weight:bold; font-size:0.85rem;">${this.t('السؤال رقم', 'Question')} ${this.placementStep + 1}</span>
+                </div>
+                <h2 style="margin-bottom:30px; direction:ltr; text-align:left; line-height:1.5;">${q.q}</h2>
+                <div class="quiz-options">
+                    ${opts.map(opt => `
+                        <button class="quiz-opt-btn"
+                                data-action="doPlacement"
+                                data-param="${opt}"
+                                data-correct="${correctAnswer}">
+                            ${opt}
+                        </button>
+                    `).join('')}
+                </div>
+            </div>`;
+        }
+
+        if (this.currentPage === 'placement_details' && this.viewingPlacementDetails) {
+            const details = this.viewingPlacementDetails.details || [];
+            return `<div class="reading-card">
+                <button class="hero-btn" data-action="backFromDetails" style="margin-bottom:15px; background:#64748b;">← ${this.t('رجوع', 'Back')}</button>
+                <h2 style="text-align:center;">${this.t('تفاصيل اختبار', 'Test Details')} ${this.viewingPlacementDetails.date}</h2>
+                <p style="text-align:center;">${this.t('المستوى النهائي:', 'Final Level:')} <strong>${this.viewingPlacementDetails.level}</strong> | ${this.t('الدرجة:', 'Score:')} ${this.viewingPlacementDetails.score}/35</p>
+                <div style="max-height:400px; overflow-y:auto; border:1px solid #e2e8f0; border-radius:8px; padding:10px;">
+                    ${details.map((d, i) => `
+                        <div style="border-bottom:1px solid #e2e8f0; padding:10px; margin-bottom:5px;">
+                            <p><strong>${this.t('س', 'Q')}${i + 1}:</strong> ${d.question}</p>
+                            <p>${this.t('مستوى السؤال:', 'Question level:')} ${d.level || this.t('غير محدد', 'Not specified')}</p>
+                            <p>${this.t('إجابتك:', 'Your answer:')} ${d.selected || this.t('لم يجب', 'Not answered')} - ${d.isCorrect ? '✅' : '❌'}</p>
+                            <p>${this.t('الإجابة الصحيحة:', 'Correct answer:')} ${d.correct || this.t('غير معروفة', 'Unknown')}</p>
+                        </div>
+                    `).join('')}
+                </div>
+            </div>`;
+        }
+
+        if (this.currentPage === 'lessons') {
+            const list = this.getLessonsForCurrentLevel();
+            let testLevelParam = '';
+            if (this.selectedLevel === 'beginner') testLevelParam = 'beginner';
+            else if (this.selectedLevel === 'intermediate') testLevelParam = 'intermediate';
+            else if (this.selectedLevel === 'advanced') testLevelParam = 'advanced';
+
+            const addLessonButton = `
+                <div class="feature-card" data-action="setPage" data-param="addLesson" style="border: 2px dashed #10b981; background: linear-gradient(135deg, #e0f2e9, #d1fae5);">
+                    <h3>📝 ${this.t('إضافة درس يدوي', 'Add Manual Lesson')}</h3>
+                    <p style="font-size:0.9rem; margin-top:5px;">${this.t('أضف درساً خاصاً بك عن طريق لصق النص والكلمات', 'Add your own lesson by pasting text and words')}</p>
+                </div>
+            `;
+
+            return `<main class="main-content">
+                <button class="hero-btn" data-action="goHome" style="margin-bottom:15px; background:#64748b;">← ${this.t('رجوع', 'Back')}</button>
+                ${testLevelParam ? `
+                <div style="margin-bottom:20px; text-align:center;">
+                    <button class="hero-btn" data-action="startLevelTest" data-param="${testLevelParam}" style="background:#8b5cf6;">📊 ${this.t('اختبار المستوى الشامل (100 سؤال)', 'Comprehensive Level Test (100 Questions)')}</button>
+                </div>
+                ` : ''}
+                <div class="features-grid">
+                    ${list.map(l => {
+                        const isOk = (list[0].id == l.id || this.unlockedLessons.includes(String(l.id))) && !l.isGenerated;
+                        const displayLock = (!isOk && !l.isGenerated) ? '🔒 ' : '';
+                        return `<div class="feature-card" data-action="selLesson" data-param="${l.id}" style="${(!isOk && !l.isGenerated) ? 'opacity:0.6;' : ''}">
+                                    <h3>${displayLock}${l.title}</h3>
+                                    ${l.isGenerated ? `
+                                        <div style="display:flex; justify-content:center; gap:10px; margin-top:10px;">
+                                            <button class="hero-btn" data-action="deleteGeneratedLesson" data-param="${l.id}" style="background:#ef4444; padding:5px 10px; font-size:0.8rem;">🗑️ ${this.t('حذف', 'Delete')}</button>
+                                            <button class="hero-btn" data-action="regenerateAILesson" data-param="${this.selectedLevel},${l.id}" style="background:#f59e0b; padding:5px 10px; font-size:0.8rem;">🔄 ${this.t('إعادة توليد', 'Regenerate')}</button>
+                                        </div>
+                                    ` : ''}
+                                  </div>`;
+                    }).join('')}
+                    ${addLessonButton}
+                </div>
+            </main>`;
+        }
+
+        if (this.currentPage === 'unlock_choice') {
+            return `<div class="reading-card" style="text-align:center;">
+                <h3>🔓 ${this.t('فتح الدرس', 'Unlock Lesson')}</h3>
+                <p>${this.t('اختر طريقة فتح الدرس:', 'Choose how to unlock the lesson:')}</p>
+                <div class="unlock-choice">
+                    <button class="hero-btn" data-action="unlockWithTest" data-param="${this.tempLessonToUnlock}" style="background:#3b82f6;">🧪 ${this.t('خوض الاختبار', 'Take Test')}</button>
+                    <button class="hero-btn" data-action="unlockWithCoins" data-param="${this.tempLessonToUnlock}" style="background:#ffd700; color:#000;">💰 ${this.t('دفع 100 لؤلؤة', 'Pay 100 Pearls')} (${this.t('رصيدك:', 'Your balance:')} ${this.userCoins})</button>
+                </div>
+                <button class="hero-btn" data-action="goHome" style="margin-top:15px; background:#64748b;">${this.t('الرئيسية', 'Home')}</button>
+            </div>`;
+        }
+
+        if (this.currentPage === 'custom_lessons_view') {
+            const lessons = Object.values(this.customLessons);
+            return `<main class="main-content">
+                <button class="hero-btn" data-action="goHome" style="margin-bottom:15px; background:#64748b;">← ${this.t('العودة للرئيسية', 'Back to Home')}</button>
+                <h2 style="margin-bottom: 20px; text-align:center;">📂 ${this.t('نصوصي الخاصة', 'My Custom Texts')}</h2>
+                ${lessons.length === 0 ? `<div class="reading-card" style="text-align:center; padding:30px; color:#666;">${this.t('لا توجد نصوص محفوظة. صوّر نصك الأول الآن!', 'No saved texts. Capture your first text now!')}</div>` : ''}
+                <div style="display: flex; flex-direction: column; gap: 15px;">
+                    ${lessons.map(l => `
+                        <div class="reading-card" style="border-right: 5px solid #6366f1; text-align: right; direction: rtl;">
+                            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                                <h3 style="margin:0; color:#4f46e5; cursor:pointer;" data-action="selLesson" data-param="${l.id}">${l.title}</h3>
+                                <div style="display: flex; gap: 15px;">
+                                    <button onclick="appInstance.editLessonTitle('${l.id}')" style="background:none; border:none; cursor:pointer; font-size:1.2rem;">✏️</button>
+                                    <button onclick="appInstance.editLessonContent('${l.id}')" style="background:none; border:none; cursor:pointer; font-size:1.2rem;">📝</button>
+                                    <button onclick="appInstance.deleteCustomLesson('${l.id}')" style="background:none; border:none; cursor:pointer; font-size:1.2rem;">🗑️</button>
+                                </div>
+                            </div>
+                            <p style="font-size: 0.9rem; color: #555; margin-bottom: 15px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; direction: ltr; text-align: left;">
+                                ${l.content}
+                            </p>
+                            <button class="hero-btn" data-action="selLesson" data-param="${l.id}" style="width:100%; padding: 12px; font-size: 1rem; background: #6366f1;">📖 ${this.t('فتح النص للدراسة', 'Open Text for Study')}</button>
+                        </div>
+                    `).join('')}
+                </div>
+            </main>`;
+        }
+
+        if (this.currentPage === 'reading') {
+            const audioSrc = lesson.audio || `audio/${lesson.id}.mp3`;
+
+            return `<main class="main-content">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px; flex-wrap: wrap;">
+                    <button class="hero-btn" data-action="backToLessons" style="background:#64748b;">⬅ ${this.t('تراجع', 'Back')}</button>
+                    <div style="display: flex; gap: 5px; background: #f0f0f0; padding: 5px; border-radius: 8px; flex-wrap: wrap;">
+                        <button class="hero-btn" data-action="playAudio" data-param="${audioSrc}" style="background:#3b82f6; padding: 5px 10px;">▶️ ${this.t('تشغيل', 'Play')}</button>
+                        <button class="hero-btn" data-action="pauseAudio" style="background:#f59e0b; padding: 5px 10px;">⏸️ ${this.t('إيقاف مؤقت', 'Pause')}</button>
+                        <button class="hero-btn" data-action="stopAudio" style="background:#ef4444; padding: 5px 10px;">⏹️ ${this.t('إيقاف', 'Stop')}</button>
+                        <button class="hero-btn" data-action="skipBack10" style="background:#8b5cf6; padding: 5px 10px;">⏪ 10</button>
+                        <button class="hero-btn" data-action="skipForward10" style="background:#8b5cf6; padding: 5px 10px;">10 ⏩</button>
+                        <button class="hero-btn" data-action="speedDown" style="background:#8b5cf6; padding: 5px 10px;">🐢</button>
+                        <span style="background:#fff; padding: 5px 10px; border-radius: 5px;">${this.audioPlaybackRate.toFixed(2)}x</span>
+                        <button class="hero-btn" data-action="speedUp" style="background:#8b5cf6; padding: 5px 10px;">🐇</button>
+                    </div>
+                </div>
+                <div class="reading-card">
+                    <h2>${lesson.title}</h2>
+                    <div class="scrollable-text" style="direction:ltr; text-align:left; margin-top:10px;">${lesson.content}</div>
+                </div>
+                <div class="reading-card" style="margin-top:20px; border:1px dashed #6366f1; background:#f0f7ff;">
+                    <h4 style="margin-bottom:10px;">${this.t('إضافة كلمة جديدة:', 'Add New Word:')}</h4>
+                    <input id="newEng" placeholder="${this.t('اكتب بالإنجليزية هنا...', 'Write in English here...')}" style="width:100%; padding:12px; border-radius:8px; border:1px solid #ddd;" oninput="appInstance.translateAuto(this.value, 'newArb')">
+                    <input id="newArb" placeholder="${this.t('الترجمة تظهر هنا...', 'Translation will appear here...')}" style="width:100%; padding:12px; margin:10px 0; border-radius:8px; border:1px solid #ddd; background:#fff;">
+                    <button class="hero-btn" data-action="addNewWord" style="width:100%; background:#10b981;">✅ ${this.t('إضافة للقائمة', 'Add to List')}</button>
+                </div>
+            </main>`;
+        }
+
         if (this.currentPage === 'flashcards') {
             let active;
             if (this.showAllCardsTemporary) {
@@ -2629,13 +3299,236 @@ class App {
             </main>`;
         }
 
-        // For the rest of the views, I'll keep the original Arabic to keep the answer within length limits.
-        // In a full solution, all static strings would be wrapped with `this.t()`.
-        // Since this is already extremely long, I'll stop here with the understanding that the complete code would have translations everywhere.
-        // The user can apply the same pattern to the remaining views.
+        if (this.currentPage === 'quiz') {
+            if (this.quizIndex >= this.quizQuestions.length) {
+                const pass = (this.quizScore / this.quizQuestions.length) >= 0.75;
+                if (this.isUnlockTest && pass) {
+                    this.unlockedLessons.push(String(this.tempLessonToUnlock));
+                    this.userCoins += 20;
+                    this.saveUserData();
+                    this.updateLevelAndBadges();
+                    this.showCustomModal('success', '🎉', this.t(`لقد فتحت درساً جديداً وحصلت على 20 لؤلؤة!`, `You unlocked a new lesson and earned 20 pearls!`));
+                }
+                this.saveUserData();
+                return `<div class="reading-card finish-box">
+                    <h2>${pass ? this.t("نجحت! 🎉", "Passed! 🎉") : this.t("حاول مجدداً", "Try Again")}</h2>
+                    <button class="hero-btn" data-action="backToLessons">${this.t('متابعة', 'Continue')}</button>
+                </div>`;
+            }
+            const q = this.quizQuestions[this.quizIndex];
+            return `<div class="reading-card quiz-box">
+                <div class="quiz-info">${this.t('السؤال', 'Question')} ${this.quizIndex + 1}/${this.quizQuestions.length}</div>
+                <div class="quiz-question-row">
+                    <h2>${q.english}</h2>
+                    <button class="quiz-speak-btn" data-action="speak" data-param="${q.english}">🔊</button>
+                </div>
+                <div class="quiz-options">
+                    ${this.quizOptions.map(opt => `<button class="quiz-opt-btn" data-action="ansQ" data-param="${opt}" data-correct="${q.arabic}">${opt}</button>`).join('')}
+                </div>
+            </div>`;
+        }
 
-        // ... (remaining views would be as in the original, but with translations added)
-        // For brevity, I'm omitting the rest, but the full code would contain all of them.
+        if (this.currentPage === 'jumble') {
+            if (!this.jumbleUnlocked[this.selectedLessonId]) {
+                return `<div class="reading-card" style="text-align: center;">
+                    <h3>🔤 ${this.t('ترتيب الجمل', 'Sentence Jumble')}</h3>
+                    <p>${this.t('لفتح هذا التمرين تحتاج 50 💎 لؤلؤة (مرة واحدة فقط للدرس).', 'To unlock this exercise you need 50 💎 pearls (one-time per lesson).')}</p>
+                    <p>${this.t('رصيدك الحالي:', 'Your balance:')} ${this.userCoins} 💎</p>
+                    <button class="hero-btn" onclick="appInstance.unlockJumble('${this.selectedLessonId}')" style="background: #8b5cf6;">${this.t('فتح (50 💎)', 'Unlock (50 💎)')}</button>
+                </div>`;
+            }
+            return `<div class="reading-card">
+                <h3>🔤 ${this.t('رتب الكلمات لتكوين جملة صحيحة', 'Arrange the words to form a correct sentence')}</h3>
+                <div style="display: flex; flex-wrap: wrap; gap: 10px; margin: 20px 0; padding: 15px; background: ${this.jumbleChecked ? (this.jumbleCorrect ? '#d1fae5' : '#fee2e2') : '#f1f5f9'}; border-radius: 8px; min-height: 60px; border: ${this.jumbleChecked ? (this.jumbleCorrect ? '2px solid #10b981' : '2px solid #ef4444') : 'none'};">
+                    ${this.jumbleUserAnswer.map(word => `
+                        <span class="jumble-word-top" data-action="jumbleRemove" data-param="${word}" style="cursor: pointer; background: #3b82f6; color: white; padding: 8px 15px; border-radius: 20px; font-size: 1.2rem;">${word}</span>
+                    `).join('')}
+                </div>
+                <div style="display: flex; flex-wrap: wrap; gap: 10px; margin: 20px 0; padding: 15px; background: #e2e8f0; border-radius: 8px; min-height: 60px;">
+                    ${this.jumbleWords.map(word => `
+                        <button class="hero-btn" data-action="jumbleSelect" data-param="${word}" style="padding: 8px 15px; background: #64748b; font-size: 1rem; ${this.jumbleChecked ? 'opacity:0.5; pointer-events:none;' : ''}">${word}</button>
+                    `).join('')}
+                </div>
+                <div style="display: flex; gap: 10px; justify-content: center; flex-wrap: wrap;">
+                    <button class="hero-btn" data-action="jumbleReset" style="background:#f59e0b;">🔄 ${this.t('إعادة', 'Reset')}</button>
+                    <button class="hero-btn" data-action="jumbleCheck" style="background:#10b981;" ${this.jumbleChecked ? 'disabled' : ''}>✅ ${this.t('تحقق', 'Check')}</button>
+                    <button class="hero-btn" data-action="jumbleHint" style="background:#3b82f6;" ${this.jumbleChecked || this.jumbleHintUsed ? 'disabled' : ''}>💡 ${this.t('تلميح', 'Hint')}</button>
+                    ${this.jumbleChecked ? `<button class="hero-btn" data-action="jumbleNext" style="background:#3b82f6;">➡️ ${this.t('التالي', 'Next')}</button>` : ''}
+                </div>
+                ${this.jumbleArabicHint ? `<div style="margin-top: 15px; padding: 10px; background: #e0f2fe; border-radius: 8px; text-align: center; font-size: 1.1rem; color: #0369a1;">🔍 ${this.t('الترجمة:', 'Translation:')} ${this.jumbleArabicHint}</div>` : ''}
+                ${this.jumbleHintUsed ? `<p style="margin-top: 10px; color: #f59e0b;">🔎 ${this.t('تلميح: أول كلمة هي', 'Hint: The first word is')} "${this.jumbleOriginalSentence.split(/\s+/)[0]}"</p>` : ''}
+            </div>`;
+        }
+
+        if (this.currentPage === 'listening') {
+            if (!this.listeningUnlocked[this.selectedLessonId]) {
+                return `<div class="reading-card" style="text-align: center;">
+                    <h3>🎧 ${this.t('اختبار الاستماع', 'Listening Test')}</h3>
+                    <p>${this.t('لفتح هذا الاختبار تحتاج 50 💎 لؤلؤة (مرة واحدة فقط للدرس).', 'To unlock this test you need 50 💎 pearls (one-time per lesson).')}</p>
+                    <p>${this.t('رصيدك الحالي:', 'Your balance:')} ${this.userCoins} 💎</p>
+                    <button class="hero-btn" onclick="appInstance.unlockListening('${this.selectedLessonId}')" style="background: #8b5cf6;">${this.t('فتح (50 💎)', 'Unlock (50 💎)')}</button>
+                </div>`;
+            }
+            if (!this.listeningCurrent) {
+                return `<div class="reading-card"><p>${this.t('لا توجد كلمات متاحة. حاول مرة أخرى.', 'No words available. Please try again.')}</p></div>`;
+            }
+            return `<div class="reading-card">
+                <h3>🎧 ${this.t('استمع واختر الكلمة الصحيحة', 'Listen and choose the correct word')}</h3>
+                <div style="text-align: center; margin: 30px 0;">
+                    <button class="hero-btn" data-action="speak" data-param="${this.listeningCurrent.english}" style="font-size: 2rem; padding: 20px; background: #6366f1;">🔊 ${this.t('استمع مرة أخرى', 'Listen Again')}</button>
+                </div>
+                <div class="quiz-options">
+                    ${this.listeningOptions.map(opt => `
+                        <button class="quiz-opt-btn listening-opt-btn" data-action="listeningAnswer" data-param="${opt}">${opt}</button>
+                    `).join('')}
+                </div>
+            </div>`;
+        }
+
+        if (this.currentPage === 'spelling') {
+            if (!this.spellingUnlocked[this.selectedLessonId]) {
+                return `<div class="reading-card" style="text-align: center;">
+                    <h3>✍️ ${this.t('تمرين الكتابة', 'Spelling Exercise')}</h3>
+                    <p>${this.t('لفتح هذا التمرين تحتاج 50 💎 لؤلؤة (مرة واحدة فقط للدرس).', 'To unlock this exercise you need 50 💎 pearls (one-time per lesson).')}</p>
+                    <p>${this.t('رصيدك الحالي:', 'Your balance:')} ${this.userCoins} 💎</p>
+                    <button class="hero-btn" onclick="appInstance.unlockSpelling('${this.selectedLessonId}')" style="background: #8b5cf6;">${this.t('فتح (50 💎)', 'Unlock (50 💎)')}</button>
+                </div>`;
+            }
+            if (!this.spellingCurrent) {
+                return `<div class="reading-card"><p>${this.t('لا توجد كلمات متاحة. حاول مرة أخرى.', 'No words available. Please try again.')}</p></div>`;
+            }
+            return `<div class="reading-card spelling-card">
+                <h3>✍️ ${this.t('اكتب الكلمة بالانجليزية', 'Write the word in English')}</h3>
+                <div style="font-size: 2rem; text-align: center; margin: 20px 0; padding: 20px; background: #f0f7ff; border-radius: 12px;">
+                    ${this.spellingCurrent.arabic}
+                </div>
+                <input type="text" id="spellingInput" class="spelling-input" placeholder="${this.t('اكتب الكلمة هنا...', 'Write the word here...')}" value="${this.spellingUserAnswer}" ${this.spellingAnswered ? 'disabled' : ''}>
+                ${this.spellingResult ? `
+                    <div class="spelling-feedback ${this.spellingResult === 'correct' ? 'correct-feedback' : 'wrong-feedback'}">
+                        ${this.spellingResult === 'correct' ? this.t('✅ إجابة صحيحة!', '✅ Correct answer!') : this.t('❌ إجابة خاطئة!', '❌ Wrong answer!')}
+                    </div>
+                ` : ''}
+                <div style="display: flex; gap: 10px; justify-content: center;">
+                    <button class="hero-btn" data-action="spellingCheck" style="background:#10b981;" ${this.spellingAnswered ? 'disabled' : ''}>✅ ${this.t('تحقق', 'Check')}</button>
+                    ${this.spellingAnswered ? `<button class="hero-btn" data-action="spellingNext" style="background:#3b82f6;">➡️ ${this.t('التالي', 'Next')}</button>` : ''}
+                </div>
+            </div>`;
+        }
+
+        if (this.currentPage === 'level_test') {
+            if (!this.levelTestCurrentQuestion) {
+                return `<div class="reading-card"><p>${this.t('جاري تحضير الاختبار...', 'Preparing test...')}</p></div>`;
+            }
+            const q = this.levelTestCurrentQuestion;
+            const options = this.levelTestCurrentOptions || [];
+
+            return `<div class="reading-card">
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px;">
+                    <span style="background:#e2e8f0; color:#475569; padding:5px 15px; border-radius:20px; font-weight:bold; font-size:0.85rem;">
+                        ${this.t('السؤال', 'Question')} ${this.levelTestQuestionsAnswered + 1} / ${this.levelTestMaxQuestions}
+                    </span>
+                    <button class="hero-btn" data-action="finishLevelTest" style="background:#ef4444; padding:5px 15px;">⏹️ ${this.t('إنهاء الاختبار', 'Finish Test')}</button>
+                </div>
+                <div class="quiz-question-row">
+                    <h2>${q.english}</h2>
+                    <button class="quiz-speak-btn" data-action="speak" data-param="${q.english}">🔊</button>
+                </div>
+                <div class="quiz-options">
+                    ${options.map(opt => `
+                        <button class="quiz-opt-btn"
+                                data-action="levelTestAns"
+                                data-param="${opt}"
+                                data-correct="${q.arabic}">
+                            ${opt}
+                        </button>
+                    `).join('')}
+                </div>
+            </div>`;
+        }
+
+        if (this.currentPage === 'level_test_result') {
+            return `<div class="reading-card">
+                <h2 style="text-align:center;">🏁 ${this.t('نتيجة الاختبار الشامل', 'Comprehensive Test Result')}</h2>
+                <div style="background:#f0f7ff; padding:15px; border-radius:10px; margin:20px 0; text-align:center;">
+                    <p style="font-size:1.2rem;">${this.levelTestResultMessage}</p>
+                </div>
+                <button class="hero-btn" data-action="goHome" style="background:#64748b;">${this.t('العودة للرئيسية', 'Back to Home')}</button>
+            </div>`;
+        }
+
+        if (this.currentPage === 'addLesson') {
+            return `<main class="main-content" style="height: 90vh; display: flex; flex-direction: column; gap: 10px;">
+                <button class="hero-btn" data-action="goHome" style="background:#64748b; flex-shrink: 0;">← ${this.t('رجوع للرئيسية', 'Back to Home')}</button>
+                <div class="reading-card" style="flex-grow: 1; display: flex; flex-direction: column; gap: 12px; overflow: hidden;">
+                    <h3 style="flex-shrink: 0;">📸 ${this.t('إضافة نص ذكي', 'Add Smart Text')}</h3>
+                    <div style="background: #f8fafc; padding: 10px; border-radius: 8px; border: 1px dashed #6366f1; flex-shrink: 0;">
+                        <input type="file" id="fileInput" accept="image/*" onchange="appInstance.processOCR(this)" style="width: 100%;">
+                    </div>
+                    <input id="newLessonTitle" placeholder="${this.t('عنوان النص', 'Text Title')}" style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; flex-shrink: 0;">
+                    <textarea id="ocrText" placeholder="${this.t('النص سيظهر هنا...', 'Text will appear here...')}" style="width: 100%; flex-grow: 1; padding: 12px; border: 1px solid #ddd; border-radius: 8px; font-size: 1rem; line-height: 1.5; resize: none;"></textarea>
+                    <button class="hero-btn" onclick="appInstance.saveNewCustomLesson()" style="width: 100%; background:#10b981; padding: 15px; font-size: 1.1rem; flex-shrink: 0;">💾 ${this.t('حفظ النص', 'Save Text')}</button>
+                </div>
+            </main>`;
+        }
+
+        if (this.currentPage === 'gapfill') {
+            if (!this.gapFillUnlocked[this.selectedLessonId]) {
+                return `<div class="reading-card" style="text-align: center;">
+                    <h3>📝 ${this.t('ملء الفراغ', 'Gap Fill')}</h3>
+                    <p>${this.t('لفتح هذا التمرين تحتاج 75 💎 لؤلؤة (مرة واحدة فقط للدرس).', 'To unlock this exercise you need 75 💎 pearls (one-time per lesson).')}</p>
+                    <p>${this.t('رصيدك الحالي:', 'Your balance:')} ${this.userCoins} 💎</p>
+                    <button class="hero-btn" onclick="appInstance.unlockGapFill('${this.selectedLessonId}')" style="background: #8b5cf6;">${this.t('فتح (75 💎)', 'Unlock (75 💎)')}</button>
+                </div>`;
+            }
+            if (!this.gapFillCurrentQuestion) {
+                return `<div class="reading-card"><p>${this.t('جاري تحضير السؤال...', 'Preparing question...')}</p></div>`;
+            }
+            const q = this.gapFillCurrentQuestion;
+            return `<div class="reading-card">
+                <h3>📝 ${this.t('اختر الكلمة المناسبة لملء الفراغ', 'Choose the correct word to fill the blank')}</h3>
+                <div class="gapfill-sentence" style="font-size: 1.8rem; font-weight: bold; text-align: center; margin: 30px 0; padding: 20px; background: ${this.theme === 'dark' ? '#2d2d2d' : '#f8fafc'}; border-radius: 16px;">
+                    ${q.text}
+                </div>
+                <div class="quiz-options">
+                    ${this.gapFillOptions.map(opt => `
+                        <button class="quiz-opt-btn gapfill-opt-btn"
+                                data-action="gapfillAnswer"
+                                data-english="${opt}">
+                            ${opt}
+                        </button>
+                    `).join('')}
+                </div>
+                ${this.gapFillResult !== null ? `
+                    <div class="spelling-feedback ${this.gapFillResult === 'correct' ? 'correct-feedback' : 'wrong-feedback'}">
+                        ${this.gapFillResult === 'correct' ? this.t('✅ إجابة صحيحة!', '✅ Correct answer!') : this.t('❌ إجابة خاطئة!', '❌ Wrong answer!')}
+                    </div>
+                    <div style="display: flex; justify-content: center; gap: 10px; margin: 10px 0;">
+                        <button class="hero-btn" data-action="gapfillShowExplanation" style="background:#6366f1;">💡 ${this.t('شرح مفصل', 'Detailed Explanation')}</button>
+                    </div>
+                    ${this.gapFillExplanationVisible ? `
+                        <div class="gapfill-explanation" style="margin: 15px 0; padding: 10px; background: ${this.theme === 'dark' ? '#2d2d2d' : '#eef2ff'}; border-radius: 8px; font-size: 0.95rem;">
+                            <div style="font-weight: bold; margin-bottom: 8px;">📖 ${this.t('معنى الجملة (بالإنجليزية):', 'Full sentence in English:')}</div>
+                            <div>${q.originalSentence || q.text.replace('______', q.correct)}</div>
+                            <div style="font-weight: bold; margin: 10px 0 5px;">🌐 ${this.t('الترجمة العربية:', 'Arabic translation:')}</div>
+                            <div>${q.originalSentenceArabic || this.t('جاري التحميل...', 'Loading...')}</div>
+                            <div style="font-weight: bold; margin: 10px 0 5px;">📚 ${this.t('معاني الخيارات:', 'Meanings of options:')}</div>
+                            <div style="display: flex; flex-direction: column; gap: 5px;">
+                                ${this.gapFillOptionsMeanings.map(opt => `
+                                    <div>• <strong>${opt.english}</strong> : ${opt.arabic}</div>
+                                `).join('')}
+                            </div>
+                            <div style="margin-top: 10px; font-weight: bold;">✅ ${this.t('الإجابة الصحيحة:', 'Correct answer:')} ${q.correct} (${q.arabic})</div>
+                            <div style="margin-top: 8px;">💡 ${this.t('سبب الإجابة: كلمة', 'Reason: The word')} "${q.correct}" ${this.t('هي الأنسب لسياق الجملة لأنها تعطي المعنى الصحيح وتتناسب مع بقية الكلمات.', 'is the most appropriate for the sentence context because it gives the correct meaning and fits with the rest of the words.')}</div>
+                        </div>
+                    ` : ''}
+                    <div class="gapfill-controls">
+                        <button class="hero-btn" data-action="gapfillNext" style="background:#3b82f6;">➡️ ${this.t('التالي', 'Next')}</button>
+                    </div>
+                ` : ''}
+            </div>`;
+        }
+
+        return `<div style="text-align:center; padding:50px;">${this.t('جاري التحميل...', 'Loading...')}</div>`;
     }
 
     toggleTheme() {
