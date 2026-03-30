@@ -9318,6 +9318,315 @@ window.gapfillDB = {
             originalSentence: "The students started their new task Enthusiastically and with high energy."
         }
     ],
+    // استكمال gapfillDB.js - الدرس رقم 61
+    "61-1": [
+        {
+            sentence: "I have to write an ______ about my future goals for the English class.",
+            options: ["Essay", "Career plan", "Portfolio", "Artwork"],
+            originalSentence: "I have to write an Essay about my future goals for the English class."
+        }
+    ],
+    "61-2": [
+        {
+            sentence: "Creating a ______ helps you decide which steps to take after graduation.",
+            options: ["Career plan", "Summer camp", "Workshop", "Grades"],
+            originalSentence: "Creating a Career plan helps you decide which steps to take after graduation."
+        }
+    ],
+    "61-3": [
+        {
+            sentence: "Many students feel ______ when they have to choose between science and arts.",
+            options: ["Confused", "Relieved", "Inspired", "Patient"],
+            originalSentence: "Many students feel Confused when they have to choose between science and arts."
+        }
+    ],
+    "61-4": [
+        {
+            sentence: "Success is not a straight line; everyone has their own unique ______.",
+            options: ["Path", "Field", "Grade", "Sense of direction"],
+            originalSentence: "Success is not a straight line; everyone has their own unique Path."
+        }
+    ],
+    "61-5": [
+        {
+            sentence: "My uncle is a ______ who builds bridges and safe roads.",
+            options: ["Civil engineer", "Career counselor", "Librarian", "Artist"],
+            originalSentence: "My uncle is a Civil engineer who builds bridges and safe roads."
+        }
+    ],
+    "61-6": [
+        {
+            sentence: "An ______ at a tech company is a great way to get work experience.",
+            options: ["Internship", "Essay", "Workshop", "Summer camp"],
+            originalSentence: "An Internship at a tech company is a great way to get work experience."
+        }
+    ],
+    "61-7": [
+        {
+            sentence: "She ______ for three different universities and got accepted into all of them.",
+            options: ["Applied", "Designed", "Inspired", "Ending up"],
+            originalSentence: "She Applied for three different universities and got accepted into all of them."
+        }
+    ],
+    "61-8": [
+        {
+            sentence: "The manager was very ______ with his technical skills and discipline.",
+            options: ["Impressed", "Confused", "Relieved", "Patient"],
+            originalSentence: "The manager was very Impressed with his technical skills and discipline."
+        }
+    ],
+    "61-9": [
+        {
+            sentence: "They are ______ a new hospital in our neighborhood that will open next year.",
+            options: ["Constructing", "Imagining", "Scrolling", "Hugging"],
+            originalSentence: "They are Constructing a new hospital in our neighborhood that will open next year."
+        }
+    ],
+    "61-10": [
+        {
+            sentence: "He has loved drawing buildings since his early ______.",
+            options: ["Childhood", "Career plan", "Field", "Beginning"],
+            originalSentence: "He has loved drawing buildings since his early Childhood."
+        }
+    ],
+    "61-11": [
+        {
+            sentence: "You should talk to a ______ if you don't know which job suits your personality.",
+            options: ["Career counselor", "Civil engineer", "Librarian", "Artist"],
+            originalSentence: "You should talk to a Career counselor if you don't know which job suits your personality."
+        }
+    ],
+    "61-12": [
+        {
+            sentence: "Medicine is a difficult ______ that requires many years of study.",
+            options: ["Field", "Path", "Portfolio", "Workshop"],
+            originalSentence: "Medicine is a difficult Field that requires many years of study."
+        }
+    ],
+    "61-13": [
+        {
+            sentence: "I want to study ______ because I enjoy designing modern buildings.",
+            options: ["Architecture", "Journalism", "Physics", "Artwork"],
+            originalSentence: "I want to study Architecture because I enjoy designing modern buildings."
+        }
+    ],
+    "61-14": [
+        {
+            sentence: "Being an artist requires a lot of ______ and original ideas.",
+            options: ["Creativity", "Precision", "Qualification", "Grade"],
+            originalSentence: "Being an artist requires a lot of Creativity and original ideas."
+        }
+    ],
+    "61-15": [
+        {
+            sentence: "In engineering, ______ is very important; even a small mistake can be dangerous.",
+            options: ["Precision", "Creativity", "Qualification", "Sense of direction"],
+            originalSentence: "In engineering, Precision is very important; even a small mistake can be dangerous."
+        }
+    ],
+    "61-16": [
+        {
+            sentence: "Do you have the right ______ to apply for this senior management position?",
+            options: ["Qualifications", "Portfolios", "Summer camps", "Grades"],
+            originalSentence: "Do you have the right Qualifications to apply for this senior management position?"
+        }
+    ],
+    "61-17": [
+        {
+            sentence: "You need to get high ______ in math and science to enter the engineering college.",
+            options: ["Grades", "Qualifications", "Workshops", "Programs"],
+            originalSentence: "You need to get high Grades in math and science to enter the engineering college."
+        }
+    ],
+    "61-18": [
+        {
+            sentence: "______ is the branch of science that studies matter, energy, and motion.",
+            options: ["Physics", "Architecture", "Journalism", "Creativity"],
+            originalSentence: "Physics is the branch of science that studies matter, energy, and motion."
+        }
+    ],
+    "61-19": [
+        {
+            sentence: "An artist usually carries a ______ to show their best work to clients.",
+            options: ["Portfolio", "Sketchbook", "Essay", "Career plan"],
+            originalSentence: "An artist usually carries a Portfolio to show their best work to clients."
+        }
+    ],
+    "61-20": [
+        {
+            sentence: "The museum is full of amazing ______ from the nineteenth century.",
+            options: ["Artwork", "Qualifications", "Programs", "Grades"],
+            originalSentence: "The museum is full of amazing Artwork from the nineteenth century."
+        }
+    ],
+    "61-21": [
+        {
+            sentence: "Many top ______ offer online courses for students all over the world.",
+            options: ["Universities", "Summer camps", "Workshops", "Cafeterias"],
+            originalSentence: "Many top Universities offer online courses for students all over the world."
+        }
+    ],
+    "61-22": [
+        {
+            sentence: "The school offers various ______ to help students improve their coding skills.",
+            options: ["Programs", "Portfolios", "Grades", "Artworks"],
+            originalSentence: "The school offers various Programs to help students improve their coding skills."
+        }
+    ],
+    "61-23": [
+        {
+            sentence: "We attended two ______ this week to learn about digital marketing.",
+            options: ["Workshops", "Universities", "Summer camps", "Cafeterias"],
+            originalSentence: "We attended two Workshops this week to learn about digital marketing."
+        }
+    ],
+    "61-24": [
+        {
+            sentence: "Kids often go to ______ to enjoy outdoor activities and make new friends.",
+            options: ["Summer camps", "Workshops", "Universities", "Fields"],
+            originalSentence: "Kids often go to Summer camps to enjoy outdoor activities and make new friends."
+        }
+    ],
+    "61-25": [
+        {
+            sentence: "He has a great ______, he never gets lost in a new city.",
+            options: ["Sense of direction", "Career plan", "Precision", "Creativity"],
+            originalSentence: "He has a great Sense of direction, he never gets lost in a new city."
+        }
+    ],
+    "61-26": [
+        {
+            sentence: "If you don't study now, you might ______ failing the final exam.",
+            options: ["End up", "Applied", "Designed", "Inspired"],
+            originalSentence: "If you don't study now, you might End up failing the final exam."
+        }
+    ],
+    "61-27": [
+        {
+            sentence: "Graphic design is a ______ where you can use your imagination every day.",
+            options: ["Creative field", "Path", "Portfolio", "Program"],
+            originalSentence: "Graphic design is a Creative field where you can use your imagination every day."
+        }
+    ],
+    "61-28": [
+        {
+            sentence: "Let's meet at the ______ to have a quick snack before the next lecture.",
+            options: ["Cafeteria", "University", "Summer camp", "Workshop"],
+            originalSentence: "Let's meet at the Cafeteria to have a quick snack before the next lecture."
+        }
+    ],
+    "61-29": [
+        {
+            sentence: "Stop ______ through social media and start doing something useful.",
+            options: ["Scrolling", "Constructing", "Hugging", "Applied"],
+            originalSentence: "Stop Scrolling through social media and start doing something useful."
+        }
+    ],
+    "61-30": [
+        {
+            sentence: "My father built a small ______ for us in the garden when we were young.",
+            options: ["Treehouse", "Modern house", "University", "Workshop"],
+            originalSentence: "My father built a small Treehouse for us in the garden when we were young."
+        }
+    ],
+    "61-31": [
+        {
+            sentence: "The engineer ______ a new system to save electricity in the building.",
+            options: ["Designed", "Inspired", "Applied", "Ending up"],
+            originalSentence: "The engineer Designed a new system to save electricity in the building."
+        }
+    ],
+    "61-32": [
+        {
+            sentence: "You have to be ______ when teaching children because they learn slowly.",
+            options: ["Patient", "Confused", "Relieved", "Inspired"],
+            originalSentence: "You have to be Patient when teaching children because they learn slowly."
+        }
+    ],
+    "61-33": [
+        {
+            sentence: "Working in ______ means you have to find and report the truth to people.",
+            options: ["Journalism", "Architecture", "Physics", "Creativity"],
+            originalSentence: "Working in Journalism means you have to find and report the truth to people."
+        }
+    ],
+    "61-34": [
+        {
+            sentence: "I wrote an article about the football match for the ______.",
+            options: ["School newspaper", "Essay", "Portfolio", "Sketchbook"],
+            originalSentence: "I wrote an article about the football match for the School newspaper."
+        }
+    ],
+    "61-35": [
+        {
+            sentence: "I felt ______ after I found out that I passed the difficult physics exam.",
+            options: ["Relieved", "Confused", "Impressed", "Inspired"],
+            originalSentence: "I felt Relieved after I found out that I passed the difficult physics exam."
+        }
+    ],
+    "61-36": [
+        {
+            sentence: "Some medical university ______ students to have very high grades.",
+            options: ["Require", "Designed", "Applied", "Inspired"],
+            originalSentence: "Some medical university Require students to have very high grades."
+        }
+    ],
+    "61-37": [
+        {
+            sentence: "If you want to be the best, you must ______ to improve your skills.",
+            options: ["Put in the effort", "End up", "Scrolling", "Hugging"],
+            originalSentence: "If you want to be the best, you must Put in the effort to improve your skills."
+        }
+    ],
+    "61-38": [
+        {
+            sentence: "He spent hours ______ how his life would be as a famous architect.",
+            options: ["Imagining", "Constructing", "Scrolling", "Applied"],
+            originalSentence: "He spent hours Imagining how his life would be as a famous architect."
+        }
+    ],
+    "61-39": [
+        {
+            sentence: "The student ______ received his certificate during the graduation ceremony.",
+            options: ["Proudly", "Patiently", "Quickly", "Slowly"],
+            originalSentence: "The student Proudly received his certificate during the graduation ceremony."
+        }
+    ],
+    "61-40": [
+        {
+            sentence: "She was ______ her mother because she missed her so much.",
+            options: ["Hugging", "Scrolling", "Constructing", "Designed"],
+            originalSentence: "She was Hugging her mother because she missed her so much."
+        }
+    ],
+    "61-41": [
+        {
+            sentence: "I always keep my ______ with me so I can draw whenever I feel inspired.",
+            options: ["Sketchbook", "Portfolio", "Notebook", "Pencil case"],
+            originalSentence: "I always keep my Sketchbook with me so I can draw whenever I feel inspired."
+        }
+    ],
+    "61-42": [
+        {
+            sentence: "The architect showed us a 3D model of a ______ with glass walls.",
+            options: ["Modern house", "Treehouse", "Cafeteria", "Workshop"],
+            originalSentence: "The architect showed us a 3D model of a Modern house with glass walls."
+        }
+    ],
+    "61-43": [
+        {
+            sentence: "Watching the documentary about space made me feel ______ to study science.",
+            options: ["Inspired", "Confused", "Relieved", "Patient"],
+            originalSentence: "Watching the documentary about space made me feel Inspired to study science."
+        }
+    ],
+    "61-44": [
+        {
+            sentence: "Every great achievement starts with a small ______.",
+            options: ["Beginning", "Path", "Field", "Grade"],
+            originalSentence: "Every great achievement starts with a small Beginning."
+        }
+    ],
     // استكمال gapfillDB.js - الدرس رقم 301
     "301-1": [
         {
