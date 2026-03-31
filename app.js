@@ -3714,13 +3714,14 @@ class App {
         }
 
         if (this.currentPage === 'flashcards') {
-            let active;
-            if (this.showAllCardsTemporary) {
-                active = allTerms.filter(t => !this.hiddenFromCards.includes(String(t.id)));
-            } else {
-                active = allTerms.filter(t => !this.hiddenFromCards.includes(String(t.id)));
-            }
-            if (active.length === 0) {
+    let active;
+    if (this.showAllCardsTemporary) {
+        active = allTerms.filter(t => !this.hiddenFromCards.includes(String(t.id)));
+    } else {
+        active = allTerms.filter(t => !this.masteredWords.includes(String(t.id)) && !this.hiddenFromCards.includes(String(t.id)));
+    }
+    ...
+}            if (active.length === 0) {
                 return `<div class="reading-card" style="text-align:center;">
                     <div style="font-size:2.5rem; margin-bottom:10px;">🧠</div>
                     <h3>🎉 ${this.t('اكتملت المراجعة!', 'Review completed!')}</h3>
