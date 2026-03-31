@@ -2991,10 +2991,54 @@ class App {
                     setTimeout(() => window.scrollTo(0, this.scrollPos), 50);
                     return;
 
-                case 'doAuth':
-                    this.handleAuth();
-                    return;
+case 'doAuth':
+                    const nameField = document.getElementById('authName');
+                    const emailField = document.getElementById('authEmail');
+                    const passField = document.getElementById('authPass');
+                    
+                    const name = nameField ? nameField.value.trim() : '';
+                    const email = emailField ? emailField.value.trim() : '';
+                    const pass = passField ? passField.value.trim() : '';
 
+                    if (!email || !pass) {
+                        alert('الرجاء إدخال البريد الإلكتروني وكلمة المرور');
+                        return;
+                    }
+
+                    try {
+                        // 1. محاولة تسجيل الدخول أولاً
+                        await signInWithEmailAndPassword(auth, email, pass);
+                        console.log("تم تسجيل الدخول بنجاح");
+                    } catch (error) {
+                        // 2. إذا فشل الدخول بسبب عدم وجود حساب (أو خطأ في البيانات)
+                        if (error.code === 'auth/user-not-found' || error.code === 'auth/invalid-credential') {
+                            if (!name) {
+                                alert('هذا الحساب غير موجود. يرجى إدخال اسمك الكامل لإنشاء حساب جديد.');
+                                return;
+                            }
+                            try {
+                                // إنشاء حساب جديد في Firebase
+                                const userCredential = await createUserWithEmailAndPassword(auth, email, pass);
+                                
+                                // حفظ بيانات المستخدم الجديد في قاعدة البيانات Firestore
+                                await setDoc(doc(db, "users", userCredential.user.uid), {
+                                    name: name,
+                                    email: email,
+                                    userCoins: 100, // رصيد ابتدائي
+                                    joinDate: new Date().toLocaleDateString('ar-EG'),
+                                    level: 1,
+                                    xp: 0
+                                });
+                                alert('أهلاً بك! تم إنشاء حسابك ومنحك 100 جوهرة 💎');
+                            } catch (signUpError) {
+                                alert('فشل إنشاء الحساب: ' + signUpError.message);
+                            }
+                        } else {
+                            alert('خطأ في الدخول: ' + error.message);
+                        }
+                    }
+                    this.render();
+                    return;
                 case 'doPlacement':
                     this.handlePlacement(param, correct, btn);
                     return;
