@@ -422,49 +422,73 @@ class App {
 
     async loadUserData(uid) {
         if (!uid) return;
-        const docRef = doc(db, "users", uid);
-        const docSnap = await getDoc(docRef);
-        if (docSnap.exists()) {
-            const data = docSnap.data();
-            this.userVocabulary = data.userVocabulary || [];
-            this.masteredWords = data.masteredWords || [];
-            this.unlockedLessons = data.unlockedLessons || [];
-            this.hiddenFromCards = data.hiddenFromCards || [];
-            this.customLessons = data.customLessons || {};
-            this.generatedLessons = data.generatedLessons || {};
-            this.userStats = data.userStats || { xp: 0, level: 1, badges: [], earnedBadges: [], tier: 'برونزي' };
-            this.placementResults = data.placementResults || [];
-            this.placementFullHistory = data.placementFullHistory || [];
-            this.userCoins = data.userCoins || 0;
-            this.jumbleUnlocked = data.jumbleUnlocked || {};
-            this.listeningUnlocked = data.listeningUnlocked || {};
-            this.spellingUnlocked = data.spellingUnlocked || {};
-            this.gapFillUnlocked = data.gapFillUnlocked || {};
-            this.newWordsAddedCount = data.newWordsAddedCount || 0;
-            this.adWatchedCount = data.adWatchedCount || 0;
-            this.purchaseRequests = data.purchaseRequests || [];
-            this.userProfile = data.userProfile || {
-                name: this.userData?.name || '',
-                age: '',
-                joinDate: new Date().toLocaleDateString('ar-EG'),
-                level: 'A1',
-                image: '',
-                testsHistory: []
-            };
-            this.exerciseStats = data.exerciseStats || {
-                quiz: { correct: 0, total: 0 },
-                listening: { correct: 0, total: 0 },
-                spelling: { correct: 0, total: 0 },
-                gapFill: { correct: 0, total: 0 }
-            };
-            this.lastTestedLesson = data.lastTestedLesson || { beginner: 0, intermediate: 0, advanced: 0 };
-            if (this.placementResults.length > 0) {
-                this.userProfile.level = this.placementResults[0].level;
-            }
-            this.updateLevelAndBadges();
-        }
-    }
+        try {
+            // الوصول إلى مستند المستخدم في مجموعة users باستخدام الـ UID
+            const docRef = doc(db, "users", uid);
+            const docSnap = await getDoc(docRef);
+            
+            if (docSnap.exists()) {
+                const data = docSnap.data();
+                console.log("جاري جلب البيانات من السيرفر لمزامنة الأجهزة...");
 
+                // 1. مزامنة العملات والتقدم
+                this.userCoins = data.userCoins || 0;
+                this.masteredWords = data.masteredWords || [];
+                this.unlockedLessons = data.unlockedLessons || [];
+                this.hiddenFromCards = data.hiddenFromCards || [];
+                
+                // 2. مزامنة الإحصائيات والمستوى
+                this.userStats = data.userStats || { xp: 0, level: 1, badges: [], earnedBadges: [], tier: 'برونزي' };
+                
+                // 3. مزامنة الملف الشخصي والاسم (حل مشكلة الصور التي أرفقتها)
+                this.userProfile = data.userProfile || {
+                    name: data.name || this.userData?.name || '',
+                    age: '',
+                    joinDate: new Date().toLocaleDateString('ar-EG'),
+                    level: 'A1',
+                    image: '',
+                    testsHistory: []
+                };
+
+                // 4. مزامنة نتائج اختبارات تحديد المستوى والتمارين
+                this.placementResults = data.placementResults || [];
+                this.placementFullHistory = data.placementFullHistory || [];
+                this.exerciseStats = data.exerciseStats || {
+                    quiz: { correct: 0, total: 0 },
+                    listening: { correct: 0, total: 0 },
+                    spelling: { correct: 0, total: 0 },
+                    gapFill: { correct: 0, total: 0 }
+                };
+
+                // 5. مزامنة الدروس المفتوحة والخاصة
+                this.jumbleUnlocked = data.jumbleUnlocked || {};
+                this.listeningUnlocked = data.listeningUnlocked || {};
+                this.spellingUnlocked = data.spellingUnlocked || {};
+                this.gapFillUnlocked = data.gapFillUnlocked || {};
+                this.customLessons = data.customLessons || {};
+                this.generatedLessons = data.generatedLessons || {};
+
+                // تحديث المستوى المعروض بناءً على آخر اختبار
+                if (this.placementResults && this.placementResults.length > 0) {
+                    this.userProfile.level = this.placementResults[0].level;
+                }
+
+                // تحديث الأوسمة والمستوى برمجياً
+                if (typeof this.updateLevelAndBadges === 'function') {
+                    this.updateLevelAndBadges();
+                }
+
+                console.log("تمت المزامنة بنجاح! البيانات الآن موحدة.");
+            } else {
+                console.log("مستخدم جديد: لا توجد بيانات على السيرفر بعد.");
+            }
+        } catch (error) {
+            console.error("خطأ أثناء جلب البيانات من Firebase:", error);
+        }
+        
+        // إعادة رسم الواجهة لعرض البيانات الجديدة فوراً
+        this.render();
+    }
     async saveUserData() {
         if (!this.currentUser || !this.userData?.uid) return;
         const uid = this.userData.uid;
