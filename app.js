@@ -132,10 +132,10 @@ class App {
                 { id: 'silver_medal', icon: '🥈', name: 'وسام فضي', nameEn: 'Silver Medal', requirement: { lessons: 15, words: 300 }, condition: (stats) => stats.totalLessons >= 15 && stats.totalMastered >= 300 },
                 { id: 'gold_medal', icon: '🥇', name: 'وسام ذهبي', nameEn: 'Gold Medal', requirement: { lessons: 35, words: 800 }, condition: (stats) => stats.totalLessons >= 35 && stats.totalMastered >= 800 },
                 { id: 'diamond_medal', icon: '💎', name: 'وسام ماسي', nameEn: 'Diamond Medal', requirement: { lessons: 60, words: 2000 }, condition: (stats) => stats.totalLessons >= 60 && stats.totalMastered >= 2000 },
-                { id: 'bronze_crown', icon: '👑', name: 'تاج برونزي', nameEn: 'Bronze Crown', requirement: { masteredWords: 10 }, condition: (stats) => stats.totalMastered >= 10 },
-                { id: 'silver_crown', icon: '👑', name: 'تاج فضي', nameEn: 'Silver Crown', requirement: { masteredWords: 50 }, condition: (stats) => stats.totalMastered >= 50 },
-                { id: 'gold_crown', icon: '👑', name: 'تاج ذهبي', nameEn: 'Gold Crown', requirement: { masteredWords: 200 }, condition: (stats) => stats.totalMastered >= 200 },
-                { id: 'diamond_crown', icon: '👑', name: 'تاج ماسي', nameEn: 'Diamond Crown', requirement: { masteredWords: 500 }, condition: (stats) => stats.totalMastered >= 500 }
+                { id: 'bronze_crown', icon: '👑', name: 'تاج برونزي', nameEn: 'Bronze Crown', requirement: { lessons: 80, words: 2500 }, condition: (stats) => stats.totalLessons >= 80 && stats.totalMastered >= 2500 },
+                { id: 'silver_crown', icon: '👑', name: 'تاج فضي', nameEn: 'Silver Crown', requirement: { lessons: 100, words: 3500 }, condition: (stats) => stats.totalLessons >= 100 && stats.totalMastered >= 3500 },
+                { id: 'gold_crown', icon: '👑', name: 'تاج ذهبي', nameEn: 'Gold Crown', requirement: { lessons: 120, words: 5000 }, condition: (stats) => stats.totalLessons >= 120 && stats.totalMastered >= 5000 },
+                { id: 'diamond_crown', icon: '👑', name: 'تاج ماسي', nameEn: 'Diamond Crown', requirement: { lessons: 150, words: 7000 }, condition: (stats) => stats.totalLessons >= 150 && stats.totalMastered >= 7000 }
             ],
             quiz: [
                 { id: 'quiz_beginner', icon: '📖', name: 'مبتدئ', nameEn: 'Beginner', requirement: 25, condition: (count) => count >= 25 },
@@ -257,10 +257,15 @@ class App {
         const totalLessons = (this.unlockedLessons || []).length;
         const totalMastered = (this.masteredWords || []).length;
         
-        if (totalMastered >= 500) this.userStats.tier = this.t('👑 تاج ماسي', '👑 Diamond Crown');
-        else if (totalMastered >= 200) this.userStats.tier = this.t('👑 تاج ذهبي', '👑 Gold Crown');
-        else if (totalMastered >= 50) this.userStats.tier = this.t('👑 تاج فضي', '👑 Silver Crown');
-        else if (totalMastered >= 10) this.userStats.tier = this.t('👑 تاج برونزي', '👑 Bronze Crown');
+        // تحديث التاج الظاهر
+        if (totalMastered >= 7000 && totalLessons >= 150) this.userStats.tier = this.t('👑 تاج ماسي', '👑 Diamond Crown');
+        else if (totalMastered >= 5000 && totalLessons >= 120) this.userStats.tier = this.t('👑 تاج ذهبي', '👑 Gold Crown');
+        else if (totalMastered >= 3500 && totalLessons >= 100) this.userStats.tier = this.t('👑 تاج فضي', '👑 Silver Crown');
+        else if (totalMastered >= 2500 && totalLessons >= 80) this.userStats.tier = this.t('👑 تاج برونزي', '👑 Bronze Crown');
+        else if (totalMastered >= 2000 && totalLessons >= 60) this.userStats.tier = this.t('💎 وسام ماسي', '💎 Diamond Medal');
+        else if (totalMastered >= 800 && totalLessons >= 35) this.userStats.tier = this.t('🥇 وسام ذهبي', '🥇 Gold Medal');
+        else if (totalMastered >= 300 && totalLessons >= 15) this.userStats.tier = this.t('🥈 وسام فضي', '🥈 Silver Medal');
+        else if (totalMastered >= 100 && totalLessons >= 5) this.userStats.tier = this.t('🥉 وسام برونزي', '🥉 Bronze Medal');
         else this.userStats.tier = this.t('مبتدئ', 'Beginner');
 
         const stats = { totalLessons, totalMastered };
@@ -611,7 +616,6 @@ class App {
                 background: rgba(255,255,255,0.1);
             }
             
-            /* زر اللغة بلون ظاهر */
             .lang-btn {
                 background: #3b82f6;
                 color: white;
@@ -1654,13 +1658,10 @@ class App {
         this.render();
     }
 
-    // الحصول على جميع الكلمات المتاحة للتمارين (بما في ذلك الكلمات المتقنة)
     getAllAvailableWordsForExercises() {
         const lesson = this.getCurrentLessonData();
         if (!lesson) return [];
-        
         const allTerms = [...lesson.terms, ...this.userVocabulary.filter(v => v.lessonId == this.selectedLessonId)];
-        // نعرض جميع الكلمات ما عدا المحذوفة فقط
         return allTerms.filter(t => !this.hiddenFromCards.includes(String(t.id)));
     }
 
@@ -2839,30 +2840,29 @@ class App {
                     this.currentCardIndex = 0;
                     break;
 
-case 'masterWordFlash':
-    const cardM = document.querySelector('.flashcard-container');
-    if (cardM) {
-        cardM.classList.add('master-anim');
-        setTimeout(() => {
-            const wordId = String(param);
-            if (!this.masteredWords.includes(wordId)) {
-                this.masteredWords.push(wordId);
-                this.addMasteredWordReward(param);
-                if (this.selectedLessonId) {
-                    this.grantLessonCompletionReward(this.selectedLessonId);
-                }
-                this.saveUserData();
-            }
-            // إذا كنا في وضع إعادة التكرار، أضف الكلمة إلى القائمة المؤقتة لتختفي من العرض الحالي
-            if (this.showAllCardsTemporary && !this.repeatAllSessionMastered.includes(wordId)) {
-                this.repeatAllSessionMastered.push(wordId);
-                this.saveUserData();  // حفظ القائمة المؤقتة
-            }
-            this.render();
-        }, 550);
-    }
-    return;
-                    
+                case 'masterWordFlash':
+                    const cardM = document.querySelector('.flashcard-container');
+                    if (cardM) {
+                        cardM.classList.add('master-anim');
+                        setTimeout(() => {
+                            const wordId = String(param);
+                            if (!this.masteredWords.includes(wordId)) {
+                                this.masteredWords.push(wordId);
+                                this.addMasteredWordReward(param);
+                                if (this.selectedLessonId) {
+                                    this.grantLessonCompletionReward(this.selectedLessonId);
+                                }
+                                this.saveUserData();
+                            }
+                            if (this.showAllCardsTemporary && !this.repeatAllSessionMastered.includes(wordId)) {
+                                this.repeatAllSessionMastered.push(wordId);
+                                this.saveUserData();
+                            }
+                            this.render();
+                        }, 550);
+                    }
+                    return;
+
                 case 'deleteWord':
                     this.showConfirmModal(this.t('هل أنت متأكد من حذف هذه الكلمة نهائياً من بطاقاتك؟', 'Are you sure you want to permanently delete this word from your flashcards?'), () => {
                         const cardD = document.querySelector('.flashcard-container');
@@ -2886,9 +2886,9 @@ case 'masterWordFlash':
                     const allWords = lessonData ? [...lessonData.terms, ...addedWords] : [];
                     let activeCards;
                     if (this.showAllCardsTemporary) {
-                        activeCards = allWords.filter(t => !this.hiddenFromCards.includes(String(t.id)));
+                        activeCards = allWords.filter(t => !this.hiddenFromCards.includes(String(t.id)) && !this.repeatAllSessionMastered.includes(String(t.id)));
                     } else {
-                        activeCards = allWords.filter(t => !this.hiddenFromCards.includes(String(t.id)));
+                        activeCards = allWords.filter(t => !this.masteredWords.includes(String(t.id)) && !this.hiddenFromCards.includes(String(t.id)));
                     }
                     if (activeCards.length === 0) break;
                     const currentCard = activeCards[this.currentCardIndex];
@@ -2908,45 +2908,44 @@ case 'masterWordFlash':
                     const allWordsPrev = lessonPrev ? [...lessonPrev.terms, ...addedPrev] : [];
                     let activePrev;
                     if (this.showAllCardsTemporary) {
-                        activePrev = allWordsPrev.filter(t => !this.hiddenFromCards.includes(String(t.id)));
+                        activePrev = allWordsPrev.filter(t => !this.hiddenFromCards.includes(String(t.id)) && !this.repeatAllSessionMastered.includes(String(t.id)));
                     } else {
-                        activePrev = allWordsPrev.filter(t => !this.hiddenFromCards.includes(String(t.id)));
+                        activePrev = allWordsPrev.filter(t => !this.masteredWords.includes(String(t.id)) && !this.hiddenFromCards.includes(String(t.id)));
                     }
                     if (activePrev.length === 0) break;
-                    this.currentCardIndex-;
+                    this.currentCardIndex--;
                     if (this.currentCardIndex < 0) {
                         this.currentCardIndex = activePrev.length - 1;
                     }
                     this.render();
                     break;
 
-case 'restartCards':
-    this.skippedCards = [];
-    this.currentCardIndex = 0;
-    const cardShuffle = document.querySelector('.flashcard-container');
-    if (cardShuffle) {
-        cardShuffle.classList.add('shuffle-anim-card');
-    }
-    const delay = cardShuffle ? 600 : 0;
-    setTimeout(() => {
-        if (param === 'all' && this.selectedLessonId) {
-            // إعادة تكرار الكل: إظهار جميع البطاقات (بما فيها المتقنة) وإعادة تعيين الجلسة المؤقتة
-            this.showAllCardsTemporary = true;
-            this.repeatAllSessionMastered = [];  // إعادة تعيين قائمة الإتقان المؤقتة
-            this.currentCardIndex = 0;
-            this.saveUserData();
-            this.render();
-        } else if (param === 'remaining') {
-            // تكرار المتبقي (العودة إلى الوضع العادي)
-            this.showAllCardsTemporary = false;
-            this.repeatAllSessionMastered = [];  // إفراغ المؤقت
-            this.currentCardIndex = 0;
-            this.saveUserData();
-            this.render();
-        }
-    }, delay);
-    this.showAd('image');
-    return;
+                case 'restartCards':
+                    this.skippedCards = [];
+                    this.currentCardIndex = 0;
+                    const cardShuffle = document.querySelector('.flashcard-container');
+                    if (cardShuffle) {
+                        cardShuffle.classList.add('shuffle-anim-card');
+                    }
+                    const delay = cardShuffle ? 600 : 0;
+                    setTimeout(() => {
+                        if (param === 'all' && this.selectedLessonId) {
+                            this.showAllCardsTemporary = true;
+                            this.repeatAllSessionMastered = [];
+                            this.currentCardIndex = 0;
+                            this.saveUserData();
+                            this.render();
+                        } else if (param === 'remaining') {
+                            this.showAllCardsTemporary = false;
+                            this.repeatAllSessionMastered = [];
+                            this.currentCardIndex = 0;
+                            this.saveUserData();
+                            this.render();
+                        }
+                    }, delay);
+                    this.showAd('image');
+                    return;
+
                 case 'addNewWord':
                     this.handleNewWord();
                     break;
@@ -3233,10 +3232,10 @@ case 'restartCards':
             else if (badge.id === 'silver_medal') progressText = `${this.t('الدروس:', 'Lessons:')} ${totalLessons}/15 | ${this.t('الكلمات:', 'Words:')} ${totalMastered}/300`;
             else if (badge.id === 'gold_medal') progressText = `${this.t('الدروس:', 'Lessons:')} ${totalLessons}/35 | ${this.t('الكلمات:', 'Words:')} ${totalMastered}/800`;
             else if (badge.id === 'diamond_medal') progressText = `${this.t('الدروس:', 'Lessons:')} ${totalLessons}/60 | ${this.t('الكلمات:', 'Words:')} ${totalMastered}/2000`;
-            else if (badge.id === 'bronze_crown') progressText = `${this.t('الكلمات المتقنة:', 'Mastered Words:')} ${totalMastered}/10`;
-            else if (badge.id === 'silver_crown') progressText = `${this.t('الكلمات المتقنة:', 'Mastered Words:')} ${totalMastered}/50`;
-            else if (badge.id === 'gold_crown') progressText = `${this.t('الكلمات المتقنة:', 'Mastered Words:')} ${totalMastered}/200`;
-            else if (badge.id === 'diamond_crown') progressText = `${this.t('الكلمات المتقنة:', 'Mastered Words:')} ${totalMastered}/500`;
+            else if (badge.id === 'bronze_crown') progressText = `${this.t('الدروس:', 'Lessons:')} ${totalLessons}/80 | ${this.t('الكلمات:', 'Words:')} ${totalMastered}/2500`;
+            else if (badge.id === 'silver_crown') progressText = `${this.t('الدروس:', 'Lessons:')} ${totalLessons}/100 | ${this.t('الكلمات:', 'Words:')} ${totalMastered}/3500`;
+            else if (badge.id === 'gold_crown') progressText = `${this.t('الدروس:', 'Lessons:')} ${totalLessons}/120 | ${this.t('الكلمات:', 'Words:')} ${totalMastered}/5000`;
+            else if (badge.id === 'diamond_crown') progressText = `${this.t('الدروس:', 'Lessons:')} ${totalLessons}/150 | ${this.t('الكلمات:', 'Words:')} ${totalMastered}/7000`;
             
             html += `
                 <div class="badge-modal-item ${isEarned ? 'earned' : ''}">
@@ -3722,54 +3721,54 @@ case 'restartCards':
             </main>`;
         }
 
-if (this.currentPage === 'flashcards') {
-    let active;
-    if (this.showAllCardsTemporary) {
-        // وضع إعادة التكرار: نعرض كل الكلمات غير المحذوفة وغير المُتقنة خلال هذه الجلسة
-        active = allTerms.filter(t => 
-            !this.hiddenFromCards.includes(String(t.id)) &&
-            !this.repeatAllSessionMastered.includes(String(t.id))
-        );
-    } else {
-        // الوضع العادي: نعرض الكلمات غير المتقنة وغير المحذوفة
-        active = allTerms.filter(t => 
-            !this.masteredWords.includes(String(t.id)) &&
-            !this.hiddenFromCards.includes(String(t.id))
-        );
-    }
-    
-    // التحقق من عدم وجود بطاقات لعرضها
-    if (active.length === 0) {
-        return `<div class="reading-card" style="text-align:center;">
-            <div style="font-size:2.5rem; margin-bottom:10px;">🧠</div>
-            <h3>🎉 ${this.t('اكتملت المراجعة!', 'Review completed!')}</h3>
-            <button class="hero-btn" data-action="restartCards" data-param="all" style="background:#f59e0b;">${this.t('إعادة تكرار الكل 🔁', 'Repeat All 🔁')}</button>
-        </div>`;
-    }
-    
-    const t = active[this.currentCardIndex];
-    return `<main class="main-content">
-        <div class="flashcard-container" onclick="this.querySelector('.flashcard').classList.toggle('flipped')">
-            <div class="flashcard">
-                <div class="flashcard-front">
-                    <h1>${t.english}</h1>
+        if (this.currentPage === 'flashcards') {
+            let active;
+            if (this.showAllCardsTemporary) {
+                // وضع إعادة التكرار: نعرض كل الكلمات غير المحذوفة وغير المُتقنة خلال هذه الجلسة
+                active = allTerms.filter(t => 
+                    !this.hiddenFromCards.includes(String(t.id)) &&
+                    !this.repeatAllSessionMastered.includes(String(t.id))
+                );
+            } else {
+                // الوضع العادي: نعرض الكلمات غير المتقنة وغير المحذوفة
+                active = allTerms.filter(t => 
+                    !this.masteredWords.includes(String(t.id)) &&
+                    !this.hiddenFromCards.includes(String(t.id))
+                );
+            }
+            
+            if (active.length === 0) {
+                return `<div class="reading-card" style="text-align:center;">
+                    <div style="font-size:2.5rem; margin-bottom:10px;">🧠</div>
+                    <h3>🎉 ${this.t('اكتملت المراجعة!', 'Review completed!')}</h3>
+                    <button class="hero-btn" data-action="restartCards" data-param="all" style="background:#f59e0b;">${this.t('إعادة تكرار الكل 🔁', 'Repeat All 🔁')}</button>
+                </div>`;
+            }
+            
+            const t = active[this.currentCardIndex];
+            return `<main class="main-content">
+                <div class="flashcard-container" onclick="this.querySelector('.flashcard').classList.toggle('flipped')">
+                    <div class="flashcard">
+                        <div class="flashcard-front">
+                            <h1>${t.english}</h1>
+                        </div>
+                        <div class="flashcard-back"><h1>${t.arabic}</h1></div>
+                    </div>
                 </div>
-                <div class="flashcard-back"><h1>${t.arabic}</h1></div>
-            </div>
-        </div>
-        <div class="card-controls-row">
-            <button class="hero-btn" data-action="speak" data-param="${t.english}" style="background:#6366f1;">🔊 ${this.t('نطق', 'Speak')}</button>
-            <button class="hero-btn" data-action="masterWordFlash" data-param="${t.id}" style="background:#10b981;">✅ ${this.t('اعرفها', 'Master')}</button>
-            <button class="hero-btn" data-action="deleteWord" data-param="${t.id}" style="background:#ef4444;">🗑️ ${this.t('حذف', 'Delete')}</button>
-        </div>
-        <button class="hero-btn" data-action="restartCards" data-param="remaining" style="width:100%; margin: 12px 0; background:#f59e0b;">🔁 ${this.t('تكرار المتبقي', 'Repeat Remaining')}</button>
-        <div class="card-nav-row">
-            <button class="hero-btn" data-action="prevC" style="background:#64748b;">${this.t('السابق', 'Previous')}</button>
-            <button class="hero-btn" data-action="nextC" data-total="${active.length}" style="background:#64748b;">${this.t('التالي', 'Next')}</button>
-        </div>
-        <div style="text-align:center; margin-top:8px; color:#666; font-size:0.85rem;">${this.currentCardIndex + 1} / ${active.length}</div>
-    </main>`;
-}
+                <div class="card-controls-row">
+                    <button class="hero-btn" data-action="speak" data-param="${t.english}" style="background:#6366f1;">🔊 ${this.t('نطق', 'Speak')}</button>
+                    <button class="hero-btn" data-action="masterWordFlash" data-param="${t.id}" style="background:#10b981;">✅ ${this.t('اعرفها', 'Master')}</button>
+                    <button class="hero-btn" data-action="deleteWord" data-param="${t.id}" style="background:#ef4444;">🗑️ ${this.t('حذف', 'Delete')}</button>
+                </div>
+                <button class="hero-btn" data-action="restartCards" data-param="remaining" style="width:100%; margin: 12px 0; background:#f59e0b;">🔁 ${this.t('تكرار المتبقي', 'Repeat Remaining')}</button>
+                <div class="card-nav-row">
+                    <button class="hero-btn" data-action="prevC" style="background:#64748b;">${this.t('السابق', 'Previous')}</button>
+                    <button class="hero-btn" data-action="nextC" data-total="${active.length}" style="background:#64748b;">${this.t('التالي', 'Next')}</button>
+                </div>
+                <div style="text-align:center; margin-top:8px; color:#666; font-size:0.85rem;">${this.currentCardIndex + 1} / ${active.length}</div>
+            </main>`;
+        }
+
         if (this.currentPage === 'quiz') {
             if (this.quizIndex >= this.quizQuestions.length) {
                 const pass = (this.quizScore / this.quizQuestions.length) >= 0.75;
