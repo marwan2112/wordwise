@@ -2,6 +2,7 @@
 
 class App {
     constructor() {
+        this.repeatAllSessionMastered = [];
         this.currentAudio = null;
         this.audioPlaybackRate = 1.0;
         this.availableSpeeds = [0.5, 0.75, 1.0, 1.5, 2.0, 2.5, 3.0];
@@ -2838,24 +2839,30 @@ class App {
                     this.currentCardIndex = 0;
                     break;
 
-                case 'masterWordFlash':
-                    const cardM = document.querySelector('.flashcard-container');
-                    if (cardM) {
-                        cardM.classList.add('master-anim');
-                        setTimeout(() => {
-                            if (!this.masteredWords.includes(String(param))) {
-                                this.masteredWords.push(String(param));
-                                this.addMasteredWordReward(param);
-                                if (this.selectedLessonId) {
-                                    this.grantLessonCompletionReward(this.selectedLessonId);
-                                }
-                                this.saveUserData();
-                            }
-                            this.render();
-                        }, 550);
-                    }
-                    return;
-
+case 'masterWordFlash':
+    const cardM = document.querySelector('.flashcard-container');
+    if (cardM) {
+        cardM.classList.add('master-anim');
+        setTimeout(() => {
+            const wordId = String(param);
+            if (!this.masteredWords.includes(wordId)) {
+                this.masteredWords.push(wordId);
+                this.addMasteredWordReward(param);
+                if (this.selectedLessonId) {
+                    this.grantLessonCompletionReward(this.selectedLessonId);
+                }
+                this.saveUserData();
+            }
+            // إذا كنا في وضع إعادة التكرار، أضف الكلمة إلى القائمة المؤقتة لتختفي من العرض الحالي
+            if (this.showAllCardsTemporary && !this.repeatAllSessionMastered.includes(wordId)) {
+                this.repeatAllSessionMastered.push(wordId);
+                this.saveUserData();  // حفظ القائمة المؤقتة
+            }
+            this.render();
+        }, 550);
+    }
+    return;
+                    
                 case 'deleteWord':
                     this.showConfirmModal(this.t('هل أنت متأكد من حذف هذه الكلمة نهائياً من بطاقاتك؟', 'Are you sure you want to permanently delete this word from your flashcards?'), () => {
                         const cardD = document.querySelector('.flashcard-container');
@@ -2906,38 +2913,40 @@ class App {
                         activePrev = allWordsPrev.filter(t => !this.hiddenFromCards.includes(String(t.id)));
                     }
                     if (activePrev.length === 0) break;
-                    this.currentCardIndex--;
+                    this.currentCardIndex-;
                     if (this.currentCardIndex < 0) {
                         this.currentCardIndex = activePrev.length - 1;
                     }
                     this.render();
                     break;
 
-                case 'restartCards':
-                    this.skippedCards = [];
-                    this.showAllCardsTemporary = false;
-                    this.currentCardIndex = 0;
-                    const cardShuffle = document.querySelector('.flashcard-container');
-                    if (cardShuffle) {
-                        cardShuffle.classList.add('shuffle-anim-card');
-                    }
-                    const delay = cardShuffle ? 600 : 0;
-                    setTimeout(() => {
-                        if (param === 'all' && this.selectedLessonId) {
-                            this.currentCardIndex = 0;
-                            this.showAllCardsTemporary = true;
-                            this.saveUserData();
-                            this.render();
-                        } else if (param === 'remaining') {
-                            this.showAllCardsTemporary = false;
-                            this.currentCardIndex = 0;
-                            this.saveUserData();
-                            this.render();
-                        }
-                    }, delay);
-                    this.showAd('image');
-                    return;
-
+case 'restartCards':
+    this.skippedCards = [];
+    this.currentCardIndex = 0;
+    const cardShuffle = document.querySelector('.flashcard-container');
+    if (cardShuffle) {
+        cardShuffle.classList.add('shuffle-anim-card');
+    }
+    const delay = cardShuffle ? 600 : 0;
+    setTimeout(() => {
+        if (param === 'all' && this.selectedLessonId) {
+            // إعادة تكرار الكل: إظهار جميع البطاقات (بما فيها المتقنة) وإعادة تعيين الجلسة المؤقتة
+            this.showAllCardsTemporary = true;
+            this.repeatAllSessionMastered = [];  // إعادة تعيين قائمة الإتقان المؤقتة
+            this.currentCardIndex = 0;
+            this.saveUserData();
+            this.render();
+        } else if (param === 'remaining') {
+            // تكرار المتبقي (العودة إلى الوضع العادي)
+            this.showAllCardsTemporary = false;
+            this.repeatAllSessionMastered = [];  // إفراغ المؤقت
+            this.currentCardIndex = 0;
+            this.saveUserData();
+            this.render();
+        }
+    }, delay);
+    this.showAd('image');
+    return;
                 case 'addNewWord':
                     this.handleNewWord();
                     break;
@@ -3716,13 +3725,18 @@ class App {
 if (this.currentPage === 'flashcards') {
     let active;
     if (this.showAllCardsTemporary) {
-        // عرض كل الكلمات غير المحذوفة (حتى المتقنة)
-        active = allTerms.filter(t => !this.hiddenFromCards.includes(String(t.id)));
+        // وضع إعادة التكرار: نعرض كل الكلمات غير المحذوفة وغير المُتقنة خلال هذه الجلسة
+        active = allTerms.filter(t => 
+            !this.hiddenFromCards.includes(String(t.id)) &&
+            !this.repeatAllSessionMastered.includes(String(t.id))
+        );
     } else {
-        // العرض العادي: إخفاء الكلمات المتقنة والمحذوفة
-        active = allTerms.filter(t => !this.masteredWords.includes(String(t.id)) && !this.hiddenFromCards.includes(String(t.id)));
+        // الوضع العادي: نعرض الكلمات غير المتقنة وغير المحذوفة
+        active = allTerms.filter(t => 
+            !this.masteredWords.includes(String(t.id)) &&
+            !this.hiddenFromCards.includes(String(t.id))
+        );
     }
-    if (active.length === 0) {
                 return `<div class="reading-card" style="text-align:center;">
                     <div style="font-size:2.5rem; margin-bottom:10px;">🧠</div>
                     <h3>🎉 ${this.t('اكتملت المراجعة!', 'Review completed!')}</h3>
