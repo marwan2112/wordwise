@@ -1,5 +1,5 @@
 // app.js - تطبيق تعلم اللغة الإنجليزية مع Firebase
-// النسخة الكاملة النهائية
+// النسخة الكاملة النهائية - مصححة
 
 class App {
     constructor() {
@@ -421,29 +421,24 @@ class App {
         }
     }
 
-async loadUserData(uid) {
+    async loadUserData(uid) {
         if (!uid) return;
         try {
-            // تفعيل قفل التحميل لمنع الحفظ التلقائي أثناء جلب البيانات (يحل مشكلة اختلاف الأجهزة)
-            this.loadingData = true; 
-            
+            this.loadingData = true;
             const docRef = doc(db, "users", uid);
             const docSnap = await getDoc(docRef);
             
             if (docSnap.exists()) {
                 const data = docSnap.data();
-                console.log("جاري جلب البيانات من السيرفر لمزامنة الأجهزة...");
+                console.log("جاري جلب البيانات من السيرفر...");
 
-                // 1. مزامنة العملات والتقدم
                 this.userCoins = data.userCoins || 0;
                 this.masteredWords = data.masteredWords || [];
                 this.unlockedLessons = data.unlockedLessons || [];
                 this.hiddenFromCards = data.hiddenFromCards || [];
-                
-                // 2. مزامنة الإحصائيات والمستوى
+                this.userVocabulary = data.userVocabulary || [];
                 this.userStats = data.userStats || { xp: 0, level: 1, badges: [], earnedBadges: [], tier: 'برونزي' };
                 
-                // 3. مزامنة الملف الشخصي والاسم
                 this.userProfile = data.userProfile || {
                     name: data.name || this.userData?.name || '',
                     age: '',
@@ -453,7 +448,6 @@ async loadUserData(uid) {
                     testsHistory: []
                 };
 
-                // 4. مزامنة نتائج اختبارات تحديد المستوى والتمارين
                 this.placementResults = data.placementResults || [];
                 this.placementFullHistory = data.placementFullHistory || [];
                 this.exerciseStats = data.exerciseStats || {
@@ -463,7 +457,6 @@ async loadUserData(uid) {
                     gapFill: { correct: 0, total: 0 }
                 };
 
-                // 5. مزامنة الدروس المفتوحة والخاصة
                 this.jumbleUnlocked = data.jumbleUnlocked || {};
                 this.listeningUnlocked = data.listeningUnlocked || {};
                 this.spellingUnlocked = data.spellingUnlocked || {};
@@ -471,16 +464,11 @@ async loadUserData(uid) {
                 this.customLessons = data.customLessons || {};
                 this.generatedLessons = data.generatedLessons || {};
 
-                // تحديث المستوى المعروض بناءً على آخر اختبار
                 if (this.placementResults && this.placementResults.length > 0) {
                     this.userProfile.level = this.placementResults[0].level;
                 }
 
-                // استدعاء دالة التحديث إذا كانت موجودة
-                if (typeof this.updateLevelAndBadges === 'function') {
-                    this.updateLevelAndBadges();
-                }
-
+                await this.updateLevelAndBadges();
                 console.log("✅ تمت المزامنة بنجاح!");
             } else {
                 console.log("مستخدم جديد: لا توجد بيانات سابقة على السيرفر.");
@@ -488,30 +476,15 @@ async loadUserData(uid) {
         } catch (error) {
             console.error("❌ خطأ أثناء جلب البيانات:", error);
         } finally {
-            // فتح القفل للسماح بالحفظ مرة أخرى بعد اكتمال التحميل
             this.loadingData = false;
-            this.render(); 
+            this.render();
         }
     }
 
-                console.log("تمت المزامنة بنجاح! البيانات الآن موحدة.");
-            } else {
-                console.log("مستخدم جديد: لا توجد بيانات على السيرفر بعد.");
-            }
-        } catch (error) {
-            console.error("خطأ أثناء جلب البيانات من Firebase:", error);
-        }
-        
-        // إعادة رسم الواجهة لعرض البيانات الجديدة فوراً
-        this.render();
-    }
-async saveUserData() {
-        // 1. منع الحفظ إذا كان التطبيق في حالة تحميل (يمنع تصفير بيانات الأجهزة)
+    async saveUserData() {
         if (!this.currentUser || this.loadingData) return;
-
         const uid = this.currentUser.uid;
         
-        // 2. تجميع البيانات
         const data = {
             userVocabulary: this.userVocabulary || [],
             masteredWords: this.masteredWords || [],
@@ -535,23 +508,14 @@ async saveUserData() {
             lastTestedLesson: this.lastTestedLesson || {}
         };
 
-        // 3. الحفظ في الخلفية (بدون await) لجعل التطبيق سريعاً جداً
         try {
-            setDoc(doc(db, "users", uid), data, { merge: true })
-                .then(() => console.log("✅ تم التزامن مع السيرفر"))
-                .catch(e => console.error("❌ فشل التزامن:", e));
+            await setDoc(doc(db, "users", uid), data, { merge: true });
+            console.log("✅ تم التزامن مع السيرفر");
         } catch (err) {
-            console.error("Critical Save Error:", err);
-        }
-    }        try {
-            // الحفظ بدون استخدام await هنا لضمان سرعة التطبيق وعدم تعليقه
-            setDoc(doc(db, "users", uid), data, { merge: true })
-                .then(() => console.log("✅ تم مزامنة التغييرات مع السيرفر"))
-                .catch(e => console.error("❌ فشل المزامنة:", e));
-        } catch (error) {
-            console.error("Error in saveUserData:", error);
+            console.error("❌ فشل التزامن:", err);
         }
     }
+
     async logout() {
         await this.saveUserData();
         await signOut(auth);
@@ -2965,22 +2929,28 @@ async saveUserData() {
                     this.speak(param);
                     break;
 
-// البحث عن أزرار التقليب داخل الـ Event Listener
-case 'nextC':
-    if (this.currentCardIndex < this.flashcards.length - 1) {
-        this.currentCardIndex++;
-        this.render(); // التغيير فوراً على الشاشة
-        this.saveUserData(); // الحفظ يتم في الخلفية (بدون await)
-    }
-    break;
+                case 'nextC':
+                    const lessonData = this.getCurrentLessonData();
+                    const addedWords = this.userVocabulary.filter(v => v.lessonId == this.selectedLessonId);
+                    const allWords = lessonData ? [...lessonData.terms, ...addedWords] : [];
+                    let activeCards;
+                    if (this.showAllCardsTemporary) {
+                        activeCards = allWords.filter(t => !this.hiddenFromCards.includes(String(t.id)) && !this.repeatAllSessionMastered.includes(String(t.id)));
+                    } else {
+                        activeCards = allWords.filter(t => !this.masteredWords.includes(String(t.id)) && !this.hiddenFromCards.includes(String(t.id)));
+                    }
+                    if (activeCards.length === 0) break;
+                    const currentCard = activeCards[this.currentCardIndex];
+                    if (currentCard && !this.skippedCards.includes(String(currentCard.id))) {
+                        this.skippedCards.push(String(currentCard.id));
+                    }
+                    this.currentCardIndex++;
+                    if (this.currentCardIndex >= activeCards.length) {
+                        this.currentCardIndex = 0;
+                    }
+                    this.render();
+                    break;
 
-case 'prevC':
-    if (this.currentCardIndex > 0) {
-        this.currentCardIndex--;
-        this.render(); // التغيير فوراً على الشاشة
-        this.saveUserData(); // الحفظ يتم في الخلفية (بدون await)
-    }
-    break;
                 case 'prevC':
                     const lessonPrev = this.getCurrentLessonData();
                     const addedPrev = this.userVocabulary.filter(v => v.lessonId == this.selectedLessonId);
@@ -3044,54 +3014,10 @@ case 'prevC':
                     setTimeout(() => window.scrollTo(0, this.scrollPos), 50);
                     return;
 
-case 'doAuth':
-                    const nameField = document.getElementById('authName');
-                    const emailField = document.getElementById('authEmail');
-                    const passField = document.getElementById('authPass');
-                    
-                    const name = nameField ? nameField.value.trim() : '';
-                    const email = emailField ? emailField.value.trim() : '';
-                    const pass = passField ? passField.value.trim() : '';
-
-                    if (!email || !pass) {
-                        alert('الرجاء إدخال البريد الإلكتروني وكلمة المرور');
-                        return;
-                    }
-
-                    try {
-                        // 1. محاولة تسجيل الدخول أولاً
-                        await signInWithEmailAndPassword(auth, email, pass);
-                        console.log("تم تسجيل الدخول بنجاح");
-                    } catch (error) {
-                        // 2. إذا فشل الدخول بسبب عدم وجود حساب (أو خطأ في البيانات)
-                        if (error.code === 'auth/user-not-found' || error.code === 'auth/invalid-credential') {
-                            if (!name) {
-                                alert('هذا الحساب غير موجود. يرجى إدخال اسمك الكامل لإنشاء حساب جديد.');
-                                return;
-                            }
-                            try {
-                                // إنشاء حساب جديد في Firebase
-                                const userCredential = await createUserWithEmailAndPassword(auth, email, pass);
-                                
-                                // حفظ بيانات المستخدم الجديد في قاعدة البيانات Firestore
-                                await setDoc(doc(db, "users", userCredential.user.uid), {
-                                    name: name,
-                                    email: email,
-                                    userCoins: 100, // رصيد ابتدائي
-                                    joinDate: new Date().toLocaleDateString('ar-EG'),
-                                    level: 1,
-                                    xp: 0
-                                });
-                                alert('أهلاً بك! تم إنشاء حسابك ومنحك 100 جوهرة 💎');
-                            } catch (signUpError) {
-                                alert('فشل إنشاء الحساب: ' + signUpError.message);
-                            }
-                        } else {
-                            alert('خطأ في الدخول: ' + error.message);
-                        }
-                    }
-                    this.render();
+                case 'doAuth':
+                    this.handleAuth();
                     return;
+
                 case 'doPlacement':
                     this.handlePlacement(param, correct, btn);
                     return;
@@ -4103,9 +4029,6 @@ case 'doAuth':
         }
         this.setupGlobalEvents();
         
-// --- الجزء المطور لحل مشكلة البطء والشاشة السوداء ---
-// --- نهاية الدالة saveUserData وبداية مراقب الحالة ---
-        
         onAuthStateChanged(auth, async (user) => {
             console.log("Checking login status...");
             
@@ -4113,25 +4036,19 @@ case 'doAuth':
                 this.currentUser = user;
                 this.userData = { name: user.displayName || '', email: user.email, uid: user.uid };
                 this.currentPage = 'home';
-                
-                // 1. دخول فوري للرئيسية
                 this.render(); 
-
+                
                 try {
-                    // 2. تحميل البيانات في الخلفية لمنع التعليق
                     await this.loadUserData(user.uid);
                     console.log("Data synced successfully");
                 } catch (err) {
                     console.error("Load Error:", err);
                 }
                 
-                // 3. تحديث الواجهة بالبيانات الجديدة
                 this.render();
             } else {
                 this.currentUser = null;
                 this.currentPage = 'auth';
-                
-                // تصغير حجم البيانات عند الخروج لسرعة الأداء
                 this.userCoins = 0;
                 this.userProfile = {
                     name: '', age: '', joinDate: new Date().toLocaleDateString('ar-EG'),
@@ -4141,8 +4058,7 @@ case 'doAuth':
                 this.render();
             }
         });
-    } // إغلاق الـ Constructor
-} // إغلاق الكلاس App
+    }
+}
 
-// تشغيل التطبيق
 const appInstance = new App();
