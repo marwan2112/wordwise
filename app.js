@@ -1,5 +1,3 @@
-// app.js - تطبيق تعلم اللغة الإنجليزية مع Firebase
-// النسخة الكاملة النهائية - مصححة
 
 class App {
     constructor() {
@@ -360,67 +358,94 @@ class App {
         this.addXPOnce(1, wordId);
     }
 
-    async handleAuth() {
-        const name = document.getElementById('authName')?.value;
-        const email = document.getElementById('authEmail')?.value;
-        const pass = document.getElementById('authPass')?.value;
+async handleAuth() {
+    const name = document.getElementById('authName')?.value;
+    const email = document.getElementById('authEmail')?.value;
+    const pass = document.getElementById('authPass')?.value;
 
-        if (!name || !email || !pass) {
-            alert(this.t('الرجاء إدخال جميع البيانات', 'Please fill all fields'));
-            return;
-        }
+    if (!email || !pass) {
+        alert(this.t('الرجاء إدخال البريد الإلكتروني وكلمة المرور', 'Please enter email and password'));
+        return;
+    }
 
-        try {
-            let userCredential;
-            try {
-                userCredential = await signInWithEmailAndPassword(auth, email, pass);
-            } catch (error) {
-                if (error.code === 'auth/user-not-found') {
-                    userCredential = await createUserWithEmailAndPassword(auth, email, pass);
-                    const newUserData = {
-                        name: name,
-                        age: '',
-                        joinDate: new Date().toLocaleDateString('ar-EG'),
-                        level: 'A1',
-                        image: '',
-                        testsHistory: [],
-                        userVocabulary: [],
-                        masteredWords: [],
-                        unlockedLessons: [],
-                        hiddenFromCards: [],
-                        customLessons: {},
-                        generatedLessons: {},
-                        userStats: { xp: 0, level: 1, badges: [], earnedBadges: [], tier: 'برونزي' },
-                        placementResults: [],
-                        placementFullHistory: [],
-                        userCoins: 100,
-                        jumbleUnlocked: {},
-                        listeningUnlocked: {},
-                        spellingUnlocked: {},
-                        gapFillUnlocked: {},
-                        newWordsAddedCount: 0,
-                        adWatchedCount: 0,
-                        purchaseRequests: [],
-                        exerciseStats: { quiz: { correct: 0, total: 0 }, listening: { correct: 0, total: 0 }, spelling: { correct: 0, total: 0 }, gapFill: { correct: 0, total: 0 } },
-                        lastTestedLesson: { beginner: 0, intermediate: 0, advanced: 0 }
-                    };
-                    await setDoc(doc(db, "users", userCredential.user.uid), newUserData);
-                } else {
-                    throw error;
-                }
+    if (!name && !this.currentUser) {
+        alert(this.t('الرجاء إدخال الاسم الكامل', 'Please enter your full name'));
+        return;
+    }
+
+    try {
+        // محاولة تسجيل الدخول
+        const userCredential = await signInWithEmailAndPassword(auth, email, pass);
+        this.currentUser = userCredential.user;
+        this.userData = { name: userCredential.user.displayName || name || '', email: userCredential.user.email, uid: userCredential.user.uid };
+        await this.loadUserData(userCredential.user.uid);
+        this.currentPage = 'home';
+        this.render();
+        alert(this.t('تم تسجيل الدخول بنجاح', 'Login successful'));
+        
+    } catch (error) {
+        console.error("Login error:", error.code, error.message);
+        
+        // إذا كان المستخدم غير موجود، نقوم بإنشاء حساب جديد
+        if (error.code === 'auth/user-not-found' || error.code === 'auth/invalid-credential') {
+            if (!name) {
+                alert(this.t('الرجاء إدخال الاسم الكامل لإنشاء حساب جديد', 'Please enter your full name to create a new account'));
+                return;
             }
-
-            this.currentUser = userCredential.user;
-            this.userData = { name: userCredential.user.displayName || name, email: userCredential.user.email, uid: userCredential.user.uid };
-            await this.loadUserData(userCredential.user.uid);
-            this.currentPage = 'home';
-            this.render();
-        } catch (error) {
-            console.error(error);
+            
+            try {
+                const userCredential = await createUserWithEmailAndPassword(auth, email, pass);
+                this.currentUser = userCredential.user;
+                
+                // تحديث اسم المستخدم في Firebase Auth
+                await updateProfile(this.currentUser, { displayName: name });
+                
+                // حفظ بيانات المستخدم في Firestore
+                const newUserData = {
+                    name: name,
+                    email: email,
+                    age: '',
+                    joinDate: new Date().toLocaleDateString('ar-EG'),
+                    level: 'A1',
+                    image: '',
+                    testsHistory: [],
+                    userVocabulary: [],
+                    masteredWords: [],
+                    unlockedLessons: [],
+                    hiddenFromCards: [],
+                    customLessons: {},
+                    generatedLessons: {},
+                    userStats: { xp: 0, level: 1, badges: [], earnedBadges: [], tier: 'برونزي' },
+                    placementResults: [],
+                    placementFullHistory: [],
+                    userCoins: 100,
+                    jumbleUnlocked: {},
+                    listeningUnlocked: {},
+                    spellingUnlocked: {},
+                    gapFillUnlocked: {},
+                    newWordsAddedCount: 0,
+                    adWatchedCount: 0,
+                    purchaseRequests: [],
+                    exerciseStats: { quiz: { correct: 0, total: 0 }, listening: { correct: 0, total: 0 }, spelling: { correct: 0, total: 0 }, gapFill: { correct: 0, total: 0 } },
+                    lastTestedLesson: { beginner: 0, intermediate: 0, advanced: 0 }
+                };
+                await setDoc(doc(db, "users", userCredential.user.uid), newUserData);
+                
+                this.userData = { name: name, email: email, uid: userCredential.user.uid };
+                await this.loadUserData(userCredential.user.uid);
+                this.currentPage = 'home';
+                this.render();
+                alert(this.t('تم إنشاء الحساب بنجاح! تم منحك 100 لؤلؤة 💎', 'Account created successfully! You got 100 pearls 💎'));
+                
+            } catch (signUpError) {
+                console.error("Signup error:", signUpError);
+                alert(this.t('فشل إنشاء الحساب: ' + signUpError.message, 'Account creation failed: ' + signUpError.message));
+            }
+        } else {
             alert(this.t('فشل تسجيل الدخول: ' + error.message, 'Login failed: ' + error.message));
         }
     }
-
+}
     async loadUserData(uid) {
         if (!uid) return;
         try {
