@@ -33,7 +33,8 @@
             signInWithEmailAndPassword, 
             createUserWithEmailAndPassword, 
             signOut, 
-            updateProfile 
+            updateProfile,
+            updatePassword
         } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-auth.js";
         
         import { 
@@ -42,7 +43,8 @@
             setDoc, 
             getDoc, 
             updateDoc, 
-            collection 
+            collection,
+            deleteDoc
         } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-firestore.js";
 
         // إعدادات Firebase الخاصة بمشروعك
@@ -68,22 +70,53 @@
         window.signInWithEmailAndPassword = signInWithEmailAndPassword;
         window.createUserWithEmailAndPassword = createUserWithEmailAndPassword;
         window.signOut = signOut;
+        window.updateProfile = updateProfile;
+        window.updatePassword = updatePassword;
         window.setDoc = setDoc;
         window.doc = doc;
         window.getDoc = getDoc;
         window.updateDoc = updateDoc;
+        window.collection = collection;
+        window.deleteDoc = deleteDoc;
 
-        console.log("✅ Firebase System Initialized");
+        console.log("✅ Firebase System Initialized - All functions exported");
+
+        // التحقق من أن جميع الدوال متوفرة
+        const requiredFunctions = ['auth', 'db', 'onAuthStateChanged', 'signInWithEmailAndPassword', 'createUserWithEmailAndPassword', 'signOut', 'updateProfile', 'setDoc', 'doc', 'getDoc'];
+        let allAvailable = true;
+        requiredFunctions.forEach(fn => {
+            if (typeof window[fn] === 'undefined') {
+                console.error(`❌ Missing: ${fn}`);
+                allAvailable = false;
+            }
+        });
+        
+        if (allAvailable) {
+            console.log("✅ All Firebase functions are ready");
+        } else {
+            console.error("❌ Some Firebase functions are missing");
+        }
 
         /** * تحميل ملفات المشروع برمجياً لضمان عدم تشغيل app.js 
          * إلا بعد أن يصبح Firebase جاهزاً تماماً في المتصفح
          */
         const projectScripts = ["data.js", "gapfillDB.js", "app.js"];
         
+        let loadedCount = 0;
         projectScripts.forEach(src => {
             const script = document.createElement('script');
             script.src = src;
             script.async = false; // التحميل بالترتيب المذكور أعلاه
+            script.onload = () => {
+                loadedCount++;
+                console.log(`✅ Loaded: ${src} (${loadedCount}/${projectScripts.length})`);
+                if (loadedCount === projectScripts.length) {
+                    console.log("✅ All project scripts loaded successfully");
+                }
+            };
+            script.onerror = () => {
+                console.error(`❌ Failed to load: ${src}`);
+            };
             document.body.appendChild(script);
         });
     </script>
