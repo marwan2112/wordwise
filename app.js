@@ -525,7 +525,6 @@ class App {
                 color: #ffffff !important;
             }
             
-            /* تنسيق الهيدر الثابت */
             .header {
                 position: sticky;
                 top: 0;
@@ -549,7 +548,6 @@ class App {
                 gap: 8px;
             }
             
-            /* اللوجو - حجم صغير ومناسب */
             .logo-container {
                 display: flex;
                 align-items: center;
@@ -583,7 +581,6 @@ class App {
                 background-clip: text;
             }
             
-            /* مجموعة الأزرار اليمنى */
             .header-buttons {
                 display: flex;
                 align-items: center;
@@ -613,6 +610,25 @@ class App {
                 background: rgba(255,255,255,0.1);
             }
             
+            /* زر اللغة بلون ظاهر */
+            .lang-btn {
+                background: #3b82f6;
+                color: white;
+                font-weight: bold;
+                border-radius: 20px;
+                padding: 4px 12px;
+            }
+            
+            [data-theme="dark"] .lang-btn {
+                background: #ffd700;
+                color: #000;
+            }
+            
+            .lang-btn:hover {
+                opacity: 0.9;
+                transform: scale(0.98);
+            }
+            
             .coin-display {
                 background: #ffd700;
                 color: #000;
@@ -626,7 +642,6 @@ class App {
                 font-size: 0.85rem;
             }
             
-            /* شريط التنقل */
             .nav-menu {
                 display: flex;
                 flex-wrap: wrap;
@@ -667,7 +682,6 @@ class App {
                 background: #3b82f6;
             }
             
-            /* المحتوى الرئيسي */
             .main-content {
                 max-width: 600px;
                 margin: 0 auto;
@@ -1639,6 +1653,16 @@ class App {
         this.render();
     }
 
+    // الحصول على جميع الكلمات المتاحة للتمارين (بما في ذلك الكلمات المتقنة)
+    getAllAvailableWordsForExercises() {
+        const lesson = this.getCurrentLessonData();
+        if (!lesson) return [];
+        
+        const allTerms = [...lesson.terms, ...this.userVocabulary.filter(v => v.lessonId == this.selectedLessonId)];
+        // نعرض جميع الكلمات ما عدا المحذوفة فقط
+        return allTerms.filter(t => !this.hiddenFromCards.includes(String(t.id)));
+    }
+
     prepareListeningQuiz() {
         if (this.listeningTimer) {
             clearTimeout(this.listeningTimer);
@@ -1649,14 +1673,10 @@ class App {
             this.listeningErrorTimer = null;
         }
 
-        const lesson = this.getCurrentLessonData();
-        if (!lesson) return;
-
-        const allTerms = [...lesson.terms, ...this.userVocabulary.filter(v => v.lessonId == this.selectedLessonId)];
-        const available = allTerms.filter(t => !this.masteredWords.includes(String(t.id)) && !this.hiddenFromCards.includes(String(t.id)));
+        const available = this.getAllAvailableWordsForExercises();
 
         if (available.length === 0) {
-            alert(this.t('لا توجد كلمات متاحة للاستماع. قم بإضافة كلمات جديدة أو إعادة تعيين الكلمات المتقنة.', 'No words available for listening. Add new words or reset mastered words.'));
+            alert(this.t('لا توجد كلمات متاحة للاستماع. قم بإضافة كلمات جديدة.', 'No words available for listening. Add new words.'));
             return;
         }
 
@@ -1667,6 +1687,7 @@ class App {
         this.listeningCurrent = this.listeningRemaining[0];
         this.listeningAnswered = false;
 
+        const allTerms = this.getAllAvailableWordsForExercises();
         const otherTerms = allTerms.filter(t => t.id !== this.listeningCurrent.id);
         const shuffled = [...otherTerms].sort(() => 0.5 - Math.random());
         const wrongOptions = shuffled.slice(0, 3).map(t => t.arabic);
@@ -1781,14 +1802,10 @@ class App {
     }
 
     prepareSpelling() {
-        const lesson = this.getCurrentLessonData();
-        if (!lesson) return;
-
-        const allTerms = [...lesson.terms, ...this.userVocabulary.filter(v => v.lessonId == this.selectedLessonId)];
-        const available = allTerms.filter(t => !this.masteredWords.includes(String(t.id)) && !this.hiddenFromCards.includes(String(t.id)));
+        const available = this.getAllAvailableWordsForExercises();
 
         if (available.length === 0) {
-            alert(this.t('لا توجد كلمات متاحة للكتابة. قم بإضافة كلمات جديدة أو إعادة تعيين الكلمات المتقنة.', 'No words available for spelling. Add new words or reset mastered words.'));
+            alert(this.t('لا توجد كلمات متاحة للكتابة. قم بإضافة كلمات جديدة.', 'No words available for spelling. Add new words.'));
             return;
         }
 
@@ -1921,7 +1938,7 @@ class App {
             const added = this.userVocabulary.filter(v => v.lessonId == id);
             allWords = allWords.concat(added);
         });
-        allWords = allWords.filter(t => !this.hiddenFromCards.includes(String(t.id)) && !this.masteredWords.includes(String(t.id)));
+        allWords = allWords.filter(t => !this.hiddenFromCards.includes(String(t.id)));
         const unique = {};
         allWords.forEach(w => unique[w.id] = w);
         return Object.values(unique);
@@ -2458,11 +2475,10 @@ class App {
             this.gapFillCurrentLessonId = this.selectedLessonId;
         }
 
-        const allTerms = [...lesson.terms, ...this.userVocabulary.filter(v => v.lessonId == this.selectedLessonId)];
-        const available = allTerms.filter(t => !this.masteredWords.includes(String(t.id)) && !this.hiddenFromCards.includes(String(t.id)));
+        const available = this.getAllAvailableWordsForExercises();
 
         if (available.length === 0) {
-            alert(this.t('🎉 لقد أنهيت جميع الكلمات المتاحة! يمكنك إعادة تعيين الكلمات المتقنة من قائمة البطاقات.', '🎉 You have finished all available words! You can reset mastered words from the flashcards.'));
+            alert(this.t('🎉 لا توجد كلمات متاحة! قم بإضافة كلمات جديدة.', '🎉 No words available! Add new words.'));
             return;
         }
 
@@ -2865,7 +2881,7 @@ class App {
                     if (this.showAllCardsTemporary) {
                         activeCards = allWords.filter(t => !this.hiddenFromCards.includes(String(t.id)));
                     } else {
-                        activeCards = allWords.filter(t => !this.masteredWords.includes(String(t.id)) && !this.hiddenFromCards.includes(String(t.id)));
+                        activeCards = allWords.filter(t => !this.hiddenFromCards.includes(String(t.id)));
                     }
                     if (activeCards.length === 0) break;
                     const currentCard = activeCards[this.currentCardIndex];
@@ -2887,7 +2903,7 @@ class App {
                     if (this.showAllCardsTemporary) {
                         activePrev = allWordsPrev.filter(t => !this.hiddenFromCards.includes(String(t.id)));
                     } else {
-                        activePrev = allWordsPrev.filter(t => !this.masteredWords.includes(String(t.id)) && !this.hiddenFromCards.includes(String(t.id)));
+                        activePrev = allWordsPrev.filter(t => !this.hiddenFromCards.includes(String(t.id)));
                     }
                     if (activePrev.length === 0) break;
                     this.currentCardIndex--;
@@ -3364,7 +3380,7 @@ class App {
                     <h2>WordWise</h2>
                 </div>
                 <div class="header-buttons">
-                    <button class="header-btn" data-action="toggleLang" title="${this.t('تغيير اللغة', 'Change Language')}">
+                    <button class="header-btn lang-btn" data-action="toggleLang" title="${this.t('تغيير اللغة', 'Change Language')}">
                         ${this.lang === 'ar' ? 'EN' : 'عربي'}
                     </button>
                     <button class="header-btn" data-action="toggleTheme" title="${this.t('الوضع الليلي', 'Dark Mode')}">
@@ -3702,7 +3718,7 @@ class App {
             if (this.showAllCardsTemporary) {
                 active = allTerms.filter(t => !this.hiddenFromCards.includes(String(t.id)));
             } else {
-                active = allTerms.filter(t => !this.masteredWords.includes(String(t.id)) && !this.hiddenFromCards.includes(String(t.id)));
+                active = allTerms.filter(t => !this.hiddenFromCards.includes(String(t.id)));
             }
             if (active.length === 0) {
                 return `<div class="reading-card" style="text-align:center;">
@@ -3805,7 +3821,8 @@ class App {
                 </div>`;
             }
             if (!this.listeningCurrent) {
-                return `<div class="reading-card"><p>${this.t('لا توجد كلمات متاحة. حاول مرة أخرى.', 'No words available. Please try again.')}</p></div>`;
+                this.prepareListeningQuiz();
+                return `<div class="reading-card"><p>${this.t('جاري تحضير التمرين...', 'Preparing exercise...')}</p></div>`;
             }
             return `<div class="reading-card">
                 <h3>🎧 ${this.t('استمع واختر الكلمة الصحيحة', 'Listen and choose the correct word')}</h3>
@@ -3830,7 +3847,8 @@ class App {
                 </div>`;
             }
             if (!this.spellingCurrent) {
-                return `<div class="reading-card"><p>${this.t('لا توجد كلمات متاحة. حاول مرة أخرى.', 'No words available. Please try again.')}</p></div>`;
+                this.prepareSpelling();
+                return `<div class="reading-card"><p>${this.t('جاري تحضير التمرين...', 'Preparing exercise...')}</p></div>`;
             }
             return `<div class="reading-card spelling-card">
                 <h3>✍️ ${this.t('اكتب الكلمة بالانجليزية', 'Write the word in English')}</h3>
@@ -3916,6 +3934,7 @@ class App {
                 </div>`;
             }
             if (!this.gapFillCurrentQuestion) {
+                this.prepareGapFill();
                 return `<div class="reading-card"><p>${this.t('جاري تحضير السؤال...', 'Preparing question...')}</p></div>`;
             }
             const q = this.gapFillCurrentQuestion;
