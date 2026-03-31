@@ -3737,36 +3737,39 @@ if (this.currentPage === 'flashcards') {
             !this.hiddenFromCards.includes(String(t.id))
         );
     }
-                return `<div class="reading-card" style="text-align:center;">
-                    <div style="font-size:2.5rem; margin-bottom:10px;">🧠</div>
-                    <h3>🎉 ${this.t('اكتملت المراجعة!', 'Review completed!')}</h3>
-                    <button class="hero-btn" data-action="restartCards" data-param="all" style="background:#f59e0b;">${this.t('إعادة تكرار الكل 🔁', 'Repeat All 🔁')}</button>
-                </div>`;
-            }
-            const t = active[this.currentCardIndex];
-            return `<main class="main-content">
-                <div class="flashcard-container" onclick="this.querySelector('.flashcard').classList.toggle('flipped')">
-                    <div class="flashcard">
-                        <div class="flashcard-front">
-                            <h1>${t.english}</h1>
-                        </div>
-                        <div class="flashcard-back"><h1>${t.arabic}</h1></div>
-                    </div>
+    
+    // التحقق من عدم وجود بطاقات لعرضها
+    if (active.length === 0) {
+        return `<div class="reading-card" style="text-align:center;">
+            <div style="font-size:2.5rem; margin-bottom:10px;">🧠</div>
+            <h3>🎉 ${this.t('اكتملت المراجعة!', 'Review completed!')}</h3>
+            <button class="hero-btn" data-action="restartCards" data-param="all" style="background:#f59e0b;">${this.t('إعادة تكرار الكل 🔁', 'Repeat All 🔁')}</button>
+        </div>`;
+    }
+    
+    const t = active[this.currentCardIndex];
+    return `<main class="main-content">
+        <div class="flashcard-container" onclick="this.querySelector('.flashcard').classList.toggle('flipped')">
+            <div class="flashcard">
+                <div class="flashcard-front">
+                    <h1>${t.english}</h1>
                 </div>
-                <div class="card-controls-row">
-                    <button class="hero-btn" data-action="speak" data-param="${t.english}" style="background:#6366f1;">🔊 ${this.t('نطق', 'Speak')}</button>
-                    <button class="hero-btn" data-action="masterWordFlash" data-param="${t.id}" style="background:#10b981;">✅ ${this.t('اعرفها', 'Master')}</button>
-                    <button class="hero-btn" data-action="deleteWord" data-param="${t.id}" style="background:#ef4444;">🗑️ ${this.t('حذف', 'Delete')}</button>
-                </div>
-                <button class="hero-btn" data-action="restartCards" data-param="remaining" style="width:100%; margin: 12px 0; background:#f59e0b;">🔁 ${this.t('تكرار المتبقي', 'Repeat Remaining')}</button>
-                <div class="card-nav-row">
-                    <button class="hero-btn" data-action="prevC" style="background:#64748b;">${this.t('السابق', 'Previous')}</button>
-                    <button class="hero-btn" data-action="nextC" data-total="${active.length}" style="background:#64748b;">${this.t('التالي', 'Next')}</button>
-                </div>
-                <div style="text-align:center; margin-top:8px; color:#666; font-size:0.85rem;">${this.currentCardIndex + 1} / ${active.length}</div>
-            </main>`;
-        }
-
+                <div class="flashcard-back"><h1>${t.arabic}</h1></div>
+            </div>
+        </div>
+        <div class="card-controls-row">
+            <button class="hero-btn" data-action="speak" data-param="${t.english}" style="background:#6366f1;">🔊 ${this.t('نطق', 'Speak')}</button>
+            <button class="hero-btn" data-action="masterWordFlash" data-param="${t.id}" style="background:#10b981;">✅ ${this.t('اعرفها', 'Master')}</button>
+            <button class="hero-btn" data-action="deleteWord" data-param="${t.id}" style="background:#ef4444;">🗑️ ${this.t('حذف', 'Delete')}</button>
+        </div>
+        <button class="hero-btn" data-action="restartCards" data-param="remaining" style="width:100%; margin: 12px 0; background:#f59e0b;">🔁 ${this.t('تكرار المتبقي', 'Repeat Remaining')}</button>
+        <div class="card-nav-row">
+            <button class="hero-btn" data-action="prevC" style="background:#64748b;">${this.t('السابق', 'Previous')}</button>
+            <button class="hero-btn" data-action="nextC" data-total="${active.length}" style="background:#64748b;">${this.t('التالي', 'Next')}</button>
+        </div>
+        <div style="text-align:center; margin-top:8px; color:#666; font-size:0.85rem;">${this.currentCardIndex + 1} / ${active.length}</div>
+    </main>`;
+}
         if (this.currentPage === 'quiz') {
             if (this.quizIndex >= this.quizQuestions.length) {
                 const pass = (this.quizScore / this.quizQuestions.length) >= 0.75;
