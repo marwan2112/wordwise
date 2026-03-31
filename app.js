@@ -1,3 +1,5 @@
+// app.js - تطبيق تعلم اللغة الإنجليزية مع نظام الأوسمة المتكامل
+
 class App {
     constructor() {
         this.currentAudio = null;
@@ -15,7 +17,7 @@ class App {
         this.xpEarnedWords = JSON.parse(localStorage.getItem('xpEarnedWords') || '[]');
         document.documentElement.setAttribute('dir', this.lang === 'ar' ? 'rtl' : 'ltr');
 
-        this.userStats = { xp: 0, level: 1, badges: [], tier: 'برونزي' };
+        this.userStats = { xp: 0, level: 1, badges: [], earnedBadges: [], tier: 'برونزي' };
         this.placementResults = [];
         this.placementFullHistory = [];
         this.currentPlacementDetails = [];
@@ -42,6 +44,8 @@ class App {
         this.listeningErrorTimer = null;
         this.listeningUnlocked = {};
         this.listeningNextCount = 0;
+        this.listeningCorrectCount = 0;
+        this.listeningCorrectTotal = 0;
 
         this.spellingRemaining = [];
         this.spellingCurrent = null;
@@ -50,6 +54,8 @@ class App {
         this.spellingResult = null;
         this.spellingUnlocked = {};
         this.spellingNextCount = 0;
+        this.spellingCorrectCount = 0;
+        this.spellingCorrectTotal = 0;
 
         this.gapFillRemaining = [];
         this.gapFillCurrentQuestion = null;
@@ -67,6 +73,8 @@ class App {
         this.gapFillAvailableWords = [];
         this.gapFillRemainingWords = [];
         this.gapFillCurrentLessonId = null;
+        this.gapFillCorrectCount = 0;
+        this.gapFillCorrectTotal = 0;
 
         this.levelTestLevel = null;
         this.levelTestLessons = [];
@@ -109,6 +117,61 @@ class App {
         this.generatedLessons = {};
 
         this.showAllCardsTemporary = false;
+        
+        // إحصائيات التمارين لتتبع الأوسمة
+        this.exerciseStats = {
+            quiz: { correct: 0, total: 0 },
+            listening: { correct: 0, total: 0 },
+            spelling: { correct: 0, total: 0 },
+            gapFill: { correct: 0, total: 0 }
+        };
+        
+        // تعريفات الأوسمة
+        this.badgeDefinitions = {
+            // أوسمة التقدم العام
+            general: [
+                { id: 'bronze_medal', icon: '🥉', name: 'وسام برونزي', nameEn: 'Bronze Medal', requirement: { lessons: 5, words: 100 }, condition: (stats) => stats.totalLessons >= 5 && stats.totalMastered >= 100 },
+                { id: 'silver_medal', icon: '🥈', name: 'وسام فضي', nameEn: 'Silver Medal', requirement: { lessons: 15, words: 300 }, condition: (stats) => stats.totalLessons >= 15 && stats.totalMastered >= 300 },
+                { id: 'gold_medal', icon: '🥇', name: 'وسام ذهبي', nameEn: 'Gold Medal', requirement: { lessons: 35, words: 800 }, condition: (stats) => stats.totalLessons >= 35 && stats.totalMastered >= 800 },
+                { id: 'diamond_medal', icon: '💎', name: 'وسام ماسي', nameEn: 'Diamond Medal', requirement: { lessons: 60, words: 2000 }, condition: (stats) => stats.totalLessons >= 60 && stats.totalMastered >= 2000 },
+                { id: 'bronze_crown', icon: '👑', name: 'تاج برونزي', nameEn: 'Bronze Crown', requirement: { masteredWords: 10 }, condition: (stats) => stats.totalMastered >= 10 },
+                { id: 'silver_crown', icon: '👑', name: 'تاج فضي', nameEn: 'Silver Crown', requirement: { masteredWords: 50 }, condition: (stats) => stats.totalMastered >= 50 },
+                { id: 'gold_crown', icon: '👑', name: 'تاج ذهبي', nameEn: 'Gold Crown', requirement: { masteredWords: 200 }, condition: (stats) => stats.totalMastered >= 200 },
+                { id: 'diamond_crown', icon: '👑', name: 'تاج ماسي', nameEn: 'Diamond Crown', requirement: { masteredWords: 500 }, condition: (stats) => stats.totalMastered >= 500 }
+            ],
+            // أوسمة اختبار (Quiz)
+            quiz: [
+                { id: 'quiz_beginner', icon: '📖', name: 'مبتدئ', nameEn: 'Beginner', requirement: 25, condition: (count) => count >= 25 },
+                { id: 'quiz_diligent', icon: '📚', name: 'مجتهد', nameEn: 'Diligent', requirement: 125, condition: (count) => count >= 125 },
+                { id: 'quiz_advanced', icon: '🎓', name: 'متقدم', nameEn: 'Advanced', requirement: 350, condition: (count) => count >= 350 },
+                { id: 'quiz_expert', icon: '🏅', name: 'خبير', nameEn: 'Expert', requirement: 500, condition: (count) => count >= 500 },
+                { id: 'quiz_professional', icon: '🏆', name: 'محترف', nameEn: 'Professional', requirement: 1000, condition: (count) => count >= 1000 }
+            ],
+            // أوسمة استماع
+            listening: [
+                { id: 'listening_beginner', icon: '🎧', name: 'مبتدئ', nameEn: 'Beginner', requirement: 25, condition: (count) => count >= 25 },
+                { id: 'listening_diligent', icon: '🎵', name: 'مجتهد', nameEn: 'Diligent', requirement: 125, condition: (count) => count >= 125 },
+                { id: 'listening_advanced', icon: '🎼', name: 'متقدم', nameEn: 'Advanced', requirement: 250, condition: (count) => count >= 250 },
+                { id: 'listening_expert', icon: '🎙️', name: 'خبير', nameEn: 'Expert', requirement: 350, condition: (count) => count >= 350 },
+                { id: 'listening_professional', icon: '🏅', name: 'محترف', nameEn: 'Professional', requirement: 500, condition: (count) => count >= 500 }
+            ],
+            // أوسمة كتابة
+            spelling: [
+                { id: 'spelling_beginner', icon: '✏️', name: 'مبتدئ', nameEn: 'Beginner', requirement: 25, condition: (count) => count >= 25 },
+                { id: 'spelling_diligent', icon: '📝', name: 'مجتهد', nameEn: 'Diligent', requirement: 100, condition: (count) => count >= 100 },
+                { id: 'spelling_advanced', icon: '✍️', name: 'متقدم', nameEn: 'Advanced', requirement: 200, condition: (count) => count >= 200 },
+                { id: 'spelling_expert', icon: '🖋️', name: 'خبير', nameEn: 'Expert', requirement: 350, condition: (count) => count >= 350 },
+                { id: 'spelling_professional', icon: '🏆', name: 'محترف', nameEn: 'Professional', requirement: 500, condition: (count) => count >= 500 }
+            ],
+            // أوسمة ملء فراغ
+            gapFill: [
+                { id: 'gapfill_beginner', icon: '🔲', name: 'مبتدئ', nameEn: 'Beginner', requirement: 50, condition: (count) => count >= 50 },
+                { id: 'gapfill_diligent', icon: '📊', name: 'مجتهد', nameEn: 'Diligent', requirement: 150, condition: (count) => count >= 150 },
+                { id: 'gapfill_advanced', icon: '📈', name: 'متقدم', nameEn: 'Advanced', requirement: 250, condition: (count) => count >= 250 },
+                { id: 'gapfill_expert', icon: '🎯', name: 'خبير', nameEn: 'Expert', requirement: 400, condition: (count) => count >= 400 },
+                { id: 'gapfill_professional', icon: '💎', name: 'محترف', nameEn: 'Professional', requirement: 800, condition: (count) => count >= 800 }
+            ]
+        };
 
         if (!localStorage.getItem('users')) {
             localStorage.setItem('users', JSON.stringify({}));
@@ -185,6 +248,7 @@ class App {
         }
     }
 
+    // تحديث الأوسمة ومنح المكافآت
     updateLevelAndBadges() {
         const oldLevel = this.userStats.level;
         const newProgress = this.getCurrentLevelProgress();
@@ -197,36 +261,68 @@ class App {
             this.showCustomModal('success', '🎉', congratsMsg);
         }
 
+        // حساب الإحصائيات
         const totalLessons = (this.unlockedLessons || []).length;
         const totalMastered = (this.masteredWords || []).length;
-
-        if (totalMastered >= 1200) this.userStats.tier = this.t('👑 تاج ماسي', '👑 Diamond Crown');
-        else if (totalMastered >= 500) this.userStats.tier = this.t('👑 تاج ذهبي', '👑 Gold Crown');
-        else if (totalMastered >= 200) this.userStats.tier = this.t('👑 تاج فضي', '👑 Silver Crown');
-        else if (totalMastered >= 50) this.userStats.tier = this.t('👑 تاج برونزي', '👑 Bronze Crown');
-        else if (totalMastered >= 10) this.userStats.tier = this.t('طالب مجتهد', 'Diligent Student');
+        
+        // تحديث التاج
+        if (totalMastered >= 500) this.userStats.tier = this.t('👑 تاج ماسي', '👑 Diamond Crown');
+        else if (totalMastered >= 200) this.userStats.tier = this.t('👑 تاج ذهبي', '👑 Gold Crown');
+        else if (totalMastered >= 50) this.userStats.tier = this.t('👑 تاج فضي', '👑 Silver Crown');
+        else if (totalMastered >= 10) this.userStats.tier = this.t('👑 تاج برونزي', '👑 Bronze Crown');
         else this.userStats.tier = this.t('مبتدئ', 'Beginner');
 
-        const badgesList = [];
-        if (totalLessons >= 5 && totalMastered >= 100) badgesList.push('🥉');
-        if (totalLessons >= 15 && totalMastered >= 300) badgesList.push('🥈');
-        if (totalLessons >= 35 && totalMastered >= 800) badgesList.push('🥇');
-        if (totalLessons >= 60 && totalMastered >= 2000) badgesList.push('🎖️');
-        if (totalLessons >= 120 && totalMastered >= 4000) badgesList.push('🏆');
-        const levelMap = { 'A1': 5, 'A2': 15, 'B1': 30, 'B2': 50, 'C1': 75, 'C2': 100 };
-        for (let lvl in levelMap) {
-            if (totalLessons >= levelMap[lvl]) badgesList.push(lvl);
+        // التحقق من الأوسمة العامة
+        const stats = { totalLessons, totalMastered };
+        const newlyEarned = [];
+        
+        for (const badge of this.badgeDefinitions.general) {
+            if (!this.userStats.earnedBadges?.includes(badge.id) && badge.condition(stats)) {
+                this.userStats.earnedBadges = this.userStats.earnedBadges || [];
+                this.userStats.earnedBadges.push(badge.id);
+                newlyEarned.push(badge);
+                this.userCoins += 100;
+            }
+        }
+        
+        // التحقق من أوسمة التمارين
+        for (const exerciseType of ['quiz', 'listening', 'spelling', 'gapFill']) {
+            const correctCount = this.exerciseStats[exerciseType]?.correct || 0;
+            for (const badge of this.badgeDefinitions[exerciseType]) {
+                if (!this.userStats.earnedBadges?.includes(badge.id) && badge.condition(correctCount)) {
+                    this.userStats.earnedBadges = this.userStats.earnedBadges || [];
+                    this.userStats.earnedBadges.push(badge.id);
+                    newlyEarned.push(badge);
+                    this.userCoins += 100;
+                }
+            }
         }
 
-        const oldBadges = this.userStats.badges || [];
-        const newBadgeEarned = badgesList.find(b => !oldBadges.includes(b));
-        if (newBadgeEarned) {
-            this.userCoins += 150;
-            const badgeMsg = this.t('تهانينا! حصلت على وسام جديد', 'Congrats! You earned a new badge') + ' ' + newBadgeEarned;
-            this.showCustomModal('success', '🏅', badgeMsg);
+        // عرض رسالة للأوسمة الجديدة
+        if (newlyEarned.length > 0) {
+            const badgeNames = newlyEarned.map(b => `${b.icon} ${this.t(b.name, b.nameEn)}`).join(', ');
+            this.showCustomModal('success', '🏅', this.t(`تهانينا! حصلت على أوسمة جديدة: ${badgeNames}`, `Congratulations! You earned new badges: ${badgeNames}`));
         }
-        this.userStats.badges = badgesList;
 
+        this.saveUserData();
+    }
+
+    // تسجيل إجابة صحيحة في التمارين
+    recordCorrectAnswer(exerciseType) {
+        if (!this.exerciseStats[exerciseType]) {
+            this.exerciseStats[exerciseType] = { correct: 0, total: 0 };
+        }
+        this.exerciseStats[exerciseType].correct++;
+        this.exerciseStats[exerciseType].total++;
+        this.updateLevelAndBadges();
+        this.saveUserData();
+    }
+    
+    recordTotalAnswer(exerciseType) {
+        if (!this.exerciseStats[exerciseType]) {
+            this.exerciseStats[exerciseType] = { correct: 0, total: 0 };
+        }
+        this.exerciseStats[exerciseType].total++;
         this.saveUserData();
     }
 
@@ -247,19 +343,31 @@ class App {
     }
 
     addQuizCorrectReward(wordId) {
-        this.addXPOnce(2, wordId);
+        if (this.addXPOnce(2, wordId)) {
+            this.recordCorrectAnswer('quiz');
+        }
+        this.recordTotalAnswer('quiz');
     }
 
     addSpellingCorrectReward(wordId) {
-        this.addXPOnce(3, wordId);
+        if (this.addXPOnce(3, wordId)) {
+            this.recordCorrectAnswer('spelling');
+        }
+        this.recordTotalAnswer('spelling');
     }
 
     addListeningCorrectReward(wordId) {
-        this.addXPOnce(3, wordId);
+        if (this.addXPOnce(3, wordId)) {
+            this.recordCorrectAnswer('listening');
+        }
+        this.recordTotalAnswer('listening');
     }
 
     addGapFillCorrectReward(wordId) {
-        this.addXPOnce(5, wordId);
+        if (this.addXPOnce(5, wordId)) {
+            this.recordCorrectAnswer('gapFill');
+        }
+        this.recordTotalAnswer('gapFill');
     }
 
     addMasteredWordReward(wordId) {
@@ -279,7 +387,7 @@ class App {
         this.hiddenFromCards = data.hiddenFromCards || [];
         this.customLessons = data.customLessons || {};
         this.generatedLessons = data.generatedLessons || {};
-        this.userStats = data.userStats || { xp: 0, level: 1, badges: [], tier: 'برونزي' };
+        this.userStats = data.userStats || { xp: 0, level: 1, badges: [], earnedBadges: [], tier: 'برونزي' };
         this.placementResults = data.placementResults || [];
         this.placementFullHistory = data.placementFullHistory || [];
         this.userCoins = data.userCoins || 0;
@@ -297,6 +405,12 @@ class App {
             level: 'A1',
             image: '',
             testsHistory: []
+        };
+        this.exerciseStats = data.exerciseStats || {
+            quiz: { correct: 0, total: 0 },
+            listening: { correct: 0, total: 0 },
+            spelling: { correct: 0, total: 0 },
+            gapFill: { correct: 0, total: 0 }
         };
         this.lastTestedLesson = data.lastTestedLesson || { beginner: 0, intermediate: 0, advanced: 0 };
         if (this.placementResults.length > 0) {
@@ -327,6 +441,7 @@ class App {
             adWatchedCount: this.adWatchedCount,
             purchaseRequests: this.purchaseRequests,
             userProfile: this.userProfile,
+            exerciseStats: this.exerciseStats,
             lastTestedLesson: this.lastTestedLesson
         };
         localStorage.setItem(key, JSON.stringify(data));
@@ -343,7 +458,7 @@ class App {
         this.hiddenFromCards = [];
         this.customLessons = {};
         this.generatedLessons = {};
-        this.userStats = { xp: 0, level: 1, badges: [], tier: 'برونزي' };
+        this.userStats = { xp: 0, level: 1, badges: [], earnedBadges: [], tier: 'برونزي' };
         this.placementResults = [];
         this.placementFullHistory = [];
         this.userCoins = 0;
@@ -361,6 +476,12 @@ class App {
             level: 'A1',
             image: '',
             testsHistory: []
+        };
+        this.exerciseStats = {
+            quiz: { correct: 0, total: 0 },
+            listening: { correct: 0, total: 0 },
+            spelling: { correct: 0, total: 0 },
+            gapFill: { correct: 0, total: 0 }
         };
         this.lastTestedLesson = { beginner: 0, intermediate: 0, advanced: 0 };
         this.currentPage = 'auth';
@@ -414,6 +535,7 @@ class App {
             [data-theme="dark"] .profile-container,
             [data-theme="dark"] .auth-card,
             [data-theme="dark"] .badges-container,
+            [data-theme="dark"] .badges-modal,
             [data-theme="dark"] .gapfill-sentence,
             [data-theme="dark"] .scrollable-text {
                 background-color: #1e1e1e !important;
@@ -429,6 +551,7 @@ class App {
             [data-theme="dark"] .profile-container *,
             [data-theme="dark"] .auth-card *,
             [data-theme="dark"] .badges-container *,
+            [data-theme="dark"] .badges-modal *,
             [data-theme="dark"] .scrollable-text * {
                 color: #ffffff !important;
             }
@@ -437,7 +560,7 @@ class App {
             [data-theme="dark"] .spelling-input,
             [data-theme="dark"] input:not([type="checkbox"]):not([type="radio"]) {
                 background-color: #2d2d2d !important;
-                color: #000000 !important;
+                color: #ffffff !important;
                 border-color: #555 !important;
             }
             [data-theme="dark"] input::placeholder,
@@ -497,25 +620,44 @@ class App {
                 display: flex;
                 justify-content: space-between;
                 align-items: center;
-                padding: 10px 20px;
+                padding: 10px 16px;
+                flex-wrap: wrap;
+                gap: 10px;
             }
             .logo-container {
                 display: flex;
                 align-items: center;
-                gap: 10px;
+                gap: 8px;
                 cursor: pointer;
+                flex-shrink: 0;
             }
             .logo-container img {
-                height: 40px;
+                height: 35px;
                 width: auto;
                 transition: transform 0.3s;
+            }
+            @media (max-width: 480px) {
+                .logo-container img {
+                    height: 28px;
+                }
+                .logo-container h2 {
+                    font-size: 1.2rem !important;
+                }
+                .header-content > div:last-child {
+                    gap: 6px !important;
+                }
+                .header-content > div:last-child button,
+                .header-content > div:last-child > div {
+                    padding: 3px 6px !important;
+                    font-size: 0.9rem !important;
+                }
             }
             .logo-container:hover img {
                 transform: scale(1.05);
             }
             .logo-container h2 {
                 margin: 0;
-                font-size: 1.5rem;
+                font-size: 1.4rem;
                 font-weight: bold;
                 background: linear-gradient(135deg, #1e40af, #3b82f6);
                 -webkit-background-clip: text;
@@ -531,17 +673,28 @@ class App {
                 margin-bottom: 30px;
             }
             .auth-container img {
-                max-width: 120px;
+                max-width: 100px;
                 height: auto;
                 margin-bottom: 15px;
             }
+            @media (max-width: 480px) {
+                .auth-container img {
+                    max-width: 80px;
+                }
+                .auth-container h1 {
+                    font-size: 1.8rem !important;
+                }
+                .auth-container p {
+                    font-size: 1rem !important;
+                }
+            }
             .auth-container h1 {
-                font-size: 2.5rem;
+                font-size: 2rem;
                 margin: 0;
                 color: #1e40af;
             }
             .auth-container p {
-                font-size: 1.2rem;
+                font-size: 1rem;
                 color: #64748b;
             }
             [data-theme="dark"] .auth-container h1 {
@@ -714,12 +867,27 @@ class App {
                 justify-content: space-between;
                 padding: 8px 0;
                 border-bottom: 1px solid #eee;
+                flex-wrap: wrap;
+                gap: 8px;
             }
             [data-theme="dark"] .info-row {
                 border-bottom-color: #444;
             }
             .info-row:last-child {
                 border-bottom: none;
+            }
+            .info-row input {
+                max-width: 180px;
+            }
+            @media (max-width: 480px) {
+                .info-row {
+                    flex-direction: column;
+                    align-items: flex-start;
+                }
+                .info-row input {
+                    max-width: 100%;
+                    width: 100%;
+                }
             }
             .progress-bar-container {
                 width: 100%;
@@ -753,60 +921,81 @@ class App {
             }
             .badges-container {
                 display: flex;
-                gap: 10px;
+                gap: 8px;
                 flex-wrap: wrap;
                 margin: 15px 0;
-                padding: 10px;
+                padding: 12px;
                 background: rgba(255,255,255,0.1);
                 border-radius: 12px;
                 cursor: pointer;
+                justify-content: center;
             }
             .badge-item {
-                font-size: 2rem;
+                font-size: 1.6rem;
                 transition: transform 0.2s;
+                cursor: pointer;
             }
             .badge-item:hover {
                 transform: scale(1.1);
             }
+            .badge-item.locked {
+                opacity: 0.3;
+                filter: grayscale(1);
+            }
+            .badge-item.earned {
+                opacity: 1;
+                filter: none;
+            }
             .badges-grid {
                 display: grid;
-                grid-template-columns: repeat(2, 1fr);
-                gap: 15px;
+                grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+                gap: 12px;
                 padding: 10px;
             }
             .badge-modal-item {
                 text-align: center;
-                padding: 15px;
+                padding: 12px;
                 border-radius: 12px;
                 background: #f5f5f5;
                 transition: 0.2s;
+                cursor: pointer;
             }
             [data-theme="dark"] .badge-modal-item {
                 background: #2d2d2d;
             }
             .badge-modal-item.earned {
-                background: #ffd700;
+                background: linear-gradient(135deg, #ffd700, #ffb347);
                 color: #000;
                 font-weight: bold;
+                box-shadow: 0 4px 12px rgba(255,215,0,0.3);
             }
             .badge-modal-item:not(.earned) {
-                opacity: 0.4;
-                filter: grayscale(1);
+                opacity: 0.5;
+                filter: grayscale(0.8);
             }
             .badge-modal-item .badge-icon {
-                font-size: 3rem;
+                font-size: 2.5rem;
                 display: block;
                 margin-bottom: 5px;
             }
             .badge-modal-item .badge-name {
-                font-size: 1rem;
+                font-size: 0.85rem;
                 font-weight: bold;
+            }
+            .badge-modal-item .badge-progress {
+                font-size: 0.7rem;
+                color: #666;
+                margin-top: 4px;
+            }
+            [data-theme="dark"] .badge-modal-item .badge-progress {
+                color: #aaa;
             }
             .gapfill-controls {
                 display: flex;
                 gap: 10px;
                 justify-content: center;
                 margin-top: 20px;
+                flex-wrap: wrap;
             }
             [data-theme="dark"] .quiz-question-row h2,
             [data-theme="dark"] .quiz-opt-btn,
@@ -829,6 +1018,215 @@ class App {
             }
             [data-theme="dark"] .quiz-opt-btn.other-option {
                 background-color: #6b7280 !important;
+            }
+            .nav-menu {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 6px;
+                padding: 8px 12px;
+                background: rgba(0,0,0,0.05);
+                border-radius: 12px;
+                margin-top: 8px;
+                justify-content: center;
+            }
+            .nav-btn {
+                padding: 6px 12px;
+                font-size: 0.85rem;
+                border-radius: 20px;
+                background: #f0f0f0;
+                border: none;
+                cursor: pointer;
+                transition: all 0.2s;
+            }
+            .nav-btn.active {
+                background: #3b82f6;
+                color: white;
+            }
+            @media (max-width: 600px) {
+                .nav-btn {
+                    padding: 4px 8px;
+                    font-size: 0.7rem;
+                }
+                .badge-item {
+                    font-size: 1.3rem;
+                }
+                .badges-grid {
+                    grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
+                }
+                .badge-modal-item .badge-icon {
+                    font-size: 2rem;
+                }
+                .badge-modal-item .badge-name {
+                    font-size: 0.75rem;
+                }
+            }
+            .quiz-options {
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
+            }
+            .quiz-opt-btn {
+                padding: 12px 16px;
+                font-size: 1rem;
+                border-radius: 12px;
+                border: 1px solid #ddd;
+                background: #f9f9f9;
+                cursor: pointer;
+                transition: all 0.2s;
+                text-align: center;
+            }
+            .quiz-opt-btn:hover:not(:disabled) {
+                transform: scale(1.02);
+                background: #e0e0e0;
+            }
+            .quiz-opt-btn:disabled {
+                cursor: not-allowed;
+                opacity: 0.8;
+            }
+            .features-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+                gap: 15px;
+                margin: 20px 0;
+            }
+            .feature-card {
+                background: #f8fafc;
+                border-radius: 16px;
+                padding: 20px;
+                text-align: center;
+                cursor: pointer;
+                transition: all 0.3s;
+                border: 1px solid #e2e8f0;
+            }
+            .feature-card:hover {
+                transform: translateY(-3px);
+                box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            }
+            .hero-btn {
+                padding: 12px 20px;
+                font-size: 1rem;
+                border-radius: 12px;
+                border: none;
+                background: #3b82f6;
+                color: white;
+                cursor: pointer;
+                transition: all 0.2s;
+                font-weight: bold;
+            }
+            .hero-btn:hover {
+                opacity: 0.9;
+                transform: scale(1.02);
+            }
+            .reading-card {
+                background: white;
+                border-radius: 24px;
+                padding: 20px;
+                margin-bottom: 15px;
+                box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+                border: 1px solid #eef2ff;
+            }
+            .flashcard-container {
+                perspective: 1000px;
+                cursor: pointer;
+                margin: 20px 0;
+                height: 280px;
+            }
+            .flashcard {
+                position: relative;
+                width: 100%;
+                height: 100%;
+                text-align: center;
+                transition: transform 0.6s;
+                transform-style: preserve-3d;
+                border-radius: 24px;
+            }
+            .flashcard.flipped {
+                transform: rotateY(180deg);
+            }
+            .flashcard-front, .flashcard-back {
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                backface-visibility: hidden;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                border-radius: 24px;
+                background: #f8fafc;
+                box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+                padding: 20px;
+            }
+            .flashcard-front {
+                background: linear-gradient(135deg, #667eea, #764ba2);
+                color: white;
+            }
+            .flashcard-back {
+                background: linear-gradient(135deg, #f093fb, #f5576c);
+                color: white;
+                transform: rotateY(180deg);
+            }
+            .flashcard-front h1, .flashcard-back h1 {
+                font-size: 2rem;
+                margin: 0;
+            }
+            @media (max-width: 480px) {
+                .flashcard-container {
+                    height: 220px;
+                }
+                .flashcard-front h1, .flashcard-back h1 {
+                    font-size: 1.4rem;
+                }
+                .hero-btn {
+                    padding: 10px 14px;
+                    font-size: 0.9rem;
+                }
+                .reading-card {
+                    padding: 15px;
+                }
+            }
+            .card-controls-row, .card-nav-row {
+                display: grid;
+                grid-template-columns: 1fr 1fr 1fr;
+                gap: 10px;
+                margin: 10px 0;
+            }
+            .card-nav-row {
+                grid-template-columns: 1fr 1fr;
+            }
+            .jumble-word-top {
+                cursor: pointer;
+                background: #3b82f6;
+                color: white;
+                padding: 8px 15px;
+                border-radius: 20px;
+                font-size: 1rem;
+                display: inline-block;
+            }
+            .history-item {
+                background: #f1f5f9;
+                padding: 12px;
+                margin-bottom: 10px;
+                border-radius: 12px;
+                cursor: pointer;
+                transition: all 0.2s;
+            }
+            .history-item:hover {
+                background: #e2e8f0;
+                transform: translateX(5px);
+            }
+            [data-theme="dark"] .history-item {
+                background: #2d2d2d;
+            }
+            [data-theme="dark"] .history-item:hover {
+                background: #3d3d3d;
+            }
+            .scrollable-text {
+                max-height: 400px;
+                overflow-y: auto;
+                padding: 10px;
+                line-height: 1.8;
+                direction: ltr;
+                text-align: left;
             }
         `;
         document.head.appendChild(style);
@@ -1246,9 +1644,6 @@ class App {
         this.jumbleChecked = true;
         this.jumbleCorrect = isCorrect;
         this.playTone(isCorrect ? 'correct' : 'error');
-        if (isCorrect) {
-            // لا نقاط خبرة للترتيب
-        }
         this.render();
     }
 
@@ -1358,6 +1753,7 @@ class App {
                 this.render();
             }, 2500);
         } else {
+            this.recordTotalAnswer('listening');
             this.listeningErrorTimer = setTimeout(() => {
                 this.listeningErrorTimer = null;
                 this.listeningAnswered = false;
@@ -1461,6 +1857,7 @@ class App {
             this.addSpellingCorrectReward(this.spellingCurrent.id);
             this.spellingRemaining.shift();
         } else {
+            this.recordTotalAnswer('spelling');
             if (this.spellingRemaining.length > 1) {
                 const wrongWord = this.spellingRemaining.shift();
                 this.spellingRemaining.push(wrongWord);
@@ -2037,6 +2434,7 @@ class App {
             this.addQuizCorrectReward(this.quizQuestions[this.quizIndex].id);
         } else {
             this.playTone('error');
+            this.recordTotalAnswer('quiz');
         }
 
         const allOptions = document.querySelectorAll('.quiz-opt-btn');
@@ -2200,6 +2598,7 @@ class App {
             }
             this.addGapFillCorrectReward(this.gapFillCurrentQuestion.wordId);
         } else {
+            this.recordTotalAnswer('gapFill');
             if (this.gapFillRemainingWords && this.gapFillRemainingWords.length > 0) {
                 const currentWord = this.gapFillRemainingWords.shift();
                 const len = this.gapFillRemainingWords.length;
@@ -2557,7 +2956,6 @@ class App {
                             this.saveUserData();
                             this.render();
                         } else if (param === 'remaining') {
-                            // تكرار المتبقي فقط: إعادة ضبط قائمة البطاقات لإظهار الكلمات التي لم تُتقن
                             this.showAllCardsTemporary = false;
                             this.currentCardIndex = 0;
                             this.saveUserData();
@@ -2662,6 +3060,10 @@ class App {
                 case 'goToProfile':
                     this.showProfile();
                     break;
+                
+                case 'showBadges':
+                    this.showBadgesModal();
+                    break;
             }
             this.render();
         });
@@ -2709,7 +3111,7 @@ class App {
             this.hiddenFromCards = [];
             this.customLessons = {};
             this.generatedLessons = {};
-            this.userStats = { xp: 0, level: 1, badges: [], tier: 'برونزي' };
+            this.userStats = { xp: 0, level: 1, badges: [], earnedBadges: [], tier: 'برونزي' };
             this.placementResults = [];
             this.placementFullHistory = [];
             this.userCoins = 100;
@@ -2727,6 +3129,12 @@ class App {
                 level: 'A1',
                 image: '',
                 testsHistory: []
+            };
+            this.exerciseStats = {
+                quiz: { correct: 0, total: 0 },
+                listening: { correct: 0, total: 0 },
+                spelling: { correct: 0, total: 0 },
+                gapFill: { correct: 0, total: 0 }
             };
             this.lastTestedLesson = { beginner: 0, intermediate: 0, advanced: 0 };
             this.saveUserData();
@@ -2796,44 +3204,131 @@ class App {
     }
 
     getBadgesDisplay() {
-        const badges = this.userStats.badges || [];
-        if (badges.length === 0) {
-            return `<div class="badges-container" onclick="appInstance.showBadgesModal()" style="justify-content:center; color:#aaa; cursor:pointer;">
+        const earnedBadges = this.userStats.earnedBadges || [];
+        
+        // جمع كل الأوسمة من جميع الفئات
+        const allBadges = [
+            ...this.badgeDefinitions.general,
+            ...this.badgeDefinitions.quiz,
+            ...this.badgeDefinitions.listening,
+            ...this.badgeDefinitions.spelling,
+            ...this.badgeDefinitions.gapFill
+        ];
+        
+        // عرض الأوسمة المتاحة
+        const displayBadges = allBadges.slice(0, 12);
+        
+        if (displayBadges.length === 0) {
+            return `<div class="badges-container" data-action="showBadges" style="justify-content:center; color:#aaa; cursor:pointer;">
                 <span>🏅 ${this.t('اضغط لعرض الأوسمة', 'Click to view badges')}</span>
             </div>`;
         }
-        return `<div class="badges-container" onclick="appInstance.showBadgesModal()">
-            ${badges.map(b => `<span class="badge-item">${b}</span>`).join('')}
+        
+        return `<div class="badges-container" data-action="showBadges">
+            ${displayBadges.map(b => {
+                const isEarned = earnedBadges.includes(b.id);
+                return `<span class="badge-item ${isEarned ? 'earned' : 'locked'}" title="${this.t(b.name, b.nameEn)}">${b.icon}</span>`;
+            }).join('')}
+            ${allBadges.length > 12 ? `<span class="badge-item" style="font-size:1rem;">+${allBadges.length - 12}</span>` : ''}
         </div>`;
     }
 
     showBadgesModal() {
-        const badges = this.userStats.badges || [];
-        let html = '<div class="badges-grid">';
-        const badgeDefinitions = [
-            { icon: '🥉', name: this.t('وسام برونزي', 'Bronze Medal'), req: this.t('5 دروس + 100 كلمة', '5 Lessons + 100 Words') },
-            { icon: '🥈', name: this.t('وسام فضي', 'Silver Medal'), req: this.t('15 درس + 300 كلمة', '15 Lessons + 300 Words') },
-            { icon: '🥇', name: this.t('وسام ذهبي', 'Gold Medal'), req: this.t('35 درس + 800 كلمة', '35 Lessons + 800 Words') },
-            { icon: '🎖️', name: this.t('وسام الشرف', 'Honor Badge'), req: this.t('60 درس + 2000 كلمة', '60 Lessons + 2000 Words') },
-            { icon: '🏆', name: this.t('كأس التميز', 'Excellence Trophy'), req: this.t('120 درس + 4000 كلمة', '120 Lessons + 4000 Words') },
-            { icon: 'A1', name: this.t('مستوى A1', 'Level A1'), req: this.t('5 دروس', '5 Lessons') },
-            { icon: 'A2', name: this.t('مستوى A2', 'Level A2'), req: this.t('15 درس', '15 Lessons') },
-            { icon: 'B1', name: this.t('مستوى B1', 'Level B1'), req: this.t('30 درس', '30 Lessons') },
-            { icon: 'B2', name: this.t('مستوى B2', 'Level B2'), req: this.t('50 درس', '50 Lessons') },
-            { icon: 'C1', name: this.t('مستوى C1', 'Level C1'), req: this.t('75 درس', '75 Lessons') },
-            { icon: 'C2', name: this.t('مستوى C2', 'Level C2'), req: this.t('100 درس', '100 Lessons') }
-        ];
-        for (let b of badgeDefinitions) {
-            const earned = badges.includes(b.icon);
+        const earnedBadges = this.userStats.earnedBadges || [];
+        const totalLessons = (this.unlockedLessons || []).length;
+        const totalMastered = (this.masteredWords || []).length;
+        
+        let html = `<div style="text-align:center; margin-bottom:15px;">
+            <div style="font-size:1.2rem; font-weight:bold;">🏅 ${this.t('الأوسمة والإنجازات', 'Badges & Achievements')}</div>
+            <div style="font-size:0.8rem; color:#666;">${this.t('الأوسمة الباهتة لم يتم الحصول عليها بعد', 'Dim badges are not yet earned')}</div>
+        </div>`;
+        
+        html += '<div class="badges-grid">';
+        
+        // أوسمة التقدم العام
+        html += `<div style="grid-column:1/-1; margin:10px 0 5px; font-weight:bold; text-align:center; border-bottom:2px solid #ffd700;">📊 ${this.t('أوسمة التقدم العام', 'General Progress Badges')}</div>`;
+        for (const badge of this.badgeDefinitions.general) {
+            const isEarned = earnedBadges.includes(badge.id);
+            let progressText = '';
+            if (badge.id === 'bronze_medal') progressText = `${this.t('الدروس:', 'Lessons:')} ${totalLessons}/5 | ${this.t('الكلمات:', 'Words:')} ${totalMastered}/100`;
+            else if (badge.id === 'silver_medal') progressText = `${this.t('الدروس:', 'Lessons:')} ${totalLessons}/15 | ${this.t('الكلمات:', 'Words:')} ${totalMastered}/300`;
+            else if (badge.id === 'gold_medal') progressText = `${this.t('الدروس:', 'Lessons:')} ${totalLessons}/35 | ${this.t('الكلمات:', 'Words:')} ${totalMastered}/800`;
+            else if (badge.id === 'diamond_medal') progressText = `${this.t('الدروس:', 'Lessons:')} ${totalLessons}/60 | ${this.t('الكلمات:', 'Words:')} ${totalMastered}/2000`;
+            else if (badge.id === 'bronze_crown') progressText = `${this.t('الكلمات المتقنة:', 'Mastered Words:')} ${totalMastered}/10`;
+            else if (badge.id === 'silver_crown') progressText = `${this.t('الكلمات المتقنة:', 'Mastered Words:')} ${totalMastered}/50`;
+            else if (badge.id === 'gold_crown') progressText = `${this.t('الكلمات المتقنة:', 'Mastered Words:')} ${totalMastered}/200`;
+            else if (badge.id === 'diamond_crown') progressText = `${this.t('الكلمات المتقنة:', 'Mastered Words:')} ${totalMastered}/500`;
+            
             html += `
-                <div class="badge-modal-item ${earned ? 'earned' : ''}" style="text-align:center;">
-                    <span class="badge-icon">${b.icon}</span>
-                    <span class="badge-name">${b.name}</span>
-                    <div style="font-size:0.7rem;">${b.req}</div>
-                    <div>${earned ? '✅' : '🔒'}</div>
+                <div class="badge-modal-item ${isEarned ? 'earned' : ''}">
+                    <span class="badge-icon">${badge.icon}</span>
+                    <span class="badge-name">${this.t(badge.name, badge.nameEn)}</span>
+                    ${progressText ? `<div class="badge-progress">${progressText}</div>` : ''}
+                    <div>${isEarned ? '✅' : '🔒'}</div>
                 </div>
             `;
         }
+        
+        // أوسمة اختبار
+        html += `<div style="grid-column:1/-1; margin:15px 0 5px; font-weight:bold; text-align:center; border-bottom:2px solid #ffd700;">📝 ${this.t('أوسمة اختبار الكلمات', 'Quiz Badges')}</div>`;
+        for (const badge of this.badgeDefinitions.quiz) {
+            const isEarned = earnedBadges.includes(badge.id);
+            const current = this.exerciseStats.quiz?.correct || 0;
+            html += `
+                <div class="badge-modal-item ${isEarned ? 'earned' : ''}">
+                    <span class="badge-icon">${badge.icon}</span>
+                    <span class="badge-name">${this.t(badge.name, badge.nameEn)}</span>
+                    <div class="badge-progress">${current}/${badge.requirement}</div>
+                    <div>${isEarned ? '✅' : '🔒'}</div>
+                </div>
+            `;
+        }
+        
+        // أوسمة استماع
+        html += `<div style="grid-column:1/-1; margin:15px 0 5px; font-weight:bold; text-align:center; border-bottom:2px solid #ffd700;">🎧 ${this.t('أوسمة الاستماع', 'Listening Badges')}</div>`;
+        for (const badge of this.badgeDefinitions.listening) {
+            const isEarned = earnedBadges.includes(badge.id);
+            const current = this.exerciseStats.listening?.correct || 0;
+            html += `
+                <div class="badge-modal-item ${isEarned ? 'earned' : ''}">
+                    <span class="badge-icon">${badge.icon}</span>
+                    <span class="badge-name">${this.t(badge.name, badge.nameEn)}</span>
+                    <div class="badge-progress">${current}/${badge.requirement}</div>
+                    <div>${isEarned ? '✅' : '🔒'}</div>
+                </div>
+            `;
+        }
+        
+        // أوسمة كتابة
+        html += `<div style="grid-column:1/-1; margin:15px 0 5px; font-weight:bold; text-align:center; border-bottom:2px solid #ffd700;">✍️ ${this.t('أوسمة الكتابة', 'Spelling Badges')}</div>`;
+        for (const badge of this.badgeDefinitions.spelling) {
+            const isEarned = earnedBadges.includes(badge.id);
+            const current = this.exerciseStats.spelling?.correct || 0;
+            html += `
+                <div class="badge-modal-item ${isEarned ? 'earned' : ''}">
+                    <span class="badge-icon">${badge.icon}</span>
+                    <span class="badge-name">${this.t(badge.name, badge.nameEn)}</span>
+                    <div class="badge-progress">${current}/${badge.requirement}</div>
+                    <div>${isEarned ? '✅' : '🔒'}</div>
+                </div>
+            `;
+        }
+        
+        // أوسمة ملء فراغ
+        html += `<div style="grid-column:1/-1; margin:15px 0 5px; font-weight:bold; text-align:center; border-bottom:2px solid #ffd700;">📝 ${this.t('أوسمة ملء الفراغ', 'Gap Fill Badges')}</div>`;
+        for (const badge of this.badgeDefinitions.gapFill) {
+            const isEarned = earnedBadges.includes(badge.id);
+            const current = this.exerciseStats.gapFill?.correct || 0;
+            html += `
+                <div class="badge-modal-item ${isEarned ? 'earned' : ''}">
+                    <span class="badge-icon">${badge.icon}</span>
+                    <span class="badge-name">${this.t(badge.name, badge.nameEn)}</span>
+                    <div class="badge-progress">${current}/${badge.requirement}</div>
+                    <div>${isEarned ? '✅' : '🔒'}</div>
+                </div>
+            `;
+        }
+        
         html += '</div>';
         this.showCustomModal('info', '🏅', html);
     }
@@ -2863,10 +3358,10 @@ class App {
                         </div>
                         <p style="text-align:center; margin-bottom:15px;">${this.t('مقابل 1 دولار أمريكي', 'For 1 USD')}</p>
                         <div class="purchase-form">
-                            <input type="text" id="purchaseName" placeholder="${this.t('الاسم الكامل', 'Full Name')}" />
-                            <input type="email" id="purchaseEmail" placeholder="${this.t('البريد الإلكتروني', 'Email')}" />
-                            <input type="tel" id="purchasePhone" placeholder="${this.t('رقم الهاتف', 'Phone Number')}" />
-                            <button class="hero-btn" data-action="submitPurchase" style="background:#10b981;">${this.t('إرسال الطلب', 'Submit Request')}</button>
+                            <input type="text" id="purchaseName" placeholder="${this.t('الاسم الكامل', 'Full Name')}" style="width:100%; padding:10px; margin:5px 0; border-radius:8px; border:1px solid #ddd;" />
+                            <input type="email" id="purchaseEmail" placeholder="${this.t('البريد الإلكتروني', 'Email')}" style="width:100%; padding:10px; margin:5px 0; border-radius:8px; border:1px solid #ddd;" />
+                            <input type="tel" id="purchasePhone" placeholder="${this.t('رقم الهاتف', 'Phone Number')}" style="width:100%; padding:10px; margin:5px 0; border-radius:8px; border:1px solid #ddd;" />
+                            <button class="hero-btn" data-action="submitPurchase" style="background:#10b981; width:100%; margin-top:10px;">${this.t('إرسال الطلب', 'Submit Request')}</button>
                         </div>
                     </div>
                 `;
@@ -2915,21 +3410,21 @@ class App {
         return `<header class="header">
     <div class="header-content">
         <div class="logo-container" data-action="goHome">
-            <img src="wordwise_logo.png" alt="WordWise">
+            <img src="wordwise_logo.png" alt="WordWise" style="max-width:100%; height:auto;">
             <h2>WordWise</h2>
         </div>
-        <div style="display:flex; align-items:center; gap:12px;">
-            <button data-action="toggleLang" style="background:none; border:none; font-size:1.1rem; cursor:pointer; padding:5px; font-weight:bold; color:inherit;">
+        <div style="display:flex; align-items:center; gap:10px; flex-wrap:wrap;">
+            <button data-action="toggleLang" style="background:none; border:none; font-size:1rem; cursor:pointer; padding:5px; font-weight:bold; color:inherit;">
                 ${this.lang === 'ar' ? 'EN' : 'عربي'}
             </button>
-            <button data-action="toggleTheme" style="background:none; border:none; font-size:1.3rem; cursor:pointer; padding:5px;">
+            <button data-action="toggleTheme" style="background:none; border:none; font-size:1.2rem; cursor:pointer; padding:5px;">
                 ${this.theme === 'light' ? '🌙' : '☀️'}
             </button>
-            <div style="background: #ffd700; color: #000; padding: 5px 10px; border-radius: 20px; font-weight: bold; display: flex; align-items: center; gap: 5px; cursor:pointer;" data-action="toggleCoinModal">
+            <div style="background: #ffd700; color: #000; padding: 4px 10px; border-radius: 20px; font-weight: bold; display: flex; align-items: center; gap: 4px; cursor:pointer; font-size:0.9rem;" data-action="toggleCoinModal">
                 <span>💎</span> ${this.userCoins}
-                <span style="font-size:1.2rem;">➕</span>
+                <span style="font-size:1rem;">➕</span>
             </div>
-            <button data-action="goToProfile" style="background:none; border:none; font-size:1.3rem; cursor:pointer;">👤</button>
+            <button data-action="goToProfile" style="background:none; border:none; font-size:1.2rem; cursor:pointer;">👤</button>
         </div>
     </div>
     ${nav}
@@ -2940,17 +3435,17 @@ class App {
         if (this.currentPage === 'auth') {
             return `<main class="main-content">
                 <div class="auth-container">
-                    <img src="wordwise_logo.png" alt="WordWise">
+                    <img src="wordwise_logo.png" alt="WordWise" style="max-width:100px;">
                     <h1>WordWise</h1>
                     <p>${this.t('كن حكيماً في اختيار كلماتك', 'Be wise in choosing your words')}</p>
                 </div>
                 <div class="reading-card auth-card">
                     <h2>🚀 ${this.t('مرحباً بك', 'Welcome')}</h2>
-                    <input id="authName" placeholder="${this.t('الاسم الكامل', 'Full Name')}" class="auth-input">
-                    <input id="authEmail" placeholder="${this.t('البريد الإلكتروني', 'Email')}" class="auth-input">
-                    <input type="password" id="authPass" placeholder="${this.t('كلمة المرور', 'Password')}" class="auth-input">
+                    <input id="authName" placeholder="${this.t('الاسم الكامل', 'Full Name')}" class="auth-input" style="width:100%; padding:12px; margin:8px 0; border-radius:8px; border:1px solid #ddd;">
+                    <input id="authEmail" placeholder="${this.t('البريد الإلكتروني', 'Email')}" class="auth-input" style="width:100%; padding:12px; margin:8px 0; border-radius:8px; border:1px solid #ddd;">
+                    <input type="password" id="authPass" placeholder="${this.t('كلمة المرور', 'Password')}" class="auth-input" style="width:100%; padding:12px; margin:8px 0; border-radius:8px; border:1px solid #ddd;">
                     <button class="hero-btn" data-action="doAuth" style="width:100%;">${this.t('تسجيل الدخول / إنشاء حساب', 'Login / Sign Up')}</button>
-                    <p style="margin-top:10px; font-size:0.9rem; color:#666;">${this.t('جميع بياناتك محفوظة ومرتبطة بهذا البريد.', 'All your data is stored and linked to this email.')}</p>
+                    <p style="margin-top:10px; font-size:0.8rem; color:#666;">${this.t('جميع بياناتك محفوظة ومرتبطة بهذا البريد.', 'All your data is stored and linked to this email.')}</p>
                 </div>
             </main>`;
         }
@@ -2964,27 +3459,27 @@ class App {
 
             return `<main class="main-content">
                 <div class="reading-card welcome-banner" style="background: linear-gradient(135deg, #1e40af, #3b82f6); color: white; border: none; padding: 20px;">
-                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap:wrap; gap:10px;">
                         <h3 style="margin:0;">${this.t(`مرحباً، ${this.userData?.name || 'مستخدم'} 👋`, `Welcome, ${this.userData?.name || 'User'} 👋`)}</h3>
-                        <div style="background: rgba(255,255,255,0.2); padding: 5px 15px; border-radius: 20px; font-size: 0.9rem; font-weight: bold; border: 1px solid rgba(255,255,255,0.3);">
+                        <div style="background: rgba(255,255,255,0.2); padding: 5px 15px; border-radius: 20px; font-size: 0.8rem; font-weight: bold; border: 1px solid rgba(255,255,255,0.3);">
                             ⭐ ${this.t('مستوى', 'Level')} ${progress.level}
                         </div>
                     </div>
 
                     <div style="margin-top: 20px;">
-                        <div style="display: flex; justify-content: space-between; font-size: 0.85rem; margin-bottom: 8px;">
+                        <div style="display: flex; justify-content: space-between; font-size: 0.8rem; margin-bottom: 8px;">
                             <span>${this.t('نقاط الخبرة (XP)', 'Experience Points (XP)')}</span>
                             <span>${xpProgress}</span>
                         </div>
-                        <div style="width: 100%; height: 10px; background: rgba(0,0,0,0.2); border-radius: 10px; overflow: hidden; border: 1px solid rgba(255,255,255,0.1);">
+                        <div style="width: 100%; height: 8px; background: rgba(0,0,0,0.2); border-radius: 10px; overflow: hidden; border: 1px solid rgba(255,255,255,0.1);">
                             <div style="width: ${xpPercent}%; height: 100%; background: #10b981; box-shadow: 0 0 10px #10b981; transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);"></div>
                         </div>
                     </div>
 
                     ${this.getBadgesDisplay()}
 
-                    <div style="margin-top: 10px; font-size:0.9rem;">${this.t('التاج الحالي:', 'Current Crown:')} ${this.userStats.tier}</div>
-                    <div style="margin-top: 5px; font-size:0.9rem;">${this.t('الدروس المفتوحة:', 'Unlocked Lessons:')} ${totalLessons} | ${this.t('الكلمات المتقنة:', 'Mastered Words:')} ${totalMastered}</div>
+                    <div style="margin-top: 10px; font-size:0.85rem;">${this.t('التاج الحالي:', 'Current Crown:')} ${this.userStats.tier}</div>
+                    <div style="margin-top: 5px; font-size:0.85rem;">${this.t('الدروس المفتوحة:', 'Unlocked Lessons:')} ${totalLessons} | ${this.t('الكلمات المتقنة:', 'Mastered Words:')} ${totalMastered}</div>
                 </div>
 
                 <button class="hero-btn" data-action="setPage" data-param="addLesson" style="width:100%; background:#8b5cf6; margin-top:15px;">📸 ${this.t('إضافة من الكاميرا أو الهاتف', 'Add from Camera or Phone')}</button>
@@ -2995,7 +3490,7 @@ class App {
                     ${Object.keys(this.customLessons).length > 0 ? `<div class="feature-card" data-action="selLevel" data-param="custom_list" style="border:1px solid #f97316;"><h3>📂 ${this.t('نصوصي', 'My Texts')}</h3></div>` : ''}
                 </div>
 
-                <button data-action="logout" class="logout-btn" style="margin-top: 20px; background: #dc2626; color: white; padding: 14px 20px; font-size: 1.2rem; font-weight: bold; border-radius: 10px; width: 100%; border: none; cursor: pointer;">${this.t('تسجيل الخروج', 'Logout')}</button>
+                <button data-action="logout" class="logout-btn" style="margin-top: 20px; background: #dc2626; color: white; padding: 12px 20px; font-size: 1rem; font-weight: bold; border-radius: 10px; width: 100%; border: none; cursor: pointer;">${this.t('تسجيل الخروج', 'Logout')}</button>
             </main>`;
         }
 
@@ -3011,22 +3506,22 @@ class App {
                     <div class="profile-image" onclick="document.getElementById('profileImage').click()">
                         ${this.userProfile.image ?
                     `<img src="${this.userProfile.image}" alt="profile">` :
-                    `<svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" viewBox="0 0 24 24" fill="#aaa"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>`
+                    `<svg xmlns="http://www.w3.org/2000/svg" width="70" height="70" viewBox="0 0 24 24" fill="#aaa"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>`
                 }
                     </div>
                     <input type="file" id="profileImage" accept="image/*" style="display:none;" onchange="appInstance.updateProfile()">
 
                     <div class="profile-info">
-                        <div class="info-row"><span>${this.t('الاسم:', 'Name:')}</span> <span><input type="text" id="profileName" value="${this.userProfile.name || this.userData?.name || ''}" placeholder="${this.t('الاسم', 'Name')}"></span></div>
-                        <div class="info-row"><span>${this.t('العمر:', 'Age:')}</span> <span><input type="number" id="profileAge" value="${this.userProfile.age || ''}" placeholder="${this.t('العمر', 'Age')}"></span></div>
+                        <div class="info-row"><span>${this.t('الاسم:', 'Name:')}</span> <span><input type="text" id="profileName" value="${this.userProfile.name || this.userData?.name || ''}" placeholder="${this.t('الاسم', 'Name')}" style="padding:6px; border-radius:6px; border:1px solid #ddd;"></span></div>
+                        <div class="info-row"><span>${this.t('العمر:', 'Age:')}</span> <span><input type="number" id="profileAge" value="${this.userProfile.age || ''}" placeholder="${this.t('العمر', 'Age')}" style="padding:6px; border-radius:6px; border:1px solid #ddd;"></span></div>
                         <div class="info-row"><span>${this.t('تاريخ الانضمام:', 'Join Date:')}</span> <span>${this.userProfile.joinDate}</span></div>
                         <div class="info-row"><span>${this.t('المستوى في التطبيق:', 'App Level:')}</span> <span>${this.userStats.level}</span></div>
                         <div class="info-row"><span>${this.t('مستوى اللغة:', 'Language Level:')}</span> <span>${englishLevel}</span></div>
-                        <div class="info-row"><span>${this.t('كلمة المرور:', 'Password:')}</span> <span><input type="password" id="profilePassword" placeholder="${this.t('جديدة', 'New')}"></span></div>
+                        <div class="info-row"><span>${this.t('كلمة المرور:', 'Password:')}</span> <span><input type="password" id="profilePassword" placeholder="${this.t('جديدة', 'New')}" style="padding:6px; border-radius:6px; border:1px solid #ddd;"></span></div>
                     </div>
 
                     <div style="width:100%; margin:15px 0;">
-                        <div style="display:flex; justify-content:space-between;">
+                        <div style="display:flex; justify-content:space-between; font-size:0.9rem;">
                             <span>${this.t('التقدم العام', 'Overall Progress')}</span>
                             <span>${totalLessons} ${this.t('درس', 'Lesson')} / 100</span>
                         </div>
@@ -3037,7 +3532,9 @@ class App {
 
                     <button class="hero-btn" data-action="updateProfile" style="background:#10b981;">${this.t('حفظ التغييرات', 'Save Changes')}</button>
 
-                    <h4 style="margin:15px 0 10px;">${this.t('🏅 الأوسمة والإنجازات', '🏅 Badges & Achievements')}</h4>${this.getBadgesDisplay()}<h4 style="margin:15px 0 10px;">${this.t('📜 سجل الاختبارات', '📜 Test History')}</h4>
+                    <h4 style="margin:15px 0 10px;">🏅 ${this.t('الأوسمة والإنجازات', 'Badges & Achievements')}</h4>
+                    ${this.getBadgesDisplay()}
+                    <h4 style="margin:15px 0 10px;">📜 ${this.t('سجل الاختبارات', 'Test History')}</h4>
                     <button class="hero-btn" data-action="setPage" data-param="test_history" style="background:#3b82f6;">${this.t('عرض سجل الاختبارات', 'View Test History')}</button>
                 </div>
             </main>`;
@@ -3053,11 +3550,11 @@ class App {
                     `<div class="history-list">
                         ${this.placementResults.map((r, idx) => `
                             <div class="history-item" onclick="appInstance.viewTestDetails(${idx})">
-                                <div style="display:flex; justify-content:space-between;">
+                                <div style="display:flex; justify-content:space-between; flex-wrap:wrap; gap:5px;">
                                     <span><strong>${r.date}</strong></span>
                                     <span>${this.t('المستوى:', 'Level:')} ${r.level}</span>
                                 </div>
-                                <div style="display:flex; justify-content:space-between; margin-top:5px;">
+                                <div style="display:flex; justify-content:space-between; margin-top:5px; flex-wrap:wrap; gap:5px;">
                                     <span>${this.t('الدرجة:', 'Score:')} ${r.score}/35</span>
                                     <span>IELTS: ${r.ielts}</span>
                                 </div>
@@ -3076,21 +3573,21 @@ class App {
                     <div style="background:#f0f7ff; padding:15px; border-radius:10px; margin:10px 0; text-align:center;">
                         <h1 style="color:#1e40af; margin-bottom:5px;">${this.currentDifficulty}</h1>
                         <p style="font-weight:bold; color:#3b82f6;">IELTS: ${this.getIeltsEquivalent(this.currentDifficulty)}</p>
-                        <p style="font-size:0.9rem; color:#64748b;">${this.t('مجموع الإجابات الصحيحة:', 'Total correct answers:')} ${this.placementScore} / 35</p>
+                        <p style="font-size:0.85rem; color:#64748b;">${this.t('مجموع الإجابات الصحيحة:', 'Total correct answers:')} ${this.placementScore} / 35</p>
                     </div>
                     <h4 style="margin-top:15px;">📜 ${this.t('سجل نتائجك السابقة:', 'Your previous results:')}</h4>
-                    <div style="max-height:200px; overflow-y:auto; font-size:0.9rem; margin-bottom:15px; border:1px solid #e2e8f0; border-radius:8px;">
+                    <div style="max-height:200px; overflow-y:auto; font-size:0.85rem; margin-bottom:15px; border:1px solid #e2e8f0; border-radius:8px;">
                         ${this.placementResults.map((r, idx) => `
-                            <div style="border-bottom:1px solid #e2e8f0; padding:12px; display:flex; justify-content:space-between; align-items:center;">
+                            <div style="border-bottom:1px solid #e2e8f0; padding:10px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px;">
                                 <div>
                                     <span>📅 ${r.date}</span><br>
                                     <strong>${this.t('المستوى:', 'Level:')} ${r.level}</strong> (${r.score}/35)
                                 </div>
-                                <button class="hero-btn" data-action="viewPlacementDetails" data-index="${idx}" style="padding:5px 10px; font-size:0.8rem; background:#3b82f6;">${this.t('عرض التفاصيل', 'Details')}</button>
+                                <button class="hero-btn" data-action="viewPlacementDetails" data-index="${idx}" style="padding:5px 10px; font-size:0.75rem; background:#3b82f6;">${this.t('عرض التفاصيل', 'Details')}</button>
                             </div>
                         `).join('')}
                     </div>
-                    <div style="display:flex; gap:10px;">
+                    <div style="display:flex; gap:10px; flex-wrap:wrap;">
                         <button class="hero-btn" onclick="appInstance.resetPlacement()" style="background:#ec4899; flex:1;">${this.t('إعادة الاختبار 🔄', 'Retake Test 🔄')}</button>
                         <button class="hero-btn" data-action="goHome" style="background:#64748b; flex:1;">${this.t('الرئيسية', 'Home')}</button>
                     </div>
@@ -3104,9 +3601,9 @@ class App {
 
             return `<div class="reading-card">
                 <div style="display:flex; justify-content:center; margin-bottom:20px;">
-                    <span style="background:#e2e8f0; color:#475569; padding:5px 15px; border-radius:20px; font-weight:bold; font-size:0.85rem;">${this.t('السؤال رقم', 'Question')} ${this.placementStep + 1}</span>
+                    <span style="background:#e2e8f0; color:#475569; padding:5px 15px; border-radius:20px; font-weight:bold; font-size:0.8rem;">${this.t('السؤال رقم', 'Question')} ${this.placementStep + 1}</span>
                 </div>
-                <h2 style="margin-bottom:30px; direction:ltr; text-align:left; line-height:1.5;">${q.q}</h2>
+                <h2 style="margin-bottom:30px; direction:ltr; text-align:left; line-height:1.5; font-size:1.3rem;">${q.q}</h2>
                 <div class="quiz-options">
                     ${opts.map(opt => `
                         <button class="quiz-opt-btn"
@@ -3128,7 +3625,7 @@ class App {
                 <p style="text-align:center;">${this.t('المستوى النهائي:', 'Final Level:')} <strong>${this.viewingPlacementDetails.level}</strong> | ${this.t('الدرجة:', 'Score:')} ${this.viewingPlacementDetails.score}/35</p>
                 <div style="max-height:400px; overflow-y:auto; border:1px solid #e2e8f0; border-radius:8px; padding:10px;">
                     ${details.map((d, i) => `
-                        <div style="border-bottom:1px solid #e2e8f0; padding:10px; margin-bottom:5px;">
+                        <div style="border-bottom:1px solid #e2e8f0; padding:8px; margin-bottom:5px;">
                             <p><strong>${this.t('س', 'Q')}${i + 1}:</strong> ${d.question}</p>
                             <p>${this.t('مستوى السؤال:', 'Question level:')} ${d.level || this.t('غير محدد', 'Not specified')}</p>
                             <p>${this.t('إجابتك:', 'Your answer:')} ${d.selected || this.t('لم يجب', 'Not answered')} - ${d.isCorrect ? '✅' : '❌'}</p>
@@ -3149,7 +3646,7 @@ class App {
             const addLessonButton = `
                 <div class="feature-card" data-action="setPage" data-param="addLesson" style="border: 2px dashed #10b981; background: linear-gradient(135deg, #e0f2e9, #d1fae5);">
                     <h3>📝 ${this.t('إضافة درس يدوي', 'Add Manual Lesson')}</h3>
-                    <p style="font-size:0.9rem; margin-top:5px;">${this.t('أضف درساً خاصاً بك عن طريق لصق النص والكلمات', 'Add your own lesson by pasting text and words')}</p>
+                    <p style="font-size:0.8rem; margin-top:5px;">${this.t('أضف درساً خاصاً بك عن طريق لصق النص والكلمات', 'Add your own lesson by pasting text and words')}</p>
                 </div>
             `;
 
@@ -3167,9 +3664,9 @@ class App {
                         return `<div class="feature-card" data-action="selLesson" data-param="${l.id}" style="${(!isOk && !l.isGenerated) ? 'opacity:0.6;' : ''}">
                                     <h3>${displayLock}${l.title}</h3>
                                     ${l.isGenerated ? `
-                                        <div style="display:flex; justify-content:center; gap:10px; margin-top:10px;">
-                                            <button class="hero-btn" data-action="deleteGeneratedLesson" data-param="${l.id}" style="background:#ef4444; padding:5px 10px; font-size:0.8rem;">🗑️ ${this.t('حذف', 'Delete')}</button>
-                                            <button class="hero-btn" data-action="regenerateAILesson" data-param="${this.selectedLevel},${l.id}" style="background:#f59e0b; padding:5px 10px; font-size:0.8rem;">🔄 ${this.t('إعادة توليد', 'Regenerate')}</button>
+                                        <div style="display:flex; justify-content:center; gap:10px; margin-top:10px; flex-wrap:wrap;">
+                                            <button class="hero-btn" data-action="deleteGeneratedLesson" data-param="${l.id}" style="background:#ef4444; padding:5px 8px; font-size:0.7rem;">🗑️ ${this.t('حذف', 'Delete')}</button>
+                                            <button class="hero-btn" data-action="regenerateAILesson" data-param="${this.selectedLevel},${l.id}" style="background:#f59e0b; padding:5px 8px; font-size:0.7rem;">🔄 ${this.t('إعادة توليد', 'Regenerate')}</button>
                                         </div>
                                     ` : ''}
                                   </div>`;
@@ -3200,18 +3697,18 @@ class App {
                 <div style="display: flex; flex-direction: column; gap: 15px;">
                     ${lessons.map(l => `
                         <div class="reading-card" style="border-right: 5px solid #6366f1; text-align: right; direction: rtl;">
-                            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; flex-wrap:wrap; gap:8px;">
                                 <h3 style="margin:0; color:#4f46e5; cursor:pointer;" data-action="selLesson" data-param="${l.id}">${l.title}</h3>
-                                <div style="display: flex; gap: 15px;">
-                                    <button onclick="appInstance.editLessonTitle('${l.id}')" style="background:none; border:none; cursor:pointer; font-size:1.2rem;">✏️</button>
-                                    <button onclick="appInstance.editLessonContent('${l.id}')" style="background:none; border:none; cursor:pointer; font-size:1.2rem;">📝</button>
-                                    <button onclick="appInstance.deleteCustomLesson('${l.id}')" style="background:none; border:none; cursor:pointer; font-size:1.2rem;">🗑️</button>
+                                <div style="display: flex; gap: 12px;">
+                                    <button onclick="appInstance.editLessonTitle('${l.id}')" style="background:none; border:none; cursor:pointer; font-size:1.1rem;">✏️</button>
+                                    <button onclick="appInstance.editLessonContent('${l.id}')" style="background:none; border:none; cursor:pointer; font-size:1.1rem;">📝</button>
+                                    <button onclick="appInstance.deleteCustomLesson('${l.id}')" style="background:none; border:none; cursor:pointer; font-size:1.1rem;">🗑️</button>
                                 </div>
                             </div>
-                            <p style="font-size: 0.9rem; color: #555; margin-bottom: 15px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; direction: ltr; text-align: left;">
+                            <p style="font-size: 0.85rem; color: #555; margin-bottom: 15px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; direction: ltr; text-align: left;">
                                 ${l.content}
                             </p>
-                            <button class="hero-btn" data-action="selLesson" data-param="${l.id}" style="width:100%; padding: 12px; font-size: 1rem; background: #6366f1;">📖 ${this.t('فتح النص للدراسة', 'Open Text for Study')}</button>
+                            <button class="hero-btn" data-action="selLesson" data-param="${l.id}" style="width:100%; padding: 10px; font-size: 0.9rem; background: #6366f1;">📖 ${this.t('فتح النص للدراسة', 'Open Text for Study')}</button>
                         </div>
                     `).join('')}
                 </div>
@@ -3222,27 +3719,27 @@ class App {
             const audioSrc = lesson.audio || `audio/${lesson.id}.mp3`;
 
             return `<main class="main-content">
-                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px; flex-wrap: wrap;">
-                    <button class="hero-btn" data-action="backToLessons" style="background:#64748b;">⬅ ${this.t('تراجع', 'Back')}</button>
-                    <div style="display: flex; gap: 5px; background: #f0f0f0; padding: 5px; border-radius: 8px; flex-wrap: wrap;">
-                        <button class="hero-btn" data-action="playAudio" data-param="${audioSrc}" style="background:#3b82f6; padding: 5px 10px;">▶️ ${this.t('تشغيل', 'Play')}</button>
-                        <button class="hero-btn" data-action="pauseAudio" style="background:#f59e0b; padding: 5px 10px;">⏸️ ${this.t('إيقاف مؤقت', 'Pause')}</button>
-                        <button class="hero-btn" data-action="stopAudio" style="background:#ef4444; padding: 5px 10px;">⏹️ ${this.t('إيقاف', 'Stop')}</button>
-                        <button class="hero-btn" data-action="skipBack10" style="background:#8b5cf6; padding: 5px 10px;">⏪ 10</button>
-                        <button class="hero-btn" data-action="skipForward10" style="background:#8b5cf6; padding: 5px 10px;">10 ⏩</button>
-                        <button class="hero-btn" data-action="speedDown" style="background:#8b5cf6; padding: 5px 10px;">🐢</button>
-                        <span style="background:#fff; padding: 5px 10px; border-radius: 5px;">${this.audioPlaybackRate.toFixed(2)}x</span>
-                        <button class="hero-btn" data-action="speedUp" style="background:#8b5cf6; padding: 5px 10px;">🐇</button>
+                <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 10px; flex-wrap: wrap;">
+                    <button class="hero-btn" data-action="backToLessons" style="background:#64748b; padding:8px 12px;">⬅ ${this.t('تراجع', 'Back')}</button>
+                    <div style="display: flex; gap: 4px; background: #f0f0f0; padding: 4px; border-radius: 8px; flex-wrap: wrap;">
+                        <button class="hero-btn" data-action="playAudio" data-param="${audioSrc}" style="background:#3b82f6; padding: 6px 10px; font-size:0.8rem;">▶️ ${this.t('تشغيل', 'Play')}</button>
+                        <button class="hero-btn" data-action="pauseAudio" style="background:#f59e0b; padding: 6px 10px; font-size:0.8rem;">⏸️ ${this.t('إيقاف مؤقت', 'Pause')}</button>
+                        <button class="hero-btn" data-action="stopAudio" style="background:#ef4444; padding: 6px 10px; font-size:0.8rem;">⏹️ ${this.t('إيقاف', 'Stop')}</button>
+                        <button class="hero-btn" data-action="skipBack10" style="background:#8b5cf6; padding: 6px 10px; font-size:0.8rem;">⏪ 10</button>
+                        <button class="hero-btn" data-action="skipForward10" style="background:#8b5cf6; padding: 6px 10px; font-size:0.8rem;">10 ⏩</button>
+                        <button class="hero-btn" data-action="speedDown" style="background:#8b5cf6; padding: 6px 10px; font-size:0.8rem;">🐢</button>
+                        <span style="background:#fff; padding: 4px 8px; border-radius: 5px; font-size:0.8rem;">${this.audioPlaybackRate.toFixed(2)}x</span>
+                        <button class="hero-btn" data-action="speedUp" style="background:#8b5cf6; padding: 6px 10px; font-size:0.8rem;">🐇</button>
                     </div>
                 </div>
                 <div class="reading-card">
-                    <h2>${lesson.title}</h2>
-                    <div class="scrollable-text" style="direction:ltr; text-align:left; margin-top:10px;">${lesson.content}</div>
+                    <h2 style="font-size:1.3rem;">${lesson.title}</h2>
+                    <div class="scrollable-text" style="direction:ltr; text-align:left; margin-top:10px; font-size:0.95rem;">${lesson.content}</div>
                 </div>
                 <div class="reading-card" style="margin-top:20px; border:1px dashed #6366f1; background:#f0f7ff;">
                     <h4 style="margin-bottom:10px;">${this.t('إضافة كلمة جديدة:', 'Add New Word:')}</h4>
-                    <input id="newEng" placeholder="${this.t('اكتب بالإنجليزية هنا...', 'Write in English here...')}" style="width:100%; padding:12px; border-radius:8px; border:1px solid #ddd;" oninput="appInstance.translateAuto(this.value, 'newArb')">
-                    <input id="newArb" placeholder="${this.t('الترجمة تظهر هنا...', 'Translation will appear here...')}" style="width:100%; padding:12px; margin:10px 0; border-radius:8px; border:1px solid #ddd; background:#fff;">
+                    <input id="newEng" placeholder="${this.t('اكتب بالإنجليزية هنا...', 'Write in English here...')}" style="width:100%; padding:10px; border-radius:8px; border:1px solid #ddd;" oninput="appInstance.translateAuto(this.value, 'newArb')">
+                    <input id="newArb" placeholder="${this.t('الترجمة تظهر هنا...', 'Translation will appear here...')}" style="width:100%; padding:10px; margin:8px 0; border-radius:8px; border:1px solid #ddd; background:#fff;">
                     <button class="hero-btn" data-action="addNewWord" style="width:100%; background:#10b981;">✅ ${this.t('إضافة للقائمة', 'Add to List')}</button>
                 </div>
             </main>`;
@@ -3304,12 +3801,12 @@ class App {
             }
             const q = this.quizQuestions[this.quizIndex];
             return `<div class="reading-card quiz-box">
-                <div class="quiz-info">${this.t('السؤال', 'Question')} ${this.quizIndex + 1}/${this.quizQuestions.length}</div>
-                <div class="quiz-question-row">
-                    <h2>${q.english}</h2>
-                    <button class="quiz-speak-btn" data-action="speak" data-param="${q.english}">🔊</button>
+                <div class="quiz-info" style="font-size:0.85rem; margin-bottom:15px;">${this.t('السؤال', 'Question')} ${this.quizIndex + 1}/${this.quizQuestions.length}</div>
+                <div class="quiz-question-row" style="display:flex; align-items:center; gap:10px; justify-content:center;">
+                    <h2 style="margin:0;">${q.english}</h2>
+                    <button class="quiz-speak-btn" data-action="speak" data-param="${q.english}" style="background:none; border:none; font-size:1.5rem; cursor:pointer;">🔊</button>
                 </div>
-                <div class="quiz-options">
+                <div class="quiz-options" style="margin-top:25px;">
                     ${this.quizOptions.map(opt => `<button class="quiz-opt-btn" data-action="ansQ" data-param="${opt}" data-correct="${q.arabic}">${opt}</button>`).join('')}
                 </div>
             </div>`;
@@ -3326,24 +3823,24 @@ class App {
             }
             return `<div class="reading-card">
                 <h3>🔤 ${this.t('رتب الكلمات لتكوين جملة صحيحة', 'Arrange the words to form a correct sentence')}</h3>
-                <div style="display: flex; flex-wrap: wrap; gap: 10px; margin: 20px 0; padding: 15px; background: ${this.jumbleChecked ? (this.jumbleCorrect ? '#d1fae5' : '#fee2e2') : '#f1f5f9'}; border-radius: 8px; min-height: 60px; border: ${this.jumbleChecked ? (this.jumbleCorrect ? '2px solid #10b981' : '2px solid #ef4444') : 'none'};">
+                <div style="display: flex; flex-wrap: wrap; gap: 8px; margin: 20px 0; padding: 12px; background: ${this.jumbleChecked ? (this.jumbleCorrect ? '#d1fae5' : '#fee2e2') : '#f1f5f9'}; border-radius: 8px; min-height: 60px; border: ${this.jumbleChecked ? (this.jumbleCorrect ? '2px solid #10b981' : '2px solid #ef4444') : 'none'};">
                     ${this.jumbleUserAnswer.map(word => `
-                        <span class="jumble-word-top" data-action="jumbleRemove" data-param="${word}" style="cursor: pointer; background: #3b82f6; color: white; padding: 8px 15px; border-radius: 20px; font-size: 1.2rem;">${word}</span>
+                        <span class="jumble-word-top" data-action="jumbleRemove" data-param="${word}" style="cursor: pointer; background: #3b82f6; color: white; padding: 6px 12px; border-radius: 20px; font-size: 1rem;">${word}</span>
                     `).join('')}
                 </div>
-                <div style="display: flex; flex-wrap: wrap; gap: 10px; margin: 20px 0; padding: 15px; background: #e2e8f0; border-radius: 8px; min-height: 60px;">
+                <div style="display: flex; flex-wrap: wrap; gap: 8px; margin: 20px 0; padding: 12px; background: #e2e8f0; border-radius: 8px; min-height: 60px;">
                     ${this.jumbleWords.map(word => `
-                        <button class="hero-btn" data-action="jumbleSelect" data-param="${word}" style="padding: 8px 15px; background: #64748b; font-size: 1rem; ${this.jumbleChecked ? 'opacity:0.5; pointer-events:none;' : ''}">${word}</button>
+                        <button class="hero-btn" data-action="jumbleSelect" data-param="${word}" style="padding: 6px 12px; background: #64748b; font-size: 0.9rem; ${this.jumbleChecked ? 'opacity:0.5; pointer-events:none;' : ''}">${word}</button>
                     `).join('')}
                 </div>
-                <div style="display: flex; gap: 10px; justify-content: center; flex-wrap: wrap;">
+                <div style="display: flex; gap: 8px; justify-content: center; flex-wrap: wrap;">
                     <button class="hero-btn" data-action="jumbleReset" style="background:#f59e0b;">🔄 ${this.t('إعادة', 'Reset')}</button>
                     <button class="hero-btn" data-action="jumbleCheck" style="background:#10b981;" ${this.jumbleChecked ? 'disabled' : ''}>✅ ${this.t('تحقق', 'Check')}</button>
                     <button class="hero-btn" data-action="jumbleHint" style="background:#3b82f6;" ${this.jumbleChecked || this.jumbleHintUsed ? 'disabled' : ''}>💡 ${this.t('تلميح', 'Hint')}</button>
                     ${this.jumbleChecked ? `<button class="hero-btn" data-action="jumbleNext" style="background:#3b82f6;">➡️ ${this.t('التالي', 'Next')}</button>` : ''}
                 </div>
-                ${this.jumbleArabicHint ? `<div style="margin-top: 15px; padding: 10px; background: #e0f2fe; border-radius: 8px; text-align: center; font-size: 1.1rem; color: #0369a1;">🔍 ${this.t('الترجمة:', 'Translation:')} ${this.jumbleArabicHint}</div>` : ''}
-                ${this.jumbleHintUsed ? `<p style="margin-top: 10px; color: #f59e0b;">🔎 ${this.t('تلميح: أول كلمة هي', 'Hint: The first word is')} "${this.jumbleOriginalSentence.split(/\s+/)[0]}"</p>` : ''}
+                ${this.jumbleArabicHint ? `<div style="margin-top: 15px; padding: 8px; background: #e0f2fe; border-radius: 8px; text-align: center; font-size: 0.9rem; color: #0369a1;">🔍 ${this.t('الترجمة:', 'Translation:')} ${this.jumbleArabicHint}</div>` : ''}
+                ${this.jumbleHintUsed ? `<p style="margin-top: 10px; font-size:0.85rem; color: #f59e0b;">🔎 ${this.t('تلميح: أول كلمة هي', 'Hint: The first word is')} "${this.jumbleOriginalSentence.split(/\s+/)[0]}"</p>` : ''}
             </div>`;
         }
 
@@ -3361,8 +3858,8 @@ class App {
             }
             return `<div class="reading-card">
                 <h3>🎧 ${this.t('استمع واختر الكلمة الصحيحة', 'Listen and choose the correct word')}</h3>
-                <div style="text-align: center; margin: 30px 0;">
-                    <button class="hero-btn" data-action="speak" data-param="${this.listeningCurrent.english}" style="font-size: 2rem; padding: 20px; background: #6366f1;">🔊 ${this.t('استمع مرة أخرى', 'Listen Again')}</button>
+                <div style="text-align: center; margin: 25px 0;">
+                    <button class="hero-btn" data-action="speak" data-param="${this.listeningCurrent.english}" style="font-size: 1.5rem; padding: 15px; background: #6366f1;">🔊 ${this.t('استمع مرة أخرى', 'Listen Again')}</button>
                 </div>
                 <div class="quiz-options">
                     ${this.listeningOptions.map(opt => `
@@ -3386,7 +3883,7 @@ class App {
             }
             return `<div class="reading-card spelling-card">
                 <h3>✍️ ${this.t('اكتب الكلمة بالانجليزية', 'Write the word in English')}</h3>
-                <div style="font-size: 2rem; text-align: center; margin: 20px 0; padding: 20px; background: #f0f7ff; border-radius: 12px;">
+                <div style="font-size: 1.5rem; text-align: center; margin: 15px 0; padding: 15px; background: #f0f7ff; border-radius: 12px;">
                     ${this.spellingCurrent.arabic}
                 </div>
                 <input type="text" id="spellingInput" class="spelling-input" placeholder="${this.t('اكتب الكلمة هنا...', 'Write the word here...')}" value="${this.spellingUserAnswer}" ${this.spellingAnswered ? 'disabled' : ''}>
@@ -3395,7 +3892,7 @@ class App {
                         ${this.spellingResult === 'correct' ? this.t('✅ إجابة صحيحة!', '✅ Correct answer!') : this.t('❌ إجابة خاطئة!', '❌ Wrong answer!')}
                     </div>
                 ` : ''}
-                <div style="display: flex; gap: 10px; justify-content: center;">
+                <div style="display: flex; gap: 8px; justify-content: center;">
                     <button class="hero-btn" data-action="spellingCheck" style="background:#10b981;" ${this.spellingAnswered ? 'disabled' : ''}>✅ ${this.t('تحقق', 'Check')}</button>
                     ${this.spellingAnswered ? `<button class="hero-btn" data-action="spellingNext" style="background:#3b82f6;">➡️ ${this.t('التالي', 'Next')}</button>` : ''}
                 </div>
@@ -3410,17 +3907,17 @@ class App {
             const options = this.levelTestCurrentOptions || [];
 
             return `<div class="reading-card">
-                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px;">
-                    <span style="background:#e2e8f0; color:#475569; padding:5px 15px; border-radius:20px; font-weight:bold; font-size:0.85rem;">
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px; flex-wrap:wrap; gap:10px;">
+                    <span style="background:#e2e8f0; color:#475569; padding:4px 12px; border-radius:20px; font-weight:bold; font-size:0.8rem;">
                         ${this.t('السؤال', 'Question')} ${this.levelTestQuestionsAnswered + 1} / ${this.levelTestMaxQuestions}
                     </span>
-                    <button class="hero-btn" data-action="finishLevelTest" style="background:#ef4444; padding:5px 15px;">⏹️ ${this.t('إنهاء الاختبار', 'Finish Test')}</button>
+                    <button class="hero-btn" data-action="finishLevelTest" style="background:#ef4444; padding:4px 12px; font-size:0.8rem;">⏹️ ${this.t('إنهاء الاختبار', 'Finish Test')}</button>
                 </div>
-                <div class="quiz-question-row">
-                    <h2>${q.english}</h2>
-                    <button class="quiz-speak-btn" data-action="speak" data-param="${q.english}">🔊</button>
+                <div class="quiz-question-row" style="display:flex; align-items:center; gap:10px; justify-content:center;">
+                    <h2 style="margin:0; font-size:1.3rem;">${q.english}</h2>
+                    <button class="quiz-speak-btn" data-action="speak" data-param="${q.english}" style="background:none; border:none; font-size:1.3rem; cursor:pointer;">🔊</button>
                 </div>
-                <div class="quiz-options">
+                <div class="quiz-options" style="margin-top:25px;">
                     ${options.map(opt => `
                         <button class="quiz-opt-btn"
                                 data-action="levelTestAns"
@@ -3437,23 +3934,23 @@ class App {
             return `<div class="reading-card">
                 <h2 style="text-align:center;">🏁 ${this.t('نتيجة الاختبار الشامل', 'Comprehensive Test Result')}</h2>
                 <div style="background:#f0f7ff; padding:15px; border-radius:10px; margin:20px 0; text-align:center;">
-                    <p style="font-size:1.2rem;">${this.levelTestResultMessage}</p>
+                    <p style="font-size:1rem;">${this.levelTestResultMessage}</p>
                 </div>
                 <button class="hero-btn" data-action="goHome" style="background:#64748b;">${this.t('العودة للرئيسية', 'Back to Home')}</button>
             </div>`;
         }
 
         if (this.currentPage === 'addLesson') {
-            return `<main class="main-content" style="height: 90vh; display: flex; flex-direction: column; gap: 10px;">
+            return `<main class="main-content" style="height: 85vh; display: flex; flex-direction: column; gap: 10px;">
                 <button class="hero-btn" data-action="goHome" style="background:#64748b; flex-shrink: 0;">← ${this.t('رجوع للرئيسية', 'Back to Home')}</button>
                 <div class="reading-card" style="flex-grow: 1; display: flex; flex-direction: column; gap: 12px; overflow: hidden;">
                     <h3 style="flex-shrink: 0;">📸 ${this.t('إضافة نص ذكي', 'Add Smart Text')}</h3>
                     <div style="background: #f8fafc; padding: 10px; border-radius: 8px; border: 1px dashed #6366f1; flex-shrink: 0;">
                         <input type="file" id="fileInput" accept="image/*" onchange="appInstance.processOCR(this)" style="width: 100%;">
                     </div>
-                    <input id="newLessonTitle" placeholder="${this.t('عنوان النص', 'Text Title')}" style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; flex-shrink: 0;">
-                    <textarea id="ocrText" placeholder="${this.t('النص سيظهر هنا...', 'Text will appear here...')}" style="width: 100%; flex-grow: 1; padding: 12px; border: 1px solid #ddd; border-radius: 8px; font-size: 1rem; line-height: 1.5; resize: none;"></textarea>
-                    <button class="hero-btn" onclick="appInstance.saveNewCustomLesson()" style="width: 100%; background:#10b981; padding: 15px; font-size: 1.1rem; flex-shrink: 0;">💾 ${this.t('حفظ النص', 'Save Text')}</button>
+                    <input id="newLessonTitle" placeholder="${this.t('عنوان النص', 'Text Title')}" style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 8px; flex-shrink: 0;">
+                    <textarea id="ocrText" placeholder="${this.t('النص سيظهر هنا...', 'Text will appear here...')}" style="width: 100%; flex-grow: 1; padding: 10px; border: 1px solid #ddd; border-radius: 8px; font-size: 0.9rem; line-height: 1.5; resize: none;"></textarea>
+                    <button class="hero-btn" onclick="appInstance.saveNewCustomLesson()" style="width: 100%; background:#10b981; padding: 12px; font-size: 1rem; flex-shrink: 0;">💾 ${this.t('حفظ النص', 'Save Text')}</button>
                 </div>
             </main>`;
         }
@@ -3473,7 +3970,7 @@ class App {
             const q = this.gapFillCurrentQuestion;
             return `<div class="reading-card">
                 <h3>📝 ${this.t('اختر الكلمة المناسبة لملء الفراغ', 'Choose the correct word to fill the blank')}</h3>
-                <div class="gapfill-sentence" style="font-size: 1.8rem; font-weight: bold; text-align: center; margin: 30px 0; padding: 20px; background: ${this.theme === 'dark' ? '#2d2d2d' : '#f8fafc'}; border-radius: 16px;">
+                <div class="gapfill-sentence" style="font-size: 1.3rem; font-weight: bold; text-align: center; margin: 25px 0; padding: 15px; background: ${this.theme === 'dark' ? '#2d2d2d' : '#f8fafc'}; border-radius: 16px;">
                     ${q.text}
                 </div>
                 <div class="quiz-options">
@@ -3493,19 +3990,19 @@ class App {
                         <button class="hero-btn" data-action="gapfillShowExplanation" style="background:#6366f1;">💡 ${this.t('شرح مفصل', 'Detailed Explanation')}</button>
                     </div>
                     ${this.gapFillExplanationVisible ? `
-                        <div class="gapfill-explanation" style="margin: 15px 0; padding: 10px; background: ${this.theme === 'dark' ? '#2d2d2d' : '#eef2ff'}; border-radius: 8px; font-size: 0.95rem;">
-                            <div style="font-weight: bold; margin-bottom: 8px;">📖 ${this.t('معنى الجملة (بالإنجليزية):', 'Full sentence in English:')}</div>
+                        <div class="gapfill-explanation" style="margin: 15px 0; padding: 12px; background: ${this.theme === 'dark' ? '#2d2d2d' : '#eef2ff'}; border-radius: 8px; font-size: 0.85rem; max-height: 300px; overflow-y: auto;">
+                            <div style="font-weight: bold; margin-bottom: 6px;">📖 ${this.t('معنى الجملة (بالإنجليزية):', 'Full sentence in English:')}</div>
                             <div>${q.originalSentence || q.text.replace('______', q.correct)}</div>
-                            <div style="font-weight: bold; margin: 10px 0 5px;">🌐 ${this.t('الترجمة العربية:', 'Arabic translation:')}</div>
+                            <div style="font-weight: bold; margin: 8px 0 4px;">🌐 ${this.t('الترجمة العربية:', 'Arabic translation:')}</div>
                             <div>${q.originalSentenceArabic || this.t('جاري التحميل...', 'Loading...')}</div>
-                            <div style="font-weight: bold; margin: 10px 0 5px;">📚 ${this.t('معاني الخيارات:', 'Meanings of options:')}</div>
-                            <div style="display: flex; flex-direction: column; gap: 5px;">
+                            <div style="font-weight: bold; margin: 8px 0 4px;">📚 ${this.t('معاني الخيارات:', 'Meanings of options:')}</div>
+                            <div style="display: flex; flex-direction: column; gap: 4px;">
                                 ${this.gapFillOptionsMeanings.map(opt => `
                                     <div>• <strong>${opt.english}</strong> : ${opt.arabic}</div>
                                 `).join('')}
                             </div>
-                            <div style="margin-top: 10px; font-weight: bold;">✅ ${this.t('الإجابة الصحيحة:', 'Correct answer:')} ${q.correct} (${q.arabic})</div>
-                            <div style="margin-top: 8px;">💡 ${this.t('سبب الإجابة: كلمة', 'Reason: The word')} "${q.correct}" ${this.t('هي الأنسب لسياق الجملة لأنها تعطي المعنى الصحيح وتتناسب مع بقية الكلمات.', 'is the most appropriate for the sentence context because it gives the correct meaning and fits with the rest of the words.')}</div>
+                            <div style="margin-top: 8px; font-weight: bold;">✅ ${this.t('الإجابة الصحيحة:', 'Correct answer:')} ${q.correct} (${q.arabic})</div>
+                            <div style="margin-top: 6px;">💡 ${this.t('سبب الإجابة: كلمة', 'Reason: The word')} "${q.correct}" ${this.t('هي الأنسب لسياق الجملة لأنها تعطي المعنى الصحيح وتتناسب مع بقية الكلمات.', 'is the most appropriate for the sentence context because it gives the correct meaning and fits with the rest of the words.')}</div>
                         </div>
                     ` : ''}
                     <div class="gapfill-controls">
