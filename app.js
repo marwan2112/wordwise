@@ -118,7 +118,6 @@ class App {
 
         this.showAllCardsTemporary = false;
         
-        // إحصائيات التمارين لتتبع الأوسمة
         this.exerciseStats = {
             quiz: { correct: 0, total: 0 },
             listening: { correct: 0, total: 0 },
@@ -126,9 +125,7 @@ class App {
             gapFill: { correct: 0, total: 0 }
         };
         
-        // تعريفات الأوسمة
         this.badgeDefinitions = {
-            // أوسمة التقدم العام
             general: [
                 { id: 'bronze_medal', icon: '🥉', name: 'وسام برونزي', nameEn: 'Bronze Medal', requirement: { lessons: 5, words: 100 }, condition: (stats) => stats.totalLessons >= 5 && stats.totalMastered >= 100 },
                 { id: 'silver_medal', icon: '🥈', name: 'وسام فضي', nameEn: 'Silver Medal', requirement: { lessons: 15, words: 300 }, condition: (stats) => stats.totalLessons >= 15 && stats.totalMastered >= 300 },
@@ -139,7 +136,6 @@ class App {
                 { id: 'gold_crown', icon: '👑', name: 'تاج ذهبي', nameEn: 'Gold Crown', requirement: { masteredWords: 200 }, condition: (stats) => stats.totalMastered >= 200 },
                 { id: 'diamond_crown', icon: '👑', name: 'تاج ماسي', nameEn: 'Diamond Crown', requirement: { masteredWords: 500 }, condition: (stats) => stats.totalMastered >= 500 }
             ],
-            // أوسمة اختبار (Quiz)
             quiz: [
                 { id: 'quiz_beginner', icon: '📖', name: 'مبتدئ', nameEn: 'Beginner', requirement: 25, condition: (count) => count >= 25 },
                 { id: 'quiz_diligent', icon: '📚', name: 'مجتهد', nameEn: 'Diligent', requirement: 125, condition: (count) => count >= 125 },
@@ -147,7 +143,6 @@ class App {
                 { id: 'quiz_expert', icon: '🏅', name: 'خبير', nameEn: 'Expert', requirement: 500, condition: (count) => count >= 500 },
                 { id: 'quiz_professional', icon: '🏆', name: 'محترف', nameEn: 'Professional', requirement: 1000, condition: (count) => count >= 1000 }
             ],
-            // أوسمة استماع
             listening: [
                 { id: 'listening_beginner', icon: '🎧', name: 'مبتدئ', nameEn: 'Beginner', requirement: 25, condition: (count) => count >= 25 },
                 { id: 'listening_diligent', icon: '🎵', name: 'مجتهد', nameEn: 'Diligent', requirement: 125, condition: (count) => count >= 125 },
@@ -155,7 +150,6 @@ class App {
                 { id: 'listening_expert', icon: '🎙️', name: 'خبير', nameEn: 'Expert', requirement: 350, condition: (count) => count >= 350 },
                 { id: 'listening_professional', icon: '🏅', name: 'محترف', nameEn: 'Professional', requirement: 500, condition: (count) => count >= 500 }
             ],
-            // أوسمة كتابة
             spelling: [
                 { id: 'spelling_beginner', icon: '✏️', name: 'مبتدئ', nameEn: 'Beginner', requirement: 25, condition: (count) => count >= 25 },
                 { id: 'spelling_diligent', icon: '📝', name: 'مجتهد', nameEn: 'Diligent', requirement: 100, condition: (count) => count >= 100 },
@@ -163,7 +157,6 @@ class App {
                 { id: 'spelling_expert', icon: '🖋️', name: 'خبير', nameEn: 'Expert', requirement: 350, condition: (count) => count >= 350 },
                 { id: 'spelling_professional', icon: '🏆', name: 'محترف', nameEn: 'Professional', requirement: 500, condition: (count) => count >= 500 }
             ],
-            // أوسمة ملء فراغ
             gapFill: [
                 { id: 'gapfill_beginner', icon: '🔲', name: 'مبتدئ', nameEn: 'Beginner', requirement: 50, condition: (count) => count >= 50 },
                 { id: 'gapfill_diligent', icon: '📊', name: 'مجتهد', nameEn: 'Diligent', requirement: 150, condition: (count) => count >= 150 },
@@ -248,7 +241,6 @@ class App {
         }
     }
 
-    // تحديث الأوسمة ومنح المكافآت
     updateLevelAndBadges() {
         const oldLevel = this.userStats.level;
         const newProgress = this.getCurrentLevelProgress();
@@ -261,18 +253,15 @@ class App {
             this.showCustomModal('success', '🎉', congratsMsg);
         }
 
-        // حساب الإحصائيات
         const totalLessons = (this.unlockedLessons || []).length;
         const totalMastered = (this.masteredWords || []).length;
         
-        // تحديث التاج
         if (totalMastered >= 500) this.userStats.tier = this.t('👑 تاج ماسي', '👑 Diamond Crown');
         else if (totalMastered >= 200) this.userStats.tier = this.t('👑 تاج ذهبي', '👑 Gold Crown');
         else if (totalMastered >= 50) this.userStats.tier = this.t('👑 تاج فضي', '👑 Silver Crown');
         else if (totalMastered >= 10) this.userStats.tier = this.t('👑 تاج برونزي', '👑 Bronze Crown');
         else this.userStats.tier = this.t('مبتدئ', 'Beginner');
 
-        // التحقق من الأوسمة العامة
         const stats = { totalLessons, totalMastered };
         const newlyEarned = [];
         
@@ -285,7 +274,6 @@ class App {
             }
         }
         
-        // التحقق من أوسمة التمارين
         for (const exerciseType of ['quiz', 'listening', 'spelling', 'gapFill']) {
             const correctCount = this.exerciseStats[exerciseType]?.correct || 0;
             for (const badge of this.badgeDefinitions[exerciseType]) {
@@ -298,7 +286,6 @@ class App {
             }
         }
 
-        // عرض رسالة للأوسمة الجديدة
         if (newlyEarned.length > 0) {
             const badgeNames = newlyEarned.map(b => `${b.icon} ${this.t(b.name, b.nameEn)}`).join(', ');
             this.showCustomModal('success', '🏅', this.t(`تهانينا! حصلت على أوسمة جديدة: ${badgeNames}`, `Congratulations! You earned new badges: ${badgeNames}`));
@@ -307,7 +294,6 @@ class App {
         this.saveUserData();
     }
 
-    // تسجيل إجابة صحيحة في التمارين
     recordCorrectAnswer(exerciseType) {
         if (!this.exerciseStats[exerciseType]) {
             this.exerciseStats[exerciseType] = { correct: 0, total: 0 };
@@ -331,7 +317,6 @@ class App {
         this.userStats.xp += amount;
         this.updateLevelAndBadges();
         this.saveUserData();
-        console.log(`+${amount} XP from ${source}`);
     }
 
     addLessonReward(lessonId) {
@@ -514,6 +499,19 @@ class App {
         const style = document.createElement('style');
         style.id = styleId;
         style.textContent = `
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+            
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+                background: #f5f7fb;
+                margin: 0;
+                padding: 0;
+            }
+            
             [data-theme="dark"] {
                 --bg-main: #121212;
                 --bg-card: #1e1e1e;
@@ -521,228 +519,465 @@ class App {
                 --text-muted: #cccccc;
                 --border-color: #444;
             }
+            
             [data-theme="dark"] body {
                 background-color: #121212 !important;
                 color: #ffffff !important;
             }
-            [data-theme="dark"] .main-content,
-            [data-theme="dark"] .reading-card,
-            [data-theme="dark"] .feature-card,
-            [data-theme="dark"] .quiz-box,
-            [data-theme="dark"] .flashcard-container,
-            [data-theme="dark"] .jumble-card,
-            [data-theme="dark"] .spelling-card,
-            [data-theme="dark"] .profile-container,
-            [data-theme="dark"] .auth-card,
-            [data-theme="dark"] .badges-container,
-            [data-theme="dark"] .badges-modal,
-            [data-theme="dark"] .gapfill-sentence,
-            [data-theme="dark"] .scrollable-text {
-                background-color: #1e1e1e !important;
-                color: #ffffff !important;
-                border-color: #444 !important;
+            
+            /* تنسيق الهيدر الثابت */
+            .header {
+                position: sticky;
+                top: 0;
+                z-index: 100;
+                background: white;
+                border-bottom: 1px solid #e2e8f0;
+                box-shadow: 0 2px 8px rgba(0,0,0,0.05);
             }
-            [data-theme="dark"] .reading-card *,
-            [data-theme="dark"] .feature-card *,
-            [data-theme="dark"] .quiz-box *,
-            [data-theme="dark"] .flashcard-container *,
-            [data-theme="dark"] .jumble-card *,
-            [data-theme="dark"] .spelling-card *,
-            [data-theme="dark"] .profile-container *,
-            [data-theme="dark"] .auth-card *,
-            [data-theme="dark"] .badges-container *,
-            [data-theme="dark"] .badges-modal *,
-            [data-theme="dark"] .scrollable-text * {
-                color: #ffffff !important;
-            }
-            [data-theme="dark"] input,
-            [data-theme="dark"] textarea,
-            [data-theme="dark"] .spelling-input,
-            [data-theme="dark"] input:not([type="checkbox"]):not([type="radio"]) {
-                background-color: #2d2d2d !important;
-                color: #ffffff !important;
-                border-color: #555 !important;
-            }
-            [data-theme="dark"] input::placeholder,
-            [data-theme="dark"] textarea::placeholder {
-                color: #aaa !important;
-            }
+            
             [data-theme="dark"] .header {
-                background-color: #1e1e1e !important;
-                border-bottom: 1px solid #333 !important;
+                background: #1e1e1e;
+                border-bottom-color: #333;
             }
-            [data-theme="dark"] .hero-btn,
-            [data-theme="dark"] .quiz-opt-btn,
-            [data-theme="dark"] .nav-btn {
-                background-color: #333 !important;
-                color: #fff !important;
-                border-color: #555 !important;
-            }
-            [data-theme="dark"] .hero-btn:hover,
-            [data-theme="dark"] .quiz-opt-btn:hover {
-                background-color: #444 !important;
-            }
-            [data-theme="dark"] .flashcard-front,
-            [data-theme="dark"] .flashcard-back {
-                background-color: #2d2d2d !important;
-                color: #fff !important;
-            }
-            [data-theme="dark"] .logout-btn {
-                background-color: #4a4a4a !important;
-                color: #fff !important;
-            }
-            [data-theme="dark"] .welcome-banner {
-                background: linear-gradient(135deg, #1a1a2e, #16213e) !important;
-            }
-            [data-theme="dark"] .quiz-question-row h2 {
-                color: #ffffff !important;
-            }
-            [data-theme="dark"] .gapfill-sentence {
-                background: #2d2d2d !important;
-                color: #fff !important;
-            }
-            [data-theme="dark"] .gapfill-explanation {
-                background-color: #2d2d2d !important;
-                color: #ffffff !important;
-                border: 1px solid #555 !important;
-            }
-            [data-theme="dark"] .spelling-feedback {
-                background-color: #2d2d2d !important;
-                color: #ffffff !important;
-            }
-            [data-theme="dark"] .spelling-feedback.correct-feedback {
-                color: #10b981 !important;
-            }
-            [data-theme="dark"] .spelling-feedback.wrong-feedback {
-                color: #ef4444 !important;
-            }
+            
             .header-content {
                 display: flex;
                 justify-content: space-between;
                 align-items: center;
-                padding: 10px 16px;
-                flex-wrap: wrap;
-                gap: 10px;
+                padding: 8px 16px;
+                max-width: 100%;
+                gap: 8px;
             }
+            
+            /* اللوجو - حجم صغير ومناسب */
             .logo-container {
                 display: flex;
                 align-items: center;
-                gap: 8px;
+                gap: 6px;
                 cursor: pointer;
                 flex-shrink: 0;
             }
+            
             .logo-container img {
-                height: 35px;
-                width: auto;
-                transition: transform 0.3s;
+                width: 32px;
+                height: 32px;
+                object-fit: contain;
+                display: block;
             }
-            @media (max-width: 480px) {
-                .logo-container img {
-                    height: 28px;
-                }
-                .logo-container h2 {
-                    font-size: 1.2rem !important;
-                }
-                .header-content > div:last-child {
-                    gap: 6px !important;
-                }
-                .header-content > div:last-child button,
-                .header-content > div:last-child > div {
-                    padding: 3px 6px !important;
-                    font-size: 0.9rem !important;
-                }
-            }
-            .logo-container:hover img {
-                transform: scale(1.05);
-            }
+            
             .logo-container h2 {
                 margin: 0;
-                font-size: 1.4rem;
+                font-size: 1.2rem;
                 font-weight: bold;
                 background: linear-gradient(135deg, #1e40af, #3b82f6);
                 -webkit-background-clip: text;
                 -webkit-text-fill-color: transparent;
+                background-clip: text;
+                line-height: 1;
             }
+            
             [data-theme="dark"] .logo-container h2 {
                 background: linear-gradient(135deg, #ffd700, #fbbf24);
                 -webkit-background-clip: text;
                 -webkit-text-fill-color: transparent;
+                background-clip: text;
             }
-            .auth-container {
-                text-align: center;
-                margin-bottom: 30px;
+            
+            /* مجموعة الأزرار اليمنى */
+            .header-buttons {
+                display: flex;
+                align-items: center;
+                gap: 6px;
+                flex-shrink: 0;
             }
-            .auth-container img {
-                max-width: 100px;
-                height: auto;
-                margin-bottom: 15px;
-            }
-            @media (max-width: 480px) {
-                .auth-container img {
-                    max-width: 80px;
-                }
-                .auth-container h1 {
-                    font-size: 1.8rem !important;
-                }
-                .auth-container p {
-                    font-size: 1rem !important;
-                }
-            }
-            .auth-container h1 {
-                font-size: 2rem;
-                margin: 0;
-                color: #1e40af;
-            }
-            .auth-container p {
+            
+            .header-btn {
+                background: none;
+                border: none;
                 font-size: 1rem;
-                color: #64748b;
-            }
-            [data-theme="dark"] .auth-container h1 {
-                color: #ffd700;
-            }
-            [data-theme="dark"] .auth-container p {
-                color: #ccc;
-            }
-            .auth-card {
-                max-width: 400px;
-                margin: 0 auto;
-            }
-            .spelling-input {
-                width: 100%;
-                padding: 15px;
-                font-size: 1.2rem;
-                border: 2px solid #ddd;
+                cursor: pointer;
+                padding: 6px 8px;
                 border-radius: 8px;
-                margin: 20px 0;
-                direction: ltr;
-                text-align: left;
+                transition: all 0.2s;
+                color: inherit;
+                display: flex;
+                align-items: center;
+                gap: 4px;
             }
-            .spelling-feedback {
-                font-size: 1.2rem;
+            
+            .header-btn:hover {
+                background: rgba(0,0,0,0.05);
+            }
+            
+            [data-theme="dark"] .header-btn:hover {
+                background: rgba(255,255,255,0.1);
+            }
+            
+            .coin-display {
+                background: #ffd700;
+                color: #000;
+                padding: 4px 10px;
+                border-radius: 20px;
                 font-weight: bold;
-                margin: 10px 0;
+                display: flex;
+                align-items: center;
+                gap: 4px;
+                cursor: pointer;
+                font-size: 0.85rem;
             }
-            .correct-feedback {
-                color: #10b981;
+            
+            /* شريط التنقل */
+            .nav-menu {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 4px;
+                padding: 8px 12px;
+                background: rgba(0,0,0,0.03);
+                border-top: 1px solid rgba(0,0,0,0.05);
+                justify-content: center;
             }
-            .wrong-feedback {
-                color: #ef4444;
+            
+            [data-theme="dark"] .nav-menu {
+                background: rgba(255,255,255,0.03);
+                border-top-color: rgba(255,255,255,0.05);
             }
-            .ad-container {
-                margin: 20px 0;
-                padding: 15px;
+            
+            .nav-btn {
+                padding: 6px 12px;
+                font-size: 0.75rem;
+                border-radius: 20px;
                 background: #f0f0f0;
-                border-radius: 10px;
+                border: none;
+                cursor: pointer;
+                transition: all 0.2s;
+                color: #333;
+            }
+            
+            .nav-btn.active {
+                background: #3b82f6;
+                color: white;
+            }
+            
+            [data-theme="dark"] .nav-btn {
+                background: #333;
+                color: #fff;
+            }
+            
+            [data-theme="dark"] .nav-btn.active {
+                background: #3b82f6;
+            }
+            
+            /* المحتوى الرئيسي */
+            .main-content {
+                max-width: 600px;
+                margin: 0 auto;
+                padding: 16px;
+                width: 100%;
+            }
+            
+            .reading-card {
+                background: white;
+                border-radius: 20px;
+                padding: 20px;
+                margin-bottom: 16px;
+                box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+                border: 1px solid #eef2ff;
+            }
+            
+            [data-theme="dark"] .reading-card {
+                background: #1e1e1e;
+                border-color: #333;
+            }
+            
+            .feature-card {
+                background: #f8fafc;
+                border-radius: 16px;
+                padding: 16px;
                 text-align: center;
-                border: 1px dashed #ffd700;
+                cursor: pointer;
+                transition: all 0.3s;
+                border: 1px solid #e2e8f0;
             }
-            .bank-info {
-                background: #e3f2fd;
-                padding: 15px;
+            
+            [data-theme="dark"] .feature-card {
+                background: #2d2d2d;
+                border-color: #444;
+            }
+            
+            .feature-card:hover {
+                transform: translateY(-2px);
+                box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+            }
+            
+            .hero-btn {
+                padding: 12px 20px;
+                font-size: 0.95rem;
+                border-radius: 12px;
+                border: none;
+                background: #3b82f6;
+                color: white;
+                cursor: pointer;
+                transition: all 0.2s;
+                font-weight: bold;
+            }
+            
+            .hero-btn:hover {
+                opacity: 0.9;
+                transform: scale(0.98);
+            }
+            
+            .features-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+                gap: 12px;
+                margin: 16px 0;
+            }
+            
+            .badges-container {
+                display: flex;
+                gap: 8px;
+                flex-wrap: wrap;
+                margin: 12px 0;
+                padding: 12px;
+                background: rgba(0,0,0,0.03);
+                border-radius: 16px;
+                cursor: pointer;
+                justify-content: center;
+            }
+            
+            [data-theme="dark"] .badges-container {
+                background: rgba(255,255,255,0.05);
+            }
+            
+            .badge-item {
+                font-size: 1.4rem;
+                transition: transform 0.2s;
+                cursor: pointer;
+            }
+            
+            .badge-item.earned {
+                opacity: 1;
+                filter: none;
+            }
+            
+            .badge-item.locked {
+                opacity: 0.3;
+                filter: grayscale(1);
+            }
+            
+            .badge-item:hover {
+                transform: scale(1.1);
+            }
+            
+            .badges-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+                gap: 12px;
+                padding: 10px;
+            }
+            
+            .badge-modal-item {
+                text-align: center;
+                padding: 12px;
+                border-radius: 12px;
+                background: #f5f5f5;
+                transition: 0.2s;
+                cursor: pointer;
+            }
+            
+            [data-theme="dark"] .badge-modal-item {
+                background: #2d2d2d;
+            }
+            
+            .badge-modal-item.earned {
+                background: linear-gradient(135deg, #ffd700, #ffb347);
+                color: #000;
+                font-weight: bold;
+                box-shadow: 0 4px 12px rgba(255,215,0,0.3);
+            }
+            
+            .badge-modal-item:not(.earned) {
+                opacity: 0.5;
+                filter: grayscale(0.8);
+            }
+            
+            .badge-modal-item .badge-icon {
+                font-size: 2rem;
+                display: block;
+                margin-bottom: 5px;
+            }
+            
+            .badge-modal-item .badge-name {
+                font-size: 0.8rem;
+                font-weight: bold;
+            }
+            
+            .badge-modal-item .badge-progress {
+                font-size: 0.65rem;
+                color: #666;
+                margin-top: 4px;
+            }
+            
+            [data-theme="dark"] .badge-modal-item .badge-progress {
+                color: #aaa;
+            }
+            
+            .progress-bar-container {
+                width: 100%;
+                height: 8px;
+                background: #e0e0e0;
                 border-radius: 10px;
-                font-size: 0.9rem;
-                margin: 10px 0;
+                margin: 8px 0;
+                overflow: hidden;
             }
+            
+            .progress-bar-fill {
+                height: 100%;
+                background: linear-gradient(90deg, #ffd700, #ffa500);
+                border-radius: 10px;
+                transition: width 0.3s;
+            }
+            
+            .welcome-banner {
+                background: linear-gradient(135deg, #1e40af, #3b82f6);
+                color: white;
+                border: none;
+            }
+            
+            [data-theme="dark"] .welcome-banner {
+                background: linear-gradient(135deg, #1a1a2e, #16213e);
+            }
+            
+            .quiz-options {
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
+                margin-top: 20px;
+            }
+            
+            .quiz-opt-btn {
+                padding: 12px 16px;
+                font-size: 0.95rem;
+                border-radius: 12px;
+                border: 1px solid #ddd;
+                background: #f9f9f9;
+                cursor: pointer;
+                transition: all 0.2s;
+                text-align: center;
+            }
+            
+            [data-theme="dark"] .quiz-opt-btn {
+                background: #333;
+                border-color: #555;
+                color: white;
+            }
+            
+            .quiz-opt-btn:hover:not(:disabled) {
+                transform: scale(1.02);
+                background: #e0e0e0;
+            }
+            
+            .quiz-opt-btn.correct-answer {
+                background: #10b981 !important;
+                color: white;
+                border-color: #10b981;
+            }
+            
+            .quiz-opt-btn.wrong-answer {
+                background: #ef4444 !important;
+                color: white;
+                border-color: #ef4444;
+            }
+            
+            .flashcard-container {
+                perspective: 1000px;
+                cursor: pointer;
+                margin: 20px 0;
+                height: 250px;
+            }
+            
+            .flashcard {
+                position: relative;
+                width: 100%;
+                height: 100%;
+                text-align: center;
+                transition: transform 0.6s;
+                transform-style: preserve-3d;
+                border-radius: 20px;
+            }
+            
+            .flashcard.flipped {
+                transform: rotateY(180deg);
+            }
+            
+            .flashcard-front, .flashcard-back {
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                backface-visibility: hidden;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                border-radius: 20px;
+                background: linear-gradient(135deg, #667eea, #764ba2);
+                box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+                padding: 20px;
+            }
+            
+            .flashcard-back {
+                background: linear-gradient(135deg, #f093fb, #f5576c);
+                transform: rotateY(180deg);
+            }
+            
+            .flashcard-front h1, .flashcard-back h1 {
+                font-size: 1.6rem;
+                margin: 0;
+                color: white;
+            }
+            
+            @media (max-width: 480px) {
+                .header-content {
+                    padding: 6px 12px;
+                }
+                .logo-container img {
+                    width: 28px;
+                    height: 28px;
+                }
+                .logo-container h2 {
+                    font-size: 1rem;
+                }
+                .header-btn {
+                    padding: 4px 6px;
+                    font-size: 0.85rem;
+                }
+                .coin-display {
+                    padding: 3px 8px;
+                    font-size: 0.75rem;
+                }
+                .nav-btn {
+                    padding: 4px 8px;
+                    font-size: 0.65rem;
+                }
+                .main-content {
+                    padding: 12px;
+                }
+                .reading-card {
+                    padding: 16px;
+                }
+                .flashcard-container {
+                    height: 200px;
+                }
+                .flashcard-front h1, .flashcard-back h1 {
+                    font-size: 1.2rem;
+                }
+                .badge-item {
+                    font-size: 1.2rem;
+                }
+                .features-grid {
+                    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+                }
+            }
+            
             .modal-overlay {
                 position: fixed;
                 top: 0;
@@ -755,113 +990,177 @@ class App {
                 align-items: center;
                 z-index: 1000;
                 animation: fadeIn 0.3s;
-                backdrop-filter: blur(2px);
             }
+            
             .modal-content {
                 background: white;
-                border-radius: 28px;
-                padding: 28px;
+                border-radius: 24px;
+                padding: 24px;
                 max-width: 380px;
                 width: 90%;
                 max-height: 80vh;
                 overflow-y: auto;
                 box-shadow: 0 20px 35px rgba(0,0,0,0.3);
                 animation: slideUp 0.3s;
-                position: relative;
-                text-align: center;
-                border: 1px solid rgba(255,255,255,0.2);
             }
+            
             [data-theme="dark"] .modal-content {
                 background: #1e1e1e;
                 color: white;
-                border-color: #333;
             }
+            
             @keyframes fadeIn {
                 from { opacity: 0; }
                 to { opacity: 1; }
             }
+            
             @keyframes slideUp {
                 from { transform: translateY(30px); opacity: 0; }
                 to { transform: translateY(0); opacity: 1; }
             }
-            .modal-header {
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-                margin-bottom: 20px;
-            }
-            .modal-header h3 {
-                margin: 0;
-            }
-            .close-btn {
-                font-size: 1.5rem;
-                cursor: pointer;
-                padding: 0 5px;
-                color: #999;
-                transition: color 0.2s;
-            }
-            .close-btn:hover {
-                color: #333;
-            }
-            [data-theme="dark"] .close-btn:hover {
-                color: white;
-            }
+            
             .coin-option {
                 background: #f5f5f5;
                 border-radius: 16px;
                 padding: 15px;
                 margin-bottom: 15px;
                 cursor: pointer;
-                transition: transform 0.2s, box-shadow 0.2s;
+                transition: transform 0.2s;
                 border: 1px solid #e0e0e0;
             }
+            
             [data-theme="dark"] .coin-option {
                 background: #2d2d2d;
                 border-color: #444;
             }
+            
             .coin-option:hover {
                 transform: scale(1.02);
-                box-shadow: 0 5px 15px rgba(0,0,0,0.1);
             }
-            .profile-container {
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                gap: 15px;
+            
+            .auth-container {
+                text-align: center;
+                margin-bottom: 30px;
             }
+            
+            .auth-container img {
+                width: 80px;
+                height: 80px;
+                object-fit: contain;
+                margin-bottom: 15px;
+            }
+            
+            .auth-input {
+                width: 100%;
+                padding: 12px;
+                margin: 8px 0;
+                border-radius: 12px;
+                border: 1px solid #ddd;
+                font-size: 1rem;
+            }
+            
+            [data-theme="dark"] .auth-input {
+                background: #2d2d2d;
+                border-color: #555;
+                color: white;
+            }
+            
+            .spelling-input {
+                width: 100%;
+                padding: 15px;
+                font-size: 1.1rem;
+                border: 2px solid #ddd;
+                border-radius: 12px;
+                margin: 20px 0;
+                direction: ltr;
+                text-align: left;
+            }
+            
+            .gapfill-sentence {
+                font-size: 1.2rem;
+                font-weight: bold;
+                text-align: center;
+                margin: 25px 0;
+                padding: 20px;
+                background: #f8fafc;
+                border-radius: 16px;
+            }
+            
+            [data-theme="dark"] .gapfill-sentence {
+                background: #2d2d2d;
+            }
+            
+            .logout-btn {
+                background: #dc2626;
+                color: white;
+                padding: 12px 20px;
+                font-size: 1rem;
+                font-weight: bold;
+                border-radius: 12px;
+                width: 100%;
+                border: none;
+                cursor: pointer;
+            }
+            
+            .logout-btn:hover {
+                opacity: 0.9;
+            }
+            
+            .card-controls-row {
+                display: grid;
+                grid-template-columns: 1fr 1fr 1fr;
+                gap: 10px;
+                margin: 15px 0;
+            }
+            
+            .card-nav-row {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 10px;
+                margin: 10px 0;
+            }
+            
+            .history-item {
+                background: #f1f5f9;
+                padding: 12px;
+                margin-bottom: 10px;
+                border-radius: 12px;
+                cursor: pointer;
+            }
+            
+            [data-theme="dark"] .history-item {
+                background: #2d2d2d;
+            }
+            
+            .scrollable-text {
+                max-height: 400px;
+                overflow-y: auto;
+                padding: 10px;
+                line-height: 1.6;
+                direction: ltr;
+                text-align: left;
+            }
+            
             .profile-image {
-                width: 150px;
-                height: 150px;
+                width: 100px;
+                height: 100px;
                 border-radius: 50%;
                 background: #e0e0e0;
                 display: flex;
                 align-items: center;
                 justify-content: center;
                 overflow: hidden;
-                border: 4px solid #ffd700;
+                border: 3px solid #ffd700;
                 cursor: pointer;
                 margin: 10px auto;
             }
+            
             .profile-image img {
                 width: 100%;
                 height: 100%;
                 object-fit: cover;
             }
-            .profile-image svg {
-                width: 70px;
-                height: 70px;
-                fill: #aaa;
-            }
-            .profile-info {
-                width: 100%;
-                background: #f9f9f9;
-                border-radius: 12px;
-                padding: 15px;
-                margin: 5px 0;
-            }
-            [data-theme="dark"] .profile-info {
-                background: #2d2d2d;
-            }
+            
             .info-row {
                 display: flex;
                 justify-content: space-between;
@@ -870,363 +1169,21 @@ class App {
                 flex-wrap: wrap;
                 gap: 8px;
             }
+            
             [data-theme="dark"] .info-row {
                 border-bottom-color: #444;
             }
-            .info-row:last-child {
-                border-bottom: none;
-            }
+            
             .info-row input {
-                max-width: 180px;
-            }
-            @media (max-width: 480px) {
-                .info-row {
-                    flex-direction: column;
-                    align-items: flex-start;
-                }
-                .info-row input {
-                    max-width: 100%;
-                    width: 100%;
-                }
-            }
-            .progress-bar-container {
-                width: 100%;
-                height: 10px;
-                background: #e0e0e0;
-                border-radius: 5px;
-                margin: 10px 0;
-            }
-            .progress-bar-fill {
-                height: 100%;
-                background: linear-gradient(90deg, #ffd700, #ffa500);
-                border-radius: 5px;
-                transition: width 0.3s;
-            }
-            .result-modal {
-                text-align: center;
-            }
-            .result-icon {
-                font-size: 4rem;
-                margin-bottom: 15px;
-            }
-            .result-message {
-                font-size: 1.2rem;
-                margin-bottom: 20px;
-            }
-            .unlock-choice {
-                display: flex;
-                gap: 15px;
-                flex-direction: column;
-                margin: 20px 0;
-            }
-            .badges-container {
-                display: flex;
-                gap: 8px;
-                flex-wrap: wrap;
-                margin: 15px 0;
-                padding: 12px;
-                background: rgba(255,255,255,0.1);
-                border-radius: 12px;
-                cursor: pointer;
-                justify-content: center;
-            }
-            .badge-item {
-                font-size: 1.6rem;
-                transition: transform 0.2s;
-                cursor: pointer;
-            }
-            .badge-item:hover {
-                transform: scale(1.1);
-            }
-            .badge-item.locked {
-                opacity: 0.3;
-                filter: grayscale(1);
-            }
-            .badge-item.earned {
-                opacity: 1;
-                filter: none;
-            }
-            .badges-grid {
-                display: grid;
-                grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
-                gap: 12px;
-                padding: 10px;
-            }
-            .badge-modal-item {
-                text-align: center;
-                padding: 12px;
-                border-radius: 12px;
-                background: #f5f5f5;
-                transition: 0.2s;
-                cursor: pointer;
-            }
-            [data-theme="dark"] .badge-modal-item {
-                background: #2d2d2d;
-            }
-            .badge-modal-item.earned {
-                background: linear-gradient(135deg, #ffd700, #ffb347);
-                color: #000;
-                font-weight: bold;
-                box-shadow: 0 4px 12px rgba(255,215,0,0.3);
-            }
-            .badge-modal-item:not(.earned) {
-                opacity: 0.5;
-                filter: grayscale(0.8);
-            }
-            .badge-modal-item .badge-icon {
-                font-size: 2.5rem;
-                display: block;
-                margin-bottom: 5px;
-            }
-            .badge-modal-item .badge-name {
-                font-size: 0.85rem;
-                font-weight: bold;
-            }
-            .badge-modal-item .badge-progress {
-                font-size: 0.7rem;
-                color: #666;
-                margin-top: 4px;
-            }
-            [data-theme="dark"] .badge-modal-item .badge-progress {
-                color: #aaa;
-            }
-            .gapfill-controls {
-                display: flex;
-                gap: 10px;
-                justify-content: center;
-                margin-top: 20px;
-                flex-wrap: wrap;
-            }
-            [data-theme="dark"] .quiz-question-row h2,
-            [data-theme="dark"] .quiz-opt-btn,
-            [data-theme="dark"] .spelling-input,
-            [data-theme="dark"] .gapfill-sentence,
-            [data-theme="dark"] .gapfill-sentence *,
-            [data-theme="dark"] .spelling-feedback,
-            [data-theme="dark"] .gapfill-controls + div {
-                color: #ffffff !important;
-            }
-            [data-theme="dark"] .quiz-opt-btn {
-                background-color: #333 !important;
-                border-color: #555 !important;
-            }
-            [data-theme="dark"] .quiz-opt-btn.correct-answer {
-                background-color: #10b981 !important;
-            }
-            [data-theme="dark"] .quiz-opt-btn.wrong-answer {
-                background-color: #ef4444 !important;
-            }
-            [data-theme="dark"] .quiz-opt-btn.other-option {
-                background-color: #6b7280 !important;
-            }
-            .nav-menu {
-                display: flex;
-                flex-wrap: wrap;
-                gap: 6px;
-                padding: 8px 12px;
-                background: rgba(0,0,0,0.05);
-                border-radius: 12px;
-                margin-top: 8px;
-                justify-content: center;
-            }
-            .nav-btn {
-                padding: 6px 12px;
-                font-size: 0.85rem;
-                border-radius: 20px;
-                background: #f0f0f0;
-                border: none;
-                cursor: pointer;
-                transition: all 0.2s;
-            }
-            .nav-btn.active {
-                background: #3b82f6;
-                color: white;
-            }
-            @media (max-width: 600px) {
-                .nav-btn {
-                    padding: 4px 8px;
-                    font-size: 0.7rem;
-                }
-                .badge-item {
-                    font-size: 1.3rem;
-                }
-                .badges-grid {
-                    grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
-                }
-                .badge-modal-item .badge-icon {
-                    font-size: 2rem;
-                }
-                .badge-modal-item .badge-name {
-                    font-size: 0.75rem;
-                }
-            }
-            .quiz-options {
-                display: flex;
-                flex-direction: column;
-                gap: 10px;
-            }
-            .quiz-opt-btn {
-                padding: 12px 16px;
-                font-size: 1rem;
-                border-radius: 12px;
+                padding: 6px;
+                border-radius: 6px;
                 border: 1px solid #ddd;
-                background: #f9f9f9;
-                cursor: pointer;
-                transition: all 0.2s;
-                text-align: center;
             }
-            .quiz-opt-btn:hover:not(:disabled) {
-                transform: scale(1.02);
-                background: #e0e0e0;
-            }
-            .quiz-opt-btn:disabled {
-                cursor: not-allowed;
-                opacity: 0.8;
-            }
-            .features-grid {
-                display: grid;
-                grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-                gap: 15px;
-                margin: 20px 0;
-            }
-            .feature-card {
-                background: #f8fafc;
-                border-radius: 16px;
-                padding: 20px;
-                text-align: center;
-                cursor: pointer;
-                transition: all 0.3s;
-                border: 1px solid #e2e8f0;
-            }
-            .feature-card:hover {
-                transform: translateY(-3px);
-                box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-            }
-            .hero-btn {
-                padding: 12px 20px;
-                font-size: 1rem;
-                border-radius: 12px;
-                border: none;
-                background: #3b82f6;
-                color: white;
-                cursor: pointer;
-                transition: all 0.2s;
-                font-weight: bold;
-            }
-            .hero-btn:hover {
-                opacity: 0.9;
-                transform: scale(1.02);
-            }
-            .reading-card {
-                background: white;
-                border-radius: 24px;
-                padding: 20px;
-                margin-bottom: 15px;
-                box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-                border: 1px solid #eef2ff;
-            }
-            .flashcard-container {
-                perspective: 1000px;
-                cursor: pointer;
-                margin: 20px 0;
-                height: 280px;
-            }
-            .flashcard {
-                position: relative;
-                width: 100%;
-                height: 100%;
-                text-align: center;
-                transition: transform 0.6s;
-                transform-style: preserve-3d;
-                border-radius: 24px;
-            }
-            .flashcard.flipped {
-                transform: rotateY(180deg);
-            }
-            .flashcard-front, .flashcard-back {
-                position: absolute;
-                width: 100%;
-                height: 100%;
-                backface-visibility: hidden;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                border-radius: 24px;
-                background: #f8fafc;
-                box-shadow: 0 8px 20px rgba(0,0,0,0.1);
-                padding: 20px;
-            }
-            .flashcard-front {
-                background: linear-gradient(135deg, #667eea, #764ba2);
-                color: white;
-            }
-            .flashcard-back {
-                background: linear-gradient(135deg, #f093fb, #f5576c);
-                color: white;
-                transform: rotateY(180deg);
-            }
-            .flashcard-front h1, .flashcard-back h1 {
-                font-size: 2rem;
-                margin: 0;
-            }
-            @media (max-width: 480px) {
-                .flashcard-container {
-                    height: 220px;
-                }
-                .flashcard-front h1, .flashcard-back h1 {
-                    font-size: 1.4rem;
-                }
-                .hero-btn {
-                    padding: 10px 14px;
-                    font-size: 0.9rem;
-                }
-                .reading-card {
-                    padding: 15px;
-                }
-            }
-            .card-controls-row, .card-nav-row {
-                display: grid;
-                grid-template-columns: 1fr 1fr 1fr;
-                gap: 10px;
-                margin: 10px 0;
-            }
-            .card-nav-row {
-                grid-template-columns: 1fr 1fr;
-            }
-            .jumble-word-top {
-                cursor: pointer;
-                background: #3b82f6;
-                color: white;
-                padding: 8px 15px;
-                border-radius: 20px;
-                font-size: 1rem;
-                display: inline-block;
-            }
-            .history-item {
-                background: #f1f5f9;
-                padding: 12px;
-                margin-bottom: 10px;
-                border-radius: 12px;
-                cursor: pointer;
-                transition: all 0.2s;
-            }
-            .history-item:hover {
-                background: #e2e8f0;
-                transform: translateX(5px);
-            }
-            [data-theme="dark"] .history-item {
+            
+            [data-theme="dark"] .info-row input {
                 background: #2d2d2d;
-            }
-            [data-theme="dark"] .history-item:hover {
-                background: #3d3d3d;
-            }
-            .scrollable-text {
-                max-height: 400px;
-                overflow-y: auto;
-                padding: 10px;
-                line-height: 1.8;
-                direction: ltr;
-                text-align: left;
+                border-color: #555;
+                color: white;
             }
         `;
         document.head.appendChild(style);
@@ -1244,8 +1201,8 @@ class App {
         modalDiv.innerHTML = `
             <div class="modal-content" style="text-align:center;">
                 <div class="result-icon" style="font-size:3rem;">📺</div>
-                <div class="result-message" style="font-size:1.2rem; font-weight:bold;">${this.t('جارٍ عرض الإعلان', 'Ad is playing')}</div>
-                <div class="result-message" style="font-size:0.9rem; margin-top:-10px; color:#666;">${this.t('يرجى الانتظار قليلاً', 'Please wait a moment')}</div>
+                <div class="result-message" style="font-size:1.1rem; font-weight:bold;">${this.t('جارٍ عرض الإعلان', 'Ad is playing')}</div>
+                <div class="result-message" style="font-size:0.85rem; margin-top:-5px; color:#666;">${this.t('يرجى الانتظار قليلاً', 'Please wait a moment')}</div>
                 <div class="progress-bar-container" style="margin:15px 0;">
                     <div class="progress-bar-fill" style="width:0%; transition:width 2s linear;"></div>
                 </div>
@@ -1338,9 +1295,9 @@ class App {
         };
         modalDiv.innerHTML = `
             <div class="modal-content result-modal">
-                <div class="result-icon">${icon}</div>
-                <div class="result-message">${message}</div>
-                <button class="hero-btn" id="modalConfirmBtn" style="background:#3b82f6;">${this.t('حسناً', 'OK')}</button>
+                <div class="result-icon" style="font-size:3rem; text-align:center;">${icon}</div>
+                <div class="result-message" style="text-align:center; margin:15px 0;">${message}</div>
+                <button class="hero-btn" id="modalConfirmBtn" style="background:#3b82f6; width:100%;">${this.t('حسناً', 'OK')}</button>
             </div>
         `;
         document.body.appendChild(modalDiv);
@@ -1360,11 +1317,11 @@ class App {
         };
         modalDiv.innerHTML = `
             <div class="modal-content result-modal" style="text-align:center;">
-                <div class="result-icon">💎</div>
-                <div class="result-message" style="font-size:1.1rem; margin-bottom:10px;">
+                <div class="result-icon" style="font-size:2.5rem;">💎</div>
+                <div class="result-message" style="font-size:1rem; margin-bottom:15px;">
                     ${this.t(`هل تريد فتح هذه الميزة بـ ${price} لؤلؤة؟`, `Do you want to unlock this feature for ${price} pearls?`)}
                 </div>
-                <div style="display:flex; gap:15px; justify-content:center;">
+                <div style="display:flex; gap:12px; justify-content:center;">
                     <button class="hero-btn" id="confirmPurchaseBtn" style="background:#10b981;">${this.t('تأكيد', 'Confirm')}</button>
                     <button class="hero-btn" id="cancelPurchaseBtn" style="background:#ef4444;">${this.t('إلغاء', 'Cancel')}</button>
                 </div>
@@ -1392,9 +1349,9 @@ class App {
         };
         modalDiv.innerHTML = `
             <div class="modal-content" style="text-align:center;">
-                <div class="result-icon" style="font-size:3rem;">❓</div>
-                <div class="result-message" style="font-size:1.1rem; margin-bottom:20px;">${message}</div>
-                <div style="display:flex; gap:15px; justify-content:center;">
+                <div class="result-icon" style="font-size:2.5rem;">❓</div>
+                <div class="result-message" style="font-size:1rem; margin-bottom:20px;">${message}</div>
+                <div style="display:flex; gap:12px; justify-content:center;">
                     <button class="hero-btn" id="confirmYesBtn" style="background:#10b981;">${this.t('نعم', 'Yes')}</button>
                     <button class="hero-btn" id="confirmNoBtn" style="background:#ef4444;">${this.t('إلغاء', 'Cancel')}</button>
                 </div>
@@ -3206,7 +3163,6 @@ class App {
     getBadgesDisplay() {
         const earnedBadges = this.userStats.earnedBadges || [];
         
-        // جمع كل الأوسمة من جميع الفئات
         const allBadges = [
             ...this.badgeDefinitions.general,
             ...this.badgeDefinitions.quiz,
@@ -3215,8 +3171,7 @@ class App {
             ...this.badgeDefinitions.gapFill
         ];
         
-        // عرض الأوسمة المتاحة
-        const displayBadges = allBadges.slice(0, 12);
+        const displayBadges = allBadges.slice(0, 8);
         
         if (displayBadges.length === 0) {
             return `<div class="badges-container" data-action="showBadges" style="justify-content:center; color:#aaa; cursor:pointer;">
@@ -3229,7 +3184,7 @@ class App {
                 const isEarned = earnedBadges.includes(b.id);
                 return `<span class="badge-item ${isEarned ? 'earned' : 'locked'}" title="${this.t(b.name, b.nameEn)}">${b.icon}</span>`;
             }).join('')}
-            ${allBadges.length > 12 ? `<span class="badge-item" style="font-size:1rem;">+${allBadges.length - 12}</span>` : ''}
+            ${allBadges.length > 8 ? `<span class="badge-item" style="font-size:0.9rem;">+${allBadges.length - 8}</span>` : ''}
         </div>`;
     }
 
@@ -3239,13 +3194,12 @@ class App {
         const totalMastered = (this.masteredWords || []).length;
         
         let html = `<div style="text-align:center; margin-bottom:15px;">
-            <div style="font-size:1.2rem; font-weight:bold;">🏅 ${this.t('الأوسمة والإنجازات', 'Badges & Achievements')}</div>
-            <div style="font-size:0.8rem; color:#666;">${this.t('الأوسمة الباهتة لم يتم الحصول عليها بعد', 'Dim badges are not yet earned')}</div>
+            <div style="font-size:1.1rem; font-weight:bold;">🏅 ${this.t('الأوسمة والإنجازات', 'Badges & Achievements')}</div>
+            <div style="font-size:0.75rem; color:#666;">${this.t('الأوسمة الباهتة لم يتم الحصول عليها بعد', 'Dim badges are not yet earned')}</div>
         </div>`;
         
         html += '<div class="badges-grid">';
         
-        // أوسمة التقدم العام
         html += `<div style="grid-column:1/-1; margin:10px 0 5px; font-weight:bold; text-align:center; border-bottom:2px solid #ffd700;">📊 ${this.t('أوسمة التقدم العام', 'General Progress Badges')}</div>`;
         for (const badge of this.badgeDefinitions.general) {
             const isEarned = earnedBadges.includes(badge.id);
@@ -3269,7 +3223,6 @@ class App {
             `;
         }
         
-        // أوسمة اختبار
         html += `<div style="grid-column:1/-1; margin:15px 0 5px; font-weight:bold; text-align:center; border-bottom:2px solid #ffd700;">📝 ${this.t('أوسمة اختبار الكلمات', 'Quiz Badges')}</div>`;
         for (const badge of this.badgeDefinitions.quiz) {
             const isEarned = earnedBadges.includes(badge.id);
@@ -3284,7 +3237,6 @@ class App {
             `;
         }
         
-        // أوسمة استماع
         html += `<div style="grid-column:1/-1; margin:15px 0 5px; font-weight:bold; text-align:center; border-bottom:2px solid #ffd700;">🎧 ${this.t('أوسمة الاستماع', 'Listening Badges')}</div>`;
         for (const badge of this.badgeDefinitions.listening) {
             const isEarned = earnedBadges.includes(badge.id);
@@ -3299,7 +3251,6 @@ class App {
             `;
         }
         
-        // أوسمة كتابة
         html += `<div style="grid-column:1/-1; margin:15px 0 5px; font-weight:bold; text-align:center; border-bottom:2px solid #ffd700;">✍️ ${this.t('أوسمة الكتابة', 'Spelling Badges')}</div>`;
         for (const badge of this.badgeDefinitions.spelling) {
             const isEarned = earnedBadges.includes(badge.id);
@@ -3314,7 +3265,6 @@ class App {
             `;
         }
         
-        // أوسمة ملء فراغ
         html += `<div style="grid-column:1/-1; margin:15px 0 5px; font-weight:bold; text-align:center; border-bottom:2px solid #ffd700;">📝 ${this.t('أوسمة ملء الفراغ', 'Gap Fill Badges')}</div>`;
         for (const badge of this.badgeDefinitions.gapFill) {
             const isEarned = earnedBadges.includes(badge.id);
@@ -3352,15 +3302,15 @@ class App {
             if (this.showPurchaseForm) {
                 modalContent = `
                     <div class="modal-content">
-                        <div class="modal-header">
-                            <h3>💰 ${this.t('طلب شراء 300 لؤلؤة', 'Request 300 Pearls')}</h3>
-                            <span class="close-btn" onclick="appInstance.toggleCoinModal()">&times;</span>
+                        <div class="modal-header" style="display:flex; justify-content:space-between; margin-bottom:15px;">
+                            <h3 style="margin:0;">💰 ${this.t('طلب شراء 300 لؤلؤة', 'Request 300 Pearls')}</h3>
+                            <span class="close-btn" onclick="appInstance.toggleCoinModal()" style="cursor:pointer; font-size:1.5rem;">&times;</span>
                         </div>
                         <p style="text-align:center; margin-bottom:15px;">${this.t('مقابل 1 دولار أمريكي', 'For 1 USD')}</p>
                         <div class="purchase-form">
-                            <input type="text" id="purchaseName" placeholder="${this.t('الاسم الكامل', 'Full Name')}" style="width:100%; padding:10px; margin:5px 0; border-radius:8px; border:1px solid #ddd;" />
-                            <input type="email" id="purchaseEmail" placeholder="${this.t('البريد الإلكتروني', 'Email')}" style="width:100%; padding:10px; margin:5px 0; border-radius:8px; border:1px solid #ddd;" />
-                            <input type="tel" id="purchasePhone" placeholder="${this.t('رقم الهاتف', 'Phone Number')}" style="width:100%; padding:10px; margin:5px 0; border-radius:8px; border:1px solid #ddd;" />
+                            <input type="text" id="purchaseName" placeholder="${this.t('الاسم الكامل', 'Full Name')}" style="width:100%; padding:10px; margin:5px 0; border-radius:8px; border:1px solid #ddd;">
+                            <input type="email" id="purchaseEmail" placeholder="${this.t('البريد الإلكتروني', 'Email')}" style="width:100%; padding:10px; margin:5px 0; border-radius:8px; border:1px solid #ddd;">
+                            <input type="tel" id="purchasePhone" placeholder="${this.t('رقم الهاتف', 'Phone Number')}" style="width:100%; padding:10px; margin:5px 0; border-radius:8px; border:1px solid #ddd;">
                             <button class="hero-btn" data-action="submitPurchase" style="background:#10b981; width:100%; margin-top:10px;">${this.t('إرسال الطلب', 'Submit Request')}</button>
                         </div>
                     </div>
@@ -3368,20 +3318,20 @@ class App {
             } else {
                 modalContent = `
                     <div class="modal-content">
-                        <div class="modal-header">
-                            <h3>💰 ${this.t('خيارات العملات', 'Currency Options')}</h3>
-                            <span class="close-btn" onclick="appInstance.toggleCoinModal()">&times;</span>
+                        <div class="modal-header" style="display:flex; justify-content:space-between; margin-bottom:15px;">
+                            <h3 style="margin:0;">💰 ${this.t('خيارات العملات', 'Currency Options')}</h3>
+                            <span class="close-btn" onclick="appInstance.toggleCoinModal()" style="cursor:pointer; font-size:1.5rem;">&times;</span>
                         </div>
                         <div class="coin-option" onclick="appInstance.watchAdsForCoins()">
                             <div style="display:flex; justify-content:space-between; align-items:center;">
-                                <span style="font-size:1.2rem;">👁️ ${this.t('مشاهدة 3 إعلانات', 'Watch 3 Ads')}</span>
-                                <span style="background:#ffd700; padding:5px 10px; border-radius:20px;">+50</span>
+                                <span style="font-size:1rem;">👁️ ${this.t('مشاهدة 3 إعلانات', 'Watch 3 Ads')}</span>
+                                <span style="background:#ffd700; padding:4px 8px; border-radius:20px;">+50</span>
                             </div>
                         </div>
                         <div class="coin-option" onclick="appInstance.requestPurchase()">
                             <div style="display:flex; justify-content:space-between; align-items:center;">
-                                <span style="font-size:1.2rem;">💳 ${this.t('شراء 300 لؤلؤة', 'Buy 300 Pearls')}</span>
-                                <span style="background:#ffd700; padding:5px 10px; border-radius:20px;">1$</span>
+                                <span style="font-size:1rem;">💳 ${this.t('شراء 300 لؤلؤة', 'Buy 300 Pearls')}</span>
+                                <span style="background:#ffd700; padding:4px 8px; border-radius:20px;">1$</span>
                             </div>
                         </div>
                     </div>
@@ -3396,7 +3346,7 @@ class App {
         if (this.currentPage === 'auth') return '';
         let nav = '';
         if (this.selectedLessonId && ['reading', 'flashcards', 'quiz', 'jumble', 'listening', 'spelling', 'gapfill'].includes(this.currentPage) && !this.isUnlockTest) {
-            nav = `<nav class="nav-menu">
+            nav = `<div class="nav-menu">
                 <button class="nav-btn ${this.currentPage === 'reading' ? 'active' : ''}" data-action="setPage" data-param="reading">${this.t('📖 النص', '📖 Text')}</button>
                 <button class="nav-btn ${this.currentPage === 'flashcards' ? 'active' : ''}" data-action="setPage" data-param="flashcards">${this.t('🎴 بطاقات', '🎴 Flashcards')}</button>
                 <button class="nav-btn ${this.currentPage === 'quiz' ? 'active' : ''}" data-action="setPage" data-param="quiz">${this.t('🧩 اختبار', '🧩 Quiz')}</button>
@@ -3404,48 +3354,50 @@ class App {
                 <button class="nav-btn ${this.currentPage === 'listening' ? 'active' : ''}" data-action="setPage" data-param="listening">${this.t('🎧 استماع', '🎧 Listening')}</button>
                 <button class="nav-btn ${this.currentPage === 'spelling' ? 'active' : ''}" data-action="setPage" data-param="spelling">${this.t('✍️ كتابة', '✍️ Spelling')}</button>
                 <button class="nav-btn ${this.currentPage === 'gapfill' ? 'active' : ''}" data-action="setPage" data-param="gapfill">${this.t('📝 ملء فراغ', '📝 Gap Fill')}</button>
-            </nav>`;
+            </div>`;
         }
 
         return `<header class="header">
-    <div class="header-content">
-        <div class="logo-container" data-action="goHome">
-            <img src="wordwise_logo.png" alt="WordWise" style="max-width:100%; height:auto;">
-            <h2>WordWise</h2>
-        </div>
-        <div style="display:flex; align-items:center; gap:10px; flex-wrap:wrap;">
-            <button data-action="toggleLang" style="background:none; border:none; font-size:1rem; cursor:pointer; padding:5px; font-weight:bold; color:inherit;">
-                ${this.lang === 'ar' ? 'EN' : 'عربي'}
-            </button>
-            <button data-action="toggleTheme" style="background:none; border:none; font-size:1.2rem; cursor:pointer; padding:5px;">
-                ${this.theme === 'light' ? '🌙' : '☀️'}
-            </button>
-            <div style="background: #ffd700; color: #000; padding: 4px 10px; border-radius: 20px; font-weight: bold; display: flex; align-items: center; gap: 4px; cursor:pointer; font-size:0.9rem;" data-action="toggleCoinModal">
-                <span>💎</span> ${this.userCoins}
-                <span style="font-size:1rem;">➕</span>
+            <div class="header-content">
+                <div class="logo-container" data-action="goHome">
+                    <img src="wordwise_logo.png" alt="WordWise">
+                    <h2>WordWise</h2>
+                </div>
+                <div class="header-buttons">
+                    <button class="header-btn" data-action="toggleLang" title="${this.t('تغيير اللغة', 'Change Language')}">
+                        ${this.lang === 'ar' ? 'EN' : 'عربي'}
+                    </button>
+                    <button class="header-btn" data-action="toggleTheme" title="${this.t('الوضع الليلي', 'Dark Mode')}">
+                        ${this.theme === 'light' ? '🌙' : '☀️'}
+                    </button>
+                    <div class="coin-display" data-action="toggleCoinModal" title="${this.t('رصيد اللآلئ', 'Pearls Balance')}">
+                        <span>💎</span> ${this.userCoins}
+                        <span style="font-size:0.9rem;">➕</span>
+                    </div>
+                    <button class="header-btn" data-action="goToProfile" title="${this.t('الملف الشخصي', 'Profile')}">
+                        👤
+                    </button>
+                </div>
             </div>
-            <button data-action="goToProfile" style="background:none; border:none; font-size:1.2rem; cursor:pointer;">👤</button>
-        </div>
-    </div>
-    ${nav}
-</header>`;
+            ${nav}
+        </header>`;
     }
 
     getView(lesson, allTerms) {
         if (this.currentPage === 'auth') {
             return `<main class="main-content">
                 <div class="auth-container">
-                    <img src="wordwise_logo.png" alt="WordWise" style="max-width:100px;">
+                    <img src="wordwise_logo.png" alt="WordWise">
                     <h1>WordWise</h1>
                     <p>${this.t('كن حكيماً في اختيار كلماتك', 'Be wise in choosing your words')}</p>
                 </div>
                 <div class="reading-card auth-card">
-                    <h2>🚀 ${this.t('مرحباً بك', 'Welcome')}</h2>
-                    <input id="authName" placeholder="${this.t('الاسم الكامل', 'Full Name')}" class="auth-input" style="width:100%; padding:12px; margin:8px 0; border-radius:8px; border:1px solid #ddd;">
-                    <input id="authEmail" placeholder="${this.t('البريد الإلكتروني', 'Email')}" class="auth-input" style="width:100%; padding:12px; margin:8px 0; border-radius:8px; border:1px solid #ddd;">
-                    <input type="password" id="authPass" placeholder="${this.t('كلمة المرور', 'Password')}" class="auth-input" style="width:100%; padding:12px; margin:8px 0; border-radius:8px; border:1px solid #ddd;">
+                    <h2 style="text-align:center;">🚀 ${this.t('مرحباً بك', 'Welcome')}</h2>
+                    <input id="authName" placeholder="${this.t('الاسم الكامل', 'Full Name')}" class="auth-input">
+                    <input id="authEmail" placeholder="${this.t('البريد الإلكتروني', 'Email')}" class="auth-input">
+                    <input type="password" id="authPass" placeholder="${this.t('كلمة المرور', 'Password')}" class="auth-input">
                     <button class="hero-btn" data-action="doAuth" style="width:100%;">${this.t('تسجيل الدخول / إنشاء حساب', 'Login / Sign Up')}</button>
-                    <p style="margin-top:10px; font-size:0.8rem; color:#666;">${this.t('جميع بياناتك محفوظة ومرتبطة بهذا البريد.', 'All your data is stored and linked to this email.')}</p>
+                    <p style="margin-top:12px; font-size:0.75rem; color:#666; text-align:center;">${this.t('جميع بياناتك محفوظة ومرتبطة بهذا البريد.', 'All your data is stored and linked to this email.')}</p>
                 </div>
             </main>`;
         }
@@ -3458,39 +3410,39 @@ class App {
             const xpPercent = (progress.currentProgress / progress.neededForNext) * 100;
 
             return `<main class="main-content">
-                <div class="reading-card welcome-banner" style="background: linear-gradient(135deg, #1e40af, #3b82f6); color: white; border: none; padding: 20px;">
+                <div class="reading-card welcome-banner">
                     <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap:wrap; gap:10px;">
                         <h3 style="margin:0;">${this.t(`مرحباً، ${this.userData?.name || 'مستخدم'} 👋`, `Welcome, ${this.userData?.name || 'User'} 👋`)}</h3>
-                        <div style="background: rgba(255,255,255,0.2); padding: 5px 15px; border-radius: 20px; font-size: 0.8rem; font-weight: bold; border: 1px solid rgba(255,255,255,0.3);">
+                        <div style="background: rgba(255,255,255,0.2); padding: 4px 12px; border-radius: 20px; font-size: 0.8rem; font-weight: bold;">
                             ⭐ ${this.t('مستوى', 'Level')} ${progress.level}
                         </div>
                     </div>
 
-                    <div style="margin-top: 20px;">
-                        <div style="display: flex; justify-content: space-between; font-size: 0.8rem; margin-bottom: 8px;">
+                    <div style="margin-top: 15px;">
+                        <div style="display: flex; justify-content: space-between; font-size: 0.8rem; margin-bottom: 6px;">
                             <span>${this.t('نقاط الخبرة (XP)', 'Experience Points (XP)')}</span>
                             <span>${xpProgress}</span>
                         </div>
-                        <div style="width: 100%; height: 8px; background: rgba(0,0,0,0.2); border-radius: 10px; overflow: hidden; border: 1px solid rgba(255,255,255,0.1);">
-                            <div style="width: ${xpPercent}%; height: 100%; background: #10b981; box-shadow: 0 0 10px #10b981; transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);"></div>
+                        <div class="progress-bar-container">
+                            <div class="progress-bar-fill" style="width: ${xpPercent}%;"></div>
                         </div>
                     </div>
 
                     ${this.getBadgesDisplay()}
 
                     <div style="margin-top: 10px; font-size:0.85rem;">${this.t('التاج الحالي:', 'Current Crown:')} ${this.userStats.tier}</div>
-                    <div style="margin-top: 5px; font-size:0.85rem;">${this.t('الدروس المفتوحة:', 'Unlocked Lessons:')} ${totalLessons} | ${this.t('الكلمات المتقنة:', 'Mastered Words:')} ${totalMastered}</div>
+                    <div style="margin-top: 4px; font-size:0.8rem;">${this.t('الدروس المفتوحة:', 'Unlocked Lessons:')} ${totalLessons} | ${this.t('الكلمات المتقنة:', 'Mastered Words:')} ${totalMastered}</div>
                 </div>
 
-                <button class="hero-btn" data-action="setPage" data-param="addLesson" style="width:100%; background:#8b5cf6; margin-top:15px;">📸 ${this.t('إضافة من الكاميرا أو الهاتف', 'Add from Camera or Phone')}</button>
-                <button class="hero-btn" data-action="setPage" data-param="placement_test" style="width:100%; background:#ec4899; margin:15px 0;">🧠 ${this.t('اختبار مستوى', 'Level Test')}</button>
+                <button class="hero-btn" data-action="setPage" data-param="addLesson" style="width:100%; background:#8b5cf6; margin-top:12px;">📸 ${this.t('إضافة من الكاميرا أو الهاتف', 'Add from Camera or Phone')}</button>
+                <button class="hero-btn" data-action="setPage" data-param="placement_test" style="width:100%; background:#ec4899; margin:12px 0;">🧠 ${this.t('اختبار مستوى', 'Level Test')}</button>
 
                 <div class="features-grid">
-                    ${window.levels.map(l => `<div class="feature-card" data-action="selLevel" data-param="${l.id}"><h3>${l.icon} ${this.lang === 'en' ? (l.id === 'beginner' ? 'Beginner' : l.id === 'intermediate' ? 'Intermediate' : 'Advanced') : l.name}</h3></div>`).join('')}
-                    ${Object.keys(this.customLessons).length > 0 ? `<div class="feature-card" data-action="selLevel" data-param="custom_list" style="border:1px solid #f97316;"><h3>📂 ${this.t('نصوصي', 'My Texts')}</h3></div>` : ''}
+                    ${window.levels.map(l => `<div class="feature-card" data-action="selLevel" data-param="${l.id}"><h3 style="font-size:1rem;">${l.icon} ${this.lang === 'en' ? (l.id === 'beginner' ? 'Beginner' : l.id === 'intermediate' ? 'Intermediate' : 'Advanced') : l.name}</h3></div>`).join('')}
+                    ${Object.keys(this.customLessons).length > 0 ? `<div class="feature-card" data-action="selLevel" data-param="custom_list" style="border:1px solid #f97316;"><h3 style="font-size:1rem;">📂 ${this.t('نصوصي', 'My Texts')}</h3></div>` : ''}
                 </div>
 
-                <button data-action="logout" class="logout-btn" style="margin-top: 20px; background: #dc2626; color: white; padding: 12px 20px; font-size: 1rem; font-weight: bold; border-radius: 10px; width: 100%; border: none; cursor: pointer;">${this.t('تسجيل الخروج', 'Logout')}</button>
+                <button data-action="logout" class="logout-btn">${this.t('تسجيل الخروج', 'Logout')}</button>
             </main>`;
         }
 
@@ -3506,22 +3458,22 @@ class App {
                     <div class="profile-image" onclick="document.getElementById('profileImage').click()">
                         ${this.userProfile.image ?
                     `<img src="${this.userProfile.image}" alt="profile">` :
-                    `<svg xmlns="http://www.w3.org/2000/svg" width="70" height="70" viewBox="0 0 24 24" fill="#aaa"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>`
+                    `<svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" viewBox="0 0 24 24" fill="#aaa"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>`
                 }
                     </div>
                     <input type="file" id="profileImage" accept="image/*" style="display:none;" onchange="appInstance.updateProfile()">
 
                     <div class="profile-info">
-                        <div class="info-row"><span>${this.t('الاسم:', 'Name:')}</span> <span><input type="text" id="profileName" value="${this.userProfile.name || this.userData?.name || ''}" placeholder="${this.t('الاسم', 'Name')}" style="padding:6px; border-radius:6px; border:1px solid #ddd;"></span></div>
-                        <div class="info-row"><span>${this.t('العمر:', 'Age:')}</span> <span><input type="number" id="profileAge" value="${this.userProfile.age || ''}" placeholder="${this.t('العمر', 'Age')}" style="padding:6px; border-radius:6px; border:1px solid #ddd;"></span></div>
+                        <div class="info-row"><span>${this.t('الاسم:', 'Name:')}</span> <span><input type="text" id="profileName" value="${this.userProfile.name || this.userData?.name || ''}" placeholder="${this.t('الاسم', 'Name')}"></span></div>
+                        <div class="info-row"><span>${this.t('العمر:', 'Age:')}</span> <span><input type="number" id="profileAge" value="${this.userProfile.age || ''}" placeholder="${this.t('العمر', 'Age')}"></span></div>
                         <div class="info-row"><span>${this.t('تاريخ الانضمام:', 'Join Date:')}</span> <span>${this.userProfile.joinDate}</span></div>
                         <div class="info-row"><span>${this.t('المستوى في التطبيق:', 'App Level:')}</span> <span>${this.userStats.level}</span></div>
                         <div class="info-row"><span>${this.t('مستوى اللغة:', 'Language Level:')}</span> <span>${englishLevel}</span></div>
-                        <div class="info-row"><span>${this.t('كلمة المرور:', 'Password:')}</span> <span><input type="password" id="profilePassword" placeholder="${this.t('جديدة', 'New')}" style="padding:6px; border-radius:6px; border:1px solid #ddd;"></span></div>
+                        <div class="info-row"><span>${this.t('كلمة المرور:', 'Password:')}</span> <span><input type="password" id="profilePassword" placeholder="${this.t('جديدة', 'New')}"></span></div>
                     </div>
 
-                    <div style="width:100%; margin:15px 0;">
-                        <div style="display:flex; justify-content:space-between; font-size:0.9rem;">
+                    <div style="width:100%; margin:12px 0;">
+                        <div style="display:flex; justify-content:space-between; font-size:0.85rem;">
                             <span>${this.t('التقدم العام', 'Overall Progress')}</span>
                             <span>${totalLessons} ${this.t('درس', 'Lesson')} / 100</span>
                         </div>
@@ -3532,9 +3484,9 @@ class App {
 
                     <button class="hero-btn" data-action="updateProfile" style="background:#10b981;">${this.t('حفظ التغييرات', 'Save Changes')}</button>
 
-                    <h4 style="margin:15px 0 10px;">🏅 ${this.t('الأوسمة والإنجازات', 'Badges & Achievements')}</h4>
+                    <h4 style="margin:15px 0 8px;">🏅 ${this.t('الأوسمة والإنجازات', 'Badges & Achievements')}</h4>
                     ${this.getBadgesDisplay()}
-                    <h4 style="margin:15px 0 10px;">📜 ${this.t('سجل الاختبارات', 'Test History')}</h4>
+                    <h4 style="margin:15px 0 8px;">📜 ${this.t('سجل الاختبارات', 'Test History')}</h4>
                     <button class="hero-btn" data-action="setPage" data-param="test_history" style="background:#3b82f6;">${this.t('عرض سجل الاختبارات', 'View Test History')}</button>
                 </div>
             </main>`;
@@ -3546,7 +3498,7 @@ class App {
                 <div class="reading-card">
                     <h2 style="text-align:center;">📋 ${this.t('سجل اختبارات المستوى', 'Level Test History')}</h2>
                     ${this.placementResults.length === 0 ?
-                    `<p style="text-align:center; color:#666;">${this.t('لا توجد اختبارات سابقة', 'No previous tests')}</p>` :
+                    `<p style="text-align:center; color:#666; padding:20px;">${this.t('لا توجد اختبارات سابقة', 'No previous tests')}</p>` :
                     `<div class="history-list">
                         ${this.placementResults.map((r, idx) => `
                             <div class="history-item" onclick="appInstance.viewTestDetails(${idx})">
@@ -3571,7 +3523,7 @@ class App {
                 return `<div class="reading-card result-card">
                     <h2 style="text-align:center;">🏁 ${this.t('نتيجة الاختبار', 'Test Result')}</h2>
                     <div style="background:#f0f7ff; padding:15px; border-radius:10px; margin:10px 0; text-align:center;">
-                        <h1 style="color:#1e40af; margin-bottom:5px;">${this.currentDifficulty}</h1>
+                        <h1 style="color:#1e40af; margin-bottom:5px; font-size:1.8rem;">${this.currentDifficulty}</h1>
                         <p style="font-weight:bold; color:#3b82f6;">IELTS: ${this.getIeltsEquivalent(this.currentDifficulty)}</p>
                         <p style="font-size:0.85rem; color:#64748b;">${this.t('مجموع الإجابات الصحيحة:', 'Total correct answers:')} ${this.placementScore} / 35</p>
                     </div>
@@ -3583,7 +3535,7 @@ class App {
                                     <span>📅 ${r.date}</span><br>
                                     <strong>${this.t('المستوى:', 'Level:')} ${r.level}</strong> (${r.score}/35)
                                 </div>
-                                <button class="hero-btn" data-action="viewPlacementDetails" data-index="${idx}" style="padding:5px 10px; font-size:0.75rem; background:#3b82f6;">${this.t('عرض التفاصيل', 'Details')}</button>
+                                <button class="hero-btn" data-action="viewPlacementDetails" data-index="${idx}" style="padding:4px 10px; font-size:0.7rem; background:#3b82f6;">${this.t('عرض التفاصيل', 'Details')}</button>
                             </div>
                         `).join('')}
                     </div>
@@ -3600,10 +3552,10 @@ class App {
             const correctAnswer = this.getCorrectAnswer(q);
 
             return `<div class="reading-card">
-                <div style="display:flex; justify-content:center; margin-bottom:20px;">
-                    <span style="background:#e2e8f0; color:#475569; padding:5px 15px; border-radius:20px; font-weight:bold; font-size:0.8rem;">${this.t('السؤال رقم', 'Question')} ${this.placementStep + 1}</span>
+                <div style="display:flex; justify-content:center; margin-bottom:15px;">
+                    <span style="background:#e2e8f0; color:#475569; padding:4px 12px; border-radius:20px; font-weight:bold; font-size:0.8rem;">${this.t('السؤال رقم', 'Question')} ${this.placementStep + 1}</span>
                 </div>
-                <h2 style="margin-bottom:30px; direction:ltr; text-align:left; line-height:1.5; font-size:1.3rem;">${q.q}</h2>
+                <h2 style="margin-bottom:25px; direction:ltr; text-align:left; line-height:1.4; font-size:1.2rem;">${q.q}</h2>
                 <div class="quiz-options">
                     ${opts.map(opt => `
                         <button class="quiz-opt-btn"
@@ -3623,7 +3575,7 @@ class App {
                 <button class="hero-btn" data-action="backFromDetails" style="margin-bottom:15px; background:#64748b;">← ${this.t('رجوع', 'Back')}</button>
                 <h2 style="text-align:center;">${this.t('تفاصيل اختبار', 'Test Details')} ${this.viewingPlacementDetails.date}</h2>
                 <p style="text-align:center;">${this.t('المستوى النهائي:', 'Final Level:')} <strong>${this.viewingPlacementDetails.level}</strong> | ${this.t('الدرجة:', 'Score:')} ${this.viewingPlacementDetails.score}/35</p>
-                <div style="max-height:400px; overflow-y:auto; border:1px solid #e2e8f0; border-radius:8px; padding:10px;">
+                <div style="max-height:350px; overflow-y:auto; border:1px solid #e2e8f0; border-radius:8px; padding:10px;">
                     ${details.map((d, i) => `
                         <div style="border-bottom:1px solid #e2e8f0; padding:8px; margin-bottom:5px;">
                             <p><strong>${this.t('س', 'Q')}${i + 1}:</strong> ${d.question}</p>
@@ -3645,16 +3597,16 @@ class App {
 
             const addLessonButton = `
                 <div class="feature-card" data-action="setPage" data-param="addLesson" style="border: 2px dashed #10b981; background: linear-gradient(135deg, #e0f2e9, #d1fae5);">
-                    <h3>📝 ${this.t('إضافة درس يدوي', 'Add Manual Lesson')}</h3>
-                    <p style="font-size:0.8rem; margin-top:5px;">${this.t('أضف درساً خاصاً بك عن طريق لصق النص والكلمات', 'Add your own lesson by pasting text and words')}</p>
+                    <h3 style="font-size:0.95rem;">📝 ${this.t('إضافة درس يدوي', 'Add Manual Lesson')}</h3>
+                    <p style="font-size:0.7rem; margin-top:4px;">${this.t('أضف درساً خاصاً بك', 'Add your own lesson')}</p>
                 </div>
             `;
 
             return `<main class="main-content">
                 <button class="hero-btn" data-action="goHome" style="margin-bottom:15px; background:#64748b;">← ${this.t('رجوع', 'Back')}</button>
                 ${testLevelParam ? `
-                <div style="margin-bottom:20px; text-align:center;">
-                    <button class="hero-btn" data-action="startLevelTest" data-param="${testLevelParam}" style="background:#8b5cf6;">📊 ${this.t('اختبار المستوى الشامل (100 سؤال)', 'Comprehensive Level Test (100 Questions)')}</button>
+                <div style="margin-bottom:15px; text-align:center;">
+                    <button class="hero-btn" data-action="startLevelTest" data-param="${testLevelParam}" style="background:#8b5cf6;">📊 ${this.t('اختبار المستوى الشامل', 'Comprehensive Level Test')}</button>
                 </div>
                 ` : ''}
                 <div class="features-grid">
@@ -3662,11 +3614,11 @@ class App {
                         const isOk = (list[0].id == l.id || this.unlockedLessons.includes(String(l.id))) && !l.isGenerated;
                         const displayLock = (!isOk && !l.isGenerated) ? '🔒 ' : '';
                         return `<div class="feature-card" data-action="selLesson" data-param="${l.id}" style="${(!isOk && !l.isGenerated) ? 'opacity:0.6;' : ''}">
-                                    <h3>${displayLock}${l.title}</h3>
+                                    <h3 style="font-size:0.9rem;">${displayLock}${l.title}</h3>
                                     ${l.isGenerated ? `
-                                        <div style="display:flex; justify-content:center; gap:10px; margin-top:10px; flex-wrap:wrap;">
-                                            <button class="hero-btn" data-action="deleteGeneratedLesson" data-param="${l.id}" style="background:#ef4444; padding:5px 8px; font-size:0.7rem;">🗑️ ${this.t('حذف', 'Delete')}</button>
-                                            <button class="hero-btn" data-action="regenerateAILesson" data-param="${this.selectedLevel},${l.id}" style="background:#f59e0b; padding:5px 8px; font-size:0.7rem;">🔄 ${this.t('إعادة توليد', 'Regenerate')}</button>
+                                        <div style="display:flex; justify-content:center; gap:8px; margin-top:8px; flex-wrap:wrap;">
+                                            <button class="hero-btn" data-action="deleteGeneratedLesson" data-param="${l.id}" style="background:#ef4444; padding:4px 8px; font-size:0.65rem;">🗑️ ${this.t('حذف', 'Delete')}</button>
+                                            <button class="hero-btn" data-action="regenerateAILesson" data-param="${this.selectedLevel},${l.id}" style="background:#f59e0b; padding:4px 8px; font-size:0.65rem;">🔄 ${this.t('إعادة توليد', 'Regenerate')}</button>
                                         </div>
                                     ` : ''}
                                   </div>`;
@@ -3679,7 +3631,7 @@ class App {
         if (this.currentPage === 'unlock_choice') {
             return `<div class="reading-card" style="text-align:center;">
                 <h3>🔓 ${this.t('فتح الدرس', 'Unlock Lesson')}</h3>
-                <p>${this.t('اختر طريقة فتح الدرس:', 'Choose how to unlock the lesson:')}</p>
+                <p style="margin:10px 0;">${this.t('اختر طريقة فتح الدرس:', 'Choose how to unlock the lesson:')}</p>
                 <div class="unlock-choice">
                     <button class="hero-btn" data-action="unlockWithTest" data-param="${this.tempLessonToUnlock}" style="background:#3b82f6;">🧪 ${this.t('خوض الاختبار', 'Take Test')}</button>
                     <button class="hero-btn" data-action="unlockWithCoins" data-param="${this.tempLessonToUnlock}" style="background:#ffd700; color:#000;">💰 ${this.t('دفع 100 لؤلؤة', 'Pay 100 Pearls')} (${this.t('رصيدك:', 'Your balance:')} ${this.userCoins})</button>
@@ -3692,23 +3644,23 @@ class App {
             const lessons = Object.values(this.customLessons);
             return `<main class="main-content">
                 <button class="hero-btn" data-action="goHome" style="margin-bottom:15px; background:#64748b;">← ${this.t('العودة للرئيسية', 'Back to Home')}</button>
-                <h2 style="margin-bottom: 20px; text-align:center;">📂 ${this.t('نصوصي الخاصة', 'My Custom Texts')}</h2>
-                ${lessons.length === 0 ? `<div class="reading-card" style="text-align:center; padding:30px; color:#666;">${this.t('لا توجد نصوص محفوظة. صوّر نصك الأول الآن!', 'No saved texts. Capture your first text now!')}</div>` : ''}
-                <div style="display: flex; flex-direction: column; gap: 15px;">
+                <h2 style="margin-bottom: 15px; text-align:center; font-size:1.3rem;">📂 ${this.t('نصوصي الخاصة', 'My Custom Texts')}</h2>
+                ${lessons.length === 0 ? `<div class="reading-card" style="text-align:center; padding:25px; color:#666;">${this.t('لا توجد نصوص محفوظة. صوّر نصك الأول الآن!', 'No saved texts. Capture your first text now!')}</div>` : ''}
+                <div style="display: flex; flex-direction: column; gap: 12px;">
                     ${lessons.map(l => `
-                        <div class="reading-card" style="border-right: 5px solid #6366f1; text-align: right; direction: rtl;">
-                            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; flex-wrap:wrap; gap:8px;">
-                                <h3 style="margin:0; color:#4f46e5; cursor:pointer;" data-action="selLesson" data-param="${l.id}">${l.title}</h3>
-                                <div style="display: flex; gap: 12px;">
-                                    <button onclick="appInstance.editLessonTitle('${l.id}')" style="background:none; border:none; cursor:pointer; font-size:1.1rem;">✏️</button>
-                                    <button onclick="appInstance.editLessonContent('${l.id}')" style="background:none; border:none; cursor:pointer; font-size:1.1rem;">📝</button>
-                                    <button onclick="appInstance.deleteCustomLesson('${l.id}')" style="background:none; border:none; cursor:pointer; font-size:1.1rem;">🗑️</button>
+                        <div class="reading-card" style="border-right: 4px solid #6366f1;">
+                            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; flex-wrap:wrap; gap:8px;">
+                                <h3 style="margin:0; color:#4f46e5; cursor:pointer; font-size:1rem;" data-action="selLesson" data-param="${l.id}">${l.title}</h3>
+                                <div style="display: flex; gap: 10px;">
+                                    <button onclick="appInstance.editLessonTitle('${l.id}')" style="background:none; border:none; cursor:pointer; font-size:1rem;">✏️</button>
+                                    <button onclick="appInstance.editLessonContent('${l.id}')" style="background:none; border:none; cursor:pointer; font-size:1rem;">📝</button>
+                                    <button onclick="appInstance.deleteCustomLesson('${l.id}')" style="background:none; border:none; cursor:pointer; font-size:1rem;">🗑️</button>
                                 </div>
                             </div>
-                            <p style="font-size: 0.85rem; color: #555; margin-bottom: 15px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; direction: ltr; text-align: left;">
+                            <p style="font-size: 0.8rem; color: #555; margin-bottom: 10px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; direction: ltr; text-align: left;">
                                 ${l.content}
                             </p>
-                            <button class="hero-btn" data-action="selLesson" data-param="${l.id}" style="width:100%; padding: 10px; font-size: 0.9rem; background: #6366f1;">📖 ${this.t('فتح النص للدراسة', 'Open Text for Study')}</button>
+                            <button class="hero-btn" data-action="selLesson" data-param="${l.id}" style="width:100%; padding: 8px; font-size: 0.85rem; background: #6366f1;">📖 ${this.t('فتح النص للدراسة', 'Open Text for Study')}</button>
                         </div>
                     `).join('')}
                 </div>
@@ -3720,27 +3672,27 @@ class App {
 
             return `<main class="main-content">
                 <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 10px; flex-wrap: wrap;">
-                    <button class="hero-btn" data-action="backToLessons" style="background:#64748b; padding:8px 12px;">⬅ ${this.t('تراجع', 'Back')}</button>
+                    <button class="hero-btn" data-action="backToLessons" style="background:#64748b; padding:6px 12px;">⬅ ${this.t('تراجع', 'Back')}</button>
                     <div style="display: flex; gap: 4px; background: #f0f0f0; padding: 4px; border-radius: 8px; flex-wrap: wrap;">
-                        <button class="hero-btn" data-action="playAudio" data-param="${audioSrc}" style="background:#3b82f6; padding: 6px 10px; font-size:0.8rem;">▶️ ${this.t('تشغيل', 'Play')}</button>
-                        <button class="hero-btn" data-action="pauseAudio" style="background:#f59e0b; padding: 6px 10px; font-size:0.8rem;">⏸️ ${this.t('إيقاف مؤقت', 'Pause')}</button>
-                        <button class="hero-btn" data-action="stopAudio" style="background:#ef4444; padding: 6px 10px; font-size:0.8rem;">⏹️ ${this.t('إيقاف', 'Stop')}</button>
-                        <button class="hero-btn" data-action="skipBack10" style="background:#8b5cf6; padding: 6px 10px; font-size:0.8rem;">⏪ 10</button>
-                        <button class="hero-btn" data-action="skipForward10" style="background:#8b5cf6; padding: 6px 10px; font-size:0.8rem;">10 ⏩</button>
-                        <button class="hero-btn" data-action="speedDown" style="background:#8b5cf6; padding: 6px 10px; font-size:0.8rem;">🐢</button>
-                        <span style="background:#fff; padding: 4px 8px; border-radius: 5px; font-size:0.8rem;">${this.audioPlaybackRate.toFixed(2)}x</span>
-                        <button class="hero-btn" data-action="speedUp" style="background:#8b5cf6; padding: 6px 10px; font-size:0.8rem;">🐇</button>
+                        <button class="hero-btn" data-action="playAudio" data-param="${audioSrc}" style="background:#3b82f6; padding:5px 8px; font-size:0.75rem;">▶️ ${this.t('تشغيل', 'Play')}</button>
+                        <button class="hero-btn" data-action="pauseAudio" style="background:#f59e0b; padding:5px 8px; font-size:0.75rem;">⏸️ ${this.t('إيقاف مؤقت', 'Pause')}</button>
+                        <button class="hero-btn" data-action="stopAudio" style="background:#ef4444; padding:5px 8px; font-size:0.75rem;">⏹️ ${this.t('إيقاف', 'Stop')}</button>
+                        <button class="hero-btn" data-action="skipBack10" style="background:#8b5cf6; padding:5px 8px; font-size:0.75rem;">⏪ 10</button>
+                        <button class="hero-btn" data-action="skipForward10" style="background:#8b5cf6; padding:5px 8px; font-size:0.75rem;">10 ⏩</button>
+                        <button class="hero-btn" data-action="speedDown" style="background:#8b5cf6; padding:5px 8px; font-size:0.75rem;">🐢</button>
+                        <span style="background:#fff; padding:3px 6px; border-radius:5px; font-size:0.7rem;">${this.audioPlaybackRate.toFixed(2)}x</span>
+                        <button class="hero-btn" data-action="speedUp" style="background:#8b5cf6; padding:5px 8px; font-size:0.75rem;">🐇</button>
                     </div>
                 </div>
                 <div class="reading-card">
-                    <h2 style="font-size:1.3rem;">${lesson.title}</h2>
-                    <div class="scrollable-text" style="direction:ltr; text-align:left; margin-top:10px; font-size:0.95rem;">${lesson.content}</div>
+                    <h2 style="font-size:1.2rem;">${lesson.title}</h2>
+                    <div class="scrollable-text" style="margin-top:10px; font-size:0.9rem;">${lesson.content}</div>
                 </div>
-                <div class="reading-card" style="margin-top:20px; border:1px dashed #6366f1; background:#f0f7ff;">
-                    <h4 style="margin-bottom:10px;">${this.t('إضافة كلمة جديدة:', 'Add New Word:')}</h4>
-                    <input id="newEng" placeholder="${this.t('اكتب بالإنجليزية هنا...', 'Write in English here...')}" style="width:100%; padding:10px; border-radius:8px; border:1px solid #ddd;" oninput="appInstance.translateAuto(this.value, 'newArb')">
-                    <input id="newArb" placeholder="${this.t('الترجمة تظهر هنا...', 'Translation will appear here...')}" style="width:100%; padding:10px; margin:8px 0; border-radius:8px; border:1px solid #ddd; background:#fff;">
-                    <button class="hero-btn" data-action="addNewWord" style="width:100%; background:#10b981;">✅ ${this.t('إضافة للقائمة', 'Add to List')}</button>
+                <div class="reading-card" style="margin-top:15px; border:1px dashed #6366f1; background:#f0f7ff;">
+                    <h4 style="margin-bottom:8px;">${this.t('إضافة كلمة جديدة:', 'Add New Word:')}</h4>
+                    <input id="newEng" placeholder="${this.t('اكتب بالإنجليزية هنا...', 'Write in English here...')}" style="width:100%; padding:8px; border-radius:8px; border:1px solid #ddd;" oninput="appInstance.translateAuto(this.value, 'newArb')">
+                    <input id="newArb" placeholder="${this.t('الترجمة تظهر هنا...', 'Translation will appear here...')}" style="width:100%; padding:8px; margin:8px 0; border-radius:8px; border:1px solid #ddd; background:#fff;">
+                    <button class="hero-btn" data-action="addNewWord" style="width:100%; background:#10b981; padding:8px;">✅ ${this.t('إضافة للقائمة', 'Add to List')}</button>
                 </div>
             </main>`;
         }
@@ -3754,7 +3706,7 @@ class App {
             }
             if (active.length === 0) {
                 return `<div class="reading-card" style="text-align:center;">
-                    <div style="font-size:3rem; margin-bottom:10px;">🧠</div>
+                    <div style="font-size:2.5rem; margin-bottom:10px;">🧠</div>
                     <h3>🎉 ${this.t('اكتملت المراجعة!', 'Review completed!')}</h3>
                     <button class="hero-btn" data-action="restartCards" data-param="all" style="background:#f59e0b;">${this.t('إعادة تكرار الكل 🔁', 'Repeat All 🔁')}</button>
                 </div>`;
@@ -3769,17 +3721,17 @@ class App {
                         <div class="flashcard-back"><h1>${t.arabic}</h1></div>
                     </div>
                 </div>
-                <div class="card-controls-row" style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; margin-top: 20px;">
+                <div class="card-controls-row">
                     <button class="hero-btn" data-action="speak" data-param="${t.english}" style="background:#6366f1;">🔊 ${this.t('نطق', 'Speak')}</button>
                     <button class="hero-btn" data-action="masterWordFlash" data-param="${t.id}" style="background:#10b981;">✅ ${this.t('اعرفها', 'Master')}</button>
                     <button class="hero-btn" data-action="deleteWord" data-param="${t.id}" style="background:#ef4444;">🗑️ ${this.t('حذف', 'Delete')}</button>
                 </div>
-                <button class="hero-btn" data-action="restartCards" data-param="remaining" style="width:100%; margin: 15px 0; background:#f59e0b;">🔁 ${this.t('تكرار المتبقي', 'Repeat Remaining')}</button>
-                <div class="card-nav-row" style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+                <button class="hero-btn" data-action="restartCards" data-param="remaining" style="width:100%; margin: 12px 0; background:#f59e0b;">🔁 ${this.t('تكرار المتبقي', 'Repeat Remaining')}</button>
+                <div class="card-nav-row">
                     <button class="hero-btn" data-action="prevC" style="background:#64748b;">${this.t('السابق', 'Previous')}</button>
                     <button class="hero-btn" data-action="nextC" data-total="${active.length}" style="background:#64748b;">${this.t('التالي', 'Next')}</button>
                 </div>
-                <div style="text-align:center; margin-top:10px; color:#666;">${this.currentCardIndex + 1} / ${active.length}</div>
+                <div style="text-align:center; margin-top:8px; color:#666; font-size:0.85rem;">${this.currentCardIndex + 1} / ${active.length}</div>
             </main>`;
         }
 
@@ -3794,19 +3746,19 @@ class App {
                     this.showCustomModal('success', '🎉', this.t(`لقد فتحت درساً جديداً وحصلت على 20 لؤلؤة!`, `You unlocked a new lesson and earned 20 pearls!`));
                 }
                 this.saveUserData();
-                return `<div class="reading-card finish-box">
+                return `<div class="reading-card finish-box" style="text-align:center;">
                     <h2>${pass ? this.t("نجحت! 🎉", "Passed! 🎉") : this.t("حاول مجدداً", "Try Again")}</h2>
-                    <button class="hero-btn" data-action="backToLessons">${this.t('متابعة', 'Continue')}</button>
+                    <button class="hero-btn" data-action="backToLessons" style="margin-top:15px;">${this.t('متابعة', 'Continue')}</button>
                 </div>`;
             }
             const q = this.quizQuestions[this.quizIndex];
             return `<div class="reading-card quiz-box">
-                <div class="quiz-info" style="font-size:0.85rem; margin-bottom:15px;">${this.t('السؤال', 'Question')} ${this.quizIndex + 1}/${this.quizQuestions.length}</div>
+                <div class="quiz-info" style="font-size:0.8rem; margin-bottom:12px; text-align:center;">${this.t('السؤال', 'Question')} ${this.quizIndex + 1}/${this.quizQuestions.length}</div>
                 <div class="quiz-question-row" style="display:flex; align-items:center; gap:10px; justify-content:center;">
-                    <h2 style="margin:0;">${q.english}</h2>
-                    <button class="quiz-speak-btn" data-action="speak" data-param="${q.english}" style="background:none; border:none; font-size:1.5rem; cursor:pointer;">🔊</button>
+                    <h2 style="margin:0; font-size:1.2rem;">${q.english}</h2>
+                    <button class="quiz-speak-btn" data-action="speak" data-param="${q.english}" style="background:none; border:none; font-size:1.3rem; cursor:pointer;">🔊</button>
                 </div>
-                <div class="quiz-options" style="margin-top:25px;">
+                <div class="quiz-options" style="margin-top:20px;">
                     ${this.quizOptions.map(opt => `<button class="quiz-opt-btn" data-action="ansQ" data-param="${opt}" data-correct="${q.arabic}">${opt}</button>`).join('')}
                 </div>
             </div>`;
@@ -3823,24 +3775,23 @@ class App {
             }
             return `<div class="reading-card">
                 <h3>🔤 ${this.t('رتب الكلمات لتكوين جملة صحيحة', 'Arrange the words to form a correct sentence')}</h3>
-                <div style="display: flex; flex-wrap: wrap; gap: 8px; margin: 20px 0; padding: 12px; background: ${this.jumbleChecked ? (this.jumbleCorrect ? '#d1fae5' : '#fee2e2') : '#f1f5f9'}; border-radius: 8px; min-height: 60px; border: ${this.jumbleChecked ? (this.jumbleCorrect ? '2px solid #10b981' : '2px solid #ef4444') : 'none'};">
+                <div style="display: flex; flex-wrap: wrap; gap: 6px; margin: 15px 0; padding: 10px; background: ${this.jumbleChecked ? (this.jumbleCorrect ? '#d1fae5' : '#fee2e2') : '#f1f5f9'}; border-radius: 8px; min-height: 55px;">
                     ${this.jumbleUserAnswer.map(word => `
-                        <span class="jumble-word-top" data-action="jumbleRemove" data-param="${word}" style="cursor: pointer; background: #3b82f6; color: white; padding: 6px 12px; border-radius: 20px; font-size: 1rem;">${word}</span>
+                        <span class="jumble-word-top" data-action="jumbleRemove" data-param="${word}" style="cursor: pointer; background: #3b82f6; color: white; padding: 5px 10px; border-radius: 20px; font-size: 0.9rem;">${word}</span>
                     `).join('')}
                 </div>
-                <div style="display: flex; flex-wrap: wrap; gap: 8px; margin: 20px 0; padding: 12px; background: #e2e8f0; border-radius: 8px; min-height: 60px;">
+                <div style="display: flex; flex-wrap: wrap; gap: 6px; margin: 15px 0; padding: 10px; background: #e2e8f0; border-radius: 8px; min-height: 55px;">
                     ${this.jumbleWords.map(word => `
-                        <button class="hero-btn" data-action="jumbleSelect" data-param="${word}" style="padding: 6px 12px; background: #64748b; font-size: 0.9rem; ${this.jumbleChecked ? 'opacity:0.5; pointer-events:none;' : ''}">${word}</button>
+                        <button class="hero-btn" data-action="jumbleSelect" data-param="${word}" style="padding: 5px 10px; background: #64748b; font-size: 0.85rem; ${this.jumbleChecked ? 'opacity:0.5; pointer-events:none;' : ''}">${word}</button>
                     `).join('')}
                 </div>
-                <div style="display: flex; gap: 8px; justify-content: center; flex-wrap: wrap;">
-                    <button class="hero-btn" data-action="jumbleReset" style="background:#f59e0b;">🔄 ${this.t('إعادة', 'Reset')}</button>
-                    <button class="hero-btn" data-action="jumbleCheck" style="background:#10b981;" ${this.jumbleChecked ? 'disabled' : ''}>✅ ${this.t('تحقق', 'Check')}</button>
-                    <button class="hero-btn" data-action="jumbleHint" style="background:#3b82f6;" ${this.jumbleChecked || this.jumbleHintUsed ? 'disabled' : ''}>💡 ${this.t('تلميح', 'Hint')}</button>
-                    ${this.jumbleChecked ? `<button class="hero-btn" data-action="jumbleNext" style="background:#3b82f6;">➡️ ${this.t('التالي', 'Next')}</button>` : ''}
+                <div style="display: flex; gap: 6px; justify-content: center; flex-wrap: wrap;">
+                    <button class="hero-btn" data-action="jumbleReset" style="background:#f59e0b; padding:6px 12px;">🔄 ${this.t('إعادة', 'Reset')}</button>
+                    <button class="hero-btn" data-action="jumbleCheck" style="background:#10b981; padding:6px 12px;" ${this.jumbleChecked ? 'disabled' : ''}>✅ ${this.t('تحقق', 'Check')}</button>
+                    <button class="hero-btn" data-action="jumbleHint" style="background:#3b82f6; padding:6px 12px;" ${this.jumbleChecked || this.jumbleHintUsed ? 'disabled' : ''}>💡 ${this.t('تلميح', 'Hint')}</button>
+                    ${this.jumbleChecked ? `<button class="hero-btn" data-action="jumbleNext" style="background:#3b82f6; padding:6px 12px;">➡️ ${this.t('التالي', 'Next')}</button>` : ''}
                 </div>
-                ${this.jumbleArabicHint ? `<div style="margin-top: 15px; padding: 8px; background: #e0f2fe; border-radius: 8px; text-align: center; font-size: 0.9rem; color: #0369a1;">🔍 ${this.t('الترجمة:', 'Translation:')} ${this.jumbleArabicHint}</div>` : ''}
-                ${this.jumbleHintUsed ? `<p style="margin-top: 10px; font-size:0.85rem; color: #f59e0b;">🔎 ${this.t('تلميح: أول كلمة هي', 'Hint: The first word is')} "${this.jumbleOriginalSentence.split(/\s+/)[0]}"</p>` : ''}
+                ${this.jumbleArabicHint ? `<div style="margin-top: 12px; padding: 8px; background: #e0f2fe; border-radius: 8px; text-align: center; font-size: 0.85rem;">🔍 ${this.t('الترجمة:', 'Translation:')} ${this.jumbleArabicHint}</div>` : ''}
             </div>`;
         }
 
@@ -3858,8 +3809,8 @@ class App {
             }
             return `<div class="reading-card">
                 <h3>🎧 ${this.t('استمع واختر الكلمة الصحيحة', 'Listen and choose the correct word')}</h3>
-                <div style="text-align: center; margin: 25px 0;">
-                    <button class="hero-btn" data-action="speak" data-param="${this.listeningCurrent.english}" style="font-size: 1.5rem; padding: 15px; background: #6366f1;">🔊 ${this.t('استمع مرة أخرى', 'Listen Again')}</button>
+                <div style="text-align: center; margin: 20px 0;">
+                    <button class="hero-btn" data-action="speak" data-param="${this.listeningCurrent.english}" style="font-size: 1.3rem; padding: 12px; background: #6366f1;">🔊 ${this.t('استمع مرة أخرى', 'Listen Again')}</button>
                 </div>
                 <div class="quiz-options">
                     ${this.listeningOptions.map(opt => `
@@ -3883,12 +3834,12 @@ class App {
             }
             return `<div class="reading-card spelling-card">
                 <h3>✍️ ${this.t('اكتب الكلمة بالانجليزية', 'Write the word in English')}</h3>
-                <div style="font-size: 1.5rem; text-align: center; margin: 15px 0; padding: 15px; background: #f0f7ff; border-radius: 12px;">
+                <div style="font-size: 1.3rem; text-align: center; margin: 15px 0; padding: 12px; background: #f0f7ff; border-radius: 12px;">
                     ${this.spellingCurrent.arabic}
                 </div>
-                <input type="text" id="spellingInput" class="spelling-input" placeholder="${this.t('اكتب الكلمة هنا...', 'Write the word here...')}" value="${this.spellingUserAnswer}" ${this.spellingAnswered ? 'disabled' : ''}>
+                <input type="text" id="spellingInput" class="spelling-input" placeholder="${this.t('اكتب الكلمة هنا...', 'Write the word here...')}" value="${this.spellingUserAnswer}" ${this.spellingAnswered ? 'disabled' : ''} style="padding:10px; font-size:1rem;">
                 ${this.spellingResult ? `
-                    <div class="spelling-feedback ${this.spellingResult === 'correct' ? 'correct-feedback' : 'wrong-feedback'}">
+                    <div class="spelling-feedback ${this.spellingResult === 'correct' ? 'correct-feedback' : 'wrong-feedback'}" style="text-align:center; margin:10px 0;">
                         ${this.spellingResult === 'correct' ? this.t('✅ إجابة صحيحة!', '✅ Correct answer!') : this.t('❌ إجابة خاطئة!', '❌ Wrong answer!')}
                     </div>
                 ` : ''}
@@ -3907,17 +3858,17 @@ class App {
             const options = this.levelTestCurrentOptions || [];
 
             return `<div class="reading-card">
-                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px; flex-wrap:wrap; gap:10px;">
-                    <span style="background:#e2e8f0; color:#475569; padding:4px 12px; border-radius:20px; font-weight:bold; font-size:0.8rem;">
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:15px; flex-wrap:wrap; gap:8px;">
+                    <span style="background:#e2e8f0; color:#475569; padding:3px 10px; border-radius:20px; font-weight:bold; font-size:0.75rem;">
                         ${this.t('السؤال', 'Question')} ${this.levelTestQuestionsAnswered + 1} / ${this.levelTestMaxQuestions}
                     </span>
-                    <button class="hero-btn" data-action="finishLevelTest" style="background:#ef4444; padding:4px 12px; font-size:0.8rem;">⏹️ ${this.t('إنهاء الاختبار', 'Finish Test')}</button>
+                    <button class="hero-btn" data-action="finishLevelTest" style="background:#ef4444; padding:3px 10px; font-size:0.75rem;">⏹️ ${this.t('إنهاء الاختبار', 'Finish Test')}</button>
                 </div>
-                <div class="quiz-question-row" style="display:flex; align-items:center; gap:10px; justify-content:center;">
-                    <h2 style="margin:0; font-size:1.3rem;">${q.english}</h2>
-                    <button class="quiz-speak-btn" data-action="speak" data-param="${q.english}" style="background:none; border:none; font-size:1.3rem; cursor:pointer;">🔊</button>
+                <div class="quiz-question-row" style="display:flex; align-items:center; gap:8px; justify-content:center;">
+                    <h2 style="margin:0; font-size:1.1rem;">${q.english}</h2>
+                    <button class="quiz-speak-btn" data-action="speak" data-param="${q.english}" style="background:none; border:none; font-size:1.2rem; cursor:pointer;">🔊</button>
                 </div>
-                <div class="quiz-options" style="margin-top:25px;">
+                <div class="quiz-options" style="margin-top:20px;">
                     ${options.map(opt => `
                         <button class="quiz-opt-btn"
                                 data-action="levelTestAns"
@@ -3933,8 +3884,8 @@ class App {
         if (this.currentPage === 'level_test_result') {
             return `<div class="reading-card">
                 <h2 style="text-align:center;">🏁 ${this.t('نتيجة الاختبار الشامل', 'Comprehensive Test Result')}</h2>
-                <div style="background:#f0f7ff; padding:15px; border-radius:10px; margin:20px 0; text-align:center;">
-                    <p style="font-size:1rem;">${this.levelTestResultMessage}</p>
+                <div style="background:#f0f7ff; padding:12px; border-radius:10px; margin:15px 0; text-align:center;">
+                    <p style="font-size:0.95rem;">${this.levelTestResultMessage}</p>
                 </div>
                 <button class="hero-btn" data-action="goHome" style="background:#64748b;">${this.t('العودة للرئيسية', 'Back to Home')}</button>
             </div>`;
@@ -3943,14 +3894,14 @@ class App {
         if (this.currentPage === 'addLesson') {
             return `<main class="main-content" style="height: 85vh; display: flex; flex-direction: column; gap: 10px;">
                 <button class="hero-btn" data-action="goHome" style="background:#64748b; flex-shrink: 0;">← ${this.t('رجوع للرئيسية', 'Back to Home')}</button>
-                <div class="reading-card" style="flex-grow: 1; display: flex; flex-direction: column; gap: 12px; overflow: hidden;">
+                <div class="reading-card" style="flex-grow: 1; display: flex; flex-direction: column; gap: 10px; overflow: hidden;">
                     <h3 style="flex-shrink: 0;">📸 ${this.t('إضافة نص ذكي', 'Add Smart Text')}</h3>
-                    <div style="background: #f8fafc; padding: 10px; border-radius: 8px; border: 1px dashed #6366f1; flex-shrink: 0;">
+                    <div style="background: #f8fafc; padding: 8px; border-radius: 8px; border: 1px dashed #6366f1; flex-shrink: 0;">
                         <input type="file" id="fileInput" accept="image/*" onchange="appInstance.processOCR(this)" style="width: 100%;">
                     </div>
-                    <input id="newLessonTitle" placeholder="${this.t('عنوان النص', 'Text Title')}" style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 8px; flex-shrink: 0;">
-                    <textarea id="ocrText" placeholder="${this.t('النص سيظهر هنا...', 'Text will appear here...')}" style="width: 100%; flex-grow: 1; padding: 10px; border: 1px solid #ddd; border-radius: 8px; font-size: 0.9rem; line-height: 1.5; resize: none;"></textarea>
-                    <button class="hero-btn" onclick="appInstance.saveNewCustomLesson()" style="width: 100%; background:#10b981; padding: 12px; font-size: 1rem; flex-shrink: 0;">💾 ${this.t('حفظ النص', 'Save Text')}</button>
+                    <input id="newLessonTitle" placeholder="${this.t('عنوان النص', 'Text Title')}" style="width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 8px; flex-shrink: 0;">
+                    <textarea id="ocrText" placeholder="${this.t('النص سيظهر هنا...', 'Text will appear here...')}" style="width: 100%; flex-grow: 1; padding: 8px; border: 1px solid #ddd; border-radius: 8px; font-size: 0.85rem; line-height: 1.4; resize: none;"></textarea>
+                    <button class="hero-btn" onclick="appInstance.saveNewCustomLesson()" style="width: 100%; background:#10b981; padding: 10px; font-size: 0.9rem; flex-shrink: 0;">💾 ${this.t('حفظ النص', 'Save Text')}</button>
                 </div>
             </main>`;
         }
@@ -3970,7 +3921,7 @@ class App {
             const q = this.gapFillCurrentQuestion;
             return `<div class="reading-card">
                 <h3>📝 ${this.t('اختر الكلمة المناسبة لملء الفراغ', 'Choose the correct word to fill the blank')}</h3>
-                <div class="gapfill-sentence" style="font-size: 1.3rem; font-weight: bold; text-align: center; margin: 25px 0; padding: 15px; background: ${this.theme === 'dark' ? '#2d2d2d' : '#f8fafc'}; border-radius: 16px;">
+                <div class="gapfill-sentence" style="font-size: 1.1rem; margin: 20px 0; padding: 15px; background: ${this.theme === 'dark' ? '#2d2d2d' : '#f8fafc'}; border-radius: 12px;">
                     ${q.text}
                 </div>
                 <div class="quiz-options">
@@ -3983,26 +3934,25 @@ class App {
                     `).join('')}
                 </div>
                 ${this.gapFillResult !== null ? `
-                    <div class="spelling-feedback ${this.gapFillResult === 'correct' ? 'correct-feedback' : 'wrong-feedback'}">
+                    <div class="spelling-feedback ${this.gapFillResult === 'correct' ? 'correct-feedback' : 'wrong-feedback'}" style="text-align:center; margin:12px 0;">
                         ${this.gapFillResult === 'correct' ? this.t('✅ إجابة صحيحة!', '✅ Correct answer!') : this.t('❌ إجابة خاطئة!', '❌ Wrong answer!')}
                     </div>
-                    <div style="display: flex; justify-content: center; gap: 10px; margin: 10px 0;">
+                    <div style="display: flex; justify-content: center; gap: 8px; margin: 8px 0;">
                         <button class="hero-btn" data-action="gapfillShowExplanation" style="background:#6366f1;">💡 ${this.t('شرح مفصل', 'Detailed Explanation')}</button>
                     </div>
                     ${this.gapFillExplanationVisible ? `
-                        <div class="gapfill-explanation" style="margin: 15px 0; padding: 12px; background: ${this.theme === 'dark' ? '#2d2d2d' : '#eef2ff'}; border-radius: 8px; font-size: 0.85rem; max-height: 300px; overflow-y: auto;">
-                            <div style="font-weight: bold; margin-bottom: 6px;">📖 ${this.t('معنى الجملة (بالإنجليزية):', 'Full sentence in English:')}</div>
+                        <div class="gapfill-explanation" style="margin: 12px 0; padding: 10px; background: ${this.theme === 'dark' ? '#2d2d2d' : '#eef2ff'}; border-radius: 8px; font-size: 0.8rem; max-height: 250px; overflow-y: auto;">
+                            <div style="font-weight: bold; margin-bottom: 5px;">📖 ${this.t('معنى الجملة:', 'Full sentence:')}</div>
                             <div>${q.originalSentence || q.text.replace('______', q.correct)}</div>
-                            <div style="font-weight: bold; margin: 8px 0 4px;">🌐 ${this.t('الترجمة العربية:', 'Arabic translation:')}</div>
+                            <div style="font-weight: bold; margin: 8px 0 4px;">🌐 ${this.t('الترجمة:', 'Translation:')}</div>
                             <div>${q.originalSentenceArabic || this.t('جاري التحميل...', 'Loading...')}</div>
-                            <div style="font-weight: bold; margin: 8px 0 4px;">📚 ${this.t('معاني الخيارات:', 'Meanings of options:')}</div>
-                            <div style="display: flex; flex-direction: column; gap: 4px;">
+                            <div style="font-weight: bold; margin: 8px 0 4px;">📚 ${this.t('معاني الخيارات:', 'Meanings:')}</div>
+                            <div style="display: flex; flex-direction: column; gap: 3px;">
                                 ${this.gapFillOptionsMeanings.map(opt => `
                                     <div>• <strong>${opt.english}</strong> : ${opt.arabic}</div>
                                 `).join('')}
                             </div>
-                            <div style="margin-top: 8px; font-weight: bold;">✅ ${this.t('الإجابة الصحيحة:', 'Correct answer:')} ${q.correct} (${q.arabic})</div>
-                            <div style="margin-top: 6px;">💡 ${this.t('سبب الإجابة: كلمة', 'Reason: The word')} "${q.correct}" ${this.t('هي الأنسب لسياق الجملة لأنها تعطي المعنى الصحيح وتتناسب مع بقية الكلمات.', 'is the most appropriate for the sentence context because it gives the correct meaning and fits with the rest of the words.')}</div>
+                            <div style="margin-top: 6px; font-weight: bold;">✅ ${this.t('الإجابة الصحيحة:', 'Correct answer:')} ${q.correct} (${q.arabic})</div>
                         </div>
                     ` : ''}
                     <div class="gapfill-controls">
@@ -4012,17 +3962,13 @@ class App {
             </div>`;
         }
 
-        return `<div style="text-align:center; padding:50px;">${this.t('جاري التحميل...', 'Loading...')}</div>`;
+        return `<div style="text-align:center; padding:40px;">${this.t('جاري التحميل...', 'Loading...')}</div>`;
     }
 
     toggleTheme() {
         this.theme = this.theme === 'light' ? 'dark' : 'light';
         document.documentElement.setAttribute('data-theme', this.theme);
         localStorage.setItem('theme', this.theme);
-        const logoImg = document.querySelector('.logo-container img');
-        if (logoImg) {
-            logoImg.src = 'wordwise_logo.png';
-        }
         this.render();
     }
 
