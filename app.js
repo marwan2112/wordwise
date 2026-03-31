@@ -1,5 +1,5 @@
-// app.js - تطبيق تعلم اللغة الإنجليزية مع نظام الأوسمة المتكامل
-// (الكود الكامل مع تعديل سلوك زر "تكرار المتبقي")
+// app.js - تطبيق تعلم اللغة الإنجليزية مع Firebase
+// النسخة الكاملة النهائية
 
 class App {
     constructor() {
@@ -27,6 +27,7 @@ class App {
 
         this.userCoins = 0;
         this.showCoinModal = false;
+        this.showPurchaseForm = false;
 
         this.jumbleOriginalSentence = '';
         this.jumbleWords = [];
@@ -109,7 +110,7 @@ class App {
             testsHistory: []
         };
 
-        this.currentUserEmail = null;
+        this.currentUser = null;
         this.userData = null;
         this.userVocabulary = [];
         this.masteredWords = [];
@@ -119,6 +120,19 @@ class App {
         this.generatedLessons = {};
 
         this.showAllCardsTemporary = false;
+        this.isUnlockTest = false;
+        this.tempLessonToUnlock = null;
+        this.selectedLevel = null;
+        this.selectedLessonId = null;
+        this.currentCardIndex = 0;
+        this.quizQuestions = [];
+        this.quizIndex = 0;
+        this.quizScore = 0;
+        this.quizOptions = [];
+        this.audioCtx = null;
+        this.isWaiting = false;
+        this.scrollPos = 0;
+        this.levelTestResultMessage = '';
         
         this.exerciseStats = {
             quiz: { correct: 0, total: 0 },
@@ -167,26 +181,6 @@ class App {
                 { id: 'gapfill_professional', icon: '💎', name: 'محترف', nameEn: 'Professional', requirement: 800, condition: (count) => count >= 800 }
             ]
         };
-
-        if (!localStorage.getItem('users')) {
-            localStorage.setItem('users', JSON.stringify({}));
-        }
-
-        const savedEmail = localStorage.getItem('currentUser');
-        if (savedEmail) {
-            const users = JSON.parse(localStorage.getItem('users'));
-            if (users[savedEmail]) {
-                this.currentUserEmail = savedEmail;
-                this.userData = { name: users[savedEmail].name, email: savedEmail, pass: users[savedEmail].password };
-                this.loadUserData(savedEmail);
-                this.currentPage = 'home';
-            } else {
-                localStorage.removeItem('currentUser');
-                this.currentPage = 'auth';
-            }
-        } else {
-            this.currentPage = 'auth';
-        }
 
         if (document.readyState === 'loading') {
             document.addEventListener('DOMContentLoaded', () => this.init());
@@ -243,7 +237,7 @@ class App {
         }
     }
 
-    updateLevelAndBadges() {
+    async updateLevelAndBadges() {
         const oldLevel = this.userStats.level;
         const newProgress = this.getCurrentLevelProgress();
         const newLevel = newProgress.level;
@@ -297,7 +291,7 @@ class App {
             this.showCustomModal('success', '🏅', this.t(`تهانينا! حصلت على أوسمة جديدة: ${badgeNames}`, `Congratulations! You earned new badges: ${badgeNames}`));
         }
 
-        this.saveUserData();
+        await this.saveUserData();
     }
 
     recordCorrectAnswer(exerciseType) {
@@ -365,54 +359,115 @@ class App {
         this.addXPOnce(1, wordId);
     }
 
-    hashPassword(password) {
-        return btoa(password);
-    }
+    async handleAuth() {
+        const name = document.getElementById('authName')?.value;
+        const email = document.getElementById('authEmail')?.value;
+        const pass = document.getElementById('authPass')?.value;
 
-    loadUserData(email) {
-        const key = `userData_${email}`;
-        const data = JSON.parse(localStorage.getItem(key)) || {};
-        this.userVocabulary = data.userVocabulary || [];
-        this.masteredWords = data.masteredWords || [];
-        this.unlockedLessons = data.unlockedLessons || [];
-        this.hiddenFromCards = data.hiddenFromCards || [];
-        this.customLessons = data.customLessons || {};
-        this.generatedLessons = data.generatedLessons || {};
-        this.userStats = data.userStats || { xp: 0, level: 1, badges: [], earnedBadges: [], tier: 'برونزي' };
-        this.placementResults = data.placementResults || [];
-        this.placementFullHistory = data.placementFullHistory || [];
-        this.userCoins = data.userCoins || 0;
-        this.jumbleUnlocked = data.jumbleUnlocked || {};
-        this.listeningUnlocked = data.listeningUnlocked || {};
-        this.spellingUnlocked = data.spellingUnlocked || {};
-        this.gapFillUnlocked = data.gapFillUnlocked || {};
-        this.newWordsAddedCount = data.newWordsAddedCount || 0;
-        this.adWatchedCount = data.adWatchedCount || 0;
-        this.purchaseRequests = data.purchaseRequests || [];
-        this.userProfile = data.userProfile || {
-            name: this.userData?.name || '',
-            age: '',
-            joinDate: new Date().toLocaleDateString('ar-EG'),
-            level: 'A1',
-            image: '',
-            testsHistory: []
-        };
-        this.exerciseStats = data.exerciseStats || {
-            quiz: { correct: 0, total: 0 },
-            listening: { correct: 0, total: 0 },
-            spelling: { correct: 0, total: 0 },
-            gapFill: { correct: 0, total: 0 }
-        };
-        this.lastTestedLesson = data.lastTestedLesson || { beginner: 0, intermediate: 0, advanced: 0 };
-        if (this.placementResults.length > 0) {
-            this.userProfile.level = this.placementResults[0].level;
+        if (!name || !email || !pass) {
+            alert(this.t('الرجاء إدخال جميع البيانات', 'Please fill all fields'));
+            return;
         }
-        this.updateLevelAndBadges();
+
+        try {
+            let userCredential;
+            try {
+                userCredential = await signInWithEmailAndPassword(auth, email, pass);
+            } catch (error) {
+                if (error.code === 'auth/user-not-found') {
+                    userCredential = await createUserWithEmailAndPassword(auth, email, pass);
+                    const newUserData = {
+                        name: name,
+                        age: '',
+                        joinDate: new Date().toLocaleDateString('ar-EG'),
+                        level: 'A1',
+                        image: '',
+                        testsHistory: [],
+                        userVocabulary: [],
+                        masteredWords: [],
+                        unlockedLessons: [],
+                        hiddenFromCards: [],
+                        customLessons: {},
+                        generatedLessons: {},
+                        userStats: { xp: 0, level: 1, badges: [], earnedBadges: [], tier: 'برونزي' },
+                        placementResults: [],
+                        placementFullHistory: [],
+                        userCoins: 100,
+                        jumbleUnlocked: {},
+                        listeningUnlocked: {},
+                        spellingUnlocked: {},
+                        gapFillUnlocked: {},
+                        newWordsAddedCount: 0,
+                        adWatchedCount: 0,
+                        purchaseRequests: [],
+                        exerciseStats: { quiz: { correct: 0, total: 0 }, listening: { correct: 0, total: 0 }, spelling: { correct: 0, total: 0 }, gapFill: { correct: 0, total: 0 } },
+                        lastTestedLesson: { beginner: 0, intermediate: 0, advanced: 0 }
+                    };
+                    await setDoc(doc(db, "users", userCredential.user.uid), newUserData);
+                } else {
+                    throw error;
+                }
+            }
+
+            this.currentUser = userCredential.user;
+            this.userData = { name: userCredential.user.displayName || name, email: userCredential.user.email, uid: userCredential.user.uid };
+            await this.loadUserData(userCredential.user.uid);
+            this.currentPage = 'home';
+            this.render();
+        } catch (error) {
+            console.error(error);
+            alert(this.t('فشل تسجيل الدخول: ' + error.message, 'Login failed: ' + error.message));
+        }
     }
 
-    saveUserData() {
-        if (!this.currentUserEmail) return;
-        const key = `userData_${this.currentUserEmail}`;
+    async loadUserData(uid) {
+        if (!uid) return;
+        const docRef = doc(db, "users", uid);
+        const docSnap = await getDoc(docRef);
+        if (docSnap.exists()) {
+            const data = docSnap.data();
+            this.userVocabulary = data.userVocabulary || [];
+            this.masteredWords = data.masteredWords || [];
+            this.unlockedLessons = data.unlockedLessons || [];
+            this.hiddenFromCards = data.hiddenFromCards || [];
+            this.customLessons = data.customLessons || {};
+            this.generatedLessons = data.generatedLessons || {};
+            this.userStats = data.userStats || { xp: 0, level: 1, badges: [], earnedBadges: [], tier: 'برونزي' };
+            this.placementResults = data.placementResults || [];
+            this.placementFullHistory = data.placementFullHistory || [];
+            this.userCoins = data.userCoins || 0;
+            this.jumbleUnlocked = data.jumbleUnlocked || {};
+            this.listeningUnlocked = data.listeningUnlocked || {};
+            this.spellingUnlocked = data.spellingUnlocked || {};
+            this.gapFillUnlocked = data.gapFillUnlocked || {};
+            this.newWordsAddedCount = data.newWordsAddedCount || 0;
+            this.adWatchedCount = data.adWatchedCount || 0;
+            this.purchaseRequests = data.purchaseRequests || [];
+            this.userProfile = data.userProfile || {
+                name: this.userData?.name || '',
+                age: '',
+                joinDate: new Date().toLocaleDateString('ar-EG'),
+                level: 'A1',
+                image: '',
+                testsHistory: []
+            };
+            this.exerciseStats = data.exerciseStats || {
+                quiz: { correct: 0, total: 0 },
+                listening: { correct: 0, total: 0 },
+                spelling: { correct: 0, total: 0 },
+                gapFill: { correct: 0, total: 0 }
+            };
+            this.lastTestedLesson = data.lastTestedLesson || { beginner: 0, intermediate: 0, advanced: 0 };
+            if (this.placementResults.length > 0) {
+                this.userProfile.level = this.placementResults[0].level;
+            }
+            this.updateLevelAndBadges();
+        }
+    }
+
+    async saveUserData() {
+        if (!this.currentUser || !this.userData?.uid) return;
+        const uid = this.userData.uid;
         const data = {
             userVocabulary: this.userVocabulary,
             masteredWords: this.masteredWords,
@@ -435,13 +490,13 @@ class App {
             exerciseStats: this.exerciseStats,
             lastTestedLesson: this.lastTestedLesson
         };
-        localStorage.setItem(key, JSON.stringify(data));
+        await setDoc(doc(db, "users", uid), data, { merge: true });
     }
 
-    logout() {
-        this.saveUserData();
-        localStorage.removeItem('currentUser');
-        this.currentUserEmail = null;
+    async logout() {
+        await this.saveUserData();
+        await signOut(auth);
+        this.currentUser = null;
         this.userData = null;
         this.userVocabulary = [];
         this.masteredWords = [];
@@ -479,26 +534,6 @@ class App {
         this.render();
     }
 
-    init() {
-        this.addThemeStyles();
-        document.documentElement.setAttribute('data-theme', this.theme);
-        if (!window.levels || !window.lessonsData || !window.placementBank || !window.lessonsList) {
-            setTimeout(() => this.init(), 500);
-            return;
-        }
-        if (this.currentUserEmail) {
-            this.currentPage = 'home';
-        } else {
-            this.currentPage = 'auth';
-        }
-        this.audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-        if (this.audioCtx.state === 'suspended') {
-            this.audioCtx.resume();
-        }
-        this.setupGlobalEvents();
-        this.render();
-    }
-
     addThemeStyles() {
         const styleId = 'theme-dynamic-styles';
         if (document.getElementById(styleId)) return;
@@ -512,7 +547,7 @@ class App {
             }
             
             body {
-                font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Cairo', sans-serif;
                 background: #f5f7fb;
                 margin: 0;
                 padding: 0;
@@ -1486,24 +1521,14 @@ class App {
 
         if (newName) {
             this.userProfile.name = newName;
-            if (this.userData) {
+            if (this.userData && this.currentUser) {
                 this.userData.name = newName;
-                const users = JSON.parse(localStorage.getItem('users'));
-                if (users[this.currentUserEmail]) {
-                    users[this.currentUserEmail].name = newName;
-                    localStorage.setItem('users', JSON.stringify(users));
-                }
+                updateProfile(this.currentUser, { displayName: newName }).catch(console.error);
             }
         }
         if (newAge) this.userProfile.age = newAge;
-        if (newPassword && this.userData) {
-            const hashed = this.hashPassword(newPassword);
-            this.userData.pass = hashed;
-            const users = JSON.parse(localStorage.getItem('users'));
-            if (users[this.currentUserEmail]) {
-                users[this.currentUserEmail].password = hashed;
-                localStorage.setItem('users', JSON.stringify(users));
-            }
+        if (newPassword && this.userData && this.currentUser) {
+            updatePassword(this.currentUser, newPassword).catch(console.error);
         }
         if (imageFile) {
             const reader = new FileReader();
@@ -2705,7 +2730,7 @@ class App {
     }
 
     setupGlobalEvents() {
-        document.addEventListener('click', (e) => {
+        document.addEventListener('click', async (e) => {
             const btn = e.target.closest('[data-action]');
             if (!btn) return;
             const { action, param, correct, total, index } = btn.dataset;
@@ -2724,7 +2749,7 @@ class App {
                         if (this.selectedLessonId) {
                             this.grantLessonCompletionReward(this.selectedLessonId);
                         }
-                        this.saveUserData();
+                        await this.saveUserData();
                     }
                     break;
 
@@ -2844,7 +2869,7 @@ class App {
                     const cardM = document.querySelector('.flashcard-container');
                     if (cardM) {
                         cardM.classList.add('master-anim');
-                        setTimeout(() => {
+                        setTimeout(async () => {
                             const wordId = String(param);
                             if (!this.masteredWords.includes(wordId)) {
                                 this.masteredWords.push(wordId);
@@ -2852,11 +2877,11 @@ class App {
                                 if (this.selectedLessonId) {
                                     this.grantLessonCompletionReward(this.selectedLessonId);
                                 }
-                                this.saveUserData();
+                                await this.saveUserData();
                             }
                             if (this.showAllCardsTemporary && !this.repeatAllSessionMastered.includes(wordId)) {
                                 this.repeatAllSessionMastered.push(wordId);
-                                this.saveUserData();
+                                await this.saveUserData();
                             }
                             this.render();
                         }, 550);
@@ -2864,13 +2889,14 @@ class App {
                     return;
 
                 case 'deleteWord':
-                    this.showConfirmModal(this.t('هل أنت متأكد من حذف هذه الكلمة نهائياً من بطاقاتك؟', 'Are you sure you want to permanently delete this word from your flashcards?'), () => {
+                    this.showConfirmModal(this.t('هل أنت متأكد من حذف هذه الكلمة نهائياً من بطاقاتك؟', 'Are you sure you want to permanently delete this word from your flashcards?'), async () => {
                         const cardD = document.querySelector('.flashcard-container');
                         if (cardD) {
                             cardD.classList.add('delete-anim');
-                            setTimeout(() => {
+                            setTimeout(async () => {
                                 this.hiddenFromCards.push(String(param));
-                                this.saveUserData(); this.render();
+                                await this.saveUserData();
+                                this.render();
                             }, 550);
                         }
                     });
@@ -2928,27 +2954,23 @@ class App {
                         cardShuffle.classList.add('shuffle-anim-card');
                     }
                     const delay = cardShuffle ? 600 : 0;
-                    setTimeout(() => {
+                    setTimeout(async () => {
                         if (param === 'all' && this.selectedLessonId) {
-                            // إعادة تكرار الكل: تفعيل وضع إعادة التكرار وإفراغ القائمة المؤقتة
                             this.showAllCardsTemporary = true;
                             this.repeatAllSessionMastered = [];
                             this.currentCardIndex = 0;
-                            this.saveUserData();
+                            await this.saveUserData();
                             this.render();
                         } else if (param === 'remaining') {
-                            // تكرار المتبقي:
                             if (this.showAllCardsTemporary) {
-                                // إذا كنا في وضع إعادة التكرار: نبقى في نفس الوضع، نعيد تعيين المؤشر فقط
                                 this.currentCardIndex = 0;
-                                this.saveUserData();
+                                await this.saveUserData();
                                 this.render();
                             } else {
-                                // إذا كنا في الوضع العادي: نعيد تعيين المؤشر ونضمن أننا في الوضع العادي
                                 this.showAllCardsTemporary = false;
                                 this.repeatAllSessionMastered = [];
                                 this.currentCardIndex = 0;
-                                this.saveUserData();
+                                await this.saveUserData();
                                 this.render();
                             }
                         }
@@ -3064,134 +3086,6 @@ class App {
                 this.spellingUserAnswer = e.target.value;
             }
         });
-    }
-
-    handleAuth() {
-        const name = document.getElementById('authName')?.value;
-        const email = document.getElementById('authEmail')?.value;
-        const pass = document.getElementById('authPass')?.value;
-
-        if (!name || !email || !pass) {
-            alert(this.t('الرجاء إدخال جميع البيانات', 'Please fill all fields'));
-            return;
-        }
-
-        const users = JSON.parse(localStorage.getItem('users'));
-        const hashedPass = this.hashPassword(pass);
-
-        if (users[email]) {
-            if (users[email].password === hashedPass) {
-                this.currentUserEmail = email;
-                this.userData = { name: users[email].name, email, pass: hashedPass };
-                localStorage.setItem('currentUser', email);
-                this.loadUserData(email);
-                this.currentPage = 'home';
-                this.render();
-            } else {
-                alert(this.t('كلمة المرور غير صحيحة', 'Incorrect password'));
-            }
-        } else {
-            users[email] = { name, password: hashedPass };
-            localStorage.setItem('users', JSON.stringify(users));
-            this.currentUserEmail = email;
-            this.userData = { name, email, pass: hashedPass };
-            localStorage.setItem('currentUser', email);
-            this.userVocabulary = [];
-            this.masteredWords = [];
-            this.unlockedLessons = [];
-            this.hiddenFromCards = [];
-            this.customLessons = {};
-            this.generatedLessons = {};
-            this.userStats = { xp: 0, level: 1, badges: [], earnedBadges: [], tier: 'برونزي' };
-            this.placementResults = [];
-            this.placementFullHistory = [];
-            this.userCoins = 100;
-            this.jumbleUnlocked = {};
-            this.listeningUnlocked = {};
-            this.spellingUnlocked = {};
-            this.gapFillUnlocked = {};
-            this.newWordsAddedCount = 0;
-            this.adWatchedCount = 0;
-            this.purchaseRequests = [];
-            this.userProfile = {
-                name: name,
-                age: '',
-                joinDate: new Date().toLocaleDateString('ar-EG'),
-                level: 'A1',
-                image: '',
-                testsHistory: []
-            };
-            this.exerciseStats = {
-                quiz: { correct: 0, total: 0 },
-                listening: { correct: 0, total: 0 },
-                spelling: { correct: 0, total: 0 },
-                gapFill: { correct: 0, total: 0 }
-            };
-            this.lastTestedLesson = { beginner: 0, intermediate: 0, advanced: 0 };
-            this.saveUserData();
-            this.currentPage = 'home';
-            this.render();
-        }
-    }
-
-    async processOCR(input) {
-        const file = input.files[0];
-        if (!file) return;
-        const textArea = document.getElementById('ocrText');
-        textArea.value = this.t("⏳ جاري استخراج النص... انتظر قليلاً", "⏳ Extracting text... Please wait");
-        try {
-            const worker = await Tesseract.createWorker('eng');
-            const ret = await worker.recognize(file);
-            textArea.value = ret.data.text;
-            await worker.terminate();
-        } catch (e) {
-            textArea.value = this.t("❌ خطأ في المعالجة، حاول مرة أخرى", "❌ Processing error, please try again");
-        }
-    }
-
-    saveNewCustomLesson() {
-        const titleInput = document.getElementById('newLessonTitle');
-        const contentInput = document.getElementById('ocrText');
-        const title = titleInput.value.trim() || (this.t("نص مخصص ", "Custom text ") + new Date().toLocaleDateString());
-        const content = contentInput.value.trim();
-        if (content) {
-            const id = 'c' + Date.now();
-            const newL = { id, title, content, terms: [] };
-            this.customLessons[id] = newL;
-            window.lessonsData[id] = newL;
-            this.saveUserData();
-            titleInput.value = ''; contentInput.value = '';
-            this.currentPage = 'custom_lessons_view';
-            this.render();
-        }
-    }
-
-    deleteCustomLesson(id) {
-        this.showConfirmModal(this.t('هل أنت متأكد من حذف هذا النص نهائياً؟', 'Are you sure you want to permanently delete this text?'), () => {
-            delete this.customLessons[id];
-            delete window.lessonsData[id];
-            this.userVocabulary = this.userVocabulary.filter(v => v.lessonId !== String(id));
-            this.saveUserData();
-            this.render();
-        });
-    }
-
-    editLessonTitle(id) {
-        const newTitle = prompt(this.t("العنوان الجديد:", "New title:"), this.customLessons[id].title);
-        if (newTitle && newTitle.trim()) {
-            this.customLessons[id].title = newTitle.trim();
-            if (window.lessonsData[id]) window.lessonsData[id].title = newTitle.trim();
-            this.saveUserData(); this.render();
-        }
-    }
-
-    editLessonContent(id) {
-        const newC = prompt(this.t("تعديل نص الموضوع:", "Edit text content:"), this.customLessons[id].content);
-        if (newC && newC.trim()) {
-            this.customLessons[id].content = newC.trim();
-            if (window.lessonsData[id]) window.lessonsData[id].content = newC.trim();
-            this.saveUserData(); this.render();
-        }
     }
 
     getBadgesDisplay() {
@@ -4024,6 +3918,137 @@ class App {
         this.placementHistory = [];
         this.currentPlacementDetails = [];
         this.render();
+    }
+
+    async processOCR(input) {
+        const file = input.files[0];
+        if (!file) return;
+        const textArea = document.getElementById('ocrText');
+        if (!textArea) return;
+        textArea.value = this.t("⏳ جاري استخراج النص... انتظر قليلاً", "⏳ Extracting text... Please wait");
+        try {
+            const worker = await Tesseract.createWorker('eng');
+            const ret = await worker.recognize(file);
+            textArea.value = ret.data.text;
+            await worker.terminate();
+        } catch (e) {
+            textArea.value = this.t("❌ خطأ في المعالجة، حاول مرة أخرى", "❌ Processing error, please try again");
+            console.error(e);
+        }
+    }
+
+    saveNewCustomLesson() {
+        const titleInput = document.getElementById('newLessonTitle');
+        const contentInput = document.getElementById('ocrText');
+        if (!titleInput || !contentInput) return;
+        const title = titleInput.value.trim() || (this.t("نص مخصص ", "Custom text ") + new Date().toLocaleDateString());
+        const content = contentInput.value.trim();
+        if (content) {
+            const id = 'c' + Date.now();
+            const newL = { id, title, content, terms: [] };
+            this.customLessons[id] = newL;
+            window.lessonsData[id] = newL;
+            this.saveUserData();
+            titleInput.value = '';
+            contentInput.value = '';
+            this.currentPage = 'custom_lessons_view';
+            this.render();
+        }
+    }
+
+    editLessonTitle(id) {
+        const newTitle = prompt(this.t("العنوان الجديد:", "New title:"), this.customLessons[id].title);
+        if (newTitle && newTitle.trim()) {
+            this.customLessons[id].title = newTitle.trim();
+            if (window.lessonsData[id]) window.lessonsData[id].title = newTitle.trim();
+            this.saveUserData();
+            this.render();
+        }
+    }
+
+    editLessonContent(id) {
+        const newC = prompt(this.t("تعديل نص الموضوع:", "Edit text content:"), this.customLessons[id].content);
+        if (newC && newC.trim()) {
+            this.customLessons[id].content = newC.trim();
+            if (window.lessonsData[id]) window.lessonsData[id].content = newC.trim();
+            this.saveUserData();
+            this.render();
+        }
+    }
+
+    deleteCustomLesson(id) {
+        this.showConfirmModal(this.t('هل أنت متأكد من حذف هذا النص نهائياً؟', 'Are you sure you want to permanently delete this text?'), () => {
+            delete this.customLessons[id];
+            delete window.lessonsData[id];
+            this.userVocabulary = this.userVocabulary.filter(v => v.lessonId !== String(id));
+            this.saveUserData();
+            this.render();
+        });
+    }
+
+    init() {
+        this.addThemeStyles();
+        document.documentElement.setAttribute('data-theme', this.theme);
+        
+        if (typeof auth === 'undefined' || typeof db === 'undefined') {
+            setTimeout(() => this.init(), 500);
+            return;
+        }
+        
+        if (!window.levels || !window.lessonsData || !window.placementBank || !window.lessonsList) {
+            setTimeout(() => this.init(), 500);
+            return;
+        }
+        
+        this.audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        if (this.audioCtx.state === 'suspended') {
+            this.audioCtx.resume();
+        }
+        this.setupGlobalEvents();
+        
+        onAuthStateChanged(auth, async (user) => {
+            if (user) {
+                this.currentUser = user;
+                this.userData = { name: user.displayName || '', email: user.email, uid: user.uid };
+                await this.loadUserData(user.uid);
+                this.currentPage = 'home';
+            } else {
+                this.currentPage = 'auth';
+                this.userVocabulary = [];
+                this.masteredWords = [];
+                this.unlockedLessons = [];
+                this.hiddenFromCards = [];
+                this.customLessons = {};
+                this.generatedLessons = {};
+                this.userStats = { xp: 0, level: 1, badges: [], earnedBadges: [], tier: 'برونزي' };
+                this.placementResults = [];
+                this.placementFullHistory = [];
+                this.userCoins = 0;
+                this.jumbleUnlocked = {};
+                this.listeningUnlocked = {};
+                this.spellingUnlocked = {};
+                this.gapFillUnlocked = {};
+                this.newWordsAddedCount = 0;
+                this.adWatchedCount = 0;
+                this.purchaseRequests = [];
+                this.userProfile = {
+                    name: '',
+                    age: '',
+                    joinDate: new Date().toLocaleDateString('ar-EG'),
+                    level: 'A1',
+                    image: '',
+                    testsHistory: []
+                };
+                this.exerciseStats = {
+                    quiz: { correct: 0, total: 0 },
+                    listening: { correct: 0, total: 0 },
+                    spelling: { correct: 0, total: 0 },
+                    gapFill: { correct: 0, total: 0 }
+                };
+                this.lastTestedLesson = { beginner: 0, intermediate: 0, advanced: 0 };
+            }
+            this.render();
+        });
     }
 }
 
