@@ -4051,30 +4051,36 @@ case 'doAuth':
         this.setupGlobalEvents();
         
         onAuthStateChanged(auth, async (user) => {
+            console.log("Checking Auth Status...");
+            
             if (user) {
+                console.log("User logged in:", user.uid);
                 this.currentUser = user;
                 this.userData = { name: user.displayName || '', email: user.email, uid: user.uid };
-                await this.loadUserData(user.uid);
+
+                try {
+                    // محاولة جلب البيانات من Firestore مباشرة لتجنب تعليق loadUserData
+                    const userDoc = await getDoc(doc(db, "users", user.uid));
+                    if (userDoc.exists()) {
+                        const data = userDoc.data();
+                        this.userCoins = data.userCoins || 0;
+                        this.userProfile.name = data.name || user.displayName || '';
+                        this.userStats.level = data.level || 1;
+                        this.userStats.xp = data.xp || 0;
+                        // يمكنك إضافة باقي الحقول هنا (مثل unlockedLessons)
+                    }
+                } catch (err) {
+                    console.error("Firestore Error:", err);
+                }
+
                 this.currentPage = 'home';
             } else {
+                console.log("User logged out");
+                this.currentUser = null;
                 this.currentPage = 'auth';
-                this.userVocabulary = [];
-                this.masteredWords = [];
-                this.unlockedLessons = [];
-                this.hiddenFromCards = [];
-                this.customLessons = {};
-                this.generatedLessons = {};
-                this.userStats = { xp: 0, level: 1, badges: [], earnedBadges: [], tier: 'برونزي' };
-                this.placementResults = [];
-                this.placementFullHistory = [];
+                
+                // إعادة تصدير البيانات للقيم الافتراضية عند الخروج
                 this.userCoins = 0;
-                this.jumbleUnlocked = {};
-                this.listeningUnlocked = {};
-                this.spellingUnlocked = {};
-                this.gapFillUnlocked = {};
-                this.newWordsAddedCount = 0;
-                this.adWatchedCount = 0;
-                this.purchaseRequests = [];
                 this.userProfile = {
                     name: '',
                     age: '',
@@ -4083,17 +4089,18 @@ case 'doAuth':
                     image: '',
                     testsHistory: []
                 };
-                this.exerciseStats = {
-                    quiz: { correct: 0, total: 0 },
-                    listening: { correct: 0, total: 0 },
-                    spelling: { correct: 0, total: 0 },
-                    gapFill: { correct: 0, total: 0 }
-                };
-                this.lastTestedLesson = { beginner: 0, intermediate: 0, advanced: 0 };
+                this.userStats = { xp: 0, level: 1, badges: [], earnedBadges: [], tier: 'برونزي' };
             }
-            this.render();
+
+            // أهم سطر لإزالة الشاشة السوداء
+            if (typeof this.render === 'function') {
+                this.render();
+            } else {
+                console.error("Render function not found!");
+            }
         });
     }
 }
 
+// تشغيل التطبيق
 const appInstance = new App();
