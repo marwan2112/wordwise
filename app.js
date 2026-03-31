@@ -1,4 +1,5 @@
 // app.js - تطبيق تعلم اللغة الإنجليزية مع نظام الأوسمة المتكامل
+// (الكود الكامل مع تعديل سلوك زر "تكرار المتبقي")
 
 class App {
     constructor() {
@@ -257,7 +258,6 @@ class App {
         const totalLessons = (this.unlockedLessons || []).length;
         const totalMastered = (this.masteredWords || []).length;
         
-        // تحديث التاج الظاهر
         if (totalMastered >= 7000 && totalLessons >= 150) this.userStats.tier = this.t('👑 تاج ماسي', '👑 Diamond Crown');
         else if (totalMastered >= 5000 && totalLessons >= 120) this.userStats.tier = this.t('👑 تاج ذهبي', '👑 Gold Crown');
         else if (totalMastered >= 3500 && totalLessons >= 100) this.userStats.tier = this.t('👑 تاج فضي', '👑 Silver Crown');
@@ -2930,17 +2930,27 @@ class App {
                     const delay = cardShuffle ? 600 : 0;
                     setTimeout(() => {
                         if (param === 'all' && this.selectedLessonId) {
+                            // إعادة تكرار الكل: تفعيل وضع إعادة التكرار وإفراغ القائمة المؤقتة
                             this.showAllCardsTemporary = true;
                             this.repeatAllSessionMastered = [];
                             this.currentCardIndex = 0;
                             this.saveUserData();
                             this.render();
                         } else if (param === 'remaining') {
-                            this.showAllCardsTemporary = false;
-                            this.repeatAllSessionMastered = [];
-                            this.currentCardIndex = 0;
-                            this.saveUserData();
-                            this.render();
+                            // تكرار المتبقي:
+                            if (this.showAllCardsTemporary) {
+                                // إذا كنا في وضع إعادة التكرار: نبقى في نفس الوضع، نعيد تعيين المؤشر فقط
+                                this.currentCardIndex = 0;
+                                this.saveUserData();
+                                this.render();
+                            } else {
+                                // إذا كنا في الوضع العادي: نعيد تعيين المؤشر ونضمن أننا في الوضع العادي
+                                this.showAllCardsTemporary = false;
+                                this.repeatAllSessionMastered = [];
+                                this.currentCardIndex = 0;
+                                this.saveUserData();
+                                this.render();
+                            }
                         }
                     }, delay);
                     this.showAd('image');
@@ -3724,13 +3734,11 @@ class App {
         if (this.currentPage === 'flashcards') {
             let active;
             if (this.showAllCardsTemporary) {
-                // وضع إعادة التكرار: نعرض كل الكلمات غير المحذوفة وغير المُتقنة خلال هذه الجلسة
                 active = allTerms.filter(t => 
                     !this.hiddenFromCards.includes(String(t.id)) &&
                     !this.repeatAllSessionMastered.includes(String(t.id))
                 );
             } else {
-                // الوضع العادي: نعرض الكلمات غير المتقنة وغير المحذوفة
                 active = allTerms.filter(t => 
                     !this.masteredWords.includes(String(t.id)) &&
                     !this.hiddenFromCards.includes(String(t.id))
