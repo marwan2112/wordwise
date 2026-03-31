@@ -27,6 +27,7 @@ class App {
 
         this.userCoins = 0;
         this.showCoinModal = false;
+        this.showPurchaseForm = false;
 
         this.jumbleOriginalSentence = '';
         this.jumbleWords = [];
@@ -119,6 +120,17 @@ class App {
         this.generatedLessons = {};
 
         this.showAllCardsTemporary = false;
+        this.isUnlockTest = false;
+        this.tempLessonToUnlock = null;
+        this.selectedLevel = null;
+        this.selectedLessonId = null;
+        this.currentCardIndex = 0;
+        this.quizQuestions = [];
+        this.quizIndex = 0;
+        this.quizScore = 0;
+        this.quizOptions = [];
+        this.audioCtx = null;
+        this.isWaiting = false;
         
         this.exerciseStats = {
             quiz: { correct: 0, total: 0 },
@@ -345,7 +357,6 @@ class App {
         this.addXPOnce(1, wordId);
     }
 
-    // ------------------- Firebase Auth & Firestore -------------------
     async handleAuth() {
         const name = document.getElementById('authName')?.value;
         const email = document.getElementById('authEmail')?.value;
@@ -521,7 +532,6 @@ class App {
         this.render();
     }
 
-    // ------------------- باقي الدوال (غير معدلة) -------------------
     addThemeStyles() {
         const styleId = 'theme-dynamic-styles';
         if (document.getElementById(styleId)) return;
@@ -535,7 +545,7 @@ class App {
             }
             
             body {
-                font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Cairo', sans-serif;
                 background: #f5f7fb;
                 margin: 0;
                 padding: 0;
@@ -1509,12 +1519,9 @@ class App {
 
         if (newName) {
             this.userProfile.name = newName;
-            if (this.userData) {
+            if (this.userData && this.currentUser) {
                 this.userData.name = newName;
-                // تحديث اسم المستخدم في Firebase Auth (اختياري)
-                if (this.currentUser) {
-                    updateProfile(this.currentUser, { displayName: newName }).catch(console.error);
-                }
+                updateProfile(this.currentUser, { displayName: newName }).catch(console.error);
             }
         }
         if (newAge) this.userProfile.age = newAge;
@@ -3079,7 +3086,6 @@ class App {
         });
     }
 
-    // ------------------- دوال إضافية (Badges, Render, Header, View) -------------------
     getBadgesDisplay() {
         const earnedBadges = this.userStats.earnedBadges || [];
         
@@ -3912,13 +3918,86 @@ class App {
         this.render();
     }
 
+    async processOCR(input) {
+        const file = input.files[0];
+        if (!file) return;
+        const textArea = document.getElementById('ocrText');
+        if (!textArea) return;
+        textArea.value = this.t("⏳ جاري استخراج النص... انتظر قليلاً", "⏳ Extracting text... Please wait");
+        try {
+            const worker = await Tesseract.createWorker('eng');
+            const ret = await worker.recognize(file);
+            textArea.value = ret.data.text;
+            await worker.terminate();
+        } catch (e) {
+            textArea.value = this.t("❌ خطأ في المعالجة، حاول مرة أخرى", "❌ Processing error, please try again");
+            console.error(e);
+        }
+    }
+
+    saveNewCustomLesson() {
+        const titleInput = document.getElementById('newLessonTitle');
+        const contentInput = document.getElementById('ocrText');
+        if (!titleInput || !contentInput) return;
+        const title = titleInput.value.trim() || (this.t("نص مخصص ", "Custom text ") + new Date().toLocaleDateString());
+        const content = contentInput.value.trim();
+        if (content) {
+            const id = 'c' + Date.now();
+            const newL = { id, title, content, terms: [] };
+            this.customLessons[id] = newL;
+            window.lessonsData[id] = newL;
+            this.saveUserData();
+            titleInput.value = '';
+            contentInput.value = '';
+            this.currentPage = 'custom_lessons_view';
+            this.render();
+        }
+    }
+
+    editLessonTitle(id) {
+        const newTitle = prompt(this.t("العنوان الجديد:", "New title:"), this.customLessons[id].title);
+        if (newTitle && newTitle.trim()) {
+            this.customLessons[id].title = newTitle.trim();
+            if (window.lessonsData[id]) window.lessonsData[id].title = newTitle.trim();
+            this.saveUserData();
+            this.render();
+        }
+    }
+
+    editLessonContent(id) {
+        const newC = prompt(this.t("تعديل نص الموضوع:", "Edit text content:"), this.customLessons[id].content);
+        if (newC && newC.trim()) {
+            this.customLessons[id].content = newC.trim();
+            if (window.lessonsData[id]) window.lessonsData[id].content = newC.trim();
+            this.saveUserData();
+            this.render();
+        }
+    }
+
+    deleteCustomLesson(id) {
+        this.showConfirmModal(this.t('هل أنت متأكد من حذف هذا النص نهائياً؟', 'Are you sure you want to permanently delete this text?'), () => {
+            delete this.customLessons[id];
+            delete window.lessonsData[id];
+            this.userVocabulary = this.userVocabulary.filter(v => v.lessonId !== String(id));
+            this.saveUserData();
+            this.render();
+        });
+    }
+
     init() {
         this.addThemeStyles();
         document.documentElement.setAttribute('data-theme', this.theme);
+        
+        if (typeof auth === 'undefined' || typeof db === 'undefined') {
+            setTimeout(() => this.init(), 500);
+            return;
+        }
+        
         if (!window.levels || !window.lessonsData || !window.placementBank || !window.lessonsList) {
             setTimeout(() => this.init(), 500);
             return;
         }
+        
         this.audioCtx = new (window.AudioContext || window.webkitAudioContext)();
         if (this.audioCtx.state === 'suspended') {
             this.audioCtx.resume();
@@ -3933,7 +4012,6 @@ class App {
                 this.currentPage = 'home';
             } else {
                 this.currentPage = 'auth';
-                // إعادة تعيين البيانات المحلية
                 this.userVocabulary = [];
                 this.masteredWords = [];
                 this.unlockedLessons = [];
