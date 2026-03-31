@@ -22,12 +22,30 @@
 <body>
     <div id="app"></div>
     
-    <!-- Firebase SDK -->
-    <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-app.js";
-        import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged, updateProfile, updatePassword } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-auth.js";
-        import { getFirestore, doc, setDoc, getDoc, updateDoc, collection } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-firestore.js";
+    <script src="https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js"></script>
 
+    <script type="module">
+        // استيراد الدوال المطلوبة من Firebase CDN
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-app.js";
+        import { 
+            getAuth, 
+            onAuthStateChanged, 
+            signInWithEmailAndPassword, 
+            createUserWithEmailAndPassword, 
+            signOut, 
+            updateProfile 
+        } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-auth.js";
+        
+        import { 
+            getFirestore, 
+            doc, 
+            setDoc, 
+            getDoc, 
+            updateDoc, 
+            collection 
+        } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-firestore.js";
+
+        // إعدادات Firebase الخاصة بمشروعك
         const firebaseConfig = {
             apiKey: "AIzaSyCfzRIaQoZCgzeyubsY1Ta-uZBk3x1skqs",
             authDomain: "wordwise-97d44.firebaseapp.com",
@@ -38,28 +56,44 @@
             measurementId: "G-J3BKL29S7H"
         };
 
-        const app = initializeApp(firebaseConfig);
-        window.auth = getAuth(app);
-        window.db = getFirestore(app);
-        window.updateProfile = updateProfile;
-        window.updatePassword = updatePassword;
+        // تشغيل Firebase
+        const firebaseApp = initializeApp(firebaseConfig);
         
-        console.log("Firebase initialized successfully");
+        // تصدير المتغيرات والدوال لـ Window لكي يراها ملف app.js العادي
+        window.auth = getAuth(firebaseApp);
+        window.db = getFirestore(firebaseApp);
+        
+        // تصدير الدوال التي يستخدمها كود app.js الخاص بك
+        window.onAuthStateChanged = onAuthStateChanged;
+        window.signInWithEmailAndPassword = signInWithEmailAndPassword;
+        window.createUserWithEmailAndPassword = createUserWithEmailAndPassword;
+        window.signOut = signOut;
+        window.setDoc = setDoc;
+        window.doc = doc;
+        window.getDoc = getDoc;
+        window.updateDoc = updateDoc;
+
+        console.log("✅ Firebase System Initialized");
+
+        /** * تحميل ملفات المشروع برمجياً لضمان عدم تشغيل app.js 
+         * إلا بعد أن يصبح Firebase جاهزاً تماماً في المتصفح
+         */
+        const projectScripts = ["data.js", "gapfillDB.js", "app.js"];
+        
+        projectScripts.forEach(src => {
+            const script = document.createElement('script');
+            script.src = src;
+            script.async = false; // التحميل بالترتيب المذكور أعلاه
+            document.body.appendChild(script);
+        });
     </script>
-    
-    <script src="https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js"></script>
-    
-    <script src="data.js"></script>
-    <script src="gapfillDB.js"></script>
-    <script src="app.js"></script>
 
     <script>
-        // تسجيل الـ Service Worker ليعمل التطبيق بدون إنترنت (Offline)
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', () => {
                 navigator.serviceWorker.register('service-worker.js')
-                    .then(reg => console.log('Service Worker registered successfully'))
-                    .catch(err => console.error('Service Worker registration failed:', err));
+                    .then(reg => console.log('🚀 Service Worker: Active'))
+                    .catch(err => console.error('❌ Service Worker: Failed', err));
             });
         }
     </script>
