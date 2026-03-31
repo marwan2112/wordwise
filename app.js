@@ -4104,6 +4104,8 @@ case 'doAuth':
         this.setupGlobalEvents();
         
 // --- الجزء المطور لحل مشكلة البطء والشاشة السوداء ---
+// --- نهاية الدالة saveUserData وبداية مراقب الحالة ---
+        
         onAuthStateChanged(auth, async (user) => {
             console.log("Checking login status...");
             
@@ -4112,24 +4114,24 @@ case 'doAuth':
                 this.userData = { name: user.displayName || '', email: user.email, uid: user.uid };
                 this.currentPage = 'home';
                 
-                // 1. ارسم الواجهة فوراً ليدخل المستخدم للتطبيق بدون تأخير
+                // 1. دخول فوري للرئيسية
                 this.render(); 
 
                 try {
-                    // 2. جلب البيانات في الخلفية
+                    // 2. تحميل البيانات في الخلفية لمنع التعليق
                     await this.loadUserData(user.uid);
-                    console.log("Data loaded successfully");
+                    console.log("Data synced successfully");
                 } catch (err) {
                     console.error("Load Error:", err);
                 }
                 
-                // 3. تحديث الواجهة مرة أخرى بعد وصول البيانات (الجواهر والمستوى)
+                // 3. تحديث الواجهة بالبيانات الجديدة
                 this.render();
             } else {
                 this.currentUser = null;
                 this.currentPage = 'auth';
                 
-                // إعادة القيم الافتراضية عند تسجيل الخروج
+                // تصغير حجم البيانات عند الخروج لسرعة الأداء
                 this.userCoins = 0;
                 this.userProfile = {
                     name: '', age: '', joinDate: new Date().toLocaleDateString('ar-EG'),
@@ -4139,8 +4141,8 @@ case 'doAuth':
                 this.render();
             }
         });
-    }
-}
+    } // إغلاق الـ Constructor
+} // إغلاق الكلاس App
 
 // تشغيل التطبيق
 const appInstance = new App();
