@@ -3713,15 +3713,16 @@ class App {
             </main>`;
         }
 
-        if (this.currentPage === 'flashcards') {
+if (this.currentPage === 'flashcards') {
     let active;
     if (this.showAllCardsTemporary) {
+        // عرض كل الكلمات غير المحذوفة (حتى المتقنة)
         active = allTerms.filter(t => !this.hiddenFromCards.includes(String(t.id)));
     } else {
+        // العرض العادي: إخفاء الكلمات المتقنة والمحذوفة
         active = allTerms.filter(t => !this.masteredWords.includes(String(t.id)) && !this.hiddenFromCards.includes(String(t.id)));
     }
-    ...
-}            if (active.length === 0) {
+    if (active.length === 0) {
                 return `<div class="reading-card" style="text-align:center;">
                     <div style="font-size:2.5rem; margin-bottom:10px;">🧠</div>
                     <h3>🎉 ${this.t('اكتملت المراجعة!', 'Review completed!')}</h3>
