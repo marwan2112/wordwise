@@ -8,6 +8,7 @@ class App {
         this.audioPlaybackRate = 1.0;
         this.availableSpeeds = [0.5, 0.75, 1.0, 1.5, 2.0, 2.5, 3.0];
         this.placementStep = 0;
+        this.loadingData = true;
         this.currentDifficulty = 'A1';
         this.placementHistory = [];
         this.placementScore = 0;
@@ -420,10 +421,12 @@ class App {
         }
     }
 
-    async loadUserData(uid) {
+async loadUserData(uid) {
         if (!uid) return;
         try {
-            // الوصول إلى مستند المستخدم في مجموعة users باستخدام الـ UID
+            // تفعيل قفل التحميل لمنع الحفظ التلقائي أثناء جلب البيانات (يحل مشكلة اختلاف الأجهزة)
+            this.loadingData = true; 
+            
             const docRef = doc(db, "users", uid);
             const docSnap = await getDoc(docRef);
             
@@ -440,7 +443,7 @@ class App {
                 // 2. مزامنة الإحصائيات والمستوى
                 this.userStats = data.userStats || { xp: 0, level: 1, badges: [], earnedBadges: [], tier: 'برونزي' };
                 
-                // 3. مزامنة الملف الشخصي والاسم (حل مشكلة الصور التي أرفقتها)
+                // 3. مزامنة الملف الشخصي والاسم
                 this.userProfile = data.userProfile || {
                     name: data.name || this.userData?.name || '',
                     age: '',
@@ -473,10 +476,23 @@ class App {
                     this.userProfile.level = this.placementResults[0].level;
                 }
 
-                // تحديث الأوسمة والمستوى برمجياً
+                // استدعاء دالة التحديث إذا كانت موجودة
                 if (typeof this.updateLevelAndBadges === 'function') {
                     this.updateLevelAndBadges();
                 }
+
+                console.log("✅ تمت المزامنة بنجاح!");
+            } else {
+                console.log("مستخدم جديد: لا توجد بيانات سابقة على السيرفر.");
+            }
+        } catch (error) {
+            console.error("❌ خطأ أثناء جلب البيانات:", error);
+        } finally {
+            // فتح القفل للسماح بالحفظ مرة أخرى بعد اكتمال التحميل
+            this.loadingData = false;
+            this.render(); 
+        }
+    }
 
                 console.log("تمت المزامنة بنجاح! البيانات الآن موحدة.");
             } else {
@@ -489,34 +505,53 @@ class App {
         // إعادة رسم الواجهة لعرض البيانات الجديدة فوراً
         this.render();
     }
-    async saveUserData() {
-        if (!this.currentUser || !this.userData?.uid) return;
-        const uid = this.userData.uid;
-        const data = {
-            userVocabulary: this.userVocabulary,
-            masteredWords: this.masteredWords,
-            unlockedLessons: this.unlockedLessons,
-            hiddenFromCards: this.hiddenFromCards,
-            customLessons: this.customLessons,
-            generatedLessons: this.generatedLessons,
-            userStats: this.userStats,
-            placementResults: this.placementResults,
-            placementFullHistory: this.placementFullHistory,
-            userCoins: this.userCoins,
-            jumbleUnlocked: this.jumbleUnlocked,
-            listeningUnlocked: this.listeningUnlocked,
-            spellingUnlocked: this.spellingUnlocked,
-            gapFillUnlocked: this.gapFillUnlocked,
-            newWordsAddedCount: this.newWordsAddedCount,
-            adWatchedCount: this.adWatchedCount,
-            purchaseRequests: this.purchaseRequests,
-            userProfile: this.userProfile,
-            exerciseStats: this.exerciseStats,
-            lastTestedLesson: this.lastTestedLesson
-        };
-        await setDoc(doc(db, "users", uid), data, { merge: true });
-    }
+async saveUserData() {
+        // 1. منع الحفظ إذا كان التطبيق في حالة تحميل (يمنع تصفير بيانات الأجهزة)
+        if (!this.currentUser || this.loadingData) return;
 
+        const uid = this.currentUser.uid;
+        
+        // 2. تجميع البيانات
+        const data = {
+            userVocabulary: this.userVocabulary || [],
+            masteredWords: this.masteredWords || [],
+            unlockedLessons: this.unlockedLessons || [],
+            hiddenFromCards: this.hiddenFromCards || [],
+            customLessons: this.customLessons || {},
+            generatedLessons: this.generatedLessons || {},
+            userStats: this.userStats || {},
+            placementResults: this.placementResults || [],
+            placementFullHistory: this.placementFullHistory || [],
+            userCoins: this.userCoins || 0,
+            jumbleUnlocked: this.jumbleUnlocked || {},
+            listeningUnlocked: this.listeningUnlocked || {},
+            spellingUnlocked: this.spellingUnlocked || {},
+            gapFillUnlocked: this.gapFillUnlocked || {},
+            newWordsAddedCount: this.newWordsAddedCount || 0,
+            adWatchedCount: this.adWatchedCount || 0,
+            purchaseRequests: this.purchaseRequests || [],
+            userProfile: this.userProfile || {},
+            exerciseStats: this.exerciseStats || {},
+            lastTestedLesson: this.lastTestedLesson || {}
+        };
+
+        // 3. الحفظ في الخلفية (بدون await) لجعل التطبيق سريعاً جداً
+        try {
+            setDoc(doc(db, "users", uid), data, { merge: true })
+                .then(() => console.log("✅ تم التزامن مع السيرفر"))
+                .catch(e => console.error("❌ فشل التزامن:", e));
+        } catch (err) {
+            console.error("Critical Save Error:", err);
+        }
+    }        try {
+            // الحفظ بدون استخدام await هنا لضمان سرعة التطبيق وعدم تعليقه
+            setDoc(doc(db, "users", uid), data, { merge: true })
+                .then(() => console.log("✅ تم مزامنة التغييرات مع السيرفر"))
+                .catch(e => console.error("❌ فشل المزامنة:", e));
+        } catch (error) {
+            console.error("Error in saveUserData:", error);
+        }
+    }
     async logout() {
         await this.saveUserData();
         await signOut(auth);
@@ -2930,28 +2965,22 @@ class App {
                     this.speak(param);
                     break;
 
-                case 'nextC':
-                    const lessonData = this.getCurrentLessonData();
-                    const addedWords = this.userVocabulary.filter(v => v.lessonId == this.selectedLessonId);
-                    const allWords = lessonData ? [...lessonData.terms, ...addedWords] : [];
-                    let activeCards;
-                    if (this.showAllCardsTemporary) {
-                        activeCards = allWords.filter(t => !this.hiddenFromCards.includes(String(t.id)) && !this.repeatAllSessionMastered.includes(String(t.id)));
-                    } else {
-                        activeCards = allWords.filter(t => !this.masteredWords.includes(String(t.id)) && !this.hiddenFromCards.includes(String(t.id)));
-                    }
-                    if (activeCards.length === 0) break;
-                    const currentCard = activeCards[this.currentCardIndex];
-                    if (currentCard && !this.skippedCards.includes(String(currentCard.id))) {
-                        this.skippedCards.push(String(currentCard.id));
-                    }
-                    this.currentCardIndex++;
-                    if (this.currentCardIndex >= activeCards.length) {
-                        this.currentCardIndex = 0;
-                    }
-                    this.render();
-                    break;
+// البحث عن أزرار التقليب داخل الـ Event Listener
+case 'nextC':
+    if (this.currentCardIndex < this.flashcards.length - 1) {
+        this.currentCardIndex++;
+        this.render(); // التغيير فوراً على الشاشة
+        this.saveUserData(); // الحفظ يتم في الخلفية (بدون await)
+    }
+    break;
 
+case 'prevC':
+    if (this.currentCardIndex > 0) {
+        this.currentCardIndex--;
+        this.render(); // التغيير فوراً على الشاشة
+        this.saveUserData(); // الحفظ يتم في الخلفية (بدون await)
+    }
+    break;
                 case 'prevC':
                     const lessonPrev = this.getCurrentLessonData();
                     const addedPrev = this.userVocabulary.filter(v => v.lessonId == this.selectedLessonId);
@@ -4074,53 +4103,40 @@ case 'doAuth':
         }
         this.setupGlobalEvents();
         
+// --- الجزء المطور لحل مشكلة البطء والشاشة السوداء ---
         onAuthStateChanged(auth, async (user) => {
-            console.log("Checking Auth Status...");
+            console.log("Checking login status...");
             
             if (user) {
-                console.log("User logged in:", user.uid);
                 this.currentUser = user;
                 this.userData = { name: user.displayName || '', email: user.email, uid: user.uid };
+                this.currentPage = 'home';
+                
+                // 1. ارسم الواجهة فوراً ليدخل المستخدم للتطبيق بدون تأخير
+                this.render(); 
 
                 try {
-                    // محاولة جلب البيانات من Firestore مباشرة لتجنب تعليق loadUserData
-                    const userDoc = await getDoc(doc(db, "users", user.uid));
-                    if (userDoc.exists()) {
-                        const data = userDoc.data();
-                        this.userCoins = data.userCoins || 0;
-                        this.userProfile.name = data.name || user.displayName || '';
-                        this.userStats.level = data.level || 1;
-                        this.userStats.xp = data.xp || 0;
-                        // يمكنك إضافة باقي الحقول هنا (مثل unlockedLessons)
-                    }
+                    // 2. جلب البيانات في الخلفية
+                    await this.loadUserData(user.uid);
+                    console.log("Data loaded successfully");
                 } catch (err) {
-                    console.error("Firestore Error:", err);
+                    console.error("Load Error:", err);
                 }
-
-                this.currentPage = 'home';
+                
+                // 3. تحديث الواجهة مرة أخرى بعد وصول البيانات (الجواهر والمستوى)
+                this.render();
             } else {
-                console.log("User logged out");
                 this.currentUser = null;
                 this.currentPage = 'auth';
                 
-                // إعادة تصدير البيانات للقيم الافتراضية عند الخروج
+                // إعادة القيم الافتراضية عند تسجيل الخروج
                 this.userCoins = 0;
                 this.userProfile = {
-                    name: '',
-                    age: '',
-                    joinDate: new Date().toLocaleDateString('ar-EG'),
-                    level: 'A1',
-                    image: '',
-                    testsHistory: []
+                    name: '', age: '', joinDate: new Date().toLocaleDateString('ar-EG'),
+                    level: 'A1', image: '', testsHistory: []
                 };
                 this.userStats = { xp: 0, level: 1, badges: [], earnedBadges: [], tier: 'برونزي' };
-            }
-
-            // أهم سطر لإزالة الشاشة السوداء
-            if (typeof this.render === 'function') {
                 this.render();
-            } else {
-                console.error("Render function not found!");
             }
         });
     }
