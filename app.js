@@ -1,5 +1,5 @@
 // app.js - تطبيق تعلم اللغة الإنجليزية مع Firebase
-// النسخة الكاملة النهائية مع المزامنة بين الأجهزة
+// النسخة الكاملة النهائية مع المزامنة الفورية
 
 class App {
     constructor() {
@@ -17,7 +17,7 @@ class App {
         this.jumbleCurrentSentence = '';
         this.lang = localStorage.getItem('appLang') || 'ar';
         this.skippedCards = [];
-        this.xpEarnedWords = [];
+        this.xpEarnedWords = []; // لن نستخدم localStorage بعد الآن
         document.documentElement.setAttribute('dir', this.lang === 'ar' ? 'rtl' : 'ltr');
 
         this.userStats = { xp: 0, level: 1, badges: [], earnedBadges: [], tier: 'برونزي' };
