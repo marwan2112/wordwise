@@ -1,5 +1,5 @@
 // app.js - تطبيق تعلم اللغة الإنجليزية مع Firebase
-// النسخة الكاملة النهائية مع المزامنة الفورية
+// النسخة الكاملة مع حفظ البيانات في السحابة
 
 class App {
     constructor() {
@@ -17,7 +17,7 @@ class App {
         this.jumbleCurrentSentence = '';
         this.lang = localStorage.getItem('appLang') || 'ar';
         this.skippedCards = [];
-        this.xpEarnedWords = []; // لن نستخدم localStorage بعد الآن
+        this.xpEarnedWords = [];
         document.documentElement.setAttribute('dir', this.lang === 'ar' ? 'rtl' : 'ltr');
 
         this.userStats = { xp: 0, level: 1, badges: [], earnedBadges: [], tier: 'برونزي' };
@@ -497,10 +497,7 @@ class App {
                 await this.updateLevelAndBadges();
                 console.log("✅ تمت المزامنة بنجاح!");
             } else {
-                console.log("مستخدم جديد: سيتم إنشاء بيانات جديدة");
-                this.xpEarnedWords = [];
-                this.userCoins = 100;
-                await this.saveUserData();
+                console.log("مستخدم جديد: سيتم إنشاء بيانات جديدة عند أول حفظ");
             }
         } catch (error) {
             console.error("❌ خطأ أثناء جلب البيانات:", error);
@@ -511,7 +508,7 @@ class App {
     }
 
     async saveUserData() {
-        if (!this.currentUser || this.loadingData) return;
+        if (!this.currentUser) return;
         const uid = this.currentUser.uid;
         
         const data = {
@@ -1586,9 +1583,9 @@ class App {
         }
         if (imageFile) {
             const reader = new FileReader();
-            reader.onload = (e) => {
+            reader.onload = async (e) => {
                 this.userProfile.image = e.target.result;
-                this.saveUserData();
+                await this.saveUserData();
                 this.render();
             };
             reader.readAsDataURL(imageFile);
@@ -2742,7 +2739,7 @@ class App {
         return false;
     }
 
-    handleNewWord() {
+    async handleNewWord() {
         const eng = document.getElementById('newEng').value.trim();
         const arb = document.getElementById('newArb').value.trim();
         if (!eng || !arb) return;
@@ -2761,7 +2758,7 @@ class App {
         }
 
         this.userVocabulary.push({ id: "u" + Date.now(), lessonId: String(this.selectedLessonId), english: eng, arabic: arb });
-        this.saveUserData();
+        await this.saveUserData();
         document.getElementById('newEng').value = '';
         document.getElementById('newArb').value = '';
         this.newWordsAddedCount++;
