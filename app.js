@@ -9,6 +9,7 @@ class App {
         this.availableSpeeds = [0.5, 0.75, 1.0, 1.5, 2.0, 2.5, 3.0];
         this.placementStep = 0;
         this.loadingData = true;
+        this.isDataLoaded = false; // Flag to prevent saving until data is loaded
         this.currentDifficulty = 'A1';
         this.placementHistory = [];
         this.placementScore = 0;
@@ -405,6 +406,7 @@ class App {
                     this.userData = { name: name, email: email, uid: userCredential.user.uid };
                     this.resetToDefaults();
                     this.userCoins = 100; // Welcome bonus
+                    this.isDataLoaded = true; // Essential for signup
                     
                     await this.saveUserData();
                     
@@ -426,7 +428,9 @@ class App {
         if (!uid) return;
         try {
             this.loadingData = true;
-            this.render(); // Show loading state if needed
+            this.isDataLoaded = false; // Important: prevent saving while loading
+            this.render(); 
+            
             const docRef = doc(db, "users", uid);
             const docSnap = await getDoc(docRef);
             
@@ -435,7 +439,7 @@ class App {
                 console.log("جاري جلب البيانات من السيرفر لـ UID:", uid);
 
                 // Update internal state with server data
-                this.userCoins = data.userCoins ?? 0;
+                this.userCoins = (data.userCoins !== undefined) ? data.userCoins : 100;
                 this.masteredWords = data.masteredWords || [];
                 this.unlockedLessons = data.unlockedLessons || [];
                 this.hiddenFromCards = data.hiddenFromCards || [];
@@ -473,14 +477,16 @@ class App {
                 }
 
                 await this.updateLevelAndBadges();
+                this.isDataLoaded = true; // Data is successfully loaded from server
                 console.log("✅ تمت المزامنة بنجاح!");
             } else {
                 console.log("مستخدم جديد: لا توجد بيانات على السيرفر حالياً");
-                // Reset to defaults for new user
                 this.resetToDefaults();
+                this.isDataLoaded = true; // New user is also considered "loaded" to allow future saves
             }
         } catch (error) {
             console.error("❌ خطأ أثناء جلب البيانات:", error);
+            // In case of error, we DON'T set isDataLoaded to true to prevent overwriting server data with local defaults
         } finally {
             this.loadingData = false;
             this.render();
@@ -511,7 +517,10 @@ class App {
     }
 
     async saveUserData() {
-        if (!this.currentUser || this.loadingData) return;
+        if (!this.currentUser || this.loadingData || !this.isDataLoaded) {
+            console.log("⚠️ تم تأجيل الحفظ: البيانات لم تكتمل بعد أو جاري التحميل");
+            return;
+        }
         const uid = this.currentUser.uid;
         
         const data = {
@@ -3271,6 +3280,21 @@ class App {
     render() {
         const app = document.getElementById('app');
         if (!app) return;
+
+        // Add a clear loading screen if data is being fetched
+        if (this.loadingData) {
+            app.innerHTML = `
+                <div style="display:flex; flex-direction:column; justify-content:center; align-items:center; height:100vh; font-family:Cairo, sans-serif;">
+                    <div class="loader" style="border: 4px solid #f3f3f3; border-top: 4px solid #3498db; border-radius: 50%; width: 40px; height: 40px; animation: spin 2s linear infinite;"></div>
+                    <p style="margin-top:20px; color:#666;">${this.t('جاري مزامنة بياناتك...', 'Syncing your data...')}</p>
+                    <style>
+                        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+                    </style>
+                </div>
+            `;
+            return;
+        }
+
         const lesson = this.getCurrentLessonData();
         const added = this.userVocabulary.filter(v => v.lessonId == this.selectedLessonId);
         const allTerms = lesson ? [...lesson.terms, ...added] : [];
@@ -4070,10 +4094,11 @@ class App {
                 this.currentUser = user;
                 this.userData = { name: user.displayName || '', email: user.email, uid: user.uid };
                 
-                // Show a loading view or state while data is being fetched
+                // Set flags before any render
                 this.loadingData = true;
+                this.isDataLoaded = false;
                 this.currentPage = 'home';
-                this.render(); 
+                this.render(); // This will show a loading screen because loadingData is true
                 
                 try {
                     await this.loadUserData(user.uid);
@@ -4082,6 +4107,7 @@ class App {
                     console.error("❌ Load Error during auth change:", err);
                 } finally {
                     this.loadingData = false;
+                    // Note: isDataLoaded is set inside loadUserData
                     this.render();
                 }
             } else {
