@@ -9,7 +9,8 @@ class App {
         this.availableSpeeds = [0.5, 0.75, 1.0, 1.5, 2.0, 2.5, 3.0];
         this.placementStep = 0;
         this.loadingData = true;
-        this.isDataLoaded = false; // Flag to prevent saving until data is loaded
+        this.isDataLoaded = false; 
+        this.canSave = false; // NEW FLAG: Prevent any save operation until data is fully loaded from server
         this.currentDifficulty = 'A1';
         this.placementHistory = [];
         this.placementScore = 0;
@@ -406,7 +407,8 @@ class App {
                     this.userData = { name: name, email: email, uid: userCredential.user.uid };
                     this.resetToDefaults();
                     this.userCoins = 100; // Welcome bonus
-                    this.isDataLoaded = true; // Essential for signup
+                    this.isDataLoaded = true; 
+                    this.canSave = true; // Essential for signup to allow first save
                     
                     await this.saveUserData();
                     
@@ -428,7 +430,8 @@ class App {
         if (!uid) return;
         try {
             this.loadingData = true;
-            this.isDataLoaded = false; // Important: prevent saving while loading
+            this.isDataLoaded = false;
+            this.canSave = false; // Disable saving immediately
             this.render(); 
             
             const docRef = doc(db, "users", uid);
@@ -438,7 +441,6 @@ class App {
                 const data = docSnap.data();
                 console.log("جاري جلب البيانات من السيرفر لـ UID:", uid);
 
-                // Update internal state with server data
                 this.userCoins = (data.userCoins !== undefined) ? data.userCoins : 100;
                 this.masteredWords = data.masteredWords || [];
                 this.unlockedLessons = data.unlockedLessons || [];
@@ -446,24 +448,15 @@ class App {
                 this.userVocabulary = data.userVocabulary || [];
                 this.xpEarnedWords = data.xpEarnedWords || [];
                 this.userStats = data.userStats || { xp: 0, level: 1, badges: [], earnedBadges: [], tier: 'برونزي' };
+                this.userProfile = data.userProfile || { name: '', age: '', joinDate: new Date().toLocaleDateString('ar-EG'), level: 'A1', image: '', testsHistory: [] };
                 
-                this.userProfile = data.userProfile || {
-                    name: data.name || this.userData?.name || '',
-                    age: '',
-                    joinDate: new Date().toLocaleDateString('ar-EG'),
-                    level: 'A1',
-                    image: '',
-                    testsHistory: []
-                };
+                // Extra safety for nested profile
+                if (data.userProfile) Object.assign(this.userProfile, data.userProfile);
+                if (!this.userProfile.name) this.userProfile.name = data.name || this.userData?.name || '';
 
                 this.placementResults = data.placementResults || [];
                 this.placementFullHistory = data.placementFullHistory || [];
-                this.exerciseStats = data.exerciseStats || {
-                    quiz: { correct: 0, total: 0 },
-                    listening: { correct: 0, total: 0 },
-                    spelling: { correct: 0, total: 0 },
-                    gapFill: { correct: 0, total: 0 }
-                };
+                this.exerciseStats = data.exerciseStats || { quiz: { correct: 0, total: 0 }, listening: { correct: 0, total: 0 }, spelling: { correct: 0, total: 0 }, gapFill: { correct: 0, total: 0 } };
 
                 this.jumbleUnlocked = data.jumbleUnlocked || {};
                 this.listeningUnlocked = data.listeningUnlocked || {};
@@ -477,16 +470,18 @@ class App {
                 }
 
                 await this.updateLevelAndBadges();
-                this.isDataLoaded = true; // Data is successfully loaded from server
-                console.log("✅ تمت المزامنة بنجاح!");
+                this.isDataLoaded = true;
+                this.canSave = true; // Safe to save now!
+                console.log("✅ تمت المزامنة بنجاح من Firestore!");
             } else {
-                console.log("مستخدم جديد: لا توجد بيانات على السيرفر حالياً");
+                console.log("مستخدم جديد: تهيئة بيانات أولية");
                 this.resetToDefaults();
-                this.isDataLoaded = true; // New user is also considered "loaded" to allow future saves
+                this.isDataLoaded = true;
+                this.canSave = true; // Safe to save for new user
             }
         } catch (error) {
             console.error("❌ خطأ أثناء جلب البيانات:", error);
-            // In case of error, we DON'T set isDataLoaded to true to prevent overwriting server data with local defaults
+            // DO NOT set canSave to true here to prevent data loss on server errors
         } finally {
             this.loadingData = false;
             this.render();
@@ -517,8 +512,8 @@ class App {
     }
 
     async saveUserData() {
-        if (!this.currentUser || this.loadingData || !this.isDataLoaded) {
-            console.log("⚠️ تم تأجيل الحفظ: البيانات لم تكتمل بعد أو جاري التحميل");
+        if (!this.currentUser || this.loadingData || !this.isDataLoaded || !this.canSave) {
+            console.log("⚠️ تم حظر الحفظ: لم يتم تحميل البيانات الأصلية من السيرفر بعد");
             return;
         }
         const uid = this.currentUser.uid;
@@ -4095,11 +4090,13 @@ class App {
                 this.currentUser = user;
                 this.userData = { name: user.displayName || '', email: user.email, uid: user.uid };
                 
-                // Set flags before any render
+                // CRITICAL: Block any save until load is confirmed
                 this.loadingData = true;
                 this.isDataLoaded = false;
+                this.canSave = false; 
+                
                 this.currentPage = 'home';
-                this.render(); // This will show a loading screen because loadingData is true
+                this.render(); 
                 
                 try {
                     await this.loadUserData(user.uid);
@@ -4108,7 +4105,6 @@ class App {
                     console.error("❌ Load Error during auth change:", err);
                 } finally {
                     this.loadingData = false;
-                    // Note: isDataLoaded is set inside loadUserData
                     this.render();
                 }
             } else {
