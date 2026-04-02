@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="theme-color" content="#1e40af">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="description" content="WordWise - حكمة الكلمات">
+    <title>WordWise - حكمة الكلمات</title>
+
+    <link rel="manifest" href="manifest.json">
+    <link rel="icon" type="image/png" href="wordwise_logo.png">
+    <link rel="apple-touch-icon" href="wordwise_logo.png">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="app"></div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js"></script>
+
+    <script type="module">
+        // استيراد الدوال المطلوبة من Firebase CDN
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-app.js";
+        import { 
+            getAuth, 
+            onAuthStateChanged, 
+            signInWithEmailAndPassword, 
+            createUserWithEmailAndPassword, 
+            signOut, 
+            updateProfile,
+            updatePassword
+        } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-auth.js";
+        
+        import { 
+            getFirestore, 
+            doc, 
+            setDoc, 
+            getDoc, 
+            updateDoc, 
+            collection,
+            deleteDoc
+        } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-firestore.js";
+
+        // إعدادات Firebase الخاصة بمشروعك
+        const firebaseConfig = {
+            apiKey: "AIzaSyCfzRIaQoZCgzeyubsY1Ta-uZBk3x1skqs",
+            authDomain: "wordwise-97d44.firebaseapp.com",
+            projectId: "wordwise-97d44",
+            storageBucket: "wordwise-97d44.firebasestorage.app",
+            messagingSenderId: "388003307189",
+            appId: "1:388003307189:web:5d13e92d274b437b4c28fc",
+            measurementId: "G-J3BKL29S7H"
+        };
+
+        // تشغيل Firebase
+        const firebaseApp = initializeApp(firebaseConfig);
+        
+        // تصدير المتغيرات والدوال لـ Window لكي يراها ملف app.js العادي
+        window.auth = getAuth(firebaseApp);
+        window.db = getFirestore(firebaseApp);
+        
+        // تصدير الدوال التي يستخدمها كود app.js الخاص بك
+        window.onAuthStateChanged = onAuthStateChanged;
+        window.signInWithEmailAndPassword = signInWithEmailAndPassword;
+        window.createUserWithEmailAndPassword = createUserWithEmailAndPassword;
+        window.signOut = signOut;
+        window.updateProfile = updateProfile;
+        window.updatePassword = updatePassword;
+        window.setDoc = setDoc;
+        window.doc = doc;
+        window.getDoc = getDoc;
+        window.updateDoc = updateDoc;
+        window.collection = collection;
+        window.deleteDoc = deleteDoc;
+
+        console.log("✅ Firebase System Initialized - All functions exported");
+
+        // التحقق من أن جميع الدوال متوفرة
+        const requiredFunctions = ['auth', 'db', 'onAuthStateChanged', 'signInWithEmailAndPassword', 'createUserWithEmailAndPassword', 'signOut', 'updateProfile', 'setDoc', 'doc', 'getDoc'];
+        let allAvailable = true;
+        requiredFunctions.forEach(fn => {
+            if (typeof window[fn] === 'undefined') {
+                console.error(`❌ Missing: ${fn}`);
+                allAvailable = false;
+            }
+        });
+        
+        if (allAvailable) {
+            console.log("✅ All Firebase functions are ready");
+        } else {
+            console.error("❌ Some Firebase functions are missing");
+        }
+
+        /** * تحميل ملفات المشروع برمجياً لضمان عدم تشغيل app.js 
+         * إلا بعد أن يصبح Firebase جاهزاً تماماً في المتصفح
+         */
+        const projectScripts = ["data.js", "gapfillDB.js", "app.js"];
+        
+        let loadedCount = 0;
+        projectScripts.forEach(src => {
+            const script = document.createElement('script');
+            script.src = src;
+            script.async = false; // التحميل بالترتيب المذكور أعلاه
+            script.onload = () => {
+                loadedCount++;
+                console.log(`✅ Loaded: ${src} (${loadedCount}/${projectScripts.length})`);
+                if (loadedCount === projectScripts.length) {
+                    console.log("✅ All project scripts loaded successfully");
+                }
+            };
+            script.onerror = () => {
+                console.error(`❌ Failed to load: ${src}`);
+            };
+            document.body.appendChild(script);
+        });
+    </script>
+
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('service-worker.js')
+                    .then(reg => console.log('🚀 Service Worker: Active'))
+                    .catch(err => console.error('❌ Service Worker: Failed', err));
+            });
+        }
+    </script>
+</body>
+</html>
