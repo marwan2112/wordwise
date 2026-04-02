@@ -1,5 +1,5 @@
 // app.js - تطبيق تعلم اللغة الإنجليزية مع Firebase
-// النسخة الكاملة مع حفظ البيانات في السحابة
+// النسخة النهائية مع حفظ كامل للبيانات
 
 class App {
     constructor() {
@@ -370,12 +370,8 @@ class App {
             return;
         }
 
-        if (!name && !this.currentUser) {
-            alert(this.t('الرجاء إدخال الاسم الكامل', 'Please enter your full name'));
-            return;
-        }
-
         try {
+            // محاولة تسجيل الدخول
             const userCredential = await signInWithEmailAndPassword(auth, email, pass);
             this.currentUser = userCredential.user;
             this.userData = { name: userCredential.user.displayName || name || '', email: userCredential.user.email, uid: userCredential.user.uid };
@@ -387,6 +383,7 @@ class App {
         } catch (error) {
             console.error("Login error:", error.code, error.message);
             
+            // إذا كان المستخدم غير موجود، نقوم بإنشاء حساب جديد
             if (error.code === 'auth/user-not-found' || error.code === 'auth/invalid-credential') {
                 if (!name) {
                     alert(this.t('الرجاء إدخال الاسم الكامل لإنشاء حساب جديد', 'Please enter your full name to create a new account'));
@@ -1583,9 +1580,9 @@ class App {
         }
         if (imageFile) {
             const reader = new FileReader();
-            reader.onload = async (e) => {
+            reader.onload = (e) => {
                 this.userProfile.image = e.target.result;
-                await this.saveUserData();
+                this.saveUserData();
                 this.render();
             };
             reader.readAsDataURL(imageFile);
