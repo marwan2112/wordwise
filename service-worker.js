@@ -32,18 +32,43 @@ self.addEventListener('activate', event => {
 });
 
 self.addEventListener('fetch', event => {
-  event.respondWith(
-    caches.match(event.request)
-      .then(response => {
-        if (response) return response;
-        return fetch(event.request).then(response => {
-          if (!response || response.status !== 200 || response.type !== 'basic') return response;
-          const responseToCache = response.clone();
-          caches.open(CACHE_NAME).then(cache => {
-            cache.put(event.request, responseToCache);
-          });
+  // Use "Network First" strategy for pages and scripts to ensure data sync is fresh
+  if (event.request.mode === 'navigate' || 
+      event.request.destination === 'script' || 
+      event.request.url.includes('app.js') || 
+      event.request.url.includes('index.html')) {
+    event.respondWith(
+      fetch(event.request)
+        .then(response => {
+          // If network is OK, update cache and return
+          if (response && response.status === 200) {
+            const responseToCache = response.clone();
+            caches.open(CACHE_NAME).then(cache => {
+              cache.put(event.request, responseToCache);
+            });
+          }
           return response;
-        });
-      })
-  );
+        })
+        .catch(() => {
+          // If network fails, try cache
+          return caches.match(event.request);
+        })
+    );
+  } else {
+    // For other assets (images, fonts), use "Cache First"
+    event.respondWith(
+      caches.match(event.request)
+        .then(response => {
+          if (response) return response;
+          return fetch(event.request).then(response => {
+            if (!response || response.status !== 200) return response;
+            const responseToCache = response.clone();
+            caches.open(CACHE_NAME).then(cache => {
+              cache.put(event.request, responseToCache);
+            });
+            return response;
+          });
+        })
+    );
+  }
 });
