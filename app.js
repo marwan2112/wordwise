@@ -545,6 +545,7 @@ class App {
             exerciseStats: this.exerciseStats || {},
             lastTestedLesson: this.lastTestedLesson || {},
             xpEarnedWords: this.xpEarnedWords || [],
+            userStats: this.userStats || { xp: 0, level: 1, badges: [], earnedBadges: [], tier: 'برونزي' },
             lastUpdated: new Date().toISOString()
         };
 
