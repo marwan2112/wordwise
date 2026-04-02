@@ -1,5 +1,5 @@
 // app.js - تطبيق تعلم اللغة الإنجليزية مع Firebase
-// النسخة النهائية مع حفظ كامل للبيانات ومزامنة بين الأجهزة
+// النسخة النهائية مع حفظ كامل للبيانات
 
 class App {
     constructor() {
@@ -359,7 +359,239 @@ class App {
     addMasteredWordReward(wordId) {
         this.addXPOnce(1, wordId);
     }
-        addThemeStyles() {
+
+    async handleAuth() {
+        const name = document.getElementById('authName')?.value;
+        const email = document.getElementById('authEmail')?.value;
+        const pass = document.getElementById('authPass')?.value;
+
+        if (!email || !pass) {
+            alert(this.t('الرجاء إدخال البريد الإلكتروني وكلمة المرور', 'Please enter email and password'));
+            return;
+        }
+
+        try {
+            // محاولة تسجيل الدخول
+            const userCredential = await signInWithEmailAndPassword(auth, email, pass);
+            this.currentUser = userCredential.user;
+            this.userData = { name: userCredential.user.displayName || name || 'User', email: userCredential.user.email, uid: userCredential.user.uid };
+            
+            this.loadingData = true;
+            this.render();
+            
+            await this.loadUserData(userCredential.user.uid);
+            this.currentPage = 'home';
+            this.loadingData = false;
+            this.render();
+            alert(this.t('تم تسجيل الدخول بنجاح', 'Login successful'));
+            
+        } catch (error) {
+            console.error("Login error:", error.code, error.message);
+            
+            // إذا كان المستخدم غير موجود، نقوم بإنشاء حساب جديد
+            if (error.code === 'auth/user-not-found' || error.code === 'auth/invalid-credential') {
+                if (!name) {
+                    alert(this.t('الرجاء إدخال الاسم الكامل لإنشاء حساب جديد', 'Please enter your full name to create a new account'));
+                    return;
+                }
+                
+                try {
+                    const userCredential = await createUserWithEmailAndPassword(auth, email, pass);
+                    this.currentUser = userCredential.user;
+                    
+                    await updateProfile(this.currentUser, { displayName: name });
+                    
+                    // Initialize with defaults then save
+                    this.userData = { name: name, email: email, uid: userCredential.user.uid };
+                    this.resetToDefaults();
+                    this.userCoins = 100; // Welcome bonus
+                    
+                    await this.saveUserData();
+                    
+                    this.currentPage = 'home';
+                    this.render();
+                    alert(this.t('تم إنشاء الحساب بنجاح! تم منحك 100 لؤلؤة 💎', 'Account created successfully! You got 100 pearls 💎'));
+                    
+                } catch (signUpError) {
+                    console.error("Signup error:", signUpError);
+                    alert(this.t('فشل إنشاء الحساب: ' + signUpError.message, 'Account creation failed: ' + signUpError.message));
+                }
+            } else {
+                alert(this.t('فشل تسجيل الدخول: ' + error.message, 'Login failed: ' + error.message));
+            }
+        }
+    }
+
+    async loadUserData(uid) {
+        if (!uid) return;
+        try {
+            this.loadingData = true;
+            this.render(); // Show loading state if needed
+            const docRef = doc(db, "users", uid);
+            const docSnap = await getDoc(docRef);
+            
+            if (docSnap.exists()) {
+                const data = docSnap.data();
+                console.log("جاري جلب البيانات من السيرفر لـ UID:", uid);
+
+                // Update internal state with server data
+                this.userCoins = data.userCoins ?? 0;
+                this.masteredWords = data.masteredWords || [];
+                this.unlockedLessons = data.unlockedLessons || [];
+                this.hiddenFromCards = data.hiddenFromCards || [];
+                this.userVocabulary = data.userVocabulary || [];
+                this.xpEarnedWords = data.xpEarnedWords || [];
+                this.userStats = data.userStats || { xp: 0, level: 1, badges: [], earnedBadges: [], tier: 'برونزي' };
+                
+                this.userProfile = data.userProfile || {
+                    name: data.name || this.userData?.name || '',
+                    age: '',
+                    joinDate: new Date().toLocaleDateString('ar-EG'),
+                    level: 'A1',
+                    image: '',
+                    testsHistory: []
+                };
+
+                this.placementResults = data.placementResults || [];
+                this.placementFullHistory = data.placementFullHistory || [];
+                this.exerciseStats = data.exerciseStats || {
+                    quiz: { correct: 0, total: 0 },
+                    listening: { correct: 0, total: 0 },
+                    spelling: { correct: 0, total: 0 },
+                    gapFill: { correct: 0, total: 0 }
+                };
+
+                this.jumbleUnlocked = data.jumbleUnlocked || {};
+                this.listeningUnlocked = data.listeningUnlocked || {};
+                this.spellingUnlocked = data.spellingUnlocked || {};
+                this.gapFillUnlocked = data.gapFillUnlocked || {};
+                this.customLessons = data.customLessons || {};
+                this.generatedLessons = data.generatedLessons || {};
+
+                if (this.placementResults && this.placementResults.length > 0) {
+                    this.userProfile.level = this.placementResults[0].level;
+                }
+
+                await this.updateLevelAndBadges();
+                console.log("✅ تمت المزامنة بنجاح!");
+            } else {
+                console.log("مستخدم جديد: لا توجد بيانات على السيرفر حالياً");
+                // Reset to defaults for new user
+                this.resetToDefaults();
+            }
+        } catch (error) {
+            console.error("❌ خطأ أثناء جلب البيانات:", error);
+        } finally {
+            this.loadingData = false;
+            this.render();
+        }
+    }
+
+    resetToDefaults() {
+        this.userCoins = 100; // New user bonus
+        this.masteredWords = [];
+        this.unlockedLessons = [];
+        this.userVocabulary = [];
+        this.xpEarnedWords = [];
+        this.userStats = { xp: 0, level: 1, badges: [], earnedBadges: [], tier: 'برونزي' };
+        this.userProfile = {
+            name: this.userData?.name || '',
+            age: '',
+            joinDate: new Date().toLocaleDateString('ar-EG'),
+            level: 'A1',
+            image: '',
+            testsHistory: []
+        };
+        this.exerciseStats = {
+            quiz: { correct: 0, total: 0 },
+            listening: { correct: 0, total: 0 },
+            spelling: { correct: 0, total: 0 },
+            gapFill: { correct: 0, total: 0 }
+        };
+    }
+
+    async saveUserData() {
+        if (!this.currentUser || this.loadingData) return;
+        const uid = this.currentUser.uid;
+        
+        const data = {
+            userVocabulary: this.userVocabulary || [],
+            masteredWords: this.masteredWords || [],
+            unlockedLessons: this.unlockedLessons || [],
+            hiddenFromCards: this.hiddenFromCards || [],
+            customLessons: this.customLessons || {},
+            generatedLessons: this.generatedLessons || {},
+            userStats: this.userStats || {},
+            placementResults: this.placementResults || [],
+            placementFullHistory: this.placementFullHistory || [],
+            userCoins: this.userCoins || 0,
+            jumbleUnlocked: this.jumbleUnlocked || {},
+            listeningUnlocked: this.listeningUnlocked || {},
+            spellingUnlocked: this.spellingUnlocked || {},
+            gapFillUnlocked: this.gapFillUnlocked || {},
+            newWordsAddedCount: this.newWordsAddedCount || 0,
+            adWatchedCount: this.adWatchedCount || 0,
+            purchaseRequests: this.purchaseRequests || [],
+            userProfile: this.userProfile || {},
+            exerciseStats: this.exerciseStats || {},
+            lastTestedLesson: this.lastTestedLesson || {},
+            xpEarnedWords: this.xpEarnedWords || [],
+            lastUpdated: new Date().toISOString()
+        };
+
+        try {
+            await setDoc(doc(db, "users", uid), data, { merge: true });
+            console.log("✅ تم التزامن مع السيرفر (Firestore)");
+        } catch (err) {
+            console.error("❌ فشل التزامن مع Firestore:", err);
+            // Fallback to local storage if server fails (optional but good for robustness)
+            localStorage.setItem(`backup_data_${uid}`, JSON.stringify(data));
+        }
+    }
+
+    async logout() {
+        await this.saveUserData();
+        await signOut(auth);
+        this.currentUser = null;
+        this.userData = null;
+        this.userVocabulary = [];
+        this.masteredWords = [];
+        this.unlockedLessons = [];
+        this.hiddenFromCards = [];
+        this.customLessons = {};
+        this.generatedLessons = {};
+        this.userStats = { xp: 0, level: 1, badges: [], earnedBadges: [], tier: 'برونزي' };
+        this.placementResults = [];
+        this.placementFullHistory = [];
+        this.userCoins = 0;
+        this.xpEarnedWords = [];
+        this.jumbleUnlocked = {};
+        this.listeningUnlocked = {};
+        this.spellingUnlocked = {};
+        this.gapFillUnlocked = {};
+        this.newWordsAddedCount = 0;
+        this.adWatchedCount = 0;
+        this.purchaseRequests = [];
+        this.userProfile = {
+            name: '',
+            age: '',
+            joinDate: new Date().toLocaleDateString('ar-EG'),
+            level: 'A1',
+            image: '',
+            testsHistory: []
+        };
+        this.exerciseStats = {
+            quiz: { correct: 0, total: 0 },
+            listening: { correct: 0, total: 0 },
+            spelling: { correct: 0, total: 0 },
+            gapFill: { correct: 0, total: 0 }
+        };
+        this.lastTestedLesson = { beginner: 0, intermediate: 0, advanced: 0 };
+        this.currentPage = 'auth';
+        this.render();
+    }
+
+    addThemeStyles() {
         const styleId = 'theme-dynamic-styles';
         if (document.getElementById(styleId)) return;
         const style = document.createElement('style');
@@ -1246,7 +1478,8 @@ class App {
             if (onCancel) onCancel();
         };
     }
-        unlockLessonWithCoins(lessonId) {
+
+    unlockLessonWithCoins(lessonId) {
         if (this.userCoins >= 100) {
             this.showCoinPurchaseModal(100, (confirmed) => {
                 if (confirmed) {
@@ -1506,7 +1739,8 @@ class App {
         this.prepareJumble();
         this.render();
     }
-        getAllAvailableWordsForExercises() {
+
+    getAllAvailableWordsForExercises() {
         const lesson = this.getCurrentLessonData();
         if (!lesson) return [];
         const allTerms = [...lesson.terms, ...this.userVocabulary.filter(v => v.lessonId == this.selectedLessonId)];
@@ -2510,7 +2744,8 @@ class App {
         }
         return false;
     }
-        async handleNewWord() {
+
+    async handleNewWord() {
         const eng = document.getElementById('newEng').value.trim();
         const arb = document.getElementById('newArb').value.trim();
         if (!eng || !arb) return;
@@ -3808,55 +4043,9 @@ class App {
         });
     }
 
-    setupAutoSave() {
-        window.addEventListener('beforeunload', () => {
-            if (this.currentUser) this.saveUserData();
-        });
-        setInterval(() => {
-            if (this.currentUser) this.saveUserData();
-        }, 60000);
-    }
-
-    resetToDefaultData() {
-        this.userCoins = 0;
-        this.masteredWords = [];
-        this.unlockedLessons = [];
-        this.hiddenFromCards = [];
-        this.userVocabulary = [];
-        this.xpEarnedWords = [];
-        this.userStats = { xp: 0, level: 1, badges: [], earnedBadges: [], tier: 'برونزي' };
-        this.userProfile = {
-            name: '',
-            age: '',
-            joinDate: new Date().toLocaleDateString('ar-EG'),
-            level: 'A1',
-            image: '',
-            testsHistory: []
-        };
-        this.placementResults = [];
-        this.placementFullHistory = [];
-        this.exerciseStats = {
-            quiz: { correct: 0, total: 0 },
-            listening: { correct: 0, total: 0 },
-            spelling: { correct: 0, total: 0 },
-            gapFill: { correct: 0, total: 0 }
-        };
-        this.jumbleUnlocked = {};
-        this.listeningUnlocked = {};
-        this.spellingUnlocked = {};
-        this.gapFillUnlocked = {};
-        this.customLessons = {};
-        this.generatedLessons = {};
-        this.lastTestedLesson = { beginner: 0, intermediate: 0, advanced: 0 };
-        this.newWordsAddedCount = 0;
-        this.adWatchedCount = 0;
-        this.purchaseRequests = [];
-    }
-
     init() {
         this.addThemeStyles();
         document.documentElement.setAttribute('data-theme', this.theme);
-        this.setupAutoSave();
         
         if (typeof auth === 'undefined' || typeof db === 'undefined') {
             setTimeout(() => this.init(), 500);
@@ -3880,13 +4069,27 @@ class App {
             if (user) {
                 this.currentUser = user;
                 this.userData = { name: user.displayName || '', email: user.email, uid: user.uid };
-                await this.loadUserData(user.uid);
+                
+                // Show a loading view or state while data is being fetched
+                this.loadingData = true;
                 this.currentPage = 'home';
-                this.render();
+                this.render(); 
+                
+                try {
+                    await this.loadUserData(user.uid);
+                    console.log("✅ Data synced successfully from Firestore");
+                } catch (err) {
+                    console.error("❌ Load Error during auth change:", err);
+                } finally {
+                    this.loadingData = false;
+                    this.render();
+                }
             } else {
                 this.currentUser = null;
                 this.currentPage = 'auth';
-                this.resetToDefaultData();
+                this.loadingData = false;
+                // Important: Reset state when no user is logged in
+                this.resetToDefaults();
                 this.render();
             }
         });
