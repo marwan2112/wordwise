@@ -4111,8 +4111,6 @@ class App {
                 this.currentUser = null;
                 this.currentPage = 'auth';
                 this.loadingData = false;
-                // Important: Reset state when no user is logged in
-                this.resetToDefaults();
                 this.render();
             }
         });
