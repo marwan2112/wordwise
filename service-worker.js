@@ -1,10 +1,8 @@
-const CACHE_NAME = 'wordwise-v1';
+const CACHE_NAME = 'wordwise-v2'; // زيادة الإصدار لضمان تحديث الكاش
 const urlsToCache = [
   '/wordwise/',
   '/wordwise/index.html',
   '/wordwise/styles.css',
-  '/wordwise/app.js',
-  '/wordwise/data.js',
   '/wordwise/wordwise_logo.png',
   'https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap'
 ];
@@ -32,15 +30,18 @@ self.addEventListener('activate', event => {
 });
 
 self.addEventListener('fetch', event => {
-  // Use "Network First" strategy for pages and scripts to ensure data sync is fresh
-  if (event.request.mode === 'navigate' || 
-      event.request.destination === 'script' || 
-      event.request.url.includes('app.js') || 
-      event.request.url.includes('index.html')) {
+  const url = new URL(event.request.url);
+  
+  // استراتيجية الشبكة أولاً للملفات المهمة (الصفحة الرئيسية وملفات التطبيق الأساسية)
+  if (event.request.mode === 'navigate' ||
+      url.pathname.endsWith('app.js') ||
+      url.pathname.endsWith('data.js') ||
+      url.pathname.endsWith('gapfillDB.js') ||
+      url.pathname.endsWith('index.html')) {
     event.respondWith(
       fetch(event.request)
         .then(response => {
-          // If network is OK, update cache and return
+          // إذا نجحت الشبكة، قم بتخزين نسخة في الكاش للاستخدام المستقبلي عند عدم الاتصال
           if (response && response.status === 200) {
             const responseToCache = response.clone();
             caches.open(CACHE_NAME).then(cache => {
@@ -50,12 +51,12 @@ self.addEventListener('fetch', event => {
           return response;
         })
         .catch(() => {
-          // If network fails, try cache
+          // في حالة فشل الشبكة، حاول من الكاش
           return caches.match(event.request);
         })
     );
   } else {
-    // For other assets (images, fonts), use "Cache First"
+    // للملفات الأخرى (الصور، الخطوط، إلخ) استخدم الكاش أولاً ثم الشبكة
     event.respondWith(
       caches.match(event.request)
         .then(response => {
