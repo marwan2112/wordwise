@@ -1,16 +1,20 @@
 // app.js - تطبيق تعلم اللغة الإنجليزية مع Firebase
-// النسخة النهائية المُصلحة - جميع مشاكل الحفظ تم إصلاحها
+// النسخة النهائية المُصلحة - جميع مشاكل الحفظ وسباقية البيانات تم إصلاحها
 
 class App {
     constructor() {
+        // ========== نظام الحماية (Guard System) ==========
+        this.loadingData = true;
+        this.isDataLoaded = false;
+        this.canSave = false;
+        this.isProcessingAuth = false; // منع تداخل عمليات المصادقة (Race Condition)
+        // ================================================
+
         this.repeatAllSessionMastered = [];
         this.currentAudio = null;
         this.audioPlaybackRate = 1.0;
         this.availableSpeeds = [0.5, 0.75, 1.0, 1.5, 2.0, 2.5, 3.0];
         this.placementStep = 0;
-        this.loadingData = true;
-        this.isDataLoaded = false;
-        this.canSave = false;
         this.currentDifficulty = 'A1';
         this.placementHistory = [];
         this.placementScore = 0;
@@ -241,6 +245,8 @@ class App {
     }
 
     async updateLevelAndBadges() {
+        if (!this.canSave) return; // منع التحديث إذا كان الحفظ مغلقاً
+
         const oldLevel = this.userStats.level;
         const newProgress = this.getCurrentLevelProgress();
         const newLevel = newProgress.level;
@@ -294,8 +300,7 @@ class App {
             this.showCustomModal('success', '🏅', this.t(`تهانينا! حصلت على أوسمة جديدة: ${badgeNames}`, `Congratulations! You earned new badges: ${badgeNames}`));
         }
 
-        // ✅ الإصلاح: لا نحفظ هنا لأن saveUserData ستُستدعى من المستدعي
-        // هذا يمنع الحفظ المتكرر والـ race condition
+        await this.saveUserData();
     }
 
     recordCorrectAnswer(exerciseType) {
@@ -364,73 +369,81 @@ class App {
     }
 
     async handleAuth() {
+        if (this.isProcessingAuth) {
+            console.log("⚠️ عملية مصادقة جارية بالفعل، تم تجاهل الطلب");
+            return;
+        }
+        this.isProcessingAuth = true;
+
         const name = document.getElementById('authName')?.value;
         const email = document.getElementById('authEmail')?.value;
         const pass = document.getElementById('authPass')?.value;
 
         if (!email || !pass) {
             alert(this.t('الرجاء إدخال البريد الإلكتروني وكلمة المرور', 'Please enter email and password'));
+            this.isProcessingAuth = false;
             return;
         }
 
         try {
-            const userCredential = await signInWithEmailAndPassword(auth, email, pass);
+            let userCredential;
+            try {
+                userCredential = await signInWithEmailAndPassword(auth, email, pass);
+            } catch (error) {
+                if (error.code === 'auth/user-not-found' || error.code === 'auth/invalid-credential') {
+                    if (!name) {
+                        alert(this.t('الرجاء إدخال الاسم الكامل لإنشاء حساب جديد', 'Please enter your full name to create a new account'));
+                        this.isProcessingAuth = false;
+                        return;
+                    }
+                    userCredential = await createUserWithEmailAndPassword(auth, email, pass);
+                    await updateProfile(userCredential.user, { displayName: name });
+
+                    // تهيئة بيانات جديدة (بدون حفظ فوري هنا – سيتم الحفظ عند أول تغيير)
+                    this.currentUser = userCredential.user;
+                    this.userData = { name: name, email: email, uid: userCredential.user.uid };
+                    this.resetToDefaults();
+                    this.userCoins = 100; // مكافأة ترحيب
+                    this.userProfile.name = name;
+                    this.isDataLoaded = true;
+                    this.canSave = true;
+
+                    // لا نحفظ هنا لأن loadUserData ستفعل ذلك لاحقاً بشكل آمن
+                    this.currentPage = 'home';
+                    this.render();
+                    alert(this.t('تم إنشاء الحساب بنجاح! تم منحك 100 لؤلؤة 💎', 'Account created successfully! You got 100 pearls 💎'));
+                    this.isProcessingAuth = false;
+                    return;
+                } else {
+                    throw error;
+                }
+            }
+
+            // تسجيل الدخول لمستخدم موجود
             this.currentUser = userCredential.user;
-            this.userData = { name: userCredential.user.displayName || name || 'User', email: userCredential.user.email, uid: userCredential.user.uid };
+            this.userData = { name: userCredential.user.displayName || name || '', email: userCredential.user.email, uid: userCredential.user.uid };
 
             this.loadingData = true;
             this.render();
-
             await this.loadUserData(userCredential.user.uid);
             this.currentPage = 'home';
-            this.loadingData = false;
             this.render();
             alert(this.t('تم تسجيل الدخول بنجاح', 'Login successful'));
 
         } catch (error) {
-            console.error("Login error:", error.code, error.message);
-
-            if (error.code === 'auth/user-not-found' || error.code === 'auth/invalid-credential') {
-                if (!name) {
-                    alert(this.t('الرجاء إدخال الاسم الكامل لإنشاء حساب جديد', 'Please enter your full name to create a new account'));
-                    return;
-                }
-
-                try {
-                    const userCredential = await createUserWithEmailAndPassword(auth, email, pass);
-                    this.currentUser = userCredential.user;
-
-                    await updateProfile(this.currentUser, { displayName: name });
-
-                    this.userData = { name: name, email: email, uid: userCredential.user.uid };
-                    this.resetToDefaults();
-                    this.userCoins = 100;
-                    this.isDataLoaded = true;
-                    this.canSave = true;
-
-                    await this.saveUserData();
-
-                    this.currentPage = 'home';
-                    this.render();
-                    alert(this.t('تم إنشاء الحساب بنجاح! تم منحك 100 لؤلؤة 💎', 'Account created successfully! You got 100 pearls 💎'));
-
-                } catch (signUpError) {
-                    console.error("Signup error:", signUpError);
-                    alert(this.t('فشل إنشاء الحساب: ' + signUpError.message, 'Account creation failed: ' + signUpError.message));
-                }
-            } else {
-                alert(this.t('فشل تسجيل الدخول: ' + error.message, 'Login failed: ' + error.message));
-            }
+            console.error("Auth error:", error);
+            alert(this.t('فشل تسجيل الدخول: ' + error.message, 'Login failed: ' + error.message));
+        } finally {
+            this.isProcessingAuth = false;
         }
     }
 
-    // ✅ الإصلاح الرئيسي: نقل canSave=true قبل updateLevelAndBadges
     async loadUserData(uid) {
         if (!uid) return;
         try {
             this.loadingData = true;
             this.isDataLoaded = false;
-            this.canSave = false;
+            this.canSave = false; // 🔒 قفل الحفظ أثناء التحميل
             this.render();
 
             const docRef = doc(db, "users", uid);
@@ -467,27 +480,24 @@ class App {
                     this.userProfile.level = this.placementResults[0].level;
                 }
 
-                // ✅ الإصلاح: تفعيل canSave قبل استدعاء updateLevelAndBadges
-                // لأن updateLevelAndBadges كانت تحاول الحفظ بينما canSave=false
+                // تفعيل الحفظ بعد تحميل البيانات
                 this.isDataLoaded = true;
                 this.canSave = true;
 
                 await this.updateLevelAndBadges();
-
-                // حفظ واحد فقط بعد انتهاء كل العمليات
-                await this.saveUserData();
-
                 console.log("✅ تمت المزامنة بنجاح من Firestore!");
             } else {
                 console.log("مستخدم جديد: تهيئة بيانات أولية");
                 this.resetToDefaults();
                 this.isDataLoaded = true;
                 this.canSave = true;
-                await this.saveUserData();
+                // لا نحفظ هنا – الحفظ سيحدث عند أول تغيير حقيقي
             }
         } catch (error) {
             console.error("❌ خطأ أثناء جلب البيانات:", error);
-            // لا نُفعّل canSave هنا لمنع الكتابة الخاطئة فوق البيانات الصحيحة
+            this.isDataLoaded = true;
+            this.canSave = true;
+            this.showCustomModal('error', '⚠️', this.t('فشل تحميل البيانات من الخادم. سيتم العمل محلياً مؤقتاً.', 'Failed to load data. Working offline.'));
         } finally {
             this.loadingData = false;
             this.render();
@@ -495,7 +505,7 @@ class App {
     }
 
     resetToDefaults() {
-        this.userCoins = 100;
+        this.userCoins = 100; // مكافأة ترحيب (للمستخدم الجديد)
         this.masteredWords = [];
         this.unlockedLessons = [];
         this.userVocabulary = [];
@@ -518,13 +528,24 @@ class App {
     }
 
     async saveUserData() {
-        if (!this.currentUser || this.loadingData || !this.isDataLoaded || !this.canSave) {
-            console.log("⚠️ تم حظر الحفظ: لم يتم تحميل البيانات الأصلية من السيرفر بعد");
+        if (!this.currentUser) {
+            console.warn("⚠️ حفظ البيانات: لا يوجد مستخدم مسجل دخول");
             return;
         }
-        const uid = this.currentUser.uid;
+        if (this.loadingData) {
+            console.warn("⚠️ حفظ البيانات: عملية التحميل لا تزال جارية، تم تجاهل الحفظ");
+            return;
+        }
+        if (!this.isDataLoaded) {
+            console.warn("⚠️ حفظ البيانات: البيانات لم تُحمّل بعد من السيرفر، تم تجاهل الحفظ");
+            return;
+        }
+        if (!this.canSave) {
+            console.warn("⚠️ حفظ البيانات: نظام الحفظ مغلق مؤقتاً، تم تجاهل الحفظ");
+            return;
+        }
 
-        // ✅ الإصلاح: إزالة التكرار في userStats (كان يُعرَّف مرتين فيُلغي الأول)
+        const uid = this.currentUser.uid;
         const data = {
             userVocabulary: this.userVocabulary || [],
             masteredWords: this.masteredWords || [],
@@ -556,6 +577,7 @@ class App {
         } catch (err) {
             console.error("❌ فشل التزامن مع Firestore:", err);
             localStorage.setItem(`backup_data_${uid}`, JSON.stringify(data));
+            this.showCustomModal('error', '⚠️', this.t('فشل الاتصال بالخادم، تم حفظ البيانات محلياً. سيتم مزامنتها لاحقاً.', 'Connection failed. Data saved locally. Will sync later.'));
         }
     }
 
@@ -564,39 +586,7 @@ class App {
         await signOut(auth);
         this.currentUser = null;
         this.userData = null;
-        this.userVocabulary = [];
-        this.masteredWords = [];
-        this.unlockedLessons = [];
-        this.hiddenFromCards = [];
-        this.customLessons = {};
-        this.generatedLessons = {};
-        this.userStats = { xp: 0, level: 1, badges: [], earnedBadges: [], tier: 'برونزي' };
-        this.placementResults = [];
-        this.placementFullHistory = [];
-        this.userCoins = 0;
-        this.xpEarnedWords = [];
-        this.jumbleUnlocked = {};
-        this.listeningUnlocked = {};
-        this.spellingUnlocked = {};
-        this.gapFillUnlocked = {};
-        this.newWordsAddedCount = 0;
-        this.adWatchedCount = 0;
-        this.purchaseRequests = [];
-        this.userProfile = {
-            name: '',
-            age: '',
-            joinDate: new Date().toLocaleDateString('ar-EG'),
-            level: 'A1',
-            image: '',
-            testsHistory: []
-        };
-        this.exerciseStats = {
-            quiz: { correct: 0, total: 0 },
-            listening: { correct: 0, total: 0 },
-            spelling: { correct: 0, total: 0 },
-            gapFill: { correct: 0, total: 0 }
-        };
-        this.lastTestedLesson = { beginner: 0, intermediate: 0, advanced: 0 };
+        this.resetToDefaults();
         this.isDataLoaded = false;
         this.canSave = false;
         this.currentPage = 'auth';
@@ -1676,7 +1666,8 @@ class App {
             [arr[i], arr[j]] = [arr[j], arr[i]];
         }
     }
-handleJumbleSelect(word) {
+
+    handleJumbleSelect(word) {
         if (this.jumbleChecked) return;
         const index = this.jumbleWords.indexOf(word);
         if (index !== -1) {
@@ -3108,7 +3099,7 @@ handleJumbleSelect(word) {
                 case 'listeningAnswer':
                     this.handleListeningAnswer(param);
                     break;
-case 'spellingCheck':
+                case 'spellingCheck':
                     this.handleSpellingCheck();
                     break;
                 case 'spellingNext':
@@ -3279,7 +3270,7 @@ case 'spellingCheck':
         this.showCustomModal('info', '🏅', html);
     }
 
-render() {
+    render() {
         const app = document.getElementById('app');
         if (!app) return;
 
@@ -4090,12 +4081,15 @@ render() {
 
         onAuthStateChanged(auth, async (user) => {
             console.log("Checking login status...");
+            if (this.isProcessingAuth) {
+                console.log("⚠️ عملية مصادقة جارية، تجاهل تغيير حالة المصادقة");
+                return;
+            }
 
             if (user) {
                 this.currentUser = user;
                 this.userData = { name: user.displayName || '', email: user.email, uid: user.uid };
 
-                // ✅ الإصلاح: حظر الحفظ حتى يتم تحميل البيانات بالكامل
                 this.loadingData = true;
                 this.isDataLoaded = false;
                 this.canSave = false;
