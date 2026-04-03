@@ -1,32 +1,33 @@
-// app.js - التطبيق الكامل مع جميع التعديلات المطلوبة (اختبار مستوى بـ 3 متتالية، إعلانات متدرجة، حذف من سجل الاختبارات، ملف شخصي متكامل)
+```javascript
+// app.js - التطبيق الكامل مع جميع التعديلات المطلوبة
+// (اختبار مستوى بـ 3 إجابات متتالية، ملف شخصي مع زر معلومات، إعلانات متدرجة غير تراكمية، حفظ يومي)
 
 class App {
     constructor() {
-        // أنظمة الحماية والمتغيرات الأساسية
+        // أنظمة الحماية
         this.loadingData = true;
         this.isDataLoaded = false;
         this.canSave = false;
         this.isProcessingAuth = false;
         
-        // نظام الإعلانات المتدرج اليومي (3→50, 4→75, 5→100)
-        this.adDailyLimit = { count: 0, date: new Date().toDateString() };
+        // إعلانات متدرجة يومية (غير تراكمية)
         this.adRewardLevels = [
             { adsNeeded: 3, reward: 50 },
             { adsNeeded: 4, reward: 75 },
             { adsNeeded: 5, reward: 100 }
         ];
         
-        // متغيرات اختبار المستوى الجديدة (3 إجابات متتالية لكل مستوى، بدون رجوع)
+        // متغيرات اختبار المستوى
         this.placementStep = 0;
         this.currentDifficulty = 'A1';
         this.placementHistory = [];
         this.placementScore = 0;
-        this.placementCorrectStreak = 0;      // عدد الإجابات المتتالية الصحيحة في المستوى الحالي
+        this.placementCorrectStreak = 0;
         this.placementLevels = ['A1', 'A2', 'B1', 'B2', 'C1', 'C2'];
-        this.placementFinalLevel = 'A1';      // آخر مستوى تم تحقيق 3 إجابات متتالية فيه
-        this.placementCurrentLevelQuestions = []; // أسئلة المستوى الحالي (لمنع التكرار)
+        this.placementFinalLevel = 'A1';
+        this.placementCurrentLevelQuestions = [];
         
-        // متغيرات التطبيق الأساسية
+        // بقية المتغيرات (كما في النسخة السابقة)
         this.repeatAllSessionMastered = [];
         this.currentAudio = null;
         this.audioPlaybackRate = 1.0;
@@ -47,8 +48,9 @@ class App {
         this.userCoins = 0;
         this.showCoinModal = false;
         this.showPurchaseForm = false;
+        this.showUserInfoModal = false; // نافذة معلومات المستخدم
 
-        // متغيرات التمارين
+        // باقي متغيرات التمارين (مختصرة للطول)
         this.jumbleOriginalSentence = '';
         this.jumbleWords = [];
         this.jumbleUserAnswer = [];
@@ -161,7 +163,7 @@ class App {
             gapFill: { correct: 0, total: 0 }
         };
 
-        this.badgeDefinitions = {
+        this.badgeDefinitions = { /* كما هو دون تغيير */ 
             general: [
                 { id: 'bronze_medal', icon: '🥉', name: 'وسام برونزي', nameEn: 'Bronze Medal', requirement: { lessons: 5, words: 100 }, condition: (stats) => stats.totalLessons >= 5 && stats.totalMastered >= 100 },
                 { id: 'silver_medal', icon: '🥈', name: 'وسام فضي', nameEn: 'Silver Medal', requirement: { lessons: 15, words: 300 }, condition: (stats) => stats.totalLessons >= 15 && stats.totalMastered >= 300 },
@@ -209,6 +211,7 @@ class App {
         }
     }
 
+    // ========== دوال أساسية مختصرة (معظمها موجود سابقاً) ==========
     t(ar, en) { return this.lang === 'en' ? en : ar; }
     toggleLanguage() {
         this.lang = this.lang === 'ar' ? 'en' : 'ar';
@@ -353,6 +356,7 @@ class App {
     }
     addMasteredWordReward(wordId) { this.addXPOnce(1, wordId); }
 
+    // ========== دوال المصادقة ==========
     async handleAuth() {
         if (this.isProcessingAuth) return;
         this.isProcessingAuth = true;
@@ -441,6 +445,10 @@ class App {
                 this.customLessons = data.customLessons ?? {};
                 this.generatedLessons = data.generatedLessons ?? {};
                 if (this.placementResults?.length) this.userProfile.level = this.placementResults[0].level;
+                // استعادة بيانات الإعلانات اليومية
+                if (data.adDailyData) {
+                    localStorage.setItem('adDailyData', JSON.stringify(data.adDailyData));
+                }
                 this.isDataLoaded = true;
                 this.canSave = true;
                 await this.updateLevelAndBadges();
@@ -487,6 +495,8 @@ class App {
     async saveUserData() {
         if (!this.currentUser || this.loadingData || !this.isDataLoaded || !this.canSave) return;
         const uid = this.currentUser.uid;
+        // حفظ بيانات الإعلانات اليومية من localStorage
+        const adDailyData = localStorage.getItem('adDailyData');
         const data = {
             userVocabulary: this.userVocabulary || [],
             masteredWords: this.masteredWords || [],
@@ -509,6 +519,7 @@ class App {
             exerciseStats: this.exerciseStats || {},
             lastTestedLesson: this.lastTestedLesson || {},
             xpEarnedWords: this.xpEarnedWords || [],
+            adDailyData: adDailyData ? JSON.parse(adDailyData) : null,
             lastUpdated: new Date().toISOString()
         };
         try {
@@ -532,27 +543,26 @@ class App {
         this.render();
     }
 
-    // نظام الإعلانات المتدرج اليومي (3→50, ثم 4→75, ثم 5→100)
+    // ========== نظام الإعلانات المتدرج غير التراكمي ==========
     getCurrentAdReward() {
         const today = new Date().toDateString();
         let dailyData = JSON.parse(localStorage.getItem('adDailyData')) || { count: 0, date: today };
         if (dailyData.date !== today) dailyData = { count: 0, date: today };
-        // تحديد المستوى الحالي بناءً على عدد الإعلانات التي شاهدها اليوم
-        let levelIndex = 0;
-        let cumulative = 0;
-        for (let i = 0; i < this.adRewardLevels.length; i++) {
-            cumulative += this.adRewardLevels[i].adsNeeded;
-            if (dailyData.count < cumulative) {
-                levelIndex = i;
-                break;
-            }
-            if (i === this.adRewardLevels.length - 1 && dailyData.count >= cumulative) {
-                return null; // اكتملت جميع المستويات
-            }
+        // المستوى الأول: 3 إعلانات
+        if (dailyData.count < 3) {
+            return { adsNeeded: 3, reward: 50, currentCount: dailyData.count, remaining: 3 - dailyData.count };
         }
-        const level = this.adRewardLevels[levelIndex];
-        const currentInLevel = dailyData.count - (levelIndex === 0 ? 0 : this.adRewardLevels.slice(0, levelIndex).reduce((s, l) => s + l.adsNeeded, 0));
-        return { adsNeeded: level.adsNeeded, reward: level.reward, currentCount: currentInLevel, totalSoFar: dailyData.count };
+        // المستوى الثاني: 4 إعلانات إضافية (إجمالي 7)
+        else if (dailyData.count < 7) {
+            const levelCount = dailyData.count - 3;
+            return { adsNeeded: 4, reward: 75, currentCount: levelCount, remaining: 4 - levelCount, totalSoFar: dailyData.count };
+        }
+        // المستوى الثالث: 5 إعلانات إضافية (إجمالي 12)
+        else if (dailyData.count < 12) {
+            const levelCount = dailyData.count - 7;
+            return { adsNeeded: 5, reward: 100, currentCount: levelCount, remaining: 5 - levelCount, totalSoFar: dailyData.count };
+        }
+        return null;
     }
 
     watchAdsForCoins() {
@@ -568,8 +578,8 @@ class App {
                 dailyData.count++;
                 localStorage.setItem('adDailyData', JSON.stringify(dailyData));
                 this.userCoins += rewardInfo.reward;
-                this.showCustomModal('success', '🎉', this.t(`تهانينا! حصلت على ${rewardInfo.reward} لؤلؤة. (إجمالي الإعلانات اليوم: ${dailyData.count})`, `Congratulations! You earned ${rewardInfo.reward} pearls. (Total ads today: ${dailyData.count})`));
                 this.saveUserData();
+                this.showCustomModal('success', '🎉', this.t(`تهانينا! حصلت على ${rewardInfo.reward} لؤلؤة. (إجمالي الإعلانات اليوم: ${dailyData.count})`, `Congratulations! You earned ${rewardInfo.reward} pearls. (Total ads today: ${dailyData.count})`));
                 this.render();
             }
         });
@@ -641,7 +651,7 @@ class App {
         document.getElementById('confirmNoBtn').onclick = () => { modalDiv.remove(); if (onCancel) onCancel(); };
     }
 
-    // دوال التطبيق الأساسية
+    // ========== دوال التطبيق الأساسية (دروس، بطاقات، تمارين) ==========
     unlockLessonWithCoins(lessonId) {
         if (this.userCoins >= 100) {
             this.showCoinPurchaseModal(100, (confirmed) => {
@@ -704,7 +714,6 @@ class App {
     showTestHistory() { this.currentPage = 'test_history'; this.render(); }
     viewTestDetails(index) { const record = this.placementResults[index]; if (record) { this.viewingPlacementDetails = record; this.currentPage = 'placement_details'; this.render(); } }
     
-    // حذف اختبار من السجل
     deletePlacementTest(index) {
         this.showConfirmModal(this.t('هل أنت متأكد من حذف هذا الاختبار من السجل؟', 'Are you sure you want to delete this test from history?'), () => {
             this.placementResults.splice(index, 1);
@@ -717,29 +726,64 @@ class App {
     updateProfile() {
         const newName = document.getElementById('profileName')?.value;
         const newAge = document.getElementById('profileAge')?.value;
-        const newPassword = document.getElementById('profilePassword')?.value;
         const imageFile = document.getElementById('profileImage')?.files[0];
         if (newName) { this.userProfile.name = newName; if (this.userData && this.currentUser) { this.userData.name = newName; updateProfile(this.currentUser, { displayName: newName }).catch(console.error); } }
         if (newAge) this.userProfile.age = newAge;
-        if (newPassword && this.userData && this.currentUser) { updatePassword(this.currentUser, newPassword).catch(console.error); }
         if (imageFile) { const reader = new FileReader(); reader.onload = (e) => { this.userProfile.image = e.target.result; this.saveUserData(); this.render(); }; reader.readAsDataURL(imageFile); }
         else { this.saveUserData(); this.render(); }
     }
 
     getEnglishLevel() { return this.userProfile.level || 'A1'; }
 
-    // دوال اختبار المستوى المحسنة (3 إجابات متتالية صحيحة لكل مستوى، بدون رجوع، أسئلة عشوائية بدون تكرار)
+    // ========== نافذة معلومات المستخدم (تظهر بالضغط على الزر) ==========
+    showUserInfo() {
+        this.showUserInfoModal = true;
+        this.render();
+        setTimeout(() => {
+            const modal = document.querySelector('#userInfoModal');
+            if (modal) {
+                // لا حاجة لملء البيانات لأنها موجودة في HTML
+            }
+        }, 50);
+    }
+
+    changePassword() {
+        const oldPass = document.getElementById('oldPassword')?.value;
+        const newPass = document.getElementById('newPassword')?.value;
+        const confirmPass = document.getElementById('confirmPassword')?.value;
+        if (!oldPass || !newPass || !confirmPass) {
+            this.showCustomModal('error', '❌', this.t('الرجاء ملء جميع الحقول', 'Please fill all fields'));
+            return;
+        }
+        if (newPass !== confirmPass) {
+            this.showCustomModal('error', '❌', this.t('كلمة المرور الجديدة غير متطابقة', 'New passwords do not match'));
+            return;
+        }
+        const user = auth.currentUser;
+        if (user) {
+            updatePassword(user, newPass).then(() => {
+                this.showCustomModal('success', '✅', this.t('تم تغيير كلمة المرور بنجاح', 'Password changed successfully'));
+                document.getElementById('oldPassword').value = '';
+                document.getElementById('newPassword').value = '';
+                document.getElementById('confirmPassword').value = '';
+                this.showUserInfoModal = false;
+                this.render();
+            }).catch(err => {
+                this.showCustomModal('error', '❌', this.t('فشل تغيير كلمة المرور: ' + err.message, 'Failed to change password: ' + err.message));
+            });
+        }
+    }
+
+    // ========== اختبار المستوى المحسن (3 متتالية، بدون رجوع، أسئلة عشوائية بدون تكرار) ==========
     getAdaptiveQuestion() {
         const levelQuestions = window.placementBank[this.currentDifficulty];
         if (!levelQuestions || levelQuestions.length === 0) {
             return window.placementBank['A1'][0];
         }
-        // إذا لم تكن هناك أسئلة متبقية في المستوى الحالي، أعد تعيين القائمة (مع تجنب الأسئلة المستخدمة في هذا الاختبار)
         if (!this.placementCurrentLevelQuestions.length) {
             this.placementCurrentLevelQuestions = [...levelQuestions];
             this.shuffleArray(this.placementCurrentLevelQuestions);
         }
-        // أخذ سؤال من القائمة (إزالة لتجنب التكرار)
         const selected = this.placementCurrentLevelQuestions.shift();
         this.placementHistory.push(selected.q);
         const correctAnswer = this.getCorrectAnswer(selected);
@@ -795,26 +839,22 @@ class App {
             let currentIdx = levels.indexOf(this.currentDifficulty);
             if (currentIdx === -1) currentIdx = 0;
 
-            // إذا حصل على 3 إجابات متتالية صحيحة في المستوى الحالي، ينتقل إلى المستوى الأعلى ولا يعود
             if (isCorrect && this.placementCorrectStreak >= 3) {
                 if (currentIdx < levels.length - 1) {
                     this.currentDifficulty = levels[currentIdx + 1];
-                    this.placementFinalLevel = levels[currentIdx]; // آخر مستوى تم اجتيازه
-                    this.placementCorrectStreak = 0; // إعادة ضبط المتتالية للمستوى الجديد
-                    this.placementCurrentLevelQuestions = []; // إعادة تعيين قائمة أسئلة المستوى الجديد
+                    this.placementFinalLevel = levels[currentIdx];
+                    this.placementCorrectStreak = 0;
+                    this.placementCurrentLevelQuestions = [];
                 } else {
-                    // إذا كان في أعلى مستوى وحقق 3 متتالية، يبقى في نفس المستوى
                     this.placementFinalLevel = levels[currentIdx];
                     this.placementCorrectStreak = 0;
                 }
             }
-            // لا نرجع مستوى أقل أبداً، حتى لو أخطأ
 
             this.placementStep++;
 
             if (this.placementStep >= 35) {
                 let finalLevel = this.placementFinalLevel || 'A1';
-                // إذا لم يتم تحقيق 3 إجابات في أي مستوى، نأخذ آخر مستوى تمت الإجابة عليه صحيحاً (ولو مرة واحدة)
                 if (finalLevel === 'A1' && this.currentPlacementDetails.some(d => d.isCorrect)) {
                     for (let i = this.currentPlacementDetails.length - 1; i >= 0; i--) {
                         if (this.currentPlacementDetails[i].isCorrect) {
@@ -845,7 +885,7 @@ class App {
 
     getIeltsEquivalent(level) { const map = { 'A1': '2.0-3.0', 'A2': '3.0-4.0', 'B1': '4.0-5.0', 'B2': '5.5-6.5', 'C1': '7.0-8.0', 'C2': '8.5-9.0' }; return map[level]; }
 
-    // دوال التمارين الأخرى (نفس الأصل مع تعديلات بسيطة)
+    // ========== دوال التمارين الأخرى (مختصرة ولكنها كاملة الوظائف) ==========
     prepareJumble() {
         const lesson = this.getCurrentLessonData();
         if (!lesson) return;
@@ -1138,6 +1178,8 @@ class App {
                 case 'updateProfile': this.updateProfile(); break;
                 case 'goToProfile': this.showProfile(); break;
                 case 'showBadges': this.showBadgesModal(); break;
+                case 'showUserInfo': this.showUserInfo(); break;
+                case 'changePassword': this.changePassword(); break;
             }
             this.render();
         });
@@ -1160,13 +1202,48 @@ class App {
         const added = this.userVocabulary.filter(v => v.lessonId == this.selectedLessonId);
         const allTerms = lesson ? [...lesson.terms, ...added] : [];
         app.innerHTML = this.getHeader() + `<div id="view">${this.getView(lesson, allTerms)}</div>`;
+        
+        // نافذة معلومات المستخدم (تظهر بالضغط على الزر)
+        if (this.showUserInfoModal) {
+            const modalDiv = document.createElement('div');
+            modalDiv.className = 'modal-overlay';
+            modalDiv.onclick = (e) => { if (e.target === modalDiv) { this.showUserInfoModal = false; this.render(); } };
+            modalDiv.innerHTML = `
+                <div class="modal-content" id="userInfoModal" style="max-width:400px;">
+                    <div class="modal-header" style="display:flex; justify-content:space-between; margin-bottom:15px;">
+                        <h3>${this.t('معلومات المستخدم', 'User Information')}</h3>
+                        <span class="close-btn" onclick="appInstance.showUserInfoModal=false;appInstance.render()" style="cursor:pointer; font-size:1.5rem;">&times;</span>
+                    </div>
+                    <div style="margin-bottom:10px;"><strong>${this.t('الاسم:', 'Name:')}</strong> ${this.userProfile.name || this.userData?.name || ''}</div>
+                    <div style="margin-bottom:10px;"><strong>${this.t('العمر:', 'Age:')}</strong> ${this.userProfile.age || this.t('غير محدد', 'Not set')}</div>
+                    <div style="margin-bottom:10px;"><strong>${this.t('تاريخ الانضمام:', 'Join Date:')}</strong> ${this.userProfile.joinDate}</div>
+                    <div style="margin-bottom:10px;"><strong>${this.t('المستوى في التطبيق:', 'App Level:')}</strong> ${this.userStats.level}</div>
+                    <div style="margin-bottom:10px;"><strong>${this.t('مستوى اللغة:', 'Language Level:')}</strong> ${this.getEnglishLevel()}</div>
+                    <div style="margin-bottom:10px;"><strong>${this.t('البريد الإلكتروني:', 'Email:')}</strong> ${this.userData?.email || ''}</div>
+                    <div style="margin-bottom:10px;"><strong>${this.t('نقاط الخبرة (XP):', 'XP:')}</strong> ${this.userStats.xp}</div>
+                    <div style="margin-bottom:10px;"><strong>${this.t('اللآلئ:', 'Pearls:')}</strong> ${this.userCoins}</div>
+                    <div style="margin-top:15px; border-top:1px solid #eee; padding-top:15px;">
+                        <input type="password" id="oldPassword" placeholder="${this.t('كلمة المرور القديمة', 'Old Password')}" style="width:100%; padding:8px; margin:5px 0; border-radius:8px; border:1px solid #ddd;">
+                        <input type="password" id="newPassword" placeholder="${this.t('كلمة المرور الجديدة', 'New Password')}" style="width:100%; padding:8px; margin:5px 0; border-radius:8px; border:1px solid #ddd;">
+                        <input type="password" id="confirmPassword" placeholder="${this.t('تأكيد كلمة المرور الجديدة', 'Confirm New Password')}" style="width:100%; padding:8px; margin:5px 0; border-radius:8px; border:1px solid #ddd;">
+                        <div style="display:flex; gap:8px; margin-top:10px;">
+                            <button class="hero-btn" data-action="changePassword" style="background:#10b981; flex:1;">${this.t('تغيير', 'Change')}</button>
+                            <button class="hero-btn" onclick="appInstance.showUserInfoModal=false;appInstance.render()" style="background:#ef4444; flex:1;">${this.t('إغلاق', 'Close')}</button>
+                        </div>
+                    </div>
+                </div>
+            `;
+            app.appendChild(modalDiv);
+        }
+        
+        // نافذة العملات
         if (this.showCoinModal) {
             const modalDiv = document.createElement('div');
             modalDiv.className = 'modal-overlay';
             modalDiv.onclick = (e) => { if (e.target === modalDiv) this.toggleCoinModal(); };
             let modalContent = '';
             if (this.showPurchaseForm) modalContent = `<div class="modal-content"><div class="modal-header" style="display:flex; justify-content:space-between; margin-bottom:15px;"><h3 style="margin:0;">💰 ${this.t('طلب شراء 300 لؤلؤة', 'Request 300 Pearls')}</h3><span class="close-btn" onclick="appInstance.toggleCoinModal()" style="cursor:pointer; font-size:1.5rem;">&times;</span></div><p style="text-align:center; margin-bottom:15px;">${this.t('مقابل 1 دولار أمريكي', 'For 1 USD')}</p><div class="purchase-form"><input type="text" id="purchaseName" placeholder="${this.t('الاسم الكامل', 'Full Name')}" style="width:100%; padding:10px; margin:5px 0; border-radius:8px; border:1px solid #ddd;"><input type="email" id="purchaseEmail" placeholder="${this.t('البريد الإلكتروني', 'Email')}" style="width:100%; padding:10px; margin:5px 0; border-radius:8px; border:1px solid #ddd;"><input type="tel" id="purchasePhone" placeholder="${this.t('رقم الهاتف', 'Phone Number')}" style="width:100%; padding:10px; margin:5px 0; border-radius:8px; border:1px solid #ddd;"><button class="hero-btn" data-action="submitPurchase" style="background:#10b981; width:100%; margin-top:10px;">${this.t('إرسال الطلب', 'Submit Request')}</button></div></div>`;
-            else modalContent = `<div class="modal-content"><div class="modal-header" style="display:flex; justify-content:space-between; margin-bottom:15px;"><h3 style="margin:0;">💰 ${this.t('خيارات العملات', 'Currency Options')}</h3><span class="close-btn" onclick="appInstance.toggleCoinModal()" style="cursor:pointer; font-size:1.5rem;">&times;</span></div><div class="coin-option" onclick="appInstance.watchAdsForCoins()"><div style="display:flex; justify-content:space-between; align-items:center;"><span style="font-size:1rem;">👁️ ${this.t('مشاهدة إعلانات', 'Watch Ads')}</span><span style="background:#ffd700; padding:4px 8px; border-radius:20px;">${this.getCurrentAdReward() ? this.getCurrentAdReward().reward : 0}+</span></div></div><div class="coin-option" onclick="appInstance.requestPurchase()"><div style="display:flex; justify-content:space-between; align-items:center;"><span style="font-size:1rem;">💳 ${this.t('شراء 300 لؤلؤة', 'Buy 300 Pearls')}</span><span style="background:#ffd700; padding:4px 8px; border-radius:20px;">1$</span></div></div></div>`;
+            else modalContent = `<div class="modal-content"><div class="modal-header" style="display:flex; justify-content:space-between; margin-bottom:15px;"><h3 style="margin:0;">💰 ${this.t('خيارات العملات', 'Currency Options')}</h3><span class="close-btn" onclick="appInstance.toggleCoinModal()" style="cursor:pointer; font-size:1.5rem;">&times;</span></div><div class="coin-option" onclick="appInstance.watchAdsForCoins()"><div style="display:flex; justify-content:space-between; align-items:center;"><span style="font-size:1rem;">👁️ ${this.t('مشاهدة إعلانات', 'Watch Ads')}</span><span style="background:#ffd700; padding:4px 8px; border-radius:20px;">${this.getCurrentAdReward() ? (this.getCurrentAdReward().remaining + ' → ' + this.getCurrentAdReward().reward) : '0'}+</span></div></div><div class="coin-option" onclick="appInstance.requestPurchase()"><div style="display:flex; justify-content:space-between; align-items:center;"><span style="font-size:1rem;">💳 ${this.t('شراء 300 لؤلؤة', 'Buy 300 Pearls')}</span><span style="background:#ffd700; padding:4px 8px; border-radius:20px;">1$</span></div></div></div>`;
             modalDiv.innerHTML = modalContent; app.appendChild(modalDiv);
         }
     }
@@ -1183,7 +1260,7 @@ class App {
     getView(lesson, allTerms) {
         if (this.currentPage === 'auth') return `<main class="main-content"><div class="auth-container"><img src="wordwise_logo.png" alt="WordWise"><h1>WordWise</h1><p>${this.t('كن حكيماً في اختيار كلماتك', 'Be wise in choosing your words')}</p></div><div class="reading-card auth-card"><h2 style="text-align:center;">🚀 ${this.t('مرحباً بك', 'Welcome')}</h2><input id="authName" placeholder="${this.t('الاسم الكامل', 'Full Name')}" class="auth-input"><input id="authEmail" placeholder="${this.t('البريد الإلكتروني', 'Email')}" class="auth-input"><input type="password" id="authPass" placeholder="${this.t('كلمة المرور', 'Password')}" class="auth-input"><button class="hero-btn" data-action="doAuth" style="width:100%;">${this.t('تسجيل الدخول / إنشاء حساب', 'Login / Sign Up')}</button><p style="margin-top:12px; font-size:0.75rem; color:#666; text-align:center;">${this.t('جميع بياناتك محفوظة ومرتبطة بهذا البريد.', 'All your data is stored and linked to this email.')}</p></div></main>`;
         if (this.currentPage === 'home') { const progress = this.getCurrentLevelProgress(); const totalMastered = this.masteredWords ? this.masteredWords.length : 0; const totalLessons = this.unlockedLessons ? this.unlockedLessons.length : 0; const xpProgress = `${progress.currentProgress}/${progress.neededForNext}`; const xpPercent = (progress.currentProgress / progress.neededForNext) * 100; return `<main class="main-content"><div class="reading-card welcome-banner"><div style="display: flex; justify-content: space-between; align-items: center; flex-wrap:wrap; gap:10px;"><h3 style="margin:0;">${this.t(`مرحباً، ${this.userData?.name || 'مستخدم'} 👋`, `Welcome, ${this.userData?.name || 'User'} 👋`)}</h3><div style="background: rgba(255,255,255,0.2); padding: 4px 12px; border-radius: 20px; font-size: 0.8rem; font-weight: bold;">⭐ ${this.t('مستوى', 'Level')} ${progress.level}</div></div><div style="margin-top: 15px;"><div style="display: flex; justify-content: space-between; font-size: 0.8rem; margin-bottom: 6px;"><span>${this.t('نقاط الخبرة (XP)', 'Experience Points (XP)')}</span><span>${xpProgress}</span></div><div class="progress-bar-container"><div class="progress-bar-fill" style="width: ${xpPercent}%;"></div></div></div>${this.getBadgesDisplay()}<div style="margin-top: 10px; font-size:0.85rem;">${this.t('التاج الحالي:', 'Current Crown:')} ${this.userStats.tier}</div><div style="margin-top: 4px; font-size:0.8rem;">${this.t('الدروس المفتوحة:', 'Unlocked Lessons:')} ${totalLessons} | ${this.t('الكلمات المتقنة:', 'Mastered Words:')} ${totalMastered}</div></div><button class="hero-btn" data-action="setPage" data-param="addLesson" style="width:100%; background:#8b5cf6; margin-top:12px;">📸 ${this.t('إضافة من الكاميرا أو الهاتف', 'Add from Camera or Phone')}</button><button class="hero-btn" data-action="setPage" data-param="placement_test" style="width:100%; background:#ec4899; margin:12px 0;">🧠 ${this.t('اختبار مستوى', 'Level Test')}</button><div class="features-grid">${window.levels.map(l => `<div class="feature-card" data-action="selLevel" data-param="${l.id}"><h3 style="font-size:1rem;">${l.icon} ${this.lang === 'en' ? (l.id === 'beginner' ? 'Beginner' : l.id === 'intermediate' ? 'Intermediate' : 'Advanced') : l.name}</h3></div>`).join('')}${Object.keys(this.customLessons).length > 0 ? `<div class="feature-card" data-action="selLevel" data-param="custom_list" style="border:1px solid #f97316;"><h3 style="font-size:1rem;">📂 ${this.t('نصوصي', 'My Texts')}</h3></div>` : ''}</div><button data-action="logout" class="logout-btn">${this.t('تسجيل الخروج', 'Logout')}</button></main>`; }
-        if (this.currentPage === 'profile') { const englishLevel = this.getEnglishLevel(); const totalLessons = this.unlockedLessons.length; const totalMastered = this.masteredWords.length; const progressPercent = (totalLessons / 100) * 100; return `<main class="main-content"><button class="hero-btn" data-action="goHome" style="margin-bottom:15px; background:#64748b;">← ${this.t('رجوع', 'Back')}</button><div class="reading-card profile-container"><div class="profile-image" onclick="document.getElementById('profileImage').click()">${this.userProfile.image ? `<img src="${this.userProfile.image}" alt="profile">` : `<svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" viewBox="0 0 24 24" fill="#aaa"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>`}</div><input type="file" id="profileImage" accept="image/*" style="display:none;" onchange="appInstance.updateProfile()"><div class="profile-info"><div class="info-row"><span>${this.t('الاسم:', 'Name:')}</span> <span><input type="text" id="profileName" value="${this.userProfile.name || this.userData?.name || ''}" placeholder="${this.t('الاسم', 'Name')}"></span></div><div class="info-row"><span>${this.t('العمر:', 'Age:')}</span> <span><input type="number" id="profileAge" value="${this.userProfile.age || ''}" placeholder="${this.t('العمر', 'Age')}"></span></div><div class="info-row"><span>${this.t('تاريخ الانضمام:', 'Join Date:')}</span> <span>${this.userProfile.joinDate}</span></div><div class="info-row"><span>${this.t('المستوى في التطبيق:', 'App Level:')}</span> <span>${this.userStats.level}</span></div><div class="info-row"><span>${this.t('مستوى اللغة:', 'Language Level:')}</span> <span>${englishLevel}</span></div><div class="info-row"><span>${this.t('كلمة المرور:', 'Password:')}</span> <span><input type="password" id="profilePassword" placeholder="${this.t('جديدة', 'New')}"></span></div><div class="info-row"><span>${this.t('البريد الإلكتروني:', 'Email:')}</span> <span>${this.userData?.email || ''}</span></div><div class="info-row"><span>${this.t('نقاط الخبرة (XP):', 'XP:')}</span> <span>${this.userStats.xp}</span></div><div class="info-row"><span>${this.t('اللآلئ:', 'Pearls:')}</span> <span>${this.userCoins}</span></div></div><div style="width:100%; margin:12px 0;"><div style="display:flex; justify-content:space-between; font-size:0.85rem;"><span>${this.t('التقدم العام', 'Overall Progress')}</span><span>${totalLessons} ${this.t('درس', 'Lesson')} / 100</span></div><div class="progress-bar-container"><div class="progress-bar-fill" style="width: ${progressPercent}%;"></div></div></div><button class="hero-btn" data-action="updateProfile" style="background:#10b981;">${this.t('حفظ التغييرات', 'Save Changes')}</button><h4 style="margin:15px 0 8px;">🏅 ${this.t('الأوسمة والإنجازات', 'Badges & Achievements')}</h4>${this.getBadgesDisplay()}<h4 style="margin:15px 0 8px;">📜 ${this.t('سجل الاختبارات', 'Test History')}</h4><button class="hero-btn" data-action="setPage" data-param="test_history" style="background:#3b82f6;">${this.t('عرض سجل الاختبارات', 'View Test History')}</button></div></main>`; }
+        if (this.currentPage === 'profile') { const englishLevel = this.getEnglishLevel(); const totalLessons = this.unlockedLessons.length; const totalMastered = this.masteredWords.length; const progressPercent = (totalLessons / 100) * 100; return `<main class="main-content"><button class="hero-btn" data-action="goHome" style="margin-bottom:15px; background:#64748b;">← ${this.t('رجوع', 'Back')}</button><div class="reading-card profile-container"><div class="profile-image" onclick="document.getElementById('profileImage').click()">${this.userProfile.image ? `<img src="${this.userProfile.image}" alt="profile">` : `<svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" viewBox="0 0 24 24" fill="#aaa"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>`}</div><input type="file" id="profileImage" accept="image/*" style="display:none;" onchange="appInstance.updateProfile()"><div class="profile-info"><div class="info-row"><span>${this.t('الاسم:', 'Name:')}</span> <span><input type="text" id="profileName" value="${this.userProfile.name || this.userData?.name || ''}" placeholder="${this.t('الاسم', 'Name')}"></span></div><div class="info-row"><span>${this.t('العمر:', 'Age:')}</span> <span><input type="number" id="profileAge" value="${this.userProfile.age || ''}" placeholder="${this.t('العمر', 'Age')}"></span></div><div class="info-row"><span>${this.t('تاريخ الانضمام:', 'Join Date:')}</span> <span>${this.userProfile.joinDate}</span></div><div class="info-row"><span>${this.t('المستوى في التطبيق:', 'App Level:')}</span> <span>${this.userStats.level}</span></div><div class="info-row"><span>${this.t('مستوى اللغة:', 'Language Level:')}</span> <span>${englishLevel}</span></div><div class="info-row"><span>${this.t('كلمة المرور:', 'Password:')}</span> <span><input type="password" id="profilePassword" placeholder="${this.t('جديدة', 'New')}"></span></div><div class="info-row"><span>${this.t('البريد الإلكتروني:', 'Email:')}</span> <span>${this.userData?.email || ''}</span></div><div class="info-row"><span>${this.t('نقاط الخبرة (XP):', 'XP:')}</span> <span>${this.userStats.xp}</span></div><div class="info-row"><span>${this.t('اللآلئ:', 'Pearls:')}</span> <span>${this.userCoins}</span></div></div><div style="width:100%; margin:12px 0;"><div style="display:flex; justify-content:space-between; font-size:0.85rem;"><span>${this.t('التقدم العام', 'Overall Progress')}</span><span>${totalLessons} ${this.t('درس', 'Lesson')} / 100</span></div><div class="progress-bar-container"><div class="progress-bar-fill" style="width: ${progressPercent}%;"></div></div></div><button class="hero-btn" data-action="updateProfile" style="background:#10b981;">${this.t('حفظ التغييرات', 'Save Changes')}</button><button class="hero-btn" data-action="showUserInfo" style="background:#6366f1; margin-top:10px;">ℹ️ ${this.t('معلومات المستخدم', 'User Info')}</button><h4 style="margin:15px 0 8px;">🏅 ${this.t('الأوسمة والإنجازات', 'Badges & Achievements')}</h4>${this.getBadgesDisplay()}<h4 style="margin:15px 0 8px;">📜 ${this.t('سجل الاختبارات', 'Test History')}</h4><button class="hero-btn" data-action="setPage" data-param="test_history" style="background:#3b82f6;">${this.t('عرض سجل الاختبارات', 'View Test History')}</button></div></main>`; }
         if (this.currentPage === 'test_history') return `<main class="main-content"><button class="hero-btn" data-action="goHome" style="margin-bottom:15px; background:#64748b;">← ${this.t('الرجوع للرئيسية', 'Back to Home')}</button><div class="reading-card"><h2 style="text-align:center;">📋 ${this.t('سجل اختبارات المستوى', 'Level Test History')}</h2>${this.placementResults.length === 0 ? `<p style="text-align:center; color:#666; padding:20px;">${this.t('لا توجد اختبارات سابقة', 'No previous tests')}</p>` : `<div class="history-list">${this.placementResults.map((r, idx) => `<div class="history-item" onclick="appInstance.viewTestDetails(${idx})"><div style="display:flex; justify-content:space-between; flex-wrap:wrap; gap:5px;"><span><strong>${r.date}</strong></span><span>${this.t('المستوى:', 'Level:')} ${r.level}</span></div><div style="display:flex; justify-content:space-between; margin-top:5px; flex-wrap:wrap; gap:5px;"><span>${this.t('الدرجة:', 'Score:')} ${r.score}/35</span><span>IELTS: ${r.ielts}</span></div><button class="hero-btn" data-action="deletePlacementTest" data-index="${idx}" style="margin-top:5px; background:#ef4444; padding:4px 8px; font-size:0.7rem;">🗑️ ${this.t('حذف', 'Delete')}</button></div>`).join('')}</div>`}</div></main>`;
         if (this.currentPage === 'placement_test') { if (this.placementStep >= 35) return `<div class="reading-card result-card"><h2 style="text-align:center;">🏁 ${this.t('نتيجة الاختبار', 'Test Result')}</h2><div style="background:#f0f7ff; padding:15px; border-radius:10px; margin:10px 0; text-align:center;"><h1 style="color:#1e40af; margin-bottom:5px; font-size:1.8rem;">${this.currentDifficulty}</h1><p style="font-weight:bold; color:#3b82f6;">IELTS: ${this.getIeltsEquivalent(this.currentDifficulty)}</p><p style="font-size:0.85rem; color:#64748b;">${this.t('مجموع الإجابات الصحيحة:', 'Total correct answers:')} ${this.placementScore} / 35</p></div><h4 style="margin-top:15px;">📜 ${this.t('سجل نتائجك السابقة:', 'Your previous results:')}</h4><div style="max-height:200px; overflow-y:auto; font-size:0.85rem; margin-bottom:15px; border:1px solid #e2e8f0; border-radius:8px;">${this.placementResults.map((r, idx) => `<div style="border-bottom:1px solid #e2e8f0; padding:10px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px;"><div><span>📅 ${r.date}</span><br><strong>${this.t('المستوى:', 'Level:')} ${r.level}</strong> (${r.score}/35)</div><button class="hero-btn" data-action="viewPlacementDetails" data-index="${idx}" style="padding:4px 10px; font-size:0.7rem; background:#3b82f6;">${this.t('عرض التفاصيل', 'Details')}</button></div>`).join('')}</div><div style="display:flex; gap:10px; flex-wrap:wrap;"><button class="hero-btn" onclick="appInstance.resetPlacement()" style="background:#ec4899; flex:1;">${this.t('إعادة الاختبار 🔄', 'Retake Test 🔄')}</button><button class="hero-btn" data-action="goHome" style="background:#64748b; flex:1;">${this.t('الرئيسية', 'Home')}</button></div></div>`; const q = this.getAdaptiveQuestion(); const rawOpts = q.options ? q.options : [q.a, q.b, q.c, q.d]; const opts = rawOpts.filter(o => o !== undefined).sort(() => 0.5 - Math.random()); const correctAnswer = this.getCorrectAnswer(q); return `<div class="reading-card"><div style="display:flex; justify-content:center; margin-bottom:15px;"><span style="background:#e2e8f0; color:#475569; padding:4px 12px; border-radius:20px; font-weight:bold; font-size:0.8rem;">${this.t('السؤال رقم', 'Question')} ${this.placementStep + 1}</span></div><h2 style="margin-bottom:25px; direction:ltr; text-align:left; line-height:1.4; font-size:1.2rem;">${q.q}</h2><div class="quiz-options">${opts.map(opt => `<button class="quiz-opt-btn" data-action="doPlacement" data-param="${opt}" data-correct="${correctAnswer}">${opt}</button>`).join('')}</div></div>`; }
         if (this.currentPage === 'placement_details' && this.viewingPlacementDetails) { const details = this.viewingPlacementDetails.details || []; return `<div class="reading-card"><button class="hero-btn" data-action="backFromDetails" style="margin-bottom:15px; background:#64748b;">← ${this.t('رجوع', 'Back')}</button><h2 style="text-align:center;">${this.t('تفاصيل اختبار', 'Test Details')} ${this.viewingPlacementDetails.date}</h2><p style="text-align:center;">${this.t('المستوى النهائي:', 'Final Level:')} <strong>${this.viewingPlacementDetails.level}</strong> | ${this.t('الدرجة:', 'Score:')} ${this.viewingPlacementDetails.score}/35</p><div style="max-height:350px; overflow-y:auto; border:1px solid #e2e8f0; border-radius:8px; padding:10px;">${details.map((d, i) => `<div style="border-bottom:1px solid #e2e8f0; padding:8px; margin-bottom:5px;"><p><strong>${this.t('س', 'Q')}${i + 1}:</strong> ${d.question}</p><p>${this.t('مستوى السؤال:', 'Question level:')} ${d.level || this.t('غير محدد', 'Not specified')}</p><p>${this.t('إجابتك:', 'Your answer:')} ${d.selected || this.t('لم يجب', 'Not answered')} - ${d.isCorrect ? '✅' : '❌'}</p><p>${this.t('الإجابة الصحيحة:', 'Correct answer:')} ${d.correct || this.t('غير معروفة', 'Unknown')}</p></div>`).join('')}</div></div>`; }
@@ -1214,3 +1291,4 @@ class App {
     init() { this.addThemeStyles(); document.documentElement.setAttribute('data-theme', this.theme); if (typeof auth === 'undefined' || typeof db === 'undefined') { setTimeout(() => this.init(), 500); return; } if (!window.levels || !window.lessonsData || !window.placementBank || !window.lessonsList) { setTimeout(() => this.init(), 500); return; } this.audioCtx = new (window.AudioContext || window.webkitAudioContext)(); if (this.audioCtx.state === 'suspended') this.audioCtx.resume(); this.setupGlobalEvents(); onAuthStateChanged(auth, async (user) => { if (this.isProcessingAuth) return; if (user) { this.currentUser = user; this.userData = { name: user.displayName || '', email: user.email, uid: user.uid }; this.loadingData = true; this.isDataLoaded = false; this.canSave = false; this.currentPage = 'home'; this.render(); try { await this.loadUserData(user.uid); } catch (err) { console.error(err); } finally { this.loadingData = false; this.render(); } } else { this.currentUser = null; this.currentPage = 'auth'; this.loadingData = false; this.isDataLoaded = false; this.canSave = false; this.render(); } }); }
 }
 const appInstance = new App();
+```
