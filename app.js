@@ -1,4 +1,5 @@
-// app.js - التطبيق الكامل مع جميع التعديلات المطلوبة (اختبار مستوى متطور 35-50 سؤال، نظام تسجيل دخول مع إنشاء حساب، ملف شخصي مع معلومات المستخدم، إعلانات متدرجة غير تراكمية)
+// app.js - التطبيق الكامل مع جميع التعديلات المطلوبة
+// (اختبار مستوى متطور 35-50 سؤال، نظام تسجيل دخول مع إنشاء حساب، ملف شخصي مع معلومات المستخدم، إعلانات متدرجة، نظام XP محسن مع منع التكرار)
 
 class App {
     constructor() {
@@ -18,27 +19,27 @@ class App {
         
         // ========== نظام اختبار المستوى المتطور (Adaptive Level Test) ==========
         this.adaptiveTestActive = false;
-        this.adaptiveTestQuestions = [];          // قائمة الأسئلة المتبقية للاختبار
-        this.adaptiveTestHistory = [];            // سجل الأسئلة المجاب عنها
-        this.adaptiveTestCurrentLevel = 'B1';     // المستوى الحالي للاختبار
-        this.adaptiveTestPhase = 'initial';       // مراحل: initial, adaptive, focus
-        this.adaptiveTestLevelResults = {};       // نتائج كل مستوى { level: { correct, total, percentage, questions } }
+        this.adaptiveTestQuestions = [];
+        this.adaptiveTestHistory = [];
+        this.adaptiveTestCurrentLevel = 'B1';
+        this.adaptiveTestPhase = 'initial';
+        this.adaptiveTestLevelResults = {};
         this.adaptiveTestFinalLevel = null;
         this.adaptiveTestNearHigher = false;
         this.adaptiveTestTotalQuestions = 0;
         this.adaptiveTestMaxQuestions = 50;
         this.adaptiveTestMinQuestions = 35;
         this.adaptiveTestInitialQuestionsCount = 5;
-        this.adaptiveTestAdaptiveQuestionsCount = 5; // عدد الأسئلة لكل مستوى في مرحلة البحث
-        this.adaptiveTestFocusQuestionsCount = 10;    // عدد أسئلة التثبيت
-        this.adaptiveTestCurrentSetQuestions = [];    // أسئلة المجموعة الحالية
+        this.adaptiveTestAdaptiveQuestionsCount = 5;
+        this.adaptiveTestFocusQuestionsCount = 10;
+        this.adaptiveTestCurrentSetQuestions = [];
         this.adaptiveTestCurrentSetIndex = 0;
         this.adaptiveTestCurrentSetAnswers = [];
         this.adaptiveTestCurrentSetCorrect = 0;
         this.adaptiveTestCurrentSetTotal = 0;
         this.adaptiveTestLevelOrder = ['A1', 'A2', 'B1', 'B2', 'C1', 'C2'];
-        this.adaptiveTestQuestionBank = {};            // بنك الأسئلة لكل مستوى
-        this.adaptiveTestUsedQuestions = {};           // الأسئلة المستخدمة لتجنب التكرار
+        this.adaptiveTestQuestionBank = {};
+        this.adaptiveTestUsedQuestions = {};
         
         // متغيرات التطبيق الأساسية
         this.repeatAllSessionMastered = [];
@@ -50,7 +51,7 @@ class App {
         this.jumbleCurrentSentence = '';
         this.lang = localStorage.getItem('appLang') || 'ar';
         this.skippedCards = [];
-        this.xpEarnedWords = [];
+        this.xpEarnedWords = []; // مصفوفة لتخزين معرفات الكلمات التي حصلت على نقاط خبرة (لمنع التكرار)
         document.documentElement.setAttribute('dir', this.lang === 'ar' ? 'rtl' : 'ltr');
 
         this.userStats = { xp: 0, level: 1, badges: [], earnedBadges: [], tier: 'برونزي' };
@@ -72,6 +73,7 @@ class App {
         this.jumbleHistory = [];
         this.jumbleUnlocked = {};
         this.jumbleNextCount = 0;
+        this.jumbleXpRecorded = []; // لمنع تكرار XP لكل جملة في جلسة التمرين
 
         this.listeningRemaining = [];
         this.listeningCurrent = null;
@@ -83,6 +85,7 @@ class App {
         this.listeningNextCount = 0;
         this.listeningCorrectCount = 0;
         this.listeningCorrectTotal = 0;
+        this.listeningXpRecorded = [];
 
         this.spellingRemaining = [];
         this.spellingCurrent = null;
@@ -93,6 +96,7 @@ class App {
         this.spellingNextCount = 0;
         this.spellingCorrectCount = 0;
         this.spellingCorrectTotal = 0;
+        this.spellingXpRecorded = [];
 
         this.gapFillRemaining = [];
         this.gapFillCurrentQuestion = null;
@@ -112,6 +116,7 @@ class App {
         this.gapFillCurrentLessonId = null;
         this.gapFillCorrectCount = 0;
         this.gapFillCorrectTotal = 0;
+        this.gapFillXpRecorded = [];
 
         this.levelTestLevel = null;
         this.levelTestLessons = [];
@@ -145,9 +150,9 @@ class App {
         };
         
         this.showUserInfoModal = false;
-        this.authMode = 'login'; // 'login' or 'signup'
+        this.authMode = 'login';
         this.showLevelTestPromptAfterSignup = false;
-        this.pendingNewUser = null; // تخزين بيانات المستخدم الجديد مؤقتاً
+        this.pendingNewUser = null;
 
         this.currentUser = null;
         this.userData = null;
@@ -236,8 +241,9 @@ class App {
         this.render();
     }
 
-    async addXPOnce(amount, wordId) {
-        const idStr = String(wordId);
+    // ====================== نظام نقاط الخبرة (XP) مع منع التكرار ======================
+    async addXPOnce(amount, wordId, context = 'general') {
+        const idStr = `${context}_${wordId}`;
         if (!this.xpEarnedWords.includes(idStr)) {
             this.userStats.xp += amount;
             this.xpEarnedWords.push(idStr);
@@ -325,10 +331,24 @@ class App {
         await this.saveUserData();
     }
 
-    recordCorrectAnswer(exerciseType) {
+    // تسجيل الإجابات الصحيحة مع منح XP حسب نوع التمرين
+    recordCorrectAnswer(exerciseType, wordId) {
         if (!this.exerciseStats[exerciseType]) this.exerciseStats[exerciseType] = { correct: 0, total: 0 };
         this.exerciseStats[exerciseType].correct++;
         this.exerciseStats[exerciseType].total++;
+        
+        // منح XP حسب نوع التمرين
+        let xpAmount = 0;
+        switch(exerciseType) {
+            case 'quiz': xpAmount = 2; break;
+            case 'jumble': xpAmount = 3; break;
+            case 'listening': xpAmount = 4; break;
+            case 'spelling': xpAmount = 6; break;
+            case 'gapFill': xpAmount = 7; break;
+            default: xpAmount = 1;
+        }
+        if (wordId) this.addXPOnce(xpAmount, wordId, exerciseType);
+        
         this.updateLevelAndBadges();
         this.saveUserData();
     }
@@ -354,25 +374,25 @@ class App {
         }
     }
 
+    // دوال منح XP للتمارين المختلفة (تم دمجها مع recordCorrectAnswer أعلاه)
+    // لكن سنبقي هذه الدوال للتوافق مع الكود القديم
     addQuizCorrectReward(wordId) {
-        if (this.addXPOnce(2, wordId)) this.recordCorrectAnswer('quiz');
-        this.recordTotalAnswer('quiz');
+        this.recordCorrectAnswer('quiz', wordId);
     }
     addSpellingCorrectReward(wordId) {
-        if (this.addXPOnce(3, wordId)) this.recordCorrectAnswer('spelling');
-        this.recordTotalAnswer('spelling');
+        this.recordCorrectAnswer('spelling', wordId);
     }
     addListeningCorrectReward(wordId) {
-        if (this.addXPOnce(3, wordId)) this.recordCorrectAnswer('listening');
-        this.recordTotalAnswer('listening');
+        this.recordCorrectAnswer('listening', wordId);
     }
     addGapFillCorrectReward(wordId) {
-        if (this.addXPOnce(5, wordId)) this.recordCorrectAnswer('gapFill');
-        this.recordTotalAnswer('gapFill');
+        this.recordCorrectAnswer('gapFill', wordId);
     }
-    addMasteredWordReward(wordId) { this.addXPOnce(1, wordId); }
+    addMasteredWordReward(wordId) {
+        this.addXPOnce(1, wordId, 'mastered');
+    }
 
-    // ====================== نظام إنشاء حساب جديد مع سؤال اختبار المستوى ======================
+    // ====================== نظام المصادقة ======================
     async handleSignup() {
         if (this.isProcessingAuth) return;
         this.isProcessingAuth = true;
@@ -412,7 +432,6 @@ class App {
             this.canSave = true;
             await this.saveUserData();
             
-            // عرض سؤال إذا كان المستخدم يريد اختبار المستوى
             this.showLevelTestPromptAfterSignup = true;
             this.render();
             this.showCustomModal('question', '🧠', this.t('هل ترغب في إجراء اختبار مستوى اللغة الإنجليزية؟', 'Would you like to take an English level test?'), () => {
@@ -586,7 +605,7 @@ class App {
         this.render();
     }
 
-    // نظام الإعلانات المتدرج
+    // ====================== نظام الإعلانات المتدرج ======================
     getCurrentAdReward() {
         const today = new Date().toDateString();
         if (this.adDailyData.date !== today) {
@@ -944,13 +963,19 @@ class App {
     }
     
     getCurrentAdaptiveQuestion() {
+        // إذا كانت المجموعة الحالية فارغة أو انتهت، نحاول تحميل المجموعة التالية
         if (this.adaptiveTestCurrentSetIndex >= this.adaptiveTestCurrentSetQuestions.length) {
             // انتهت المجموعة الحالية، نقيم النتائج ونقرر المرحلة التالية
             this.evaluateAdaptiveSet();
-            return null;
+            // بعد التقييم، إذا كانت لا تزال هناك أسئلة في المجموعة الجديدة، نعيد السؤال الأول منها
+            if (this.adaptiveTestCurrentSetQuestions.length > 0 && this.adaptiveTestCurrentSetIndex < this.adaptiveTestCurrentSetQuestions.length) {
+                return this.adaptiveTestCurrentSetQuestions[this.adaptiveTestCurrentSetIndex];
+            } else {
+                // إذا لم يتم تحميل مجموعة جديدة (انتهى الاختبار)، نرجع null
+                return null;
+            }
         }
-        const question = this.adaptiveTestCurrentSetQuestions[this.adaptiveTestCurrentSetIndex];
-        return question;
+        return this.adaptiveTestCurrentSetQuestions[this.adaptiveTestCurrentSetIndex];
     }
     
     evaluateAdaptiveSet() {
@@ -965,6 +990,12 @@ class App {
         this.adaptiveTestLevelResults[level].percentage = (this.adaptiveTestLevelResults[level].correct / this.adaptiveTestLevelResults[level].total) * 100;
         
         this.adaptiveTestTotalQuestions += this.adaptiveTestCurrentSetTotal;
+        
+        // التحقق من عدم تجاوز الحد الأقصى للأسئلة
+        if (this.adaptiveTestTotalQuestions >= this.adaptiveTestMaxQuestions) {
+            this.finalizeAdaptiveTest();
+            return;
+        }
         
         if (this.adaptiveTestPhase === 'initial') {
             // تقييم المرحلة الأولية
@@ -1036,7 +1067,6 @@ class App {
                 const currentIdx = levels.indexOf(this.adaptiveTestCurrentLevel);
                 if (currentIdx > 0) {
                     this.adaptiveTestCurrentLevel = levels[currentIdx - 1];
-                    this.adaptiveTestPhase = 'focus';
                     this.loadNextAdaptiveQuestionSet('focus');
                     return;
                 } else {
@@ -1045,7 +1075,10 @@ class App {
             }
             this.finalizeAdaptiveTest();
         }
-        this.render();
+        // إعادة تعيين المؤشرات للمجموعة الجديدة
+        this.adaptiveTestCurrentSetIndex = 0;
+        this.adaptiveTestCurrentSetCorrect = 0;
+        this.adaptiveTestCurrentSetTotal = this.adaptiveTestCurrentSetQuestions.length;
     }
     
     finalizeAdaptiveTest() {
@@ -1211,31 +1244,200 @@ class App {
     
     getIeltsEquivalent(level) { const map = { 'A1': '2.0-3.0', 'A2': '3.0-4.0', 'B1': '4.0-5.0', 'B2': '5.5-6.5', 'C1': '7.0-8.0', 'C2': '8.5-9.0' }; return map[level]; }
 
-    // دوال التمارين الأخرى (نفس الأصل)
-    prepareJumble() { /* ... موجود ... */ }
+    // ====================== دوال التمارين الأخرى ======================
+    prepareJumble() {
+        const lesson = this.getCurrentLessonData();
+        if (!lesson) return;
+        const termWords = lesson.terms.map(t => t.english.toLowerCase());
+        const sentences = lesson.content.split(/[.!?]+/).map(s => s.trim()).filter(s => s.length > 0);
+        const usefulSentences = sentences.filter(s => { const words = s.split(/\s+/).length; if (words < 3 || words > 7) return false; const lower = s.toLowerCase(); return termWords.some(word => lower.includes(word)); });
+        let availableSentences = usefulSentences.length > 0 ? usefulSentences : sentences.filter(s => { const words = s.split(/\s+/).length; return words >= 3 && words <= 7; });
+        if (availableSentences.length === 0) { const words = lesson.terms.slice(0, 4).map(t => t.english); this.jumbleOriginalSentence = words.join(' '); }
+        else { const unused = availableSentences.filter(s => !this.jumbleHistory.includes(s)); if (unused.length === 0) { this.jumbleHistory = []; this.jumbleOriginalSentence = availableSentences[Math.floor(Math.random() * availableSentences.length)]; } else { this.jumbleOriginalSentence = unused[Math.floor(Math.random() * unused.length)]; } this.jumbleHistory.push(this.jumbleOriginalSentence); }
+        this.jumbleCurrentSentence = this.jumbleOriginalSentence;
+        this.translateText(this.jumbleOriginalSentence).then(translated => { if (this.jumbleCurrentSentence === this.jumbleOriginalSentence) this.jumbleArabicHint = translated; this.render(); }).catch(() => { if (this.jumbleCurrentSentence === this.jumbleOriginalSentence) this.jumbleArabicHint = ''; this.render(); });
+        this.jumbleWords = this.jumbleOriginalSentence.split(/\s+/).filter(w => w.length > 0);
+        this.shuffleArray(this.jumbleWords);
+        this.jumbleUserAnswer = [];
+        this.jumbleChecked = false;
+        this.jumbleCorrect = false;
+        this.jumbleHintUsed = false;
+    }
+
     shuffleArray(arr) { for (let i = arr.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [arr[i], arr[j]] = [arr[j], arr[i]]; } }
     handleJumbleSelect(word) { if (this.jumbleChecked) return; const index = this.jumbleWords.indexOf(word); if (index !== -1) { this.jumbleWords.splice(index, 1); this.jumbleUserAnswer.push(word); this.render(); } }
     handleJumbleRemove(word) { if (this.jumbleChecked) return; const index = this.jumbleUserAnswer.indexOf(word); if (index !== -1) { this.jumbleUserAnswer.splice(index, 1); this.jumbleWords.push(word); this.render(); } }
     handleJumbleReset() { this.jumbleWords = this.jumbleOriginalSentence.split(/\s+/).filter(w => w.length > 0); this.shuffleArray(this.jumbleWords); this.jumbleUserAnswer = []; this.jumbleChecked = false; this.jumbleCorrect = false; this.jumbleHintUsed = false; this.render(); }
-    handleJumbleCheck() { if (this.jumbleChecked) return; const userSentence = this.jumbleUserAnswer.join(' '); const isCorrect = (userSentence.toLowerCase().trim() === this.jumbleOriginalSentence.toLowerCase().trim()); this.jumbleChecked = true; this.jumbleCorrect = isCorrect; this.playTone(isCorrect ? 'correct' : 'error'); this.render(); }
+    handleJumbleCheck() { if (this.jumbleChecked) return; const userSentence = this.jumbleUserAnswer.join(' '); const isCorrect = (userSentence.toLowerCase().trim() === this.jumbleOriginalSentence.toLowerCase().trim()); this.jumbleChecked = true; this.jumbleCorrect = isCorrect; this.playTone(isCorrect ? 'correct' : 'error'); if (isCorrect) { this.recordCorrectAnswer('jumble', this.jumbleOriginalSentence); } else { this.recordTotalAnswer('jumble'); } this.render(); }
     handleJumbleHint() { if (this.jumbleChecked) return; if (!this.jumbleHintUsed) { const firstWord = this.jumbleOriginalSentence.split(/\s+/)[0]; if (firstWord && !this.jumbleUserAnswer.includes(firstWord)) { const index = this.jumbleWords.indexOf(firstWord); if (index !== -1) { this.jumbleWords.splice(index, 1); this.jumbleUserAnswer.push(firstWord); } } this.jumbleHintUsed = true; } else { const originalWords = this.jumbleOriginalSentence.split(/\s+/); for (let word of originalWords) { if (!this.jumbleUserAnswer.includes(word) && this.jumbleWords.includes(word)) { const index = this.jumbleWords.indexOf(word); this.jumbleWords.splice(index, 1); this.jumbleUserAnswer.push(word); break; } } } this.render(); }
     handleJumbleNext() { this.jumbleNextCount++; if (this.jumbleNextCount % 10 === 0) this.showAd('image'); this.prepareJumble(); this.render(); }
+
     getAllAvailableWordsForExercises() { const lesson = this.getCurrentLessonData(); if (!lesson) return []; const allTerms = [...lesson.terms, ...this.userVocabulary.filter(v => v.lessonId == this.selectedLessonId)]; return allTerms.filter(t => !this.hiddenFromCards.includes(String(t.id))); }
-    prepareListeningQuiz() { /* ... */ }
-    handleListeningAnswer(selectedArabic) { /* ... */ }
+
+    prepareListeningQuiz() {
+        if (this.listeningTimer) clearTimeout(this.listeningTimer);
+        if (this.listeningErrorTimer) clearTimeout(this.listeningErrorTimer);
+        const available = this.getAllAvailableWordsForExercises();
+        if (available.length === 0) { alert(this.t('لا توجد كلمات متاحة للاستماع.', 'No words available for listening.')); return; }
+        if (this.listeningRemaining.length === 0) this.listeningRemaining = [...available].sort(() => 0.5 - Math.random());
+        this.listeningCurrent = this.listeningRemaining[0];
+        this.listeningAnswered = false;
+        const allTerms = this.getAllAvailableWordsForExercises();
+        const otherTerms = allTerms.filter(t => t.id !== this.listeningCurrent.id);
+        const shuffled = [...otherTerms].sort(() => 0.5 - Math.random());
+        const wrongOptions = shuffled.slice(0, 3).map(t => t.arabic);
+        while (wrongOptions.length < 3) wrongOptions.push('???');
+        this.listeningOptions = [this.listeningCurrent.arabic, ...wrongOptions].sort(() => 0.5 - Math.random());
+        this.speak(this.listeningCurrent.english);
+    }
+
+    handleListeningAnswer(selectedArabic) {
+        if (this.listeningAnswered || !this.listeningCurrent) return;
+        this.listeningAnswered = true;
+        const isCorrect = (selectedArabic === this.listeningCurrent.arabic);
+        this.playTone(isCorrect ? 'correct' : 'error');
+        const allOptions = document.querySelectorAll('.listening-opt-btn');
+        allOptions.forEach(btn => { btn.disabled = true; btn.classList.remove('correct-answer', 'wrong-answer', 'other-option'); if (btn.dataset.param === this.listeningCurrent.arabic) btn.classList.add('correct-answer'); else if (btn.dataset.param === selectedArabic && !isCorrect) btn.classList.add('wrong-answer'); else btn.classList.add('other-option'); });
+        if (isCorrect) { this.listeningRemaining.shift(); this.addListeningCorrectReward(this.listeningCurrent.id); this.listeningTimer = setTimeout(() => { this.listeningTimer = null; if (this.listeningRemaining.length === 0) { alert(this.t('🎉 تهانينا! أكملت جميع الكلمات.', '🎉 Congratulations! You completed all words.')); this.currentPage = 'reading'; } else this.prepareListeningQuiz(); this.render(); }, 2500); }
+        else { this.recordTotalAnswer('listening'); this.listeningErrorTimer = setTimeout(() => { this.listeningErrorTimer = null; this.listeningAnswered = false; allOptions.forEach(btn => { btn.disabled = false; btn.classList.remove('correct-answer', 'wrong-answer', 'other-option'); }); this.render(); }, 1500); }
+    }
+
     unlockListening(lessonId) { if (this.listeningUnlocked[lessonId]) return true; if (this.userCoins >= 50) { this.showCoinPurchaseModal(50, (confirmed) => { if (confirmed) { this.userCoins -= 50; this.listeningUnlocked[lessonId] = true; this.saveUserData(); this.prepareListeningQuiz(); this.currentPage = 'listening'; this.render(); } }); } else this.showCustomModal('error', '❌', this.t(`ليس لديك لآلئ كافية! تحتاج 50 لؤلؤة.`, `You don't have enough pearls! You need 50 pearls.`)); return false; }
     unlockJumble(lessonId) { if (this.jumbleUnlocked[lessonId]) return true; if (this.userCoins >= 50) { this.showCoinPurchaseModal(50, (confirmed) => { if (confirmed) { this.userCoins -= 50; this.jumbleUnlocked[lessonId] = true; this.saveUserData(); this.prepareJumble(); this.currentPage = 'jumble'; this.render(); } }); } else this.showCustomModal('error', '❌', this.t(`ليس لديك لآلئ كافية! تحتاج 50 لؤلؤة.`, `You don't have enough pearls! You need 50 pearls.`)); return false; }
     unlockSpelling(lessonId) { if (this.spellingUnlocked[lessonId]) return true; if (this.userCoins >= 50) { this.showCoinPurchaseModal(50, (confirmed) => { if (confirmed) { this.userCoins -= 50; this.spellingUnlocked[lessonId] = true; this.saveUserData(); this.prepareSpelling(); this.currentPage = 'spelling'; this.render(); } }); } else this.showCustomModal('error', '❌', this.t(`ليس لديك لآلئ كافية! تحتاج 50 لؤلؤة.`, `You don't have enough pearls! You need 50 pearls.`)); return false; }
-    prepareSpelling() { /* ... */ }
-    handleSpellingCheck() { /* ... */ }
-    handleSpellingNext() { /* ... */ }
+
+    prepareSpelling() {
+        const available = this.getAllAvailableWordsForExercises();
+        if (available.length === 0) { alert(this.t('لا توجد كلمات متاحة للكتابة.', 'No words available for spelling.')); return; }
+        if (this.spellingRemaining.length === 0) this.spellingRemaining = [...available].sort(() => 0.5 - Math.random());
+        this.spellingCurrent = this.spellingRemaining[0];
+        this.spellingAnswered = false;
+        this.spellingUserAnswer = '';
+        this.spellingResult = null;
+    }
+
+    handleSpellingCheck() {
+        if (this.spellingAnswered || !this.spellingCurrent) return;
+        const userAnswer = this.spellingUserAnswer.trim().toLowerCase();
+        const correctAnswer = this.spellingCurrent.english.trim().toLowerCase();
+        const isCorrect = (userAnswer === correctAnswer);
+        this.spellingAnswered = true;
+        this.spellingResult = isCorrect ? 'correct' : 'wrong';
+        this.playTone(isCorrect ? 'correct' : 'error');
+        if (isCorrect) { this.addSpellingCorrectReward(this.spellingCurrent.id); this.spellingRemaining.shift(); }
+        else { this.recordTotalAnswer('spelling'); if (this.spellingRemaining.length > 1) { const wrongWord = this.spellingRemaining.shift(); this.spellingRemaining.push(wrongWord); } }
+        this.render();
+    }
+
+    handleSpellingNext() {
+        if (this.spellingRemaining.length === 0) { alert(this.t('🎉 تهانينا! أكملت جميع الكلمات.', '🎉 Congratulations! You completed all words.')); this.currentPage = 'reading'; }
+        else { this.spellingNextCount++; if (this.spellingNextCount % 10 === 0) this.showAd('image'); this.prepareSpelling(); }
+        this.render();
+    }
+
     handleSpellingInput(e) { this.spellingUserAnswer = e.target.value; }
-    prepareLevelTest(levelParam) { /* ... */ }
-    getAllLevelWords() { /* ... */ }
-    loadNextLevelTestQuestion() { /* ... */ }
-    handleLevelTestAnswer(selected, correct, btnElement) { /* ... */ }
-    moveToNextLesson() { /* ... */ }
-    finishLevelTestEarly() { /* ... */ }
+
+    prepareLevelTest(levelParam) {
+        let lessonIds = [], levelName = '';
+        if (levelParam === 'beginner') { levelName = 'beginner'; lessonIds = window.lessonsList['beginner'] ? window.lessonsList['beginner'].map(l => l.id) : []; }
+        else if (levelParam === 'intermediate') { levelName = 'intermediate'; lessonIds = window.lessonsList['intermediate'] ? window.lessonsList['intermediate'].map(l => l.id) : []; }
+        else if (levelParam === 'advanced') { levelName = 'advanced'; lessonIds = window.lessonsList['advanced'] ? window.lessonsList['advanced'].map(l => l.id) : []; }
+        else return;
+        if (lessonIds.length === 0) { alert(this.t('لا توجد دروس في هذا المستوى.', 'No lessons in this level.')); return; }
+        this.levelTestLevel = levelName;
+        this.levelTestLessons = lessonIds;
+        let startIndex = 0;
+        for (let i = 0; i < lessonIds.length; i++) { if (!this.unlockedLessons.includes(lessonIds[i])) { startIndex = i; break; } }
+        if (startIndex === 0 && this.unlockedLessons.includes(lessonIds[0])) { startIndex = this.lastTestedLesson[levelName] || 0; if (startIndex >= lessonIds.length) startIndex = 0; }
+        this.levelTestCurrentLessonIndex = startIndex;
+        this.levelTestCurrentLessonId = lessonIds[startIndex];
+        this.levelTestRequiredCorrect = 5;
+        this.levelTestCurrentCorrect = 0;
+        this.levelTestCurrentTotal = 0;
+        this.levelTestQuestionsBank = {};
+        this.levelTestResults = [];
+        this.levelTestQuestionsAnswered = 0;
+        this.levelTestCurrentQuestion = null;
+        this.levelTestUnlockedCount = 0;
+        this.levelTestCoinsEarned = 0;
+        lessonIds.forEach(id => { const lesson = this.getLessonDataById(id); if (lesson && lesson.terms) { let allWords = [...lesson.terms]; const added = this.userVocabulary.filter(v => v.lessonId == id); allWords.push(...added); allWords = allWords.filter(t => !this.hiddenFromCards.includes(String(t.id))); this.shuffleArray(allWords); this.levelTestQuestionsBank[id] = allWords; } else { this.levelTestQuestionsBank[id] = []; } });
+        this.loadNextLevelTestQuestion();
+        this.currentPage = 'level_test';
+        this.render();
+    }
+
+    getAllLevelWords() {
+        if (!this.levelTestLevel) return [];
+        const lessonIds = this.levelTestLessons || [];
+        let allWords = [];
+        lessonIds.forEach(id => { const lesson = this.getLessonDataById(id); if (lesson && lesson.terms) allWords = allWords.concat(lesson.terms); const added = this.userVocabulary.filter(v => v.lessonId == id); allWords = allWords.concat(added); });
+        allWords = allWords.filter(t => !this.hiddenFromCards.includes(String(t.id)));
+        const unique = {}; allWords.forEach(w => unique[w.id] = w); return Object.values(unique);
+    }
+
+    loadNextLevelTestQuestion() {
+        if (this.levelTestQuestionsAnswered >= this.levelTestMaxQuestions) { this.finishLevelTestEarly(); return; }
+        const lessonId = this.levelTestCurrentLessonId;
+        if (!lessonId) { this.finishLevelTestEarly(); return; }
+        let bank = this.levelTestQuestionsBank[lessonId];
+        if (!bank || bank.length === 0) { this.moveToNextLesson(); return; }
+        this.levelTestCurrentQuestion = bank.shift();
+        let wrongOptions = [];
+        const currentLessonWords = [...bank];
+        this.shuffleArray(currentLessonWords);
+        for (let i = 0; i < 3; i++) { if (currentLessonWords.length > i) wrongOptions.push(currentLessonWords[i].arabic); else break; }
+        if (wrongOptions.length < 3) { const allLevelWords = this.getAllLevelWords().filter(w => w.id !== this.levelTestCurrentQuestion.id); this.shuffleArray(allLevelWords); for (let i = 0; i < 3 - wrongOptions.length; i++) { if (allLevelWords.length > i) wrongOptions.push(allLevelWords[i].arabic); else break; } }
+        while (wrongOptions.length < 3) wrongOptions.push('???');
+        const options = [this.levelTestCurrentQuestion.arabic, ...wrongOptions];
+        this.shuffleArray(options);
+        this.levelTestCurrentOptions = options;
+    }
+
+    handleLevelTestAnswer(selected, correct, btnElement) {
+        if (this.isWaiting) return;
+        this.isWaiting = true;
+        const selectedTrim = selected.trim().toLowerCase();
+        const correctTrim = correct.trim().toLowerCase();
+        const isCorrect = (selectedTrim === correctTrim);
+        this.playTone(isCorrect ? 'correct' : 'error');
+        const allOptions = document.querySelectorAll('.quiz-opt-btn');
+        allOptions.forEach(btn => { btn.disabled = true; btn.classList.remove('correct-answer', 'wrong-answer', 'other-option'); const btnParam = btn.dataset.param ? btn.dataset.param.trim().toLowerCase() : ''; if (btnParam === correctTrim) btn.classList.add('correct-answer'); else if (btnParam === selectedTrim && !isCorrect) btn.classList.add('wrong-answer'); else btn.classList.add('other-option'); });
+        this.levelTestQuestionsAnswered++;
+        this.levelTestCurrentTotal++;
+        if (isCorrect) this.levelTestCurrentCorrect++;
+        if (!this.levelTestAnswers) this.levelTestAnswers = [];
+        this.levelTestAnswers.push({ question: this.levelTestCurrentQuestion, selected: selected, correct: correct, isCorrect: isCorrect });
+        setTimeout(() => {
+            if (this.levelTestCurrentCorrect >= this.levelTestRequiredCorrect) { if (!this.unlockedLessons.includes(this.levelTestCurrentLessonId)) { this.unlockedLessons.push(this.levelTestCurrentLessonId); this.levelTestUnlockedCount++; this.userCoins += 20; this.levelTestCoinsEarned += 20; this.levelTestResults.push({ lessonId: this.levelTestCurrentLessonId, passed: true, attempts: this.levelTestCurrentTotal }); this.addLessonReward(this.levelTestCurrentLessonId); } this.moveToNextLesson(); }
+            else { if (this.levelTestQuestionsBank[this.levelTestCurrentLessonId].length === 0) { const lesson = this.getLessonDataById(this.levelTestCurrentLessonId); if (lesson && lesson.terms) { let allWords = [...lesson.terms]; const added = this.userVocabulary.filter(v => v.lessonId == this.levelTestCurrentLessonId); allWords.push(...added); allWords = allWords.filter(t => !this.hiddenFromCards.includes(String(t.id))); this.shuffleArray(allWords); this.levelTestQuestionsBank[this.levelTestCurrentLessonId] = allWords; this.levelTestRequiredCorrect += 2; this.levelTestCurrentCorrect = 0; this.levelTestCurrentTotal = 0; } else { this.moveToNextLesson(); this.isWaiting = false; this.render(); return; } } this.loadNextLevelTestQuestion(); }
+            this.isWaiting = false;
+            this.render();
+        }, 1200);
+    }
+
+    moveToNextLesson() {
+        this.levelTestCurrentLessonIndex++;
+        if (this.levelTestCurrentLessonIndex >= this.levelTestLessons.length) { this.finishLevelTestEarly(); return; }
+        this.levelTestCurrentLessonId = this.levelTestLessons[this.levelTestCurrentLessonIndex];
+        this.levelTestRequiredCorrect = 5;
+        this.levelTestCurrentCorrect = 0;
+        this.levelTestCurrentTotal = 0;
+        this.loadNextLevelTestQuestion();
+    }
+
+    finishLevelTestEarly() {
+        const lastLessonIndex = this.levelTestCurrentLessonIndex;
+        this.lastTestedLesson[this.levelTestLevel] = lastLessonIndex;
+        this.saveUserData();
+        const passedLessons = this.levelTestResults.filter(r => r.passed).map(r => r.lessonId);
+        let message = '';
+        if (passedLessons.length > 0) { message = this.t(`✅ تم فتح الدروس: ${passedLessons.join('، ')}.`, `✅ Lessons unlocked: ${passedLessons.join(', ')}.`); if (this.levelTestCurrentLessonIndex < this.levelTestLessons.length) message += this.t(` توقف عند الدرس ${this.levelTestLessons[this.levelTestCurrentLessonIndex]}.`, ` Stopped at lesson ${this.levelTestLessons[this.levelTestCurrentLessonIndex]}.`); else message += this.t(` 🎉 لقد أكملت جميع الدروس!`, ` 🎉 You have completed all lessons!`); }
+        else { if (this.levelTestCurrentLessonIndex < this.levelTestLessons.length) message = this.t(`لم يتم فتح أي درس. استمر من الدرس ${this.levelTestLessons[this.levelTestCurrentLessonIndex]}.`, `No lessons unlocked. Continue from lesson ${this.levelTestLessons[this.levelTestCurrentLessonIndex]}.`); else message = this.t(`🎉 لقد أكملت جميع الدروس مسبقاً.`, `🎉 You have already completed all lessons.`); }
+        if (this.levelTestCoinsEarned > 0) message += this.t(`\nحصلت على ${this.levelTestCoinsEarned} لؤلؤة إضافية.`, `\nYou earned ${this.levelTestCoinsEarned} extra pearls.`);
+        this.levelTestResultMessage = message;
+        this.showAd('video', () => { this.currentPage = 'level_test_result'; this.render(); this.showCustomModal('info', '📊', message); });
+    }
+
     isLessonCompleted(lessonId) { const lesson = this.getLessonDataById(lessonId); if (!lesson) return false; const allTermIds = lesson.terms.map(t => String(t.id)); return allTermIds.every(id => this.masteredWords.includes(id)); }
     grantLessonCompletionReward(lessonId) { const key = `lesson_completed_${lessonId}`; if (!localStorage.getItem(key) && this.isLessonCompleted(lessonId)) { this.userCoins += 20; localStorage.setItem(key, 'true'); this.saveUserData(); this.updateLevelAndBadges(); this.showCustomModal('success', '🎉', this.t(`أحسنت! أكملت جميع كلمات الدرس وحصلت على 20 لؤلؤة إضافية.`, `Well done! You completed all lesson words and earned 20 extra pearls.`)); } }
     speak(text) { if (!text) return; window.speechSynthesis.cancel(); const u = new SpeechSynthesisUtterance(text); u.lang = 'en-US'; u.rate = 0.85; window.speechSynthesis.speak(u); }
@@ -1252,15 +1454,16 @@ class App {
     speedUp() { const currentIndex = this.availableSpeeds.indexOf(this.audioPlaybackRate); if (currentIndex < this.availableSpeeds.length - 1) this.setAudioSpeed(this.availableSpeeds[currentIndex + 1]); }
     speedDown() { const currentIndex = this.availableSpeeds.indexOf(this.audioPlaybackRate); if (currentIndex > 0) this.setAudioSpeed(this.availableSpeeds[currentIndex - 1]); }
     getCorrectAnswer(q) { return q.correct || q.answer || q.a || q.right || q.rightAnswer || ''; }
+    
     prepareQuiz(terms, isUnlockMode = false) { this.isUnlockTest = isUnlockMode; const addedByUser = this.userVocabulary.filter(v => v.lessonId == this.selectedLessonId); const fullPool = [...terms, ...addedByUser].filter(t => !this.hiddenFromCards.includes(String(t.id))); if (this.isUnlockTest) this.quizQuestions = fullPool.sort(() => 0.5 - Math.random()).slice(0, Math.max(1, Math.floor(fullPool.length / 2))); else this.quizQuestions = fullPool; this.quizIndex = 0; this.quizScore = 0; this.generateOptions(); }
     generateOptions() { if (this.quizIndex >= this.quizQuestions.length) return; const currentQ = this.quizQuestions[this.quizIndex]; const lesson = this.getCurrentLessonData() || { terms: [] }; let allArb = [...lesson.terms, ...this.userVocabulary].map(t => t.arabic); let wrongs = [...new Set(allArb.filter(a => a !== currentQ.arabic))].sort(() => 0.5 - Math.random()).slice(0, 3); while (wrongs.length < 3) wrongs.push(this.t("خيار " + (wrongs.length + 1), "Option " + (wrongs.length + 1))); this.quizOptions = [currentQ.arabic, ...wrongs].sort(() => 0.5 - Math.random()); }
     handleAnswer(selected, correct, btnElement) { if (this.isWaiting) return; this.isWaiting = true; const selectedTrim = selected.trim().toLowerCase(); const correctTrim = correct.trim().toLowerCase(); const isCorrect = (selectedTrim === correctTrim); if (isCorrect) { this.quizScore++; this.playTone('correct'); this.addQuizCorrectReward(this.quizQuestions[this.quizIndex].id); } else { this.playTone('error'); this.recordTotalAnswer('quiz'); } const allOptions = document.querySelectorAll('.quiz-opt-btn'); allOptions.forEach(btn => { btn.disabled = true; btn.classList.remove('correct-answer', 'wrong-answer', 'other-option'); const btnParam = btn.dataset.param ? btn.dataset.param.trim().toLowerCase() : ''; if (btnParam === correctTrim) btn.classList.add('correct-answer'); else if (btnParam === selectedTrim && !isCorrect) btn.classList.add('wrong-answer'); else btn.classList.add('other-option'); }); setTimeout(() => { this.quizIndex++; if (this.quizIndex < this.quizQuestions.length) this.generateOptions(); this.isWaiting = false; this.render(); }, 1100); }
     generateDynamicGapFillQuestion(wordObj) { const { english, arabic } = wordObj; const sentence = this.t(`The word "______" means "${arabic}".`, `The word "______" means "${arabic}".`); const originalSentence = this.t(`The word "${english}" means "${arabic}".`, `The word "${english}" means "${arabic}".`); const options = [english, ...this.getRandomWordsForOptions(english, 3)]; return { sentence, originalSentence, options, word: english, arabic }; }
     getRandomWordsForOptions(correctWord, count) { const lesson = this.getCurrentLessonData(); if (!lesson) return []; const allTerms = [...lesson.terms, ...this.userVocabulary.filter(v => v.lessonId == this.selectedLessonId)]; const otherWords = allTerms.filter(t => t.english !== correctWord).map(t => t.english); const shuffled = [...otherWords].sort(() => 0.5 - Math.random()); const selected = shuffled.slice(0, count); while (selected.length < count) selected.push('???'); return selected; }
-    async prepareGapFill() { /* ... */ }
-    handleGapFillAnswer(selectedEnglish) { /* ... */ }
-    handleGapFillNext() { /* ... */ }
-    async showDetailedGapFillExplanation() { /* ... */ }
+    async prepareGapFill() { if (this.gapFillTimer) clearTimeout(this.gapFillTimer); const lesson = this.getCurrentLessonData(); if (!lesson) return; if (this.gapFillCurrentLessonId !== this.selectedLessonId) { this.resetGapFillForNewLesson(); this.gapFillCurrentLessonId = this.selectedLessonId; } const available = this.getAllAvailableWordsForExercises(); if (available.length === 0) { alert(this.t('🎉 لا توجد كلمات متاحة! قم بإضافة كلمات جديدة.', '🎉 No words available! Add new words.')); return; } if (!this.gapFillRemainingWords || this.gapFillRemainingWords.length === 0) { this.gapFillRemainingWords = [...available]; this.shuffleArray(this.gapFillRemainingWords); this.gapFillUsedQuestions = {}; this.gapFillNoQuestionsMessageShown = false; } const targetWordObj = this.gapFillRemainingWords[0]; const targetWord = targetWordObj.english; const targetArabic = targetWordObj.arabic; const wordId = targetWordObj.id; let questionData = null; if (window.gapfillDB && window.gapfillDB[wordId] && window.gapfillDB[wordId].length > 0) { const questionsForWord = window.gapfillDB[wordId]; if (!this.gapFillUsedQuestions[wordId]) this.gapFillUsedQuestions[wordId] = []; let availableQuestions = questionsForWord.filter(q => !this.gapFillUsedQuestions[wordId].includes(q)); if (availableQuestions.length === 0) { this.gapFillUsedQuestions[wordId] = []; availableQuestions = questionsForWord; } const randomIndex = Math.floor(Math.random() * availableQuestions.length); questionData = availableQuestions[randomIndex]; this.gapFillUsedQuestions[wordId].push(questionData); } if (!questionData) questionData = this.generateDynamicGapFillQuestion(targetWordObj); while (questionData.options.length < 4) questionData.options.push('???'); this.shuffleArray(questionData.options); this.gapFillCurrentQuestion = { text: questionData.sentence, correct: targetWord, arabic: targetArabic, originalSentence: questionData.originalSentence || questionData.sentence.replace('______', targetWord), originalSentenceArabic: '', wordId: wordId }; this.gapFillOptions = questionData.options; this.gapFillAnswered = false; this.gapFillResult = null; this.gapFillExplanation = ''; this.gapFillOptionsMeanings = []; this.gapFillExplanationVisible = false; this.render(); }
+    handleGapFillAnswer(selectedEnglish) { if (this.gapFillAnswered || !this.gapFillCurrentQuestion) return; this.gapFillAnswered = true; const isCorrect = (selectedEnglish.trim().toLowerCase() === this.gapFillCurrentQuestion.correct.trim().toLowerCase()); this.playTone(isCorrect ? 'correct' : 'error'); this.gapFillResult = isCorrect ? 'correct' : 'wrong'; const allOptions = document.querySelectorAll('.gapfill-opt-btn'); allOptions.forEach(btn => { btn.disabled = true; btn.classList.remove('correct-answer', 'wrong-answer', 'other-option'); if (btn.dataset.english === this.gapFillCurrentQuestion.correct) btn.classList.add('correct-answer'); else if (btn.dataset.english === selectedEnglish && !isCorrect) btn.classList.add('wrong-answer'); else btn.classList.add('other-option'); }); const lesson = this.getCurrentLessonData(); const allTerms = lesson ? [...lesson.terms, ...this.userVocabulary.filter(v => v.lessonId == this.selectedLessonId)] : []; this.gapFillOptionsMeanings = this.gapFillOptions.map(opt => { const term = allTerms.find(t => t.english === opt); if (term) return { english: opt, arabic: term.arabic }; return { english: opt, arabic: 'معنى غير متاح' }; }); if (isCorrect) { if (this.gapFillRemainingWords && this.gapFillRemainingWords.length > 0) this.gapFillRemainingWords.shift(); this.addGapFillCorrectReward(this.gapFillCurrentQuestion.wordId); } else { this.recordTotalAnswer('gapFill'); if (this.gapFillRemainingWords && this.gapFillRemainingWords.length > 0) { const currentWord = this.gapFillRemainingWords.shift(); const len = this.gapFillRemainingWords.length; if (len > 0) { const randomIndex = Math.floor(Math.random() * len) + 1; this.gapFillRemainingWords.splice(randomIndex, 0, currentWord); } else this.gapFillRemainingWords.push(currentWord); } } this.gapFillExplanation = isCorrect ? this.t(`✅ إجابة صحيحة! كلمة "${this.gapFillCurrentQuestion.correct}" تعني "${this.gapFillCurrentQuestion.arabic}" في العربية.`, `✅ Correct answer! The word "${this.gapFillCurrentQuestion.correct}" means "${this.gapFillCurrentQuestion.arabic}" in Arabic.`) : this.t(`❌ إجابة خاطئة. الإجابة الصحيحة هي "${this.gapFillCurrentQuestion.correct}" (${this.gapFillCurrentQuestion.arabic}).`, `❌ Wrong answer. The correct answer is "${this.gapFillCurrentQuestion.correct}" (${this.gapFillCurrentQuestion.arabic}).`); this.render(); }
+    handleGapFillNext() { if (this.gapFillRemainingWords.length === 0) { alert(this.t('🎉 تهانينا! أكملت جميع الكلمات.', '🎉 Congratulations! You completed all words.')); this.currentPage = 'reading'; } else this.prepareGapFill(); this.render(); }
+    async showDetailedGapFillExplanation() { if (!this.gapFillCurrentQuestion) return; this.gapFillExplanationVisible = !this.gapFillExplanationVisible; if (this.gapFillExplanationVisible) { if (!this.gapFillCurrentQuestion.originalSentenceArabic && this.gapFillCurrentQuestion.originalSentence) { const translated = await this.translateText(this.gapFillCurrentQuestion.originalSentence); this.gapFillCurrentQuestion.originalSentenceArabic = translated || ''; } else if (!this.gapFillCurrentQuestion.originalSentenceArabic && this.gapFillCurrentQuestion.text) { const fullSentence = this.gapFillCurrentQuestion.text.replace('______', this.gapFillCurrentQuestion.correct); const translated = await this.translateText(fullSentence); this.gapFillCurrentQuestion.originalSentenceArabic = translated || ''; } if (this.gapFillOptionsMeanings.length === 0 && this.gapFillOptions.length > 0) { const lesson = this.getCurrentLessonData(); const allTerms = lesson ? [...lesson.terms, ...this.userVocabulary.filter(v => v.lessonId == this.selectedLessonId)] : []; this.gapFillOptionsMeanings = this.gapFillOptions.map(opt => { const term = allTerms.find(t => t.english === opt); if (term) return { english: opt, arabic: term.arabic }; return { english: opt, arabic: 'معنى غير متاح' }; }); } let detailedExplanation = this.t(`✅ الإجابة الصحيحة هي "<strong>${this.gapFillCurrentQuestion.correct}</strong>" (${this.gapFillCurrentQuestion.arabic}).<br><br>`, `✅ The correct answer is "<strong>${this.gapFillCurrentQuestion.correct}</strong>" (${this.gapFillCurrentQuestion.arabic}).<br><br>`); detailedExplanation += this.t(`📖 الجملة الكاملة بالإنجليزية: "${this.gapFillCurrentQuestion.originalSentence || this.gapFillCurrentQuestion.text.replace('______', this.gapFillCurrentQuestion.correct)}"<br>`, `📖 The full sentence in English: "${this.gapFillCurrentQuestion.originalSentence || this.gapFillCurrentQuestion.text.replace('______', this.gapFillCurrentQuestion.correct)}"<br>`); detailedExplanation += this.t(`🌐 الترجمة العربية: "${this.gapFillCurrentQuestion.originalSentenceArabic || 'جاري التحميل...'}"<br><br>`, `🌐 Arabic translation: "${this.gapFillCurrentQuestion.originalSentenceArabic || 'Loading...'}"<br><br>`); detailedExplanation += this.t(`📚 معاني الخيارات:<br>`, `📚 Meanings of options:<br>`); this.gapFillOptionsMeanings.forEach(opt => { detailedExplanation += this.t(`• <strong>${opt.english}</strong> : ${opt.arabic}<br>`, `• <strong>${opt.english}</strong> : ${opt.arabic}<br>`); }); detailedExplanation += this.t(`<br>💡 سبب الاختيار: كلمة "<strong>${this.gapFillCurrentQuestion.correct}</strong>" (${this.gapFillCurrentQuestion.arabic}) هي الأنسب لسياق الجملة.`, `<br>💡 Reason: The word "<strong>${this.gapFillCurrentQuestion.correct}</strong>" (${this.gapFillCurrentQuestion.arabic}) is the most appropriate for the sentence context.`); this.gapFillExplanation = detailedExplanation; } this.render(); setTimeout(() => { const explanationDiv = document.querySelector('.gapfill-explanation'); if (explanationDiv) { explanationDiv.style.maxHeight = '300px'; explanationDiv.style.overflowY = 'auto'; } }, 50); }
     unlockGapFill(lessonId) { if (this.gapFillUnlocked[lessonId]) return true; if (this.userCoins >= 75) { this.showCoinPurchaseModal(75, (confirmed) => { if (confirmed) { this.userCoins -= 75; this.gapFillUnlocked[lessonId] = true; this.saveUserData(); this.resetGapFillForNewLesson(); this.prepareGapFill(); this.currentPage = 'gapfill'; this.render(); } }); } else this.showCustomModal('error', '❌', this.t(`ليس لديك لآلئ كافية! تحتاج 75 لؤلؤة.`, `You don't have enough pearls! You need 75 pearls.`)); return false; }
     async handleNewWord() { const eng = document.getElementById('newEng').value.trim(); const arb = document.getElementById('newArb').value.trim(); if (!eng || !arb) return; const lesson = this.getCurrentLessonData(); if (!lesson) { alert(this.t('الدرس غير موجود.', 'Lesson not found.')); return; } const existingWords = lesson.terms.map(t => t.english.toLowerCase()); const userWords = this.userVocabulary.filter(v => v.lessonId == this.selectedLessonId).map(v => v.english.toLowerCase()); if (existingWords.includes(eng.toLowerCase()) || userWords.includes(eng.toLowerCase())) { this.showCustomModal('error', '⚠️', this.t('هذه الكلمة موجودة بالفعل في الدرس. لا يمكن إضافتها مرة أخرى.', 'This word already exists in the lesson. Cannot add again.')); return; } this.userVocabulary.push({ id: "u" + Date.now(), lessonId: String(this.selectedLessonId), english: eng, arabic: arb }); await this.saveUserData(); document.getElementById('newEng').value = ''; document.getElementById('newArb').value = ''; this.newWordsAddedCount++; if (this.newWordsAddedCount % 10 === 0) this.showAd('video'); this.render(); this.showCustomModal('success', '✅', this.t('تمت إضافة الكلمة بنجاح إلى بطاقات الدرس.', 'Word successfully added to lesson flashcards.')); }
     getCurrentLessonData() { if (!this.selectedLessonId) return null; return this.getLessonDataById(this.selectedLessonId); }
@@ -1419,14 +1622,15 @@ class App {
         if (this.currentPage === 'auth') {
             return `<main class="main-content"><div class="auth-container"><img src="wordwise_logo.png" alt="WordWise"><h1>WordWise</h1><p>${this.t('كن حكيماً في اختيار كلماتك', 'Be wise in choosing your words')}</p></div><div class="reading-card auth-card"><div class="auth-tabs"><div class="auth-tab ${this.authMode === 'login' ? 'active' : ''}" data-action="switchAuthMode" data-param="login">${this.t('تسجيل الدخول', 'Login')}</div><div class="auth-tab ${this.authMode === 'signup' ? 'active' : ''}" data-action="switchAuthMode" data-param="signup">${this.t('إنشاء حساب', 'Sign Up')}</div></div>${this.authMode === 'login' ? `<input id="loginEmail" placeholder="${this.t('البريد الإلكتروني', 'Email')}" class="auth-input"><input type="password" id="loginPass" placeholder="${this.t('كلمة المرور', 'Password')}" class="auth-input"><button class="hero-btn" data-action="doLogin" style="width:100%;">${this.t('تسجيل الدخول', 'Login')}</button>` : `<input id="signupName" placeholder="${this.t('الاسم الكامل', 'Full Name')}" class="auth-input"><input id="signupEmail" placeholder="${this.t('البريد الإلكتروني', 'Email')}" class="auth-input"><input type="password" id="signupPass" placeholder="${this.t('كلمة المرور', 'Password')}" class="auth-input"><input type="password" id="signupConfirmPass" placeholder="${this.t('تأكيد كلمة المرور', 'Confirm Password')}" class="auth-input"><input id="signupAge" placeholder="${this.t('العمر (اختياري)', 'Age (Optional)')}" class="auth-input"><button class="hero-btn" data-action="doSignup" style="width:100%;">${this.t('إنشاء حساب', 'Sign Up')}</button>`}<p style="margin-top:12px; font-size:0.75rem; color:#666; text-align:center;">${this.t('جميع بياناتك محفوظة ومرتبطة بهذا البريد.', 'All your data is stored and linked to this email.')}</p></div></main>`;
         }
-        if (this.currentPage === 'home') { const progress = this.getCurrentLevelProgress(); const totalMastered = this.masteredWords ? this.masteredWords.length : 0; const totalLessons = this.unlockedLessons ? this.unlockedLessons.length : 0; const xpProgress = `${progress.currentProgress}/${progress.neededForNext}`; const xpPercent = (progress.currentProgress / progress.neededForNext) * 100; return `<main class="main-content"><div class="reading-card welcome-banner"><div style="display: flex; justify-content: space-between; align-items: center; flex-wrap:wrap; gap:10px;"><h3 style="margin:0;">${this.t(`مرحباً، ${this.userData?.name || 'مستخدم'} 👋`, `Welcome, ${this.userData?.name || 'User'} 👋`)}</h3><div style="background: rgba(255,255,255,0.2); padding: 4px 12px; border-radius: 20px; font-size: 0.8rem; font-weight: bold;">⭐ ${this.t('مستوى', 'Level')} ${progress.level}</div></div><div style="margin-top: 15px;"><div style="display: flex; justify-content: space-between; font-size: 0.8rem; margin-bottom: 6px;"><span>${this.t('نقاط الخبرة (XP)', 'Experience Points (XP)')}</span><span>${xpProgress}</span></div><div class="progress-bar-container"><div class="progress-bar-fill" style="width: ${xpPercent}%;"></div></div></div>${this.getBadgesDisplay()}<div style="margin-top: 10px; font-size:0.85rem;">${this.t('التاج الحالي:', 'Current Crown:')} ${this.userStats.tier}</div><div style="margin-top: 4px; font-size:0.8rem;">${this.t('الدروس المفتوحة:', 'Unlocked Lessons:')} ${totalLessons} | ${this.t('الكلمات المتقنة:', 'Mastered Words:')} ${totalMastered}</div></div><button class="hero-btn" data-action="setPage" data-param="addLesson" style="width:100%; background:#8b5cf6; margin-top:12px;">📸 ${this.t('إضافة من الكاميرا أو الهاتف', 'Add from Camera or Phone')}</button><button class="hero-btn" data-action="setPage" data-param="adaptive_test" style="width:100%; background:#ec4899; margin:12px 0;">🧠 ${this.t('اختبار مستوى متقدم', 'Advanced Level Test')}</button><div class="features-grid">${window.levels.map(l => `<div class="feature-card" data-action="selLevel" data-param="${l.id}"><h3 style="font-size:1rem;">${l.icon} ${this.lang === 'en' ? (l.id === 'beginner' ? 'Beginner' : l.id === 'intermediate' ? 'Intermediate' : 'Advanced') : l.name}</h3></div>`).join('')}${Object.keys(this.customLessons).length > 0 ? `<div class="feature-card" data-action="selLevel" data-param="custom_list" style="border:1px solid #f97316;"><h3 style="font-size:1rem;">📂 ${this.t('نصوصي', 'My Texts')}</h3></div>` : ''}</div><button data-action="logout" class="logout-btn">${this.t('تسجيل الخروج', 'Logout')}</button></main>`; }
+        if (this.currentPage === 'home') { const progress = this.getCurrentLevelProgress(); const totalMastered = this.masteredWords ? this.masteredWords.length : 0; const totalLessons = this.unlockedLessons ? this.unlockedLessons.length : 0; const xpProgress = `${progress.currentProgress}/${progress.neededForNext}`; const xpPercent = (progress.currentProgress / progress.neededForNext) * 100; return `<main class="main-content"><div class="reading-card welcome-banner"><div style="display: flex; justify-content: space-between; align-items: center; flex-wrap:wrap; gap:10px;"><h3 style="margin:0;">${this.t(`مرحباً، ${this.userData?.name || 'مستخدم'} 👋`, `Welcome, ${this.userData?.name || 'User'} 👋`)}</h3><div style="background: rgba(255,255,255,0.2); padding: 4px 12px; border-radius: 20px; font-size: 0.8rem; font-weight: bold;">⭐ ${this.t('مستوى', 'Level')} ${progress.level}</div></div><div style="margin-top: 15px;"><div style="display: flex; justify-content: space-between; font-size: 0.8rem; margin-bottom: 6px;"><span>${this.t('نقاط الخبرة (XP)', 'Experience Points (XP)')}</span><span>${xpProgress}</span></div><div class="progress-bar-container"><div class="progress-bar-fill" style="width: ${xpPercent}%;"></div></div></div>${this.getBadgesDisplay()}<div style="margin-top: 10px; font-size:0.85rem;">${this.t('التاج الحالي:', 'Current Crown:')} ${this.userStats.tier}</div><div style="margin-top: 4px; font-size:0.8rem;">${this.t('الدروس المفتوحة:', 'Unlocked Lessons:')} ${totalLessons} | ${this.t('الكلمات المتقنة:', 'Mastered Words:')} ${totalMastered}</div></div><button class="hero-btn" data-action="setPage" data-param="addLesson" style="width:100%; background:#8b5cf6; margin-top:12px;">📸 ${this.t('إضافة من الكاميرا أو الهاتف', 'Add from Camera or Phone')}</button><button class="hero-btn" data-action="setPage" data-param="adaptive_test" style="width:100%; background:#ec4899; margin:12px 0;">🧠 ${this.t('اختبار مستوى متقدم', 'Advanced Level Test')}</button><div class="features-grid">${window.levels.map(l => `<div class="feature-card" data-action="selLevel" data-param="${l.id}"><h3 style="font-size:1rem;">${l.icon} ${this.lang === 'en' ? (l.id === 'beginner' ? 'Beginner' : l.id === 'intermediate' ? 'Intermediate' : 'Advanced') : l.name}</h3></div>`).join('')}${Object.keys(this.customLessons).length > 0 ? `<div class="feature-card" data-action="selLevel" data-param="custom_list" style="border:1px solid #f97316;"><h3 style="font-size:1rem;">📂 ${this.t('نصوصي', 'My Texts')}</h3></div>` : ''}</div><button data-action="logout" class="logout-btn">${this.t('تسجيل الخروج', 'Logout')}</button></main>`;
+        }
         
         if (this.currentPage === 'profile') { 
             const englishLevel = this.getEnglishLevel(); 
             const totalLessons = this.unlockedLessons.length; 
             const totalMastered = this.masteredWords.length; 
             const progressPercent = (totalLessons / 100) * 100; 
-            return `<main class="main-content"><button class="hero-btn" data-action="goHome" style="margin-bottom:15px; background:#64748b;">← ${this.t('رجوع', 'Back')}</button><div class="reading-card profile-container"><div class="profile-image" onclick="document.getElementById('profileImage').click()">${this.userProfile.image ? `<img src="${this.userProfile.image}" alt="profile">` : `<svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" viewBox="0 0 24 24" fill="#aaa"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>`}</div><input type="file" id="profileImage" accept="image/*" style="display:none;" onchange="appInstance.updateProfile()"><button class="hero-btn user-info-btn" data-action="showUserInfo" style="background:#8b5cf6;">📋 ${this.t('معلومات المستخدم', 'User Information')}</button><div style="width:100%; margin:12px 0;"><div style="display:flex; justify-content:space-between; font-size:0.85rem;"><span>${this.t('التقدم العام', 'Overall Progress')}</span><span>${totalLessons} ${this.t('درس', 'Lesson')} / 100</span></div><div class="progress-bar-container"><div class="progress-bar-fill" style="width: ${progressPercent}%;"></div></div></div><h4 style="margin:15px 0 8px;">🏅 ${this.t('الأوسمة والإنجازات', 'Badges & Achievements')}</h4>${this.getBadgesDisplay()}<h4 style="margin:15px 0 8px;">📜 ${this.t('سجل الاختبارات', 'Test History')}</h4><button class="hero-btn" data-action="setPage" data-param="test_history" style="background:#3b82f6;">${this.t('عرض سجل الاختبارات', 'View Test History')}</button><button class="hero-btn" data-action="updateProfile" style="background:#10b981; margin-top:15px;">${this.t('حفظ التغييرات', 'Save Changes')}</button></div></main>`; 
+            return `<main class="main-content"><button class="hero-btn" data-action="goHome" style="margin-bottom:15px; background:#64748b;">← ${this.t('رجوع', 'Back')}</button><div class="reading-card profile-container"><div class="profile-image" onclick="document.getElementById('profileImage').click()">${this.userProfile.image ? `<img src="${this.userProfile.image}" alt="profile">` : `<svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" viewBox="0 0 24 24" fill="#aaa"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>`}</div><input type="file" id="profileImage" accept="image/*" style="display:none;" onchange="appInstance.updateProfile()"><button class="hero-btn user-info-btn" data-action="showUserInfo" style="background:#8b5cf6;">📋 ${this.t('معلومات المستخدم', 'User Information')}</button><div style="width:100%; margin:12px 0;"><div style="display:flex; justify-content:space-between; font-size:0.85rem;"><span>${this.t('التقدم العام', 'Overall Progress')}</span><span>${totalLessons} ${this.t('درس', 'Lesson')} / 100</span></div><div class="progress-bar-container"><div class="progress-bar-fill" style="width: ${progressPercent}%;"></div></div></div><h4 style="margin:15px 0 8px;">🏅 ${this.t('الأوسمة والإنجازات', 'Badges & Achievements')}</h4>${this.getBadgesDisplay()}<h4 style="margin:15px 0 8px;">📜 ${this.t('سجل الاختبارات', 'Test History')}</h4><button class="hero-btn" data-action="setPage" data-param="test_history" style="background:#3b82f6;">${this.t('عرض سجل الاختبارات', 'View Test History')}</button><button class="hero-btn" data-action="updateProfile" style="background:#10b981; margin-top:15px;">${this.t('حفظ التغييرات', 'Save Changes')}</button></div></main>`;
         }
         
         if (this.currentPage === 'test_history') return `<main class="main-content"><button class="hero-btn" data-action="goHome" style="margin-bottom:15px; background:#64748b;">← ${this.t('الرجوع للرئيسية', 'Back to Home')}</button><div class="reading-card"><h2 style="text-align:center;">📋 ${this.t('سجل اختبارات المستوى', 'Level Test History')}</h2>${this.placementResults.length === 0 ? `<p style="text-align:center; color:#666; padding:20px;">${this.t('لا توجد اختبارات سابقة', 'No previous tests')}</p>` : `<div class="history-list">${this.placementResults.map((r, idx) => `<div class="history-item" onclick="appInstance.viewTestDetails(${idx})"><div style="display:flex; justify-content:space-between; flex-wrap:wrap; gap:5px;"><span><strong>${r.date}</strong></span><span>${this.t('المستوى:', 'Level:')} ${r.displayLevel || r.level}</span></div><div style="display:flex; justify-content:space-between; margin-top:5px; flex-wrap:wrap; gap:5px;"><span>${this.t('الدرجة:', 'Score:')} ${r.score}/${r.totalQuestions}</span><span>IELTS: ${r.ielts}</span></div><button class="hero-btn" data-action="deletePlacementTest" data-index="${idx}" style="margin-top:5px; background:#ef4444; padding:4px 8px; font-size:0.7rem;">🗑️ ${this.t('حذف', 'Delete')}</button></div>`).join('')}</div>`}</div></main>`;
