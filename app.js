@@ -1,5 +1,5 @@
 // app.js - تطبيق تعلم اللغة الإنجليزية مع Firebase
-// النسخة النهائية مع حفظ كامل للبيانات
+// النسخة النهائية المُصلحة - جميع مشاكل الحفظ تم إصلاحها
 
 class App {
     constructor() {
@@ -9,8 +9,8 @@ class App {
         this.availableSpeeds = [0.5, 0.75, 1.0, 1.5, 2.0, 2.5, 3.0];
         this.placementStep = 0;
         this.loadingData = true;
-        this.isDataLoaded = false; 
-        this.canSave = false; // NEW FLAG: Prevent any save operation until data is fully loaded from server
+        this.isDataLoaded = false;
+        this.canSave = false;
         this.currentDifficulty = 'A1';
         this.placementHistory = [];
         this.placementScore = 0;
@@ -136,14 +136,14 @@ class App {
         this.isWaiting = false;
         this.scrollPos = 0;
         this.levelTestResultMessage = '';
-        
+
         this.exerciseStats = {
             quiz: { correct: 0, total: 0 },
             listening: { correct: 0, total: 0 },
             spelling: { correct: 0, total: 0 },
             gapFill: { correct: 0, total: 0 }
         };
-        
+
         this.badgeDefinitions = {
             general: [
                 { id: 'bronze_medal', icon: '🥉', name: 'وسام برونزي', nameEn: 'Bronze Medal', requirement: { lessons: 5, words: 100 }, condition: (stats) => stats.totalLessons >= 5 && stats.totalMastered >= 100 },
@@ -254,7 +254,7 @@ class App {
 
         const totalLessons = (this.unlockedLessons || []).length;
         const totalMastered = (this.masteredWords || []).length;
-        
+
         if (totalMastered >= 7000 && totalLessons >= 150) this.userStats.tier = this.t('👑 تاج ماسي', '👑 Diamond Crown');
         else if (totalMastered >= 5000 && totalLessons >= 120) this.userStats.tier = this.t('👑 تاج ذهبي', '👑 Gold Crown');
         else if (totalMastered >= 3500 && totalLessons >= 100) this.userStats.tier = this.t('👑 تاج فضي', '👑 Silver Crown');
@@ -267,7 +267,7 @@ class App {
 
         const stats = { totalLessons, totalMastered };
         const newlyEarned = [];
-        
+
         for (const badge of this.badgeDefinitions.general) {
             if (!this.userStats.earnedBadges?.includes(badge.id) && badge.condition(stats)) {
                 this.userStats.earnedBadges = this.userStats.earnedBadges || [];
@@ -276,7 +276,7 @@ class App {
                 this.userCoins += 100;
             }
         }
-        
+
         for (const exerciseType of ['quiz', 'listening', 'spelling', 'gapFill']) {
             const correctCount = this.exerciseStats[exerciseType]?.correct || 0;
             for (const badge of this.badgeDefinitions[exerciseType]) {
@@ -294,7 +294,8 @@ class App {
             this.showCustomModal('success', '🏅', this.t(`تهانينا! حصلت على أوسمة جديدة: ${badgeNames}`, `Congratulations! You earned new badges: ${badgeNames}`));
         }
 
-        await this.saveUserData();
+        // ✅ الإصلاح: لا نحفظ هنا لأن saveUserData ستُستدعى من المستدعي
+        // هذا يمنع الحفظ المتكرر والـ race condition
     }
 
     recordCorrectAnswer(exerciseType) {
@@ -306,7 +307,7 @@ class App {
         this.updateLevelAndBadges();
         this.saveUserData();
     }
-    
+
     recordTotalAnswer(exerciseType) {
         if (!this.exerciseStats[exerciseType]) {
             this.exerciseStats[exerciseType] = { correct: 0, total: 0 };
@@ -373,49 +374,46 @@ class App {
         }
 
         try {
-            // محاولة تسجيل الدخول
             const userCredential = await signInWithEmailAndPassword(auth, email, pass);
             this.currentUser = userCredential.user;
             this.userData = { name: userCredential.user.displayName || name || 'User', email: userCredential.user.email, uid: userCredential.user.uid };
-            
+
             this.loadingData = true;
             this.render();
-            
+
             await this.loadUserData(userCredential.user.uid);
             this.currentPage = 'home';
             this.loadingData = false;
             this.render();
             alert(this.t('تم تسجيل الدخول بنجاح', 'Login successful'));
-            
+
         } catch (error) {
             console.error("Login error:", error.code, error.message);
-            
-            // إذا كان المستخدم غير موجود، نقوم بإنشاء حساب جديد
+
             if (error.code === 'auth/user-not-found' || error.code === 'auth/invalid-credential') {
                 if (!name) {
                     alert(this.t('الرجاء إدخال الاسم الكامل لإنشاء حساب جديد', 'Please enter your full name to create a new account'));
                     return;
                 }
-                
+
                 try {
                     const userCredential = await createUserWithEmailAndPassword(auth, email, pass);
                     this.currentUser = userCredential.user;
-                    
+
                     await updateProfile(this.currentUser, { displayName: name });
-                    
-                    // Initialize with defaults then save
+
                     this.userData = { name: name, email: email, uid: userCredential.user.uid };
                     this.resetToDefaults();
-                    this.userCoins = 100; // Welcome bonus
-                    this.isDataLoaded = true; 
-                    this.canSave = true; // Essential for signup to allow first save
-                    
+                    this.userCoins = 100;
+                    this.isDataLoaded = true;
+                    this.canSave = true;
+
                     await this.saveUserData();
-                    
+
                     this.currentPage = 'home';
                     this.render();
                     alert(this.t('تم إنشاء الحساب بنجاح! تم منحك 100 لؤلؤة 💎', 'Account created successfully! You got 100 pearls 💎'));
-                    
+
                 } catch (signUpError) {
                     console.error("Signup error:", signUpError);
                     alert(this.t('فشل إنشاء الحساب: ' + signUpError.message, 'Account creation failed: ' + signUpError.message));
@@ -426,17 +424,18 @@ class App {
         }
     }
 
+    // ✅ الإصلاح الرئيسي: نقل canSave=true قبل updateLevelAndBadges
     async loadUserData(uid) {
         if (!uid) return;
         try {
             this.loadingData = true;
             this.isDataLoaded = false;
-            this.canSave = false; // Disable saving immediately
-            this.render(); 
-            
+            this.canSave = false;
+            this.render();
+
             const docRef = doc(db, "users", uid);
             const docSnap = await getDoc(docRef);
-            
+
             if (docSnap.exists()) {
                 const data = docSnap.data();
                 console.log("جاري جلب البيانات من السيرفر لـ UID:", uid);
@@ -449,8 +448,7 @@ class App {
                 this.xpEarnedWords = data.xpEarnedWords || [];
                 this.userStats = data.userStats || { xp: 0, level: 1, badges: [], earnedBadges: [], tier: 'برونزي' };
                 this.userProfile = data.userProfile || { name: '', age: '', joinDate: new Date().toLocaleDateString('ar-EG'), level: 'A1', image: '', testsHistory: [] };
-                
-                // Extra safety for nested profile
+
                 if (data.userProfile) Object.assign(this.userProfile, data.userProfile);
                 if (!this.userProfile.name) this.userProfile.name = data.name || this.userData?.name || '';
 
@@ -469,19 +467,27 @@ class App {
                     this.userProfile.level = this.placementResults[0].level;
                 }
 
-                await this.updateLevelAndBadges();
+                // ✅ الإصلاح: تفعيل canSave قبل استدعاء updateLevelAndBadges
+                // لأن updateLevelAndBadges كانت تحاول الحفظ بينما canSave=false
                 this.isDataLoaded = true;
-                this.canSave = true; // Safe to save now!
+                this.canSave = true;
+
+                await this.updateLevelAndBadges();
+
+                // حفظ واحد فقط بعد انتهاء كل العمليات
+                await this.saveUserData();
+
                 console.log("✅ تمت المزامنة بنجاح من Firestore!");
             } else {
                 console.log("مستخدم جديد: تهيئة بيانات أولية");
                 this.resetToDefaults();
                 this.isDataLoaded = true;
-                this.canSave = true; // Safe to save for new user
+                this.canSave = true;
+                await this.saveUserData();
             }
         } catch (error) {
             console.error("❌ خطأ أثناء جلب البيانات:", error);
-            // DO NOT set canSave to true here to prevent data loss on server errors
+            // لا نُفعّل canSave هنا لمنع الكتابة الخاطئة فوق البيانات الصحيحة
         } finally {
             this.loadingData = false;
             this.render();
@@ -489,7 +495,7 @@ class App {
     }
 
     resetToDefaults() {
-        this.userCoins = 100; // New user bonus
+        this.userCoins = 100;
         this.masteredWords = [];
         this.unlockedLessons = [];
         this.userVocabulary = [];
@@ -517,7 +523,8 @@ class App {
             return;
         }
         const uid = this.currentUser.uid;
-        
+
+        // ✅ الإصلاح: إزالة التكرار في userStats (كان يُعرَّف مرتين فيُلغي الأول)
         const data = {
             userVocabulary: this.userVocabulary || [],
             masteredWords: this.masteredWords || [],
@@ -525,7 +532,7 @@ class App {
             hiddenFromCards: this.hiddenFromCards || [],
             customLessons: this.customLessons || {},
             generatedLessons: this.generatedLessons || {},
-            userStats: this.userStats || {},
+            userStats: this.userStats || { xp: 0, level: 1, badges: [], earnedBadges: [], tier: 'برونزي' },
             placementResults: this.placementResults || [],
             placementFullHistory: this.placementFullHistory || [],
             userCoins: this.userCoins || 0,
@@ -540,7 +547,6 @@ class App {
             exerciseStats: this.exerciseStats || {},
             lastTestedLesson: this.lastTestedLesson || {},
             xpEarnedWords: this.xpEarnedWords || [],
-            userStats: this.userStats || { xp: 0, level: 1, badges: [], earnedBadges: [], tier: 'برونزي' },
             lastUpdated: new Date().toISOString()
         };
 
@@ -549,7 +555,6 @@ class App {
             console.log("✅ تم التزامن مع السيرفر (Firestore)");
         } catch (err) {
             console.error("❌ فشل التزامن مع Firestore:", err);
-            // Fallback to local storage if server fails (optional but good for robustness)
             localStorage.setItem(`backup_data_${uid}`, JSON.stringify(data));
         }
     }
@@ -592,6 +597,8 @@ class App {
             gapFill: { correct: 0, total: 0 }
         };
         this.lastTestedLesson = { beginner: 0, intermediate: 0, advanced: 0 };
+        this.isDataLoaded = false;
+        this.canSave = false;
         this.currentPage = 'auth';
         this.render();
     }
@@ -1669,8 +1676,7 @@ class App {
             [arr[i], arr[j]] = [arr[j], arr[i]];
         }
     }
-
-    handleJumbleSelect(word) {
+handleJumbleSelect(word) {
         if (this.jumbleChecked) return;
         const index = this.jumbleWords.indexOf(word);
         if (index !== -1) {
@@ -2270,6 +2276,7 @@ class App {
     }
 
     playTone(type) {
+        if (!this.audioCtx) return;
         if (this.audioCtx.state === 'suspended') {
             this.audioCtx.resume().then(() => {
                 this._playTone(type);
@@ -3101,8 +3108,7 @@ class App {
                 case 'listeningAnswer':
                     this.handleListeningAnswer(param);
                     break;
-
-                case 'spellingCheck':
+case 'spellingCheck':
                     this.handleSpellingCheck();
                     break;
                 case 'spellingNext':
@@ -3135,7 +3141,7 @@ class App {
                 case 'goToProfile':
                     this.showProfile();
                     break;
-                
+
                 case 'showBadges':
                     this.showBadgesModal();
                     break;
@@ -3152,7 +3158,7 @@ class App {
 
     getBadgesDisplay() {
         const earnedBadges = this.userStats.earnedBadges || [];
-        
+
         const allBadges = [
             ...this.badgeDefinitions.general,
             ...this.badgeDefinitions.quiz,
@@ -3160,15 +3166,15 @@ class App {
             ...this.badgeDefinitions.spelling,
             ...this.badgeDefinitions.gapFill
         ];
-        
+
         const displayBadges = allBadges.slice(0, 8);
-        
+
         if (displayBadges.length === 0) {
             return `<div class="badges-container" data-action="showBadges" style="justify-content:center; color:#aaa; cursor:pointer;">
                 <span>🏅 ${this.t('اضغط لعرض الأوسمة', 'Click to view badges')}</span>
             </div>`;
         }
-        
+
         return `<div class="badges-container" data-action="showBadges">
             ${displayBadges.map(b => {
                 const isEarned = earnedBadges.includes(b.id);
@@ -3182,14 +3188,14 @@ class App {
         const earnedBadges = this.userStats.earnedBadges || [];
         const totalLessons = (this.unlockedLessons || []).length;
         const totalMastered = (this.masteredWords || []).length;
-        
+
         let html = `<div style="text-align:center; margin-bottom:15px;">
             <div style="font-size:1.1rem; font-weight:bold;">🏅 ${this.t('الأوسمة والإنجازات', 'Badges & Achievements')}</div>
             <div style="font-size:0.75rem; color:#666;">${this.t('الأوسمة الباهتة لم يتم الحصول عليها بعد', 'Dim badges are not yet earned')}</div>
         </div>`;
-        
+
         html += '<div class="badges-grid">';
-        
+
         html += `<div style="grid-column:1/-1; margin:10px 0 5px; font-weight:bold; text-align:center; border-bottom:2px solid #ffd700;">📊 ${this.t('أوسمة التقدم العام', 'General Progress Badges')}</div>`;
         for (const badge of this.badgeDefinitions.general) {
             const isEarned = earnedBadges.includes(badge.id);
@@ -3202,7 +3208,7 @@ class App {
             else if (badge.id === 'silver_crown') progressText = `${this.t('الدروس:', 'Lessons:')} ${totalLessons}/100 | ${this.t('الكلمات:', 'Words:')} ${totalMastered}/3500`;
             else if (badge.id === 'gold_crown') progressText = `${this.t('الدروس:', 'Lessons:')} ${totalLessons}/120 | ${this.t('الكلمات:', 'Words:')} ${totalMastered}/5000`;
             else if (badge.id === 'diamond_crown') progressText = `${this.t('الدروس:', 'Lessons:')} ${totalLessons}/150 | ${this.t('الكلمات:', 'Words:')} ${totalMastered}/7000`;
-            
+
             html += `
                 <div class="badge-modal-item ${isEarned ? 'earned' : ''}">
                     <span class="badge-icon">${badge.icon}</span>
@@ -3212,7 +3218,7 @@ class App {
                 </div>
             `;
         }
-        
+
         html += `<div style="grid-column:1/-1; margin:15px 0 5px; font-weight:bold; text-align:center; border-bottom:2px solid #ffd700;">📝 ${this.t('أوسمة اختبار الكلمات', 'Quiz Badges')}</div>`;
         for (const badge of this.badgeDefinitions.quiz) {
             const isEarned = earnedBadges.includes(badge.id);
@@ -3226,7 +3232,7 @@ class App {
                 </div>
             `;
         }
-        
+
         html += `<div style="grid-column:1/-1; margin:15px 0 5px; font-weight:bold; text-align:center; border-bottom:2px solid #ffd700;">🎧 ${this.t('أوسمة الاستماع', 'Listening Badges')}</div>`;
         for (const badge of this.badgeDefinitions.listening) {
             const isEarned = earnedBadges.includes(badge.id);
@@ -3240,7 +3246,7 @@ class App {
                 </div>
             `;
         }
-        
+
         html += `<div style="grid-column:1/-1; margin:15px 0 5px; font-weight:bold; text-align:center; border-bottom:2px solid #ffd700;">✍️ ${this.t('أوسمة الكتابة', 'Spelling Badges')}</div>`;
         for (const badge of this.badgeDefinitions.spelling) {
             const isEarned = earnedBadges.includes(badge.id);
@@ -3254,7 +3260,7 @@ class App {
                 </div>
             `;
         }
-        
+
         html += `<div style="grid-column:1/-1; margin:15px 0 5px; font-weight:bold; text-align:center; border-bottom:2px solid #ffd700;">📝 ${this.t('أوسمة ملء الفراغ', 'Gap Fill Badges')}</div>`;
         for (const badge of this.badgeDefinitions.gapFill) {
             const isEarned = earnedBadges.includes(badge.id);
@@ -3268,16 +3274,15 @@ class App {
                 </div>
             `;
         }
-        
+
         html += '</div>';
         this.showCustomModal('info', '🏅', html);
     }
 
-    render() {
+render() {
         const app = document.getElementById('app');
         if (!app) return;
 
-        // Add a clear loading screen if data is being fetched
         if (this.loadingData) {
             app.innerHTML = `
                 <div style="display:flex; flex-direction:column; justify-content:center; align-items:center; height:100vh; font-family:Cairo, sans-serif;">
@@ -3705,17 +3710,17 @@ class App {
         if (this.currentPage === 'flashcards') {
             let active;
             if (this.showAllCardsTemporary) {
-                active = allTerms.filter(t => 
+                active = allTerms.filter(t =>
                     !this.hiddenFromCards.includes(String(t.id)) &&
                     !this.repeatAllSessionMastered.includes(String(t.id))
                 );
             } else {
-                active = allTerms.filter(t => 
+                active = allTerms.filter(t =>
                     !this.masteredWords.includes(String(t.id)) &&
                     !this.hiddenFromCards.includes(String(t.id))
                 );
             }
-            
+
             if (active.length === 0) {
                 return `<div class="reading-card" style="text-align:center;">
                     <div style="font-size:2.5rem; margin-bottom:10px;">🧠</div>
@@ -3723,7 +3728,7 @@ class App {
                     <button class="hero-btn" data-action="restartCards" data-param="all" style="background:#f59e0b;">${this.t('إعادة تكرار الكل 🔁', 'Repeat All 🔁')}</button>
                 </div>`;
             }
-            
+
             const t = active[this.currentCardIndex];
             return `<main class="main-content">
                 <div class="flashcard-container" onclick="this.querySelector('.flashcard').classList.toggle('flipped')">
@@ -4066,43 +4071,43 @@ class App {
     init() {
         this.addThemeStyles();
         document.documentElement.setAttribute('data-theme', this.theme);
-        
+
         if (typeof auth === 'undefined' || typeof db === 'undefined') {
             setTimeout(() => this.init(), 500);
             return;
         }
-        
+
         if (!window.levels || !window.lessonsData || !window.placementBank || !window.lessonsList) {
             setTimeout(() => this.init(), 500);
             return;
         }
-        
+
         this.audioCtx = new (window.AudioContext || window.webkitAudioContext)();
         if (this.audioCtx.state === 'suspended') {
             this.audioCtx.resume();
         }
         this.setupGlobalEvents();
-        
+
         onAuthStateChanged(auth, async (user) => {
             console.log("Checking login status...");
-            
+
             if (user) {
                 this.currentUser = user;
                 this.userData = { name: user.displayName || '', email: user.email, uid: user.uid };
-                
-                // CRITICAL: Block any save until load is confirmed
+
+                // ✅ الإصلاح: حظر الحفظ حتى يتم تحميل البيانات بالكامل
                 this.loadingData = true;
                 this.isDataLoaded = false;
-                this.canSave = false; 
-                
+                this.canSave = false;
+
                 this.currentPage = 'home';
-                this.render(); 
-                
+                this.render();
+
                 try {
                     await this.loadUserData(user.uid);
-                    console.log("✅ Data synced successfully from Firestore");
+                    console.log("✅ تمت مزامنة البيانات بنجاح");
                 } catch (err) {
-                    console.error("❌ Load Error during auth change:", err);
+                    console.error("❌ خطأ في تحميل البيانات:", err);
                 } finally {
                     this.loadingData = false;
                     this.render();
@@ -4111,6 +4116,8 @@ class App {
                 this.currentUser = null;
                 this.currentPage = 'auth';
                 this.loadingData = false;
+                this.isDataLoaded = false;
+                this.canSave = false;
                 this.render();
             }
         });
