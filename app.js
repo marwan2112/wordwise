@@ -1236,6 +1236,7 @@ finalizeAdaptiveTest() {
         skillAnalysis: skillAnalysis
     };
     
+    // إضافة النتيجة إلى بداية المصفوفة
     this.placementResults.unshift(result);
     this.placementFullHistory.push(result);
     this.userProfile.level = result.level;
@@ -1246,7 +1247,17 @@ finalizeAdaptiveTest() {
         level: result.displayLevel
     });
     
-    this.saveUserData();
+    // حفظ البيانات في Firestore (إذا كان المستخدم مسجلاً)
+    if (this.currentUser && this.canSave) {
+        this.saveUserData().catch(err => console.error("خطأ في حفظ الاختبار:", err));
+    } else if (this.currentUser) {
+        // إذا كان canSave false، نحاول حفظها بعد قليل
+        setTimeout(() => {
+            if (this.canSave) this.saveUserData();
+        }, 500);
+    }
+    
+    // إنهاء الاختبار
     this.adaptiveTestActive = false;
     this.currentPage = 'adaptive_test_result';
     this.render();
