@@ -1540,37 +1540,44 @@ async showDetailedGapFillExplanation() {
     if (!this.gapFillCurrentQuestion) return;
     this.gapFillExplanationVisible = !this.gapFillExplanationVisible;
     if (this.gapFillExplanationVisible) {
-        // تحديث معاني الخيارات بشكل صحيح
+        // جمع كل الكلمات المتاحة محلياً
         const lesson = this.getCurrentLessonData();
-        const allTerms = lesson ? [...lesson.terms, ...this.userVocabulary.filter(v => v.lessonId == this.selectedLessonId)] : [];
-        // إضافة كلمات من جميع دروس المستوى إن وجدت
-        if (this.selectedLevel && window.lessonsList[this.selectedLevel]) {
+        let allTerms = lesson ? [...lesson.terms] : [];
+        const userWordsForLesson = this.userVocabulary.filter(v => v.lessonId == this.selectedLessonId);
+        allTerms.push(...userWordsForLesson);
+        
+        if (this.selectedLevel && window.lessonsList && window.lessonsList[this.selectedLevel]) {
             for (let l of window.lessonsList[this.selectedLevel]) {
                 const lessonData = this.getLessonDataById(l.id);
                 if (lessonData && lessonData.terms) {
-                    allTerms.push(...lessonData.terms);
+                    for (let term of lessonData.terms) {
+                        if (!allTerms.some(t => t.english === term.english)) allTerms.push(term);
+                    }
                 }
             }
         }
-        // إضافة الكلمات المضافة من قبل المستخدم لكل الدروس
-        allTerms.push(...this.userVocabulary);
-        
-        // إزالة التكرار بناءً على id
-        const uniqueTerms = {};
-        for (let t of allTerms) {
-            if (t.id && !uniqueTerms[t.id]) uniqueTerms[t.id] = t;
-            else if (t.english && !uniqueTerms[t.english]) uniqueTerms[t.english] = t;
+        for (let uv of this.userVocabulary) {
+            if (!allTerms.some(t => t.english === uv.english)) allTerms.push(uv);
         }
-        const uniqueAllTerms = Object.values(uniqueTerms);
         
-        this.gapFillOptionsMeanings = this.gapFillOptions.map(opt => {
-            const term = uniqueAllTerms.find(t => t.english === opt);
-            if (term) return { english: opt, arabic: term.arabic };
-            // محاولة البحث في window.gapfillDB أو أي مصدر آخر
-            return { english: opt, arabic: this.t('معنى غير متاح', 'Meaning not available') };
-        });
+        // بناء معاني الخيارات مع إمكانية الترجمة الفورية إذا لم توجد محلياً
+        this.gapFillOptionsMeanings = [];
+        for (let opt of this.gapFillOptions) {
+            let found = allTerms.find(t => t.english === opt);
+            if (found) {
+                this.gapFillOptionsMeanings.push({ english: opt, arabic: found.arabic });
+            } else {
+                // إذا لم نجد المعنى محلياً، نترجم الكلمة مباشرة عبر API
+                let translated = await this.translateText(opt);
+                if (translated && translated !== opt) {
+                    this.gapFillOptionsMeanings.push({ english: opt, arabic: translated });
+                } else {
+                    this.gapFillOptionsMeanings.push({ english: opt, arabic: this.t('معنى غير متاح', 'Meaning not available') });
+                }
+            }
+        }
         
-        // باقي الكود كما هو لإنشاء الشرح المفصل...
+        // ترجمة الجملة إذا لم تكن موجودة
         if (!this.gapFillCurrentQuestion.originalSentenceArabic && this.gapFillCurrentQuestion.originalSentence) {
             const translated = await this.translateText(this.gapFillCurrentQuestion.originalSentence);
             this.gapFillCurrentQuestion.originalSentenceArabic = translated || '';
@@ -1580,6 +1587,7 @@ async showDetailedGapFillExplanation() {
             this.gapFillCurrentQuestion.originalSentenceArabic = translated || '';
         }
         
+        // بناء الشرح المفصل
         let detailedExplanation = this.t(`✅ الإجابة الصحيحة هي "<strong>${this.gapFillCurrentQuestion.correct}</strong>" (${this.gapFillCurrentQuestion.arabic}).<br><br>`, `✅ The correct answer is "<strong>${this.gapFillCurrentQuestion.correct}</strong>" (${this.gapFillCurrentQuestion.arabic}).<br><br>`);
         detailedExplanation += this.t(`📖 الجملة الكاملة بالإنجليزية: "${this.gapFillCurrentQuestion.originalSentence || this.gapFillCurrentQuestion.text.replace('______', this.gapFillCurrentQuestion.correct)}"<br>`, `📖 The full sentence in English: "${this.gapFillCurrentQuestion.originalSentence || this.gapFillCurrentQuestion.text.replace('______', this.gapFillCurrentQuestion.correct)}"<br>`);
         detailedExplanation += this.t(`🌐 الترجمة العربية: "${this.gapFillCurrentQuestion.originalSentenceArabic || 'جاري التحميل...'}"<br><br>`, `🌐 Arabic translation: "${this.gapFillCurrentQuestion.originalSentenceArabic || 'Loading...'}"<br><br>`);
@@ -1598,7 +1606,7 @@ async showDetailedGapFillExplanation() {
             explanationDiv.style.overflowY = 'auto';
         }
     }, 50);
-}    
+}
     unlockGapFill(lessonId) { if (this.gapFillUnlocked[lessonId]) return true; if (this.userCoins >= 75) { this.showCoinPurchaseModal(75, (confirmed) => { if (confirmed) { this.userCoins -= 75; this.gapFillUnlocked[lessonId] = true; this.saveUserData(); this.resetGapFillForNewLesson(); this.prepareGapFill(); this.currentPage = 'gapfill'; this.render(); } }); } else this.showCustomModal('error', '❌', this.t(`ليس لديك لآلئ كافية! تحتاج 75 لؤلؤة.`, `You don't have enough pearls! You need 75 pearls.`)); return false; }
     
     async handleNewWord() { const eng = document.getElementById('newEng').value.trim(); const arb = document.getElementById('newArb').value.trim(); if (!eng || !arb) return; const lesson = this.getCurrentLessonData(); if (!lesson) { alert(this.t('الدرس غير موجود.', 'Lesson not found.')); return; } const existingWords = lesson.terms.map(t => t.english.toLowerCase()); const userWords = this.userVocabulary.filter(v => v.lessonId == this.selectedLessonId).map(v => v.english.toLowerCase()); if (existingWords.includes(eng.toLowerCase()) || userWords.includes(eng.toLowerCase())) { this.showCustomModal('error', '⚠️', this.t('هذه الكلمة موجودة بالفعل في الدرس. لا يمكن إضافتها مرة أخرى.', 'This word already exists in the lesson. Cannot add again.')); return; } this.userVocabulary.push({ id: "u" + Date.now(), lessonId: String(this.selectedLessonId), english: eng, arabic: arb }); await this.saveUserData(); document.getElementById('newEng').value = ''; document.getElementById('newArb').value = ''; this.newWordsAddedCount++; if (this.newWordsAddedCount % 10 === 0) this.showAd('video'); this.render(); this.showCustomModal('success', '✅', this.t('تمت إضافة الكلمة بنجاح إلى بطاقات الدرس.', 'Word successfully added to lesson flashcards.')); }
