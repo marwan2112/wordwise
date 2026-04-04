@@ -1031,7 +1031,8 @@ getCurrentAdaptiveQuestion() {
     // إرجاع السؤال الحالي
     return this.adaptiveTestCurrentSetQuestions[this.adaptiveTestCurrentSetIndex];
 }
-// تقييم المجموعة الحالية واتخاذ قرار بالصعود أو النزولevaluateCurrentSetAndTransition() {
+// تقييم المجموعة الحالية واتخاذ قرار بالصعود أو النزول
+evaluateCurrentSetAndTransition() {
     const setSize = this.adaptiveTestCurrentSetQuestions.length;
     const setCorrect = this.adaptiveTestCurrentSetCorrect;
     const percentage = setSize > 0 ? (setCorrect / setSize) * 100 : 0;
@@ -1119,7 +1120,7 @@ getCurrentAdaptiveQuestion() {
         this.prepareConfirmationQuestions();
     }
 }
-else if (percentage <= 40) {
+    else if (percentage <= 40) {
             // أداء ضعيف -> نخفض إلى A2
             if (currentIdx > 0) {
                 this.adaptiveTestCurrentLevel = levels[currentIdx - 1];
