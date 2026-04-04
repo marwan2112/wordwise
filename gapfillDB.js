@@ -9570,7 +9570,1245 @@ window.gapfillDB = {
             originalSentence: "My father was very proud of my good grades."
         }
     ],
-    
+    "32-1": [ // shopping
+        {
+            sentence: "We are going _______ today to buy some new clothes.",
+            options: ["shopping", "crowded", "tightly", "midday"],
+            originalSentence: "We are going shopping today to buy some new clothes."
+        }
+    ],
+    "32-2": [ // mall
+        {
+            sentence: "The big _______ has many shops and a food court.",
+            options: ["mall", "parking lot", "entrance", "pocket"],
+            originalSentence: "The big mall has many shops and a food court."
+        }
+    ],
+    "32-3": [ // parking lot
+        {
+            sentence: "We left our car in the _______ _______ outside the mall.",
+            options: ["parking lot", "car boot", "checkout counter", "entrance"],
+            originalSentence: "We left our car in the parking lot outside the mall."
+        }
+    ],
+    "32-4": [ // crowded
+        {
+            sentence: "The mall is very _______ on weekends; there are many people.",
+            options: ["crowded", "sparkly", "tightly", "fit"],
+            originalSentence: "The mall is very crowded on weekends; there are many people."
+        }
+    ],
+    "32-5": [ // entrance
+        {
+            sentence: "I am waiting for you at the main _______ of the mall.",
+            options: ["entrance", "car boot", "fountain", "bakery"],
+            originalSentence: "I am waiting for you at the main entrance of the mall."
+        }
+    ],
+    "32-7": [ // shopping list
+        {
+            sentence: "I wrote everything I need on my _______ _______.",
+            options: ["shopping list", "credit card", "pocket money", "size"],
+            originalSentence: "I wrote everything I need on my shopping list."
+        }
+    ],
+    "32-8": [ // pocket
+        {
+            sentence: "I put my phone in my _______ so I don't lose it.",
+            options: ["pocket", "trolley", "car boot", "fountain"],
+            originalSentence: "I put my phone in my pocket so I don't lose it."
+        }
+    ],
+    "32-10": [ // trolley
+        {
+            sentence: "We need a large _______ because we are buying many groceries.",
+            options: ["trolley", "scarf", "croissant", "size"],
+            originalSentence: "We need a large trolley because we are buying many groceries."
+        }
+    ],
+    "32-14": [ // bakery
+        {
+            sentence: "The _______ smells great with fresh bread and cakes.",
+            options: ["bakery", "food court", "parking lot", "fountain"],
+            originalSentence: "The bakery smells great with fresh bread and cakes."
+        }
+    ],
+    "32-15": [ // baguette
+        {
+            sentence: "I want to buy a long _______ for making sandwiches.",
+            options: ["baguette", "ketchup", "olive oil", "fries"],
+            originalSentence: "I want to buy a long baguette for making sandwiches."
+        }
+    ],
+    "32-17": [ // checkout counter
+        {
+            sentence: "Please wait in line at the _______ _______ to pay.",
+            options: ["checkout counter", "ice cream stand", "fountain", "entrance"],
+            originalSentence: "Please wait in line at the checkout counter to pay."
+        }
+    ],
+    "32-18": [ // cashier
+        {
+            sentence: "The _______ is scanning the items and taking the money.",
+            options: ["cashier", "trainer", "item", "flavour"],
+            originalSentence: "The cashier is scanning the items and taking the money."
+        }
+    ],
+    "32-20": [ // reusable bag
+        {
+            sentence: "I always bring my _______ _______ to help the environment.",
+            options: ["reusable bag", "shopping list", "model car kit", "scarf"],
+            originalSentence: "I always bring my reusable bag to help the environment."
+        }
+    ],
+    "32-21": [ // credit card
+        {
+            sentence: "I don't have cash, can I pay by _______ _______?",
+            options: ["credit card", "pocket money", "size", "item"],
+            originalSentence: "I don't have cash, can I pay by credit card?"
+        }
+    ],
+    "32-22": [ // car boot
+        {
+            sentence: "Put the shopping bags in the _______ _______ and let's go.",
+            options: ["car boot", "parking lot", "entrance", "checkout counter"],
+            originalSentence: "Put the shopping bags in the car boot and let's go."
+        }
+    ],
+    "32-23": [ // jeans
+        {
+            sentence: "I bought a new pair of blue _______ today.",
+            options: ["jeans", "sandals", "trainers", "scarf"],
+            originalSentence: "I bought a new pair of blue jeans today."
+        }
+    ],
+    "32-24": [ // hole
+        {
+            sentence: "I need to buy new pants because there is a _______ in these.",
+            options: ["hole", "size", "item", "sequin"],
+            originalSentence: "I need to buy new pants because there is a hole in these."
+        }
+    ],
+    "32-26": [ // try on
+        {
+            sentence: "I need to _______ _______ this shirt to see if it fits.",
+            options: ["try on", "select", "scan", "fit"],
+            originalSentence: "I need to try on this shirt to see if it fits."
+        }
+    ],
+    "32-27": [ // size
+        {
+            sentence: "What _______ are you? Small, medium, or large?",
+            options: ["size", "hole", "flavour", "ketchup"],
+            originalSentence: "What size are you? Small, medium, or large?"
+        }
+    ],
+    "32-31": [ // trainer
+        {
+            sentence: "I need a new pair of _______ for my football match.",
+            options: ["trainers", "sandals", "jeans", "sequins"],
+            originalSentence: "I need a new pair of trainers for my football match."
+        }
+    ],
+    "32-32": [ // PE class
+        {
+            sentence: "I have _______ _______ today, so I am wearing my sneakers.",
+            options: ["PE class", "shopping", "midday", "bakery"],
+            originalSentence: "I have PE class today, so I am wearing my sneakers."
+        }
+    ],
+    "32-35": [ // food court
+        {
+            sentence: "Let's go to the _______ _______ to have lunch.",
+            options: ["food court", "parking lot", "entrance", "fountain"],
+            originalSentence: "Let's go to the food court to have lunch."
+        }
+    ],
+    "32-37": [ // fries
+        {
+            sentence: "I want a burger with some salty _______.",
+            options: ["fries", "olive oil", "ketchup", "baguette"],
+            originalSentence: "I want a burger with some salty fries."
+        }
+    ],
+    "32-40": [ // fountain
+        {
+            sentence: "The water _______ in the middle of the mall is beautiful.",
+            options: ["fountain", "car boot", "trolley", "entrance"],
+            originalSentence: "The water fountain in the middle of the mall is beautiful."
+        }
+    ],
+    "32-41": [ // pocket money
+        {
+            sentence: "I saved my _______ _______ to buy this new game.",
+            options: ["pocket money", "credit card", "shopping list", "size"],
+            originalSentence: "I saved my pocket money to buy this new game."
+        }
+    ],
+    "32-45": [ // ice cream stand
+        {
+            sentence: "Let's buy a cone from the _______ _______ _______.",
+            options: ["ice cream stand", "food court", "checkout counter", "bakery"],
+            originalSentence: "Let's buy a cone from the ice cream stand."
+        }
+    ],
+    "32-46": [ // flavour
+        {
+            sentence: "What is your favorite _______ of ice cream?",
+            options: ["flavour", "size", "item", "ketchup"],
+            originalSentence: "What is your favorite flavour of ice cream?"
+        }
+    ],
+    "32-47": [ // sprinkle
+        {
+            sentence: "I want chocolate _______ on top of my ice cream.",
+            options: ["sprinkles", "jeans", "holes", "groceries"],
+            originalSentence: "I want chocolate sprinkles on top of my ice cream."
+        }
+    ],
+    "33-1": [ // collecting
+        {
+            sentence: "My favorite hobby is _______ rare coins from different countries.",
+            options: ["collecting", "organizing", "climbing", "traveling"],
+            originalSentence: "My favorite hobby is collecting rare coins from different countries."
+        }
+    ],
+    "33-2": [ // stamp
+        {
+            sentence: "I need to buy a _______ to send this letter to my friend.",
+            options: ["stamp", "album", "package", "website"],
+            originalSentence: "I need to buy a stamp to send this letter to my friend."
+        }
+    ],
+    "33-3": [ // album
+        {
+            sentence: "I keep all my beautiful photos in a large _______.",
+            options: ["album", "post office", "exhibition", "pyramid"],
+            originalSentence: "I keep all my beautiful photos in a large album."
+        }
+    ],
+    "33-5": [ // post office
+        {
+            sentence: "I am going to the _______ _______ to send a package abroad.",
+            options: ["post office", "Eiffel Tower", "website", "exhibition"],
+            originalSentence: "I am going to the post office to send a package abroad."
+        }
+    ],
+    "33-6": [ // abroad
+        {
+            sentence: "My brother is studying _______ in London this year.",
+            options: ["abroad", "rare", "famous", "online"],
+            originalSentence: "My brother is studying abroad in London this year."
+        }
+    ],
+    "33-7": [ // pyramid
+        {
+            sentence: "The Great _______ of Giza is a very famous landmark in Egypt.",
+            options: ["pyramid", "Eiffel Tower", "moose", "cherry blossom"],
+            originalSentence: "The Great pyramid of Giza is a very famous landmark in Egypt."
+        }
+    ],
+    "33-8": [ // Eiffel Tower
+        {
+            sentence: "You can see the whole city of Paris from the top of the _______ _______.",
+            options: ["Eiffel Tower", "pyramid", "post office", "exhibition"],
+            originalSentence: "You can see the whole city of Paris from the top of the Eiffel Tower."
+        }
+    ],
+    "33-9": [ // organize
+        {
+            sentence: "I need to _______ my desk because it is very messy.",
+            options: ["organize", "climb", "protect", "connect"],
+            originalSentence: "I need to organize my desk because it is very messy."
+        }
+    ],
+    "33-11": [ // cherry blossom
+        {
+            sentence: "In spring, many people go to Japan to see the _______ _______.",
+            options: ["cherry blossom", "moose", "stamp", "detail"],
+            originalSentence: "In spring, many people go to Japan to see the cherry blossom."
+        }
+    ],
+    "33-12": [ // rare
+        {
+            sentence: "This blue diamond is very _______ and expensive.",
+            options: ["rare", "famous", "online", "abroad"],
+            originalSentence: "This blue diamond is very rare and expensive."
+        }
+    ],
+    "33-13": [ // online
+        {
+            sentence: "I like to shop _______ because it is faster than going to the mall.",
+            options: ["online", "abroad", "rare", "famous"],
+            originalSentence: "I like to shop online because it is faster than going to the mall."
+        }
+    ],
+    "33-14": [ // website
+        {
+            sentence: "I found a great _______ to learn English for free.",
+            options: ["website", "album", "package", "stamp"],
+            originalSentence: "I found a great website to learn English for free."
+        }
+    ],
+    "33-15": [ // package
+        {
+            sentence: "The delivery man brought a large _______ to our house today.",
+            options: ["package", "stamp", "detail", "culture"],
+            originalSentence: "The delivery man brought a large package to our house today."
+        }
+    ],
+    "33-17": [ // protect
+        {
+            sentence: "We must _______ the environment and save animals.",
+            options: ["protect", "explore", "climb", "display"],
+            originalSentence: "We must protect the environment and save animals."
+        }
+    ],
+    "33-18": [ // famous
+        {
+            sentence: "Lionel Messi is a very _______ football player.",
+            options: ["famous", "rare", "online", "abroad"],
+            originalSentence: "Lionel Messi is a very famous football player."
+        }
+    ],
+    "33-21": [ // exhibition
+        {
+            sentence: "We went to a photography _______ to see beautiful art.",
+            options: ["exhibition", "post office", "website", "pyramid"],
+            originalSentence: "We went to a photography exhibition to see beautiful art."
+        }
+    ],
+    "33-23": [ // information
+        {
+            sentence: "The internet is a good place to find _______ about anything.",
+            options: ["information", "patience", "organization", "detail"],
+            originalSentence: "The internet is a good place to find information about anything."
+        }
+    ],
+    "33-25": [ // patience
+        {
+            sentence: "Learning a new language requires a lot of _______.",
+            options: ["patience", "detail", "culture", "stamp"],
+            originalSentence: "Learning a new language requires a lot of patience."
+        }
+    ],
+    "33-28": [ // explore
+        {
+            sentence: "I want to _______ the mountains and find new paths.",
+            options: ["explore", "organize", "protect", "display"],
+            originalSentence: "I want to explore the mountains and find new paths."
+        }
+    ],
+    "33-30": [ // climb
+        {
+            sentence: "It is very difficult to _______ Mount Everest.",
+            options: ["climb", "travel", "connect", "organize"],
+            originalSentence: "It is very difficult to climb Mount Everest."
+        }
+    ],
+    "34-1": [ // rainy
+        {
+            sentence: "I like to stay at home and read a book on a _______ day.",
+            options: ["rainy", "clear", "fresh", "dry"],
+            originalSentence: "I like to stay at home and read a book on a rainy day."
+        }
+    ],
+    "34-3": [ // heavy
+        {
+            sentence: "Be careful driving; there is _______ rain outside.",
+            options: ["heavy", "dark", "cozy", "peaceful"],
+            originalSentence: "Be careful driving; there is heavy rain outside."
+        }
+    ],
+    "34-6": [ // cozy
+        {
+            sentence: "My bedroom is very _______ and warm in the winter.",
+            options: ["cozy", "wet", "dark", "fresh"],
+            originalSentence: "My bedroom is very cozy and warm in the winter."
+        }
+    ],
+    "34-7": [ // blanket
+        {
+            sentence: "It is cold tonight, so I need a thick _______.",
+            options: ["blanket", "umbrella", "puddle", "roof"],
+            originalSentence: "It is cold tonight, so I need a thick blanket."
+        }
+    ],
+    "34-9": [ // sweater
+        {
+            sentence: "You should wear a _______ because it is chilly outside.",
+            options: ["sweater", "umbrella", "rain boot", "hook"],
+            originalSentence: "You should wear a sweater because it is chilly outside."
+        }
+    ],
+    "34-10": [ // umbrella
+        {
+            sentence: "Don't forget your _______, or you will get wet in the rain.",
+            options: ["umbrella", "blanket", "chess", "pavement"],
+            originalSentence: "Don't forget your umbrella, or you will get wet in the rain."
+        }
+    ],
+    "34-12": [ // rain boot
+        {
+            sentence: "I am wearing my _______ _______ so I can jump in the water.",
+            options: ["rain boots", "sweaters", "blankets", "umbrellas"],
+            originalSentence: "I am wearing my rain boots so I can jump in the water."
+        }
+    ],
+    "34-14": [ // wet
+        {
+            sentence: "The grass is _______ because it rained all night.",
+            options: ["wet", "dry", "clear", "fresh"],
+            originalSentence: "The grass is wet because it rained all night."
+        }
+    ],
+    "34-15": [ // puddle
+        {
+            sentence: "The children are splashing in a _______ on the street.",
+            options: ["puddle", "roof", "scene", "hook"],
+            originalSentence: "The children are splashing in a puddle on the street."
+        }
+    ],
+    "34-17": [ // avoid
+        {
+            sentence: "Try to _______ walking in the mud so your shoes stay clean.",
+            options: ["avoid", "cover", "form", "stretch"],
+            originalSentence: "Try to avoid walking in the mud so your shoes stay clean."
+        }
+    ],
+    "34-20": [ // raincoat
+        {
+            sentence: "I am wearing a yellow _______ to stay dry.",
+            options: ["raincoat", "sweater", "blanket", "pavement"],
+            originalSentence: "I am wearing a yellow raincoat to stay dry."
+        }
+    ],
+    "34-26": [ // roof
+        {
+            sentence: "I can hear the sound of raindrops on the _______.",
+            options: ["roof", "pavement", "stand", "chess"],
+            originalSentence: "I can hear the sound of raindrops on the roof."
+        }
+    ],
+    "34-29": [ // chess
+        {
+            sentence: "When it rains, we stay inside and play _______.",
+            options: ["chess", "puddle", "umbrella", "sunlight"],
+            originalSentence: "When it rains, we stay inside and play chess."
+        }
+    ],
+    "34-32": [ // indoor
+        {
+            sentence: "Basketball is an _______ sport played in a gym.",
+            options: ["indoor", "rainy", "steady", "wet"],
+            originalSentence: "Basketball is an indoor sport played in a gym."
+        }
+    ],
+    "34-33": [ // peaceful
+        {
+            sentence: "The garden is very _______ and quiet after the storm.",
+            options: ["peaceful", "heavy", "dark", "thick"],
+            originalSentence: "The garden is very peaceful and quiet after the storm."
+        }
+    ],
+    "34-35": [ // sunlight
+        {
+            sentence: "The plants need _______ and water to grow.",
+            options: ["sunlight", "raindrop", "pavement", "blanket"],
+            originalSentence: "The plants need sunlight and water to grow."
+        }
+    ],
+    "34-36": [ // rainbow
+        {
+            sentence: "Look! There is a colorful _______ in the sky.",
+            options: ["rainbow", "puddle", "roof", "sweater"],
+            originalSentence: "Look! There is a colorful rainbow in the sky."
+        }
+    ],
+    "34-38": [ // fade
+        {
+            sentence: "The colors of the rainbow will _______ away soon.",
+            options: ["fade", "stretch", "splash", "shake off"],
+            originalSentence: "The colors of the rainbow will fade away soon."
+        }
+    ],
+    "34-39": [ // fresh
+        {
+            sentence: "The air smells _______ and clean after the rain.",
+            options: ["fresh", "dark", "heavy", "wet"],
+            originalSentence: "The air smells fresh and clean after the rain."
+        }
+    ],
+    "35-1": [ // neighbor
+        {
+            sentence: "My _______ is very kind; he helped me fix my car.",
+            options: ["neighbor", "garage", "youth", "company"],
+            originalSentence: "My neighbor is very kind; he helped me fix my car."
+        }
+    ],
+    "35-2": [ // elderly
+        {
+            sentence: "We should always respect and help _______ people.",
+            options: ["elderly", "grateful", "homemade", "dry"],
+            originalSentence: "We should always respect and help elderly people."
+        }
+    ],
+    "35-4": [ // backyard
+        {
+            sentence: "The kids are playing football in the _______.",
+            options: ["backyard", "garage", "bench", "path"],
+            originalSentence: "The kids are playing football in the backyard."
+        }
+    ],
+    "35-7": [ // roll up sleeves
+        {
+            sentence: "It is time to _______ _______ _______ and start the hard work.",
+            options: ["roll up sleeves", "introduce", "clap", "dig"],
+            originalSentence: "It is time to roll up sleeves and start the hard work."
+        }
+    ],
+    "35-10": [ // glove
+        {
+            sentence: "I am wearing a _______ to protect my hands while gardening.",
+            options: ["glove", "shovel", "hose", "bench"],
+            originalSentence: "I am wearing a glove to protect my hands while gardening."
+        }
+    ],
+    "35-11": [ // shovel
+        {
+            sentence: "He used a _______ to move the sand into the truck.",
+            options: ["shovel", "glove", "hose", "fertilizer"],
+            originalSentence: "He used a shovel to move the sand into the truck."
+        }
+    ],
+    "35-12": [ // dig
+        {
+            sentence: "The dog likes to _______ holes in the garden.",
+            options: ["dig", "sweep", "clap", "hug"],
+            originalSentence: "The dog likes to dig holes in the garden."
+        }
+    ],
+    "35-13": [ // soil
+        {
+            sentence: "The plants need good _______ and water to grow strong.",
+            options: ["soil", "fertilizer", "lemonade", "weed"],
+            originalSentence: "The plants need good soil and water to grow strong."
+        }
+    ],
+    "35-16": [ // lemonade
+        {
+            sentence: "In the summer, I love to drink cold _______.",
+            options: ["lemonade", "soil", "fertilizer", "cookie"],
+            originalSentence: "In the summer, I love to drink cold lemonade."
+        }
+    ],
+    "35-17": [ // bench
+        {
+            sentence: "Let's sit on the _______ and watch the sunset.",
+            options: ["bench", "garage", "backyard", "path"],
+            originalSentence: "Let's sit on the bench and watch the sunset."
+        }
+    ],
+    "35-19": [ // geography
+        {
+            sentence: "In _______ class, we learned about different countries and rivers.",
+            options: ["geography", "youth", "company", "neighbor"],
+            originalSentence: "In geography class, we learned about different countries and rivers."
+        }
+    ],
+    "35-20": [ // hose
+        {
+            sentence: "I am using the water _______ to wash my car.",
+            options: ["hose", "shovel", "glove", "bench"],
+            originalSentence: "I am using the water hose to wash my car."
+        }
+    ],
+    "35-21": [ // sweep
+        {
+            sentence: "Please _______ the floor; it is very dusty.",
+            options: ["sweep", "dig", "clap", "introduce"],
+            originalSentence: "Please sweep the floor; it is very dusty."
+        }
+    ],
+    "35-22": [ // fallen leaves
+        {
+            sentence: "In autumn, the ground is covered with _______ _______.",
+            options: ["fallen leaves", "rose bushes", "weeds", "cookies"],
+            originalSentence: "In autumn, the ground is covered with fallen leaves."
+        }
+    ],
+    "35-24": [ // grateful
+        {
+            sentence: "I am so _______ for all your help during the move.",
+            options: ["grateful", "elderly", "dry", "homemade"],
+            originalSentence: "I am so grateful for all your help during the move."
+        }
+    ],
+    "35-27": [ // cookie
+        {
+            sentence: "My mother baked some chocolate chip _______ today.",
+            options: ["cookies", "lemonades", "fertilizers", "gloves"],
+            originalSentence: "My mother baked some chocolate chip cookies today."
+        }
+    ],
+    "35-29": [ // hug
+        {
+            sentence: "She gave her mother a big _______ before she left.",
+            options: ["hug", "clap", "sweep", "dig"],
+            originalSentence: "She gave her mother a big hug before she left."
+        }
+    ],
+    "35-31": [ // garage
+        {
+            sentence: "My father is fixing the car in the _______.",
+            options: ["garage", "backyard", "bench", "path"],
+            originalSentence: "My father is fixing the car in the garage."
+        }
+    ],
+    "35-33": [ // act of kindness
+        {
+            sentence: "Helping an elderly person is a great _______ _______ _______.",
+            options: ["act of kindness", "geography", "soil", "company"],
+            originalSentence: "Helping an elderly person is a great act of kindness."
+        }
+    ],
+    "36-1": [ // busy
+        {
+            sentence: "I have many things to do today; I am very _______.",
+            options: ["busy", "relieved", "surprised", "organized"],
+            originalSentence: "I have many things to do today; I am very busy."
+        }
+    ],
+    "36-2": [ // alarm clock
+        {
+            sentence: "My _______ _______ didn't ring, so I woke up late.",
+            options: ["alarm clock", "wardrobe", "lunchbox", "lace"],
+            originalSentence: "My alarm clock didn't ring, so I woke up late."
+        }
+    ],
+    "36-4": [ // jump out
+        {
+            sentence: "I had to _______ _______ of bed quickly to catch the bus.",
+            options: ["jump out", "nod", "tease", "choke"],
+            originalSentence: "I had to jump out of bed quickly to catch the bus."
+        }
+    ],
+    "36-5": [ // in a hurry
+        {
+            sentence: "He left the house _______ _______ _______ and forgot his keys.",
+            options: ["in a hurry", "just in time", "properly", "gently"],
+            originalSentence: "He left the house in a hurry and forgot his keys."
+        }
+    ],
+    "36-8": [ // wardrobe
+        {
+            sentence: "I opened my _______ to choose a dress for the party.",
+            options: ["wardrobe", "alarm clock", "lunchbox", "lace"],
+            originalSentence: "I opened my wardrobe to choose a dress for the party."
+        }
+    ],
+    "36-9": [ // grab
+        {
+            sentence: "I need to _______ my bag before we leave.",
+            options: ["grab", "realize", "fix", "explain"],
+            originalSentence: "I need to grab my bag before we leave."
+        }
+    ],
+    "36-11": [ // inside out
+        {
+            sentence: "You are wearing your shirt _______ _______; the tag is in the front.",
+            options: ["inside out", "properly", "just in time", "gently"],
+            originalSentence: "You are wearing your shirt inside out; the tag is in the front."
+        }
+    ],
+    "36-13": [ // surprised
+        {
+            sentence: "I was _______ to see my old friend at the supermarket.",
+            options: ["surprised", "busy", "relieved", "stressful"],
+            originalSentence: "I was surprised to see my old friend at the supermarket."
+        }
+    ],
+    "36-15": [ // cereal
+        {
+            sentence: "I usually eat a bowl of _______ for breakfast.",
+            options: ["cereal", "lace", "wardrobe", "lunchbox"],
+            originalSentence: "I usually eat a bowl of cereal for breakfast."
+        }
+    ],
+    "36-17": [ // deep breath
+        {
+            sentence: "Take a _______ _______ and try to relax before the exam.",
+            options: ["deep breath", "cereal", "lace", "hurry up"],
+            originalSentence: "Take a deep breath and try to relax before the exam."
+        }
+    ],
+    "36-19": [ // lunchbox
+        {
+            sentence: "I put an apple and a sandwich in my _______.",
+            options: ["lunchbox", "wardrobe", "alarm clock", "cereal"],
+            originalSentence: "I put an apple and a sandwich in my lunchbox."
+        }
+    ],
+    "36-21": [ // tie
+        {
+            sentence: "It is hard for the little boy to _______ his shoes.",
+            options: ["tie", "grab", "fix", "nod"],
+            originalSentence: "It is hard for the little boy to tie his shoes."
+        }
+    ],
+    "36-22": [ // lace
+        {
+            sentence: "Your shoe _______ is untied; be careful not to fall.",
+            options: ["lace", "cereal", "wardrobe", "lunchbox"],
+            originalSentence: "Your shoe lace is untied; be careful not to fall."
+        }
+    ],
+    "36-25": [ // just in time
+        {
+            sentence: "The train was leaving, but I arrived _______ _______ _______.",
+            options: ["just in time", "inside out", "properly", "gently"],
+            originalSentence: "The train was leaving, but I arrived just in time."
+        }
+    ],
+    "36-27": [ // relieved
+        {
+            sentence: "I was _______ to hear that the cat was found safe.",
+            options: ["relieved", "stressful", "busy", "surprised"],
+            originalSentence: "I was relieved to hear that the cat was found safe."
+        }
+    ],
+    "36-30": [ // nod
+        {
+            sentence: "He didn't speak; he just gave a _______ to say yes.",
+            options: ["nod", "grab", "tease", "choke"],
+            originalSentence: "He didn't speak; he just gave a nod to say yes."
+        }
+    ],
+    "36-31": [ // stressful
+        {
+            sentence: "Moving to a new city can be very _______.",
+            options: ["stressful", "relieved", "organized", "properly"],
+            originalSentence: "Moving to a new city can be very stressful."
+        }
+    ],
+    "36-32": [ // organized
+        {
+            sentence: "She is very _______; her desk is always clean.",
+            options: ["organized", "busy", "stressful", "inside out"],
+            originalSentence: "She is very organized; her desk is always clean."
+        }
+    ],
+    "37-1": [ // public library
+        {
+            sentence: "I like to go to the _______ _______ to study in a quiet place.",
+            options: ["public library", "front desk", "return bin", "machine"],
+            originalSentence: "I like to go to the public library to study in a quiet place."
+        }
+    ],
+    "37-2": [ // borrow
+        {
+            sentence: "You can _______ up to five books from the library at once.",
+            options: ["borrow", "arrange", "renew", "attend"],
+            originalSentence: "You can borrow up to five books from the library at once."
+        }
+    ],
+    "37-3": [ // librarian
+        {
+            sentence: "The _______ helped me find a book about space.",
+            options: ["librarian", "princess", "dinosaur", "account"],
+            originalSentence: "The librarian helped me find a book about space."
+        }
+    ],
+    "37-4": [ // front desk
+        {
+            sentence: "If you have a question, please go to the _______ _______.",
+            options: ["front desk", "bulletin board", "shelf", "section"],
+            originalSentence: "If you have a question, please go to the front desk."
+        }
+    ],
+    "37-9": [ // science section
+        {
+            sentence: "I am looking for a book about volcanoes in the _______ _______.",
+            options: ["science section", "return bin", "due date", "photography"],
+            originalSentence: "I am looking for a book about volcanoes in the science section."
+        }
+    ],
+    "37-12": [ // quietly
+        {
+            sentence: "Please talk _______ so you don't disturb other people.",
+            options: ["quietly", "calm", "peaceful", "upcoming"],
+            originalSentence: "Please talk quietly so you don't disturb other people."
+        }
+    ],
+    "37-16": [ // shelf
+        {
+            sentence: "The books are arranged alphabetically on the _______.",
+            options: ["shelf", "poster", "machine", "slip"],
+            originalSentence: "The books are arranged alphabetically on the shelf."
+        }
+    ],
+    "37-17": [ // check out
+        {
+            sentence: "I need to _______ _______ these books before I leave.",
+            options: ["check out", "log into", "scan", "arrange"],
+            originalSentence: "I need to check out these books before I leave."
+        }
+    ],
+    "37-18": [ // scan
+        {
+            sentence: "The machine will _______ the barcode on your library card.",
+            options: ["scan", "renew", "attend", "borrow"],
+            originalSentence: "The machine will scan the barcode on your library card."
+        }
+    ],
+    "37-21": [ // due date
+        {
+            sentence: "Make sure to return the books before the _______ _______.",
+            options: ["due date", "bulletin board", "front desk", "slip"],
+            originalSentence: "Make sure to return the books before the due date."
+        }
+    ],
+    "37-22": [ // renew
+        {
+            sentence: "If you need more time to read, you can _______ the book online.",
+            options: ["renew", "arrange", "attend", "scan"],
+            originalSentence: "If you need more time to read, you can renew the book online."
+        }
+    ],
+    "37-23": [ // log into
+        {
+            sentence: "You need to _______ _______ your library account to see your books.",
+            options: ["log into", "check out", "look forward to", "arrange"],
+            originalSentence: "You need to log into your library account to see your books."
+        }
+    ],
+    "37-25": [ // bulletin board
+        {
+            sentence: "Check the _______ _______ for information about the next book club.",
+            options: ["bulletin board", "return bin", "science section", "shelf"],
+            originalSentence: "Check the bulletin board for information about the next book club."
+        }
+    ],
+    "37-26": [ // poster
+        {
+            sentence: "I saw a _______ for the storytelling session on the wall.",
+            options: ["poster", "machine", "slip", "princess"],
+            originalSentence: "I saw a poster for the storytelling session on the wall."
+        }
+    ],
+    "37-28": [ // storytelling session
+        {
+            sentence: "The children really enjoyed the _______ _______ at the library.",
+            options: ["storytelling session", "due date", "ancient Egypt", "front desk"],
+            originalSentence: "The children really enjoyed the storytelling session at the library."
+        }
+    ],
+    "37-29": [ // attend
+        {
+            sentence: "Many people want to _______ the photography workshop today.",
+            options: ["attend", "borrow", "renew", "scan"],
+            originalSentence: "Many people want to attend the photography workshop today."
+        }
+    ],
+    "37-30": [ // return bin
+        {
+            sentence: "If the library is closed, put your books in the _______ _______.",
+            options: ["return bin", "front desk", "science section", "bulletin board"],
+            originalSentence: "If the library is closed, put your books in the return bin."
+        }
+    ],
+    "37-33": [ // look forward to
+        {
+            sentence: "I _______ _______ _______ our next visit to the library.",
+            options: ["look forward to", "log into", "check out", "attend"],
+            originalSentence: "I look forward to our next visit to the library."
+        }
+    ],
+    "38-1": [ // phone call
+        {
+            sentence: "I received a _______ _______ from my grandmother this morning.",
+            options: ["phone call", "science project", "solar system", "cardboard"],
+            originalSentence: "I received a phone call from my grandmother this morning."
+        }
+    ],
+    "38-2": [ // rings
+        {
+            sentence: "When the phone _______, please answer it quickly.",
+            options: ["rings", "answers", "builds", "remembers"],
+            originalSentence: "When the phone rings, please answer it quickly."
+        }
+    ],
+    "38-4": [ // friendly
+        {
+            sentence: "Our new neighbor is very _______ and always smiles.",
+            options: ["friendly", "realistic", "proud", "excited"],
+            originalSentence: "Our new neighbor is very friendly and always smiles."
+        }
+    ],
+    "38-6": [ // science project
+        {
+            sentence: "We are working on a _______ _______ about how plants grow.",
+            options: ["science project", "solar system", "model", "video"],
+            originalSentence: "We are working on a science project about how plants grow."
+        }
+    ],
+    "38-7": [ // solar system
+        {
+            sentence: "The _______ _______ consists of the sun and eight planets.",
+            options: ["solar system", "science project", "cardboard", "star"],
+            originalSentence: "The solar system consists of the sun and eight planets."
+        }
+    ],
+    "38-8": [ // build
+        {
+            sentence: "My brother likes to _______ houses using Lego bricks.",
+            options: ["build", "remember", "hang up", "dream"],
+            originalSentence: "My brother likes to build houses using Lego bricks."
+        }
+    ],
+    "38-9": [ // model
+        {
+            sentence: "We made a _______ of the volcano for the school fair.",
+            options: ["model", "glue", "paint", "string"],
+            originalSentence: "We made a model of the volcano for the school fair."
+        }
+    ],
+    "38-11": [ // glue
+        {
+            sentence: "Use some _______ to stick the photos into your notebook.",
+            options: ["glue", "paint", "cardboard", "string"],
+            originalSentence: "Use some glue to stick the photos into your notebook."
+        }
+    ],
+    "38-13": [ // cardboard
+        {
+            sentence: "I found a large _______ box to make a spaceship for my cat.",
+            options: ["cardboard", "glue", "paint", "string"],
+            originalSentence: "I found a large cardboard box to make a spaceship for my cat."
+        }
+    ],
+    "38-15": [ // planet
+        {
+            sentence: "Earth is the only _______ known to have life.",
+            options: ["planet", "star", "model", "video"],
+            originalSentence: "Earth is the only planet known to have life."
+        }
+    ],
+    "38-18": [ // hang up
+        {
+            sentence: "Don't _______ _______ yet; I have one more thing to tell you.",
+            options: ["hang up", "build", "remember", "dream"],
+            originalSentence: "Don't hang up yet; I have one more thing to tell you."
+        }
+    ],
+    "38-19": [ // realistic
+        {
+            sentence: "The drawing of the lion looks very _______, like a photo.",
+            options: ["realistic", "funny", "excited", "proud"],
+            originalSentence: "The drawing of the lion looks very realistic, like a photo."
+        }
+    ],
+    "38-20": [ // Mars
+        {
+            sentence: "_______ is often called the Red Planet.",
+            options: ["Mars", "Jupiter", "Earth", "Sun"],
+            originalSentence: "Mars is often called the Red Planet."
+        }
+    ],
+    "38-22": [ // Jupiter
+        {
+            sentence: "_______ is the largest planet in our solar system.",
+            options: ["Jupiter", "Mars", "Earth", "Saturn"],
+            originalSentence: "Jupiter is the largest planet in our solar system."
+        }
+    ],
+    "38-23": [ // stripes
+        {
+            sentence: "The zebra has black and white _______ on its body.",
+            options: ["stripes", "stars", "models", "videos"],
+            originalSentence: "The zebra has black and white stripes on its body."
+        }
+    ],
+    "38-24": [ // excited
+        {
+            sentence: "I am so _______ about our trip to the beach tomorrow!",
+            options: ["excited", "proud", "kind", "friendly"],
+            originalSentence: "I am so excited about our trip to the beach tomorrow!"
+        }
+    ],
+    "38-26": [ // proud
+        {
+            sentence: "My parents were very _______ of me when I won the race.",
+            options: ["proud", "kind", "funny", "realistic"],
+            originalSentence: "My parents were very proud of me when I won the race."
+        }
+    ],
+    "38-27": [ // dream
+        {
+            sentence: "I _______ of becoming a pilot and flying around the world.",
+            options: ["dream", "build", "remember", "hang up"],
+            originalSentence: "I dream of becoming a pilot and flying around the world."
+        }
+    ],
+    "38-28": [ // star
+        {
+            sentence: "The sun is the closest _______ to our planet.",
+            options: ["star", "planet", "model", "video"],
+            originalSentence: "The sun is the closest star to our planet."
+        }
+    ],
+    "39-1": [ // throat
+        {
+            sentence: "I have a sore _______, so it is hard for me to swallow.",
+            options: ["throat", "forehead", "chest", "ear"],
+            originalSentence: "I have a sore throat, so it is hard for me to swallow."
+        }
+    ],
+    "39-3": [ // thermometer
+        {
+            sentence: "The nurse used a _______ to check if I had a fever.",
+            options: ["thermometer", "stethoscope", "prescription", "bottle"],
+            originalSentence: "The nurse used a thermometer to check if I had a fever."
+        }
+    ],
+    "39-4": [ // temperature
+        {
+            sentence: "My _______ is 38 degrees, which means I am sick.",
+            options: ["temperature", "fever", "infection", "rest"],
+            originalSentence: "My temperature is 38 degrees, which means I am sick."
+        }
+    ],
+    "39-6": [ // clinic
+        {
+            sentence: "I am going to the _______ to see the doctor today.",
+            options: ["clinic", "pharmacy", "sofa", "waiting room"],
+            originalSentence: "I am going to the clinic to see the doctor today."
+        }
+    ],
+    "39-8": [ // patient
+        {
+            sentence: "The doctor is busy seeing another _______ right now.",
+            options: ["patient", "nurse", "pharmacist", "magazine"],
+            originalSentence: "The doctor is busy seeing another patient right now."
+        }
+    ],
+    "39-11": [ // stethoscope
+        {
+            sentence: "The doctor put the _______ on my chest to listen to my heart.",
+            options: ["stethoscope", "thermometer", "prescription", "spoonful"],
+            originalSentence: "The doctor put the stethoscope on my chest to listen to my heart."
+        }
+    ],
+    "39-13": [ // breathe
+        {
+            sentence: "The doctor asked me to _______ deeply while he checked my lungs.",
+            options: ["breathe", "rest", "twice", "gone"],
+            originalSentence: "The doctor asked me to breathe deeply while he checked my lungs."
+        }
+    ],
+    "39-17": [ // infection
+        {
+            sentence: "The doctor said I have a mild ear _______.",
+            options: ["infection", "fever", "temperature", "prescription"],
+            originalSentence: "The doctor said I have a mild ear infection."
+        }
+    ],
+    "39-18": [ // prescription
+        {
+            sentence: "I need to take this _______ to the pharmacy to get my medicine.",
+            options: ["prescription", "magazine", "syrup", "spoonful"],
+            originalSentence: "I need to take this prescription to the pharmacy to get my medicine."
+        }
+    ],
+    "39-20": [ // plenty
+        {
+            sentence: "You should drink _______ of water when you are feeling sick.",
+            options: ["plenty", "mild", "sleepy", "twice"],
+            originalSentence: "You should drink plenty of water when you are feeling sick."
+        }
+    ],
+    "39-21": [ // rest
+        {
+            sentence: "The most important thing for you now is to get some _______.",
+            options: ["rest", "syrup", "soup", "fever"],
+            originalSentence: "The most important thing for you now is to get some rest."
+        }
+    ],
+    "39-22": [ // pharmacy
+        {
+            sentence: "I am going to the _______ to buy some cough medicine.",
+            options: ["pharmacy", "clinic", "waiting room", "sofa"],
+            originalSentence: "I am going to the pharmacy to buy some cough medicine."
+        }
+    ],
+    "39-25": [ // syrup
+        {
+            sentence: "The doctor gave me a sweet _______ for my cough.",
+            options: ["syrup", "soup", "magazine", "infection"],
+            originalSentence: "The doctor gave me a sweet syrup for my cough."
+        }
+    ],
+    "39-26": [ // spoonful
+        {
+            sentence: "Take one _______ of medicine every morning and night.",
+            options: ["spoonful", "bottle", "prescription", "stethoscope"],
+            originalSentence: "Take one spoonful of medicine every morning and night."
+        }
+    ],
+    "39-27": [ // sofa
+        {
+            sentence: "I am lying on the _______ because I don't feel well.",
+            options: ["sofa", "clinic", "pharmacy", "waiting room"],
+            originalSentence: "I am lying on the sofa because I don't feel well."
+        }
+    ],
+    "39-28": [ // soup
+        {
+            sentence: "My mother made me some hot chicken _______ for lunch.",
+            options: ["soup", "syrup", "magazine", "patient"],
+            originalSentence: "My mother made me some hot chicken soup for lunch."
+        }
+    ],
+    "39-29": [ // sleepy
+        {
+            sentence: "This medicine makes me feel a bit _______.",
+            options: ["sleepy", "mild", "gone", "deeply"],
+            originalSentence: "This medicine makes me feel a bit sleepy."
+        }
+    ],
+    "39-30": [ // gone
+        {
+            sentence: "I feel much better today; my fever is finally _______.",
+            options: ["gone", "mild", "sleepy", "deeply"],
+            originalSentence: "I feel much better today; my fever is finally gone."
+        }
+    ],
+    "40-1": [ // trip
+        {
+            sentence: "We are planning a school _______ to the national park next week.",
+            options: ["trip", "scenery", "bus station", "memory"],
+            originalSentence: "We are planning a school trip to the national park next week."
+        }
+    ],
+    "40-2": [ // lake
+        {
+            sentence: "The water in the _______ is very clear and cold.",
+            options: ["lake", "mountain", "village", "field"],
+            originalSentence: "The water in the lake is very clear and cold."
+        }
+    ],
+    "40-4": [ // fresh air
+        {
+            sentence: "I like going to the countryside to breathe some _______ _______.",
+            options: ["fresh air", "colorful", "souvenir", "sunset"],
+            originalSentence: "I like going to the countryside to breathe some fresh air."
+        }
+    ],
+    "40-6": [ // camera
+        {
+            sentence: "Don't forget your _______ to take photos of the mountains.",
+            options: ["camera", "map", "blanket", "shell"],
+            originalSentence: "Don't forget your camera to take photos of the mountains."
+        }
+    ],
+    "40-7": [ // bus station
+        {
+            sentence: "We should meet at the _______ _______ at 8:00 AM.",
+            options: ["bus station", "lake", "trail", "spot"],
+            originalSentence: "We should meet at the bus station at 8:00 AM."
+        }
+    ],
+    "40-9": [ // map
+        {
+            sentence: "We need a _______ so we don't get lost in the forest.",
+            options: ["map", "camera", "blanket", "stone"],
+            originalSentence: "We need a map so we don't get lost in the forest."
+        }
+    ],
+    "40-11": [ // scenery
+        {
+            sentence: "The _______ from the top of the hill is absolutely beautiful.",
+            options: ["scenery", "journey", "trip", "goal"],
+            originalSentence: "The scenery from the top of the hill is absolutely beautiful."
+        }
+    ],
+    "40-13": [ // village
+        {
+            sentence: "My grandparents live in a small _______ far from the city.",
+            options: ["village", "bus station", "lake", "nature"],
+            originalSentence: "My grandparents live in a small village far from the city."
+        }
+    ],
+    "40-14": [ // mountain
+        {
+            sentence: "The _______ is covered with white snow in the winter.",
+            options: ["mountain", "field", "path", "spot"],
+            originalSentence: "The mountain is covered with white snow in the winter."
+        }
+    ],
+    "40-18": [ // explore
+        {
+            sentence: "Let's _______ the new trail and see where it leads.",
+            options: ["explore", "surround", "spread", "share"],
+            originalSentence: "Let's explore the new trail and see where it leads."
+        }
+    ],
+    "40-19": [ // trail
+        {
+            sentence: "Follow the _______ through the trees to find the lake.",
+            options: ["trail", "map", "souvenir", "goal"],
+            originalSentence: "Follow the trail through the trees to find the lake."
+        }
+    ],
+    "40-22": [ // share
+        {
+            sentence: "It's kind to _______ your food with your friends during a picnic.",
+            options: ["share", "offer", "miss", "score"],
+            originalSentence: "It's kind to share your food with your friends during a picnic."
+        }
+    ],
+    "40-26": [ // goal
+        {
+            sentence: "He was very happy when he scored a _______ in the football match.",
+            options: ["goal", "trip", "score", "memory"],
+            originalSentence: "He was very happy when he scored a goal in the football match."
+        }
+    ],
+    "40-28": [ // stone
+        {
+            sentence: "The boy threw a small _______ into the water.",
+            options: ["stone", "shell", "map", "camera"],
+            originalSentence: "The boy threw a small stone into the water."
+        }
+    ],
+    "40-29": [ // ripple
+        {
+            sentence: "The stone made a small _______ on the surface of the lake.",
+            options: ["ripple", "sunset", "nature", "journey"],
+            originalSentence: "The stone made a small ripple on the surface of the lake."
+        }
+    ],
+    "40-31": [ // souvenir
+        {
+            sentence: "I bought a small magnet as a _______ from my trip to Paris.",
+            options: ["souvenir", "memory", "map", "blanket"],
+            originalSentence: "I bought a small magnet as a souvenir from my trip to Paris."
+        }
+    ],
+    "40-32": [ // sunset
+        {
+            sentence: "We sat on the beach to watch the beautiful _______.",
+            options: ["sunset", "fresh air", "scenery", "spot"],
+            originalSentence: "We sat on the beach to watch the beautiful sunset."
+        }
+    ],
+    "40-33": [ // memory
+        {
+            sentence: "This trip will be a wonderful _______ for all of us.",
+            options: ["memory", "journey", "souvenir", "goal"],
+            originalSentence: "This trip will be a wonderful memory for all of us."
+        }
+    ],
     // استكمال gapfillDB.js - الدرس رقم 61
     "61-1": [
         {
