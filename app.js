@@ -1697,8 +1697,7 @@ showAdaptiveResult() {
             else if (this.adaptiveTestPhase === 'moving_down') phaseName = this.t('تقييم المستوى الأدنى', 'Moving Down');
             else phaseName = this.t('تأكيد المستوى', 'Confirmation');
             
-            return `<div class="reading-card"><div style="display:flex; justify-content:space-between; margin-bottom:15px; flex-wrap:wrap; gap:8px;"><span style="background:#e2e8f0; color:#475569; padding:4px 12px; border-radius:20px; font-weight:bold; font-size:0.8rem;">${phaseName} | ${this.t('المستوى', 'Level')}: ${this.adaptiveTestCurrentLevel}</span><span style="background:#e2e8f0; color:#475569; padding:4px 12px; border-radius:20px; font-weight:bold; font-size:0.8rem;">${this.t('السؤال', 'Question')} ${totalSoFar + 1} / ${this.adaptiveTestMaxQuestions}</span></div><h2 style="margin-bottom:25px; direction:ltr; text-align:left; line-height:1.4; font-size:1.2rem;">${question.q}</h2><div class="quiz-options">${opts.map(opt => `<button class="quiz-opt-btn" data-action="adaptiveAnswer" data-param="${opt}" data-correct="${correctAnswer}">${opt}</button>`).join('')}</div></div>`;
-        }
+<span style="background:#e2e8f0; color:#475569; padding:4px 12px; border-radius:20px; font-weight:bold; font-size:0.8rem;">${this.t('السؤال', 'Question')} ${totalSoFar + 1}</span>        }
         
         if (this.currentPage === 'adaptive_test_result') {
             return this.showAdaptiveResult();
