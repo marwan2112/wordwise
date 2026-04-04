@@ -1,3 +1,6 @@
+// app.js - التطبيق الكامل مع إصلاح اختبار المستوى المتكيف
+// (جميع الميزات السابقة + اختبار مستوى يعمل بشكل صحيح 35-50 سؤال)
+
 class App {
     constructor() {
         // أنظمة الحماية والمتغيرات الأساسية
@@ -14,28 +17,29 @@ class App {
             { adsNeeded: 5, reward: 100 }
         ];
         
-        // ========== نظام اختبار المستوى المتطور (Consecutive Adaptive Test) ==========
+        // ========== نظام اختبار المستوى المتطور (Adaptive Level Test) ==========
         this.adaptiveTestActive = false;
         this.adaptiveTestHistory = [];
         this.adaptiveTestCurrentLevel = 'B1';
         this.adaptiveTestPhase = 'initial'; // initial, moving_up, moving_down, confirmation
-        this.adaptiveTestLevelResults = {}; // تخزين نتائج كل مستوى { correct, total, consecutiveCorrect }
+        this.adaptiveTestLevelResults = {};
         this.adaptiveTestFinalLevel = null;
         this.adaptiveTestTotalQuestions = 0;
         this.adaptiveTestMaxQuestions = 50;
         this.adaptiveTestMinQuestions = 35;
-        this.adaptiveTestQuestionsPerSet = 4; // عدد الأسئلة لكل مجموعة قبل اتخاذ القرار
+        this.adaptiveTestQuestionsPerSet = 5; // عدد الأسئلة لكل مجموعة
         this.adaptiveTestCurrentSetQuestions = [];
         this.adaptiveTestCurrentSetIndex = 0;
         this.adaptiveTestCurrentSetCorrect = 0;
-        this.adaptiveTestCurrentSetConsecutive = 0; // الإجابات المتتالية الصحيحة في المستوى الحالي
+        this.adaptiveTestCurrentSetConsecutive = 0;
         this.adaptiveTestLevelOrder = ['A1', 'A2', 'B1', 'B2', 'C1', 'C2'];
         this.adaptiveTestQuestionBank = {};
         this.adaptiveTestUsedQuestions = {};
         this.adaptiveTestConfirmationQuestions = [];
         this.adaptiveTestConfirmationCorrect = 0;
+        this.adaptiveTestWaitingForNext = false; // منع تكرار التقييم
         
-        // متغيرات التطبيق الأساسية
+        // متغيرات التطبيق الأساسية (مختصرة ولكنها موجودة)
         this.repeatAllSessionMastered = [];
         this.currentAudio = null;
         this.audioPlaybackRate = 1.0;
@@ -57,7 +61,7 @@ class App {
         this.showCoinModal = false;
         this.showPurchaseForm = false;
 
-        // متغيرات التمارين (مختصرة ولكنها موجودة)
+        // باقي المتغيرات (تم اختصارها للحفاظ على المساحة ولكنها موجودة في الكود الأصلي)
         this.jumbleOriginalSentence = '';
         this.jumbleWords = [];
         this.jumbleUserAnswer = [];
@@ -214,6 +218,7 @@ class App {
         }
     }
 
+    // ====================== دوال مساعدة ======================
     t(ar, en) { return this.lang === 'en' ? en : ar; }
     toggleLanguage() {
         this.lang = this.lang === 'ar' ? 'en' : 'ar';
@@ -221,6 +226,8 @@ class App {
         document.documentElement.setAttribute('dir', this.lang === 'ar' ? 'rtl' : 'ltr');
         this.render();
     }
+
+    shuffleArray(arr) { for (let i = arr.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [arr[i], arr[j]] = [arr[j], arr[i]]; } }
 
     // ====================== نظام نقاط الخبرة (XP) ======================
     async addXPOnce(amount, wordId, context = 'general') {
@@ -786,7 +793,6 @@ class App {
         this.showCustomModal('success', '✅', this.t('تم حفظ التغييرات بنجاح', 'Changes saved successfully'));
     }
     
-    // دالة لتغيير البريد الإلكتروني (يتطلب إعادة تأكيد)
     async updateEmail() {
         const newEmail = prompt(this.t('أدخل البريد الإلكتروني الجديد:', 'Enter new email:'));
         if (newEmail && newEmail.includes('@')) {
@@ -844,7 +850,7 @@ class App {
         }
     }
 
-    // ====================== نظام اختبار المستوى المتطور (Consecutive Adaptive) ======================
+    // ====================== نظام اختبار المستوى المتطور (مع الإصلاح) ======================
     
     prepareAdaptiveQuestionBank() {
         const levels = ['A1', 'A2', 'B1', 'B2', 'C1', 'C2'];
@@ -870,7 +876,7 @@ class App {
         };
         const words = prefixes[level] || prefixes['B1'];
         const skills = ['Grammar', 'Vocabulary', 'Reading'];
-        for (let i = 0; i < 40; i++) {
+        for (let i = 0; i < 50; i++) {
             const word = words[i % words.length] + (i > 9 ? '_' + Math.floor(i/10) : '');
             const skill = skills[i % 3];
             defaultQuestions.push({
@@ -894,7 +900,7 @@ class App {
         this.adaptiveTestLevelResults = {};
         this.adaptiveTestFinalLevel = null;
         this.adaptiveTestTotalQuestions = 0;
-        this.adaptiveTestQuestionsPerSet = 4;
+        this.adaptiveTestQuestionsPerSet = 5;
         this.adaptiveTestCurrentSetQuestions = [];
         this.adaptiveTestCurrentSetIndex = 0;
         this.adaptiveTestCurrentSetCorrect = 0;
@@ -902,13 +908,14 @@ class App {
         this.adaptiveTestUsedQuestions = {};
         this.adaptiveTestConfirmationQuestions = [];
         this.adaptiveTestConfirmationCorrect = 0;
+        this.adaptiveTestWaitingForNext = false;
         
         const levels = this.adaptiveTestLevelOrder;
         for (let level of levels) {
             this.adaptiveTestLevelResults[level] = { correct: 0, total: 0, percentage: 0, consecutiveCorrect: 0 };
         }
         
-        // بدء المرحلة الأولية: 4 أسئلة من B1
+        // تحميل أول مجموعة أسئلة (5 أسئلة من B1)
         this.loadNextAdaptiveQuestionSet();
         this.currentPage = 'adaptive_test';
         this.render();
@@ -920,6 +927,7 @@ class App {
         this.adaptiveTestCurrentSetIndex = 0;
         this.adaptiveTestCurrentSetCorrect = 0;
         this.adaptiveTestCurrentSetConsecutive = 0;
+        console.log(`✅ تم تحميل مجموعة جديدة من المستوى ${this.adaptiveTestCurrentLevel}، عدد الأسئلة: ${this.adaptiveTestCurrentSetQuestions.length}`);
     }
     
     getRandomQuestionsForLevel(level, count) {
@@ -942,6 +950,7 @@ class App {
     }
     
     getCurrentAdaptiveQuestion() {
+        // إذا كنا في مرحلة التأكيد
         if (this.adaptiveTestPhase === 'confirmation') {
             if (this.adaptiveTestConfirmationQuestions.length > 0) {
                 return this.adaptiveTestConfirmationQuestions[0];
@@ -949,15 +958,18 @@ class App {
             return null;
         }
         
+        // إذا انتهت المجموعة الحالية، نقيم وننتقل
         if (this.adaptiveTestCurrentSetIndex >= this.adaptiveTestCurrentSetQuestions.length) {
-            // انتهت المجموعة، نقيم ونقرر
-            this.evaluateCurrentSetAndMove();
+            if (!this.adaptiveTestWaitingForNext) {
+                this.evaluateCurrentSetAndMove();
+            }
             return null;
         }
         return this.adaptiveTestCurrentSetQuestions[this.adaptiveTestCurrentSetIndex];
     }
     
     evaluateCurrentSetAndMove() {
+        this.adaptiveTestWaitingForNext = true;
         const setSize = this.adaptiveTestCurrentSetQuestions.length;
         const percentage = setSize > 0 ? (this.adaptiveTestCurrentSetCorrect / setSize) * 100 : 0;
         
@@ -970,19 +982,14 @@ class App {
         this.adaptiveTestLevelResults[this.adaptiveTestCurrentLevel].percentage = 
             (this.adaptiveTestLevelResults[this.adaptiveTestCurrentLevel].correct / this.adaptiveTestLevelResults[this.adaptiveTestCurrentLevel].total) * 100;
         
-        // تحديث الإجابات المتتالية الصحيحة
-        if (this.adaptiveTestCurrentSetConsecutive === setSize && this.adaptiveTestCurrentSetCorrect === setSize) {
-            // جميع الإجابات صحيحة ومتتالية
-            this.adaptiveTestLevelResults[this.adaptiveTestCurrentLevel].consecutiveCorrect += setSize;
-        } else {
-            this.adaptiveTestLevelResults[this.adaptiveTestCurrentLevel].consecutiveCorrect = 0;
-        }
-        
         this.adaptiveTestTotalQuestions += setSize;
+        
+        console.log(`📊 تقييم المستوى ${this.adaptiveTestCurrentLevel}، النسبة: ${percentage}%، المرحلة: ${this.adaptiveTestPhase}`);
         
         // منع تجاوز الحد الأقصى للأسئلة
         if (this.adaptiveTestTotalQuestions >= this.adaptiveTestMaxQuestions) {
             this.finalizeAdaptiveTest();
+            this.adaptiveTestWaitingForNext = false;
             return;
         }
         
@@ -996,23 +1003,25 @@ class App {
                 if (currentIdx < levels.length - 1) {
                     this.adaptiveTestCurrentLevel = levels[currentIdx + 1];
                     this.adaptiveTestPhase = 'moving_up';
+                    console.log(`⬆️ انتقل إلى المستوى الأعلى: ${this.adaptiveTestCurrentLevel}`);
                 } else {
                     this.adaptiveTestPhase = 'confirmation';
-                    this.prepareConfirmationQuestions();
+                    console.log(`✅ أعلى مستوى، انتقل إلى مرحلة التأكيد`);
                 }
             } else if (percentage <= 40) {
                 // أداء ضعيف -> نخفض المستوى
                 if (currentIdx > 0) {
                     this.adaptiveTestCurrentLevel = levels[currentIdx - 1];
                     this.adaptiveTestPhase = 'moving_down';
+                    console.log(`⬇️ انتقل إلى المستوى الأدنى: ${this.adaptiveTestCurrentLevel}`);
                 } else {
                     this.adaptiveTestPhase = 'confirmation';
-                    this.prepareConfirmationQuestions();
+                    console.log(`✅ أدنى مستوى، انتقل إلى مرحلة التأكيد`);
                 }
             } else {
                 // مستوى مناسب -> مرحلة التأكيد
                 this.adaptiveTestPhase = 'confirmation';
-                this.prepareConfirmationQuestions();
+                console.log(`✅ مستوى مناسب (${percentage}%)، انتقل إلى مرحلة التأكيد`);
             }
             this.loadNextAdaptiveQuestionSet();
         } 
@@ -1022,13 +1031,17 @@ class App {
                 // نجح في المستوى الأعلى -> نستمر بالصعود
                 if (currentIdx < levels.length - 1) {
                     this.adaptiveTestCurrentLevel = levels[currentIdx + 1];
+                    console.log(`⬆️ نجح في المستوى، نستمر بالصعود إلى: ${this.adaptiveTestCurrentLevel}`);
+                    this.loadNextAdaptiveQuestionSet();
                 } else {
                     this.adaptiveTestPhase = 'confirmation';
+                    console.log(`✅ وصل لأعلى مستوى، انتقل إلى مرحلة التأكيد`);
                     this.prepareConfirmationQuestions();
                 }
             } else if (percentage >= 50 && percentage < 75) {
                 // أداء متوسط -> نثبت هذا المستوى وندخل مرحلة التأكيد
                 this.adaptiveTestPhase = 'confirmation';
+                console.log(`✅ أداء متوسط (${percentage}%)، نثبت المستوى ${this.adaptiveTestCurrentLevel} وندخل التأكيد`);
                 this.prepareConfirmationQuestions();
             } else {
                 // فشل -> ننزل مستوى ونبدأ مرحلة التأكيد
@@ -1036,37 +1049,43 @@ class App {
                     this.adaptiveTestCurrentLevel = levels[currentIdx - 1];
                 }
                 this.adaptiveTestPhase = 'confirmation';
+                console.log(`❌ فشل في المستوى، ننزل إلى ${this.adaptiveTestCurrentLevel} وندخل التأكيد`);
                 this.prepareConfirmationQuestions();
             }
-            this.loadNextAdaptiveQuestionSet();
         }
         else if (this.adaptiveTestPhase === 'moving_down') {
             // نحاول النزول: نختبر المستوى الأدنى
             if (percentage >= 70) {
                 // نجح في المستوى الأدنى -> هذا هو مستواه المناسب
                 this.adaptiveTestPhase = 'confirmation';
+                console.log(`✅ نجح في المستوى الأدنى، نثبت ${this.adaptiveTestCurrentLevel} وندخل التأكيد`);
                 this.prepareConfirmationQuestions();
             } else if (percentage >= 40 && percentage < 70) {
                 // أداء متوسط -> نثبت هذا المستوى
                 this.adaptiveTestPhase = 'confirmation';
+                console.log(`✅ أداء متوسط (${percentage}%)، نثبت ${this.adaptiveTestCurrentLevel} وندخل التأكيد`);
                 this.prepareConfirmationQuestions();
             } else {
                 // فشل -> ننزل أكثر
                 if (currentIdx > 0) {
                     this.adaptiveTestCurrentLevel = levels[currentIdx - 1];
+                    console.log(`⬇️ فشل، ننزل أكثر إلى ${this.adaptiveTestCurrentLevel}`);
                     this.loadNextAdaptiveQuestionSet();
                 } else {
                     this.adaptiveTestPhase = 'confirmation';
+                    console.log(`✅ وصل لأدنى مستوى، ندخل التأكيد`);
                     this.prepareConfirmationQuestions();
                 }
             }
         }
+        this.adaptiveTestWaitingForNext = false;
         this.render();
     }
     
     prepareConfirmationQuestions() {
         // مرحلة التأكيد: 8-12 سؤال من المستوى الحالي
-        const confirmCount = Math.min(10, this.adaptiveTestMaxQuestions - this.adaptiveTestTotalQuestions);
+        const maxConfirm = this.adaptiveTestMaxQuestions - this.adaptiveTestTotalQuestions;
+        const confirmCount = Math.min(10, maxConfirm);
         if (confirmCount < 3) {
             this.finalizeAdaptiveTest();
             return;
@@ -1074,6 +1093,7 @@ class App {
         this.adaptiveTestConfirmationQuestions = this.getRandomQuestionsForLevel(this.adaptiveTestCurrentLevel, confirmCount);
         this.adaptiveTestConfirmationCorrect = 0;
         this.adaptiveTestPhase = 'confirmation';
+        console.log(`📝 مرحلة التأكيد: ${confirmCount} سؤال من المستوى ${this.adaptiveTestCurrentLevel}`);
     }
     
     handleAdaptiveAnswer(selected, correct, btnElement) {
@@ -1086,7 +1106,6 @@ class App {
         this.playTone(isCorrect ? 'correct' : 'error');
         
         let currentQuestion = null;
-        let currentLevel = this.adaptiveTestCurrentLevel;
         
         if (this.adaptiveTestPhase === 'confirmation') {
             currentQuestion = this.adaptiveTestConfirmationQuestions[0];
@@ -1109,9 +1128,8 @@ class App {
             }
         } else {
             currentQuestion = this.adaptiveTestCurrentSetQuestions[this.adaptiveTestCurrentSetIndex];
-            currentLevel = this.adaptiveTestCurrentLevel;
             this.adaptiveTestHistory.push({
-                level: currentLevel,
+                level: this.adaptiveTestCurrentLevel,
                 phase: this.adaptiveTestPhase,
                 question: currentQuestion.q,
                 options: currentQuestion.options,
@@ -1158,7 +1176,7 @@ class App {
             }
         }
         
-        // إذا كانت نسبة التأكيد جيدة، نأخذ المستوى الحالي
+        // إذا كانت مرحلة التأكيد نشطة، نأخذ المستوى الحالي إذا كانت نسبة التأكيد جيدة
         if (this.adaptiveTestPhase === 'confirmation') {
             const confirmTotal = this.adaptiveTestConfirmationQuestions.length + this.adaptiveTestConfirmationCorrect;
             const confirmPercentage = confirmTotal > 0 ? (this.adaptiveTestConfirmationCorrect / confirmTotal) * 100 : 0;
@@ -1296,7 +1314,7 @@ class App {
     
     getIeltsEquivalent(level) { const map = { 'A1': '2.0-3.0', 'A2': '3.0-4.0', 'B1': '4.0-5.0', 'B2': '5.5-6.5', 'C1': '7.0-8.0', 'C2': '8.5-9.0' }; return map[level]; }
 
-    // ====================== دوال التمارين الأخرى (مختصرة ولكنها موجودة) ======================
+    // ====================== دوال التمارين الأخرى (مختصرة) ======================
     prepareJumble() {
         const lesson = this.getCurrentLessonData();
         if (!lesson) return;
@@ -1316,7 +1334,6 @@ class App {
         this.jumbleHintUsed = false;
     }
 
-    shuffleArray(arr) { for (let i = arr.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [arr[i], arr[j]] = [arr[j], arr[i]]; } }
     handleJumbleSelect(word) { if (this.jumbleChecked) return; const index = this.jumbleWords.indexOf(word); if (index !== -1) { this.jumbleWords.splice(index, 1); this.jumbleUserAnswer.push(word); this.render(); } }
     handleJumbleRemove(word) { if (this.jumbleChecked) return; const index = this.jumbleUserAnswer.indexOf(word); if (index !== -1) { this.jumbleUserAnswer.splice(index, 1); this.jumbleWords.push(word); this.render(); } }
     handleJumbleReset() { this.jumbleWords = this.jumbleOriginalSentence.split(/\s+/).filter(w => w.length > 0); this.shuffleArray(this.jumbleWords); this.jumbleUserAnswer = []; this.jumbleChecked = false; this.jumbleCorrect = false; this.jumbleHintUsed = false; this.render(); }
