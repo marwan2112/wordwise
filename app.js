@@ -1236,7 +1236,7 @@ finalizeAdaptiveTest() {
         skillAnalysis: skillAnalysis
     };
     
-    // إضافة النتيجة إلى بداية المصفوفة
+    // حفظ النتيجة في الذاكرة
     this.placementResults.unshift(result);
     this.placementFullHistory.push(result);
     this.userProfile.level = result.level;
@@ -1247,14 +1247,27 @@ finalizeAdaptiveTest() {
         level: result.displayLevel
     });
     
-    // حفظ البيانات في Firestore (إذا كان المستخدم مسجلاً)
-    if (this.currentUser && this.canSave) {
-        this.saveUserData().catch(err => console.error("خطأ في حفظ الاختبار:", err));
-    } else if (this.currentUser) {
-        // إذا كان canSave false، نحاول حفظها بعد قليل
-        setTimeout(() => {
-            if (this.canSave) this.saveUserData();
-        }, 500);
+    // محاولة حفظ البيانات في Firestore
+    if (this.currentUser) {
+        console.log("محاولة حفظ نتيجة الاختبار للمستخدم:", this.currentUser.uid);
+        //强制设置 canSave = true إذا كانت false
+        if (!this.canSave) {
+            console.warn("canSave كانت false، تم ضبطها على true مؤقتًا");
+            this.canSave = true;
+        }
+        this.saveUserData().then(() => {
+            console.log("✅ تم حفظ الاختبار بنجاح في Firestore");
+        }).catch(err => {
+            console.error("❌ فشل حفظ الاختبار في Firestore:", err);
+            // حفظ نسخة احتياطية في localStorage
+            const backupKey = `backup_placement_${this.currentUser.uid}`;
+            localStorage.setItem(backupKey, JSON.stringify(this.placementResults));
+            console.log("📦 تم حفظ نسخة احتياطية في localStorage");
+        });
+    } else {
+        console.warn("⚠️ المستخدم غير مسجل الدخول، لن يتم حفظ الاختبار بشكل دائم");
+        // حفظ محليًا للمستخدم غير المسجل
+        localStorage.setItem('temp_placement_results', JSON.stringify(this.placementResults));
     }
     
     // إنهاء الاختبار
@@ -1262,7 +1275,6 @@ finalizeAdaptiveTest() {
     this.currentPage = 'adaptive_test_result';
     this.render();
 }
-
 analyzeAdaptiveSkills() {
     let grammarCorrect = 0, grammarTotal = 0;
     let vocabularyCorrect = 0, vocabularyTotal = 0;
