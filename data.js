@@ -187,7 +187,7 @@ window.lessonsList = {
     { id: "355", title: "175. Space Debris and the Sustainability of Low Earth Orbit" },
     { id: "356", title: "176. The Impact of Social Media on Democratic Institutions" },
     { id: "357", title: "177. CRISPR Technology and the Future of Genetic Engineering" },
-    { id: "358", title: "178. The Role of Microgrids in Decentralizing Energy Infrastructure" },
+    { id: "358", title: "178. The Role of Microgrids in Decentralizing Energy Infrastructure" }
   ]
 };
 
