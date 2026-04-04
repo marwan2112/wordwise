@@ -850,467 +850,441 @@ class App {
         }
     }
 
-    // ====================== نظام اختبار المستوى المتطور (مع الإصلاح) ======================
-    
-    prepareAdaptiveQuestionBank() {
-        const levels = ['A1', 'A2', 'B1', 'B2', 'C1', 'C2'];
-        this.adaptiveTestQuestionBank = {};
-        for (let level of levels) {
-            if (window.placementBank && window.placementBank[level]) {
-                this.adaptiveTestQuestionBank[level] = [...window.placementBank[level]];
-            } else {
-                this.adaptiveTestQuestionBank[level] = this.generateDefaultAdaptiveQuestions(level);
-            }
+// ====================== نظام اختبار المستوى المتطور (المصحح) ======================
+
+prepareAdaptiveQuestionBank() {
+    const levels = ['A1', 'A2', 'B1', 'B2', 'C1', 'C2'];
+    this.adaptiveTestQuestionBank = {};
+    for (let level of levels) {
+        if (window.placementBank && window.placementBank[level]) {
+            this.adaptiveTestQuestionBank[level] = [...window.placementBank[level]];
+        } else {
+            this.adaptiveTestQuestionBank[level] = this.generateDefaultAdaptiveQuestions(level);
         }
     }
+}
+
+generateDefaultAdaptiveQuestions(level) {
+    const defaultQuestions = [];
+    const prefixes = {
+        'A1': ['cat', 'dog', 'house', 'car', 'book', 'apple', 'school', 'teacher', 'student', 'mother'],
+        'A2': ['beautiful', 'quickly', 'restaurant', 'hospital', 'teacher', 'expensive', 'holiday', 'weather', 'travel', 'family'],
+        'B1': ['responsible', 'environment', 'technology', 'culture', 'economy', 'society', 'government', 'education', 'health', 'business'],
+        'B2': ['nevertheless', 'consequently', 'implementation', 'significant', 'alternative', 'compensate', 'demonstrate', 'evaluate', 'hypothesis', 'methodology'],
+        'C1': ['ubiquitous', 'paradigm', 'juxtaposition', 'anachronism', 'ephemeral', 'cogent', 'dichotomy', 'empirical', 'heuristic', 'magnanimous'],
+        'C2': ['antediluvian', 'sesquipedalian', 'floccinaucinihilipilification', 'pseudopseudohypoparathyroidism', 'supercalifragilisticexpialidocious', 'counterrevolutionary', 'incomprehensibilities', 'phosphatidylcholines', 'thyroparathyroidectomized', 'spectrophotofluorometrically']
+    };
+    const words = prefixes[level] || prefixes['B1'];
+    const skills = ['Grammar', 'Vocabulary', 'Reading'];
+    for (let i = 0; i < 40; i++) {
+        const word = words[i % words.length] + (i > 9 ? '_' + Math.floor(i/10) : '');
+        const skill = skills[i % 3];
+        defaultQuestions.push({
+            id: `${level}_${i}`,
+            q: skill === 'Grammar' ? `Choose the correct form: She _____ to school every day.` : (skill === 'Reading' ? `Read: "The ${word} is very important." What does "${word}" mean?` : `What is the meaning of "${word}"?`),
+            options: skill === 'Grammar' ? ['go', 'goes', 'going', 'went'] : [`Meaning ${word} A`, `Meaning ${word} B`, `Meaning ${word} C`, `Meaning ${word} D`],
+            correct: skill === 'Grammar' ? 'goes' : `Meaning ${word} A`,
+            skill: skill,
+            weight: level === 'C1' || level === 'C2' ? 1.5 : 1.0
+        });
+    }
+    return defaultQuestions;
+}
+
+startAdaptiveLevelTest() {
+    this.prepareAdaptiveQuestionBank();
+    this.adaptiveTestActive = true;
+    this.adaptiveTestHistory = [];
+    this.adaptiveTestCurrentLevel = 'B1';
+    this.adaptiveTestPhase = 'initial';   // initial, moving_up, moving_down, confirmation
+    this.adaptiveTestLevelResults = {};
+    this.adaptiveTestFinalLevel = null;
+    this.adaptiveTestTotalQuestions = 0;
+    this.adaptiveTestMaxQuestions = 50;
+    this.adaptiveTestMinQuestions = 35;
+    this.adaptiveTestQuestionsPerSet = 4;   // عدد الأسئلة لكل مجموعة قبل التقييم
+    this.adaptiveTestCurrentSetQuestions = [];
+    this.adaptiveTestCurrentSetIndex = 0;
+    this.adaptiveTestCurrentSetCorrect = 0;
+    this.adaptiveTestUsedQuestions = {};
+    this.adaptiveTestConfirmationQuestions = [];
+    this.adaptiveTestConfirmationCorrect = 0;
+    this.adaptiveTestConfirmationTotal = 0;
     
-    generateDefaultAdaptiveQuestions(level) {
-        const defaultQuestions = [];
-        const prefixes = {
-            'A1': ['cat', 'dog', 'house', 'car', 'book', 'apple', 'school', 'teacher', 'student', 'mother'],
-            'A2': ['beautiful', 'quickly', 'restaurant', 'hospital', 'teacher', 'expensive', 'holiday', 'weather', 'travel', 'family'],
-            'B1': ['responsible', 'environment', 'technology', 'culture', 'economy', 'society', 'government', 'education', 'health', 'business'],
-            'B2': ['nevertheless', 'consequently', 'implementation', 'significant', 'alternative', 'compensate', 'demonstrate', 'evaluate', 'hypothesis', 'methodology'],
-            'C1': ['ubiquitous', 'paradigm', 'juxtaposition', 'anachronism', 'ephemeral', 'cogent', 'dichotomy', 'empirical', 'heuristic', 'magnanimous'],
-            'C2': ['antediluvian', 'sesquipedalian', 'floccinaucinihilipilification', 'pseudopseudohypoparathyroidism', 'supercalifragilisticexpialidocious', 'counterrevolutionary', 'incomprehensibilities', 'phosphatidylcholines', 'thyroparathyroidectomized', 'spectrophotofluorometrically']
-        };
-        const words = prefixes[level] || prefixes['B1'];
-        const skills = ['Grammar', 'Vocabulary', 'Reading'];
-        for (let i = 0; i < 50; i++) {
-            const word = words[i % words.length] + (i > 9 ? '_' + Math.floor(i/10) : '');
-            const skill = skills[i % 3];
-            defaultQuestions.push({
-                id: `${level}_${i}`,
-                q: skill === 'Grammar' ? `Choose the correct form: She _____ to school every day.` : (skill === 'Reading' ? `Read: "The ${word} is very important." What does "${word}" mean?` : `What is the meaning of "${word}"?`),
-                options: skill === 'Grammar' ? ['go', 'goes', 'going', 'went'] : [`Meaning ${word} A`, `Meaning ${word} B`, `Meaning ${word} C`, `Meaning ${word} D`],
-                correct: skill === 'Grammar' ? 'goes' : `Meaning ${word} A`,
-                skill: skill,
-                weight: level === 'C1' || level === 'C2' ? 1.5 : 1.0
-            });
-        }
-        return defaultQuestions;
+    const levels = this.adaptiveTestLevelOrder;
+    for (let level of levels) {
+        this.adaptiveTestLevelResults[level] = { correct: 0, total: 0, percentage: 0 };
     }
     
-    startAdaptiveLevelTest() {
-        this.prepareAdaptiveQuestionBank();
-        this.adaptiveTestActive = true;
-        this.adaptiveTestHistory = [];
-        this.adaptiveTestCurrentLevel = 'B1';
-        this.adaptiveTestPhase = 'initial';
-        this.adaptiveTestLevelResults = {};
-        this.adaptiveTestFinalLevel = null;
-        this.adaptiveTestTotalQuestions = 0;
-        this.adaptiveTestQuestionsPerSet = 5;
-        this.adaptiveTestCurrentSetQuestions = [];
-        this.adaptiveTestCurrentSetIndex = 0;
-        this.adaptiveTestCurrentSetCorrect = 0;
-        this.adaptiveTestCurrentSetConsecutive = 0;
-        this.adaptiveTestUsedQuestions = {};
-        this.adaptiveTestConfirmationQuestions = [];
-        this.adaptiveTestConfirmationCorrect = 0;
-        this.adaptiveTestWaitingForNext = false;
-        
-        const levels = this.adaptiveTestLevelOrder;
-        for (let level of levels) {
-            this.adaptiveTestLevelResults[level] = { correct: 0, total: 0, percentage: 0, consecutiveCorrect: 0 };
+    // تحميل أول 5 أسئلة من B1
+    this.loadAdaptiveQuestionSet('B1', 5);
+    this.currentPage = 'adaptive_test';
+    this.render();
+}
+
+loadAdaptiveQuestionSet(level, count) {
+    const bank = this.adaptiveTestQuestionBank[level];
+    if (!bank || bank.length === 0) return [];
+    const usedIds = this.adaptiveTestUsedQuestions[level] || [];
+    let available = bank.filter(q => !usedIds.includes(q.id));
+    if (available.length < count) {
+        this.adaptiveTestUsedQuestions[level] = [];
+        available = [...bank];
+    }
+    const shuffled = [...available];
+    this.shuffleArray(shuffled);
+    const selected = shuffled.slice(0, count);
+    if (!this.adaptiveTestUsedQuestions[level]) this.adaptiveTestUsedQuestions[level] = [];
+    for (let q of selected) {
+        this.adaptiveTestUsedQuestions[level].push(q.id);
+    }
+    this.adaptiveTestCurrentSetQuestions = selected;
+    this.adaptiveTestCurrentSetIndex = 0;
+    this.adaptiveTestCurrentSetCorrect = 0;
+}
+
+getCurrentAdaptiveQuestion() {
+    // مرحلة التأكيد
+    if (this.adaptiveTestPhase === 'confirmation') {
+        if (this.adaptiveTestConfirmationQuestions.length > 0) {
+            return this.adaptiveTestConfirmationQuestions[0];
         }
-        
-        // تحميل أول مجموعة أسئلة (5 أسئلة من B1)
-        this.loadNextAdaptiveQuestionSet();
-        this.currentPage = 'adaptive_test';
-        this.render();
+        return null;
     }
     
-    loadNextAdaptiveQuestionSet() {
-        const count = this.adaptiveTestQuestionsPerSet;
-        this.adaptiveTestCurrentSetQuestions = this.getRandomQuestionsForLevel(this.adaptiveTestCurrentLevel, count);
-        this.adaptiveTestCurrentSetIndex = 0;
-        this.adaptiveTestCurrentSetCorrect = 0;
-        this.adaptiveTestCurrentSetConsecutive = 0;
-        console.log(`✅ تم تحميل مجموعة جديدة من المستوى ${this.adaptiveTestCurrentLevel}، عدد الأسئلة: ${this.adaptiveTestCurrentSetQuestions.length}`);
-    }
-    
-    getRandomQuestionsForLevel(level, count) {
-        const bank = this.adaptiveTestQuestionBank[level];
-        if (!bank || bank.length === 0) return [];
-        const usedIds = this.adaptiveTestUsedQuestions[level] || [];
-        let available = bank.filter(q => !usedIds.includes(q.id));
-        if (available.length < count) {
-            this.adaptiveTestUsedQuestions[level] = [];
-            available = [...bank];
-        }
-        const shuffled = [...available];
-        this.shuffleArray(shuffled);
-        const selected = shuffled.slice(0, count);
-        if (!this.adaptiveTestUsedQuestions[level]) this.adaptiveTestUsedQuestions[level] = [];
-        for (let q of selected) {
-            this.adaptiveTestUsedQuestions[level].push(q.id);
-        }
-        return selected;
-    }
-    
-    getCurrentAdaptiveQuestion() {
-        // إذا كنا في مرحلة التأكيد
+    // إذا انتهت المجموعة الحالية، قم بتقييمها وتحويلها إلى المجموعة التالية
+    if (this.adaptiveTestCurrentSetIndex >= this.adaptiveTestCurrentSetQuestions.length) {
+        this.evaluateCurrentSetAndTransition();
+        // بعد التقييم، قد تنتقل إلى مرحلة التأكيد أو تحميل مجموعة جديدة
         if (this.adaptiveTestPhase === 'confirmation') {
             if (this.adaptiveTestConfirmationQuestions.length > 0) {
                 return this.adaptiveTestConfirmationQuestions[0];
             }
             return null;
+        } else {
+            // تحميل المجموعة التالية للمرحلة الجديدة
+            this.loadSetForCurrentPhase();
+            if (this.adaptiveTestCurrentSetQuestions.length === 0) return null;
+            this.adaptiveTestCurrentSetIndex = 0;
+            return this.adaptiveTestCurrentSetQuestions[0];
         }
-        
-        // إذا انتهت المجموعة الحالية، نقيم وننتقل
-        if (this.adaptiveTestCurrentSetIndex >= this.adaptiveTestCurrentSetQuestions.length) {
-            if (!this.adaptiveTestWaitingForNext) {
-                this.evaluateCurrentSetAndMove();
-            }
-            return null;
-        }
-        return this.adaptiveTestCurrentSetQuestions[this.adaptiveTestCurrentSetIndex];
+    }
+    return this.adaptiveTestCurrentSetQuestions[this.adaptiveTestCurrentSetIndex];
+}
+
+loadSetForCurrentPhase() {
+    let count = this.adaptiveTestQuestionsPerSet;
+    if (this.adaptiveTestPhase === 'initial') count = 5;
+    if (this.adaptiveTestPhase === 'confirmation') return;
+    this.loadAdaptiveQuestionSet(this.adaptiveTestCurrentLevel, count);
+}
+
+evaluateCurrentSetAndTransition() {
+    const setSize = this.adaptiveTestCurrentSetQuestions.length;
+    const percentage = setSize > 0 ? (this.adaptiveTestCurrentSetCorrect / setSize) * 100 : 0;
+    
+    // تحديث نتائج المستوى الحالي
+    if (!this.adaptiveTestLevelResults[this.adaptiveTestCurrentLevel]) {
+        this.adaptiveTestLevelResults[this.adaptiveTestCurrentLevel] = { correct: 0, total: 0, percentage: 0 };
+    }
+    this.adaptiveTestLevelResults[this.adaptiveTestCurrentLevel].correct += this.adaptiveTestCurrentSetCorrect;
+    this.adaptiveTestLevelResults[this.adaptiveTestCurrentLevel].total += setSize;
+    this.adaptiveTestLevelResults[this.adaptiveTestCurrentLevel].percentage = 
+        (this.adaptiveTestLevelResults[this.adaptiveTestCurrentLevel].correct / this.adaptiveTestLevelResults[this.adaptiveTestCurrentLevel].total) * 100;
+    
+    this.adaptiveTestTotalQuestions += setSize;
+    
+    // التحقق من عدم تجاوز الحد الأقصى
+    if (this.adaptiveTestTotalQuestions >= this.adaptiveTestMaxQuestions) {
+        this.finalizeAdaptiveTest();
+        return;
     }
     
-    evaluateCurrentSetAndMove() {
-        this.adaptiveTestWaitingForNext = true;
-        const setSize = this.adaptiveTestCurrentSetQuestions.length;
-        const percentage = setSize > 0 ? (this.adaptiveTestCurrentSetCorrect / setSize) * 100 : 0;
-        
-        // تحديث نتائج المستوى الحالي
-        if (!this.adaptiveTestLevelResults[this.adaptiveTestCurrentLevel]) {
-            this.adaptiveTestLevelResults[this.adaptiveTestCurrentLevel] = { correct: 0, total: 0, percentage: 0, consecutiveCorrect: 0 };
-        }
-        this.adaptiveTestLevelResults[this.adaptiveTestCurrentLevel].correct += this.adaptiveTestCurrentSetCorrect;
-        this.adaptiveTestLevelResults[this.adaptiveTestCurrentLevel].total += setSize;
-        this.adaptiveTestLevelResults[this.adaptiveTestCurrentLevel].percentage = 
-            (this.adaptiveTestLevelResults[this.adaptiveTestCurrentLevel].correct / this.adaptiveTestLevelResults[this.adaptiveTestCurrentLevel].total) * 100;
-        
-        this.adaptiveTestTotalQuestions += setSize;
-        
-        console.log(`📊 تقييم المستوى ${this.adaptiveTestCurrentLevel}، النسبة: ${percentage}%، المرحلة: ${this.adaptiveTestPhase}`);
-        
-        // منع تجاوز الحد الأقصى للأسئلة
-        if (this.adaptiveTestTotalQuestions >= this.adaptiveTestMaxQuestions) {
-            this.finalizeAdaptiveTest();
-            this.adaptiveTestWaitingForNext = false;
-            return;
-        }
-        
-        const levels = this.adaptiveTestLevelOrder;
-        const currentIdx = levels.indexOf(this.adaptiveTestCurrentLevel);
-        
-        if (this.adaptiveTestPhase === 'initial') {
-            // المرحلة الأولية: بعد أول مجموعة، نقرر الاتجاه
-            if (percentage >= 70) {
-                // أداء جيد -> نرفع المستوى
-                if (currentIdx < levels.length - 1) {
-                    this.adaptiveTestCurrentLevel = levels[currentIdx + 1];
-                    this.adaptiveTestPhase = 'moving_up';
-                    console.log(`⬆️ انتقل إلى المستوى الأعلى: ${this.adaptiveTestCurrentLevel}`);
-                } else {
-                    this.adaptiveTestPhase = 'confirmation';
-                    console.log(`✅ أعلى مستوى، انتقل إلى مرحلة التأكيد`);
-                }
-            } else if (percentage <= 40) {
-                // أداء ضعيف -> نخفض المستوى
-                if (currentIdx > 0) {
-                    this.adaptiveTestCurrentLevel = levels[currentIdx - 1];
-                    this.adaptiveTestPhase = 'moving_down';
-                    console.log(`⬇️ انتقل إلى المستوى الأدنى: ${this.adaptiveTestCurrentLevel}`);
-                } else {
-                    this.adaptiveTestPhase = 'confirmation';
-                    console.log(`✅ أدنى مستوى، انتقل إلى مرحلة التأكيد`);
-                }
-            } else {
-                // مستوى مناسب -> مرحلة التأكيد
-                this.adaptiveTestPhase = 'confirmation';
-                console.log(`✅ مستوى مناسب (${percentage}%)، انتقل إلى مرحلة التأكيد`);
-            }
-            this.loadNextAdaptiveQuestionSet();
-        } 
-        else if (this.adaptiveTestPhase === 'moving_up') {
-            // نحاول الصعود: نختبر المستوى الأعلى
-            if (percentage >= 75) {
-                // نجح في المستوى الأعلى -> نستمر بالصعود
-                if (currentIdx < levels.length - 1) {
-                    this.adaptiveTestCurrentLevel = levels[currentIdx + 1];
-                    console.log(`⬆️ نجح في المستوى، نستمر بالصعود إلى: ${this.adaptiveTestCurrentLevel}`);
-                    this.loadNextAdaptiveQuestionSet();
-                } else {
-                    this.adaptiveTestPhase = 'confirmation';
-                    console.log(`✅ وصل لأعلى مستوى، انتقل إلى مرحلة التأكيد`);
-                    this.prepareConfirmationQuestions();
-                }
-            } else if (percentage >= 50 && percentage < 75) {
-                // أداء متوسط -> نثبت هذا المستوى وندخل مرحلة التأكيد
-                this.adaptiveTestPhase = 'confirmation';
-                console.log(`✅ أداء متوسط (${percentage}%)، نثبت المستوى ${this.adaptiveTestCurrentLevel} وندخل التأكيد`);
-                this.prepareConfirmationQuestions();
-            } else {
-                // فشل -> ننزل مستوى ونبدأ مرحلة التأكيد
-                if (currentIdx > 0) {
-                    this.adaptiveTestCurrentLevel = levels[currentIdx - 1];
-                }
-                this.adaptiveTestPhase = 'confirmation';
-                console.log(`❌ فشل في المستوى، ننزل إلى ${this.adaptiveTestCurrentLevel} وندخل التأكيد`);
-                this.prepareConfirmationQuestions();
-            }
-        }
-        else if (this.adaptiveTestPhase === 'moving_down') {
-            // نحاول النزول: نختبر المستوى الأدنى
-            if (percentage >= 70) {
-                // نجح في المستوى الأدنى -> هذا هو مستواه المناسب
-                this.adaptiveTestPhase = 'confirmation';
-                console.log(`✅ نجح في المستوى الأدنى، نثبت ${this.adaptiveTestCurrentLevel} وندخل التأكيد`);
-                this.prepareConfirmationQuestions();
-            } else if (percentage >= 40 && percentage < 70) {
-                // أداء متوسط -> نثبت هذا المستوى
-                this.adaptiveTestPhase = 'confirmation';
-                console.log(`✅ أداء متوسط (${percentage}%)، نثبت ${this.adaptiveTestCurrentLevel} وندخل التأكيد`);
-                this.prepareConfirmationQuestions();
-            } else {
-                // فشل -> ننزل أكثر
-                if (currentIdx > 0) {
-                    this.adaptiveTestCurrentLevel = levels[currentIdx - 1];
-                    console.log(`⬇️ فشل، ننزل أكثر إلى ${this.adaptiveTestCurrentLevel}`);
-                    this.loadNextAdaptiveQuestionSet();
-                } else {
-                    this.adaptiveTestPhase = 'confirmation';
-                    console.log(`✅ وصل لأدنى مستوى، ندخل التأكيد`);
-                    this.prepareConfirmationQuestions();
-                }
-            }
-        }
-        this.adaptiveTestWaitingForNext = false;
-        this.render();
-    }
+    const levels = this.adaptiveTestLevelOrder;
+    const currentIdx = levels.indexOf(this.adaptiveTestCurrentLevel);
     
-    prepareConfirmationQuestions() {
-        // مرحلة التأكيد: 8-12 سؤال من المستوى الحالي
-        const maxConfirm = this.adaptiveTestMaxQuestions - this.adaptiveTestTotalQuestions;
-        const confirmCount = Math.min(10, maxConfirm);
-        if (confirmCount < 3) {
-            this.finalizeAdaptiveTest();
-            return;
-        }
-        this.adaptiveTestConfirmationQuestions = this.getRandomQuestionsForLevel(this.adaptiveTestCurrentLevel, confirmCount);
-        this.adaptiveTestConfirmationCorrect = 0;
-        this.adaptiveTestPhase = 'confirmation';
-        console.log(`📝 مرحلة التأكيد: ${confirmCount} سؤال من المستوى ${this.adaptiveTestCurrentLevel}`);
-    }
-    
-    handleAdaptiveAnswer(selected, correct, btnElement) {
-        if (this.isWaiting) return;
-        this.isWaiting = true;
-        
-        const selectedTrim = selected.trim().toLowerCase();
-        const correctTrim = correct.trim().toLowerCase();
-        const isCorrect = (selectedTrim === correctTrim);
-        this.playTone(isCorrect ? 'correct' : 'error');
-        
-        let currentQuestion = null;
-        
-        if (this.adaptiveTestPhase === 'confirmation') {
-            currentQuestion = this.adaptiveTestConfirmationQuestions[0];
-            if (isCorrect) this.adaptiveTestConfirmationCorrect++;
-            this.adaptiveTestHistory.push({
-                level: this.adaptiveTestCurrentLevel,
-                phase: 'confirmation',
-                question: currentQuestion.q,
-                options: currentQuestion.options,
-                correct: correct,
-                selected: selected,
-                isCorrect: isCorrect,
-                skill: currentQuestion.skill
-            });
-            this.adaptiveTestConfirmationQuestions.shift();
-            
-            if (this.adaptiveTestConfirmationQuestions.length === 0) {
-                // انتهت مرحلة التأكيد
-                this.finalizeAdaptiveTest();
+    if (this.adaptiveTestPhase === 'initial') {
+        // المرحلة الأولية: تحديد الاتجاه
+        if (percentage >= 70) {
+            if (currentIdx < levels.length - 1) {
+                this.adaptiveTestCurrentLevel = levels[currentIdx + 1];
+                this.adaptiveTestPhase = 'moving_up';
+            } else {
+                this.adaptiveTestPhase = 'confirmation';
+                this.prepareConfirmationQuestions();
+            }
+        } else if (percentage <= 40) {
+            if (currentIdx > 0) {
+                this.adaptiveTestCurrentLevel = levels[currentIdx - 1];
+                this.adaptiveTestPhase = 'moving_down';
+            } else {
+                this.adaptiveTestPhase = 'confirmation';
+                this.prepareConfirmationQuestions();
             }
         } else {
-            currentQuestion = this.adaptiveTestCurrentSetQuestions[this.adaptiveTestCurrentSetIndex];
-            this.adaptiveTestHistory.push({
-                level: this.adaptiveTestCurrentLevel,
-                phase: this.adaptiveTestPhase,
-                question: currentQuestion.q,
-                options: currentQuestion.options,
-                correct: correct,
-                selected: selected,
-                isCorrect: isCorrect,
-                skill: currentQuestion.skill
-            });
-            if (isCorrect) {
-                this.adaptiveTestCurrentSetCorrect++;
-                this.adaptiveTestCurrentSetConsecutive++;
-            } else {
-                this.adaptiveTestCurrentSetConsecutive = 0;
-            }
-            this.adaptiveTestCurrentSetIndex++;
+            // مناسب -> مرحلة تأكيد
+            this.adaptiveTestPhase = 'confirmation';
+            this.prepareConfirmationQuestions();
         }
-        
-        const allOptions = document.querySelectorAll('.quiz-opt-btn');
-        allOptions.forEach(btn => {
-            btn.disabled = true;
-            btn.classList.remove('correct-answer', 'wrong-answer', 'other-option');
-            const btnParam = btn.dataset.param ? btn.dataset.param.trim().toLowerCase() : '';
-            if (btnParam === correctTrim) btn.classList.add('correct-answer');
-            else if (btnParam === selectedTrim && !isCorrect) btn.classList.add('wrong-answer');
-            else btn.classList.add('other-option');
+    } 
+    else if (this.adaptiveTestPhase === 'moving_up') {
+        if (percentage >= 70) {
+            if (currentIdx < levels.length - 1) {
+                this.adaptiveTestCurrentLevel = levels[currentIdx + 1];
+            } else {
+                this.adaptiveTestPhase = 'confirmation';
+                this.prepareConfirmationQuestions();
+            }
+        } else {
+            // لم ينجح في المستوى الأعلى -> هذا المستوى هو المناسب
+            this.adaptiveTestPhase = 'confirmation';
+            this.prepareConfirmationQuestions();
+        }
+    }
+    else if (this.adaptiveTestPhase === 'moving_down') {
+        if (percentage >= 70) {
+            // نجح في المستوى الأدنى -> هذا هو مستواه
+            this.adaptiveTestPhase = 'confirmation';
+            this.prepareConfirmationQuestions();
+        } else {
+            if (currentIdx > 0) {
+                this.adaptiveTestCurrentLevel = levels[currentIdx - 1];
+            } else {
+                this.adaptiveTestPhase = 'confirmation';
+                this.prepareConfirmationQuestions();
+            }
+        }
+    }
+}
+
+prepareConfirmationQuestions() {
+    let remaining = this.adaptiveTestMaxQuestions - this.adaptiveTestTotalQuestions;
+    let confirmCount = Math.min(10, Math.max(5, remaining));
+    if (confirmCount < 3) {
+        this.finalizeAdaptiveTest();
+        return;
+    }
+    const bank = this.adaptiveTestQuestionBank[this.adaptiveTestCurrentLevel];
+    if (!bank) {
+        this.finalizeAdaptiveTest();
+        return;
+    }
+    const usedIds = this.adaptiveTestUsedQuestions[this.adaptiveTestCurrentLevel] || [];
+    let available = bank.filter(q => !usedIds.includes(q.id));
+    if (available.length < confirmCount) {
+        this.adaptiveTestUsedQuestions[this.adaptiveTestCurrentLevel] = [];
+        available = [...bank];
+    }
+    const shuffled = [...available];
+    this.shuffleArray(shuffled);
+    this.adaptiveTestConfirmationQuestions = shuffled.slice(0, confirmCount);
+    this.adaptiveTestConfirmationCorrect = 0;
+    this.adaptiveTestConfirmationTotal = this.adaptiveTestConfirmationQuestions.length;
+    this.adaptiveTestPhase = 'confirmation';
+}
+
+handleAdaptiveAnswer(selected, correct, btnElement) {
+    if (this.isWaiting) return;
+    this.isWaiting = true;
+    
+    const selectedTrim = selected.trim().toLowerCase();
+    const correctTrim = correct.trim().toLowerCase();
+    const isCorrect = (selectedTrim === correctTrim);
+    this.playTone(isCorrect ? 'correct' : 'error');
+    
+    let currentQuestion = null;
+    
+    if (this.adaptiveTestPhase === 'confirmation') {
+        currentQuestion = this.adaptiveTestConfirmationQuestions[0];
+        if (isCorrect) this.adaptiveTestConfirmationCorrect++;
+        this.adaptiveTestHistory.push({
+            level: this.adaptiveTestCurrentLevel,
+            phase: 'confirmation',
+            question: currentQuestion.q,
+            options: currentQuestion.options,
+            correct: correct,
+            selected: selected,
+            isCorrect: isCorrect,
+            skill: currentQuestion.skill
         });
+        this.adaptiveTestConfirmationQuestions.shift();
+        this.adaptiveTestTotalQuestions++;
         
-        setTimeout(() => {
-            this.isWaiting = false;
-            this.render();
-        }, 1200);
+        // إذا انتهت أسئلة التأكيد أو وصلنا للحد الأقصى
+        if (this.adaptiveTestConfirmationQuestions.length === 0 || this.adaptiveTestTotalQuestions >= this.adaptiveTestMaxQuestions) {
+            setTimeout(() => {
+                this.finalizeAdaptiveTest();
+                this.isWaiting = false;
+                this.render();
+            }, 1200);
+            // إظهار التغذية البصرية
+            const allOptions = document.querySelectorAll('.quiz-opt-btn');
+            allOptions.forEach(btn => {
+                btn.disabled = true;
+                const btnParam = btn.dataset.param ? btn.dataset.param.trim().toLowerCase() : '';
+                if (btnParam === correctTrim) btn.classList.add('correct-answer');
+                else if (btnParam === selectedTrim && !isCorrect) btn.classList.add('wrong-answer');
+            });
+            return;
+        }
+    } else {
+        currentQuestion = this.adaptiveTestCurrentSetQuestions[this.adaptiveTestCurrentSetIndex];
+        this.adaptiveTestHistory.push({
+            level: this.adaptiveTestCurrentLevel,
+            phase: this.adaptiveTestPhase,
+            question: currentQuestion.q,
+            options: currentQuestion.options,
+            correct: correct,
+            selected: selected,
+            isCorrect: isCorrect,
+            skill: currentQuestion.skill
+        });
+        if (isCorrect) this.adaptiveTestCurrentSetCorrect++;
+        this.adaptiveTestCurrentSetIndex++;
+        this.adaptiveTestTotalQuestions++;
     }
     
-    finalizeAdaptiveTest() {
-        // حساب أعلى مستوى حقق فيه المستخدم 75% إجابات صحيحة
-        let bestLevel = 'A1';
-        let bestPercentage = 0;
-        
-        for (let level of this.adaptiveTestLevelOrder) {
-            const result = this.adaptiveTestLevelResults[level];
-            if (result && result.total >= 3 && result.percentage >= 75) {
-                bestLevel = level;
-                bestPercentage = result.percentage;
-            }
-        }
-        
-        // إذا كانت مرحلة التأكيد نشطة، نأخذ المستوى الحالي إذا كانت نسبة التأكيد جيدة
-        if (this.adaptiveTestPhase === 'confirmation') {
-            const confirmTotal = this.adaptiveTestConfirmationQuestions.length + this.adaptiveTestConfirmationCorrect;
-            const confirmPercentage = confirmTotal > 0 ? (this.adaptiveTestConfirmationCorrect / confirmTotal) * 100 : 0;
-            if (confirmPercentage >= 60) {
-                bestLevel = this.adaptiveTestCurrentLevel;
-            }
-        }
-        
-        // التحقق من القرب من مستوى أعلى
-        const levels = this.adaptiveTestLevelOrder;
-        const bestIdx = levels.indexOf(bestLevel);
-        let nearHigher = false;
-        if (bestIdx < levels.length - 1) {
-            const nextLevel = levels[bestIdx + 1];
-            const nextResult = this.adaptiveTestLevelResults[nextLevel];
-            if (nextResult && nextResult.percentage >= 50 && nextResult.percentage < 75) {
-                nearHigher = true;
-            }
-        }
-        
-        let finalDisplay = bestLevel;
-        let message = finalDisplay;
-        if (nearHigher) {
-            message = `${finalDisplay} (${this.t('قريب من', 'close to')} ${levels[bestIdx+1]})`;
-        }
-        
-        // تحليل المهارات
-        const skillAnalysis = this.analyzeAdaptiveSkills();
-        
-        const result = {
-            level: bestLevel,
-            displayLevel: message,
-            date: new Date().toLocaleString('ar-EG'),
-            score: this.adaptiveTestHistory.filter(h => h.isCorrect).length,
-            totalQuestions: this.adaptiveTestHistory.length,
-            ielts: this.getIeltsEquivalent(bestLevel),
-            details: this.adaptiveTestHistory,
-            levelStats: Object.values(this.adaptiveTestLevelResults).filter(r => r.total > 0),
-            skillAnalysis: skillAnalysis
-        };
-        this.placementResults.unshift(result);
-        this.userProfile.level = result.level;
-        this.saveUserData();
-        
-        this.adaptiveTestActive = false;
-        this.currentPage = 'adaptive_test_result';
+    // إظهار التغذية البصرية
+    const allOptions = document.querySelectorAll('.quiz-opt-btn');
+    allOptions.forEach(btn => {
+        btn.disabled = true;
+        const btnParam = btn.dataset.param ? btn.dataset.param.trim().toLowerCase() : '';
+        if (btnParam === correctTrim) btn.classList.add('correct-answer');
+        else if (btnParam === selectedTrim && !isCorrect) btn.classList.add('wrong-answer');
+        else btn.classList.add('other-option');
+    });
+    
+    setTimeout(() => {
+        this.isWaiting = false;
         this.render();
+    }, 1200);
+}
+
+finalizeAdaptiveTest() {
+    // حساب أفضل مستوى (أعلى مستوى حقق 70% أو أكثر)
+    let bestLevel = 'A1';
+    let bestPercentage = 0;
+    for (let level of this.adaptiveTestLevelOrder) {
+        const res = this.adaptiveTestLevelResults[level];
+        if (res && res.total >= 3 && res.percentage >= 70) {
+            bestLevel = level;
+            bestPercentage = res.percentage;
+        }
     }
     
-    analyzeAdaptiveSkills() {
-        let grammarCorrect = 0, grammarTotal = 0;
-        let vocabularyCorrect = 0, vocabularyTotal = 0;
-        let readingCorrect = 0, readingTotal = 0;
-        
-        for (let h of this.adaptiveTestHistory) {
-            const skill = (h.skill || 'General').toLowerCase();
-            if (skill.includes('grammar')) {
-                grammarTotal++;
-                if (h.isCorrect) grammarCorrect++;
-            } else if (skill.includes('vocabulary')) {
-                vocabularyTotal++;
-                if (h.isCorrect) vocabularyCorrect++;
-            } else if (skill.includes('reading')) {
-                readingTotal++;
-                if (h.isCorrect) readingCorrect++;
-            } else {
-                vocabularyTotal++;
-                if (h.isCorrect) vocabularyCorrect++;
-            }
+    // إذا كانت مرحلة التأكيد موجودة، استخدمها للتأكيد
+    if (this.adaptiveTestPhase === 'confirmation' && this.adaptiveTestConfirmationTotal > 0) {
+        const confirmPercent = (this.adaptiveTestConfirmationCorrect / this.adaptiveTestConfirmationTotal) * 100;
+        if (confirmPercent >= 60) {
+            bestLevel = this.adaptiveTestCurrentLevel;
+        } else {
+            // فشل التأكيد، حاول إنزال المستوى
+            const levels = this.adaptiveTestLevelOrder;
+            const idx = levels.indexOf(this.adaptiveTestCurrentLevel);
+            if (idx > 0) bestLevel = levels[idx - 1];
         }
-        
-        let strengths = [], weaknesses = [];
-        if (grammarTotal > 0) {
-            if ((grammarCorrect/grammarTotal) >= 0.7) strengths.push(this.t('القواعد', 'Grammar'));
-            else if ((grammarCorrect/grammarTotal) < 0.5) weaknesses.push(this.t('القواعد', 'Grammar'));
-        }
-        if (vocabularyTotal > 0) {
-            if ((vocabularyCorrect/vocabularyTotal) >= 0.7) strengths.push(this.t('المفردات', 'Vocabulary'));
-            else if ((vocabularyCorrect/vocabularyTotal) < 0.5) weaknesses.push(this.t('المفردات', 'Vocabulary'));
-        }
-        if (readingTotal > 0) {
-            if ((readingCorrect/readingTotal) >= 0.7) strengths.push(this.t('القراءة', 'Reading'));
-            else if ((readingCorrect/readingTotal) < 0.5) weaknesses.push(this.t('القراءة', 'Reading'));
-        }
-        
-        return { strengths, weaknesses };
     }
     
-    showAdaptiveResult() {
-        const lastResult = this.placementResults[0];
-        if (!lastResult) return `<div class="reading-card"><p>${this.t('لا توجد نتيجة', 'No result')}</p></div>`;
-        
-        let html = `<div class="reading-card result-card">
-            <h2 style="text-align:center;">🏁 ${this.t('نتيجة اختبار المستوى', 'Level Test Result')}</h2>
-            <div style="background:#f0f7ff; padding:15px; border-radius:10px; margin:10px 0; text-align:center;">
-                <h1 style="color:#1e40af; margin-bottom:5px; font-size:1.8rem;">${lastResult.displayLevel}</h1>
-                <p style="font-weight:bold; color:#3b82f6;">IELTS: ${lastResult.ielts}</p>
-                <p style="font-size:0.85rem; color:#64748b;">${this.t('الإجابات الصحيحة:', 'Correct answers:')} ${lastResult.score} / ${lastResult.totalQuestions}</p>
+    // التحقق من القرب من مستوى أعلى
+    const levels = this.adaptiveTestLevelOrder;
+    const bestIdx = levels.indexOf(bestLevel);
+    let nearHigher = false;
+    if (bestIdx < levels.length - 1) {
+        const nextRes = this.adaptiveTestLevelResults[levels[bestIdx+1]];
+        if (nextRes && nextRes.percentage >= 50 && nextRes.percentage < 70) {
+            nearHigher = true;
+        }
+    }
+    
+    let finalDisplay = bestLevel;
+    if (nearHigher) finalDisplay = `${bestLevel} (${this.t('قريب من', 'close to')} ${levels[bestIdx+1]})`;
+    
+    // تحليل المهارات
+    const skillAnalysis = this.analyzeAdaptiveSkills();
+    
+    const result = {
+        level: bestLevel,
+        displayLevel: finalDisplay,
+        date: new Date().toLocaleString('ar-EG'),
+        score: this.adaptiveTestHistory.filter(h => h.isCorrect).length,
+        totalQuestions: this.adaptiveTestHistory.length,
+        ielts: this.getIeltsEquivalent(bestLevel),
+        details: this.adaptiveTestHistory,
+        levelStats: Object.values(this.adaptiveTestLevelResults).filter(r => r.total > 0),
+        skillAnalysis: skillAnalysis
+    };
+    this.placementResults.unshift(result);
+    this.userProfile.level = result.level;
+    this.saveUserData();
+    
+    this.adaptiveTestActive = false;
+    this.currentPage = 'adaptive_test_result';
+    this.render();
+}
+
+analyzeAdaptiveSkills() {
+    let grammarCorrect = 0, grammarTotal = 0;
+    let vocabularyCorrect = 0, vocabularyTotal = 0;
+    let readingCorrect = 0, readingTotal = 0;
+    for (let h of this.adaptiveTestHistory) {
+        const skill = (h.skill || 'General').toLowerCase();
+        if (skill.includes('grammar')) { grammarTotal++; if (h.isCorrect) grammarCorrect++; }
+        else if (skill.includes('vocabulary')) { vocabularyTotal++; if (h.isCorrect) vocabularyCorrect++; }
+        else if (skill.includes('reading')) { readingTotal++; if (h.isCorrect) readingCorrect++; }
+        else { vocabularyTotal++; if (h.isCorrect) vocabularyCorrect++; }
+    }
+    let strengths = [], weaknesses = [];
+    if (grammarTotal && (grammarCorrect/grammarTotal) >= 0.7) strengths.push(this.t('القواعد', 'Grammar'));
+    if (grammarTotal && (grammarCorrect/grammarTotal) < 0.5) weaknesses.push(this.t('القواعد', 'Grammar'));
+    if (vocabularyTotal && (vocabularyCorrect/vocabularyTotal) >= 0.7) strengths.push(this.t('المفردات', 'Vocabulary'));
+    if (vocabularyTotal && (vocabularyCorrect/vocabularyTotal) < 0.5) weaknesses.push(this.t('المفردات', 'Vocabulary'));
+    if (readingTotal && (readingCorrect/readingTotal) >= 0.7) strengths.push(this.t('القراءة', 'Reading'));
+    if (readingTotal && (readingCorrect/readingTotal) < 0.5) weaknesses.push(this.t('القراءة', 'Reading'));
+    return { strengths, weaknesses };
+}
+
+showAdaptiveResult() {
+    const lastResult = this.placementResults[0];
+    if (!lastResult) return `<div class="reading-card"><p>${this.t('لا توجد نتيجة', 'No result')}</p></div>`;
+    
+    let html = `<div class="reading-card result-card">
+        <h2 style="text-align:center;">🏁 ${this.t('نتيجة اختبار المستوى', 'Level Test Result')}</h2>
+        <div style="background:#f0f7ff; padding:15px; border-radius:10px; margin:10px 0; text-align:center;">
+            <h1 style="color:#1e40af; margin-bottom:5px; font-size:1.8rem;">${lastResult.displayLevel}</h1>
+            <p style="font-weight:bold; color:#3b82f6;">IELTS: ${lastResult.ielts}</p>
+            <p style="font-size:0.85rem; color:#64748b;">${this.t('الإجابات الصحيحة:', 'Correct answers:')} ${lastResult.score} / ${lastResult.totalQuestions}</p>
+        </div>`;
+    
+    if (lastResult.levelStats && lastResult.levelStats.length > 0) {
+        html += `<h4 style="margin-top:15px;">📊 ${this.t('نتائج المستويات', 'Level Results')}</h4><div style="display:flex; flex-direction:column; gap:8px; margin-bottom:15px;">`;
+        for (let stat of lastResult.levelStats) {
+            const percent = stat.percentage.toFixed(1);
+            html += `<div style="display:flex; justify-content:space-between; align-items:center; background:#f1f5f9; padding:6px 12px; border-radius:8px;">
+                <span><strong>${stat.level}</strong></span>
+                <span>${stat.correct}/${stat.total} (${percent}%)</span>
+                <div class="progress-bar-container" style="width:120px; margin:0;"><div class="progress-bar-fill" style="width:${percent}%;"></div></div>
             </div>`;
-        
-        if (lastResult.levelStats && lastResult.levelStats.length > 0) {
-            html += `<h4 style="margin-top:15px;">📊 ${this.t('نتائج المستويات', 'Level Results')}</h4>
-            <div style="display:flex; flex-direction:column; gap:8px; margin-bottom:15px;">`;
-            for (let stat of lastResult.levelStats) {
-                const percent = stat.percentage.toFixed(1);
-                html += `<div style="display:flex; justify-content:space-between; align-items:center; background:#f1f5f9; padding:6px 12px; border-radius:8px;">
-                    <span><strong>${stat.level}</strong></span>
-                    <span>${stat.correct}/${stat.total} (${percent}%)</span>
-                    <div class="progress-bar-container" style="width:120px; margin:0;"><div class="progress-bar-fill" style="width:${percent}%;"></div></div>
-                </div>`;
-            }
-            html += `</div>`;
         }
-        
-        if (lastResult.skillAnalysis) {
-            const sa = lastResult.skillAnalysis;
-            html += `<h4>💪 ${this.t('نقاط القوة', 'Strengths')}</h4>
-            <div style="display:flex; flex-wrap:wrap; gap:8px; margin-bottom:15px;">`;
-            if (sa.strengths.length > 0) {
-                for (let s of sa.strengths) html += `<span style="background:#10b981; color:white; padding:4px 12px; border-radius:20px;">✅ ${s}</span>`;
-            } else html += `<span style="color:#666;">${this.t('لا توجد نقاط قوة واضحة بعد', 'No clear strengths yet')}</span>`;
-            html += `</div><h4>⚠️ ${this.t('نقاط الضعف', 'Weaknesses')}</h4><div style="display:flex; flex-wrap:wrap; gap:8px; margin-bottom:15px;">`;
-            if (sa.weaknesses.length > 0) {
-                for (let w of sa.weaknesses) html += `<span style="background:#ef4444; color:white; padding:4px 12px; border-radius:20px;">❌ ${w}</span>`;
-            } else html += `<span style="color:#666;">${this.t('أداء جيد في جميع المهارات', 'Good performance in all skills')}</span>`;
-            html += `</div>`;
-        }
-        
-        html += `<div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:15px;">
-            <button class="hero-btn" onclick="appInstance.startAdaptiveLevelTest()" style="background:#ec4899; flex:1;">${this.t('إعادة الاختبار 🔄', 'Retake Test 🔄')}</button>
-            <button class="hero-btn" data-action="goHome" style="background:#64748b; flex:1;">${this.t('الرئيسية', 'Home')}</button>
-        </div></div>`;
-        return html;
+        html += `</div>`;
     }
+    
+    if (lastResult.skillAnalysis) {
+        const sa = lastResult.skillAnalysis;
+        html += `<h4>💪 ${this.t('نقاط القوة', 'Strengths')}</h4><div style="display:flex; flex-wrap:wrap; gap:8px; margin-bottom:15px;">`;
+        if (sa.strengths.length) sa.strengths.forEach(s => html += `<span style="background:#10b981; color:white; padding:4px 12px; border-radius:20px;">✅ ${s}</span>`);
+        else html += `<span style="color:#666;">${this.t('لا توجد نقاط قوة واضحة بعد', 'No clear strengths yet')}</span>`;
+        html += `</div><h4>⚠️ ${this.t('نقاط الضعف', 'Weaknesses')}</h4><div style="display:flex; flex-wrap:wrap; gap:8px; margin-bottom:15px;">`;
+        if (sa.weaknesses.length) sa.weaknesses.forEach(w => html += `<span style="background:#ef4444; color:white; padding:4px 12px; border-radius:20px;">❌ ${w}</span>`);
+        else html += `<span style="color:#666;">${this.t('أداء جيد في جميع المهارات', 'Good performance in all skills')}</span>`;
+        html += `</div>`;
+    }
+    
+    html += `<div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:15px;">
+        <button class="hero-btn" onclick="appInstance.startAdaptiveLevelTest()" style="background:#ec4899; flex:1;">${this.t('إعادة الاختبار 🔄', 'Retake Test 🔄')}</button>
+        <button class="hero-btn" data-action="goHome" style="background:#64748b; flex:1;">${this.t('الرئيسية', 'Home')}</button>
+    </div></div>`;
+    return html;
+}
     
     getIeltsEquivalent(level) { const map = { 'A1': '2.0-3.0', 'A2': '3.0-4.0', 'B1': '4.0-5.0', 'B2': '5.5-6.5', 'C1': '7.0-8.0', 'C2': '8.5-9.0' }; return map[level]; }
 
