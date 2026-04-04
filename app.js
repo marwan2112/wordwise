@@ -1,6 +1,3 @@
-// app.js - التطبيق الكامل (جميع الدوال بدون اختصار)
-// تم إصلاح اختبار المستوى المتطور، إضافة معلومات المستخدم، تعديل الملف الشخصي، الإعلانات المتدرجة غير التراكمية، مع حفظ النتائج بشكل دائم
-
 class App {
     constructor() {
         // أنظمة الحماية والمتغيرات الأساسية
@@ -1012,82 +1009,82 @@ class App {
         return this.adaptiveTestCurrentSetQuestions[this.adaptiveTestCurrentSetIndex];
     }
 
-    evaluateCurrentSetAndTransition() {
-        const setSize = this.adaptiveTestCurrentSetQuestions.length;
-        const setCorrect = this.adaptiveTestCurrentSetCorrect;
-        const percentage = setSize > 0 ? (setCorrect / setSize) * 100 : 0;
+evaluateCurrentSetAndTransition() {
+    const setSize = this.adaptiveTestCurrentSetQuestions.length;
+    const setCorrect = this.adaptiveTestCurrentSetCorrect;
+    const percentage = setSize > 0 ? (setCorrect / setSize) * 100 : 0;
 
-        if (!this.adaptiveTestLevelStats[this.adaptiveTestCurrentLevel]) {
-            this.adaptiveTestLevelStats[this.adaptiveTestCurrentLevel] = { correct: 0, total: 0 };
-        }
-        this.adaptiveTestLevelStats[this.adaptiveTestCurrentLevel].correct += setCorrect;
-        this.adaptiveTestLevelStats[this.adaptiveTestCurrentLevel].total += setSize;
+    if (!this.adaptiveTestLevelStats[this.adaptiveTestCurrentLevel]) {
+        this.adaptiveTestLevelStats[this.adaptiveTestCurrentLevel] = { correct: 0, total: 0 };
+    }
+    this.adaptiveTestLevelStats[this.adaptiveTestCurrentLevel].correct += setCorrect;
+    this.adaptiveTestLevelStats[this.adaptiveTestCurrentLevel].total += setSize;
 
-        this.adaptiveTestTotalQuestions += setSize;
+    this.adaptiveTestTotalQuestions += setSize;
 
-        if (this.adaptiveTestTotalQuestions >= this.adaptiveTestMaxQuestions) {
-            this.finalizeAdaptiveTest();
-            return;
-        }
+    if (this.adaptiveTestTotalQuestions >= this.adaptiveTestMaxQuestions) {
+        this.finalizeAdaptiveTest();
+        return;
+    }
 
-        const levels = this.adaptiveTestLevelOrder;
-        const currentIdx = levels.indexOf(this.adaptiveTestCurrentLevel);
+    const levels = this.adaptiveTestLevelOrder;
+    const currentIdx = levels.indexOf(this.adaptiveTestCurrentLevel);
 
-        if (this.adaptiveTestPhase === 'initial') {
-            if (percentage >= 70) {
-                if (currentIdx < levels.length - 1) {
-                    this.adaptiveTestCurrentLevel = levels[currentIdx + 1];
-                    this.adaptiveTestPhase = 'moving_up';
-                } else {
-                    this.adaptiveTestPhase = 'confirmation';
-                    this.prepareConfirmationQuestions();
-                }
-            } else if (percentage <= 40) {
-                if (currentIdx > 0) {
-                    this.adaptiveTestCurrentLevel = levels[currentIdx - 1];
-                    this.adaptiveTestPhase = 'moving_down';
-                } else {
-                    this.adaptiveTestPhase = 'confirmation';
-                    this.prepareConfirmationQuestions();
-                }
+    if (this.adaptiveTestPhase === 'initial') {
+        if (percentage >= 70) {
+            if (currentIdx < levels.length - 1) {
+                this.adaptiveTestCurrentLevel = levels[currentIdx + 1];
+                this.adaptiveTestPhase = 'moving_up';
             } else {
                 this.adaptiveTestPhase = 'confirmation';
                 this.prepareConfirmationQuestions();
             }
-        }
-        else if (this.adaptiveTestPhase === 'moving_up' || this.adaptiveTestPhase === 'moving_down') {
-            if (percentage >= 70) {
-                if (this.adaptiveTestPhase === 'moving_up') {
-                    if (currentIdx < levels.length - 1) {
-                        this.adaptiveTestCurrentLevel = levels[currentIdx + 1];
-                    } else {
-                        this.adaptiveTestPhase = 'confirmation';
-                        this.prepareConfirmationQuestions();
-                    }
-                } else {
-                    this.adaptiveTestPhase = 'confirmation';
-                    this.prepareConfirmationQuestions();
-                }
-            } else if (percentage <= 40) {
-                if (currentIdx > 0) {
-                    this.adaptiveTestCurrentLevel = levels[currentIdx - 1];
-                    if (this.adaptiveTestPhase === 'moving_up') {
-                        this.adaptiveTestPhase = 'moving_down';
-                    }
-                } else {
-                    this.adaptiveTestPhase = 'confirmation';
-                    this.prepareConfirmationQuestions();
-                }
+        } else if (percentage <= 40) {
+            if (currentIdx > 0) {
+                this.adaptiveTestCurrentLevel = levels[currentIdx - 1];
+                this.adaptiveTestPhase = 'moving_down';
             } else {
                 this.adaptiveTestPhase = 'confirmation';
                 this.prepareConfirmationQuestions();
             }
-        }
-
-        if (this.adaptiveTestPhase !== 'confirmation') {
-            this.loadAdaptiveQuestionSet(this.adaptiveTestCurrentLevel, 4);
+        } else {
+            this.adaptiveTestPhase = 'confirmation';
+            this.prepareConfirmationQuestions();
         }
     }
+    else if (this.adaptiveTestPhase === 'moving_up' || this.adaptiveTestPhase === 'moving_down') {
+        if (percentage >= 70) {
+            if (this.adaptiveTestPhase === 'moving_up') {
+                if (currentIdx < levels.length - 1) {
+                    this.adaptiveTestCurrentLevel = levels[currentIdx + 1];
+                } else {
+                    this.adaptiveTestPhase = 'confirmation';
+                    this.prepareConfirmationQuestions();
+                }
+            } else {
+                this.adaptiveTestPhase = 'confirmation';
+                this.prepareConfirmationQuestions();
+            }
+        } else if (percentage <= 40) {
+            if (currentIdx > 0) {
+                this.adaptiveTestCurrentLevel = levels[currentIdx - 1];
+                if (this.adaptiveTestPhase === 'moving_up') {
+                    this.adaptiveTestPhase = 'moving_down';
+                }
+            } else {
+                this.adaptiveTestPhase = 'confirmation';
+                this.prepareConfirmationQuestions();
+            }
+        } else {
+            this.adaptiveTestPhase = 'confirmation';
+            this.prepareConfirmationQuestions();
+        }
+    }
+
+    if (this.adaptiveTestPhase !== 'confirmation') {
+        this.loadAdaptiveQuestionSet(this.adaptiveTestCurrentLevel, 4);
+    }
+}
 
     prepareConfirmationQuestions() {
         let remaining = this.adaptiveTestMaxQuestions - this.adaptiveTestTotalQuestions;
