@@ -9318,6 +9318,259 @@ window.gapfillDB = {
             originalSentence: "The students started their new task Enthusiastically and with high energy."
         }
     ],
+    "31-1": [ // engineer
+        {
+            sentence: "My father is an _______, he works in a big company.",
+            options: ["engineer", "nurse", "teacher", "student"],
+            originalSentence: "My father is an engineer, he works in a big company."
+        }
+    ],
+    "31-2": [ // company
+        {
+            sentence: "My brother works for a famous _______ in the city.",
+            options: ["company", "closet", "doll", "toy"],
+            originalSentence: "My brother works for a famous company in the city."
+        }
+    ],
+    "31-3": [ // nurse
+        {
+            sentence: "The _______ is helping the doctor with the patients.",
+            options: ["nurse", "engineer", "uncle", "boy"],
+            originalSentence: "The nurse is helping the doctor with the patients."
+        }
+    ],
+    "31-4": [ // city hospital
+        {
+            sentence: "My aunt works at the _______ _______.",
+            options: ["city hospital", "high school", "kindergarten", "living room"],
+            originalSentence: "My aunt works at the city hospital."
+        }
+    ],
+    "31-5": [ // sick
+        {
+            sentence: "I cannot go to school today because I am _______.",
+            options: ["sick", "proud", "lucky", "wooden"],
+            originalSentence: "I cannot go to school today because I am sick."
+        }
+    ],
+    "31-6": [ // younger
+        {
+            sentence: "My _______ brother is only five years old.",
+            options: ["younger", "older", "homemade", "past"],
+            originalSentence: "My younger brother is only five years old."
+        }
+    ],
+    "31-7": [ // kindergarten
+        {
+            sentence: "The little children are playing in the _______.",
+            options: ["kindergarten", "high school", "closet", "company"],
+            originalSentence: "The little children are playing in the kindergarten."
+        }
+    ],
+    "31-8": [ // doll
+        {
+            sentence: "The girl is playing with her favorite _______.",
+            options: ["doll", "engineer", "nurse", "uncle"],
+            originalSentence: "The girl is playing with her favorite doll."
+        }
+    ],
+    "31-9": [ // older
+        {
+            sentence: "My _______ sister helps me with my homework.",
+            options: ["older", "younger", "sick", "wooden"],
+            originalSentence: "My older sister helps me with my homework."
+        }
+    ],
+    "31-10": [ // high school
+        {
+            sentence: "After middle school, students go to _______ _______.",
+            options: ["high school", "kindergarten", "living room", "closet"],
+            originalSentence: "After middle school, students go to high school."
+        }
+    ],
+    "31-11": [ // admire
+        {
+            sentence: "I really _______ my teacher for her hard work.",
+            options: ["admire", "share", "gather", "miss"],
+            originalSentence: "I really admire my teacher for her hard work."
+        }
+    ],
+    "31-12": [ // share
+        {
+            sentence: "Good friends always _______ their toys.",
+            options: ["share", "braid", "admire", "support"],
+            originalSentence: "Good friends always share their toys."
+        }
+    ],
+    "31-13": [ // closet
+        {
+            sentence: "Please put your clothes inside the _______.",
+            options: ["closet", "living room", "company", "tale"],
+            originalSentence: "Please put your clothes inside the closet."
+        }
+    ],
+    "31-14": [ // own room
+        {
+            sentence: "I am happy because I finally have my _______ _______.",
+            options: ["own room", "city hospital", "high school", "tradition"],
+            originalSentence: "I am happy because I finally have my own room."
+        }
+    ],
+    "31-15": [ // toy
+        {
+            sentence: "The baby is crying for his blue _______.",
+            options: ["toy", "engineer", "nurse", "photo"],
+            originalSentence: "The baby is crying for his blue toy."
+        }
+    ],
+    "31-16": [ // homemade
+        {
+            sentence: "I love my mother's _______ cookies.",
+            options: ["homemade", "wooden", "sick", "lucky"],
+            originalSentence: "I love my mother's homemade cookies."
+        }
+    ],
+    "31-17": [ // tale
+        {
+            sentence: "My grandmother told us an old _______ last night.",
+            options: ["tale", "closet", "company", "tradition"],
+            originalSentence: "My grandmother told us an old tale last night."
+        }
+    ],
+    "31-18": [ // past
+        {
+            sentence: "We can learn many things from the _______.",
+            options: ["past", "younger", "older", "homemade"],
+            originalSentence: "We can learn many things from the past."
+        }
+    ],
+    "31-19": [ // passed away
+        {
+            sentence: "My great-grandfather _______ _______ many years ago.",
+            options: ["passed away", "admire", "gather", "support"],
+            originalSentence: "My great-grandfather passed away many years ago."
+        }
+    ],
+    "31-20": [ // miss
+        {
+            sentence: "I _______ my best friend when he is on vacation.",
+            options: ["miss", "share", "braid", "gather"],
+            originalSentence: "I miss my best friend when he is on vacation."
+        }
+    ],
+    "31-21": [ // photo
+        {
+            sentence: "This is a _______ of my family in the park.",
+            options: ["photo", "doll", "closet", "tale"],
+            originalSentence: "This is a photo of my family in the park."
+        }
+    ],
+    "31-22": [ // gather
+        {
+            sentence: "We all _______ together during the holidays.",
+            options: ["gather", "admire", "share", "miss"],
+            originalSentence: "We all gather together during the holidays."
+        }
+    ],
+    "31-23": [ // living room
+        {
+            sentence: "The whole family is watching TV in the _______ _______.",
+            options: ["living room", "closet", "kindergarten", "city hospital"],
+            originalSentence: "The whole family is watching TV in the living room."
+        }
+    ],
+    "31-24": [ // board game
+        {
+            sentence: "Let's play a _______ _______ like chess.",
+            options: ["board game", "video game", "toy", "doll"],
+            originalSentence: "Let's play a board game like chess."
+        }
+    ],
+    "31-25": [ // wooden
+        {
+            sentence: "We have a large _______ table in the kitchen.",
+            options: ["wooden", "homemade", "sick", "loving"],
+            originalSentence: "We have a large wooden table in the kitchen."
+        }
+    ],
+    "31-26": [ // clear the dishes
+        {
+            sentence: "I always help my mom _______ _______ _______ after dinner.",
+            options: ["clear the dishes", "braid", "support", "admire"],
+            originalSentence: "I always help my mom clear the dishes after dinner."
+        }
+    ],
+    "31-27": [ // tradition
+        {
+            sentence: "Eating together on Fridays is a family _______.",
+            options: ["tradition", "tale", "company", "photo"],
+            originalSentence: "Eating together on Fridays is a family tradition."
+        }
+    ],
+    "31-28": [ // aunt
+        {
+            sentence: "My _______ is my father's sister.",
+            options: ["aunt", "uncle", "cousin", "nurse"],
+            originalSentence: "My aunt is my father's sister."
+        }
+    ],
+    "31-29": [ // uncle
+        {
+            sentence: "My _______ bought me a new bike for my birthday.",
+            options: ["uncle", "aunt", "cousin", "engineer"],
+            originalSentence: "My uncle bought me a new bike for my birthday."
+        }
+    ],
+    "31-30": [ // cousin
+        {
+            sentence: "My _______ and I go to the same school.",
+            options: ["cousin", "uncle", "aunt", "nurse"],
+            originalSentence: "My cousin and I go to the same school."
+        }
+    ],
+    "31-31": [ // video game
+        {
+            sentence: "He is playing a _______ _______ on his computer.",
+            options: ["video game", "board game", "tale", "photo"],
+            originalSentence: "He is playing a video game on his computer."
+        }
+    ],
+    "31-32": [ // braid
+        {
+            sentence: "My mother likes to _______ my long hair.",
+            options: ["braid", "share", "admire", "support"],
+            originalSentence: "My mother likes to braid my long hair."
+        }
+    ],
+    "31-33": [ // lucky
+        {
+            sentence: "I am very _______ to have such a great family.",
+            options: ["lucky", "sick", "wooden", "homemade"],
+            originalSentence: "I am very lucky to have such a great family."
+        }
+    ],
+    "31-34": [ // loving
+        {
+            sentence: "They are a very _______ and kind family.",
+            options: ["loving", "sick", "wooden", "proud"],
+            originalSentence: "They are a very loving and kind family."
+        }
+    ],
+    "31-35": [ // support
+        {
+            sentence: "My parents always _______ me in everything I do.",
+            options: ["support", "braid", "miss", "gather"],
+            originalSentence: "My parents always support me in everything I do."
+        }
+    ],
+    "31-36": [ // proud
+        {
+            sentence: "My father was very _______ of my good grades.",
+            options: ["proud", "sick", "wooden", "homemade"],
+            originalSentence: "My father was very proud of my good grades."
+        }
+    ],
+    
     // استكمال gapfillDB.js - الدرس رقم 61
     "61-1": [
         {
