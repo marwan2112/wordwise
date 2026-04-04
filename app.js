@@ -1165,62 +1165,72 @@ class App {
         }, 1200);
     }
 
-    finalizeAdaptiveTest() {
-        let bestLevel = 'A1';
-        let bestPercentage = 0;
-        for (let level of this.adaptiveTestLevelOrder) {
-            const res = this.adaptiveTestLevelResults[level];
-            if (res && res.total >= 3 && res.percentage >= 70) {
-                bestLevel = level;
-                bestPercentage = res.percentage;
-            }
+finalizeAdaptiveTest() {
+    // حساب أفضل مستوى (أعلى مستوى حقق 70% أو أكثر)
+    let bestLevel = 'A1';
+    let bestPercentage = 0;
+    for (let level of this.adaptiveTestLevelOrder) {
+        const res = this.adaptiveTestLevelResults[level];
+        if (res && res.total >= 3 && res.percentage >= 70) {
+            bestLevel = level;
+            bestPercentage = res.percentage;
         }
-        
-        if (this.adaptiveTestPhase === 'confirmation' && this.adaptiveTestConfirmationTotal > 0) {
-            const confirmPercent = (this.adaptiveTestConfirmationCorrect / this.adaptiveTestConfirmationTotal) * 100;
-            if (confirmPercent >= 60) {
-                bestLevel = this.adaptiveTestCurrentLevel;
-            } else {
-                const levels = this.adaptiveTestLevelOrder;
-                const idx = levels.indexOf(this.adaptiveTestCurrentLevel);
-                if (idx > 0) bestLevel = levels[idx - 1];
-            }
-        }
-        
-        const levels = this.adaptiveTestLevelOrder;
-        const bestIdx = levels.indexOf(bestLevel);
-        let nearHigher = false;
-        if (bestIdx < levels.length - 1) {
-            const nextRes = this.adaptiveTestLevelResults[levels[bestIdx+1]];
-            if (nextRes && nextRes.percentage >= 50 && nextRes.percentage < 70) {
-                nearHigher = true;
-            }
-        }
-        
-        let finalDisplay = bestLevel;
-        if (nearHigher) finalDisplay = `${bestLevel} (${this.t('قريب من', 'close to')} ${levels[bestIdx+1]})`;
-        
-        const skillAnalysis = this.analyzeAdaptiveSkills();
-        
-        const result = {
-            level: bestLevel,
-            displayLevel: finalDisplay,
-            date: new Date().toLocaleString('ar-EG'),
-            score: this.adaptiveTestHistory.filter(h => h.isCorrect).length,
-            totalQuestions: this.adaptiveTestHistory.length,
-            ielts: this.getIeltsEquivalent(bestLevel),
-            details: this.adaptiveTestHistory,
-            levelStats: Object.values(this.adaptiveTestLevelResults).filter(r => r.total > 0),
-            skillAnalysis: skillAnalysis
-        };
-        this.placementResults.unshift(result);
-        this.userProfile.level = result.level;
-        this.saveUserData();
-        
-        this.adaptiveTestActive = false;
-        this.currentPage = 'adaptive_test_result';
-        this.render();
     }
+    
+    // إذا كانت مرحلة التأكيد موجودة، استخدمها للتأكيد
+    if (this.adaptiveTestPhase === 'confirmation' && this.adaptiveTestConfirmationTotal > 0) {
+        const confirmPercent = (this.adaptiveTestConfirmationCorrect / this.adaptiveTestConfirmationTotal) * 100;
+        if (confirmPercent >= 60) {
+            bestLevel = this.adaptiveTestCurrentLevel;
+        } else {
+            const levels = this.adaptiveTestLevelOrder;
+            const idx = levels.indexOf(this.adaptiveTestCurrentLevel);
+            if (idx > 0) bestLevel = levels[idx - 1];
+        }
+    }
+    
+    // التحقق من القرب من مستوى أعلى
+    const levels = this.adaptiveTestLevelOrder;
+    const bestIdx = levels.indexOf(bestLevel);
+    let nearHigher = false;
+    if (bestIdx < levels.length - 1) {
+        const nextRes = this.adaptiveTestLevelResults[levels[bestIdx+1]];
+        if (nextRes && nextRes.percentage >= 50 && nextRes.percentage < 70) {
+            nearHigher = true;
+        }
+    }
+    
+    let finalDisplay = bestLevel;
+    if (nearHigher) finalDisplay = `${bestLevel} (${this.t('قريب من', 'close to')} ${levels[bestIdx+1]})`;
+    
+    // تحليل المهارات
+    const skillAnalysis = this.analyzeAdaptiveSkills();
+    
+    const result = {
+        level: bestLevel,
+        displayLevel: finalDisplay,
+        date: new Date().toLocaleString('ar-EG'),
+        score: this.adaptiveTestHistory.filter(h => h.isCorrect).length,
+        totalQuestions: this.adaptiveTestHistory.length,
+        ielts: this.getIeltsEquivalent(bestLevel),
+        details: this.adaptiveTestHistory,
+        levelStats: Object.values(this.adaptiveTestLevelResults).filter(r => r.total > 0),
+        skillAnalysis: skillAnalysis
+    };
+    
+    // إضافة النتيجة إلى بداية مصفوفة placementResults
+    this.placementResults.unshift(result);
+    this.placementFullHistory.push(result);
+    this.userProfile.level = result.level;
+    
+    // حفظ البيانات في Firestore
+    this.saveUserData();
+    
+    // إنهاء الاختبار
+    this.adaptiveTestActive = false;
+    this.currentPage = 'adaptive_test_result';
+    this.render();
+}
 
     analyzeAdaptiveSkills() {
         let grammarCorrect = 0, grammarTotal = 0;
@@ -1243,48 +1253,93 @@ class App {
         return { strengths, weaknesses };
     }
 
-    showAdaptiveResult() {
-        const lastResult = this.placementResults[0];
-        if (!lastResult) return `<div class="reading-card"><p>${this.t('لا توجد نتيجة', 'No result')}</p></div>`;
-        
-        let html = `<div class="reading-card result-card">
-            <h2 style="text-align:center;">🏁 ${this.t('نتيجة اختبار المستوى', 'Level Test Result')}</h2>
-            <div style="background:#f0f7ff; padding:15px; border-radius:10px; margin:10px 0; text-align:center;">
-                <h1 style="color:#1e40af; margin-bottom:5px; font-size:1.8rem;">${lastResult.displayLevel}</h1>
-                <p style="font-weight:bold; color:#3b82f6;">IELTS: ${lastResult.ielts}</p>
-                <p style="font-size:0.85rem; color:#64748b;">${this.t('الإجابات الصحيحة:', 'Correct answers:')} ${lastResult.score} / ${lastResult.totalQuestions}</p>
+showAdaptiveResult() {
+    const lastResult = this.placementResults[0];
+    if (!lastResult) return `<div class="reading-card"><p>${this.t('لا توجد نتيجة', 'No result')}</p></div>`;
+    
+    let html = `<div class="reading-card result-card">
+        <h2 style="text-align:center;">🏁 ${this.t('نتيجة اختبار المستوى', 'Level Test Result')}</h2>
+        <div style="background:#f0f7ff; padding:15px; border-radius:10px; margin:10px 0; text-align:center;">
+            <h1 style="color:#1e40af; margin-bottom:5px; font-size:1.8rem;">${lastResult.displayLevel}</h1>
+            <p style="font-weight:bold; color:#3b82f6;">IELTS: ${lastResult.ielts}</p>
+            <p style="font-size:0.85rem; color:#64748b;">${this.t('الإجابات الصحيحة:', 'Correct answers:')} ${lastResult.score} / ${lastResult.totalQuestions}</p>
+            <p style="font-size:0.8rem; color:#64748b; margin-top:5px;">${this.t('تاريخ الاختبار:', 'Test date:')} ${lastResult.date}</p>
+        </div>`;
+    
+    // عرض نتائج المستويات (نسبة النجاح في كل مستوى)
+    if (lastResult.levelStats && lastResult.levelStats.length > 0) {
+        html += `<h4 style="margin-top:15px;">📊 ${this.t('نتائج المستويات', 'Level Results')}</h4>
+        <div style="display:flex; flex-direction:column; gap:8px; margin-bottom:15px;">`;
+        for (let stat of lastResult.levelStats) {
+            const percent = stat.percentage.toFixed(1);
+            let levelColor = '';
+            if (percent >= 70) levelColor = '#10b981';
+            else if (percent >= 50) levelColor = '#f59e0b';
+            else levelColor = '#ef4444';
+            html += `<div style="display:flex; justify-content:space-between; align-items:center; background:#f1f5f9; padding:6px 12px; border-radius:8px;">
+                <span><strong>${stat.level}</strong></span>
+                <span>${stat.correct}/${stat.total} (${percent}%)</span>
+                <div class="progress-bar-container" style="width:120px; margin:0;"><div class="progress-bar-fill" style="width:${percent}%; background:${levelColor};"></div></div>
             </div>`;
-        
-        if (lastResult.levelStats && lastResult.levelStats.length > 0) {
-            html += `<h4 style="margin-top:15px;">📊 ${this.t('نتائج المستويات', 'Level Results')}</h4><div style="display:flex; flex-direction:column; gap:8px; margin-bottom:15px;">`;
-            for (let stat of lastResult.levelStats) {
-                const percent = stat.percentage.toFixed(1);
-                html += `<div style="display:flex; justify-content:space-between; align-items:center; background:#f1f5f9; padding:6px 12px; border-radius:8px;">
-                    <span><strong>${stat.level}</strong></span>
-                    <span>${stat.correct}/${stat.total} (${percent}%)</span>
-                    <div class="progress-bar-container" style="width:120px; margin:0;"><div class="progress-bar-fill" style="width:${percent}%;"></div></div>
-                </div>`;
-            }
-            html += `</div>`;
         }
-        
-        if (lastResult.skillAnalysis) {
-            const sa = lastResult.skillAnalysis;
-            html += `<h4>💪 ${this.t('نقاط القوة', 'Strengths')}</h4><div style="display:flex; flex-wrap:wrap; gap:8px; margin-bottom:15px;">`;
-            if (sa.strengths.length) sa.strengths.forEach(s => html += `<span style="background:#10b981; color:white; padding:4px 12px; border-radius:20px;">✅ ${s}</span>`);
-            else html += `<span style="color:#666;">${this.t('لا توجد نقاط قوة واضحة بعد', 'No clear strengths yet')}</span>`;
-            html += `</div><h4>⚠️ ${this.t('نقاط الضعف', 'Weaknesses')}</h4><div style="display:flex; flex-wrap:wrap; gap:8px; margin-bottom:15px;">`;
-            if (sa.weaknesses.length) sa.weaknesses.forEach(w => html += `<span style="background:#ef4444; color:white; padding:4px 12px; border-radius:20px;">❌ ${w}</span>`);
-            else html += `<span style="color:#666;">${this.t('أداء جيد في جميع المهارات', 'Good performance in all skills')}</span>`;
-            html += `</div>`;
-        }
-        
-        html += `<div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:15px;">
-            <button class="hero-btn" onclick="appInstance.startAdaptiveLevelTest()" style="background:#ec4899; flex:1;">${this.t('إعادة الاختبار 🔄', 'Retake Test 🔄')}</button>
-            <button class="hero-btn" data-action="goHome" style="background:#64748b; flex:1;">${this.t('الرئيسية', 'Home')}</button>
-        </div></div>`;
-        return html;
+        html += `</div>`;
     }
+    
+    // تحليل نقاط القوة والضعف بشكل مفصل
+    if (lastResult.skillAnalysis) {
+        const sa = lastResult.skillAnalysis;
+        html += `<h4>💪 ${this.t('نقاط القوة', 'Strengths')}</h4>
+        <div style="display:flex; flex-wrap:wrap; gap:8px; margin-bottom:15px;">`;
+        if (sa.strengths.length > 0) {
+            sa.strengths.forEach(s => html += `<span style="background:#10b981; color:white; padding:4px 12px; border-radius:20px;">✅ ${s}</span>`);
+        } else {
+            html += `<span style="color:#666;">${this.t('لا توجد نقاط قوة واضحة بعد. واصل التمرن!', 'No clear strengths yet. Keep practicing!')}</span>`;
+        }
+        html += `</div>
+        <h4>⚠️ ${this.t('نقاط الضعف', 'Weaknesses')}</h4>
+        <div style="display:flex; flex-wrap:wrap; gap:8px; margin-bottom:15px;">`;
+        if (sa.weaknesses.length > 0) {
+            sa.weaknesses.forEach(w => html += `<span style="background:#ef4444; color:white; padding:4px 12px; border-radius:20px;">❌ ${w}</span>`);
+        } else {
+            html += `<span style="color:#666;">${this.t('أداء جيد في جميع المهارات!', 'Good performance in all skills!')}</span>`;
+        }
+        html += `</div>`;
+        
+        // إضافة نصائح تحسينية
+        html += `<h4>📝 ${this.t('نصائح للتحسين', 'Improvement Tips')}</h4>
+        <div style="background:#fef3c7; padding:12px; border-radius:12px; margin-bottom:15px;">`;
+        if (sa.weaknesses.includes(this.t('القواعد', 'Grammar'))) {
+            html += `<p>📘 ${this.t('راجع قواعد اللغة الإنجليزية الأساسية مثل الأزمنة وحروف الجر.', 'Review basic English grammar like tenses and prepositions.')}</p>`;
+        }
+        if (sa.weaknesses.includes(this.t('المفردات', 'Vocabulary'))) {
+            html += `<p>📖 ${this.t('زد حصيلة مفرداتك بقراءة النصوص واستخدام البطاقات التعليمية.', 'Expand your vocabulary by reading texts and using flashcards.')}</p>`;
+        }
+        if (sa.weaknesses.includes(this.t('القراءة', 'Reading'))) {
+            html += `<p>📚 ${this.t('تدرب على قراءة نصوص قصيرة وحاول فهم المعنى العام.', 'Practice reading short texts and try to understand the general meaning.')}</p>`;
+        }
+        if (sa.weaknesses.length === 0) {
+            html += `<p>🎉 ${this.t('أداء ممتاز! حافظ على مستواك من خلال حل التمارين بانتظام.', 'Excellent performance! Maintain your level by practicing regularly.')}</p>`;
+        }
+        html += `</div>`;
+    }
+    
+    // إضافة نصيحة المستوى التالي
+    const levels = this.adaptiveTestLevelOrder;
+    const currentLevelIndex = levels.indexOf(lastResult.level);
+    if (currentLevelIndex < levels.length - 1) {
+        const nextLevel = levels[currentLevelIndex + 1];
+        html += `<div style="background:#dbeafe; padding:12px; border-radius:12px; margin-bottom:15px; text-align:center;">
+            <span style="font-weight:bold;">🎯 ${this.t('المستوى التالي:', 'Next level:')} ${nextLevel}</span><br>
+            <span style="font-size:0.85rem;">${this.t('واصل الدراسة والتمرن للوصول إلى المستوى التالي!', 'Keep studying and practicing to reach the next level!')}</span>
+        </div>`;
+    }
+    
+    html += `<div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:15px;">
+        <button class="hero-btn" onclick="appInstance.startAdaptiveLevelTest()" style="background:#ec4899; flex:1;">${this.t('إعادة الاختبار 🔄', 'Retake Test 🔄')}</button>
+        <button class="hero-btn" data-action="goHome" style="background:#64748b; flex:1;">${this.t('الرئيسية', 'Home')}</button>
+    </div></div>`;
+    return html;
+}
     
     getIeltsEquivalent(level) { const map = { 'A1': '2.0-3.0', 'A2': '3.0-4.0', 'B1': '4.0-5.0', 'B2': '5.5-6.5', 'C1': '7.0-8.0', 'C2': '8.5-9.0' }; return map[level]; }
 
