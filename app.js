@@ -992,7 +992,6 @@ loadAdaptiveQuestionSet(level, count) {
     this.adaptiveTestCurrentSetCorrect = 0;
 }
 
-// الحصول على السؤال الحالي
 getCurrentAdaptiveQuestion() {
     // مرحلة التأكيد
     if (this.adaptiveTestPhase === 'confirmation') {
@@ -1002,26 +1001,37 @@ getCurrentAdaptiveQuestion() {
         return null;
     }
     
-    // إذا انتهت المجموعة الحالية، نقيم وننتقل
+    // إذا انتهت المجموعة الحالية
     if (this.adaptiveTestCurrentSetIndex >= this.adaptiveTestCurrentSetQuestions.length) {
+        // تقييم المجموعة واتخاذ قرار بالانتقال
         this.evaluateCurrentSetAndTransition();
-        // بعد التقييم، نتحقق من وجود أسئلة في المجموعة الجديدة
+        
+        // بعد التقييم، قد نكون في مرحلة التأكيد
         if (this.adaptiveTestPhase === 'confirmation') {
             if (this.adaptiveTestConfirmationQuestions.length > 0) {
                 return this.adaptiveTestConfirmationQuestions[0];
             }
             return null;
-        } else {
-            if (this.adaptiveTestCurrentSetQuestions.length === 0) return null;
-            this.adaptiveTestCurrentSetIndex = 0;
-            return this.adaptiveTestCurrentSetQuestions[0];
         }
+        
+        // تحميل مجموعة جديدة للمستوى الحالي
+        this.loadAdaptiveQuestionSet(this.adaptiveTestCurrentLevel, 4);
+        
+        // إذا لم يتم تحميل أي سؤال، نختم الاختبار
+        if (this.adaptiveTestCurrentSetQuestions.length === 0) {
+            this.finalizeAdaptiveTest();
+            return null;
+        }
+        
+        // إعادة تعيين المؤشر
+        this.adaptiveTestCurrentSetIndex = 0;
+        return this.adaptiveTestCurrentSetQuestions[0];
     }
+    
+    // إرجاع السؤال الحالي
     return this.adaptiveTestCurrentSetQuestions[this.adaptiveTestCurrentSetIndex];
 }
-
-// تقييم المجموعة الحالية واتخاذ قرار بالصعود أو النزول
-evaluateCurrentSetAndTransition() {
+// تقييم المجموعة الحالية واتخاذ قرار بالصعود أو النزولevaluateCurrentSetAndTransition() {
     const setSize = this.adaptiveTestCurrentSetQuestions.length;
     const setCorrect = this.adaptiveTestCurrentSetCorrect;
     const percentage = setSize > 0 ? (setCorrect / setSize) * 100 : 0;
@@ -1031,24 +1041,21 @@ evaluateCurrentSetAndTransition() {
     currentStats.total += setSize;
     currentStats.correct += setCorrect;
     
-    // تحديث الإجابات المتتالية (الصحيحة والخاطئة)
+    // تحديث الإجابات المتتالية
     if (setCorrect === setSize) {
-        // جميع الإجابات صحيحة في هذه المجموعة
         currentStats.consecutiveCorrect += setSize;
         currentStats.consecutiveWrong = 0;
     } else if (setCorrect === 0) {
-        // جميع الإجابات خاطئة
         currentStats.consecutiveWrong += setSize;
         currentStats.consecutiveCorrect = 0;
     } else {
-        // مجموعة مختلطة، نعيد تعيين المتتالية
         currentStats.consecutiveCorrect = 0;
         currentStats.consecutiveWrong = 0;
     }
     
     this.adaptiveTestTotalQuestions += setSize;
     
-    // التحقق من تجاوز الحد الأقصى للأسئلة
+    // التحقق من تجاوز الحد الأقصى
     if (this.adaptiveTestTotalQuestions >= this.adaptiveTestMaxQuestions) {
         this.finalizeAdaptiveTest();
         return;
@@ -1057,9 +1064,9 @@ evaluateCurrentSetAndTransition() {
     const levels = this.adaptiveTestLevelOrder;
     const currentIdx = levels.indexOf(this.adaptiveTestCurrentLevel);
     
-    // قرارات الانتقال بناءً على المرحلة
+    // قرارات الانتقال
     if (this.adaptiveTestPhase === 'initial') {
-        // المرحلة الأولية: بعد 5 أسئلة من B1، نقرر الاتجاه
+        // المرحلة الأولية: بعد 5 أسئلة من B1
         if (percentage >= 70) {
             // أداء جيد -> نرفع إلى B2
             if (currentIdx < levels.length - 1) {
@@ -1067,9 +1074,52 @@ evaluateCurrentSetAndTransition() {
                 this.adaptiveTestPhase = 'moving_up';
             } else {
                 this.adaptiveTestPhase = 'confirmation';
-                this.prepareConfirmationQuestions();
             }
         } else if (percentage <= 40) {
+            // أداء ضعيف -> نخفض إلى A2
+            if (currentIdx > 0) {
+                this.adaptiveTestCurrentLevel = levels[currentIdx - 1];
+                this.adaptiveTestPhase = 'moving_down';
+            } else {
+                this.adaptiveTestPhase = 'confirmation';
+            }
+        } else {
+            // أداء متوسط -> نثبت B1
+            this.adaptiveTestPhase = 'confirmation';
+        }
+    }
+    else if (this.adaptiveTestPhase === 'moving_up') {
+        if (currentStats.consecutiveCorrect >= 3) {
+            if (currentIdx < levels.length - 1) {
+                this.adaptiveTestCurrentLevel = levels[currentIdx + 1];
+            } else {
+                this.adaptiveTestPhase = 'confirmation';
+            }
+        } else if (currentStats.consecutiveWrong >= 2) {
+            if (currentIdx > 0) {
+                this.adaptiveTestCurrentLevel = levels[currentIdx - 1];
+            }
+            this.adaptiveTestPhase = 'confirmation';
+        }
+    }
+    else if (this.adaptiveTestPhase === 'moving_down') {
+        if (currentStats.consecutiveCorrect >= 3) {
+            this.adaptiveTestPhase = 'confirmation';
+        } else if (currentStats.consecutiveWrong >= 2) {
+            if (currentIdx > 0) {
+                this.adaptiveTestCurrentLevel = levels[currentIdx - 1];
+            } else {
+                this.adaptiveTestPhase = 'confirmation';
+            }
+        }
+    }
+    
+    // إذا وصلنا إلى مرحلة التأكيد، جهز الأسئلة
+    if (this.adaptiveTestPhase === 'confirmation') {
+        this.prepareConfirmationQuestions();
+    }
+}
+else if (percentage <= 40) {
             // أداء ضعيف -> نخفض إلى A2
             if (currentIdx > 0) {
                 this.adaptiveTestCurrentLevel = levels[currentIdx - 1];
