@@ -1536,8 +1536,69 @@ class App {
     
     handleGapFillNext() { if (this.gapFillRemainingWords.length === 0) { alert(this.t('🎉 تهانينا! أكملت جميع الكلمات.', '🎉 Congratulations! You completed all words.')); this.currentPage = 'reading'; } else this.prepareGapFill(); this.render(); }
     
-    async showDetailedGapFillExplanation() { if (!this.gapFillCurrentQuestion) return; this.gapFillExplanationVisible = !this.gapFillExplanationVisible; if (this.gapFillExplanationVisible) { if (!this.gapFillCurrentQuestion.originalSentenceArabic && this.gapFillCurrentQuestion.originalSentence) { const translated = await this.translateText(this.gapFillCurrentQuestion.originalSentence); this.gapFillCurrentQuestion.originalSentenceArabic = translated || ''; } else if (!this.gapFillCurrentQuestion.originalSentenceArabic && this.gapFillCurrentQuestion.text) { const fullSentence = this.gapFillCurrentQuestion.text.replace('______', this.gapFillCurrentQuestion.correct); const translated = await this.translateText(fullSentence); this.gapFillCurrentQuestion.originalSentenceArabic = translated || ''; } if (this.gapFillOptionsMeanings.length === 0 && this.gapFillOptions.length > 0) { const lesson = this.getCurrentLessonData(); const allTerms = lesson ? [...lesson.terms, ...this.userVocabulary.filter(v => v.lessonId == this.selectedLessonId)] : []; this.gapFillOptionsMeanings = this.gapFillOptions.map(opt => { const term = allTerms.find(t => t.english === opt); if (term) return { english: opt, arabic: term.arabic }; return { english: opt, arabic: 'معنى غير متاح' }; }); } let detailedExplanation = this.t(`✅ الإجابة الصحيحة هي "<strong>${this.gapFillCurrentQuestion.correct}</strong>" (${this.gapFillCurrentQuestion.arabic}).<br><br>`, `✅ The correct answer is "<strong>${this.gapFillCurrentQuestion.correct}</strong>" (${this.gapFillCurrentQuestion.arabic}).<br><br>`); detailedExplanation += this.t(`📖 الجملة الكاملة بالإنجليزية: "${this.gapFillCurrentQuestion.originalSentence || this.gapFillCurrentQuestion.text.replace('______', this.gapFillCurrentQuestion.correct)}"<br>`, `📖 The full sentence in English: "${this.gapFillCurrentQuestion.originalSentence || this.gapFillCurrentQuestion.text.replace('______', this.gapFillCurrentQuestion.correct)}"<br>`); detailedExplanation += this.t(`🌐 الترجمة العربية: "${this.gapFillCurrentQuestion.originalSentenceArabic || 'جاري التحميل...'}"<br><br>`, `🌐 Arabic translation: "${this.gapFillCurrentQuestion.originalSentenceArabic || 'Loading...'}"<br><br>`); detailedExplanation += this.t(`📚 معاني الخيارات:<br>`, `📚 Meanings of options:<br>`); this.gapFillOptionsMeanings.forEach(opt => { detailedExplanation += this.t(`• <strong>${opt.english}</strong> : ${opt.arabic}<br>`, `• <strong>${opt.english}</strong> : ${opt.arabic}<br>`); }); detailedExplanation += this.t(`<br>💡 سبب الاختيار: كلمة "<strong>${this.gapFillCurrentQuestion.correct}</strong>" (${this.gapFillCurrentQuestion.arabic}) هي الأنسب لسياق الجملة.`, `<br>💡 Reason: The word "<strong>${this.gapFillCurrentQuestion.correct}</strong>" (${this.gapFillCurrentQuestion.arabic}) is the most appropriate for the sentence context.`); this.gapFillExplanation = detailedExplanation; } this.render(); setTimeout(() => { const explanationDiv = document.querySelector('.gapfill-explanation'); if (explanationDiv) { explanationDiv.style.maxHeight = '300px'; explanationDiv.style.overflowY = 'auto'; } }, 50); }
-    
+async showDetailedGapFillExplanation() {
+    if (!this.gapFillCurrentQuestion) return;
+    this.gapFillExplanationVisible = !this.gapFillExplanationVisible;
+    if (this.gapFillExplanationVisible) {
+        // تحديث معاني الخيارات بشكل صحيح
+        const lesson = this.getCurrentLessonData();
+        const allTerms = lesson ? [...lesson.terms, ...this.userVocabulary.filter(v => v.lessonId == this.selectedLessonId)] : [];
+        // إضافة كلمات من جميع دروس المستوى إن وجدت
+        if (this.selectedLevel && window.lessonsList[this.selectedLevel]) {
+            for (let l of window.lessonsList[this.selectedLevel]) {
+                const lessonData = this.getLessonDataById(l.id);
+                if (lessonData && lessonData.terms) {
+                    allTerms.push(...lessonData.terms);
+                }
+            }
+        }
+        // إضافة الكلمات المضافة من قبل المستخدم لكل الدروس
+        allTerms.push(...this.userVocabulary);
+        
+        // إزالة التكرار بناءً على id
+        const uniqueTerms = {};
+        for (let t of allTerms) {
+            if (t.id && !uniqueTerms[t.id]) uniqueTerms[t.id] = t;
+            else if (t.english && !uniqueTerms[t.english]) uniqueTerms[t.english] = t;
+        }
+        const uniqueAllTerms = Object.values(uniqueTerms);
+        
+        this.gapFillOptionsMeanings = this.gapFillOptions.map(opt => {
+            const term = uniqueAllTerms.find(t => t.english === opt);
+            if (term) return { english: opt, arabic: term.arabic };
+            // محاولة البحث في window.gapfillDB أو أي مصدر آخر
+            return { english: opt, arabic: this.t('معنى غير متاح', 'Meaning not available') };
+        });
+        
+        // باقي الكود كما هو لإنشاء الشرح المفصل...
+        if (!this.gapFillCurrentQuestion.originalSentenceArabic && this.gapFillCurrentQuestion.originalSentence) {
+            const translated = await this.translateText(this.gapFillCurrentQuestion.originalSentence);
+            this.gapFillCurrentQuestion.originalSentenceArabic = translated || '';
+        } else if (!this.gapFillCurrentQuestion.originalSentenceArabic && this.gapFillCurrentQuestion.text) {
+            const fullSentence = this.gapFillCurrentQuestion.text.replace('______', this.gapFillCurrentQuestion.correct);
+            const translated = await this.translateText(fullSentence);
+            this.gapFillCurrentQuestion.originalSentenceArabic = translated || '';
+        }
+        
+        let detailedExplanation = this.t(`✅ الإجابة الصحيحة هي "<strong>${this.gapFillCurrentQuestion.correct}</strong>" (${this.gapFillCurrentQuestion.arabic}).<br><br>`, `✅ The correct answer is "<strong>${this.gapFillCurrentQuestion.correct}</strong>" (${this.gapFillCurrentQuestion.arabic}).<br><br>`);
+        detailedExplanation += this.t(`📖 الجملة الكاملة بالإنجليزية: "${this.gapFillCurrentQuestion.originalSentence || this.gapFillCurrentQuestion.text.replace('______', this.gapFillCurrentQuestion.correct)}"<br>`, `📖 The full sentence in English: "${this.gapFillCurrentQuestion.originalSentence || this.gapFillCurrentQuestion.text.replace('______', this.gapFillCurrentQuestion.correct)}"<br>`);
+        detailedExplanation += this.t(`🌐 الترجمة العربية: "${this.gapFillCurrentQuestion.originalSentenceArabic || 'جاري التحميل...'}"<br><br>`, `🌐 Arabic translation: "${this.gapFillCurrentQuestion.originalSentenceArabic || 'Loading...'}"<br><br>`);
+        detailedExplanation += this.t(`📚 معاني الخيارات:<br>`, `📚 Meanings of options:<br>`);
+        this.gapFillOptionsMeanings.forEach(opt => {
+            detailedExplanation += this.t(`• <strong>${opt.english}</strong> : ${opt.arabic}<br>`, `• <strong>${opt.english}</strong> : ${opt.arabic}<br>`);
+        });
+        detailedExplanation += this.t(`<br>💡 سبب الاختيار: كلمة "<strong>${this.gapFillCurrentQuestion.correct}</strong>" (${this.gapFillCurrentQuestion.arabic}) هي الأنسب لسياق الجملة.`, `<br>💡 Reason: The word "<strong>${this.gapFillCurrentQuestion.correct}</strong>" (${this.gapFillCurrentQuestion.arabic}) is the most appropriate for the sentence context.`);
+        this.gapFillExplanation = detailedExplanation;
+    }
+    this.render();
+    setTimeout(() => {
+        const explanationDiv = document.querySelector('.gapfill-explanation');
+        if (explanationDiv) {
+            explanationDiv.style.maxHeight = '300px';
+            explanationDiv.style.overflowY = 'auto';
+        }
+    }, 50);
+}    
     unlockGapFill(lessonId) { if (this.gapFillUnlocked[lessonId]) return true; if (this.userCoins >= 75) { this.showCoinPurchaseModal(75, (confirmed) => { if (confirmed) { this.userCoins -= 75; this.gapFillUnlocked[lessonId] = true; this.saveUserData(); this.resetGapFillForNewLesson(); this.prepareGapFill(); this.currentPage = 'gapfill'; this.render(); } }); } else this.showCustomModal('error', '❌', this.t(`ليس لديك لآلئ كافية! تحتاج 75 لؤلؤة.`, `You don't have enough pearls! You need 75 pearls.`)); return false; }
     
     async handleNewWord() { const eng = document.getElementById('newEng').value.trim(); const arb = document.getElementById('newArb').value.trim(); if (!eng || !arb) return; const lesson = this.getCurrentLessonData(); if (!lesson) { alert(this.t('الدرس غير موجود.', 'Lesson not found.')); return; } const existingWords = lesson.terms.map(t => t.english.toLowerCase()); const userWords = this.userVocabulary.filter(v => v.lessonId == this.selectedLessonId).map(v => v.english.toLowerCase()); if (existingWords.includes(eng.toLowerCase()) || userWords.includes(eng.toLowerCase())) { this.showCustomModal('error', '⚠️', this.t('هذه الكلمة موجودة بالفعل في الدرس. لا يمكن إضافتها مرة أخرى.', 'This word already exists in the lesson. Cannot add again.')); return; } this.userVocabulary.push({ id: "u" + Date.now(), lessonId: String(this.selectedLessonId), english: eng, arabic: arb }); await this.saveUserData(); document.getElementById('newEng').value = ''; document.getElementById('newArb').value = ''; this.newWordsAddedCount++; if (this.newWordsAddedCount % 10 === 0) this.showAd('video'); this.render(); this.showCustomModal('success', '✅', this.t('تمت إضافة الكلمة بنجاح إلى بطاقات الدرس.', 'Word successfully added to lesson flashcards.')); }
