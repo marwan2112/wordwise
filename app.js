@@ -2120,31 +2120,44 @@ class App {
             return `<main class="main-content"><div style="display: flex; align-items: center; gap: 8px; margin-bottom: 10px; flex-wrap: wrap;"><button class="hero-btn" data-action="backToLessons" style="background:#64748b; padding:6px 12px;">⬅ ${this.t('تراجع', 'Back')}</button><div style="display: flex; gap: 4px; background: #f0f0f0; padding: 4px; border-radius: 8px; flex-wrap: wrap;"><button class="hero-btn" data-action="playAudio" data-param="${audioSrc}" style="background:#3b82f6; padding:5px 8px; font-size:0.75rem;">▶️ ${this.t('تشغيل', 'Play')}</button><button class="hero-btn" data-action="pauseAudio" style="background:#f59e0b; padding:5px 8px; font-size:0.75rem;">⏸️ ${this.t('إيقاف مؤقت', 'Pause')}</button><button class="hero-btn" data-action="stopAudio" style="background:#ef4444; padding:5px 8px; font-size:0.75rem;">⏹️ ${this.t('إيقاف', 'Stop')}</button><button class="hero-btn" data-action="skipBack10" style="background:#8b5cf6; padding:5px 8px; font-size:0.75rem;">⏪ 10</button><button class="hero-btn" data-action="skipForward10" style="background:#8b5cf6; padding:5px 8px; font-size:0.75rem;">10 ⏩</button><button class="hero-btn" data-action="speedDown" style="background:#8b5cf6; padding:5px 8px; font-size:0.75rem;">🐢</button><span style="background:#fff; padding:3px 6px; border-radius:5px; font-size:0.7rem;">${this.audioPlaybackRate.toFixed(2)}x</span><button class="hero-btn" data-action="speedUp" style="background:#8b5cf6; padding:5px 8px; font-size:0.75rem;">🐇</button></div></div><div class="reading-card"><h2 style="font-size:1.2rem;">${lesson.title}</h2><div class="scrollable-text" style="margin-top:10px; font-size:0.9rem;">${lesson.content}</div></div><div class="reading-card" style="margin-top:15px; border:1px dashed #6366f1; background:#f0f7ff;"><h4 style="margin-bottom:8px;">${this.t('إضافة كلمة جديدة:', 'Add New Word:')}</h4><input id="newEng" placeholder="${this.t('اكتب بالإنجليزية هنا...', 'Write in English here...')}" style="width:100%; padding:8px; border-radius:8px; border:1px solid #ddd;" oninput="appInstance.translateAuto(this.value, 'newArb')"><input id="newArb" placeholder="${this.t('الترجمة تظهر هنا...', 'Translation will appear here...')}" style="width:100%; padding:8px; margin:8px 0; border-radius:8px; border:1px solid #ddd; background:#fff;"><button class="hero-btn" data-action="addNewWord" style="width:100%; background:#10b981; padding:8px;">✅ ${this.t('إضافة للقائمة', 'Add to List')}</button></div></main>`; 
         }
 
-        if (this.currentPage === 'flashcards') {
-            const allTerms = window.lessonsData || [];
-            let active;
-            
-            if (this.showAllCardsTemporary) {
-                active = allTerms.filter(t => !this.hiddenFromCards.includes(String(t.id)) && !this.repeatAllSessionMastered.includes(String(t.id)));
-            } else {
-                active = allTerms.filter(t => !this.masteredWords.includes(String(t.id)) && !this.hiddenFromCards.includes(String(t.id)));
+if (this.currentPage === 'flashcards') {
+            // تأمين جلب البيانات من أكثر من مصدر لضمان عدم حدوث خطأ filter
+            let allTerms = [];
+            if (Array.isArray(window.lessonsData) && window.lessonsData.length > 0) {
+                allTerms = window.lessonsData;
+            } else if (this.lessonsList && Array.isArray(this.lessonsList)) {
+                allTerms = this.lessonsList;
+            } else if (this.customLessons) {
+                allTerms = Object.values(this.customLessons).flatMap(l => l.words || []);
+            }
+
+            let active = [];
+            if (allTerms.length > 0) {
+                if (this.showAllCardsTemporary) {
+                    active = allTerms.filter(t => t && t.id && !this.hiddenFromCards.includes(String(t.id)) && !this.repeatAllSessionMastered.includes(String(t.id)));
+                } else {
+                    active = allTerms.filter(t => t && t.id && !this.masteredWords.includes(String(t.id)) && !this.hiddenFromCards.includes(String(t.id)));
+                }
             }
 
             if (active.length === 0) {
                 return `<div class="reading-card" style="text-align:center;">
                             <div style="font-size:2.5rem; margin-bottom:10px;">🧠</div>
                             <h3>🎉 ${this.t('اكتملت المراجعة!', 'Review completed!')}</h3>
+                            <p>${this.t('لا توجد بطاقات حالياً للمراجعة', 'No cards available for review')}</p>
                             <button class="hero-btn" data-action="restartCards" data-param="all" style="background:#f59e0b;">${this.t('إعادة تكرار الكل 🔁', 'Repeat All 🔁')}</button>
+                            <button class="hero-btn" data-action="goHome" style="margin-top:10px; background:#64748b;">${this.t('الرئيسية', 'Home')}</button>
                         </div>`;
             }
 
             const t = active[this.currentCardIndex] || active[0];
-            
+            if (!t) return `<div class="reading-card">Error loading card</div>`;
+
             return `<main class="main-content">
                 <div class="flashcard-container" onclick="this.querySelector('.flashcard').classList.toggle('flipped')">
                     <div class="flashcard">
-                        <div class="flashcard-front"><h1>${t.english}</h1></div>
-                        <div class="flashcard-back"><h1>${t.arabic}</h1></div>
+                        <div class="flashcard-front"><h1>${t.english || ''}</h1></div>
+                        <div class="flashcard-back"><h1>${t.arabic || ''}</h1></div>
                     </div>
                 </div>
                 <div class="card-controls-row">
