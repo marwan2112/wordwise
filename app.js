@@ -1807,7 +1807,6 @@ async saveCardEdit(wordId) {
         try {
             const inputEng = document.getElementById(`editEng_${wordId}`);
             const inputArb = document.getElementById(`editArb_${wordId}`);
-            
             if (!inputEng || !inputArb) return;
 
             const newEng = inputEng.value.trim();
@@ -1818,38 +1817,34 @@ async saveCardEdit(wordId) {
                 return;
             }
 
-            // 1. تحديث المصفوفات الأساسية
-            let updated = false;
+            // 1. تخزين التعديل في كائن خاص ليتم رفعه لـ Firebase
+            if (!this.userModifiedWords) this.userModifiedWords = {};
+            this.userModifiedWords[wordId] = {
+                english: newEng,
+                arabic: newArb
+            };
+
+            // 2. تحديث البيانات في الذاكرة الحالية للعرض الفوري
             if (window.lessonsData) {
                 const idx = window.lessonsData.findIndex(w => String(w.id) === String(wordId));
                 if (idx !== -1) {
                     window.lessonsData[idx].english = newEng;
                     window.lessonsData[idx].arabic = newArb;
-                    updated = true;
                 }
             }
 
-            // 2. تحديث الدروس المخصصة (المصدر الرئيسي للبيانات في Firebase)
-            for (let id in this.customLessons) {
-                if (this.customLessons[id].words) {
-                    const wIdx = this.customLessons[id].words.findIndex(w => String(w.id) === String(wordId));
-                    if (wIdx !== -1) {
-                        this.customLessons[id].words[wIdx].english = newEng;
-                        this.customLessons[id].words[wIdx].arabic = newArb;
-                        updated = true;
-                    }
-                }
-            }
+            // 3. حفظ البيانات في Firebase
+            await this.saveUserData();
 
-            if (updated) {
-                // حفظ البيانات فعلياً في Firebase
-                await this.saveUserData();
-                // إغلاق منطقة التعديل يدوياً قبل إعادة الرندر
-                const area = document.getElementById(`editArea_${wordId}`);
-                if (area) area.style.display = 'none';
-                
-                this.render(); // تحديث الشاشة
-                if (this.showCustomModal) this.showCustomModal('success', '✅', 'تم الحفظ بنجاح');
+            // 4. إغلاق واجهة التعديل وتحديث الشاشة
+            const area = document.getElementById(`editArea_${wordId}`);
+            if (area) area.style.display = 'none';
+            
+            this.render();
+            if (this.showCustomModal) {
+                this.showCustomModal('success', '✅', 'تم الحفظ في سحابة حسابك');
+            } else {
+                alert("تم الحفظ بنجاح ✅");
             }
         } catch (e) {
             console.error("Save error:", e);
@@ -2248,15 +2243,30 @@ async saveCardEdit(wordId) {
         }
 
 if (this.currentPage === 'flashcards') {
-            let termsToUse = (allTerms && allTerms.length > 0) ? allTerms : (window.lessonsData || []);
-            let active = termsToUse.filter(t => t && t.id && !this.masteredWords.includes(String(t.id)) && !this.hiddenFromCards.includes(String(t.id)));
+            // جلب البيانات الأصلية (سواء من الدالة أو من النافذة)
+            let rawTerms = (allTerms && allTerms.length > 0) ? allTerms : (window.lessonsData || []);
+            
+            // تطبيق التعديلات التي قام بها المستخدم (الدمج الذكي)
+            let termsToUse = rawTerms.map(word => {
+                if (this.userModifiedWords && this.userModifiedWords[word.id]) {
+                    return { 
+                        ...word, 
+                        english: this.userModifiedWords[word.id].english, 
+                        arabic: this.userModifiedWords[word.id].arabic 
+                    };
+                }
+                return word;
+            });
 
+            // التصفية لإظهار الكلمات غير المتقنة فقط
+            let active = termsToUse.filter(t => t && t.id && !this.masteredWords.includes(String(t.id)));
+
+            // إذا انتهت الكلمات
             if (active.length === 0) {
                 return `<div class="reading-card" style="text-align:center; padding:40px 20px;">
-                            <div style="font-size:3rem; margin-bottom:15px;">🎉</div>
-                            <h3>${this.t('اكتملت المراجعة!', 'Review completed!')}</h3>
-                            <button class="hero-btn" data-action="restartCards" data-param="all" style="background:#f59e0b; width:100%; margin:15px 0;">🔁 ${this.t('إعادة تكرار الكل', 'Repeat All')}</button>
-                            <button class="hero-btn" data-action="goHome" style="background:#64748b; width:100%;">🏠 ${this.t('الرئيسية', 'Home')}</button>
+                            <h3>🎉 اكتملت المراجعة!</h3>
+                            <button class="hero-btn" data-action="restartCards" data-param="all" style="background:#f59e0b; width:100%; margin:15px 0;">🔁 إعادة تكرار الكل</button>
+                            <button class="hero-btn" data-action="goHome" style="background:#64748b; width:100%;">🏠 الرئيسية</button>
                         </div>`;
             }
 
@@ -2264,7 +2274,7 @@ if (this.currentPage === 'flashcards') {
 
             return `<main class="main-content">
                 <div style="text-align: right; margin-bottom: 10px;">
-                    <button onclick="appInstance.toggleEditMode('${t.id}')" style="background: #e2e8f0; border: none; padding: 8px 15px; border-radius: 20px; cursor: pointer; font-size: 0.9rem;">✏️ ${this.t('تعديل الكلمة', 'Edit')}</button>
+                    <button onclick="appInstance.toggleEditMode('${t.id}')" style="background: #e2e8f0; border: none; padding: 8px 15px; border-radius: 20px; cursor: pointer;">✏️ تعديل</button>
                 </div>
 
                 <div class="flashcard-container" onclick="this.querySelector('.flashcard').classList.toggle('flipped')">
@@ -2275,9 +2285,9 @@ if (this.currentPage === 'flashcards') {
                 </div>
 
                 <div id="editArea_${t.id}" style="display:none; margin-top:20px; background:#f8fafc; padding:15px; border-radius:12px; border:1px solid #cbd5e1;">
-                    <input type="text" id="editEng_${t.id}" value="${t.english || ''}" style="width:100%; padding:10px; margin-bottom:10px; border-radius:8px; border:1px solid #ddd; text-align:center;">
-                    <input type="text" id="editArb_${t.id}" value="${t.arabic || ''}" style="width:100%; padding:10px; margin-bottom:10px; border-radius:8px; border:1px solid #ddd; text-align:center; direction:rtl;">
-                    <button class="hero-btn" onclick="appInstance.saveCardEdit('${t.id}')" style="width:100%; background:#8b5cf6;">✅ ${this.t('حفظ التعديل', 'Save')}</button>
+                    <input type="text" id="editEng_${t.id}" value="${t.english || ''}" style="width:100%; padding:10px; margin-bottom:10px; border-radius:8px; text-align:center;">
+                    <input type="text" id="editArb_${t.id}" value="${t.arabic || ''}" style="width:100%; padding:10px; margin-bottom:10px; border-radius:8px; text-align:center; direction:rtl;">
+                    <button class="hero-btn" onclick="appInstance.saveCardEdit('${t.id}')" style="width:100%; background:#8b5cf6;">✅ حفظ التعديل</button>
                 </div>
 
                 <div class="card-controls-row" style="margin-top:20px;">
@@ -2286,13 +2296,10 @@ if (this.currentPage === 'flashcards') {
                     <button class="hero-btn" data-action="deleteWord" data-param="${t.id}" style="background:#ef4444;">🗑️</button>
                 </div>
 
-                <button class="hero-btn" data-action="restartCards" data-param="remaining" style="width:100%; margin:12px 0; background:#f59e0b;">🔁 ${this.t('تكرار المتبقي', 'Repeat Remaining')}</button>
-                
-                <div class="card-nav-row">
-                    <button class="hero-btn" data-action="prevC" style="background:#64748b;">${this.t('السابق', 'Prev')}</button>
-                    <button class="hero-btn" data-action="nextC" data-total="${active.length}" style="background:#64748b;">${this.t('التالي', 'Next')}</button>
+                <div class="card-nav-row" style="margin-top:20px;">
+                    <button class="hero-btn" data-action="prevC" style="background:#64748b;">السابق</button>
+                    <button class="hero-btn" data-action="nextC" data-total="${active.length}" style="background:#64748b;">التالي</button>
                 </div>
-                <div style="text-align:center; margin-top:10px; color:#666;">${this.currentCardIndex + 1} / ${active.length}</div>
             </main>`;
         }
         if (this.currentPage === 'quiz') { if (this.quizIndex >= this.quizQuestions.length) { const pass = (this.quizScore / this.quizQuestions.length) >= 0.75; if (this.isUnlockTest && pass) { this.unlockedLessons.push(String(this.tempLessonToUnlock)); this.userCoins += 20; this.saveUserData(); this.updateLevelAndBadges(); this.showCustomModal('success', '🎉', this.t(`لقد فتحت درساً جديداً وحصلت على 20 لؤلؤة!`, `You unlocked a new lesson and earned 20 pearls!`)); } this.saveUserData(); return `<div class="reading-card finish-box" style="text-align:center;"><h2>${pass ? this.t("نجحت! 🎉", "Passed! 🎉") : this.t("حاول مجدداً", "Try Again")}</h2><button class="hero-btn" data-action="backToLessons" style="margin-top:15px;">${this.t('متابعة', 'Continue')}</button></div>`; } const q = this.quizQuestions[this.quizIndex]; return `<div class="reading-card quiz-box"><div class="quiz-info" style="font-size:0.8rem; margin-bottom:12px; text-align:center;">${this.t('السؤال', 'Question')} ${this.quizIndex + 1}/${this.quizQuestions.length}</div><div class="quiz-question-row" style="display:flex; align-items:center; gap:10px; justify-content:center;"><h2 style="margin:0; font-size:1.2rem;">${q.english}</h2><button class="quiz-speak-btn" data-action="speak" data-param="${q.english}" style="background:none; border:none; font-size:1.3rem; cursor:pointer;">🔊</button></div><div class="quiz-options" style="margin-top:20px;">${this.quizOptions.map(opt => `<button class="quiz-opt-btn" data-action="ansQ" data-param="${opt}" data-correct="${q.arabic}">${opt}</button>`).join('')}</div></div>`; }
