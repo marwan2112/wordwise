@@ -466,7 +466,7 @@ class App {
         }
     }
 
-    async loadUserData(uid) {
+async loadUserData(uid) {
         if (!uid) return;
         try {
             this.loadingData = true;
@@ -478,6 +478,11 @@ class App {
             if (docSnap.exists()) {
                 const data = docSnap.data();
                 console.log("✅ تم تحميل البيانات من Firestore");
+                
+                // --- الجزء المضاف والمعدل لحفظ التعديلات ---
+                this.userModifiedWords = data.userModifiedWords ?? {};
+                // ----------------------------------------
+
                 this.userCoins = data.userCoins ?? 100;
                 this.masteredWords = data.masteredWords ?? [];
                 this.unlockedLessons = data.unlockedLessons ?? [];
@@ -486,8 +491,10 @@ class App {
                 this.xpEarnedWords = data.xpEarnedWords ?? [];
                 this.userStats = data.userStats ?? { xp: 0, level: 1, badges: [], earnedBadges: [], tier: 'برونزي' };
                 this.userProfile = data.userProfile ?? { name: '', age: '', joinDate: new Date().toLocaleDateString('ar-EG'), level: 'A1', image: '', testsHistory: [] };
+                
                 if (data.userProfile) Object.assign(this.userProfile, data.userProfile);
                 if (!this.userProfile.name) this.userProfile.name = data.name || this.userData?.name || '';
+                
                 this.placementResults = data.placementResults ?? [];
                 this.placementFullHistory = data.placementFullHistory ?? [];
                 this.exerciseStats = data.exerciseStats ?? { quiz: { correct: 0, total: 0 }, listening: { correct: 0, total: 0 }, spelling: { correct: 0, total: 0 }, gapFill: { correct: 0, total: 0 } };
@@ -497,15 +504,19 @@ class App {
                 this.gapFillUnlocked = data.gapFillUnlocked ?? {};
                 this.customLessons = data.customLessons ?? {};
                 this.generatedLessons = data.generatedLessons ?? {};
+                
                 if (data.adDailyData) this.adDailyData = data.adDailyData;
                 else this.adDailyData = { count: 0, date: new Date().toDateString(), levelCompleted: 0 };
+                
                 if (this.placementResults?.length) this.userProfile.level = this.placementResults[0].level;
+                
                 this.isDataLoaded = true;
                 this.canSave = true;
                 await this.updateLevelAndBadges();
             } else {
                 console.log("ℹ️ مستخدم جديد، تهيئة بيانات افتراضية");
                 this.resetToDefaults();
+                this.userModifiedWords = {}; // تهيئة فارغة للمستخدم الجديد
                 this.isDataLoaded = true;
                 this.canSave = true;
             }
@@ -519,7 +530,6 @@ class App {
             this.render();
         }
     }
-
     resetToDefaults() {
         this.userCoins = 100;
         this.masteredWords = [];
@@ -544,12 +554,14 @@ class App {
         this.adDailyData = { count: 0, date: new Date().toDateString(), levelCompleted: 0 };
     }
 
-    async saveUserData() {
+async saveUserData() {
         if (!this.currentUser || this.loadingData || !this.isDataLoaded || !this.canSave) return;
         const uid = this.currentUser.uid;
         const data = {
             userVocabulary: this.userVocabulary || [],
             masteredWords: this.masteredWords || [],
+            // السطر التالي هو المسؤول عن حفظ تعديلات الكلمات في السحابة
+            userModifiedWords: this.userModifiedWords || {}, 
             unlockedLessons: this.unlockedLessons || [],
             hiddenFromCards: this.hiddenFromCards || [],
             customLessons: this.customLessons || {},
@@ -574,13 +586,12 @@ class App {
         };
         try {
             await setDoc(doc(db, "users", uid), data, { merge: true });
-            console.log("✅ تم الحفظ في Firestore");
+            console.log("✅ تم الحفظ في Firestore بنجاح (بما في ذلك التعديلات)");
         } catch (err) {
             console.error("❌ فشل الحفظ:", err);
             localStorage.setItem(`backup_data_${uid}`, JSON.stringify(data));
         }
     }
-
     async logout() {
         await this.saveUserData();
         await signOut(auth);
@@ -2243,25 +2254,18 @@ async saveCardEdit(wordId) {
         }
 
 if (this.currentPage === 'flashcards') {
-            // جلب البيانات الأصلية (سواء من الدالة أو من النافذة)
+            // 1. جلب البيانات ودمج التعديلات فوراً
             let rawTerms = (allTerms && allTerms.length > 0) ? allTerms : (window.lessonsData || []);
-            
-            // تطبيق التعديلات التي قام بها المستخدم (الدمج الذكي)
             let termsToUse = rawTerms.map(word => {
                 if (this.userModifiedWords && this.userModifiedWords[word.id]) {
-                    return { 
-                        ...word, 
-                        english: this.userModifiedWords[word.id].english, 
-                        arabic: this.userModifiedWords[word.id].arabic 
-                    };
+                    return { ...word, ...this.userModifiedWords[word.id] };
                 }
                 return word;
             });
 
-            // التصفية لإظهار الكلمات غير المتقنة فقط
+            // 2. تصفية غير المتقن
             let active = termsToUse.filter(t => t && t.id && !this.masteredWords.includes(String(t.id)));
 
-            // إذا انتهت الكلمات
             if (active.length === 0) {
                 return `<div class="reading-card" style="text-align:center; padding:40px 20px;">
                             <h3>🎉 اكتملت المراجعة!</h3>
@@ -2274,7 +2278,7 @@ if (this.currentPage === 'flashcards') {
 
             return `<main class="main-content">
                 <div style="text-align: right; margin-bottom: 10px;">
-                    <button onclick="appInstance.toggleEditMode('${t.id}')" style="background: #e2e8f0; border: none; padding: 8px 15px; border-radius: 20px; cursor: pointer;">✏️ تعديل</button>
+                    <button onclick="appInstance.toggleEditMode('${t.id}')" style="background: #e2e8f0; border: none; padding: 8px 15px; border-radius: 20px; cursor: pointer; font-size:0.8rem;">✏️ تعديل الكلمة</button>
                 </div>
 
                 <div class="flashcard-container" onclick="this.querySelector('.flashcard').classList.toggle('flipped')">
@@ -2285,8 +2289,8 @@ if (this.currentPage === 'flashcards') {
                 </div>
 
                 <div id="editArea_${t.id}" style="display:none; margin-top:20px; background:#f8fafc; padding:15px; border-radius:12px; border:1px solid #cbd5e1;">
-                    <input type="text" id="editEng_${t.id}" value="${t.english || ''}" style="width:100%; padding:10px; margin-bottom:10px; border-radius:8px; text-align:center;">
-                    <input type="text" id="editArb_${t.id}" value="${t.arabic || ''}" style="width:100%; padding:10px; margin-bottom:10px; border-radius:8px; text-align:center; direction:rtl;">
+                    <input type="text" id="editEng_${t.id}" value="${t.english || ''}" style="width:100%; padding:10px; margin-bottom:10px; border-radius:8px; border:1px solid #ddd; text-align:center;">
+                    <input type="text" id="editArb_${t.id}" value="${t.arabic || ''}" style="width:100%; padding:10px; margin-bottom:10px; border-radius:8px; border:1px solid #ddd; text-align:center; direction:rtl;">
                     <button class="hero-btn" onclick="appInstance.saveCardEdit('${t.id}')" style="width:100%; background:#8b5cf6;">✅ حفظ التعديل</button>
                 </div>
 
@@ -2296,9 +2300,15 @@ if (this.currentPage === 'flashcards') {
                     <button class="hero-btn" data-action="deleteWord" data-param="${t.id}" style="background:#ef4444;">🗑️</button>
                 </div>
 
-                <div class="card-nav-row" style="margin-top:20px;">
+                <button class="hero-btn" data-action="restartCards" data-param="remaining" style="width:100%; margin:12px 0; background:#f59e0b;">🔁 تكرار المتبقي</button>
+                
+                <div class="card-nav-row">
                     <button class="hero-btn" data-action="prevC" style="background:#64748b;">السابق</button>
                     <button class="hero-btn" data-action="nextC" data-total="${active.length}" style="background:#64748b;">التالي</button>
+                </div>
+
+                <div style="text-align:center; margin-top:15px; color:#666; font-size:0.9rem; font-weight:bold;">
+                    ${this.currentCardIndex + 1} / ${active.length}
                 </div>
             </main>`;
         }
