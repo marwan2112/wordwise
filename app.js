@@ -2121,9 +2121,9 @@ class App {
         }
 
 if (this.currentPage === 'flashcards') {
-            // تأمين جلب البيانات من أكثر من مصدر لضمان عدم حدوث خطأ filter
+            // 1. تجميع الكلمات من كل المصادر المتاحة لضمان عدم ظهور مصفوفة فارغة
             let allTerms = [];
-            if (Array.isArray(window.lessonsData) && window.lessonsData.length > 0) {
+            if (window.lessonsData && Array.isArray(window.lessonsData) && window.lessonsData.length > 0) {
                 allTerms = window.lessonsData;
             } else if (this.lessonsList && Array.isArray(this.lessonsList)) {
                 allTerms = this.lessonsList;
@@ -2131,33 +2131,32 @@ if (this.currentPage === 'flashcards') {
                 allTerms = Object.values(this.customLessons).flatMap(l => l.words || []);
             }
 
-            let active = [];
-            if (allTerms.length > 0) {
-                if (this.showAllCardsTemporary) {
-                    active = allTerms.filter(t => t && t.id && !this.hiddenFromCards.includes(String(t.id)) && !this.repeatAllSessionMastered.includes(String(t.id)));
-                } else {
-                    active = allTerms.filter(t => t && t.id && !this.masteredWords.includes(String(t.id)) && !this.hiddenFromCards.includes(String(t.id)));
-                }
+            // 2. تصفية الكلمات (عرض غير المتقن وغير المخفي)
+            let active = allTerms.filter(t => t && t.id && !this.masteredWords.includes(String(t.id)) && !this.hiddenFromCards.includes(String(t.id)));
+
+            // 3. حماية: إذا كانت القائمة فارغة بسبب "الإتقان"، اعرض كل الكلمات المتاحة (تجاهل شرط الإتقان)
+            if (active.length === 0 && allTerms.length > 0) {
+                active = allTerms.filter(t => t && t.id && !this.hiddenFromCards.includes(String(t.id)));
             }
 
+            // 4. إذا كانت قاعدة البيانات فارغة تماماً
             if (active.length === 0) {
                 return `<div class="reading-card" style="text-align:center;">
-                            <div style="font-size:2.5rem; margin-bottom:10px;">🧠</div>
-                            <h3>🎉 ${this.t('اكتملت المراجعة!', 'Review completed!')}</h3>
-                            <p>${this.t('لا توجد بطاقات حالياً للمراجعة', 'No cards available for review')}</p>
-                            <button class="hero-btn" data-action="restartCards" data-param="all" style="background:#f59e0b;">${this.t('إعادة تكرار الكل 🔁', 'Repeat All 🔁')}</button>
+                            <div style="font-size:2.5rem; margin-bottom:10px;">Empty</div>
+                            <h3>${this.t('قائمة الكلمات فارغة', 'Vocabulary list is empty')}</h3>
+                            <p>${this.t('يرجى فتح درس يحتوي على كلمات أولاً', 'Please unlock a lesson with words first')}</p>
                             <button class="hero-btn" data-action="goHome" style="margin-top:10px; background:#64748b;">${this.t('الرئيسية', 'Home')}</button>
                         </div>`;
             }
 
+            // ضمان وجود عنصر صالح للعرض
             const t = active[this.currentCardIndex] || active[0];
-            if (!t) return `<div class="reading-card">Error loading card</div>`;
 
             return `<main class="main-content">
                 <div class="flashcard-container" onclick="this.querySelector('.flashcard').classList.toggle('flipped')">
                     <div class="flashcard">
-                        <div class="flashcard-front"><h1>${t.english || ''}</h1></div>
-                        <div class="flashcard-back"><h1>${t.arabic || ''}</h1></div>
+                        <div class="flashcard-front"><h1>${t.english || 'No Text'}</h1></div>
+                        <div class="flashcard-back"><h1>${t.arabic || 'لا يوجد نص'}</h1></div>
                     </div>
                 </div>
                 <div class="card-controls-row">
@@ -2165,7 +2164,7 @@ if (this.currentPage === 'flashcards') {
                     <button class="hero-btn" data-action="masterWordFlash" data-param="${t.id}" style="background:#10b981;">✅ ${this.t('اعرفها', 'Master')}</button>
                     <button class="hero-btn" data-action="deleteWord" data-param="${t.id}" style="background:#ef4444;">🗑️ ${this.t('حذف', 'Delete')}</button>
                 </div>
-                <button class="hero-btn" data-action="restartCards" data-param="remaining" style="width:100%; margin:12px 0; background:#f59e0b;">🔁 ${this.t('تكرار المتبقي', 'Repeat Remaining')}</button>
+                <button class="hero-btn" data-action="restartCards" data-param="all" style="width:100%; margin:12px 0; background:#f59e0b;">🔁 ${this.t('إعادة مراجعة الكل', 'Review All Again')}</button>
                 <div class="card-nav-row">
                     <button class="hero-btn" data-action="prevC" style="background:#64748b;">${this.t('السابق', 'Previous')}</button>
                     <button class="hero-btn" data-action="nextC" data-total="${active.length}" style="background:#64748b;">${this.t('التالي', 'Next')}</button>
