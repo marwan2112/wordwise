@@ -1884,51 +1884,49 @@ class App {
         document.addEventListener('input', (e) => { if (e.target.id === 'spellingInput') this.spellingUserAnswer = e.target.value; });
     }
 async saveCardEdit(wordId) {
-        // 1. الوصول للحقول باستخدام الـ ID الذي وضعناه في getView
-        const inputEng = document.getElementById(`editEng_${wordId}`);
-        const inputArb = document.getElementById(`editArb_${wordId}`);
-        
-        if (!inputEng || !inputArb) return;
+        try {
+            const inputEng = document.getElementById(`editEng_${wordId}`);
+            const inputArb = document.getElementById(`editArb_${wordId}`);
+            
+            if (!inputEng || !inputArb) return;
 
-        const newEng = inputEng.value.trim();
-        const newArb = inputArb.value.trim();
+            const newEng = inputEng.value.trim();
+            const newArb = inputArb.value.trim();
 
-        // فحص سريع للتأكد من وجود نص
-        if (!newEng || !newArb) {
-            this.showCustomModal('error', '⚠️', this.t('يرجى عدم ترك الحقول فارغة', 'Please do not leave fields empty'));
-            return;
-        }
-
-        // 2. تحديث الكلمة في الذاكرة المؤقتة window.lessonsData لضمان التغيير الفوري
-        if (window.lessonsData) {
-            const idx = window.lessonsData.findIndex(w => String(w.id) === String(wordId));
-            if (idx !== -1) {
-                window.lessonsData[idx].english = newEng;
-                window.lessonsData[idx].arabic = newArb;
+            if (!newEng || !newArb) {
+                alert("يرجى ملء الحقول");
+                return;
             }
-        }
 
-        // 3. تحديث الكلمة داخل الدروس المخصصة (customLessons) لضمان الحفظ في Firebase
-        for (let lessonId in this.customLessons) {
-            if (this.customLessons[lessonId].words) {
-                const wIdx = this.customLessons[lessonId].words.findIndex(w => String(w.id) === String(wordId));
-                if (wIdx !== -1) {
-                    this.customLessons[lessonId].words[wIdx].english = newEng;
-                    this.customLessons[lessonId].words[wIdx].arabic = newArb;
+            // تحديث البيانات في الذاكرة
+            if (window.lessonsData) {
+                const idx = window.lessonsData.findIndex(w => String(w.id) === String(wordId));
+                if (idx !== -1) {
+                    window.lessonsData[idx].english = newEng;
+                    window.lessonsData[idx].arabic = newArb;
                 }
             }
-        }
 
-        // 4. الحفظ النهائي في السحابة (Firebase)
-        try {
+            // تحديث في الدروس المخصصة للحفظ في Firebase
+            for (let id in this.customLessons) {
+                if (this.customLessons[id].words) {
+                    const wIdx = this.customLessons[id].words.findIndex(w => String(w.id) === String(wordId));
+                    if (wIdx !== -1) {
+                        this.customLessons[id].words[wIdx].english = newEng;
+                        this.customLessons[id].words[wIdx].arabic = newArb;
+                    }
+                }
+            }
+
             await this.saveUserData();
-            this.showCustomModal('success', '✅', this.t('تم حفظ التعديل بنجاح', 'Changes saved successfully!'));
-            
-            // إعادة بناء الشاشة لتحديث البيانات
-            this.render(); 
-        } catch (error) {
-            console.error("Save Error:", error);
-            this.showCustomModal('error', '❌', this.t('فشل الحفظ', 'Failed to save'));
+            if (this.showCustomModal) {
+                this.showCustomModal('success', '✅', 'تم الحفظ');
+            } else {
+                alert("تم الحفظ بنجاح");
+            }
+            this.render();
+        } catch (e) {
+            console.error(e);
         }
     }
     getBadgesDisplay() { const earnedBadges = this.userStats.earnedBadges || []; const allBadges = [...this.badgeDefinitions.general, ...this.badgeDefinitions.quiz, ...this.badgeDefinitions.listening, ...this.badgeDefinitions.spelling, ...this.badgeDefinitions.gapFill]; const displayBadges = allBadges.slice(0, 8); if (displayBadges.length === 0) return `<div class="badges-container" data-action="showBadges" style="justify-content:center; color:#aaa; cursor:pointer;"><span>🏅 ${this.t('اضغط لعرض الأوسمة', 'Click to view badges')}</span></div>`; return `<div class="badges-container" data-action="showBadges">${displayBadges.map(b => { const isEarned = earnedBadges.includes(b.id); return `<span class="badge-item ${isEarned ? 'earned' : 'locked'}" title="${this.t(b.name, b.nameEn)}">${b.icon}</span>`; }).join('')}${allBadges.length > 8 ? `<span class="badge-item" style="font-size:0.9rem;">+${allBadges.length - 8}</span>` : ''}</div>`; }
@@ -2172,47 +2170,43 @@ if (this.currentPage === 'flashcards') {
             let termsToUse = (allTerms && allTerms.length > 0) ? allTerms : (window.lessonsData || []);
             let active = termsToUse.filter(t => t && t.id && !this.masteredWords.includes(String(t.id)) && !this.hiddenFromCards.includes(String(t.id)));
 
+            // إذا كانت القائمة فارغة
             if (active.length === 0) {
-                return `<div class="reading-card" style="text-align:center;">
-                            <div style="font-size:2.5rem; margin-bottom:10px;">🧠</div>
-                            <h3>🎉 ${this.t('اكتملت المراجعة!', 'Review completed!')}</h3>
-                            <button class="hero-btn" data-action="restartCards" data-param="all" style="background:#f59e0b; width:100%; margin-top:10px;">${this.t('إعادة تكرار الكل 🔁', 'Repeat All 🔁')}</button>
-                            <button class="hero-btn" data-action="goHome" style="margin-top:10px; background:#64748b; width:100%;">🏠 ${this.t('الرئيسية', 'Home')}</button>
+                return `<div class="reading-card" style="text-align:center; padding:40px 20px;">
+                            <div style="font-size:3rem; margin-bottom:15px;">🎉</div>
+                            <h3>${this.t('اكتملت المراجعة!', 'Review completed!')}</h3>
+                            <button class="hero-btn" data-action="restartCards" data-param="all" style="background:#f59e0b; width:100%; margin:15px 0;">🔁 ${this.t('إعادة تكرار الكل', 'Repeat All')}</button>
+                            <button class="hero-btn" data-action="goHome" style="background:#64748b; width:100%;">🏠 ${this.t('الرئيسية', 'Home')}</button>
                         </div>`;
             }
 
             const t = active[this.currentCardIndex] || active[0];
 
             return `<main class="main-content">
-                <div class="flashcard-container" style="perspective: none;">
-                    <div class="reading-card" style="background:white; padding:20px; border-radius:15px; box-shadow:0 4px 15px rgba(0,0,0,0.1); border: 2px solid #8b5cf6;">
-                        <div style="margin-bottom:15px;">
-                            <label style="display:block; font-size:0.75rem; color:#8b5cf6; margin-bottom:5px; font-weight:bold;">English:</label>
-                            <input type="text" id="editEng_${t.id}" value="${t.english || ''}" style="width:100%; padding:12px; border:1px solid #ddd; border-radius:10px; font-size:1.3rem; text-align:center; background:#f9f9ff;">
-                        </div>
-                        
-                        <div style="margin-bottom:15px;">
-                            <label style="display:block; font-size:0.75rem; color:#8b5cf6; margin-bottom:5px; font-weight:bold;">العربية:</label>
-                            <input type="text" id="editArb_${t.id}" value="${t.arabic || ''}" style="width:100%; padding:12px; border:1px solid #ddd; border-radius:10px; font-size:1.3rem; text-align:center; direction:rtl; background:#f9f9ff;">
-                        </div>
-                        
-                        <button class="hero-btn" onclick="appInstance.saveCardEdit('${t.id}')" style="width:100%; background:#8b5cf6; color:white; font-weight:bold; box-shadow: 0 4px 0 #6d28d9;">💾 ${this.t('حفظ التعديلات', 'Save Changes')}</button>
+                <div class="reading-card" style="border: 2px solid #8b5cf6; margin-bottom:20px;">
+                    <div style="margin-bottom:10px;">
+                        <input type="text" id="editEng_${t.id}" value="${t.english || ''}" style="width:100%; padding:10px; border:1px solid #ddd; border-radius:8px; font-size:1.2rem; text-align:center;">
                     </div>
+                    <div style="margin-bottom:10px;">
+                        <input type="text" id="editArb_${t.id}" value="${t.arabic || ''}" style="width:100%; padding:10px; border:1px solid #ddd; border-radius:8px; font-size:1.2rem; text-align:center; direction:rtl;">
+                    </div>
+                    <button class="hero-btn" data-action="saveCardEdit" data-param="${t.id}" style="width:100%; background:#8b5cf6;">💾 ${this.t('حفظ التعديلات', 'Save')}</button>
                 </div>
 
-                <div class="card-controls-row" style="margin-top:20px;">
-                    <button class="hero-btn" data-action="speak" data-param="${t.english}" style="background:#6366f1;">🔊 ${this.t('نطق', 'Speak')}</button>
-                    <button class="hero-btn" data-action="masterWordFlash" data-param="${t.id}" style="background:#10b981;">✅ ${this.t('اعرفها', 'Master')}</button>
-                    <button class="hero-btn" data-action="deleteWord" data-param="${t.id}" style="background:#ef4444;">🗑️ ${this.t('حذف', 'Delete')}</button>
+                <div class="card-controls-row">
+                    <button class="hero-btn" data-action="speak" data-param="${t.english}" style="background:#6366f1;">🔊</button>
+                    <button class="hero-btn" data-action="masterWordFlash" data-param="${t.id}" style="background:#10b981;">✅</button>
+                    <button class="hero-btn" data-action="deleteWord" data-param="${t.id}" style="background:#ef4444;">🗑️</button>
                 </div>
 
                 <button class="hero-btn" data-action="restartCards" data-param="remaining" style="width:100%; margin:12px 0; background:#f59e0b;">🔁 ${this.t('تكرار المتبقي', 'Repeat Remaining')}</button>
                 
                 <div class="card-nav-row">
-                    <button class="hero-btn" data-action="prevC" style="background:#64748b;">${this.t('السابق', 'Previous')}</button>
+                    <button class="hero-btn" data-action="prevC" style="background:#64748b;">${this.t('السابق', 'Prev')}</button>
                     <button class="hero-btn" data-action="nextC" data-total="${active.length}" style="background:#64748b;">${this.t('التالي', 'Next')}</button>
                 </div>
-                <div style="text-align:center; margin-top:8px; color:#666; font-size:0.85rem;">${this.currentCardIndex + 1} / ${active.length}</div>
+                <div style="text-align:center; margin-top:10px; color:#666;">${this.currentCardIndex + 1} / ${active.length}</div>
+                <button class="hero-btn" data-action="goHome" style="width:100%; margin-top:15px; background:#475569;">🏠 ${this.t('الرئيسية', 'Home')}</button>
             </main>`;
         }
         if (this.currentPage === 'quiz') { if (this.quizIndex >= this.quizQuestions.length) { const pass = (this.quizScore / this.quizQuestions.length) >= 0.75; if (this.isUnlockTest && pass) { this.unlockedLessons.push(String(this.tempLessonToUnlock)); this.userCoins += 20; this.saveUserData(); this.updateLevelAndBadges(); this.showCustomModal('success', '🎉', this.t(`لقد فتحت درساً جديداً وحصلت على 20 لؤلؤة!`, `You unlocked a new lesson and earned 20 pearls!`)); } this.saveUserData(); return `<div class="reading-card finish-box" style="text-align:center;"><h2>${pass ? this.t("نجحت! 🎉", "Passed! 🎉") : this.t("حاول مجدداً", "Try Again")}</h2><button class="hero-btn" data-action="backToLessons" style="margin-top:15px;">${this.t('متابعة', 'Continue')}</button></div>`; } const q = this.quizQuestions[this.quizIndex]; return `<div class="reading-card quiz-box"><div class="quiz-info" style="font-size:0.8rem; margin-bottom:12px; text-align:center;">${this.t('السؤال', 'Question')} ${this.quizIndex + 1}/${this.quizQuestions.length}</div><div class="quiz-question-row" style="display:flex; align-items:center; gap:10px; justify-content:center;"><h2 style="margin:0; font-size:1.2rem;">${q.english}</h2><button class="quiz-speak-btn" data-action="speak" data-param="${q.english}" style="background:none; border:none; font-size:1.3rem; cursor:pointer;">🔊</button></div><div class="quiz-options" style="margin-top:20px;">${this.quizOptions.map(opt => `<button class="quiz-opt-btn" data-action="ansQ" data-param="${opt}" data-correct="${q.arabic}">${opt}</button>`).join('')}</div></div>`; }
