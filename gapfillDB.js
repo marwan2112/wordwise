@@ -21398,6 +21398,1565 @@ window.gapfillDB = {
             originalSentence: "Children have a Questioning mind that makes them want to know everything."
         }
     ],
+    "76-1": [ // problem solving
+        {
+            sentence: "Critical thinking and _______ _______ are essential skills in any career.",
+            options: ["problem solving", "teamwork", "persistence", "proposal"],
+            originalSentence: "Critical thinking and problem solving are essential skills in any career."
+        }
+    ],
+    "76-2": [ // group project
+        {
+            sentence: "We need to divide the tasks for our _______ _______ to finish on time.",
+            options: ["group project", "pilot program", "city council", "campaign"],
+            originalSentence: "We need to divide the tasks for our group project to finish on time."
+        }
+    ],
+    "76-3": [ // solution
+        {
+            sentence: "We spent hours brainstorming but we finally found a _______.",
+            options: ["solution", "fee", "district", "issue"],
+            originalSentence: "We spent hours brainstorming but we finally found a solution."
+        }
+    ],
+    "76-4": [ // reduce
+        {
+            sentence: "We must _______ the amount of electricity we use every day.",
+            options: ["reduce", "impose", "promote", "analyze"],
+            originalSentence: "We must reduce the amount of electricity we use every day."
+        }
+    ],
+    "76-5": [ // plastic waste
+        {
+            sentence: "Recycling is one way to manage the growing _______ _______ problem.",
+            options: ["plastic waste", "alternatives", "findings", "sources"],
+            originalSentence: "Recycling is one way to manage the growing plastic waste problem."
+        }
+    ],
+    "76-6": [ // community
+        {
+            sentence: "The local _______ worked together to build a new park.",
+            options: ["community", "residents", "officials", "businesses"],
+            originalSentence: "The local community worked together to build a new park."
+        }
+    ],
+    "76-7": [ // overwhelmed
+        {
+            sentence: "I felt _______ with the amount of homework I had last night.",
+            options: ["overwhelmed", "grateful", "effective", "realistic"],
+            originalSentence: "I felt overwhelmed with the amount of homework I had last night."
+        }
+    ],
+    "76-8": [ // discussing
+        {
+            sentence: "The committee is _______ the new budget for next year.",
+            options: ["discussing", "celebrating", "implementing", "coordinating"],
+            originalSentence: "The committee is discussing the new budget for next year."
+        }
+    ],
+    "76-9": [ // campaign
+        {
+            sentence: "The health _______ encourages people to eat more vegetables.",
+            options: ["campaign", "workshop", "proposal", "survey"],
+            originalSentence: "The health campaign encourages people to eat more vegetables."
+        }
+    ],
+    "76-10": [ // workshops
+        {
+            sentence: "The company offers _______ to help employees learn new software.",
+            options: ["workshops", "initiatives", "alternatives", "findings"],
+            originalSentence: "The company offers workshops to help employees learn new software."
+        }
+    ],
+    "76-11": [ // immediate
+        {
+            sentence: "The doctor said the patient needs _______ medical attention.",
+            options: ["immediate", "realistic", "effective", "approved"],
+            originalSentence: "The doctor said the patient needs immediate medical attention."
+        }
+    ],
+    "76-12": [ // banned
+        {
+            sentence: "Smoking is _______ in all public buildings in this city.",
+            options: ["banned", "identified", "proposed", "promoted"],
+            originalSentence: "Smoking is banned in all public buildings in this city."
+        }
+    ],
+    "76-13": [ // single-use plastics
+        {
+            sentence: "Many cafes are replacing _______ _______ with paper straws.",
+            options: ["single-use plastics", "reusable bags", "alternatives", "sources"],
+            originalSentence: "Many cafes are replacing single-use plastics with paper straws."
+        }
+    ],
+    "76-14": [ // effective
+        {
+            sentence: "The new law proved to be very _______ in reducing crime.",
+            options: ["effective", "overwhelmed", "immediate", "grateful"],
+            originalSentence: "The new law proved to be very effective in reducing crime."
+        }
+    ],
+    "76-15": [ // realistic
+        {
+            sentence: "You need to set _______ goals if you want to succeed.",
+            options: ["realistic", "immediate", "effective", "overwhelmed"],
+            originalSentence: "You need to set realistic goals if you want to succeed."
+        }
+    ],
+    "76-16": [ // analyze
+        {
+            sentence: "Scientists need to _______ the data before they can draw a conclusion.",
+            options: ["analyze", "impose", "promote", "propose"],
+            originalSentence: "Scientists need to analyze the data before they can draw a conclusion."
+        }
+    ],
+    "76-17": [ // sources
+        {
+            sentence: "The journalist always checks her _______ before writing a story.",
+            options: ["sources", "findings", "initiatives", "alternatives"],
+            originalSentence: "The journalist always checks her sources before writing a story."
+        }
+    ],
+    "76-18": [ // survey
+        {
+            sentence: "We conducted a _______ to find out what customers want.",
+            options: ["survey", "campaign", "workshop", "proposal"],
+            originalSentence: "We conducted a survey to find out what customers want."
+        }
+    ],
+    "76-19": [ // businesses
+        {
+            sentence: "Small _______ are the heart of the local economy.",
+            options: ["businesses", "officials", "residents", "districts"],
+            originalSentence: "Small businesses are the heart of the local economy."
+        }
+    ],
+    "76-20": [ // residents
+        {
+            sentence: "The _______ of the building complained about the loud noise.",
+            options: ["residents", "officials", "businesses", "council members"],
+            originalSentence: "The residents of the building complained about the loud noise."
+        }
+    ],
+    "76-21": [ // data
+        {
+            sentence: "The computer can process large amounts of _______ in seconds.",
+            options: ["data", "issue", "fee", "proposal"],
+            originalSentence: "The computer can process large amounts of data in seconds."
+        }
+    ],
+    "76-22": [ // initiatives
+        {
+            sentence: "The government has started several _______ to protect the environment.",
+            options: ["initiatives", "workshops", "findings", "sources"],
+            originalSentence: "The government has started several initiatives to protect the environment."
+        }
+    ],
+    "76-23": [ // officials
+        {
+            sentence: "Government _______ met to discuss the new trade agreement.",
+            options: ["officials", "residents", "businesses", "alternatives"],
+            originalSentence: "Government officials met to discuss the new trade agreement."
+        }
+    ],
+    "76-24": [ // coordinate
+        {
+            sentence: "We need to _______ our efforts to make the event a success.",
+            options: ["coordinate", "impose", "analyze", "promote"],
+            originalSentence: "We need to coordinate our efforts to make the event a success."
+        }
+    ],
+    "76-25": [ // alternatives
+        {
+            sentence: "Solar and wind energy are great _______ to fossil fuels.",
+            options: ["alternatives", "recommendations", "findings", "initiatives"],
+            originalSentence: "Solar and wind energy are great alternatives to fossil fuels."
+        }
+    ],
+    "76-26": [ // identified
+        {
+            sentence: "The police _______ the suspect using security camera footage.",
+            options: ["identified", "banned", "proposed", "approved"],
+            originalSentence: "The police identified the suspect using security camera footage."
+        }
+    ],
+    "76-27": [ // issue
+        {
+            sentence: "Climate change is a global _______ that affects everyone.",
+            options: ["issue", "solution", "fee", "data"],
+            originalSentence: "Climate change is a global issue that affects everyone."
+        }
+    ],
+    "76-28": [ // propose
+        {
+            sentence: "I would like to _______ a new plan for the marketing campaign.",
+            options: ["propose", "analyze", "coordinate", "implement"],
+            originalSentence: "I would like to propose a new plan for the marketing campaign."
+        }
+    ],
+    "76-29": [ // promote
+        {
+            sentence: "The company uses social media to _______ its new products.",
+            options: ["promote", "impose", "reduce", "analyze"],
+            originalSentence: "The company uses social media to promote its new products."
+        }
+    ],
+    "76-30": [ // reusable bags
+        {
+            sentence: "Please remember to bring your _______ _______ when you go shopping.",
+            options: ["reusable bags", "single-use plastics", "alternatives", "findings"],
+            originalSentence: "Please remember to bring your reusable bags when you go shopping."
+        }
+    ],
+    "76-31": [ // city council
+        {
+            sentence: "The _______ _______ voted to increase the number of public parks.",
+            options: ["city council", "pilot program", "group project", "public awareness"],
+            originalSentence: "The city council voted to increase the number of public parks."
+        }
+    ],
+    "76-32": [ // impose
+        {
+            sentence: "The government decided to _______ a new tax on luxury goods.",
+            options: ["impose", "reduce", "promote", "propose"],
+            originalSentence: "The government decided to impose a new tax on luxury goods."
+        }
+    ],
+    "76-33": [ // fee
+        {
+            sentence: "You must pay a small _______ to enter the national park.",
+            options: ["fee", "issue", "data", "district"],
+            originalSentence: "You must pay a small fee to enter the national park."
+        }
+    ],
+    "76-34": [ // council member
+        {
+            sentence: "The _______ _______ listened to the concerns of the citizens.",
+            options: ["council member", "official", "resident", "volunteer"],
+            originalSentence: "The council member listened to the concerns of the citizens."
+        }
+    ],
+    "76-35": [ // recommendations
+        {
+            sentence: "The report includes several _______ for improving safety.",
+            options: ["recommendations", "findings", "initiatives", "sources"],
+            originalSentence: "The report includes several recommendations for improving safety."
+        }
+    ],
+    "76-36": [ // findings
+        {
+            sentence: "The research _______ show that the new drug is effective.",
+            options: ["findings", "alternatives", "workshops", "data"],
+            originalSentence: "The research findings show that the new drug is effective."
+        }
+    ],
+    "76-37": [ // public awareness
+        {
+            sentence: "The goal of the campaign is to increase _______ _______ about cancer.",
+            options: ["public awareness", "problem solving", "pilot program", "group project"],
+            originalSentence: "The goal of the campaign is to increase public awareness about cancer."
+        }
+    ],
+    "76-38": [ // proposal
+        {
+            sentence: "The board of directors is reviewing the budget _______.",
+            options: ["proposal", "survey", "workshop", "solution"],
+            originalSentence: "The board of directors is reviewing the budget proposal."
+        }
+    ],
+    "76-39": [ // approved
+        {
+            sentence: "Your request for a vacation has been _______ by the manager.",
+            options: ["approved", "banned", "identified", "realistic"],
+            originalSentence: "Your request for a vacation has been approved by the manager."
+        }
+    ],
+    "76-40": [ // pilot program
+        {
+            sentence: "The school is testing the new curriculum in a _______ _______.",
+            options: ["pilot program", "city council", "group project", "public awareness"],
+            originalSentence: "The school is testing the new curriculum in a pilot program."
+        }
+    ],
+    "76-41": [ // implement
+        {
+            sentence: "It is time to _______ the changes we discussed in the meeting.",
+            options: ["implement", "analyze", "promote", "impose"],
+            originalSentence: "It is time to implement the changes we discussed in the meeting."
+        }
+    ],
+    "76-42": [ // district
+        {
+            sentence: "The business _______ is located in the center of the city.",
+            options: ["district", "council", "community", "source"],
+            originalSentence: "The business district is located in the center of the city."
+        }
+    ],
+    "76-43": [ // celebrating
+        {
+            sentence: "They are _______ their 10th wedding anniversary tonight.",
+            options: ["celebrating", "discussing", "coordinating", "implementing"],
+            originalSentence: "They are celebrating their 10th wedding anniversary tonight."
+        }
+    ],
+    "76-44": [ // teamwork
+        {
+            sentence: "The success of the project was due to excellent _______.",
+            options: ["teamwork", "persistence", "problem solving", "public awareness"],
+            originalSentence: "The success of the project was due to excellent teamwork."
+        }
+    ],
+    "76-45": [ // persistence
+        {
+            sentence: "Through _______ and hard work, he eventually reached his goal.",
+            options: ["persistence", "teamwork", "proposal", "solution"],
+            originalSentence: "Through persistence and hard work, he eventually reached his goal."
+        }
+    ],
+    "76-46": [ // grateful
+        {
+            sentence: "I am very _______ for all the help you have given me.",
+            options: ["grateful", "overwhelmed", "realistic", "effective"],
+            originalSentence: "I am very grateful for all the help you have given me."
+        }
+    ],
+    "77-1": [ // decision making
+        {
+            sentence: "Effective _______ _______ is a key leadership quality.",
+            options: ["decision making", "sustainable design", "new chapter", "support"],
+            originalSentence: "Effective decision making is a key leadership quality."
+        }
+    ],
+    "77-2": [ // brochures
+        {
+            sentence: "I collected several _______ about the different university courses.",
+            options: ["brochures", "campuses", "professors", "graduates"],
+            originalSentence: "I collected several brochures about the different university courses."
+        }
+    ],
+    "77-3": [ // accepted
+        {
+            sentence: "He was very happy when he was _______ into his dream college.",
+            options: ["accepted", "distracted", "torn", "relieved"],
+            originalSentence: "He was very happy when he was accepted into his dream college."
+        }
+    ],
+    "77-4": [ // architecture programs
+        {
+            sentence: "The university is famous for its creative _______ _______.",
+            options: ["architecture programs", "unique programs", "excellent reviews", "new chapters"],
+            originalSentence: "The university is famous for its creative architecture programs."
+        }
+    ],
+    "77-5": [ // prestigious
+        {
+            sentence: "Oxford is one of the most _______ universities in the world.",
+            options: ["prestigious", "expensive", "cheaper", "distant"],
+            originalSentence: "Oxford is one of the most prestigious universities in the world."
+        }
+    ],
+    "77-6": [ // long history
+        {
+            sentence: "This ancient city has a very _______ _______ and rich culture.",
+            options: ["long history", "fast-paced", "unique program", "brave choice"],
+            originalSentence: "This ancient city has a very long history and rich culture."
+        }
+    ],
+    "77-7": [ // unique program
+        {
+            sentence: "The school offers a _______ _______ that combines art and science.",
+            options: ["unique program", "pros and cons", "new chapter", "brave choice"],
+            originalSentence: "The school offers a unique program that combines art and science."
+        }
+    ],
+    "77-8": [ // focused on
+        {
+            sentence: "The meeting was _______ _______ finding ways to reduce costs.",
+            options: ["focused on", "aligns with", "torn", "at ease"],
+            originalSentence: "The meeting was focused on finding ways to reduce costs."
+        }
+    ],
+    "77-9": [ // sustainable design
+        {
+            sentence: "Architects today are prioritizing _______ _______ to save the environment.",
+            options: ["sustainable design", "architecture programs", "excellent reviews", "new chapter"],
+            originalSentence: "Architects today are prioritizing sustainable design to save the environment."
+        }
+    ],
+    "77-10": [ // torn
+        {
+            sentence: "I was _______ between two great job offers and didn't know what to do.",
+            options: ["torn", "accepted", "grateful", "relieved"],
+            originalSentence: "I was torn between two great job offers and didn't know what to do."
+        }
+    ],
+    "77-11": [ // weight of the decision
+        {
+            sentence: "He felt the _______ _______ _______ _______ when he chose to move abroad.",
+            options: ["weight of the decision", "pros and cons", "reputation", "new chapter"],
+            originalSentence: "He felt the weight of the decision when he chose to move abroad."
+        }
+    ],
+    "77-12": [ // shape his future
+        {
+            sentence: "Studying hard now will help _______ _______ _______ in a positive way.",
+            options: ["shape his future", "innovate", "support", "cheering"],
+            originalSentence: "Studying hard now will help shape his future in a positive way."
+        }
+    ],
+    "77-13": [ // pros and cons
+        {
+            sentence: "You should list the _______ _______ _______ before making a final choice.",
+            options: ["pros and cons", "brochures", "campuses", "professors"],
+            originalSentence: "You should list the pros and cons before making a final choice."
+        }
+    ],
+    "77-14": [ // reputation
+        {
+            sentence: "The hospital has an excellent _______ for patient care.",
+            options: ["reputation", "sustainability", "support", "congratulations"],
+            originalSentence: "The hospital has an excellent reputation for patient care."
+        }
+    ],
+    "77-15": [ // graduates
+        {
+            sentence: "Many _______ from this school go on to work in big companies.",
+            options: ["graduates", "professors", "residents", "officials"],
+            originalSentence: "Many graduates from this school go on to work in big companies."
+        }
+    ],
+    "77-16": [ // expensive
+        {
+            sentence: "Buying a house in the city center can be very _______.",
+            options: ["expensive", "cheaper", "prestigious", "calmer"],
+            originalSentence: "Buying a house in the city center can be very expensive."
+        }
+    ],
+    "77-17": [ // cheaper
+        {
+            sentence: "Is it _______ to travel by bus or by train?",
+            options: ["cheaper", "expensive", "passionate", "distant"],
+            originalSentence: "Is it cheaper to travel by bus or by train?"
+        }
+    ],
+    "77-18": [ // aligns with
+        {
+            sentence: "The new project _______ _______ our long-term goals.",
+            options: ["aligns with", "focused on", "innovate", "cheering"],
+            originalSentence: "The new project aligns with our long-term goals."
+        }
+    ],
+    "77-19": [ // well-known
+        {
+            sentence: "He is a _______ author whose books are sold everywhere.",
+            options: ["well-known", "prestigious", "passionate", "distant"],
+            originalSentence: "He is a well-known author whose books are sold everywhere."
+        }
+    ],
+    "77-20": [ // innovate
+        {
+            sentence: "Tech companies must _______ constantly to stay ahead.",
+            options: ["innovate", "support", "cheer", "accept"],
+            originalSentence: "Tech companies must innovate constantly to stay ahead."
+        }
+    ],
+    "77-21": [ // follow your heart
+        {
+            sentence: "Sometimes, the best advice is to _______ _______ _______.",
+            options: ["follow your heart", "shape his future", "innovate", "support"],
+            originalSentence: "Sometimes, the best advice is to follow your heart."
+        }
+    ],
+    "77-22": [ // sustainability
+        {
+            sentence: "Environmental _______ is a major topic in today's politics.",
+            options: ["sustainability", "reputation", "support", "congratulations"],
+            originalSentence: "Environmental sustainability is a major topic in today's politics."
+        }
+    ],
+    "77-23": [ // excellent reviews
+        {
+            sentence: "I chose this restaurant because it had _______ _______ online.",
+            options: ["excellent reviews", "brochures", "architecture programs", "new chapters"],
+            originalSentence: "I chose this restaurant because it had excellent reviews online."
+        }
+    ],
+    "77-24": [ // grateful
+        {
+            sentence: "She was _______ for the opportunity to study abroad.",
+            options: ["grateful", "overwhelmed", "relieved", "distracted"],
+            originalSentence: "She was grateful for the opportunity to study abroad."
+        }
+    ],
+    "77-25": [ // right or wrong choice
+        {
+            sentence: "In some situations, there is no simple _______ _______ _______ _______.",
+            options: ["right or wrong choice", "pros and cons", "brave choice", "new chapter"],
+            originalSentence: "In some situations, there is no simple right or wrong choice."
+        }
+    ],
+    "77-26": [ // academically
+        {
+            sentence: "He did very well _______, winning many awards in school.",
+            options: ["academically", "personally", "definitely", "passionately"],
+            originalSentence: "He did very well academically, winning many awards in school."
+        }
+    ],
+    "77-27": [ // personally
+        {
+            sentence: "I _______ disagree with the decision made by the committee.",
+            options: ["personally", "academically", "definitely", "passionately"],
+            originalSentence: "I personally disagree with the decision made by the committee."
+        }
+    ],
+    "77-28": [ // campuses
+        {
+            sentence: "The university has three _______ across the city.",
+            options: ["campuses", "brochures", "professors", "graduates"],
+            originalSentence: "The university has three campuses across the city."
+        }
+    ],
+    "77-29": [ // fast-paced
+        {
+            sentence: "Working in a newsroom is very _______ and exciting.",
+            options: ["fast-paced", "calmer", "distant", "unique"],
+            originalSentence: "Working in a newsroom is very fast-paced and exciting."
+        }
+    ],
+    "77-30": [ // bustling
+        {
+            sentence: "The _______ market was filled with the smell of spices.",
+            options: ["bustling", "calmer", "distant", "at ease"],
+            originalSentence: "The bustling market was filled with the smell of spices."
+        }
+    ],
+    "77-31": [ // overwhelmed
+        {
+            sentence: "I was _______ by the kindness of the local people.",
+            options: ["overwhelmed", "relieved", "at ease", "grateful"],
+            originalSentence: "I was overwhelmed by the kindness of the local people."
+        }
+    ],
+    "77-32": [ // calmer
+        {
+            sentence: "The sea was _______ today than it was yesterday.",
+            options: ["calmer", "bustling", "fast-paced", "expensive"],
+            originalSentence: "The sea was calmer today than it was yesterday."
+        }
+    ],
+    "77-33": [ // at ease
+        {
+            sentence: "The soft music helped to put the nervous patients _______ _______.",
+            options: ["at ease", "torn", "distracted", "passionate"],
+            originalSentence: "The soft music helped to put the nervous patients at ease."
+        }
+    ],
+    "77-34": [ // professors
+        {
+            sentence: "Our _______ expect us to do a lot of independent research.",
+            options: ["professors", "graduates", "officials", "residents"],
+            originalSentence: "Our professors expect us to do a lot of independent research."
+        }
+    ],
+    "77-35": [ // distant
+        {
+            sentence: "We could see the _______ mountains covered in snow.",
+            options: ["distant", "bustling", "fast-paced", "unique"],
+            originalSentence: "We could see the distant mountains covered in snow."
+        }
+    ],
+    "77-36": [ // distracted
+        {
+            sentence: "I was _______ by the loud noise outside and couldn't study.",
+            options: ["distracted", "overwhelmed", "at ease", "passionate"],
+            originalSentence: "I was distracted by the loud noise outside and couldn't study."
+        }
+    ],
+    "77-37": [ // passionate
+        {
+            sentence: "She is very _______ about protecting animal rights.",
+            options: ["passionate", "distracted", "distant", "prestigious"],
+            originalSentence: "She is very passionate about protecting animal rights."
+        }
+    ],
+    "77-38": [ // brave choice
+        {
+            sentence: "Leaving her secure job to start a business was a _______ _______.",
+            options: ["brave choice", "right or wrong choice", "unique program", "new chapter"],
+            originalSentence: "Leaving her secure job to start a business was a brave choice."
+        }
+    ],
+    "77-39": [ // relieved
+        {
+            sentence: "I was so _______ to hear that everyone was safe after the storm.",
+            options: ["relieved", "torn", "distracted", "grateful"],
+            originalSentence: "I was so relieved to hear that everyone was safe after the storm."
+        }
+    ],
+    "77-40": [ // cheering
+        {
+            sentence: "The crowd was _______ for the home team during the match.",
+            options: ["cheering", "innovating", "supporting", "accepting"],
+            originalSentence: "The crowd was cheering for the home team during the match."
+        }
+    ],
+    "77-41": [ // definitely
+        {
+            sentence: "I will _______ attend the party next Friday.",
+            options: ["definitely", "personally", "academically", "distantly"],
+            originalSentence: "I will definitely attend the party next Friday."
+        }
+    ],
+    "77-42": [ // congratulations
+        {
+            sentence: "Please accept my _______ on your promotion.",
+            options: ["congratulations", "recommendations", "findings", "initiatives"],
+            originalSentence: "Please accept my congratulations on your promotion."
+        }
+    ],
+    "77-43": [ // support
+        {
+            sentence: "Thank you for all the emotional _______ during my recovery.",
+            options: ["support", "reputation", "sustainability", "new chapter"],
+            originalSentence: "Thank you for all the emotional support during my recovery."
+        }
+    ],
+    "77-44": [ // listening to your heart
+        {
+            sentence: "He realized that _______ _______ _______ _______ was the key to happiness.",
+            options: ["listening to your heart", "decision making", "shape his future", "innovate"],
+            originalSentence: "He realized that listening to your heart was the key to happiness."
+        }
+    ],
+    "77-45": [ // new chapter
+        {
+            sentence: "Graduation marks the beginning of a _______ _______ in your life.",
+            options: ["new chapter", "brave choice", "unique program", "pros and cons"],
+            originalSentence: "Graduation marks the beginning of a new chapter in your life."
+        }
+    ],
+    "78-1": [ // predictions
+        {
+            sentence: "Weather _______ are not always 100% accurate.",
+            options: ["predictions", "materials", "friendships", "possibilities"],
+            originalSentence: "Weather predictions are not always 100% accurate."
+        }
+    ],
+    "78-2": [ // latte
+        {
+            sentence: "He ordered a hot _______ with extra foam at the coffee shop.",
+            options: ["latte", "medicine", "scenario", "forecast"],
+            originalSentence: "He ordered a hot latte with extra foam at the coffee shop."
+        }
+    ],
+    "78-3": [ // advanced enormously
+        {
+            sentence: "Technology has _______ _______ in the last twenty years.",
+            options: ["advanced enormously", "advanced slightly", "decreased", "failed"],
+            originalSentence: "Technology has advanced enormously in the last twenty years."
+        }
+    ],
+    "78-4": [ // flying cars
+        {
+            sentence: "In old movies, people thought we would have _______ _______ by the year 2020.",
+            options: ["flying cars", "fossil fuels", "renewable energy", "materials"],
+            originalSentence: "In old movies, people thought we would have flying cars by the year 2020."
+        }
+    ],
+    "78-5": [ // decades
+        {
+            sentence: "It took several _______ for the city to rebuild after the war.",
+            options: ["decades", "scenarios", "possibilities", "materials"],
+            originalSentence: "It took several decades for the city to rebuild after the war."
+        }
+    ],
+    "78-6": [ // testing
+        {
+            sentence: "The engineers are _______ the new engine to ensure it is safe.",
+            options: ["testing", "dreaming", "healing", "preparing"],
+            originalSentence: "The engineers are testing the new engine to ensure it is safe."
+        }
+    ],
+    "78-7": [ // common
+        {
+            sentence: "Using smartphones has become very _______ all over the world.",
+            options: ["common", "uncertain", "optimistic", "pessimistic"],
+            originalSentence: "Using smartphones has become very common all over the world."
+        }
+    ],
+    "78-8": [ // climate change
+        {
+            sentence: "Rising sea levels are a direct result of _______ _______.",
+            options: ["climate change", "global cooperation", "space exploration", "architecture"],
+            originalSentence: "Rising sea levels are a direct result of climate change."
+        }
+    ],
+    "78-9": [ // solved
+        {
+            sentence: "The math problem was difficult, but she finally _______ it.",
+            options: ["solved", "replaced", "inspired", "healed"],
+            originalSentence: "The math problem was difficult, but she finally solved it."
+        }
+    ],
+    "78-10": [ // global cooperation
+        {
+            sentence: "Stopping a pandemic requires strong _______ _______.",
+            options: ["global cooperation", "space exploration", "fossil fuels", "architecture"],
+            originalSentence: "Stopping a pandemic requires strong global cooperation."
+        }
+    ],
+    "78-11": [ // scientists
+        {
+            sentence: "_______ are working hard to find a cure for the virus.",
+            options: ["scientists", "journalists", "project managers", "colonies"],
+            originalSentence: "Scientists are working hard to find a cure for the virus."
+        }
+    ],
+    "78-12": [ // renewable energy
+        {
+            sentence: "Wind and solar power are forms of _______ _______.",
+            options: ["renewable energy", "fossil fuels", "climate change", "architecture"],
+            originalSentence: "Wind and solar power are forms of renewable energy."
+        }
+    ],
+    "78-13": [ // replaced
+        {
+            sentence: "The old machines were _______ with newer, faster models.",
+            options: ["replaced", "solved", "inspired", "healed"],
+            originalSentence: "The old machines were replaced with newer, faster models."
+        }
+    ],
+    "78-14": [ // fossil fuels
+        {
+            sentence: "Burning _______ _______ like coal and oil releases carbon dioxide.",
+            options: ["fossil fuels", "renewable energy", "materials", "predictions"],
+            originalSentence: "Burning fossil fuels like coal and oil releases carbon dioxide."
+        }
+    ],
+    "78-15": [ // promising
+        {
+            sentence: "The initial results of the experiment look very _______.",
+            options: ["promising", "uncertain", "inevitable", "pessimistic"],
+            originalSentence: "The initial results of the experiment look very promising."
+        }
+    ],
+    "78-16": [ // space exploration
+        {
+            sentence: "_______ _______ allows us to learn more about our solar system.",
+            options: ["space exploration", "global cooperation", "climate change", "architecture"],
+            originalSentence: "Space exploration allows us to learn more about our solar system."
+        }
+    ],
+    "78-17": [ // colonies
+        {
+            sentence: "Some people believe humans will one day build _______ on the moon.",
+            options: ["colonies", "forecasts", "friendships", "scenarios"],
+            originalSentence: "Some people believe humans will one day build colonies on the moon."
+        }
+    ],
+    "78-18": [ // Mars
+        {
+            sentence: "Robotic rovers are currently exploring the surface of _______.",
+            options: ["Mars", "medicine", "materials", "latte"],
+            originalSentence: "Robotic rovers are currently exploring the surface of Mars."
+        }
+    ],
+    "78-19": [ // architecture
+        {
+            sentence: "The _______ of the new museum is modern and impressive.",
+            options: ["architecture", "medicine", "journalism", "exploration"],
+            originalSentence: "The architecture of the new museum is modern and impressive."
+        }
+    ],
+    "78-20": [ // smarter
+        {
+            sentence: "Modern houses are becoming _______ with the use of AI.",
+            options: ["smarter", "uncertain", "pessimistic", "inevitable"],
+            originalSentence: "Modern houses are becoming smarter with the use of AI."
+        }
+    ],
+    "78-22": [ // materials
+        {
+            sentence: "Graphene is one of the strongest _______ known to man.",
+            options: ["materials", "friendships", "predictions", "possibilities"],
+            originalSentence: "Graphene is one of the strongest materials known to man."
+        }
+    ],
+    "78-23": [ // meaningful
+        {
+            sentence: "Giving back to the community is a very _______ experience.",
+            options: ["meaningful", "uncertain", "inevitable", "common"],
+            originalSentence: "Giving back to the community is a very meaningful experience."
+        }
+    ],
+    "78-24": [ // project manager
+        {
+            sentence: "The _______ _______ is responsible for keeping the team on schedule.",
+            options: ["project manager", "journalist", "scientist", "official"],
+            originalSentence: "The project manager is responsible for keeping the team on schedule."
+        }
+    ],
+    "78-25": [ // journalist
+        {
+            sentence: "The _______ traveled to the war zone to report the news.",
+            options: ["journalist", "scientist", "project manager", "colonist"],
+            originalSentence: "The journalist traveled to the war zone to report the news."
+        }
+    ],
+    "78-26": [ // inspired
+        {
+            sentence: "His speech _______ the students to work harder for their dreams.",
+            options: ["inspired", "replaced", "healed", "solved"],
+            originalSentence: "His speech inspired the students to work harder for their dreams."
+        }
+    ],
+    "78-27": [ // medicine
+        {
+            sentence: "Advances in _______ have helped people live longer lives.",
+            options: ["medicine", "architecture", "materials", "latte"],
+            originalSentence: "Advances in medicine have helped people live longer lives."
+        }
+    ],
+    "78-28": [ // heal
+        {
+            sentence: "It takes time for the body to _______ after a major surgery.",
+            options: ["heal", "solve", "dream", "replace"],
+            originalSentence: "It takes time for the body to heal after a major surgery."
+        }
+    ],
+    "78-29": [ // possibilities
+        {
+            sentence: "The new technology opens up endless _______ for education.",
+            options: ["possibilities", "predictions", "forecasts", "materials"],
+            originalSentence: "The new technology opens up endless possibilities for education."
+        }
+    ],
+    "78-30": [ // uncertain
+        {
+            sentence: "The economic future of the country remains _______.",
+            options: ["uncertain", "common", "inevitable", "meaningful"],
+            originalSentence: "The economic future of the country remains uncertain."
+        }
+    ],
+    "78-31": [ // prepare
+        {
+            sentence: "Students need to _______ well for their final exams.",
+            options: ["prepare", "dream", "heal", "solve"],
+            originalSentence: "Students need to prepare well for their final exams."
+        }
+    ],
+    "78-33": [ // raising his cup
+        {
+            sentence: "He stood up and was _______ _______ _______ to make a toast.",
+            options: ["raising his cup", "clinking cups", "dreaming", "testing"],
+            originalSentence: "He stood up and was raising his cup to make a toast."
+        }
+    ],
+    "78-34": [ // clinking cups
+        {
+            sentence: "The sound of _______ _______ filled the room during the celebration.",
+            options: ["clinking cups", "raising his cup", "space exploration", "fossil fuels"],
+            originalSentence: "The sound of clinking cups filled the room during the celebration."
+        }
+    ],
+    "78-35": [ // grateful
+        {
+            sentence: "I am _______ for all the support my family has given me.",
+            options: ["grateful", "optimistic", "pessimistic", "inevitable"],
+            originalSentence: "I am grateful for all the support my family has given me."
+        }
+    ],
+    "78-36": [ // friendships
+        {
+            sentence: "Long-lasting _______ are built on trust and respect.",
+            options: ["friendships", "colonies", "scenarios", "forecasts"],
+            originalSentence: "Long-lasting friendships are built on trust and respect."
+        }
+    ],
+    "78-37": [ // no matter what
+        {
+            sentence: "I will support you _______ _______ _______ happens.",
+            options: ["no matter what", "inevitable", "uncertain", "meaningful"],
+            originalSentence: "I will support you no matter what happens."
+        }
+    ],
+    "78-38": [ // holds
+        {
+            sentence: "No one knows what the future _______ for us.",
+            options: ["holds", "heals", "solves", "replaces"],
+            originalSentence: "No one knows what the future holds for us."
+        }
+    ],
+    "78-39": [ // dreaming
+        {
+            sentence: "She is always _______ of becoming a famous singer.",
+            options: ["dreaming", "testing", "preparing", "healing"],
+            originalSentence: "She is always dreaming of becoming a famous singer."
+        }
+    ],
+    "78-40": [ // full of promise
+        {
+            sentence: "The young athlete's career is _______ _______ _______.",
+            options: ["full of promise", "uncertain", "pessimistic", "inevitable"],
+            originalSentence: "The young athlete's career is full of promise."
+        }
+    ],
+    "78-41": [ // forecast
+        {
+            sentence: "The economic _______ suggests that prices will rise next month.",
+            options: ["forecast", "material", "friendship", "latte"],
+            originalSentence: "The economic forecast suggests that prices will rise next month."
+        }
+    ],
+    "78-42": [ // scenario
+        {
+            sentence: "In a worst-case _______, the company might have to close.",
+            options: ["scenario", "colony", "possibility", "prediction"],
+            originalSentence: "In a worst-case scenario, the company might have to close."
+        }
+    ],
+    "78-43": [ // optimistic
+        {
+            sentence: "She is _______ that she will get the job after the interview.",
+            options: ["optimistic", "pessimistic", "inevitable", "uncertain"],
+            originalSentence: "She is optimistic that she will get the job after the interview."
+        }
+    ],
+    "78-44": [ // pessimistic
+        {
+            sentence: "Try not to be so _______; things might turn out better than you think.",
+            options: ["pessimistic", "optimistic", "meaningful", "promising"],
+            originalSentence: "Try not to be so pessimistic; things might turn out better than you think."
+        }
+    ],
+    "78-45": [ // inevitable
+        {
+            sentence: "Change is _______ in life; we must learn to adapt.",
+            options: ["inevitable", "uncertain", "common", "optimistic"],
+            originalSentence: "Change is inevitable in life; we must learn to adapt."
+        }
+    ],
+    "79-1": [ // technology trends
+        {
+            sentence: "Staying updated with the latest _______ _______ is crucial for developers.",
+            options: ["technology trends", "ethical concerns", "everyday objects", "young professionals"],
+            originalSentence: "Staying updated with the latest technology trends is crucial for developers."
+        }
+    ],
+    "79-2": [ // conference
+        {
+            sentence: "The annual tech _______ attracts thousands of visitors from around the world.",
+            options: ["conference", "hall", "workshop", "journey"],
+            originalSentence: "The annual tech conference attracts thousands of visitors from around the world."
+        }
+    ],
+    "79-3": [ // badge
+        {
+            sentence: "Please wear your identification _______ at all times during the event.",
+            options: ["badge", "headset", "booth", "innovation"],
+        }
+    ],
+    "79-4": [ // hall
+        {
+            sentence: "The exhibition _______ was filled with the latest gadgets and robots.",
+            options: ["hall", "requirement", "option", "journey"],
+        }
+    ],
+    "79-5": [ // booths
+        {
+            sentence: "Many startup companies have set up _______ to display their products.",
+            options: ["booths", "laws", "innovations", "clients"],
+        }
+    ],
+    "79-6": [ // showcasing
+        {
+            sentence: "The museum is _______ a rare collection of ancient artifacts.",
+            options: ["showcasing", "personalizing", "replacing", "communicating"],
+        }
+    ],
+    "79-7": [ // innovations
+        {
+            sentence: "Medical _______ have saved millions of lives over the past century.",
+            options: ["innovations", "requirements", "options", "highlights"],
+        }
+    ],
+    "79-8": [ // artificial intelligence
+        {
+            sentence: "Many apps now use _______ _______ to provide better recommendations.",
+            options: ["artificial intelligence", "cybersecurity", "Internet of Things", "virtual reality"],
+        }
+    ],
+    "79-9": [ // demonstrating
+        {
+            sentence: "The expert is _______ how the new software can save time.",
+            options: ["demonstrating", "embracing", "integrating", "exhausting"],
+        }
+    ],
+    "79-10": [ // generates
+        {
+            sentence: "This new engine _______ more power while using less fuel.",
+            options: ["generates", "replaces", "transforms", "surveys"],
+        }
+    ],
+    "79-11": [ // options
+        {
+            sentence: "When you book a flight, you have several payment _______.",
+            options: ["options", "requirements", "innovations", "booths"],
+        }
+    ],
+    "79-12": [ // requirements
+        {
+            sentence: "Meeting the safety _______ is the first priority for any project.",
+            options: ["requirements", "highlights", "laws", "ethical concerns"],
+        }
+    ],
+    "79-13": [ // revolutionize
+        {
+            sentence: "Electric cars are expected to _______ the transportation industry.",
+            options: ["revolutionize", "replace", "transform", "integrate"],
+        }
+    ],
+    "79-14": [ // virtual reality
+        {
+            sentence: "Gamers love _______ _______ because it makes them feel inside the game.",
+            options: ["virtual reality", "cybersecurity", "Internet of Things", "artificial intelligence"],
+        }
+    ],
+    "79-15": [ // headset
+        {
+            sentence: "Put on the _______ to start your immersive 3D experience.",
+            options: ["headset", "badge", "booth", "hall"],
+        }
+    ],
+    "79-16": [ // virtual building
+        {
+            sentence: "The architect showed us a _______ _______ before construction began.",
+            options: ["virtual building", "smart city", "smart home", "workshop"],
+        }
+    ],
+    "79-17": [ // incredible
+        {
+            sentence: "The speed of the new 5G network is truly _______.",
+            options: ["incredible", "essential", "motivated", "exhausted"],
+        }
+    ],
+    "79-18": [ // clients
+        {
+            sentence: "Our company provides high-quality services to all our _______.",
+            options: ["clients", "requirements", "options", "booths"],
+        }
+    ],
+    "79-19": [ // experience
+        {
+            sentence: "This internship will give you a chance to _______ a real workplace.",
+            options: ["experience", "personalize", "generate", "demonstrate"],
+        }
+    ],
+    "79-20": [ // transform
+        {
+            sentence: "Digital technology can _______ a traditional business into a global one.",
+            options: ["transform", "replace", "survey", "integrate"],
+        }
+    ],
+    "79-21": [ // drones
+        {
+            sentence: "Modern _______ are used for photography and even delivering packages.",
+            options: ["drones", "headsets", "badges", "booths"],
+        }
+    ],
+    "79-22": [ // survey
+        {
+            sentence: "We need to _______ the land before we start building the house.",
+            options: ["survey", "generate", "transform", "replace"],
+        }
+    ],
+    "79-23": [ // sites
+        {
+            sentence: "The historical _______ are protected by international law.",
+            options: ["sites", "halls", "booths", "badges"],
+        }
+    ],
+    "79-24": [ // personalizing
+        {
+            sentence: "Streaming services are _______ content based on user preferences.",
+            options: ["personalizing", "demonstrating", "generating", "embracing"],
+        }
+    ],
+    "79-26": [ // ethical concerns
+        {
+            sentence: "The use of facial recognition has raised several _______ _______.",
+            options: ["ethical concerns", "technology trends", "everyday objects", "young professionals"],
+        }
+    ],
+    "79-27": [ // replace
+        {
+            sentence: "Robots might eventually _______ humans in dangerous factory jobs.",
+            options: ["replace", "transform", "integrate", "communicate"],
+        }
+    ],
+    "79-28": [ // responsibly
+        {
+            sentence: "We must use natural resources _______ to protect the earth.",
+            options: ["responsibly", "wisely", "essential", "motivated"],
+        }
+    ],
+    "79-29": [ // laws
+        {
+            sentence: "New _______ were passed to protect data privacy online.",
+            options: ["laws", "requirements", "options", "highlights"],
+        }
+    ],
+    "79-30": [ // engaging
+        {
+            sentence: "The teacher used _______ activities to keep the students interested.",
+            options: ["engaging", "incredible", "exhausted", "essential"],
+        }
+    ],
+    "79-31": [ // workshop
+        {
+            sentence: "I attended a _______ on how to improve public speaking skills.",
+            options: ["workshop", "conference", "journey", "hall"],
+        }
+    ],
+    "79-32": [ // Internet of Things
+        {
+            sentence: "The _______ _______ _______ allows your fridge to talk to your phone.",
+            options: ["Internet of Things", "cybersecurity", "artificial intelligence", "virtual reality"],
+        }
+    ],
+    "79-33": [ // everyday objects
+        {
+            sentence: "Smart technology is now being built into _______ _______ like watches.",
+            options: ["everyday objects", "ethical concerns", "technology trends", "young professionals"],
+        }
+    ],
+    "79-34": [ // connected
+        {
+            sentence: "We live in a _______ world where news travels instantly.",
+            options: ["connected", "engaging", "motivated", "essential"],
+        }
+    ],
+    "79-35": [ // smart homes
+        {
+            sentence: "_______ _______ allow people to control lights and locks remotely.",
+            options: ["smart homes", "smart cities", "virtual buildings", "workshops"],
+        }
+    ],
+    "79-36": [ // smart cities
+        {
+            sentence: "_______ _______ use data to manage traffic and reduce energy use.",
+            options: ["smart cities", "smart homes", "virtual buildings", "sites"],
+        }
+    ],
+    "79-37": [ // communicate
+        {
+            sentence: "In the future, cars will _______ with each other to avoid accidents.",
+            options: ["communicate", "replace", "survey", "transform"],
+        }
+    ],
+    "79-38": [ // share energy
+        {
+            sentence: "Smart grids allow buildings to _______ _______ efficiently.",
+            options: ["share energy", "reduce waste", "personalize", "generate"],
+        }
+    ],
+    "79-39": [ // reduce waste
+        {
+            sentence: "Effective recycling programs help cities _______ _______.",
+            options: ["reduce waste", "share energy", "generate", "transform"],
+        }
+    ],
+    "79-40": [ // secure
+        {
+            sentence: "It is important to use strong passwords to keep your data _______.",
+            options: ["secure", "essential", "incredible", "engaging"],
+        }
+    ],
+    "79-41": [ // cybersecurity
+        {
+            sentence: "Banks invest heavily in _______ to prevent online theft.",
+            options: ["cybersecurity", "Internet of Things", "artificial intelligence", "virtual reality"],
+        }
+    ],
+    "79-42": [ // essential
+        {
+            sentence: "Water is _______ for the survival of all living things.",
+            options: ["essential", "incredible", "engaging", "exhausted"],
+        }
+    ],
+    "79-43": [ // exhausted
+        {
+            sentence: "After working for twelve hours, he felt completely _______.",
+            options: ["exhausted", "motivated", "essential", "incredible"],
+        }
+    ],
+    "79-44": [ // highlights
+        {
+            sentence: "The news report showed the _______ of the football match.",
+            options: ["highlights", "requirements", "options", "laws"],
+        }
+    ],
+    "79-45": [ // young professionals
+        {
+            sentence: "The city is attracting many _______ _______ in the tech sector.",
+            options: ["young professionals", "everyday objects", "technology trends", "ethical concerns"],
+        }
+    ],
+    "79-46": [ // embracing
+        {
+            sentence: "Companies are _______ remote work as a new standard.",
+            options: ["embracing", "exhausting", "showcasing", "demonstrating"],
+        }
+    ],
+    "79-47": [ // included
+        {
+            sentence: "Tax and service charges are _______ in the total price.",
+            options: ["included", "connected", "engaging", "essential"],
+        }
+    ],
+    "79-48": [ // integrate
+        {
+            sentence: "New employees need time to _______ into the team culture.",
+            options: ["integrate", "transform", "replace", "survey"],
+        }
+    ],
+    "79-49": [ // motivated
+        {
+            sentence: "A good leader keeps their team _______ and productive.",
+            options: ["motivated", "exhausted", "incredible", "secure"],
+        }
+    ],
+    "79-50": [ // wisely
+        {
+            sentence: "You should spend your time and money _______.",
+            options: ["wisely", "responsibly", "connected", "essential"],
+        }
+    ],
+    "79-51": [ // journey
+        {
+            sentence: "Learning a new language is a long but rewarding _______.",
+            options: ["journey", "conference", "workshop", "hall"],
+        }
+    ],
+    "80-1": [ // global economy
+        {
+            sentence: "Events in one country can quickly affect the _______ _______.",
+            options: ["global economy", "trade agreement", "green design", "lecture hall"],
+            originalSentence: "Events in one country can quickly affect the global economy."
+        }
+    ],
+    "80-2": [ // lecture hall
+        {
+            sentence: "The university built a new _______ _______ to accommodate more students.",
+            options: ["lecture hall", "community center", "factory", "port"],
+        }
+    ],
+    "80-3": [ // economics
+        {
+            sentence: "Understanding _______ helps you make better financial decisions.",
+            options: ["economics", "tariffs", "inflation", "savings"],
+        }
+    ],
+    "80-4": [ // complicated
+        {
+            sentence: "The tax laws in this country are very _______ and hard to follow.",
+            options: ["complicated", "affordable", "informed", "cheaper"],
+        }
+    ],
+    "80-5": [ // connected
+        {
+            sentence: "In a globalized world, all markets are deeply _______.",
+            options: ["connected", "stuck", "shut down", "complicated"],
+        }
+    ],
+    "80-6": [ // trade
+        {
+            sentence: "Free _______ allows goods to move between countries without high taxes.",
+            options: ["trade", "inflation", "funding", "demand"],
+        }
+    ],
+    "80-7": [ // struggles
+        {
+            sentence: "The small business _______ to survive during the economic crisis.",
+            options: ["struggles", "recovers", "manages", "affords"],
+        }
+    ],
+    "80-8": [ // impact
+        {
+            sentence: "The new policy will have a significant _______ on the environment.",
+            options: ["impact", "demand", "saving", "pattern"],
+        }
+    ],
+    "80-9": [ // inflation
+        {
+            sentence: "High _______ means that your money buys fewer things than before.",
+            options: ["inflation", "availability", "funding", "tariffs"],
+        }
+    ],
+    "80-10": [ // supply chain
+        {
+            sentence: "The delivery was delayed due to a break in the _______ _______.",
+            options: ["supply chain", "trade agreement", "global market", "central bank"],
+        }
+    ],
+    "80-11": [ // patterns
+        {
+            sentence: "Weather _______ are changing due to global warming.",
+            options: ["patterns", "prices", "taxes", "imports"],
+        }
+    ],
+    "80-12": [ // prices
+        {
+            sentence: "Gas _______ usually go up during the summer travel season.",
+            options: ["prices", "tariffs", "savings", "factors"],
+        }
+    ],
+    "80-13": [ // rising
+        {
+            sentence: "The _______ cost of living is a concern for many families.",
+            options: ["rising", "falling", "stuck", "complicated"],
+        }
+    ],
+    "80-14": [ // afford
+        {
+            sentence: "Many young people cannot _______ to buy their own homes.",
+            options: ["afford", "manage", "impact", "trade"],
+        }
+    ],
+    "80-15": [ // basic goods
+        {
+            sentence: "The government should ensure that _______ _______ remain affordable.",
+            options: ["basic goods", "emerging economies", "green design", "savings"],
+        }
+    ],
+    "80-16": [ // groceries
+        {
+            sentence: "I need to go to the supermarket to buy some _______.",
+            options: ["groceries", "imports", "tariffs", "patterns"],
+        }
+    ],
+    "80-17": [ // pandemic
+        {
+            sentence: "The _______ caused a major disruption in global travel.",
+            options: ["pandemic", "inflation", "trade", "demand"],
+        }
+    ],
+    "80-18": [ // factories
+        {
+            sentence: "Many _______ now use robots to speed up production.",
+            options: ["factories", "ports", "central banks", "community centers"],
+        }
+    ],
+    "80-19": [ // shut down
+        {
+            sentence: "The old coal mine was _______ _______ because of safety concerns.",
+            options: ["shut down", "recovered", "managed", "informed"],
+        }
+    ],
+    "80-20": [ // ports
+        {
+            sentence: "Huge ships arrive at the _______ to unload thousands of containers.",
+            options: ["ports", "factories", "halls", "centers"],
+        }
+    ],
+    "80-21": [ // stuck
+        {
+            sentence: "We were _______ in traffic for over two hours.",
+            options: ["stuck", "recovered", "informed", "rising"],
+        }
+    ],
+    "80-22": [ // recovered
+        {
+            sentence: "He has fully _______ from his illness and is back at work.",
+            options: ["recovered", "struggled", "managed", "impacted"],
+        }
+    ],
+    "80-23": [ // governments
+        {
+            sentence: "_______ around the world are trying to reduce carbon emissions.",
+            options: ["governments", "central banks", "economists", "factories"],
+        }
+    ],
+    "80-24": [ // central banks
+        {
+            sentence: "_______ _______ often raise interest rates to fight inflation.",
+            options: ["central banks", "global markets", "ports", "trade agreements"],
+        }
+    ],
+    "80-25": [ // manage
+        {
+            sentence: "It is difficult to _______ a large team with different personalities.",
+            options: ["manage", "afford", "rising", "struggle"],
+        }
+    ],
+    "80-28": [ // tricky
+        {
+            sentence: "Fixing this computer problem is going to be _______.",
+            options: ["tricky", "affordable", "informed", "fascinating"],
+        }
+    ],
+    "80-29": [ // grateful
+        {
+            sentence: "I am _______ for the opportunity to work with this team.",
+            options: ["grateful", "rising", "complicated", "tricky"],
+        }
+    ],
+    "80-30": [ // trade agreement
+        {
+            sentence: "The two countries signed a _______ _______ to increase exports.",
+            options: ["trade agreement", "supply chain", "green design", "lecture hall"],
+        }
+    ],
+    "80-31": [ // tariffs
+        {
+            sentence: "The new _______ made imported cars much more expensive.",
+            options: ["tariffs", "savings", "groceries", "patterns"],
+        }
+    ],
+    "80-32": [ // imports
+        {
+            sentence: "The country's _______ of oil have increased this year.",
+            options: ["imports", "tariffs", "savings", "prices"],
+        }
+    ],
+    "80-33": [ // taxes
+        {
+            sentence: "People pay _______ to help fund public services like schools.",
+            options: ["taxes", "savings", "prices", "tariffs"],
+        }
+    ],
+    "80-34": [ // cheaper
+        {
+            sentence: "Shopping online is often _______ than going to a physical store.",
+            options: ["cheaper", "tricky", "complicated", "fascinating"],
+        }
+    ],
+    "80-35": [ // informed
+        {
+            sentence: "It is important to stay _______ about current world events.",
+            options: ["informed", "complicated", "tricky", "rising"],
+        }
+    ],
+    "80-36": [ // fascinating
+        {
+            sentence: "Space travel is a _______ subject that I love to read about.",
+            options: ["fascinating", "complicated", "tricky", "affordable"],
+        }
+    ],
+    "80-37": [ // savings
+        {
+            sentence: "She put all her _______ into a high-interest bank account.",
+            options: ["savings", "tariffs", "taxes", "imports"],
+        }
+    ],
+    "80-38": [ // economic factors
+        {
+            sentence: "Many _______ _______ affect the value of a currency.",
+            options: ["economic factors", "basic goods", "green designs", "global markets"],
+        }
+    ],
+    "80-39": [ // availability
+        {
+            sentence: "The _______ of fresh water is a major issue in some regions.",
+            options: ["availability", "inflation", "demand", "funding"],
+        }
+    ],
+    "80-40": [ // funding
+        {
+            sentence: "The research project needs more _______ to continue.",
+            options: ["funding", "tariffs", "imports", "savings"],
+        }
+    ],
+    "80-41": [ // demand
+        {
+            sentence: "When the _______ for a product is high, the price usually goes up.",
+            options: ["demand", "availability", "funding", "inflation"],
+        }
+    ],
+    "80-42": [ // green design
+        {
+            sentence: "The new office building uses _______ _______ to save energy.",
+            options: ["green design", "economic factors", "trade agreement", "supply chain"],
+        }
+    ],
+    "80-43": [ // global markets
+        {
+            sentence: "Companies must compete in _______ _______ to be successful.",
+            options: ["global markets", "lecture halls", "factories", "community centers"],
+        }
+    ],
+    "80-44": [ // emerging economies
+        {
+            sentence: "Countries like Vietnam are considered _______ _______.",
+            options: ["emerging economies", "central banks", "economic factors", "basic goods"],
+        }
+    ],
+    "80-45": [ // opportunity
+        {
+            sentence: "Living in a big city provides more _______ for employment.",
+            options: ["opportunity", "demand", "availability", "impact"],
+        }
+    ],
+    "80-46": [ // economic inequality
+        {
+            sentence: "_______ _______ remains a major challenge for many nations.",
+            options: ["economic inequality", "global economy", "trade agreement", "green design"],
+        }
+    ],
+    "80-47": [ // affordable housing
+        {
+            sentence: "The city is investing in _______ _______ for low-income families.",
+            options: ["affordable housing", "community centers", "lecture halls", "factories"],
+        }
+    ],
+    "80-48": [ // community centers
+        {
+            sentence: "Local _______ _______ offer classes and sports for everyone.",
+            options: ["community centers", "central banks", "ports", "factories"],
+        }
+    ],
+    "80-49": [ // make a difference
+        {
+            sentence: "Even small actions can _______ _______ _______ in the world.",
+            options: ["make a difference", "manage", "struggle", "afford"],
+        }
+    ],
+    "80-50": [ // economist
+        {
+            sentence: "The _______ predicted that the market would grow next year.",
+            options: ["economist", "factory", "port", "government"],
+        }
+    ],
+    "80-51": [ // at heart
+        {
+            sentence: "Although he lives in the city, he is a farmer _______ _______.",
+            options: ["at heart", "informed", "grateful", "complicated"],
+        }
+    ],
+    "80-52": [ // famous economist
+        {
+            sentence: "Adam Smith is a _______ _______ known for his book 'The Wealth of Nations'.",
+            options: ["famous economist", "young professional", "council member", "resident"],
+        }
+    ],
+    "80-53": [ // grateful
+        {
+            sentence: "I am so _______ for your help with my studies.",
+            options: ["grateful", "tricky", "complicated", "informed"],
+        }
+    ],
+    "80-54": [ // education
+        {
+            sentence: "A good _______ is the key to a successful career.",
+            options: ["education", "opportunity", "demand", "funding"],
+        }
+    ],
+    "80-55": [ // keep learning
+        {
+            sentence: "To stay ahead in your job, you must _______ _______.",
+            options: ["keep learning", "make a difference", "manage", "struggle"],
+        }
+    ],
     // استكمال gapfillDB.js - الدرس رقم 301
     "301-1": [
         {
