@@ -17,7 +17,7 @@ class App {
         // ========== نظام اختبار المستوى المتطور (Adaptive Level Test) ==========
         this.adaptiveTestActive = false;
         this.adaptiveTestHistory = [];
-        this.adaptiveTestCurrentLevel = 'B1';
+        this.adaptiveTestCurrentLevel = 'A2';
         this.adaptiveTestPhase = 'initial'; // initial, moving_up, moving_down, confirmation
         this.adaptiveTestLevelResults = {};
         this.adaptiveTestFinalLevel = null;
@@ -912,7 +912,7 @@ startAdaptiveLevelTest() {
     this.prepareAdaptiveQuestionBank();
     this.adaptiveTestActive = true;
     this.adaptiveTestHistory = [];
-    this.adaptiveTestCurrentLevel = 'B1';
+this.adaptiveTestCurrentLevel = 'A2';
     this.adaptiveTestPhase = 'initial';
     this.adaptiveTestTotalQuestions = 0;
     this.adaptiveTestMaxQuestions = 50;
@@ -939,7 +939,7 @@ startAdaptiveLevelTest() {
     this.adaptiveTestConfirmationCorrect = 0;
     this.adaptiveTestConfirmationTotal = 0;
     
-    this.loadAdaptiveQuestionSet('B1', 5);
+this.loadAdaptiveQuestionSet('A2', 5);
     this.currentPage = 'adaptive_test';
     this.render();
 }
