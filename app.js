@@ -1803,44 +1803,59 @@ toggleEditMode(wordId) {
         }
     }
 
-    async saveCardEdit(wordId) {
-        const inputEng = document.getElementById(`editEng_${wordId}`);
-        const inputArb = document.getElementById(`editArb_${wordId}`);
-        
-        if (!inputEng || !inputArb) return;
-
-        const newEng = inputEng.value.trim();
-        const newArb = inputArb.value.trim();
-
-        if (!newEng || !newArb) {
-            alert("يرجى عدم ترك الحقول فارغة");
-            return;
-        }
-
-        // تحديث البيانات في كل القوائم (الذاكرة المؤقتة)
-        [window.lessonsData, this.lessonsList].forEach(list => {
-            if (list) {
-                const item = list.find(w => String(w.id) === String(wordId));
-                if (item) { item.english = newEng; item.arabic = newArb; }
-            }
-        });
-
-        // تحديث الدروس المخصصة لضمان الحفظ في Firebase
-        for (let id in this.customLessons) {
-            if (this.customLessons[id].words) {
-                const w = this.customLessons[id].words.find(w => String(w.id) === String(wordId));
-                if (w) { w.english = newEng; w.arabic = newArb; }
-            }
-        }
-
+async saveCardEdit(wordId) {
         try {
-            await this.saveUserData();
-            this.render(); // سيؤدي هذا لتحديث شكل البطاقة بالكلمة الجديدة وإخفاء منطقة التعديل
+            const inputEng = document.getElementById(`editEng_${wordId}`);
+            const inputArb = document.getElementById(`editArb_${wordId}`);
+            
+            if (!inputEng || !inputArb) return;
+
+            const newEng = inputEng.value.trim();
+            const newArb = inputArb.value.trim();
+
+            if (!newEng || !newArb) {
+                alert("يرجى ملء الحقول");
+                return;
+            }
+
+            // 1. تحديث المصفوفات الأساسية
+            let updated = false;
+            if (window.lessonsData) {
+                const idx = window.lessonsData.findIndex(w => String(w.id) === String(wordId));
+                if (idx !== -1) {
+                    window.lessonsData[idx].english = newEng;
+                    window.lessonsData[idx].arabic = newArb;
+                    updated = true;
+                }
+            }
+
+            // 2. تحديث الدروس المخصصة (المصدر الرئيسي للبيانات في Firebase)
+            for (let id in this.customLessons) {
+                if (this.customLessons[id].words) {
+                    const wIdx = this.customLessons[id].words.findIndex(w => String(w.id) === String(wordId));
+                    if (wIdx !== -1) {
+                        this.customLessons[id].words[wIdx].english = newEng;
+                        this.customLessons[id].words[wIdx].arabic = newArb;
+                        updated = true;
+                    }
+                }
+            }
+
+            if (updated) {
+                // حفظ البيانات فعلياً في Firebase
+                await this.saveUserData();
+                // إغلاق منطقة التعديل يدوياً قبل إعادة الرندر
+                const area = document.getElementById(`editArea_${wordId}`);
+                if (area) area.style.display = 'none';
+                
+                this.render(); // تحديث الشاشة
+                if (this.showCustomModal) this.showCustomModal('success', '✅', 'تم الحفظ بنجاح');
+            }
         } catch (e) {
             console.error("Save error:", e);
-            alert("فشل الحفظ في السحابة");
+            alert("حدث خطأ أثناء الحفظ");
         }
-    }    
+    }
     getCurrentLessonData() { if (!this.selectedLessonId) return null; return this.getLessonDataById(this.selectedLessonId); }
     
     getLessonDataById(id) { if (window.lessonsData[id]) return window.lessonsData[id]; if (this.generatedLessons[id]) return this.generatedLessons[id]; return null; }
@@ -1888,8 +1903,29 @@ toggleEditMode(wordId) {
                 case 'speak': this.speak(param); break;
                 case 'nextC': const lessonData = this.getCurrentLessonData(); const addedWords = this.userVocabulary.filter(v => v.lessonId == this.selectedLessonId); const allWords = lessonData ? [...lessonData.terms, ...addedWords] : []; let activeCards; if (this.showAllCardsTemporary) activeCards = allWords.filter(t => !this.hiddenFromCards.includes(String(t.id)) && !this.repeatAllSessionMastered.includes(String(t.id))); else activeCards = allWords.filter(t => !this.masteredWords.includes(String(t.id)) && !this.hiddenFromCards.includes(String(t.id))); if (activeCards.length === 0) break; const currentCard = activeCards[this.currentCardIndex]; if (currentCard && !this.skippedCards.includes(String(currentCard.id))) this.skippedCards.push(String(currentCard.id)); this.currentCardIndex++; if (this.currentCardIndex >= activeCards.length) this.currentCardIndex = 0; this.render(); break;
                 case 'prevC': const lessonPrev = this.getCurrentLessonData(); const addedPrev = this.userVocabulary.filter(v => v.lessonId == this.selectedLessonId); const allWordsPrev = lessonPrev ? [...lessonPrev.terms, ...addedPrev] : []; let activePrev; if (this.showAllCardsTemporary) activePrev = allWordsPrev.filter(t => !this.hiddenFromCards.includes(String(t.id)) && !this.repeatAllSessionMastered.includes(String(t.id))); else activePrev = allWordsPrev.filter(t => !this.masteredWords.includes(String(t.id)) && !this.hiddenFromCards.includes(String(t.id))); if (activePrev.length === 0) break; this.currentCardIndex--; if (this.currentCardIndex < 0) this.currentCardIndex = activePrev.length - 1; this.render(); break;
-                case 'restartCards': this.skippedCards = []; this.currentCardIndex = 0; const cardShuffle = document.querySelector('.flashcard-container'); if (cardShuffle) cardShuffle.classList.add('shuffle-anim-card'); const delay = cardShuffle ? 600 : 0; setTimeout(async () => { if (param === 'all' && this.selectedLessonId) { this.showAllCardsTemporary = true; this.repeatAllSessionMastered = []; this.currentCardIndex = 0; await this.saveUserData(); this.render(); } else if (param === 'remaining') { if (this.showAllCardsTemporary) { this.currentCardIndex = 0; await this.saveUserData(); this.render(); } else { this.showAllCardsTemporary = false; this.repeatAllSessionMastered = []; this.currentCardIndex = 0; await this.saveUserData(); this.render(); } } }, delay); this.showAd('image'); return;
-                case 'addNewWord': this.handleNewWord(); break;
+case 'restartCards': 
+    this.skippedCards = []; 
+    this.currentCardIndex = 0; 
+    
+    // تصفير المصفوفات التي تمنع ظهور الكلمات
+    if (param === 'all') {
+        this.masteredWords = []; // هذا السطر هو الأهم ليعيد عرض كل الكلمات
+        this.repeatAllSessionMastered = [];
+        this.showAllCardsTemporary = true;
+    }
+
+    const cardShuffle = document.querySelector('.flashcard-container'); 
+    if (cardShuffle) cardShuffle.classList.add('shuffle-anim-card'); 
+    
+    const delay = cardShuffle ? 600 : 0; 
+    setTimeout(async () => { 
+        await this.saveUserData(); // حفظ الحالة الجديدة (صفر كلمات متقنة) في Firebase
+        this.render(); 
+    }, delay); 
+    
+    this.showAd('image'); 
+    return;
+case 'addNewWord': this.handleNewWord(); break;
                     case 'saveCardEdit': this.saveCardEdit(param); break;
                 case 'backToLessons': this.stopAudio(); this.currentPage = (this.selectedLevel === 'custom_list') ? 'custom_lessons_view' : 'lessons'; this.selectedLessonId = null; this.isUnlockTest = false; this.render(); setTimeout(() => window.scrollTo(0, this.scrollPos), 50); return;
                 case 'doLogin': this.handleLogin(); return;
