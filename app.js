@@ -1845,6 +1845,7 @@ class App {
                 case 'prevC': const lessonPrev = this.getCurrentLessonData(); const addedPrev = this.userVocabulary.filter(v => v.lessonId == this.selectedLessonId); const allWordsPrev = lessonPrev ? [...lessonPrev.terms, ...addedPrev] : []; let activePrev; if (this.showAllCardsTemporary) activePrev = allWordsPrev.filter(t => !this.hiddenFromCards.includes(String(t.id)) && !this.repeatAllSessionMastered.includes(String(t.id))); else activePrev = allWordsPrev.filter(t => !this.masteredWords.includes(String(t.id)) && !this.hiddenFromCards.includes(String(t.id))); if (activePrev.length === 0) break; this.currentCardIndex--; if (this.currentCardIndex < 0) this.currentCardIndex = activePrev.length - 1; this.render(); break;
                 case 'restartCards': this.skippedCards = []; this.currentCardIndex = 0; const cardShuffle = document.querySelector('.flashcard-container'); if (cardShuffle) cardShuffle.classList.add('shuffle-anim-card'); const delay = cardShuffle ? 600 : 0; setTimeout(async () => { if (param === 'all' && this.selectedLessonId) { this.showAllCardsTemporary = true; this.repeatAllSessionMastered = []; this.currentCardIndex = 0; await this.saveUserData(); this.render(); } else if (param === 'remaining') { if (this.showAllCardsTemporary) { this.currentCardIndex = 0; await this.saveUserData(); this.render(); } else { this.showAllCardsTemporary = false; this.repeatAllSessionMastered = []; this.currentCardIndex = 0; await this.saveUserData(); this.render(); } } }, delay); this.showAd('image'); return;
                 case 'addNewWord': this.handleNewWord(); break;
+                    case 'saveCardEdit': this.saveCardEdit(param); break;
                 case 'backToLessons': this.stopAudio(); this.currentPage = (this.selectedLevel === 'custom_list') ? 'custom_lessons_view' : 'lessons'; this.selectedLessonId = null; this.isUnlockTest = false; this.render(); setTimeout(() => window.scrollTo(0, this.scrollPos), 50); return;
                 case 'doLogin': this.handleLogin(); return;
                 case 'doSignup': this.handleSignup(); return;
@@ -1882,7 +1883,54 @@ class App {
         });
         document.addEventListener('input', (e) => { if (e.target.id === 'spellingInput') this.spellingUserAnswer = e.target.value; });
     }
+async saveCardEdit(wordId) {
+        // 1. الوصول للحقول باستخدام الـ ID الذي وضعناه في getView
+        const inputEng = document.getElementById(`editEng_${wordId}`);
+        const inputArb = document.getElementById(`editArb_${wordId}`);
+        
+        if (!inputEng || !inputArb) return;
 
+        const newEng = inputEng.value.trim();
+        const newArb = inputArb.value.trim();
+
+        // فحص سريع للتأكد من وجود نص
+        if (!newEng || !newArb) {
+            this.showCustomModal('error', '⚠️', this.t('يرجى عدم ترك الحقول فارغة', 'Please do not leave fields empty'));
+            return;
+        }
+
+        // 2. تحديث الكلمة في الذاكرة المؤقتة window.lessonsData لضمان التغيير الفوري
+        if (window.lessonsData) {
+            const idx = window.lessonsData.findIndex(w => String(w.id) === String(wordId));
+            if (idx !== -1) {
+                window.lessonsData[idx].english = newEng;
+                window.lessonsData[idx].arabic = newArb;
+            }
+        }
+
+        // 3. تحديث الكلمة داخل الدروس المخصصة (customLessons) لضمان الحفظ في Firebase
+        for (let lessonId in this.customLessons) {
+            if (this.customLessons[lessonId].words) {
+                const wIdx = this.customLessons[lessonId].words.findIndex(w => String(w.id) === String(wordId));
+                if (wIdx !== -1) {
+                    this.customLessons[lessonId].words[wIdx].english = newEng;
+                    this.customLessons[lessonId].words[wIdx].arabic = newArb;
+                }
+            }
+        }
+
+        // 4. الحفظ النهائي في السحابة (Firebase)
+        try {
+            await this.saveUserData();
+            this.showCustomModal('success', '✅', this.t('تم حفظ التعديل بنجاح', 'Changes saved successfully!'));
+            
+            // إعادة بناء الشاشة لتحديث البيانات
+            this.render(); 
+        } catch (error) {
+            console.error("Save Error:", error);
+            this.showCustomModal('error', '❌', this.t('فشل الحفظ', 'Failed to save'));
+        }
+    }
     getBadgesDisplay() { const earnedBadges = this.userStats.earnedBadges || []; const allBadges = [...this.badgeDefinitions.general, ...this.badgeDefinitions.quiz, ...this.badgeDefinitions.listening, ...this.badgeDefinitions.spelling, ...this.badgeDefinitions.gapFill]; const displayBadges = allBadges.slice(0, 8); if (displayBadges.length === 0) return `<div class="badges-container" data-action="showBadges" style="justify-content:center; color:#aaa; cursor:pointer;"><span>🏅 ${this.t('اضغط لعرض الأوسمة', 'Click to view badges')}</span></div>`; return `<div class="badges-container" data-action="showBadges">${displayBadges.map(b => { const isEarned = earnedBadges.includes(b.id); return `<span class="badge-item ${isEarned ? 'earned' : 'locked'}" title="${this.t(b.name, b.nameEn)}">${b.icon}</span>`; }).join('')}${allBadges.length > 8 ? `<span class="badge-item" style="font-size:0.9rem;">+${allBadges.length - 8}</span>` : ''}</div>`; }
     
     showBadgesModal() { const earnedBadges = this.userStats.earnedBadges || []; const totalLessons = (this.unlockedLessons || []).length; const totalMastered = (this.masteredWords || []).length; let html = `<div style="text-align:center; margin-bottom:15px;"><div style="font-size:1.1rem; font-weight:bold;">🏅 ${this.t('الأوسمة والإنجازات', 'Badges & Achievements')}</div><div style="font-size:0.75rem; color:#666;">${this.t('الأوسمة الباهتة لم يتم الحصول عليها بعد', 'Dim badges are not yet earned')}</div></div><div class="badges-grid">`; html += `<div style="grid-column:1/-1; margin:10px 0 5px; font-weight:bold; text-align:center; border-bottom:2px solid #ffd700;">📊 ${this.t('أوسمة التقدم العام', 'General Progress Badges')}</div>`; for (const badge of this.badgeDefinitions.general) { const isEarned = earnedBadges.includes(badge.id); let progressText = ''; if (badge.id === 'bronze_medal') progressText = `${this.t('الدروس:', 'Lessons:')} ${totalLessons}/5 | ${this.t('الكلمات:', 'Words:')} ${totalMastered}/100`; else if (badge.id === 'silver_medal') progressText = `${this.t('الدروس:', 'Lessons:')} ${totalLessons}/15 | ${this.t('الكلمات:', 'Words:')} ${totalMastered}/300`; else if (badge.id === 'gold_medal') progressText = `${this.t('الدروس:', 'Lessons:')} ${totalLessons}/35 | ${this.t('الكلمات:', 'Words:')} ${totalMastered}/800`; else if (badge.id === 'diamond_medal') progressText = `${this.t('الدروس:', 'Lessons:')} ${totalLessons}/60 | ${this.t('الكلمات:', 'Words:')} ${totalMastered}/2000`; else if (badge.id === 'bronze_crown') progressText = `${this.t('الدروس:', 'Lessons:')} ${totalLessons}/80 | ${this.t('الكلمات:', 'Words:')} ${totalMastered}/2500`; else if (badge.id === 'silver_crown') progressText = `${this.t('الدروس:', 'Lessons:')} ${totalLessons}/100 | ${this.t('الكلمات:', 'Words:')} ${totalMastered}/3500`; else if (badge.id === 'gold_crown') progressText = `${this.t('الدروس:', 'Lessons:')} ${totalLessons}/120 | ${this.t('الكلمات:', 'Words:')} ${totalMastered}/5000`; else if (badge.id === 'diamond_crown') progressText = `${this.t('الدروس:', 'Lessons:')} ${totalLessons}/150 | ${this.t('الكلمات:', 'Words:')} ${totalMastered}/7000`; html += `<div class="badge-modal-item ${isEarned ? 'earned' : ''}"><span class="badge-icon">${badge.icon}</span><span class="badge-name">${this.t(badge.name, badge.nameEn)}</span>${progressText ? `<div class="badge-progress">${progressText}</div>` : ''}<div>${isEarned ? '✅' : '🔒'}</div></div>`; } html += `<div style="grid-column:1/-1; margin:15px 0 5px; font-weight:bold; text-align:center; border-bottom:2px solid #ffd700;">📝 ${this.t('أوسمة اختبار الكلمات', 'Quiz Badges')}</div>`; for (const badge of this.badgeDefinitions.quiz) { const isEarned = earnedBadges.includes(badge.id); const current = this.exerciseStats.quiz?.correct || 0; html += `<div class="badge-modal-item ${isEarned ? 'earned' : ''}"><span class="badge-icon">${badge.icon}</span><span class="badge-name">${this.t(badge.name, badge.nameEn)}</span><div class="badge-progress">${current}/${badge.requirement}</div><div>${isEarned ? '✅' : '🔒'}</div></div>`; } html += `<div style="grid-column:1/-1; margin:15px 0 5px; font-weight:bold; text-align:center; border-bottom:2px solid #ffd700;">🎧 ${this.t('أوسمة الاستماع', 'Listening Badges')}</div>`; for (const badge of this.badgeDefinitions.listening) { const isEarned = earnedBadges.includes(badge.id); const current = this.exerciseStats.listening?.correct || 0; html += `<div class="badge-modal-item ${isEarned ? 'earned' : ''}"><span class="badge-icon">${badge.icon}</span><span class="badge-name">${this.t(badge.name, badge.nameEn)}</span><div class="badge-progress">${current}/${badge.requirement}</div><div>${isEarned ? '✅' : '🔒'}</div></div>`; } html += `<div style="grid-column:1/-1; margin:15px 0 5px; font-weight:bold; text-align:center; border-bottom:2px solid #ffd700;">✍️ ${this.t('أوسمة الكتابة', 'Spelling Badges')}</div>`; for (const badge of this.badgeDefinitions.spelling) { const isEarned = earnedBadges.includes(badge.id); const current = this.exerciseStats.spelling?.correct || 0; html += `<div class="badge-modal-item ${isEarned ? 'earned' : ''}"><span class="badge-icon">${badge.icon}</span><span class="badge-name">${this.t(badge.name, badge.nameEn)}</span><div class="badge-progress">${current}/${badge.requirement}</div><div>${isEarned ? '✅' : '🔒'}</div></div>`; } html += `<div style="grid-column:1/-1; margin:15px 0 5px; font-weight:bold; text-align:center; border-bottom:2px solid #ffd700;">📝 ${this.t('أوسمة ملء الفراغ', 'Gap Fill Badges')}</div>`; for (const badge of this.badgeDefinitions.gapFill) { const isEarned = earnedBadges.includes(badge.id); const current = this.exerciseStats.gapFill?.correct || 0; html += `<div class="badge-modal-item ${isEarned ? 'earned' : ''}"><span class="badge-icon">${badge.icon}</span><span class="badge-name">${this.t(badge.name, badge.nameEn)}</span><div class="badge-progress">${current}/${badge.requirement}</div><div>${isEarned ? '✅' : '🔒'}</div></div>`; } html += '</div>'; this.showCustomModal('info', '🏅', html); }
@@ -2121,18 +2169,13 @@ class App {
         }
 
 if (this.currentPage === 'flashcards') {
-            // استخدام allTerms الممررة للدالة مباشرة أو جلبها من النافذة
             let termsToUse = (allTerms && allTerms.length > 0) ? allTerms : (window.lessonsData || []);
-            
-            // تصفية الكلمات (عرض غير المتقن وغير المخفي)
             let active = termsToUse.filter(t => t && t.id && !this.masteredWords.includes(String(t.id)) && !this.hiddenFromCards.includes(String(t.id)));
 
-            // إذا انتهت الكلمات غير المتقنة، نظهر زر "إعادة التكرار"
             if (active.length === 0) {
                 return `<div class="reading-card" style="text-align:center;">
                             <div style="font-size:2.5rem; margin-bottom:10px;">🧠</div>
                             <h3>🎉 ${this.t('اكتملت المراجعة!', 'Review completed!')}</h3>
-                            <p>${this.t('لقد أتقنت جميع كلمات هذا القسم.', 'You have mastered all words in this section.')}</p>
                             <button class="hero-btn" data-action="restartCards" data-param="all" style="background:#f59e0b; width:100%; margin-top:10px;">${this.t('إعادة تكرار الكل 🔁', 'Repeat All 🔁')}</button>
                             <button class="hero-btn" data-action="goHome" style="margin-top:10px; background:#64748b; width:100%;">🏠 ${this.t('الرئيسية', 'Home')}</button>
                         </div>`;
@@ -2141,18 +2184,30 @@ if (this.currentPage === 'flashcards') {
             const t = active[this.currentCardIndex] || active[0];
 
             return `<main class="main-content">
-                <div class="flashcard-container" onclick="this.querySelector('.flashcard').classList.toggle('flipped')">
-                    <div class="flashcard">
-                        <div class="flashcard-front"><h1>${t.english || ''}</h1></div>
-                        <div class="flashcard-back"><h1>${t.arabic || ''}</h1></div>
+                <div class="flashcard-container" style="perspective: none;">
+                    <div class="reading-card" style="background:white; padding:20px; border-radius:15px; box-shadow:0 4px 15px rgba(0,0,0,0.1); border: 2px solid #8b5cf6;">
+                        <div style="margin-bottom:15px;">
+                            <label style="display:block; font-size:0.75rem; color:#8b5cf6; margin-bottom:5px; font-weight:bold;">English:</label>
+                            <input type="text" id="editEng_${t.id}" value="${t.english || ''}" style="width:100%; padding:12px; border:1px solid #ddd; border-radius:10px; font-size:1.3rem; text-align:center; background:#f9f9ff;">
+                        </div>
+                        
+                        <div style="margin-bottom:15px;">
+                            <label style="display:block; font-size:0.75rem; color:#8b5cf6; margin-bottom:5px; font-weight:bold;">العربية:</label>
+                            <input type="text" id="editArb_${t.id}" value="${t.arabic || ''}" style="width:100%; padding:12px; border:1px solid #ddd; border-radius:10px; font-size:1.3rem; text-align:center; direction:rtl; background:#f9f9ff;">
+                        </div>
+                        
+                        <button class="hero-btn" onclick="appInstance.saveCardEdit('${t.id}')" style="width:100%; background:#8b5cf6; color:white; font-weight:bold; box-shadow: 0 4px 0 #6d28d9;">💾 ${this.t('حفظ التعديلات', 'Save Changes')}</button>
                     </div>
                 </div>
-                <div class="card-controls-row">
+
+                <div class="card-controls-row" style="margin-top:20px;">
                     <button class="hero-btn" data-action="speak" data-param="${t.english}" style="background:#6366f1;">🔊 ${this.t('نطق', 'Speak')}</button>
                     <button class="hero-btn" data-action="masterWordFlash" data-param="${t.id}" style="background:#10b981;">✅ ${this.t('اعرفها', 'Master')}</button>
                     <button class="hero-btn" data-action="deleteWord" data-param="${t.id}" style="background:#ef4444;">🗑️ ${this.t('حذف', 'Delete')}</button>
                 </div>
+
                 <button class="hero-btn" data-action="restartCards" data-param="remaining" style="width:100%; margin:12px 0; background:#f59e0b;">🔁 ${this.t('تكرار المتبقي', 'Repeat Remaining')}</button>
+                
                 <div class="card-nav-row">
                     <button class="hero-btn" data-action="prevC" style="background:#64748b;">${this.t('السابق', 'Previous')}</button>
                     <button class="hero-btn" data-action="nextC" data-total="${active.length}" style="background:#64748b;">${this.t('التالي', 'Next')}</button>
@@ -2160,7 +2215,7 @@ if (this.currentPage === 'flashcards') {
                 <div style="text-align:center; margin-top:8px; color:#666; font-size:0.85rem;">${this.currentCardIndex + 1} / ${active.length}</div>
             </main>`;
         }
-    if (this.currentPage === 'quiz') { if (this.quizIndex >= this.quizQuestions.length) { const pass = (this.quizScore / this.quizQuestions.length) >= 0.75; if (this.isUnlockTest && pass) { this.unlockedLessons.push(String(this.tempLessonToUnlock)); this.userCoins += 20; this.saveUserData(); this.updateLevelAndBadges(); this.showCustomModal('success', '🎉', this.t(`لقد فتحت درساً جديداً وحصلت على 20 لؤلؤة!`, `You unlocked a new lesson and earned 20 pearls!`)); } this.saveUserData(); return `<div class="reading-card finish-box" style="text-align:center;"><h2>${pass ? this.t("نجحت! 🎉", "Passed! 🎉") : this.t("حاول مجدداً", "Try Again")}</h2><button class="hero-btn" data-action="backToLessons" style="margin-top:15px;">${this.t('متابعة', 'Continue')}</button></div>`; } const q = this.quizQuestions[this.quizIndex]; return `<div class="reading-card quiz-box"><div class="quiz-info" style="font-size:0.8rem; margin-bottom:12px; text-align:center;">${this.t('السؤال', 'Question')} ${this.quizIndex + 1}/${this.quizQuestions.length}</div><div class="quiz-question-row" style="display:flex; align-items:center; gap:10px; justify-content:center;"><h2 style="margin:0; font-size:1.2rem;">${q.english}</h2><button class="quiz-speak-btn" data-action="speak" data-param="${q.english}" style="background:none; border:none; font-size:1.3rem; cursor:pointer;">🔊</button></div><div class="quiz-options" style="margin-top:20px;">${this.quizOptions.map(opt => `<button class="quiz-opt-btn" data-action="ansQ" data-param="${opt}" data-correct="${q.arabic}">${opt}</button>`).join('')}</div></div>`; }
+        if (this.currentPage === 'quiz') { if (this.quizIndex >= this.quizQuestions.length) { const pass = (this.quizScore / this.quizQuestions.length) >= 0.75; if (this.isUnlockTest && pass) { this.unlockedLessons.push(String(this.tempLessonToUnlock)); this.userCoins += 20; this.saveUserData(); this.updateLevelAndBadges(); this.showCustomModal('success', '🎉', this.t(`لقد فتحت درساً جديداً وحصلت على 20 لؤلؤة!`, `You unlocked a new lesson and earned 20 pearls!`)); } this.saveUserData(); return `<div class="reading-card finish-box" style="text-align:center;"><h2>${pass ? this.t("نجحت! 🎉", "Passed! 🎉") : this.t("حاول مجدداً", "Try Again")}</h2><button class="hero-btn" data-action="backToLessons" style="margin-top:15px;">${this.t('متابعة', 'Continue')}</button></div>`; } const q = this.quizQuestions[this.quizIndex]; return `<div class="reading-card quiz-box"><div class="quiz-info" style="font-size:0.8rem; margin-bottom:12px; text-align:center;">${this.t('السؤال', 'Question')} ${this.quizIndex + 1}/${this.quizQuestions.length}</div><div class="quiz-question-row" style="display:flex; align-items:center; gap:10px; justify-content:center;"><h2 style="margin:0; font-size:1.2rem;">${q.english}</h2><button class="quiz-speak-btn" data-action="speak" data-param="${q.english}" style="background:none; border:none; font-size:1.3rem; cursor:pointer;">🔊</button></div><div class="quiz-options" style="margin-top:20px;">${this.quizOptions.map(opt => `<button class="quiz-opt-btn" data-action="ansQ" data-param="${opt}" data-correct="${q.arabic}">${opt}</button>`).join('')}</div></div>`; }
         if (this.currentPage === 'jumble') { if (!this.jumbleUnlocked[this.selectedLessonId]) return `<div class="reading-card" style="text-align: center;"><h3>🔤 ${this.t('ترتيب الجمل', 'Sentence Jumble')}</h3><p>${this.t('لفتح هذا التمرين تحتاج 50 💎 لؤلؤة (مرة واحدة فقط للدرس).', 'To unlock this exercise you need 50 💎 pearls (one-time per lesson).')}</p><p>${this.t('رصيدك الحالي:', 'Your balance:')} ${this.userCoins} 💎</p><button class="hero-btn" onclick="appInstance.unlockJumble('${this.selectedLessonId}')" style="background: #8b5cf6;">${this.t('فتح (50 💎)', 'Unlock (50 💎)')}</button></div>`; return `<div class="reading-card"><h3>🔤 ${this.t('رتب الكلمات لتكوين جملة صحيحة', 'Arrange the words to form a correct sentence')}</h3><div style="display: flex; flex-wrap: wrap; gap: 6px; margin: 15px 0; padding: 10px; background: ${this.jumbleChecked ? (this.jumbleCorrect ? '#d1fae5' : '#fee2e2') : '#f1f5f9'}; border-radius: 8px; min-height: 55px;">${this.jumbleUserAnswer.map(word => `<span class="jumble-word-top" data-action="jumbleRemove" data-param="${word}" style="cursor: pointer; background: #3b82f6; color: white; padding: 5px 10px; border-radius: 20px; font-size: 0.9rem;">${word}</span>`).join('')}</div><div style="display: flex; flex-wrap: wrap; gap: 6px; margin: 15px 0; padding: 10px; background: #e2e8f0; border-radius: 8px; min-height: 55px;">${this.jumbleWords.map(word => `<button class="hero-btn" data-action="jumbleSelect" data-param="${word}" style="padding: 5px 10px; background: #64748b; font-size: 0.85rem; ${this.jumbleChecked ? 'opacity:0.5; pointer-events:none;' : ''}">${word}</button>`).join('')}</div><div style="display: flex; gap: 6px; justify-content: center; flex-wrap: wrap;"><button class="hero-btn" data-action="jumbleReset" style="background:#f59e0b; padding:6px 12px;">🔄 ${this.t('إعادة', 'Reset')}</button><button class="hero-btn" data-action="jumbleCheck" style="background:#10b981; padding:6px 12px;" ${this.jumbleChecked ? 'disabled' : ''}>✅ ${this.t('تحقق', 'Check')}</button><button class="hero-btn" data-action="jumbleHint" style="background:#3b82f6; padding:6px 12px;" ${this.jumbleChecked || this.jumbleHintUsedCount >= 3 ? 'disabled' : ''}>💡 ${this.t('تلميح', 'Hint')} (${this.jumbleHintUsedCount}/3)</button>${this.jumbleChecked ? `<button class="hero-btn" data-action="jumbleNext" style="background:#3b82f6; padding:6px 12px;">➡️ ${this.t('التالي', 'Next')}</button>` : ''}</div>${this.jumbleArabicHint ? `<div style="margin-top: 12px; padding: 8px; background: #e0f2fe; border-radius: 8px; text-align: center; font-size: 0.85rem;">🔍 ${this.t('الترجمة:', 'Translation:')} ${this.jumbleArabicHint}</div>` : ''}</div>`; }
         if (this.currentPage === 'listening') { if (!this.listeningUnlocked[this.selectedLessonId]) return `<div class="reading-card" style="text-align: center;"><h3>🎧 ${this.t('اختبار الاستماع', 'Listening Test')}</h3><p>${this.t('لفتح هذا الاختبار تحتاج 50 💎 لؤلؤة (مرة واحدة فقط للدرس).', 'To unlock this test you need 50 💎 pearls (one-time per lesson).')}</p><p>${this.t('رصيدك الحالي:', 'Your balance:')} ${this.userCoins} 💎</p><button class="hero-btn" onclick="appInstance.unlockListening('${this.selectedLessonId}')" style="background: #8b5cf6;">${this.t('فتح (50 💎)', 'Unlock (50 💎)')}</button></div>`; if (!this.listeningCurrent) { this.prepareListeningQuiz(); return `<div class="reading-card"><p>${this.t('جاري تحضير التمرين...', 'Preparing exercise...')}</p></div>`; } return `<div class="reading-card"><h3>🎧 ${this.t('استمع واختر الكلمة الصحيحة', 'Listen and choose the correct word')}</h3><div style="text-align: center; margin: 20px 0;"><button class="hero-btn" data-action="speak" data-param="${this.listeningCurrent.english}" style="font-size: 1.3rem; padding: 12px; background: #6366f1;">🔊 ${this.t('استمع مرة أخرى', 'Listen Again')}</button></div><div class="quiz-options">${this.listeningOptions.map(opt => `<button class="quiz-opt-btn listening-opt-btn" data-action="listeningAnswer" data-param="${opt}">${opt}</button>`).join('')}</div></div>`; }
         if (this.currentPage === 'spelling') { if (!this.spellingUnlocked[this.selectedLessonId]) return `<div class="reading-card" style="text-align: center;"><h3>✍️ ${this.t('تمرين الكتابة', 'Spelling Exercise')}</h3><p>${this.t('لفتح هذا التمرين تحتاج 50 💎 لؤلؤة (مرة واحدة فقط للدرس).', 'To unlock this exercise you need 50 💎 pearls (one-time per lesson).')}</p><p>${this.t('رصيدك الحالي:', 'Your balance:')} ${this.userCoins} 💎</p><button class="hero-btn" onclick="appInstance.unlockSpelling('${this.selectedLessonId}')" style="background: #8b5cf6;">${this.t('فتح (50 💎)', 'Unlock (50 💎)')}</button></div>`; if (!this.spellingCurrent) { this.prepareSpelling(); return `<div class="reading-card"><p>${this.t('جاري تحضير التمرين...', 'Preparing exercise...')}</p></div>`; } return `<div class="reading-card spelling-card"><h3>✍️ ${this.t('اكتب الكلمة بالانجليزية', 'Write the word in English')}</h3><div style="font-size:1.3rem; text-align:center; margin:15px 0; padding:12px; background:#f0f7ff; border-radius:12px;">${this.spellingCurrent.arabic}</div><input type="text" id="spellingInput" class="spelling-input" placeholder="${this.t('اكتب الكلمة هنا...', 'Write the word here...')}" value="${this.spellingUserAnswer}" ${this.spellingAnswered ? 'disabled' : ''} style="padding:10px; font-size:1rem;">${this.spellingResult ? `<div class="spelling-feedback ${this.spellingResult === 'correct' ? 'correct-feedback' : 'wrong-feedback'}" style="text-align:center; margin:10px 0;">${this.spellingResult === 'correct' ? this.t('✅ إجابة صحيحة!', '✅ Correct answer!') : this.t('❌ إجابة خاطئة!', '❌ Wrong answer!')}</div>` : ''}<div style="display:flex; gap:8px; justify-content:center;"><button class="hero-btn" data-action="spellingCheck" style="background:#10b981;" ${this.spellingAnswered ? 'disabled' : ''}>✅ ${this.t('تحقق', 'Check')}</button>${this.spellingAnswered ? `<button class="hero-btn" data-action="spellingNext" style="background:#3b82f6;">➡️ ${this.t('التالي', 'Next')}</button>` : ''}</div></div>`; }
