@@ -2209,33 +2209,33 @@ async saveCardEdit(wordId) {
         }
         
         if (this.currentPage === 'test_history') return `<main class="main-content"><button class="hero-btn" data-action="goHome" style="margin-bottom:15px; background:#64748b;">← ${this.t('الرجوع للرئيسية', 'Back to Home')}</button><button class="hero-btn" data-action="syncTestHistory" style="margin-bottom:15px; background:#f59e0b;">🔄 ${this.t('استعادة الاختبارات', 'Restore Tests')}</button><div class="reading-card"><h2 style="text-align:center;">📋 ${this.t('سجل اختبارات المستوى', 'Level Test History')}</h2>${this.placementResults.length === 0 ? `<p style="text-align:center; color:#666; padding:20px;">${this.t('لا توجد اختبارات سابقة', 'No previous tests')}</p>` : `<div class="history-list">${this.placementResults.map((r, idx) => `<div class="history-item" onclick="appInstance.viewTestDetails(${idx})"><div style="display:flex; justify-content:space-between; flex-wrap:wrap; gap:5px;"><span><strong>${r.date}</strong></span><span>${this.t('المستوى:', 'Level:')} ${r.displayLevel || r.level}</span></div><div style="display:flex; justify-content:space-between; margin-top:5px; flex-wrap:wrap; gap:5px;"><span>${this.t('الدرجة:', 'Score:')} ${r.score}/${r.totalQuestions}</span><span>IELTS: ${r.ielts}</span></div><button class="hero-btn" data-action="deletePlacementTest" data-index="${idx}" style="margin-top:5px; background:#ef4444; padding:4px 8px; font-size:0.7rem;">🗑️ ${this.t('حذف', 'Delete')}</button></div>`).join('')}</div>`}</div></main>`;
-        
         if (this.currentPage === 'adaptive_test') {
-            if (!this.adaptiveTestActive) {
-                return this.showAdaptiveResult();
-            }
-            const question = this.getCurrentAdaptiveQuestion();
-            if (!question) {
-                return `<div class="reading-card"><p>${this.t('جاري تحميل السؤال التالي...', 'Loading next question...')}</p></div>`;
-            }
-            const opts = [...question.options].sort(() => 0.5 - Math.random());
-            const correctAnswer = question.correct;
-            const totalSoFar = this.adaptiveTestHistory.length;
-            let phaseName = '';
-            if (this.adaptiveTestPhase === 'initial') phaseName = this.t('المرحلة الأولية', 'Initial');
-            else if (this.adaptiveTestPhase === 'moving_up') phaseName = this.t('تقييم المستوى الأعلى', 'Moving Up');
-            else if (this.adaptiveTestPhase === 'moving_down') phaseName = this.t('تقييم المستوى الأدنى', 'Moving Down');
-            else phaseName = this.t('تأكيد المستوى', 'Confirmation');
-            
-            return `<div class="reading-card">
-                <div style="display:flex; justify-content:space-between; margin-bottom:15px; flex-wrap:wrap; gap:8px;">
-                    <span style="background:#e2e8f0; color:#475569; padding:4px 12px; border-radius:20px; font-weight:bold; font-size:0.8rem;">${phaseName} | ${this.t('المستوى', 'Level')}: ${this.adaptiveTestCurrentLevel}</span>
-                    <span style="background:#e2e8f0; color:#475569; padding:4px 12px; border-radius:20px; font-weight:bold; font-size:0.8rem;">${this.t('السؤال', 'Question')} ${totalSoFar + 1}</span>
-                </div>
-                <h2 style="margin-bottom:25px; direction:ltr; text-align:left; line-height:1.4; font-size:1.2rem;">${question.q}</h2>
-                <div class="quiz-options">${opts.map(opt => `<button class="quiz-opt-btn" data-action="adaptiveAnswer" data-param="${opt}" data-correct="${correctAnswer}">${opt}</button>`).join('')}</div>
-            </div>`;
-        }
+    if (!this.adaptiveTestActive) {
+        return this.showAdaptiveResult();
+    }
+    const question = this.getCurrentAdaptiveQuestion();
+    if (!question) {
+        return `<div class="reading-card"><p>${this.t('جاري تحميل السؤال التالي...', 'Loading next question...')}</p></div>`;
+    }
+    const opts = [...question.options].sort(() => 0.5 - Math.random());
+    const correctAnswer = question.correct;
+    const totalSoFar = this.adaptiveTestHistory.length;
+
+    // ملاحظة: المتغيرات phaseName و adaptiveTestCurrentLevel ستبقى تعمل في الخلفية
+    // لكننا حذفنا الأكواد التي تعرضها للمستخدم هنا في الأسفل
+
+    return `<div class="reading-card">
+        <div style="display:flex; justify-content:flex-end; margin-bottom:15px; flex-wrap:wrap; gap:8px;">
+            <span style="background:#e2e8f0; color:#475569; padding:4px 12px; border-radius:20px; font-weight:bold; font-size:0.8rem;">
+                ${this.t('السؤال', 'Question')} ${totalSoFar + 1}
+            </span>
+        </div>
+        <h2 style="margin-bottom:25px; direction:ltr; text-align:left; line-height:1.4; font-size:1.2rem;">${question.q}</h2>
+        <div class="quiz-options">
+            ${opts.map(opt => `<button class="quiz-opt-btn" data-action="adaptiveAnswer" data-param="${opt}" data-correct="${correctAnswer}">${opt}</button>`).join('')}
+        </div>
+    </div>`;
+}
         
         if (this.currentPage === 'adaptive_test_result') {
             return this.showAdaptiveResult();
