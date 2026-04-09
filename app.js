@@ -180,7 +180,7 @@ class App {
             gapFill: { correct: 0, total: 0 }
         };
 
-        // متغيرات لمنع تكرار احتساب الأوسمة (تم الاحتفاظ بها كما هي)
+        // متغيرات لمنع تكرار احتساب الأوسمة
         this.quizCorrectWords = [];
         this.listeningCorrectWords = [];
         this.spellingCorrectWords = [];
@@ -1929,7 +1929,6 @@ async saveCardEdit(wordId) {
                     const cardM = document.querySelector('.flashcard-container'); 
                     if (cardM) { 
                         cardM.classList.add('master-anim'); 
-                        // إزالة الأنيميشن بسرعة دون تأخير الانتقال
                         setTimeout(() => cardM.classList.remove('master-anim'), 200);
                         const wordId = String(param); 
                         if (!this.masteredWords.includes(wordId)) { 
@@ -1942,7 +1941,6 @@ async saveCardEdit(wordId) {
                             this.repeatAllSessionMastered.push(wordId); 
                             await this.saveUserData(); 
                         } 
-                        // الانتقال السريع للبطاقة التالية دون انتظار طويل
                         this.render(); 
                     } 
                     return;
@@ -1954,22 +1952,19 @@ async saveCardEdit(wordId) {
                     this.skippedCards = [];
                     this.currentCardIndex = 0;
                     if (param === 'all') {
-                        // لا يتم تصفير الكلمات المتقنة أبداً
-                        // فقط نعيد تعيين جلسة التكرار الحالية
+                        // إعادة تعيين الجلسة فقط دون مسح الكلمات المتقنة الدائمة
                         this.repeatAllSessionMastered = [];
                         this.showAllCardsTemporary = true;
-                        // لا نمس masteredWords
                     } else if (param === 'remaining') {
                         this.showAllCardsTemporary = false;
                         this.repeatAllSessionMastered = [];
                     }
                     const cardShuffle = document.querySelector('.flashcard-container');
                     if (cardShuffle) cardShuffle.classList.add('shuffle-anim-card');
-                    const delay = cardShuffle ? 300 : 0;
-                    setTimeout(async () => {
-                        await this.saveUserData();
+                    setTimeout(() => {
+                        if (cardShuffle) cardShuffle.classList.remove('shuffle-anim-card');
                         this.render();
-                    }, delay);
+                    }, 300);
                     this.showAd('image');
                     return;
                 case 'addNewWord': this.handleNewWord(); break;
@@ -2298,7 +2293,14 @@ if (this.currentPage === 'flashcards') {
                 return word;
             });
 
-            let active = termsToUse.filter(t => t && t.id && !this.masteredWords.includes(String(t.id)));
+            let active;
+            if (this.showAllCardsTemporary) {
+                // وضع إعادة تكرار الكل: نظهر كل الكلمات التي لم يتم إتقانها في هذه الجلسة فقط
+                active = termsToUse.filter(t => !this.hiddenFromCards.includes(String(t.id)) && !this.repeatAllSessionMastered.includes(String(t.id)));
+            } else {
+                // الوضع العادي: نظهر فقط الكلمات التي لم يتم إتقانها بشكل دائم
+                active = termsToUse.filter(t => !this.masteredWords.includes(String(t.id)) && !this.hiddenFromCards.includes(String(t.id)));
+            }
 
             if (active.length === 0) {
                 return `<div class="reading-card" style="text-align:center; padding:40px 20px;">
