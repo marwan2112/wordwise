@@ -21,7 +21,7 @@ class App {
         // ========== نظام اختبار المستوى المتطور (Adaptive Level Test) ==========
         this.adaptiveTestActive = false;
         this.adaptiveTestHistory = [];
-        this.adaptiveTestCurrentLevel = 'A2'; // تم التعديل: يبدأ من A2
+        this.adaptiveTestCurrentLevel = 'A2';
         this.adaptiveTestPhase = 'initial';
         this.adaptiveTestLevelResults = {};
         this.adaptiveTestFinalLevel = null;
@@ -68,7 +68,7 @@ class App {
         this.jumbleUserAnswer = [];
         this.jumbleChecked = false;
         this.jumbleCorrect = false;
-        this.jumbleHintUsedCount = 0; // عدد مرات استخدام التلميح في الجملة الحالية (حد أقصى 3)
+        this.jumbleHintUsedCount = 0;
         this.jumbleHistory = [];
         this.jumbleUnlocked = {};
         this.jumbleNextCount = 0;
@@ -516,7 +516,7 @@ async loadUserData(uid) {
             } else {
                 console.log("ℹ️ مستخدم جديد، تهيئة بيانات افتراضية");
                 this.resetToDefaults();
-                this.userModifiedWords = {}; // تهيئة فارغة للمستخدم الجديد
+                this.userModifiedWords = {};
                 this.isDataLoaded = true;
                 this.canSave = true;
             }
@@ -560,7 +560,6 @@ async saveUserData() {
         const data = {
             userVocabulary: this.userVocabulary || [],
             masteredWords: this.masteredWords || [],
-            // السطر التالي هو المسؤول عن حفظ تعديلات الكلمات في السحابة
             userModifiedWords: this.userModifiedWords || {}, 
             unlockedLessons: this.unlockedLessons || [],
             hiddenFromCards: this.hiddenFromCards || [],
@@ -752,7 +751,6 @@ async saveUserData() {
             const isDefault = defaultLessonIds.includes(Number(lessonId));
             if (!isDefault && !this.unlockedLessons.includes(String(lessonId)) && this.selectedLevel !== 'custom_list') this.addLessonReward(lessonId);
             this.selectedLessonId = lessonId;
-            // إعادة تعيين جميع تمارين الدرس الحالي لضمان استخدام كلمات الدرس الصحيح
             this.resetExercisesForNewLesson();
             this.currentPage = 'reading';
             this.isUnlockTest = false;
@@ -764,7 +762,6 @@ async saveUserData() {
         this.render();
     }
 
-    // دالة جديدة لإعادة تعيين جميع التمارين عند فتح درس جديد
     resetExercisesForNewLesson() {
         this.spellingRemaining = [];
         this.spellingCurrent = null;
@@ -1462,7 +1459,7 @@ async saveUserData() {
         this.jumbleUserAnswer = [];
         this.jumbleChecked = false;
         this.jumbleCorrect = false;
-        this.jumbleHintUsedCount = 0; // إعادة تعيين عدد التلميحات
+        this.jumbleHintUsedCount = 0;
     }
 
     handleJumbleSelect(word) { if (this.jumbleChecked) return; const index = this.jumbleWords.indexOf(word); if (index !== -1) { this.jumbleWords.splice(index, 1); this.jumbleUserAnswer.push(word); this.render(); } }
@@ -1472,7 +1469,6 @@ async saveUserData() {
     handleJumbleReset() { this.jumbleWords = this.jumbleOriginalSentence.split(/\s+/).filter(w => w.length > 0); this.shuffleArray(this.jumbleWords); this.jumbleUserAnswer = []; this.jumbleChecked = false; this.jumbleCorrect = false; this.jumbleHintUsedCount = 0; this.render(); }
     
     handleJumbleCheck() { if (this.jumbleChecked) return; const userSentence = this.jumbleUserAnswer.join(' '); const isCorrect = (userSentence.toLowerCase().trim() === this.jumbleOriginalSentence.toLowerCase().trim()); this.jumbleChecked = true; this.jumbleCorrect = isCorrect; this.playTone(isCorrect ? 'correct' : 'error'); 
-        // تلوين الكلمات في حالة الخطأ (تمييز الإجابة الصحيحة) - يتم عن طريق CSS
         if (isCorrect) { this.recordCorrectAnswer('jumble', this.jumbleOriginalSentence); } else { this.recordTotalAnswer('jumble'); }
         this.render(); 
     }
@@ -1483,7 +1479,6 @@ async saveUserData() {
             this.showCustomModal('info', '💡', this.t('لقد استنفدت عدد التلميحات المسموحة لهذه الجملة (3 تلميحات).', 'You have exhausted the allowed hints for this sentence (3 hints).'));
             return;
         }
-        // الحصول على الكلمة التالية الصحيحة التي لم يضعها المستخدم بعد
         const originalWords = this.jumbleOriginalSentence.split(/\s+/);
         let nextWord = null;
         for (let word of originalWords) {
@@ -1509,7 +1504,6 @@ async saveUserData() {
     getAllAvailableWordsForExercises() { 
         const lesson = this.getCurrentLessonData(); 
         if (!lesson) return []; 
-        // التأكد من استخدام كلمات الدرس الحالي فقط + الكلمات المضافة من المستخدم لنفس الدرس
         const allTerms = [...lesson.terms, ...this.userVocabulary.filter(v => v.lessonId == this.selectedLessonId)]; 
         return allTerms.filter(t => !this.hiddenFromCards.includes(String(t.id))); 
     }
@@ -1828,14 +1822,12 @@ async saveCardEdit(wordId) {
                 return;
             }
 
-            // 1. تخزين التعديل في كائن خاص ليتم رفعه لـ Firebase
             if (!this.userModifiedWords) this.userModifiedWords = {};
             this.userModifiedWords[wordId] = {
                 english: newEng,
                 arabic: newArb
             };
 
-            // 2. تحديث البيانات في الذاكرة الحالية للعرض الفوري
             if (window.lessonsData) {
                 const idx = window.lessonsData.findIndex(w => String(w.id) === String(wordId));
                 if (idx !== -1) {
@@ -1844,10 +1836,8 @@ async saveCardEdit(wordId) {
                 }
             }
 
-            // 3. حفظ البيانات في Firebase
             await this.saveUserData();
 
-            // 4. إغلاق واجهة التعديل وتحديث الشاشة
             const area = document.getElementById(`editArea_${wordId}`);
             if (area) area.style.display = 'none';
             
@@ -1909,30 +1899,27 @@ async saveCardEdit(wordId) {
                 case 'speak': this.speak(param); break;
                 case 'nextC': const lessonData = this.getCurrentLessonData(); const addedWords = this.userVocabulary.filter(v => v.lessonId == this.selectedLessonId); const allWords = lessonData ? [...lessonData.terms, ...addedWords] : []; let activeCards; if (this.showAllCardsTemporary) activeCards = allWords.filter(t => !this.hiddenFromCards.includes(String(t.id)) && !this.repeatAllSessionMastered.includes(String(t.id))); else activeCards = allWords.filter(t => !this.masteredWords.includes(String(t.id)) && !this.hiddenFromCards.includes(String(t.id))); if (activeCards.length === 0) break; const currentCard = activeCards[this.currentCardIndex]; if (currentCard && !this.skippedCards.includes(String(currentCard.id))) this.skippedCards.push(String(currentCard.id)); this.currentCardIndex++; if (this.currentCardIndex >= activeCards.length) this.currentCardIndex = 0; this.render(); break;
                 case 'prevC': const lessonPrev = this.getCurrentLessonData(); const addedPrev = this.userVocabulary.filter(v => v.lessonId == this.selectedLessonId); const allWordsPrev = lessonPrev ? [...lessonPrev.terms, ...addedPrev] : []; let activePrev; if (this.showAllCardsTemporary) activePrev = allWordsPrev.filter(t => !this.hiddenFromCards.includes(String(t.id)) && !this.repeatAllSessionMastered.includes(String(t.id))); else activePrev = allWordsPrev.filter(t => !this.masteredWords.includes(String(t.id)) && !this.hiddenFromCards.includes(String(t.id))); if (activePrev.length === 0) break; this.currentCardIndex--; if (this.currentCardIndex < 0) this.currentCardIndex = activePrev.length - 1; this.render(); break;
-case 'restartCards': 
-    this.skippedCards = []; 
-    this.currentCardIndex = 0; 
-    
-    // تصفير المصفوفات التي تمنع ظهور الكلمات
-    if (param === 'all') {
-        this.masteredWords = []; // هذا السطر هو الأهم ليعيد عرض كل الكلمات
-        this.repeatAllSessionMastered = [];
-        this.showAllCardsTemporary = true;
-    }
-
-    const cardShuffle = document.querySelector('.flashcard-container'); 
-    if (cardShuffle) cardShuffle.classList.add('shuffle-anim-card'); 
-    
-    const delay = cardShuffle ? 600 : 0; 
-    setTimeout(async () => { 
-        await this.saveUserData(); // حفظ الحالة الجديدة (صفر كلمات متقنة) في Firebase
-        this.render(); 
-    }, delay); 
-    
-    this.showAd('image'); 
-    return;
-case 'addNewWord': this.handleNewWord(); break;
-                    case 'saveCardEdit': this.saveCardEdit(param); break;
+                case 'restartCards':
+                    this.skippedCards = [];
+                    this.currentCardIndex = 0;
+                    if (param === 'all') {
+                        this.repeatAllSessionMastered = [];
+                        this.showAllCardsTemporary = true;
+                    } else if (param === 'remaining') {
+                        this.showAllCardsTemporary = false;
+                        this.repeatAllSessionMastered = [];
+                    }
+                    const cardShuffle = document.querySelector('.flashcard-container');
+                    if (cardShuffle) cardShuffle.classList.add('shuffle-anim-card');
+                    const delay = cardShuffle ? 600 : 0;
+                    setTimeout(async () => {
+                        await this.saveUserData();
+                        this.render();
+                    }, delay);
+                    this.showAd('image');
+                    return;
+                case 'addNewWord': this.handleNewWord(); break;
+                case 'saveCardEdit': this.saveCardEdit(param); break;
                 case 'backToLessons': this.stopAudio(); this.currentPage = (this.selectedLevel === 'custom_list') ? 'custom_lessons_view' : 'lessons'; this.selectedLessonId = null; this.isUnlockTest = false; this.render(); setTimeout(() => window.scrollTo(0, this.scrollPos), 50); return;
                 case 'doLogin': this.handleLogin(); return;
                 case 'doSignup': this.handleSignup(); return;
@@ -1985,7 +1972,6 @@ async saveCardEdit(wordId) {
                 return;
             }
 
-            // تحديث البيانات في الذاكرة
             if (window.lessonsData) {
                 const idx = window.lessonsData.findIndex(w => String(w.id) === String(wordId));
                 if (idx !== -1) {
@@ -1994,7 +1980,6 @@ async saveCardEdit(wordId) {
                 }
             }
 
-            // تحديث في الدروس المخصصة للحفظ في Firebase
             for (let id in this.customLessons) {
                 if (this.customLessons[id].words) {
                     const wIdx = this.customLessons[id].words.findIndex(w => String(w.id) === String(wordId));
@@ -2221,9 +2206,6 @@ async saveCardEdit(wordId) {
     const correctAnswer = question.correct;
     const totalSoFar = this.adaptiveTestHistory.length;
 
-    // ملاحظة: المتغيرات phaseName و adaptiveTestCurrentLevel ستبقى تعمل في الخلفية
-    // لكننا حذفنا الأكواد التي تعرضها للمستخدم هنا في الأسفل
-
     return `<div class="reading-card">
         <div style="display:flex; justify-content:flex-end; margin-bottom:15px; flex-wrap:wrap; gap:8px;">
             <span style="background:#e2e8f0; color:#475569; padding:4px 12px; border-radius:20px; font-weight:bold; font-size:0.8rem;">
@@ -2250,11 +2232,10 @@ async saveCardEdit(wordId) {
         if (this.currentPage === 'custom_lessons_view') { const lessons = Object.values(this.customLessons); return `<main class="main-content"><button class="hero-btn" data-action="goHome" style="margin-bottom:15px; background:#64748b;">← ${this.t('العودة للرئيسية', 'Back to Home')}</button><h2 style="margin-bottom:15px; text-align:center; font-size:1.3rem;">📂 ${this.t('نصوصي الخاصة', 'My Custom Texts')}</h2>${lessons.length === 0 ? `<div class="reading-card" style="text-align:center; padding:25px; color:#666;">${this.t('لا توجد نصوص محفوظة. صوّر نصك الأول الآن!', 'No saved texts. Capture your first text now!')}</div>` : ''}<div style="display: flex; flex-direction: column; gap: 12px;">${lessons.map(l => `<div class="reading-card" style="border-right: 4px solid #6366f1;"><div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; flex-wrap:wrap; gap:8px;"><h3 style="margin:0; color:#4f46e5; cursor:pointer; font-size:1rem;" data-action="selLesson" data-param="${l.id}">${l.title}</h3><div style="display: flex; gap: 10px;"><button onclick="appInstance.editLessonTitle('${l.id}')" style="background:none; border:none; cursor:pointer; font-size:1rem;">✏️</button><button onclick="appInstance.editLessonContent('${l.id}')" style="background:none; border:none; cursor:pointer; font-size:1rem;">📝</button><button onclick="appInstance.deleteCustomLesson('${l.id}')" style="background:none; border:none; cursor:pointer; font-size:1rem;">🗑️</button></div></div><p style="font-size:0.8rem; color:#555; margin-bottom:10px; display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden; direction:ltr; text-align:left;">${l.content}</p><button class="hero-btn" data-action="selLesson" data-param="${l.id}" style="width:100%; padding:8px; font-size:0.85rem; background:#6366f1;">📖 ${this.t('فتح النص للدراسة', 'Open Text for Study')}</button></div>`).join('')}</div></main>`; }
         if (this.currentPage === 'reading') { 
             const audioSrc = lesson.audio || `audio/${lesson.id}.mp3`; 
-            return `<main class="main-content"><div style="display: flex; align-items: center; gap: 8px; margin-bottom: 10px; flex-wrap: wrap;"><button class="hero-btn" data-action="backToLessons" style="background:#64748b; padding:6px 12px;">⬅ ${this.t('تراجع', 'Back')}</button><div style="display: flex; gap: 4px; background: #f0f0f0; padding: 4px; border-radius: 8px; flex-wrap: wrap;"><button class="hero-btn" data-action="playAudio" data-param="${audioSrc}" style="background:#3b82f6; padding:5px 8px; font-size:0.75rem;">▶️ ${this.t('تشغيل', 'Play')}</button><button class="hero-btn" data-action="pauseAudio" style="background:#f59e0b; padding:5px 8px; font-size:0.75rem;">⏸️ ${this.t('إيقاف مؤقت', 'Pause')}</button><button class="hero-btn" data-action="stopAudio" style="background:#ef4444; padding:5px 8px; font-size:0.75rem;">⏹️ ${this.t('إيقاف', 'Stop')}</button><button class="hero-btn" data-action="skipBack10" style="background:#8b5cf6; padding:5px 8px; font-size:0.75rem;">⏪ 10</button><button class="hero-btn" data-action="skipForward10" style="background:#8b5cf6; padding:5px 8px; font-size:0.75rem;">10 ⏩</button><button class="hero-btn" data-action="speedDown" style="background:#8b5cf6; padding:5px 8px; font-size:0.75rem;">🐢</button><span style="background:#fff; padding:3px 6px; border-radius:5px; font-size:0.7rem;">${this.audioPlaybackRate.toFixed(2)}x</span><button class="hero-btn" data-action="speedUp" style="background:#8b5cf6; padding:5px 8px; font-size:0.75rem;">🐇</button></div></div><div class="reading-card"><h2 style="font-size:1.2rem;">${lesson.title}</h2><div class="scrollable-text" style="margin-top:10px; font-size:0.9rem;">${lesson.content}</div></div><div class="reading-card" style="margin-top:15px; border:1px dashed #6366f1; background:#f0f7ff;"><h4 style="margin-bottom:8px;">${this.t('إضافة كلمة جديدة:', 'Add New Word:')}</h4><input id="newEng" placeholder="${this.t('اكتب بالإنجليزية هنا...', 'Write in English here...')}" style="width:100%; padding:8px; border-radius:8px; border:1px solid #ddd;" oninput="appInstance.translateAuto(this.value, 'newArb')"><input id="newArb" placeholder="${this.t('الترجمة تظهر هنا...', 'Translation will appear here...')}" style="width:100%; padding:8px; margin:8px 0; border-radius:8px; border:1px solid #ddd; background:#fff;"><button class="hero-btn" data-action="addNewWord" style="width:100%; background:#10b981; padding:8px;">✅ ${this.t('إضافة للقائمة', 'Add to List')}</button></div></main>`; 
+            return `<main class="main-content"><div style="display: flex; align-items: center; gap: 8px; margin-bottom: 10px; flex-wrap: wrap;"><button class="hero-btn" data-action="backToLessons" style="background:#64748b; padding:6px 12px;">⬅ ${this.t('تراجع', 'Back')}</button><div style="display: flex; gap: 4px; background: #f0f0f0; padding: 4px; border-radius: 8px; flex-wrap: wrap;"><button class="hero-btn" data-action="playAudio" data-param="${audioSrc}" style="background:#3b82f6; padding:5px 8px; font-size:0.75rem;">▶️ ${this.t('تشغيل', 'Play')}</button><button class="hero-btn" data-action="pauseAudio" style="background:#f59e0b; padding:5px 8px; font-size:0.75rem;">⏸️ ${this.t('إيقاف مؤقت', 'Pause')}</button><button class="hero-btn" data-action="stopAudio" style="background:#ef4444; padding:5px 8px; font-size:0.75rem;">⏹️ ${this.t('إيقاف', 'Stop')}</button><button class="hero-btn" data-action="skipBack10" style="background:#8b5cf6; padding:5px 8px; font-size:0.75rem;">⏪ 10</button><button class="hero-btn" data-action="skipForward10" style="background:#8b5cf6; padding:5px 8px; font-size:0.75rem;">10 ⏩</button><button class="hero-btn" data-action="speedDown" style="background:#8b5cf6; padding:5px 8px; font-size:0.75rem;">🐢</button><span style="background:#fff; padding:3px 6px; border-radius:5px; font-size:0.7rem;">${this.audioPlaybackRate.toFixed(2)}x</span><button class="hero-btn" data-action="speedUp" style="background:#8b5cf6; padding:5px 8px; font-size:0.75rem;">🐇</button></div></div><div class="reading-card"><h2 style="font-size:1.2rem;">${lesson.title}</h2><div class="scrollable-text" style="margin-top:10px; font-size:0.9rem;">${lesson.content}</div></div><div class="reading-card" style="margin-top:15px; border:1px dashed #6366f1; background:#f0f7ff;"><h4 style="margin-bottom:8px;">${this.t('إضافة كلمة جديدة:', 'Add New Word:')}</h4><input id="newEng" placeholder="${this.t('اكتب بالإنجليزية هنا...', 'Write in English here...')}" style="width:100%; padding:8px; border-radius:8px; border:1px solid #ddd;" oninput="appInstance.translateAuto(this.value, 'newArb')"><input id="newArb" placeholder="${this.t('الترجمة تظهر هنا...', 'Translation will appear here...')}" style="width:100%; padding:8px; margin:8px 0; border-radius:8px; border:1px solid #ddd; background:#fff;"><button class="hero-btn" data-action="addNewWord" style="width:100%; background:#10b981; padding:8px;">✅ ${this.t('إضافة للقائمة', 'Add to List')}</button></div></main>`;
         }
 
 if (this.currentPage === 'flashcards') {
-            // 1. جلب البيانات ودمج التعديلات فوراً
             let rawTerms = (allTerms && allTerms.length > 0) ? allTerms : (window.lessonsData || []);
             let termsToUse = rawTerms.map(word => {
                 if (this.userModifiedWords && this.userModifiedWords[word.id]) {
@@ -2263,7 +2244,6 @@ if (this.currentPage === 'flashcards') {
                 return word;
             });
 
-            // 2. تصفية غير المتقن
             let active = termsToUse.filter(t => t && t.id && !this.masteredWords.includes(String(t.id)));
 
             if (active.length === 0) {
