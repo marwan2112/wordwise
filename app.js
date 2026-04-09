@@ -180,7 +180,7 @@ class App {
             gapFill: { correct: 0, total: 0 }
         };
 
-        // متغيرات جديدة لمنع تكرار احتساب الأوسمة لنفس الكلمة في كل تمرين
+        // متغيرات لمنع تكرار احتساب الأوسمة (تم الاحتفاظ بها كما هي)
         this.quizCorrectWords = [];
         this.listeningCorrectWords = [];
         this.spellingCorrectWords = [];
@@ -341,11 +341,9 @@ class App {
         await this.saveUserData();
     }
 
-    // تسجيل إجابة صحيحة مع منع تكرار احتساب الأوسمة لنفس الكلمة في نفس نوع التمرين
     recordCorrectAnswer(exerciseType, wordId) {
         if (!this.exerciseStats[exerciseType]) this.exerciseStats[exerciseType] = { correct: 0, total: 0 };
         
-        // التحقق مما إذا كانت الكلمة قد سجلت صحيحة من قبل في هذا التمرين
         let correctWordsArray = null;
         if (exerciseType === 'quiz') correctWordsArray = this.quizCorrectWords;
         else if (exerciseType === 'listening') correctWordsArray = this.listeningCorrectWords;
@@ -498,11 +496,7 @@ async loadUserData(uid) {
                 const data = docSnap.data();
                 console.log("✅ تم تحميل البيانات من Firestore");
                 
-                // --- الجزء المضاف والمعدل لحفظ التعديلات ---
                 this.userModifiedWords = data.userModifiedWords ?? {};
-                // ----------------------------------------
-                
-                // تحميل المتغيرات الجديدة لمنع تكرار الأوسمة
                 this.quizCorrectWords = data.quizCorrectWords ?? [];
                 this.listeningCorrectWords = data.listeningCorrectWords ?? [];
                 this.spellingCorrectWords = data.spellingCorrectWords ?? [];
@@ -1931,8 +1925,28 @@ async saveCardEdit(wordId) {
                     else if (param === 'gapfill' && this.selectedLessonId) { if (!this.gapFillUnlocked[this.selectedLessonId]) { if (!this.unlockGapFill(this.selectedLessonId)) return; } else this.prepareGapFill(); }
                     else if (param === 'adaptive_test') { this.startAdaptiveLevelTest(); return; }
                     this.currentPage = param; this.currentCardIndex = 0; break;
-                case 'masterWordFlash': const cardM = document.querySelector('.flashcard-container'); if (cardM) { cardM.classList.add('master-anim'); setTimeout(async () => { const wordId = String(param); if (!this.masteredWords.includes(wordId)) { this.masteredWords.push(wordId); this.addMasteredWordReward(param); if (this.selectedLessonId) this.grantLessonCompletionReward(this.selectedLessonId); await this.saveUserData(); } if (this.showAllCardsTemporary && !this.repeatAllSessionMastered.includes(wordId)) { this.repeatAllSessionMastered.push(wordId); await this.saveUserData(); } this.render(); }, 550); } return;
-                case 'deleteWord': this.showConfirmModal(this.t('هل أنت متأكد من حذف هذه الكلمة نهائياً من بطاقاتك؟', 'Are you sure you want to permanently delete this word from your flashcards?'), async () => { const cardD = document.querySelector('.flashcard-container'); if (cardD) { cardD.classList.add('delete-anim'); setTimeout(async () => { this.hiddenFromCards.push(String(param)); await this.saveUserData(); this.render(); }, 550); } }); return;
+                case 'masterWordFlash': 
+                    const cardM = document.querySelector('.flashcard-container'); 
+                    if (cardM) { 
+                        cardM.classList.add('master-anim'); 
+                        // إزالة الأنيميشن بسرعة دون تأخير الانتقال
+                        setTimeout(() => cardM.classList.remove('master-anim'), 200);
+                        const wordId = String(param); 
+                        if (!this.masteredWords.includes(wordId)) { 
+                            this.masteredWords.push(wordId); 
+                            this.addMasteredWordReward(param); 
+                            if (this.selectedLessonId) this.grantLessonCompletionReward(this.selectedLessonId); 
+                            await this.saveUserData(); 
+                        } 
+                        if (this.showAllCardsTemporary && !this.repeatAllSessionMastered.includes(wordId)) { 
+                            this.repeatAllSessionMastered.push(wordId); 
+                            await this.saveUserData(); 
+                        } 
+                        // الانتقال السريع للبطاقة التالية دون انتظار طويل
+                        this.render(); 
+                    } 
+                    return;
+                case 'deleteWord': this.showConfirmModal(this.t('هل أنت متأكد من حذف هذه الكلمة نهائياً من بطاقاتك؟', 'Are you sure you want to permanently delete this word from your flashcards?'), async () => { const cardD = document.querySelector('.flashcard-container'); if (cardD) { cardD.classList.add('delete-anim'); setTimeout(async () => { this.hiddenFromCards.push(String(param)); await this.saveUserData(); this.render(); }, 300); } }); return;
                 case 'speak': this.speak(param); break;
                 case 'nextC': const lessonData = this.getCurrentLessonData(); const addedWords = this.userVocabulary.filter(v => v.lessonId == this.selectedLessonId); const allWords = lessonData ? [...lessonData.terms, ...addedWords] : []; let activeCards; if (this.showAllCardsTemporary) activeCards = allWords.filter(t => !this.hiddenFromCards.includes(String(t.id)) && !this.repeatAllSessionMastered.includes(String(t.id))); else activeCards = allWords.filter(t => !this.masteredWords.includes(String(t.id)) && !this.hiddenFromCards.includes(String(t.id))); if (activeCards.length === 0) break; const currentCard = activeCards[this.currentCardIndex]; if (currentCard && !this.skippedCards.includes(String(currentCard.id))) this.skippedCards.push(String(currentCard.id)); this.currentCardIndex++; if (this.currentCardIndex >= activeCards.length) this.currentCardIndex = 0; this.render(); break;
                 case 'prevC': const lessonPrev = this.getCurrentLessonData(); const addedPrev = this.userVocabulary.filter(v => v.lessonId == this.selectedLessonId); const allWordsPrev = lessonPrev ? [...lessonPrev.terms, ...addedPrev] : []; let activePrev; if (this.showAllCardsTemporary) activePrev = allWordsPrev.filter(t => !this.hiddenFromCards.includes(String(t.id)) && !this.repeatAllSessionMastered.includes(String(t.id))); else activePrev = allWordsPrev.filter(t => !this.masteredWords.includes(String(t.id)) && !this.hiddenFromCards.includes(String(t.id))); if (activePrev.length === 0) break; this.currentCardIndex--; if (this.currentCardIndex < 0) this.currentCardIndex = activePrev.length - 1; this.render(); break;
@@ -1940,18 +1954,18 @@ async saveCardEdit(wordId) {
                     this.skippedCards = [];
                     this.currentCardIndex = 0;
                     if (param === 'all') {
-                        // إعادة تعيين الكلمات المتقنة والمصفوفات المساعدة لإظهار جميع البطاقات من البداية
-                        this.masteredWords = [];
+                        // لا يتم تصفير الكلمات المتقنة أبداً
+                        // فقط نعيد تعيين جلسة التكرار الحالية
                         this.repeatAllSessionMastered = [];
                         this.showAllCardsTemporary = true;
-                        // لا نغير hiddenFromCards حتى تبقى الكلمات المحذوفة مخفية
+                        // لا نمس masteredWords
                     } else if (param === 'remaining') {
                         this.showAllCardsTemporary = false;
                         this.repeatAllSessionMastered = [];
                     }
                     const cardShuffle = document.querySelector('.flashcard-container');
                     if (cardShuffle) cardShuffle.classList.add('shuffle-anim-card');
-                    const delay = cardShuffle ? 600 : 0;
+                    const delay = cardShuffle ? 300 : 0;
                     setTimeout(async () => {
                         await this.saveUserData();
                         this.render();
