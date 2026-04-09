@@ -147,7 +147,7 @@ window.lessonsList = {
     { id: "315", title: "135. The Strategic Implications of Hypersonic Weapons" },
     { id: "316", title: "136. Digital Sovereignty: A New Frontier in Geopolitical Competition" },
     { id: "317", title: "137. The Unintended Consequences of Unconventional Monetary Policy" },
-    { id: "318", title: "138. The Autonomy Dilemma: Ethical and Legal Quandaries of Lethal Autonomous Weapon Systems" },
+    { id: "318", title: "138. The Geopolitics of Water Scarcity: Hydropolitics and the Looming Crisis of Transboundary Rivers" },
     { id: "319", title: "139. Modern Public Transportation Systems" },
     { id: "320", title: "140. History and Evolution of the Internet" },
     { id: "321", title: "141.Modern Architecture and Smart Cities" },
