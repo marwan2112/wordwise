@@ -180,6 +180,12 @@ class App {
             gapFill: { correct: 0, total: 0 }
         };
 
+        // متغيرات جديدة لمنع تكرار احتساب الأوسمة لنفس الكلمة في كل تمرين
+        this.quizCorrectWords = [];
+        this.listeningCorrectWords = [];
+        this.spellingCorrectWords = [];
+        this.gapFillCorrectWords = [];
+
         this.badgeDefinitions = {
             general: [
                 { id: 'bronze_medal', icon: '🥉', name: 'وسام برونزي', nameEn: 'Bronze Medal', requirement: { lessons: 5, words: 100 }, condition: (stats) => stats.totalLessons >= 5 && stats.totalMastered >= 100 },
@@ -335,10 +341,23 @@ class App {
         await this.saveUserData();
     }
 
+    // تسجيل إجابة صحيحة مع منع تكرار احتساب الأوسمة لنفس الكلمة في نفس نوع التمرين
     recordCorrectAnswer(exerciseType, wordId) {
         if (!this.exerciseStats[exerciseType]) this.exerciseStats[exerciseType] = { correct: 0, total: 0 };
-        this.exerciseStats[exerciseType].correct++;
+        
+        // التحقق مما إذا كانت الكلمة قد سجلت صحيحة من قبل في هذا التمرين
+        let correctWordsArray = null;
+        if (exerciseType === 'quiz') correctWordsArray = this.quizCorrectWords;
+        else if (exerciseType === 'listening') correctWordsArray = this.listeningCorrectWords;
+        else if (exerciseType === 'spelling') correctWordsArray = this.spellingCorrectWords;
+        else if (exerciseType === 'gapFill') correctWordsArray = this.gapFillCorrectWords;
+        
+        if (correctWordsArray && !correctWordsArray.includes(wordId)) {
+            this.exerciseStats[exerciseType].correct++;
+            correctWordsArray.push(wordId);
+        }
         this.exerciseStats[exerciseType].total++;
+        
         let xpAmount = 0;
         switch(exerciseType) {
             case 'quiz': xpAmount = 2; break;
@@ -482,6 +501,12 @@ async loadUserData(uid) {
                 // --- الجزء المضاف والمعدل لحفظ التعديلات ---
                 this.userModifiedWords = data.userModifiedWords ?? {};
                 // ----------------------------------------
+                
+                // تحميل المتغيرات الجديدة لمنع تكرار الأوسمة
+                this.quizCorrectWords = data.quizCorrectWords ?? [];
+                this.listeningCorrectWords = data.listeningCorrectWords ?? [];
+                this.spellingCorrectWords = data.spellingCorrectWords ?? [];
+                this.gapFillCorrectWords = data.gapFillCorrectWords ?? [];
 
                 this.userCoins = data.userCoins ?? 100;
                 this.masteredWords = data.masteredWords ?? [];
@@ -517,6 +542,10 @@ async loadUserData(uid) {
                 console.log("ℹ️ مستخدم جديد، تهيئة بيانات افتراضية");
                 this.resetToDefaults();
                 this.userModifiedWords = {};
+                this.quizCorrectWords = [];
+                this.listeningCorrectWords = [];
+                this.spellingCorrectWords = [];
+                this.gapFillCorrectWords = [];
                 this.isDataLoaded = true;
                 this.canSave = true;
             }
@@ -552,6 +581,10 @@ async loadUserData(uid) {
             gapFill: { correct: 0, total: 0 }
         };
         this.adDailyData = { count: 0, date: new Date().toDateString(), levelCompleted: 0 };
+        this.quizCorrectWords = [];
+        this.listeningCorrectWords = [];
+        this.spellingCorrectWords = [];
+        this.gapFillCorrectWords = [];
     }
 
 async saveUserData() {
@@ -581,6 +614,10 @@ async saveUserData() {
             lastTestedLesson: this.lastTestedLesson || {},
             xpEarnedWords: this.xpEarnedWords || [],
             adDailyData: this.adDailyData || { count: 0, date: new Date().toDateString(), levelCompleted: 0 },
+            quizCorrectWords: this.quizCorrectWords || [],
+            listeningCorrectWords: this.listeningCorrectWords || [],
+            spellingCorrectWords: this.spellingCorrectWords || [],
+            gapFillCorrectWords: this.gapFillCorrectWords || [],
             lastUpdated: new Date().toISOString()
         };
         try {
@@ -1903,8 +1940,11 @@ async saveCardEdit(wordId) {
                     this.skippedCards = [];
                     this.currentCardIndex = 0;
                     if (param === 'all') {
+                        // إعادة تعيين الكلمات المتقنة والمصفوفات المساعدة لإظهار جميع البطاقات من البداية
+                        this.masteredWords = [];
                         this.repeatAllSessionMastered = [];
                         this.showAllCardsTemporary = true;
+                        // لا نغير hiddenFromCards حتى تبقى الكلمات المحذوفة مخفية
                     } else if (param === 'remaining') {
                         this.showAllCardsTemporary = false;
                         this.repeatAllSessionMastered = [];
