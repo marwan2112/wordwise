@@ -25399,14 +25399,14 @@ window.gapfillDB = {
             originalSentence: "Showing empathy during a disagreement can stop it from becoming a bigger conflict."
         }
     ],
-    "89-36": [ [ // leadership qualities
+    "89-36": [  // leadership qualities
         {
             sentence: "Strong _______ _______ include honesty, vision, and the ability to inspire others.",
             options: ["leadership qualities", "natural leader", "role model", "accountability"],
             originalSentence: "Strong leadership qualities include honesty, vision, and the ability to inspire others."
         }
     ],
-        "89-37": [ // validating feelings
+ "89-37": [ // validating feelings
         {
             sentence: "_______ _______ does not mean you agree — it just means you understand.",
             options: ["validating feelings", "active listening", "conflict resolution", "taking credit"],
