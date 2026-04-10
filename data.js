@@ -4549,7 +4549,7 @@ window.lessonsData = {
   {"id": "89-6", "english": "defensive", "arabic": "دفاعي"},
   {"id": "89-7", "english": "intention", "arabic": "قصد"},
   {"id": "89-8", "english": "sensitive", "arabic": "حساسة"},
-\  {"id": "89-10", "english": "tension", "arabic": "توتر"},
+  {"id": "89-10", "english": "tension", "arabic": "توتر"},
   {"id": "89-11", "english": "thick", "arabic": "كثيف"},
   {"id": "89-12", "english": "realizing", "arabic": "يدرك"},
   {"id": "89-13", "english": "start over", "arabic": "يبدأ من جديد"},
