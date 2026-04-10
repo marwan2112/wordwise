@@ -22956,7 +22956,2673 @@ window.gapfillDB = {
             sentence: "To stay ahead in your job, you must _______ _______.",
             options: ["keep learning", "make a difference", "manage", "struggle"],
         }
+    ],"81-1": [ // CV
+        {
+            sentence: "She updated her _______ before sending it to the company.",
+            options: ["CV", "template", "paragraph", "job description"],
+            originalSentence: "She updated her CV before sending it to the company."
+        }
     ],
+    "81-2": [ // career center
+        {
+            sentence: "The university's _______ _______ helps students find jobs after graduation.",
+            options: ["career center", "lecture hall", "community center", "central bank"],
+            originalSentence: "The university's career center helps students find jobs after graduation."
+        }
+    ],
+    "81-3": [ // career advisor
+        {
+            sentence: "She met with a _______ _______ to get advice on her future plans.",
+            options: ["career advisor", "native speaker", "team leader", "debate member"],
+            originalSentence: "She met with a career advisor to get advice on her future plans."
+        }
+    ],
+    "81-4": [ // final year
+        {
+            sentence: "In her _______ _______ at university, she started applying for jobs.",
+            options: ["final year", "work experience", "first draft", "support system"],
+            originalSentence: "In her final year at university, she started applying for jobs."
+        }
+    ],
+    "81-5": [ // applying for jobs
+        {
+            sentence: "_______ _______ _______ can be stressful but also exciting.",
+            options: ["applying for jobs", "landing interviews", "seeking internship", "job hunt"],
+            originalSentence: "Applying for jobs can be stressful but also exciting."
+        }
+    ],
+    "81-6": [ // essential
+        {
+            sentence: "Good communication skills are _______ in any workplace.",
+            options: ["essential", "focused", "fluent", "solid"],
+            originalSentence: "Good communication skills are essential in any workplace."
+        }
+    ],
+    "81-7": [ // landing interviews
+        {
+            sentence: "A strong CV is key to _______ _______.",
+            options: ["landing interviews", "applying for jobs", "seeking internship", "job hunt"],
+            originalSentence: "A strong CV is key to landing interviews."
+        }
+    ],
+    "81-8": [ // template
+        {
+            sentence: "He used a professional _______ to format his CV.",
+            options: ["template", "paragraph", "personal statement", "job description"],
+            originalSentence: "He used a professional template to format his CV."
+        }
+    ],
+    "81-9": [ // highlight
+        {
+            sentence: "Make sure to _______ your strongest skills in your CV.",
+            options: ["highlight", "tailor", "emphasize", "coordinated"],
+            originalSentence: "Make sure to highlight your strongest skills in your CV."
+        }
+    ],
+    "81-11": [ // professional
+        {
+            sentence: "Always use a _______ photo on your CV.",
+            options: ["professional", "focused", "solid", "fluent"],
+            originalSentence: "Always use a professional photo on your CV."
+        }
+    ],
+    "81-12": [ // personal statement
+        {
+            sentence: "Your _______ _______ should explain who you are and what you want.",
+            options: ["personal statement", "job description", "work experience", "first draft"],
+            originalSentence: "Your personal statement should explain who you are and what you want."
+        }
+    ],
+    "81-13": [ // paragraph
+        {
+            sentence: "Write a short _______ about your goals at the top of your CV.",
+            options: ["paragraph", "template", "CV", "personal statement"],
+            originalSentence: "Write a short paragraph about your goals at the top of your CV."
+        }
+    ],
+    "81-14": [ // seeking
+        {
+            sentence: "He is _______ a position in the field of architecture.",
+            options: ["seeking", "managed", "assisted", "coordinated"],
+            originalSentence: "He is seeking a position in the field of architecture."
+        }
+    ],
+    "81-15": [ // internship
+        {
+            sentence: "She completed a summer _______ at a design company.",
+            options: ["internship", "initiative", "leadership", "achievement"],
+            originalSentence: "She completed a summer internship at a design company."
+        }
+    ],
+    "81-16": [ // experienced professionals
+        {
+            sentence: "_______ _______ often mentor younger employees in the office.",
+            options: ["experienced professionals", "native speakers", "debate teams", "career advisors"],
+            originalSentence: "Experienced professionals often mentor younger employees in the office."
+        }
+    ],
+    "81-17": [ // focused
+        {
+            sentence: "Stay _______ during your job search and do not give up.",
+            options: ["focused", "fluent", "solid", "essential"],
+            originalSentence: "Stay focused during your job search and do not give up."
+        }
+    ],
+    "81-18": [ // education
+        {
+            sentence: "List your _______ section before your work experience on the CV.",
+            options: ["education", "interests", "achievements", "languages"],
+            originalSentence: "List your education section before your work experience on the CV."
+        }
+    ],
+    "81-19": [ // high school diploma
+        {
+            sentence: "He received his _______ _______ _______ before going to university.",
+            options: ["high school diploma", "bachelor's degree", "relevant courses", "work experience"],
+            originalSentence: "He received his high school diploma before going to university."
+        }
+    ],
+    "81-20": [ // pursuing
+        {
+            sentence: "She is currently _______ a degree in civil engineering.",
+            options: ["pursuing", "seeking", "assisted", "managed"],
+            originalSentence: "She is currently pursuing a degree in civil engineering."
+        }
+    ],
+    "81-21": [ // bachelor's
+        {
+            sentence: "He holds a _______ degree in computer science.",
+            options: ["bachelor's", "final year", "high school diploma", "internship"],
+            originalSentence: "He holds a bachelor's degree in computer science."
+        }
+    ],
+    "81-23": [ // relevant courses
+        {
+            sentence: "Add _______ _______ to your CV to show your academic knowledge.",
+            options: ["relevant courses", "soft skills", "technical skills", "work experience"],
+            originalSentence: "Add relevant courses to your CV to show your academic knowledge."
+        }
+    ],
+    "81-24": [ // work experience
+        {
+            sentence: "Employers always look at the _______ _______ section of your CV.",
+            options: ["work experience", "relevant courses", "personal statement", "support system"],
+            originalSentence: "Employers always look at the work experience section of your CV."
+        }
+    ],
+    "81-25": [ // responsibilities
+        {
+            sentence: "List your main _______ clearly under each job you have had.",
+            options: ["responsibilities", "achievements", "interests", "languages"],
+            originalSentence: "List your main responsibilities clearly under each job you have had."
+        }
+    ],
+    "81-26": [ // assisted
+        {
+            sentence: "She _______ the manager with daily office tasks.",
+            options: ["assisted", "managed", "designed", "coordinated"],
+            originalSentence: "She assisted the manager with daily office tasks."
+        }
+    ],
+    "81-27": [ // project planning
+        {
+            sentence: "He was involved in _______ _______ for the new building.",
+            options: ["project planning", "design sketches", "client meetings", "action verbs"],
+            originalSentence: "He was involved in project planning for the new building."
+        }
+    ],
+    "81-28": [ // design sketches
+        {
+            sentence: "The architect presented her _______ _______ to the team.",
+            options: ["design sketches", "client meetings", "project planning", "action verbs"],
+            originalSentence: "The architect presented her design sketches to the team."
+        }
+    ],
+    "81-29": [ // client meetings
+        {
+            sentence: "He attended several _______ _______ to discuss the project details.",
+            options: ["client meetings", "design sketches", "project planning", "soft skills"],
+            originalSentence: "He attended several client meetings to discuss the project details."
+        }
+    ],
+    "81-30": [ // action verbs
+        {
+            sentence: "Using strong _______ _______ makes your CV sound more impressive.",
+            options: ["action verbs", "soft skills", "technical skills", "relevant courses"],
+            originalSentence: "Using strong action verbs makes your CV sound more impressive."
+        }
+    ],
+    "81-31": [ // managed
+        {
+            sentence: "She _______ a team of ten people during the project.",
+            options: ["managed", "assisted", "designed", "coordinated"],
+            originalSentence: "She managed a team of ten people during the project."
+        }
+    ],
+    "81-32": [ // designed
+        {
+            sentence: "He _______ a new logo for the company's website.",
+            options: ["designed", "managed", "coordinated", "assisted"],
+            originalSentence: "He designed a new logo for the company's website."
+        }
+    ],
+    "81-33": [ // assisted
+        {
+            sentence: "She _______ the doctor during the medical training program.",
+            options: ["assisted", "designed", "managed", "coordinated"],
+            originalSentence: "She assisted the doctor during the medical training program."
+        }
+    ],
+    "81-34": [ // coordinated
+        {
+            sentence: "He _______ between different departments to finish the report.",
+            options: ["coordinated", "managed", "designed", "assisted"],
+            originalSentence: "He coordinated between different departments to finish the report."
+        }
+    ],
+    "81-35": [ // technical skills
+        {
+            sentence: "Strong _______ _______ are very important in the technology industry.",
+            options: ["technical skills", "soft skills", "action verbs", "relevant courses"],
+            originalSentence: "Strong technical skills are very important in the technology industry."
+        }
+    ],
+    "81-36": [ // AutoCAD
+        {
+            sentence: "She uses _______ to draw detailed engineering plans.",
+            options: ["AutoCAD", "SketchUp", "Adobe Photoshop", "design sketches"],
+            originalSentence: "She uses AutoCAD to draw detailed engineering plans."
+        }
+    ],
+    "81-37": [ // SketchUp
+        {
+            sentence: "Architects often use _______ to create 3D models of buildings.",
+            options: ["SketchUp", "AutoCAD", "Adobe Photoshop", "template"],
+            originalSentence: "Architects often use SketchUp to create 3D models of buildings."
+        }
+    ],
+    "81-38": [ // Adobe Photoshop
+        {
+            sentence: "He edited the images for the magazine using _______ _______.",
+            options: ["Adobe Photoshop", "AutoCAD", "SketchUp", "design sketches"],
+            originalSentence: "He edited the images for the magazine using Adobe Photoshop."
+        }
+    ],
+    "81-39": [ // soft skills
+        {
+            sentence: "Employers value _______ _______ like patience and teamwork.",
+            options: ["soft skills", "technical skills", "action verbs", "relevant courses"],
+            originalSentence: "Employers value soft skills like patience and teamwork."
+        }
+    ],
+    "81-40": [ // teamwork
+        {
+            sentence: "Good _______ helps a group finish projects faster.",
+            options: ["teamwork", "communication", "leadership", "initiative"],
+            originalSentence: "Good teamwork helps a group finish projects faster."
+        }
+    ],
+    "81-41": [ // communication
+        {
+            sentence: "Clear _______ is important when working with clients.",
+            options: ["communication", "teamwork", "leadership", "problem-solving"],
+            originalSentence: "Clear communication is important when working with clients."
+        }
+    ],
+    "81-42": [ // problem-solving
+        {
+            sentence: "She is great at _______ when things go wrong at work.",
+            options: ["problem-solving", "teamwork", "communication", "leadership"],
+            originalSentence: "She is great at problem-solving when things go wrong at work."
+        }
+    ],
+    "81-43": [ // languages
+        {
+            sentence: "List all the _______ you speak in your CV.",
+            options: ["languages", "interests", "achievements", "responsibilities"],
+            originalSentence: "List all the languages you speak in your CV."
+        }
+    ],
+    "81-44": [ // native speaker
+        {
+            sentence: "He is a _______ _______ of Arabic and also speaks English well.",
+            options: ["native speaker", "career advisor", "experienced professional", "debate team"],
+            originalSentence: "He is a native speaker of Arabic and also speaks English well."
+        }
+    ],
+    "81-45": [ // fluent
+        {
+            sentence: "She is _______ in French after living in Paris for three years.",
+            options: ["fluent", "focused", "solid", "essential"],
+            originalSentence: "She is fluent in French after living in Paris for three years."
+        }
+    ],
+    "81-46": [ // achievements
+        {
+            sentence: "Include your top _______ to make your CV stand out.",
+            options: ["achievements", "interests", "languages", "responsibilities"],
+            originalSentence: "Include your top achievements to make your CV stand out."
+        }
+    ],
+    "81-47": [ // science fair
+        {
+            sentence: "He won first place at the school _______ _______ last year.",
+            options: ["science fair", "debate team", "sustainable housing", "career center"],
+            originalSentence: "He won first place at the school science fair last year."
+        }
+    ],
+    "81-48": [ // sustainable housing
+        {
+            sentence: "Her project on _______ _______ won an award at the university.",
+            options: ["sustainable housing", "science fair", "debate team", "affordable housing"],
+            originalSentence: "Her project on sustainable housing won an award at the university."
+        }
+    ],
+    "81-49": [ // debate team
+        {
+            sentence: "Being on the _______ _______ helped him improve his public speaking.",
+            options: ["debate team", "science fair", "support system", "career center"],
+            originalSentence: "Being on the debate team helped him improve his public speaking."
+        }
+    ],
+    "81-50": [ // initiative
+        {
+            sentence: "She showed great _______ by starting a recycling program at school.",
+            options: ["initiative", "leadership", "teamwork", "communication"],
+            originalSentence: "She showed great initiative by starting a recycling program at school."
+        }
+    ],
+    "81-51": [ // leadership
+        {
+            sentence: "His _______ skills helped the team complete the project on time.",
+            options: ["leadership", "initiative", "teamwork", "problem-solving"],
+            originalSentence: "His leadership skills helped the team complete the project on time."
+        }
+    ],
+    "81-52": [ // interests
+        {
+            sentence: "Adding personal _______ to your CV shows who you are outside work.",
+            options: ["interests", "achievements", "languages", "responsibilities"],
+            originalSentence: "Adding personal interests to your CV shows who you are outside work."
+        }
+    ],
+    "81-53": [ // hiking
+        {
+            sentence: "She enjoys _______ in the mountains every weekend.",
+            options: ["hiking", "photography", "teamwork", "leadership"],
+            originalSentence: "She enjoys hiking in the mountains every weekend."
+        }
+    ],
+    "81-54": [ // photography
+        {
+            sentence: "He listed _______ as one of his hobbies on his CV.",
+            options: ["photography", "hiking", "problem-solving", "communication"],
+            originalSentence: "He listed photography as one of his hobbies on his CV."
+        }
+    ],
+    "81-55": [ // solid
+        {
+            sentence: "She has a _______ understanding of accounting principles.",
+            options: ["solid", "fluent", "focused", "professional"],
+            originalSentence: "She has a solid understanding of accounting principles."
+        }
+    ],
+    "81-56": [ // first draft
+        {
+            sentence: "Always write a _______ _______ before sending your CV to anyone.",
+            options: ["first draft", "personal statement", "job description", "support system"],
+            originalSentence: "Always write a first draft before sending your CV to anyone."
+        }
+    ],
+    "81-57": [ // tailor
+        {
+            sentence: "You should _______ your CV to match each job you apply for.",
+            options: ["tailor", "highlight", "emphasize", "manage"],
+            originalSentence: "You should tailor your CV to match each job you apply for."
+        }
+    ],
+    "81-58": [ // job description
+        {
+            sentence: "Read the _______ _______ carefully before writing your cover letter.",
+            options: ["job description", "personal statement", "first draft", "support system"],
+            originalSentence: "Read the job description carefully before writing your cover letter."
+        }
+    ],
+    "81-59": [ // emphasize
+        {
+            sentence: "Try to _______ your most relevant skills for each position.",
+            options: ["emphasize", "highlight", "tailor", "manage"],
+            originalSentence: "Try to emphasize your most relevant skills for each position."
+        }
+    ],
+    "81-60": [ // accomplished
+        {
+            sentence: "She felt _______ after finishing her CV and sending it out.",
+            options: ["accomplished", "focused", "fluent", "solid"],
+            originalSentence: "She felt accomplished after finishing her CV and sending it out."
+        }
+    ],
+    "81-61": [ // job hunt
+        {
+            sentence: "The _______ _______ can take months, so stay patient.",
+            options: ["job hunt", "career center", "support system", "first draft"],
+            originalSentence: "The job hunt can take months, so stay patient."
+        }
+    ],
+    "81-62": [ // challenging
+        {
+            sentence: "Finding a job in a new city can be very _______.",
+            options: ["challenging", "essential", "professional", "accomplished"],
+            originalSentence: "Finding a job in a new city can be very challenging."
+        }
+    ],
+    "81-63": [ // support system
+        {
+            sentence: "Having a strong _______ _______ helps you stay motivated during tough times.",
+            options: ["support system", "career center", "job hunt", "debate team"],
+            originalSentence: "Having a strong support system helps you stay motivated during tough times."
+        }
+    ],
+    "82-1": [ // cover letter
+        {
+            sentence: "She wrote a strong _______ _______ to go with her CV.",
+            options: ["cover letter", "job description", "personal statement", "first draft"],
+            originalSentence: "She wrote a strong cover letter to go with her CV."
+        }
+    ],
+    "82-2": [ // session
+        {
+            sentence: "The career advisor scheduled a _______ to review his application.",
+            options: ["session", "position", "structure", "role"],
+            originalSentence: "The career advisor scheduled a session to review his application."
+        }
+    ],
+    "82-3": [ // submitted
+        {
+            sentence: "He _______ his application before the deadline.",
+            options: ["submitted", "researched", "prepared", "heard back"],
+            originalSentence: "He submitted his application before the deadline."
+        }
+    ],
+    "82-4": [ // job applications
+        {
+            sentence: "She sent out ten _______ _______ in one week.",
+            options: ["job applications", "cover letters", "green buildings", "hiring managers"],
+            originalSentence: "She sent out ten job applications in one week."
+        }
+    ],
+    "82-5": [ // heard back
+        {
+            sentence: "He finally _______ _______ from the company after two weeks.",
+            options: ["heard back", "specialize in", "contribute", "customize"],
+            originalSentence: "He finally heard back from the company after two weeks."
+        }
+    ],
+    "82-7": [ // personalized
+        {
+            sentence: "A _______ cover letter is more effective than a general one.",
+            options: ["personalized", "specific", "energy-efficient", "hopeful"],
+            originalSentence: "A personalized cover letter is more effective than a general one."
+        }
+    ],
+    "82-8": [ // position
+        {
+            sentence: "She applied for a _______ in the marketing department.",
+            options: ["position", "role", "session", "structure"],
+            originalSentence: "She applied for a position in the marketing department."
+        }
+    ],
+    "82-10": [ // structure
+        {
+            sentence: "A good cover letter needs a clear _______ with an introduction and conclusion.",
+            options: ["structure", "position", "session", "document"],
+            originalSentence: "A good cover letter needs a clear structure with an introduction and conclusion."
+        }
+    ],
+    "82-13": [ // state
+        {
+            sentence: "Always _______ clearly why you are applying for the job.",
+            options: ["state", "admire", "contribute", "customize"],
+            originalSentence: "Always state clearly why you are applying for the job."
+        }
+    ],
+    "82-14": [ // role
+        {
+            sentence: "She explained how her skills matched the _______ perfectly.",
+            options: ["role", "position", "session", "structure"],
+            originalSentence: "She explained how her skills matched the role perfectly."
+        }
+    ],
+    "82-15": [ // relevant
+        {
+            sentence: "Only include _______ experience that relates to the job.",
+            options: ["relevant", "personalized", "specific", "eager"],
+            originalSentence: "Only include relevant experience that relates to the job."
+        }
+    ],
+    "82-16": [ // enthusiasm
+        {
+            sentence: "Show _______ in your cover letter to impress the employer.",
+            options: ["enthusiasm", "commitment", "dedication", "creativity"],
+            originalSentence: "Show enthusiasm in your cover letter to impress the employer."
+        }
+    ],
+    "82-19": [ // researched
+        {
+            sentence: "She _______ the company before her interview.",
+            options: ["researched", "submitted", "prepared", "heard back"],
+            originalSentence: "She researched the company before her interview."
+        }
+    ],
+    "82-20": [ // thoroughly
+        {
+            sentence: "He read the job description _______ before applying.",
+            options: ["thoroughly", "following", "considering", "adjusting"],
+            originalSentence: "He read the job description thoroughly before applying."
+        }
+    ],
+    "82-21": [ // specialize in
+        {
+            sentence: "This firm likes to _______ _______ sustainable urban design.",
+            options: ["specialize in", "contribute to", "customize for", "prepare for"],
+            originalSentence: "This firm likes to specialize in sustainable urban design."
+        }
+    ],
+    "82-22": [ // green building
+        {
+            sentence: "The new library was designed as a _______ _______ to save energy.",
+            options: ["green building", "energy-efficient", "cover letter", "hiring manager"],
+            originalSentence: "The new library was designed as a green building to save energy."
+        }
+    ],
+    "82-23": [ // hiring manager
+        {
+            sentence: "Address your cover letter directly to the _______ _______.",
+            options: ["hiring manager", "career advisor", "experienced professional", "native speaker"],
+            originalSentence: "Address your cover letter directly to the hiring manager."
+        }
+    ],
+    "82-24": [ // passion
+        {
+            sentence: "His _______ for architecture was clear in every project he made.",
+            options: ["passion", "enthusiasm", "dedication", "commitment"],
+            originalSentence: "His passion for architecture was clear in every project he made."
+        }
+    ],
+    "82-25": [ // following
+        {
+            sentence: "She has been _______ the company's work for over a year.",
+            options: ["following", "considering", "adjusting", "inviting"],
+            originalSentence: "She has been following the company's work for over a year."
+        }
+    ],
+    "82-26": [ // admire
+        {
+            sentence: "I _______ the way this company treats its employees.",
+            options: ["admire", "state", "contribute", "customize"],
+            originalSentence: "I admire the way this company treats its employees."
+        }
+    ],
+    "82-27": [ // commitment
+        {
+            sentence: "Her _______ to quality work impressed the whole team.",
+            options: ["commitment", "passion", "enthusiasm", "creativity"],
+            originalSentence: "Her commitment to quality work impressed the whole team."
+        }
+    ],
+    "82-29": [ // specific
+        {
+            sentence: "Be _______ about the skills you can bring to the job.",
+            options: ["specific", "relevant", "personalized", "hopeful"],
+            originalSentence: "Be specific about the skills you can bring to the job."
+        }
+    ],
+    "82-31": [ // energy-efficient
+        {
+            sentence: "The new office building is designed to be fully _______-_______.",
+            options: ["energy-efficient", "green building", "personalized", "specific"],
+            originalSentence: "The new office building is designed to be fully energy-efficient."
+        }
+    ],
+    "82-33": [ // prepared
+        {
+            sentence: "She _______ a list of questions before the interview.",
+            options: ["prepared", "submitted", "researched", "heard back"],
+            originalSentence: "She prepared a list of questions before the interview."
+        }
+    ],
+    "82-35": [ // initiative
+        {
+            sentence: "He took the _______ to contact the company before the job was posted.",
+            options: ["initiative", "opportunity", "commitment", "dedication"],
+            originalSentence: "He took the initiative to contact the company before the job was posted."
+        }
+    ],
+    "82-38": [ // eager
+        {
+            sentence: "She is _______ to start her first job after graduation.",
+            options: ["eager", "hopeful", "personalized", "relevant"],
+            originalSentence: "She is eager to start her first job after graduation."
+        }
+    ],
+    "82-39": [ // creativity
+        {
+            sentence: "The design team valued _______ and new ideas from everyone.",
+            options: ["creativity", "dedication", "commitment", "enthusiasm"],
+            originalSentence: "The design team valued creativity and new ideas from everyone."
+        }
+    ],
+    "82-40": [ // dedication
+        {
+            sentence: "His _______ to the project helped the team meet the deadline.",
+            options: ["dedication", "creativity", "passion", "initiative"],
+            originalSentence: "His dedication to the project helped the team meet the deadline."
+        }
+    ],
+    "82-41": [ // considering
+        {
+            sentence: "Thank you for _______ my application for this position.",
+            options: ["considering", "following", "adjusting", "inviting"],
+            originalSentence: "Thank you for considering my application for this position."
+        }
+    ],
+    "82-42": [ // opportunity
+        {
+            sentence: "This job is a great _______ to grow in the field of engineering.",
+            options: ["opportunity", "position", "role", "session"],
+            originalSentence: "This job is a great opportunity to grow in the field of engineering."
+        }
+    ],
+    "82-43": [ // contribute
+        {
+            sentence: "She hopes to _______ her skills to the company's success.",
+            options: ["contribute", "customize", "state", "admire"],
+            originalSentence: "She hopes to contribute her skills to the company's success."
+        }
+    ],
+    "82-46": [ // customize
+        {
+            sentence: "You should _______ your cover letter for every job you apply to.",
+            options: ["customize", "contribute", "state", "admire"],
+            originalSentence: "You should customize your cover letter for every job you apply to."
+        }
+    ],
+    "82-47": [ // document
+        {
+            sentence: "A cover letter is an important _______ that supports your CV.",
+            options: ["document", "structure", "session", "position"],
+            originalSentence: "A cover letter is an important document that supports your CV."
+        }
+    ],
+    "82-48": [ // hopeful
+        {
+            sentence: "She felt _______ after sending her application to her dream company.",
+            options: ["hopeful", "eager", "relevant", "specific"],
+            originalSentence: "She felt hopeful after sending her application to her dream company."
+        }
+    ],
+    "82-49": [ // adjusting
+        {
+            sentence: "He spent the evening _______ his cover letter based on the feedback.",
+            options: ["adjusting", "following", "considering", "inviting"],
+            originalSentence: "He spent the evening adjusting his cover letter based on the feedback."
+        }
+    ],
+    "82-51": [ // inviting
+        {
+            sentence: "The email ended by _______ her to attend an interview next week.",
+            options: ["inviting", "adjusting", "considering", "following"],
+            originalSentence: "The email ended by inviting her to attend an interview next week."
+        }
+    ],
+    "82-52": [ // pounding
+        {
+            sentence: "His heart was _______ when he opened the email from the company.",
+            options: ["pounding", "eager", "hopeful", "following"],
+            originalSentence: "His heart was pounding when he opened the email from the company."
+        }
+    ],
+    "83-1": [ // job offer
+        {
+            sentence: "She received a _______ _______ from a company in Dubai.",
+            options: ["job offer", "counter-offer", "benefits package", "verbal offer"],
+            originalSentence: "She received a job offer from a company in Dubai."
+        }
+    ],
+    "83-2": [ // salary
+        {
+            sentence: "He asked about the _______ before accepting the position.",
+            options: ["salary", "deadline", "market rate", "sign-on bonus"],
+            originalSentence: "He asked about the salary before accepting the position."
+        }
+    ],
+    "83-3": [ // negotiate
+        {
+            sentence: "It is important to _______ your salary before signing the contract.",
+            options: ["negotiate", "research", "value", "walk away"],
+            originalSentence: "It is important to negotiate your salary before signing the contract."
+        }
+    ],
+    "83-4": [ // advice
+        {
+            sentence: "She asked her mentor for _______ on how to handle the offer.",
+            options: ["advice", "research", "adjustment", "deadline"],
+            originalSentence: "She asked her mentor for advice on how to handle the offer."
+        }
+    ],
+    "83-5": [ // professionally
+        {
+            sentence: "Always respond to a job offer _______ and on time.",
+            options: ["professionally", "boldly", "politely", "verbally"],
+            originalSentence: "Always respond to a job offer professionally and on time."
+        }
+    ],
+    "83-6": [ // research
+        {
+            sentence: "Do your _______ before entering any salary negotiation.",
+            options: ["research", "advice", "adjustment", "counter-offer"],
+            originalSentence: "Do your research before entering any salary negotiation."
+        }
+    ],
+    "83-7": [ // similar roles
+        {
+            sentence: "He compared his offer to salaries in _______ _______ across the industry.",
+            options: ["similar roles", "industry standards", "market rate", "benefits package"],
+            originalSentence: "He compared his offer to salaries in similar roles across the industry."
+        }
+    ],
+    "83-9": [ // polite
+        {
+            sentence: "Be _______ when asking for a higher salary.",
+            options: ["polite", "bold", "greedy", "professional"],
+            originalSentence: "Be polite when asking for a higher salary."
+        }
+    ],
+    "83-11": [ // industry
+        {
+            sentence: "She has ten years of experience in the finance _______.",
+            options: ["industry", "research", "market rate", "deadline"],
+            originalSentence: "She has ten years of experience in the finance industry."
+        }
+    ],
+    "83-13": [ // drafting
+        {
+            sentence: "He spent the evening _______ his response to the job offer.",
+            options: ["drafting", "accepting", "negotiating", "cheering"],
+            originalSentence: "He spent the evening drafting his response to the job offer."
+        }
+    ],
+    "83-17": [ // adjustment
+        {
+            sentence: "She asked for a small _______ to the starting salary.",
+            options: ["adjustment", "sign-on bonus", "counter-offer", "deadline"],
+            originalSentence: "She asked for a small adjustment to the starting salary."
+        }
+    ],
+    "83-18": [ // aligned with
+        {
+            sentence: "The offer was not _______ _______ her experience and qualifications.",
+            options: ["aligned with", "look forward to", "walk away", "cheering"],
+            originalSentence: "The offer was not aligned with her experience and qualifications."
+        }
+    ],
+    "83-19": [ // industry standards
+        {
+            sentence: "The salary should match _______ _______ for this type of role.",
+            options: ["industry standards", "similar roles", "market rate", "benefits package"],
+            originalSentence: "The salary should match industry standards for this type of role."
+        }
+    ],
+    "83-20": [ // bold
+        {
+            sentence: "Sometimes you need to be _______ and ask for what you deserve.",
+            options: ["bold", "polite", "greedy", "professional"],
+            originalSentence: "Sometimes you need to be bold and ask for what you deserve."
+        }
+    ],
+    "83-21": [ // deep breath
+        {
+            sentence: "She took a _______ _______ before making the call to the hiring manager.",
+            options: ["deep breath", "verbal offer", "written offer", "sign-on bonus"],
+            originalSentence: "She took a deep breath before making the call to the hiring manager."
+        }
+    ],
+    "83-23": [ // pounding
+        {
+            sentence: "His heart was _______ as he waited for the employer's response.",
+            options: ["pounding", "cheering", "accepting", "drafting"],
+            originalSentence: "His heart was pounding as he waited for the employer's response."
+        }
+    ],
+    "83-26": [ // increased
+        {
+            sentence: "The company _______ his salary after he explained his experience.",
+            options: ["increased", "accepted", "negotiated", "drafted"],
+            originalSentence: "The company increased his salary after he explained his experience."
+        }
+    ],
+    "83-27": [ // cheering
+        {
+            sentence: "Her family was _______ when she got the job she wanted.",
+            options: ["cheering", "pounding", "accepting", "drafting"],
+            originalSentence: "Her family was cheering when she got the job she wanted."
+        }
+    ],
+    "83-29": [ // accepting
+        {
+            sentence: "Before _______ the offer, read every detail of the contract.",
+            options: ["accepting", "drafting", "negotiating", "cheering"],
+            originalSentence: "Before accepting the offer, read every detail of the contract."
+        }
+    ],
+    "83-30": [ // look forward to
+        {
+            sentence: "I _______ _______ _______ joining your team next month.",
+            options: ["look forward to", "walk away", "aligned with", "cheering"],
+            originalSentence: "I look forward to joining your team next month."
+        }
+    ],
+    "83-31": [ // professional life
+        {
+            sentence: "This job could be the best decision of her _______ _______.",
+            options: ["professional life", "support system", "benefits package", "retirement plan"],
+            originalSentence: "This job could be the best decision of her professional life."
+        }
+    ],
+    "83-32": [ // greedy
+        {
+            sentence: "Asking for a fair salary does not make you _______.",
+            options: ["greedy", "bold", "polite", "professional"],
+            originalSentence: "Asking for a fair salary does not make you greedy."
+        }
+    ],
+    "83-33": [ // value
+        {
+            sentence: "Know your _______ before you walk into any negotiation.",
+            options: ["value", "research", "advice", "adjustment"],
+            originalSentence: "Know your value before you walk into any negotiation."
+        }
+    ],
+    "83-34": [ // support system
+        {
+            sentence: "Her _______ _______ encouraged her to ask for a better offer.",
+            options: ["support system", "professional life", "benefits package", "retirement plan"],
+            originalSentence: "Her support system encouraged her to ask for a better offer."
+        }
+    ],
+    "83-36": [ // counter-offer
+        {
+            sentence: "He sent a _______ _______ asking for a higher starting salary.",
+            options: ["counter-offer", "verbal offer", "written offer", "job offer"],
+            originalSentence: "He sent a counter-offer asking for a higher starting salary."
+        }
+    ],
+    "83-37": [ // benefits package
+        {
+            sentence: "The _______ _______ included health insurance and annual leave.",
+            options: ["benefits package", "retirement plan", "sign-on bonus", "counter-offer"],
+            originalSentence: "The benefits package included health insurance and annual leave."
+        }
+    ],
+    "83-38": [ // annual leave
+        {
+            sentence: "She negotiated for more _______ _______ in addition to her salary.",
+            options: ["annual leave", "health insurance", "sign-on bonus", "retirement plan"],
+            originalSentence: "She negotiated for more annual leave in addition to her salary."
+        }
+    ],
+    "83-39": [ // health insurance
+        {
+            sentence: "The company offers full _______ _______ for all employees.",
+            options: ["health insurance", "annual leave", "retirement plan", "sign-on bonus"],
+            originalSentence: "The company offers full health insurance for all employees."
+        }
+    ],
+    "83-40": [ // retirement plan
+        {
+            sentence: "A good _______ _______ is an important part of any job offer.",
+            options: ["retirement plan", "health insurance", "annual leave", "benefits package"],
+            originalSentence: "A good retirement plan is an important part of any job offer."
+        }
+    ],
+    "83-41": [ // sign-on bonus
+        {
+            sentence: "The company offered a _______ _______ to encourage her to join quickly.",
+            options: ["sign-on bonus", "counter-offer", "verbal offer", "adjustment"],
+            originalSentence: "The company offered a sign-on bonus to encourage her to join quickly."
+        }
+    ],
+    "83-42": [ // negotiation skills
+        {
+            sentence: "Strong _______ _______ can help you get a much better deal.",
+            options: ["negotiation skills", "industry standards", "similar roles", "market rate"],
+            originalSentence: "Strong negotiation skills can help you get a much better deal."
+        }
+    ],
+    "83-43": [ // market rate
+        {
+            sentence: "His salary request was based on the current _______ _______ for his role.",
+            options: ["market rate", "industry standards", "similar roles", "negotiation skills"],
+            originalSentence: "His salary request was based on the current market rate for his role."
+        }
+    ],
+    "83-44": [ // walk away
+        {
+            sentence: "Sometimes it is better to _______ _______ from an unfair offer.",
+            options: ["walk away", "look forward to", "aligned with", "cheering"],
+            originalSentence: "Sometimes it is better to walk away from an unfair offer."
+        }
+    ],
+    "83-45": [ // deadline
+        {
+            sentence: "The company gave her a _______ of three days to accept the offer.",
+            options: ["deadline", "adjustment", "counter-offer", "sign-on bonus"],
+            originalSentence: "The company gave her a deadline of three days to accept the offer."
+        }
+    ],
+    "83-46": [ // verbal offer
+        {
+            sentence: "He received a _______ _______ over the phone before getting the contract.",
+            options: ["verbal offer", "written offer", "job offer", "counter-offer"],
+            originalSentence: "He received a verbal offer over the phone before getting the contract."
+        }
+    ],
+    "83-47": [ // written offer
+        {
+            sentence: "Always wait for a _______ _______ before resigning from your current job.",
+            options: ["written offer", "verbal offer", "counter-offer", "job offer"],
+            originalSentence: "Always wait for a written offer before resigning from your current job."
+        }
+    ],
+    "84-1": [ // world peace
+        {
+            sentence: "Many leaders gathered to discuss how to achieve _______  _______.",
+            options: ["world peace", "critical thinking", "human rights", "Nobel Peace Prize"],
+            originalSentence: "Many leaders gathered to discuss how to achieve world peace."
+        }
+    ],
+    "84-2": [ // crowded
+        {
+            sentence: "The hall was _______ with students eager to hear the speaker.",
+            options: ["crowded", "buzzing", "thoughtful", "meaningful"],
+            originalSentence: "The hall was crowded with students eager to hear the speaker."
+        }
+    ],
+    "84-4": [ // podium
+        {
+            sentence: "The professor walked up to the _______ and began her speech.",
+            options: ["podium", "century", "dialogue", "Q&A session"],
+            originalSentence: "The professor walked up to the podium and began her speech."
+        }
+    ],
+    "84-5": [ // Nobel Peace Prize
+        {
+            sentence: "She was awarded the _______ _______ _______ for her work with refugees.",
+            options: ["Nobel Peace Prize", "world peace", "critical thinking", "human rights"],
+            originalSentence: "She was awarded the Nobel Peace Prize for her work with refugees."
+        }
+    ],
+    "84-6": [ // Geneva
+        {
+            sentence: "The peace talks were held in _______ last spring.",
+            options: ["Geneva", "podium", "century", "conflict"],
+            originalSentence: "The peace talks were held in Geneva last spring."
+        }
+    ],
+    "84-7": [ // topic
+        {
+            sentence: "Equality and justice were the main _______ of the conference.",
+            options: ["topic", "piece", "absence", "century"],
+            originalSentence: "Equality and justice were the main topic of the conference."
+        }
+    ],
+    "84-8": [ // intently
+        {
+            sentence: "The audience listened _______ as the speaker described the conflict.",
+            options: ["intently", "furiously", "thoughtfully", "meaningfully"],
+            originalSentence: "The audience listened intently as the speaker described the conflict."
+        }
+    ],
+    "84-9": [ // absence
+        {
+            sentence: "The _______ of justice leads to anger and unrest.",
+            options: ["absence", "conflict", "suffering", "inequality"],
+            originalSentence: "The absence of justice leads to anger and unrest."
+        }
+    ],
+    "84-10": [ // justice
+        {
+            sentence: "Without _______, lasting peace is very difficult to achieve.",
+            options: ["justice", "equality", "dignity", "tolerance"],
+            originalSentence: "Without justice, lasting peace is very difficult to achieve."
+        }
+    ],
+    "84-11": [ // equality
+        {
+            sentence: "Every child deserves _______ regardless of where they were born.",
+            options: ["equality", "justice", "dignity", "forgiveness"],
+            originalSentence: "Every child deserves equality regardless of where they were born."
+        }
+    ],
+    "84-12": [ // dignity
+        {
+            sentence: "Every person has the right to be treated with _______.",
+            options: ["dignity", "equality", "tolerance", "justice"],
+            originalSentence: "Every person has the right to be treated with dignity."
+        }
+    ],
+    "84-13": [ // Q&A session
+        {
+            sentence: "After the lecture, there was a lively _______ _______ with the audience.",
+            options: ["Q&A session", "ceasefire", "Nobel Peace Prize", "powerful tool"],
+            originalSentence: "After the lecture, there was a lively Q&A session with the audience."
+        }
+    ],
+    "84-15": [ // contribute
+        {
+            sentence: "Everyone can _______ to peace in their own small way.",
+            options: ["contribute", "promote", "inspire", "treat"],
+            originalSentence: "Everyone can contribute to peace in their own small way."
+        }
+    ],
+    "84-18": [ // hatred
+        {
+            sentence: "Education helps reduce _______ between different communities.",
+            options: ["hatred", "conflict", "suffering", "inequality"],
+            originalSentence: "Education helps reduce hatred between different communities."
+        }
+    ],
+    "84-21": [ // education
+        {
+            sentence: "_______ is one of the most effective paths to lasting peace.",
+            options: ["education", "diplomacy", "technology", "democracy"],
+            originalSentence: "Education is one of the most effective paths to lasting peace."
+        }
+    ],
+    "84-22": [ // powerful tool
+        {
+            sentence: "Dialogue can be a _______ _______ for resolving disputes.",
+            options: ["powerful tool", "critical thinking", "ceasefire", "Q&A session"],
+            originalSentence: "Dialogue can be a powerful tool for resolving disputes."
+        }
+    ],
+    "84-23": [ // critical thinking
+        {
+            sentence: "Schools should teach _______ _______ to help students question what they read.",
+            options: ["critical thinking", "powerful tool", "world peace", "human rights"],
+            originalSentence: "Schools should teach critical thinking to help students question what they read."
+        }
+    ],
+    "84-24": [ // breaks down
+        {
+            sentence: "Travel often _______ _______ barriers between people of different cultures.",
+            options: ["breaks down", "gives up", "takes away", "brings together"],
+            originalSentence: "Travel often breaks down barriers between people of different cultures."
+        }
+    ],
+    "84-25": [ // stereotypes
+        {
+            sentence: "Meeting people from other cultures helps us challenge harmful _______.",
+            options: ["stereotypes", "choices", "lifetimes", "conflicts"],
+            originalSentence: "Meeting people from other cultures helps us challenge harmful stereotypes."
+        }
+    ],
+    "84-26": [ // creates empathy
+        {
+            sentence: "Reading stories from different perspectives _______ _______ in young readers.",
+            options: ["creates empathy", "breaks down", "gives up", "brings together"],
+            originalSentence: "Reading stories from different perspectives creates empathy in young readers."
+        }
+    ],
+    "84-27": [ // buzzing
+        {
+            sentence: "The room was _______ with excitement after the speaker finished.",
+            options: ["buzzing", "crowded", "thoughtful", "meaningful"],
+            originalSentence: "The room was buzzing with excitement after the speaker finished."
+        }
+    ],
+    "84-28": [ // inspire
+        {
+            sentence: "Her story continues to _______ young people around the world.",
+            options: ["inspire", "promote", "contribute", "treat"],
+            originalSentence: "Her story continues to inspire young people around the world."
+        }
+    ],
+    "84-29": [ // thoughtful
+        {
+            sentence: "He gave a _______ answer that made everyone stop and reflect.",
+            options: ["thoughtful", "meaningful", "achievable", "crowded"],
+            originalSentence: "He gave a thoughtful answer that made everyone stop and reflect."
+        }
+    ],
+    "84-30": [ // achievable
+        {
+            sentence: "She argued that world peace is _______ if we work together.",
+            options: ["achievable", "meaningful", "thoughtful", "crowded"],
+            originalSentence: "She argued that world peace is achievable if we work together."
+        }
+    ],
+    "84-31": [ // conflict
+        {
+            sentence: "The region has suffered from _______ for more than twenty years.",
+            options: ["conflict", "absence", "suffering", "inequality"],
+            originalSentence: "The region has suffered from conflict for more than twenty years."
+        }
+    ],
+    "84-32": [ // lifetimes
+        {
+            sentence: "Some people have lived through more than one war in their _______.",
+            options: ["lifetimes", "choices", "centuries", "conflicts"],
+            originalSentence: "Some people have lived through more than one war in their lifetimes."
+        }
+    ],
+    "84-33": [ // counts
+        {
+            sentence: "Every act of kindness _______ when building a more peaceful world.",
+            options: ["counts", "connects", "promotes", "inspires"],
+            originalSentence: "Every act of kindness counts when building a more peaceful world."
+        }
+    ],
+    "84-34": [ // century
+        {
+            sentence: "The last _______ was marked by both great progress and terrible wars.",
+            options: ["century", "lifetime", "conflict", "absence"],
+            originalSentence: "The last century was marked by both great progress and terrible wars."
+        }
+    ],
+    "84-35": [ // decreased
+        {
+            sentence: "The number of wars between countries has _______ over the past fifty years.",
+            options: ["decreased", "increased", "promoted", "connected"],
+            originalSentence: "The number of wars between countries has decreased over the past fifty years."
+        }
+    ],
+    "84-36": [ // democracy
+        {
+            sentence: "_______ gives people the power to choose their own leaders.",
+            options: ["democracy", "diplomacy", "technology", "reconciliation"],
+            originalSentence: "Democracy gives people the power to choose their own leaders."
+        }
+    ],
+    "84-37": [ // technology
+        {
+            sentence: "Modern _______ allows people across the world to communicate instantly.",
+            options: ["technology", "diplomacy", "democracy", "education"],
+            originalSentence: "Modern technology allows people across the world to communicate instantly."
+        }
+    ],
+    "84-38": [ // connects
+        {
+            sentence: "The internet _______ millions of people from different backgrounds every day.",
+            options: ["connects", "promotes", "inspires", "counts"],
+            originalSentence: "The internet connects millions of people from different backgrounds every day."
+        }
+    ],
+    "84-39": [ // inequality
+        {
+            sentence: "Economic _______ is one of the root causes of social unrest.",
+            options: ["inequality", "absence", "suffering", "conflict"],
+            originalSentence: "Economic inequality is one of the root causes of social unrest."
+        }
+    ],
+    "84-40": [ // suffering
+        {
+            sentence: "Aid organizations work to reduce the _______ of people affected by war.",
+            options: ["suffering", "inequality", "absence", "hatred"],
+            originalSentence: "Aid organizations work to reduce the suffering of people affected by war."
+        }
+    ],
+    "84-41": [ // give up
+        {
+            sentence: "We must never _______ _______ on the dream of a more peaceful world.",
+            options: ["give up", "take away", "bring together", "break down"],
+            originalSentence: "We must never give up on the dream of a more peaceful world."
+        }
+    ],
+    "84-42": [ // meaningful
+        {
+            sentence: "She wanted to do something _______ with her career.",
+            options: ["meaningful", "thoughtful", "achievable", "buzzing"],
+            originalSentence: "She wanted to do something meaningful with her career."
+        }
+    ],
+    "84-45": [ // contribute to
+        {
+            sentence: "Each one of us can _______ _______ a more just society.",
+            options: ["contribute to", "give up on", "take away from", "bring together"],
+            originalSentence: "Each one of us can contribute to a more just society."
+        }
+    ],
+    "84-47": [ // bring together
+        {
+            sentence: "Music has the power to _______ _______ people from all walks of life.",
+            options: ["bring together", "give up on", "take away from", "breaks down"],
+            originalSentence: "Music has the power to bring together people from all walks of life."
+        }
+    ],
+    "84-49": [ // promote
+        {
+            sentence: "Schools play an important role in helping to _______ tolerance and respect.",
+            options: ["promote", "inspire", "contribute", "treat"],
+            originalSentence: "Schools play an important role in helping to promote tolerance and respect."
+        }
+    ],
+    "84-50": [ // take away
+        {
+            sentence: "What did you _______ _______ from the lecture today?",
+            options: ["take away", "give up", "contribute to", "bring together"],
+            originalSentence: "What did you take away from the lecture today?"
+        }
+    ],
+    "84-51": [ // treat
+        {
+            sentence: "We should _______ every person with kindness and respect.",
+            options: ["treat", "inspire", "promote", "contribute"],
+            originalSentence: "We should treat every person with kindness and respect."
+        }
+    ],
+    "84-52": [ // choices
+        {
+            sentence: "The _______ we make every day can either build or destroy trust.",
+            options: ["choices", "lifetimes", "stereotypes", "conflicts"],
+            originalSentence: "The choices we make every day can either build or destroy trust."
+        }
+    ],
+    "84-53": [ // furiously
+        {
+            sentence: "She was writing _______ to finish her essay before the deadline.",
+            options: ["furiously", "intently", "thoughtfully", "meaningfully"],
+            originalSentence: "She was writing furiously to finish her essay before the deadline."
+        }
+    ],
+    "84-54": [ // piece
+        {
+            sentence: "He wrote a _______ about the importance of dialogue in ending wars.",
+            options: ["piece", "topic", "absence", "century"],
+            originalSentence: "He wrote a piece about the importance of dialogue in ending wars."
+        }
+    ],
+    "84-57": [ // ceasefire
+        {
+            sentence: "Both sides agreed to a _______ to allow aid to reach civilians.",
+            options: ["ceasefire", "dialogue", "reconciliation", "diplomacy"],
+            originalSentence: "Both sides agreed to a ceasefire to allow aid to reach civilians."
+        }
+    ],
+    "84-58": [ // diplomacy
+        {
+            sentence: "_______ is often more effective than military force in resolving disputes.",
+            options: ["diplomacy", "democracy", "technology", "reconciliation"],
+            originalSentence: "Diplomacy is often more effective than military force in resolving disputes."
+        }
+    ],
+    "84-59": [ // human rights
+        {
+            sentence: "Every government has a duty to protect the _______ _______ of its citizens.",
+            options: ["human rights", "world peace", "critical thinking", "Nobel Peace Prize"],
+            originalSentence: "Every government has a duty to protect the human rights of its citizens."
+        }
+    ],
+    "84-60": [ // refugees
+        {
+            sentence: "Millions of _______ have fled their homes due to war and violence.",
+            options: ["refugees", "displaced", "lifetimes", "stereotypes"],
+            originalSentence: "Millions of refugees have fled their homes due to war and violence."
+        }
+    ],
+    "84-61": [ // displaced
+        {
+            sentence: "The flood left thousands of families _______ and without shelter.",
+            options: ["displaced", "refugees", "crowded", "buzzing"],
+            originalSentence: "The flood left thousands of families displaced and without shelter."
+        }
+    ],
+    "84-62": [ // reconciliation
+        {
+            sentence: "_______ between the two communities took many years to achieve.",
+            options: ["reconciliation", "forgiveness", "tolerance", "dialogue"],
+            originalSentence: "Reconciliation between the two communities took many years to achieve."
+        }
+    ],
+    "84-63": [ // forgiveness
+        {
+            sentence: "_______ is not easy, but it is necessary for healing after conflict.",
+            options: ["forgiveness", "reconciliation", "tolerance", "dignity"],
+            originalSentence: "Forgiveness is not easy, but it is necessary for healing after conflict."
+        }
+    ],
+    "84-64": [ // tolerance
+        {
+            sentence: "A peaceful society is built on mutual respect and _______.",
+            options: ["tolerance", "forgiveness", "reconciliation", "dignity"],
+            originalSentence: "A peaceful society is built on mutual respect and tolerance."
+        }
+    ],
+    "84-65": [ // dialogue
+        {
+            sentence: "Open _______ between leaders is the first step toward ending a conflict.",
+            options: ["dialogue", "diplomacy", "reconciliation", "ceasefire"],
+            originalSentence: "Open dialogue between leaders is the first step toward ending a conflict."
+        }
+    ],
+    "85-2": [ // beyond
+        {
+            sentence: "Her ambitions go _______ just getting a degree.",
+            options: ["beyond", "surreal", "quiet", "junior"],
+            originalSentence: "Her ambitions go beyond just getting a degree."
+        }
+    ],
+    "85-3": [ // gown
+        {
+            sentence: "She wore her black _______ proudly on graduation day.",
+            options: ["gown", "square cap", "diploma", "stage"],
+            originalSentence: "She wore her black gown proudly on graduation day."
+        }
+    ],
+    "85-4": [ // square cap
+        {
+            sentence: "He threw his _______ _______ into the air after receiving his diploma.",
+            options: ["square cap", "gown", "diploma", "stage"],
+            originalSentence: "He threw his square cap into the air after receiving his diploma."
+        }
+    ],
+    "85-5": [ // stadium
+        {
+            sentence: "The graduation ceremony was held in a large _______ to fit all the families.",
+            options: ["stadium", "stage", "stands", "crowd"],
+            originalSentence: "The graduation ceremony was held in a large stadium to fit all the families."
+        }
+    ],
+    "85-6": [ // emotions
+        {
+            sentence: "She was overwhelmed with _______ as she walked across the stage.",
+            options: ["emotions", "memories", "pride", "tears"],
+            originalSentence: "She was overwhelmed with emotions as she walked across the stage."
+        }
+    ],
+    "85-7": [ // pride
+        {
+            sentence: "His parents could not hide their _______ when he received his diploma.",
+            options: ["pride", "emotions", "tears", "memories"],
+            originalSentence: "His parents could not hide their pride when he received his diploma."
+        }
+    ],
+    "85-8": [ // memories
+        {
+            sentence: "She looked through old photos and smiled at all the happy _______.",
+            options: ["memories", "emotions", "tears", "pride"],
+            originalSentence: "She looked through old photos and smiled at all the happy memories."
+        }
+    ],
+    "85-9": [ // late nights
+        {
+            sentence: "All those _______ _______ studying finally paid off.",
+            options: ["late nights", "clinking glasses", "raising a toast", "entry-level"],
+            originalSentence: "All those late nights studying finally paid off."
+        }
+    ],
+    "85-12": [ // stage
+        {
+            sentence: "Each student walked across the _______ to collect their diploma.",
+            options: ["stage", "stadium", "stands", "crowd"],
+            originalSentence: "Each student walked across the stage to collect their diploma."
+        }
+    ],
+    "85-13": [ // dean
+        {
+            sentence: "The _______ gave a short speech before handing out the diplomas.",
+            options: ["dean", "valedictorian", "mentor", "alumni"],
+            originalSentence: "The dean gave a short speech before handing out the diplomas."
+        }
+    ],
+    "85-14": [ // diploma
+        {
+            sentence: "She framed her _______ and hung it on the wall in her room.",
+            options: ["diploma", "gown", "square cap", "speech"],
+            originalSentence: "She framed her diploma and hung it on the wall in her room."
+        }
+    ],
+    "85-15": [ // crowd
+        {
+            sentence: "The _______ cheered loudly when the graduates entered the hall.",
+            options: ["crowd", "stands", "stage", "stadium"],
+            originalSentence: "The crowd cheered loudly when the graduates entered the hall."
+        }
+    ],
+    "85-17": [ // spotting
+        {
+            sentence: "She waved after _______ her family in the stands.",
+            options: ["spotting", "clapping", "reminiscing", "waiting"],
+            originalSentence: "She waved after spotting her family in the stands."
+        }
+    ],
+    "85-18": [ // stands
+        {
+            sentence: "Proud families filled the _______ on both sides of the field.",
+            options: ["stands", "stage", "crowd", "stadium"],
+            originalSentence: "Proud families filled the stands on both sides of the field."
+        }
+    ],
+    "85-20": [ // clapping
+        {
+            sentence: "Everyone was _______ when the valedictorian finished her speech.",
+            options: ["clapping", "spotting", "reminiscing", "waiting"],
+            originalSentence: "Everyone was clapping when the valedictorian finished her speech."
+        }
+    ],
+    "85-22": [ // ceremony
+        {
+            sentence: "The graduation _______ lasted for over three hours.",
+            options: ["ceremony", "commencement", "reunion", "speech"],
+            originalSentence: "The graduation ceremony lasted for over three hours."
+        }
+    ],
+    "85-24": [ // tears
+        {
+            sentence: "There were happy _______ in the room as the graduates received their diplomas.",
+            options: ["tears", "emotions", "pride", "memories"],
+            originalSentence: "There were happy tears in the room as the graduates received their diplomas."
+        }
+    ],
+    "85-27": [ // reminiscing
+        {
+            sentence: "After the ceremony, old friends sat together _______ about their first year.",
+            options: ["reminiscing", "spotting", "clapping", "waiting"],
+            originalSentence: "After the ceremony, old friends sat together reminiscing about their first year."
+        }
+    ],
+    "85-29": [ // graduates
+        {
+            sentence: "Over five hundred _______ crossed the stage this year.",
+            options: ["graduates", "alumni", "mentors", "juniors"],
+            originalSentence: "Over five hundred graduates crossed the stage this year."
+        }
+    ],
+    "85-30": [ // surreal
+        {
+            sentence: "Standing on stage to receive her diploma felt completely _______.",
+            options: ["surreal", "quiet", "junior", "beyond"],
+            originalSentence: "Standing on stage to receive her diploma felt completely surreal."
+        }
+    ],
+    "85-31": [ // junior
+        {
+            sentence: "As a _______ employee, she was still learning the basics of the job.",
+            options: ["junior", "entry-level", "surreal", "quiet"],
+            originalSentence: "As a junior employee, she was still learning the basics of the job."
+        }
+    ],
+    "85-32": [ // apply
+        {
+            sentence: "He was ready to _______ everything he had learned in his new job.",
+            options: ["apply", "deserve", "grow", "mentor"],
+            originalSentence: "He was ready to apply everything he had learned in his new job."
+        }
+    ],
+    "85-33": [ // deserve
+        {
+            sentence: "After years of hard work, she truly _______ this moment.",
+            options: ["deserve", "apply", "grown", "paid off"],
+            originalSentence: "After years of hard work, she truly deserves this moment."
+        }
+    ],
+    "85-34": [ // stay in touch
+        {
+            sentence: "They promised to _______ _______ _______ even after moving to different cities.",
+            options: ["stay in touch", "paid off", "give up", "raise a toast"],
+            originalSentence: "They promised to stay in touch even after moving to different cities."
+        }
+    ],
+    "85-35": [ // reunion
+        {
+            sentence: "They are planning a ten-year _______ for their graduating class.",
+            options: ["reunion", "ceremony", "commencement", "speech"],
+            originalSentence: "They are planning a ten-year reunion for their graduating class."
+        }
+    ],
+    "85-36": [ // raising a toast
+        {
+            sentence: "Her father stood up, _______ _______ _______ to celebrate her success.",
+            options: ["raising a toast", "clinking glasses", "staying in touch", "paid off"],
+            originalSentence: "Her father stood up, raising a toast to celebrate her success."
+        }
+    ],
+    "85-37": [ // clinking glasses
+        {
+            sentence: "The friends celebrated by _______ _______ and laughing together.",
+            options: ["clinking glasses", "raising a toast", "staying in touch", "reminiscing"],
+            originalSentence: "The friends celebrated by clinking glasses and laughing together."
+        }
+    ],
+    "85-38": [ // journey
+        {
+            sentence: "The speaker reminded graduates that life is a long _______.",
+            options: ["journey", "ceremony", "reunion", "career path"],
+            originalSentence: "The speaker reminded graduates that life is a long journey."
+        }
+    ],
+    "85-39": [ // paid off
+        {
+            sentence: "All the hard work and sacrifices had finally _______ _______.",
+            options: ["paid off", "grown", "apply", "deserve"],
+            originalSentence: "All the hard work and sacrifices had finally paid off."
+        }
+    ],
+    "85-41": [ // waiting
+        {
+            sentence: "A world full of new opportunities is _______ for every graduate.",
+            options: ["waiting", "spotting", "clapping", "reminiscing"],
+            originalSentence: "A world full of new opportunities is waiting for every graduate."
+        }
+    ],
+    "85-42": [ // quiet
+        {
+            sentence: "The hall went _______ as the dean began to speak.",
+            options: ["quiet", "surreal", "beyond", "junior"],
+            originalSentence: "The hall went quiet as the dean began to speak."
+        }
+    ],
+    "85-46": [ // grown
+        {
+            sentence: "Looking back, they realized how much they had _______ over four years.",
+            options: ["grown", "applied", "deserved", "waited"],
+            originalSentence: "Looking back, they realized how much they had grown over four years."
+        }
+    ],
+    "85-52": [ // commencement
+        {
+            sentence: "The _______ address was given by a well-known scientist.",
+            options: ["commencement", "ceremony", "reunion", "speech"],
+            originalSentence: "The commencement address was given by a well-known scientist."
+        }
+    ],
+    "85-53": [ // valedictorian
+        {
+            sentence: "The _______ gave an emotional speech on behalf of all the graduates.",
+            options: ["valedictorian", "dean", "mentor", "alumni"],
+            originalSentence: "The valedictorian gave an emotional speech on behalf of all the graduates."
+        }
+    ],
+    "85-54": [ // speech
+        {
+            sentence: "Her _______ moved many people in the audience to tears.",
+            options: ["speech", "diploma", "gown", "ceremony"],
+            originalSentence: "Her speech moved many people in the audience to tears."
+        }
+    ],
+    "85-55": [ // alumni
+        {
+            sentence: "The university invited successful _______ to speak at the graduation.",
+            options: ["alumni", "graduates", "mentors", "juniors"],
+            originalSentence: "The university invited successful alumni to speak at the graduation."
+        }
+    ],
+    "85-57": [ // mentor
+        {
+            sentence: "She thanked her _______ for guiding her throughout her studies.",
+            options: ["mentor", "dean", "valedictorian", "alumni"],
+            originalSentence: "She thanked her mentor for guiding her throughout her studies."
+        }
+    ],
+    "85-58": [ // guidance
+        {
+            sentence: "Without the _______ of her professors, she would not have succeeded.",
+            options: ["guidance", "speech", "journey", "career path"],
+            originalSentence: "Without the guidance of her professors, she would not have succeeded."
+        }
+    ],
+    "85-60": [ // entry-level
+        {
+            sentence: "He accepted an _______ _______ position at a local engineering firm.",
+            options: ["entry-level", "junior", "surreal", "quiet"],
+            originalSentence: "He accepted an entry-level position at a local engineering firm."
+        }
+    ],
+    "85-61": [ // career path
+        {
+            sentence: "She was still deciding which _______ _______ to follow after graduation.",
+            options: ["career path", "journey", "reunion", "commencement"],
+            originalSentence: "She was still deciding which career path to follow after graduation."
+        }
+    ],
+    "86-1": [ // mental health
+        {
+            sentence: "Taking care of your _______ _______ is just as important as physical health.",
+            options: ["mental health", "self-care", "coping strategies", "balance"],
+            originalSentence: "Taking care of your mental health is just as important as physical health."
+        }
+    ],
+    "86-2": [ // demanding
+        {
+            sentence: "Working two jobs at the same time can be very _______.",
+            options: ["demanding", "exhausted", "stressed", "supportive"],
+            originalSentence: "Working two jobs at the same time can be very demanding."
+        }
+    ],
+    "86-3": [ // stressed
+        {
+            sentence: "She felt _______ before every exam during the semester.",
+            options: ["stressed", "exhausted", "struggling", "supportive"],
+            originalSentence: "She felt stressed before every exam during the semester."
+        }
+    ],
+    "86-4": [ // suffered
+        {
+            sentence: "His performance at work _______ when he stopped sleeping well.",
+            options: ["suffered", "struggled", "stressed", "exhausted"],
+            originalSentence: "His performance at work suffered when he stopped sleeping well."
+        }
+    ],
+    "86-6": [ // exhausted
+        {
+            sentence: "After three weeks without a day off, she was completely _______.",
+            options: ["exhausted", "stressed", "demanding", "struggling"],
+            originalSentence: "After three weeks without a day off, she was completely exhausted."
+        }
+    ],
+    "86-7": [ // struggling
+        {
+            sentence: "He was _______ to keep up with his studies and part-time job.",
+            options: ["struggling", "exhausted", "stressed", "suffering"],
+            originalSentence: "He was struggling to keep up with his studies and part-time job."
+        }
+    ],
+    "86-10": [ // therapist
+        {
+            sentence: "She decided to see a _______ after feeling anxious for several months.",
+            options: ["therapist", "mentor", "dean", "advisor"],
+            originalSentence: "She decided to see a therapist after feeling anxious for several months."
+        }
+    ],
+    "86-12": [ // blame
+        {
+            sentence: "Do not _______ yourself when things do not go as planned.",
+            options: ["blame", "face", "prioritize", "thrive"],
+            originalSentence: "Do not blame yourself when things do not go as planned."
+        }
+    ],
+    "86-13": [ // sneaks up
+        {
+            sentence: "Burnout often _______ _______ on you before you even notice it.",
+            options: ["sneaks up", "start again", "clear your mind", "ups and downs"],
+            originalSentence: "Burnout often sneaks up on you before you even notice it."
+        }
+    ],
+    "86-15": [ // admitting
+        {
+            sentence: "_______ that you need help is the first step toward feeling better.",
+            options: ["admitting", "prioritizing", "facing", "balancing"],
+            originalSentence: "Admitting that you need help is the first step toward feeling better."
+        }
+    ],
+    "86-16": [ // balance
+        {
+            sentence: "Finding a good _______ between work and rest is essential.",
+            options: ["balance", "self-care", "courage", "boundary"],
+            originalSentence: "Finding a good balance between work and rest is essential."
+        }
+    ],
+    "86-17": [ // prioritize
+        {
+            sentence: "Learn to _______ your wellbeing above unnecessary tasks.",
+            options: ["prioritize", "balance", "thrive", "face"],
+            originalSentence: "Learn to prioritize your wellbeing above unnecessary tasks."
+        }
+    ],
+    "86-18": [ // self-care
+        {
+            sentence: "Simple habits like sleeping well and eating right are forms of _______-_______.",
+            options: ["self-care", "mental health", "coping strategies", "balance"],
+            originalSentence: "Simple habits like sleeping well and eating right are forms of self-care."
+        }
+    ],
+    "86-19": [ // clear your mind
+        {
+            sentence: "A short walk in the park can help _______ _______ _______ after a long day.",
+            options: ["clear your mind", "start again", "sneaks up", "ups and downs"],
+            originalSentence: "A short walk in the park can help clear your mind after a long day."
+        }
+    ],
+    "86-20": [ // appointment
+        {
+            sentence: "He booked an _______ with a therapist for the following week.",
+            options: ["appointment", "balance", "boundary", "courage"],
+            originalSentence: "He booked an appointment with a therapist for the following week."
+        }
+    ],
+    "86-22": [ // courage
+        {
+            sentence: "It takes real _______ to ask for help when you are struggling.",
+            options: ["courage", "balance", "self-care", "boundary"],
+            originalSentence: "It takes real courage to ask for help when you are struggling."
+        }
+    ],
+    "86-23": [ // supportive
+        {
+            sentence: "Having a _______ group of friends makes a big difference during hard times.",
+            options: ["supportive", "demanding", "exhausted", "stressed"],
+            originalSentence: "Having a supportive group of friends makes a big difference during hard times."
+        }
+    ],
+    "86-24": [ // boundaries
+        {
+            sentence: "Setting clear _______ at work helps prevent burnout.",
+            options: ["boundaries", "balance", "self-care", "courage"],
+            originalSentence: "Setting clear boundaries at work helps prevent burnout."
+        }
+    ],
+    "86-25": [ // thrive
+        {
+            sentence: "When people feel supported and valued, they tend to _______ at work.",
+            options: ["thrive", "face", "prioritize", "blame"],
+            originalSentence: "When people feel supported and valued, they tend to thrive at work."
+        }
+    ],
+    "86-26": [ // coping strategies
+        {
+            sentence: "Her therapist helped her develop healthy _______ _______ for dealing with anxiety.",
+            options: ["coping strategies", "mental health", "self-care", "ups and downs"],
+            originalSentence: "Her therapist helped her develop healthy coping strategies for dealing with anxiety."
+        }
+    ],
+    "86-29": [ // ups and downs
+        {
+            sentence: "Every career has its _______ _______ _______, so stay patient.",
+            options: ["ups and downs", "coping strategies", "self-care", "mental health"],
+            originalSentence: "Every career has its ups and downs, so stay patient."
+        }
+    ],
+    "86-30": [ // face
+        {
+            sentence: "The best way to deal with a problem is to _______ it directly.",
+            options: ["face", "blame", "thrive", "prioritize"],
+            originalSentence: "The best way to deal with a problem is to face it directly."
+        }
+    ],
+    "86-35": [ // start again
+        {
+            sentence: "It is never too late to _______ _______ and make a fresh plan.",
+            options: ["start again", "clear your mind", "sneaks up", "face"],
+            originalSentence: "It is never too late to start again and make a fresh plan."
+        }
+    ],
+    "87-1": [ // stress management
+        {
+            sentence: "Good _______ _______ skills help you stay calm during difficult times.",
+            options: ["stress management", "practical strategies", "mindfulness", "self-compassion"],
+            originalSentence: "Good stress management skills help you stay calm during difficult times."
+        }
+    ],
+    "87-2": [ // techniques
+        {
+            sentence: "There are many breathing _______ that can help reduce anxiety quickly.",
+            options: ["techniques", "tools", "sensations", "strategies"],
+            originalSentence: "There are many breathing techniques that can help reduce anxiety quickly."
+        }
+    ],
+    "87-3": [ // practical strategies
+        {
+            sentence: "The workshop offered _______ _______ for dealing with workplace pressure.",
+            options: ["practical strategies", "stress management", "coping tools", "mindfulness"],
+            originalSentence: "The workshop offered practical strategies for dealing with workplace pressure."
+        }
+    ],
+    "87-6": [ // calms
+        {
+            sentence: "Slow breathing _______ the body and reduces feelings of panic.",
+            options: ["calms", "wanders", "loom", "cope with"],
+            originalSentence: "Slow breathing calms the body and reduces feelings of panic."
+        }
+    ],
+    "87-7": [ // nervous system
+        {
+            sentence: "Deep breathing activates the part of the _______ _______ that promotes relaxation.",
+            options: ["nervous system", "endorphins", "mindfulness", "burnout"],
+            originalSentence: "Deep breathing activates the part of the nervous system that promotes relaxation."
+        }
+    ],
+    "87-8": [ // inhaling
+        {
+            sentence: "Try _______ slowly through your nose for four counts.",
+            options: ["inhaling", "exhaling", "meditating", "reflecting"],
+            originalSentence: "Try inhaling slowly through your nose for four counts."
+        }
+    ],
+    "87-9": [ // exhaling
+        {
+            sentence: "After _______ fully, your body naturally begins to relax.",
+            options: ["exhaling", "inhaling", "meditating", "reflecting"],
+            originalSentence: "After exhaling fully, your body naturally begins to relax."
+        }
+    ],
+    "87-11": [ // prioritize
+        {
+            sentence: "Learning to _______ tasks helps you focus on what really matters.",
+            options: ["prioritize", "cope with", "wind down", "follow through"],
+            originalSentence: "Learning to prioritize tasks helps you focus on what really matters."
+        }
+    ],
+    "87-12": [ // urgent
+        {
+            sentence: "Not every task is _______, so learn to tell the difference.",
+            options: ["urgent", "grounded", "evidence-based", "supportive"],
+            originalSentence: "Not every task is urgent, so learn to tell the difference."
+        }
+    ],
+    "87-13": [ // blow off steam
+        {
+            sentence: "Going for a run is a great way to _______ _______ _______ after a hard day.",
+            options: ["blow off steam", "wind down", "cut down on", "follow through"],
+            originalSentence: "Going for a run is a great way to blow off steam after a hard day."
+        }
+    ],
+    "87-14": [ // endorphins
+        {
+            sentence: "Exercise releases _______ which naturally improve your mood.",
+            options: ["endorphins", "sensations", "techniques", "tools"],
+            originalSentence: "Exercise releases endorphins which naturally improve your mood."
+        }
+    ],
+    "87-15": [ // mindfulness
+        {
+            sentence: "Practicing _______ helps you stay focused on the present moment.",
+            options: ["mindfulness", "resilience", "self-compassion", "burnout"],
+            originalSentence: "Practicing mindfulness helps you stay focused on the present moment."
+        }
+    ],
+    "87-16": [ // judgment
+        {
+            sentence: "Mindfulness means observing your thoughts without any _______.",
+            options: ["judgment", "confidence", "resilience", "burnout"],
+            originalSentence: "Mindfulness means observing your thoughts without any judgment."
+        }
+    ],
+    "87-17": [ // sensations
+        {
+            sentence: "Pay attention to the physical _______ in your body when you feel anxious.",
+            options: ["sensations", "techniques", "tools", "endorphins"],
+            originalSentence: "Pay attention to the physical sensations in your body when you feel anxious."
+        }
+    ],
+    "87-18": [ // wanders
+        {
+            sentence: "When your mind _______, gently bring your attention back to your breathing.",
+            options: ["wanders", "calms", "loom", "wind down"],
+            originalSentence: "When your mind wanders, gently bring your attention back to your breathing."
+        }
+    ],
+    "87-19": [ // grounded
+        {
+            sentence: "Focusing on what you can see and hear helps you feel more _______.",
+            options: ["grounded", "urgent", "supportive", "evidence-based"],
+            originalSentence: "Focusing on what you can see and hear helps you feel more grounded."
+        }
+    ],
+    "87-20": [ // tools
+        {
+            sentence: "She built a set of personal _______ to help her manage daily stress.",
+            options: ["tools", "techniques", "strategies", "sensations"],
+            originalSentence: "She built a set of personal tools to help her manage daily stress."
+        }
+    ],
+    "87-21": [ // cope with
+        {
+            sentence: "Everyone needs healthy ways to _______ _______ pressure at work.",
+            options: ["cope with", "cut down on", "take up", "wind down"],
+            originalSentence: "Everyone needs healthy ways to cope with pressure at work."
+        }
+    ],
+    "87-23": [ // evidence-based
+        {
+            sentence: "The therapist recommended _______ _______ methods supported by research.",
+            options: ["evidence-based", "practical strategies", "stress management", "mindfulness"],
+            originalSentence: "The therapist recommended evidence-based methods supported by research."
+        }
+    ],
+    "87-25": [ // to-do list
+        {
+            sentence: "Writing a _______ _______ _______ each morning helps reduce mental clutter.",
+            options: ["to-do list", "practical strategies", "stress management", "self-compassion"],
+            originalSentence: "Writing a to-do list each morning helps reduce mental clutter."
+        }
+    ],
+    "87-26": [ // setting aside
+        {
+            sentence: "She started _______ _______ thirty minutes each day just for herself.",
+            options: ["setting aside", "handling", "protecting", "reflecting"],
+            originalSentence: "She started setting aside thirty minutes each day just for herself."
+        }
+    ],
+    "87-27": [ // loom
+        {
+            sentence: "Deadlines begin to _______ large when you do not plan ahead.",
+            options: ["loom", "wanders", "calms", "cope with"],
+            originalSentence: "Deadlines begin to loom large when you do not plan ahead."
+        }
+    ],
+    "87-28": [ // handling
+        {
+            sentence: "She got better at _______ difficult conversations with her manager.",
+            options: ["handling", "protecting", "reflecting", "meditating"],
+            originalSentence: "She got better at handling difficult conversations with her manager."
+        }
+    ],
+    "87-29": [ // calmly
+        {
+            sentence: "He responded _______ even when the situation was very tense.",
+            options: ["calmly", "urgently", "confidently", "grounded"],
+            originalSentence: "He responded calmly even when the situation was very tense."
+        }
+    ],
+    "87-30": [ // colleague
+        {
+            sentence: "She talked to a trusted _______ about the pressure she was feeling.",
+            options: ["colleague", "therapist", "mentor", "advisor"],
+            originalSentence: "She talked to a trusted colleague about the pressure she was feeling."
+        }
+    ],
+    "87-33": [ // meditating
+        {
+            sentence: "He spends ten minutes _______ every morning before starting work.",
+            options: ["meditating", "reflecting", "inhaling", "exhaling"],
+            originalSentence: "He spends ten minutes meditating every morning before starting work."
+        }
+    ],
+    "87-34": [ // protecting
+        {
+            sentence: "Setting boundaries is a way of _______ your energy and wellbeing.",
+            options: ["protecting", "handling", "setting aside", "reflecting"],
+            originalSentence: "Setting boundaries is a way of protecting your energy and wellbeing."
+        }
+    ],
+    "87-36": [ // supportive
+        {
+            sentence: "A _______ workplace makes it easier for employees to manage stress.",
+            options: ["supportive", "urgent", "grounded", "evidence-based"],
+            originalSentence: "A supportive workplace makes it easier for employees to manage stress."
+        }
+    ],
+    "87-38": [ // reflecting
+        {
+            sentence: "Spending time _______ on your week helps you identify what is causing stress.",
+            options: ["reflecting", "meditating", "handling", "protecting"],
+            originalSentence: "Spending time reflecting on your week helps you identify what is causing stress."
+        }
+    ],
+    "87-41": [ // confidence
+        {
+            sentence: "Managing stress well can greatly increase your _______ at work.",
+            options: ["confidence", "resilience", "judgment", "burnout"],
+            originalSentence: "Managing stress well can greatly increase your confidence at work."
+        }
+    ],
+    "87-42": [ // wind down
+        {
+            sentence: "It is important to _______ _______ before going to sleep each night.",
+            options: ["wind down", "blow off steam", "cut down on", "take up"],
+            originalSentence: "It is important to wind down before going to sleep each night."
+        }
+    ],
+    "87-43": [ // cut down on
+        {
+            sentence: "The doctor advised him to _______ _______ _______ caffeine to sleep better.",
+            options: ["cut down on", "take up", "wind down", "follow through"],
+            originalSentence: "The doctor advised him to cut down on caffeine to sleep better."
+        }
+    ],
+    "87-44": [ // take up
+        {
+            sentence: "She decided to _______ _______ yoga as a way to manage her anxiety.",
+            options: ["take up", "cut down on", "blow off steam", "follow through"],
+            originalSentence: "She decided to take up yoga as a way to manage her anxiety."
+        }
+    ],
+    "87-45": [ // follow through
+        {
+            sentence: "It is not enough to make a plan — you also need to _______ _______ with it.",
+            options: ["follow through", "wind down", "take up", "cope with"],
+            originalSentence: "It is not enough to make a plan — you also need to follow through with it."
+        }
+    ],
+    "87-46": [ // burnout
+        {
+            sentence: "Ignoring stress for too long can lead to serious _______.",
+            options: ["burnout", "resilience", "self-compassion", "confidence"],
+            originalSentence: "Ignoring stress for too long can lead to serious burnout."
+        }
+    ],
+    "87-47": [ // self-compassion
+        {
+            sentence: "Practicing _______ _______ means being as kind to yourself as you are to others.",
+            options: ["self-compassion", "mindfulness", "stress management", "resilience"],
+            originalSentence: "Practicing self-compassion means being as kind to yourself as you are to others."
+        }
+    ],
+    "87-48": [ // resilience
+        {
+            sentence: "Building _______ helps you recover faster from setbacks.",
+            options: ["resilience", "confidence", "burnout", "self-compassion"],
+            originalSentence: "Building resilience helps you recover faster from setbacks."
+        }
+    ],
+    "87-49": [ // therapist
+        {
+            sentence: "If stress becomes too much to handle alone, speaking to a _______ can help.",
+            options: ["therapist", "colleague", "mentor", "advisor"],
+            originalSentence: "If stress becomes too much to handle alone, speaking to a therapist can help."
+        }
+    ],
+    "88-1": [ // healthy relationships
+        {
+            sentence: "Building _______ _______ takes time, honesty, and effort.",
+            options: ["healthy relationships", "mutual trust", "emotional intelligence", "connections"],
+            originalSentence: "Building healthy relationships takes time, honesty, and effort."
+        }
+    ],
+    "88-2": [ // catching up
+        {
+            sentence: "The two old friends spent the afternoon _______ _______ over coffee.",
+            options: ["catching up", "getting along", "grow individually", "taking effort"],
+            originalSentence: "The two old friends spent the afternoon catching up over coffee."
+        }
+    ],
+    "88-4": [ // blushing
+        {
+            sentence: "She started _______ when he gave her an unexpected compliment.",
+            options: ["blushing", "affecting", "nurturing", "appreciating"],
+            originalSentence: "She started blushing when he gave her an unexpected compliment."
+        }
+    ],
+    "88-5": [ // getting along
+        {
+            sentence: "The two new colleagues started _______ _______ very well from the first day.",
+            options: ["getting along", "catching up", "grow individually", "lasting"],
+            originalSentence: "The two new colleagues started getting along very well from the first day."
+        }
+    ],
+    "88-6": [ // interests
+        {
+            sentence: "They bonded quickly because they shared many of the same _______.",
+            options: ["interests", "frustrations", "connections", "foundations"],
+            originalSentence: "They bonded quickly because they shared many of the same interests."
+        }
+    ],
+    "88-7": [ // trust
+        {
+            sentence: "Without _______, it is very hard to build a strong relationship.",
+            options: ["trust", "respect", "space", "empathy"],
+            originalSentence: "Without trust, it is very hard to build a strong relationship."
+        }
+    ],
+    "88-8": [ // communication
+        {
+            sentence: "Open _______ is the key to resolving most conflicts between people.",
+            options: ["communication", "trust", "respect", "empathy"],
+            originalSentence: "Open communication is the key to resolving most conflicts between people."
+        }
+    ],
+    "88-11": [ // relationship
+        {
+            sentence: "A strong _______ is built on honesty, trust, and mutual respect.",
+            options: ["relationship", "foundation", "connection", "space"],
+            originalSentence: "A strong relationship is built on honesty, trust, and mutual respect."
+        }
+    ],
+    "88-12": [ // space
+        {
+            sentence: "Giving each other _______ is important in any healthy relationship.",
+            options: ["space", "pressure", "trust", "compromise"],
+            originalSentence: "Giving each other space is important in any healthy relationship."
+        }
+    ],
+    "88-13": [ // grow individually
+        {
+            sentence: "Good partners support each other and allow each other to _______ _______.",
+            options: ["grow individually", "catching up", "getting along", "worth it"],
+            originalSentence: "Good partners support each other and allow each other to grow individually."
+        }
+    ],
+    "88-15": [ // pressure
+        {
+            sentence: "You should never feel _______ to change who you are for someone else.",
+            options: ["pressure", "space", "valued", "reassured"],
+            originalSentence: "You should never feel pressure to change who you are for someone else."
+        }
+    ],
+    "88-16": [ // lasted
+        {
+            sentence: "Their friendship has _______ for over twenty years.",
+            options: ["lasted", "valued", "affected", "nurtured"],
+            originalSentence: "Their friendship has lasted for over twenty years."
+        }
+    ],
+    "88-19": [ // valued
+        {
+            sentence: "Everyone deserves to feel _______ in their relationships.",
+            options: ["valued", "wise", "reassuring", "non-judgmental"],
+            originalSentence: "Everyone deserves to feel valued in their relationships."
+        }
+    ],
+    "88-20": [ // wise
+        {
+            sentence: "It was _______ of her to ask for advice before making a big decision.",
+            options: ["wise", "valued", "mutual", "platonic"],
+            originalSentence: "It was wise of her to ask for advice before making a big decision."
+        }
+    ],
+    "88-21": [ // roommate
+        {
+            sentence: "Her _______ became one of her closest friends after just a few months.",
+            options: ["roommate", "colleague", "mentor", "advisor"],
+            originalSentence: "Her roommate became one of her closest friends after just a few months."
+        }
+    ],
+    "88-22": [ // affecting
+        {
+            sentence: "The tension between them was _______ the whole team's performance.",
+            options: ["affecting", "lasting", "nurturing", "appreciating"],
+            originalSentence: "The tension between them was affecting the whole team's performance."
+        }
+    ],
+    "88-23": [ // frustrations
+        {
+            sentence: "Sharing your _______ calmly is healthier than keeping them inside.",
+            options: ["frustrations", "interests", "connections", "foundations"],
+            originalSentence: "Sharing your frustrations calmly is healthier than keeping them inside."
+        }
+    ],
+    "88-25": [ // I wonder if
+        {
+            sentence: "_______ _______ _______ we could talk about what has been bothering you.",
+            options: ["I wonder if", "worth it", "takes effort", "grow individually"],
+            originalSentence: "I wonder if we could talk about what has been bothering you."
+        }
+    ],
+    "88-26": [ // directly
+        {
+            sentence: "It is better to speak _______ rather than letting problems build up.",
+            options: ["directly", "mutually", "wisely", "individually"],
+            originalSentence: "It is better to speak directly rather than letting problems build up."
+        }
+    ],
+    "88-28": [ // appreciating
+        {
+            sentence: "Start _______ the small things people do for you every day.",
+            options: ["appreciating", "affecting", "nurturing", "catching up"],
+            originalSentence: "Start appreciating the small things people do for you every day."
+        }
+    ],
+    "88-30": [ // value
+        {
+            sentence: "True friends _______ each other even during difficult times.",
+            options: ["value", "respect", "trust", "compromise"],
+            originalSentence: "True friends value each other even during difficult times."
+        }
+    ],
+    "88-31": [ // foundation
+        {
+            sentence: "Respect and honesty form the _______ of any lasting friendship.",
+            options: ["foundation", "connection", "relationship", "space"],
+            originalSentence: "Respect and honesty form the foundation of any lasting friendship."
+        }
+    ],
+    "88-32": [ // respect
+        {
+            sentence: "Mutual _______ means accepting differences without trying to change each other.",
+            options: ["respect", "trust", "empathy", "compromise"],
+            originalSentence: "Mutual respect means accepting differences without trying to change each other."
+        }
+    ],
+    "88-35": [ // nurturing
+        {
+            sentence: "_______ a friendship means giving it time and attention regularly.",
+            options: ["nurturing", "affecting", "appreciating", "catching up"],
+            originalSentence: "Nurturing a friendship means giving it time and attention regularly."
+        }
+    ],
+    "88-36": [ // connections
+        {
+            sentence: "Strong social _______ are important for both mental and physical health.",
+            options: ["connections", "foundations", "interests", "frustrations"],
+            originalSentence: "Strong social connections are important for both mental and physical health."
+        }
+    ],
+    "88-37": [ // takes effort
+        {
+            sentence: "Every good relationship _______ _______ from both sides.",
+            options: ["takes effort", "worth it", "grow individually", "lasting"],
+            originalSentence: "Every good relationship takes effort from both sides."
+        }
+    ],
+    "88-38": [ // worth it
+        {
+            sentence: "Investing in good friendships is always _______ _______ in the long run.",
+            options: ["worth it", "takes effort", "lasting", "mutual"],
+            originalSentence: "Investing in good friendships is always worth it in the long run."
+        }
+    ],
+    "88-40": [ // platonic
+        {
+            sentence: "Their relationship was completely _______ — just two good friends.",
+            options: ["platonic", "mutual", "non-judgmental", "reassuring"],
+            originalSentence: "Their relationship was completely platonic — just two good friends."
+        }
+    ],
+    "88-41": [ // mutual
+        {
+            sentence: "A good friendship is based on _______ respect and care.",
+            options: ["mutual", "platonic", "wise", "valued"],
+            originalSentence: "A good friendship is based on mutual respect and care."
+        }
+    ],
+    "88-42": [ // empathy
+        {
+            sentence: "Showing _______ means trying to understand how the other person feels.",
+            options: ["empathy", "respect", "trust", "compromise"],
+            originalSentence: "Showing empathy means trying to understand how the other person feels."
+        }
+    ],
+    "88-44": [ // compromise
+        {
+            sentence: "Learning to _______ helps couples and friends resolve disagreements peacefully.",
+            options: ["compromise", "respect", "value", "trust"],
+            originalSentence: "Learning to compromise helps couples and friends resolve disagreements peacefully."
+        }
+    ],
+    "88-46": [ // emotional intelligence
+        {
+            sentence: "High _______ _______ helps you manage your feelings and understand others better.",
+            options: ["emotional intelligence", "healthy relationships", "mutual trust", "self-compassion"],
+            originalSentence: "High emotional intelligence helps you manage your feelings and understand others better."
+        }
+    ],
+    "88-48": [ // non-judgmental
+        {
+            sentence: "A good listener is _______ _______ and makes you feel safe to share.",
+            options: ["non-judgmental", "reassuring", "platonic", "mutual"],
+            originalSentence: "A good listener is non-judgmental and makes you feel safe to share."
+        }
+    ],
+    "88-49": [ // reassuring
+        {
+            sentence: "Her calm and _______ tone made him feel much better about the situation.",
+            options: ["reassuring", "non-judgmental", "wise", "valued"],
+            originalSentence: "Her calm and reassuring tone made him feel much better about the situation."
+        }
+    ],
+    "88-50": [ // vulnerability
+        {
+            sentence: "Showing _______ with someone you trust can bring you much closer together.",
+            options: ["vulnerability", "empathy", "compromise", "foundation"],
+            originalSentence: "Showing vulnerability with someone you trust can bring you much closer together."
+        }
+    ],
+    "89-1": [ // conflict resolution
+        {
+            sentence: "Good _______ _______ skills help teams work better together.",
+            options: ["conflict resolution", "active listening", "validating feelings", "compromise"],
+            originalSentence: "Good conflict resolution skills help teams work better together."
+        }
+    ],
+    "89-2": [ // collaborating
+        {
+            sentence: "The two departments were _______ on a project for the first time.",
+            options: ["collaborating", "interrupting", "realizing", "resolving"],
+            originalSentence: "The two departments were collaborating on a project for the first time."
+        }
+    ],
+    "89-3": [ // upset
+        {
+            sentence: "She was clearly _______ after hearing what had happened at the meeting.",
+            options: ["upset", "defensive", "relieved", "sensitive"],
+            originalSentence: "She was clearly upset after hearing what had happened at the meeting."
+        }
+    ],
+    "89-4": [ // taking credit
+        {
+            sentence: "He was accused of _______ _______ for ideas that were not his own.",
+            options: ["taking credit", "move forward", "start over", "validating feelings"],
+            originalSentence: "He was accused of taking credit for ideas that were not his own."
+        }
+    ],
+    "89-5": [ // invisible
+        {
+            sentence: "She felt _______ whenever her contributions were ignored by the team.",
+            options: ["invisible", "defensive", "sensitive", "relieved"],
+            originalSentence: "She felt invisible whenever her contributions were ignored by the team."
+        }
+    ],
+    "89-6": [ // defensive
+        {
+            sentence: "He became _______ when his colleague pointed out his mistake.",
+            options: ["defensive", "upset", "relieved", "invisible"],
+            originalSentence: "He became defensive when his colleague pointed out his mistake."
+        }
+    ],
+    "89-7": [ // intention
+        {
+            sentence: "His _______ was never to hurt anyone — it was simply a misunderstanding.",
+            options: ["intention", "tension", "perspective", "credit"],
+            originalSentence: "His intention was never to hurt anyone — it was simply a misunderstanding."
+        }
+    ],
+    "89-8": [ // sensitive
+        {
+            sentence: "She was _______ about feedback on her work and needed gentle words.",
+            options: ["sensitive", "defensive", "upset", "invisible"],
+            originalSentence: "She was sensitive about feedback on her work and needed gentle words."
+        }
+    ],
+    "89-10": [ // tension
+        {
+            sentence: "The _______ between the two teammates was affecting the whole office.",
+            options: ["tension", "intention", "credit", "perspective"],
+            originalSentence: "The tension between the two teammates was affecting the whole office."
+        }
+    ],
+    "89-11": [ // thick
+        {
+            sentence: "The silence in the room was so _______ you could feel the discomfort.",
+            options: ["thick", "invisible", "sensitive", "defensive"],
+            originalSentence: "The silence in the room was so thick you could feel the discomfort."
+        }
+    ],
+    "89-12": [ // realizing
+        {
+            sentence: "He apologized after _______ how much his words had hurt her.",
+            options: ["realizing", "interrupting", "collaborating", "resolving"],
+            originalSentence: "He apologized after realizing how much his words had hurt her."
+        }
+    ],
+    "89-13": [ // start over
+        {
+            sentence: "They agreed to _______ _______ and rebuild their working relationship.",
+            options: ["start over", "move forward", "correct it", "taking credit"],
+            originalSentence: "They agreed to start over and rebuild their working relationship."
+        }
+    ],
+    "89-14": [ // resolve
+        {
+            sentence: "The manager helped them _______ their disagreement before it got worse.",
+            options: ["resolve", "strengthen", "compromise", "validate"],
+            originalSentence: "The manager helped them resolve their disagreement before it got worse."
+        }
+    ],
+    "89-15": [ // erased
+        {
+            sentence: "Years of trust cannot be _______ by a single misunderstanding.",
+            options: ["erased", "resolved", "strengthened", "corrected"],
+            originalSentence: "Years of trust cannot be erased by a single misunderstanding."
+        }
+    ],
+    "89-16": [ // interrupting
+        {
+            sentence: "He kept _______ her before she could finish explaining her point.",
+            options: ["interrupting", "collaborating", "realizing", "resolving"],
+            originalSentence: "He kept interrupting her before she could finish explaining her point."
+        }
+    ],
+    "89-17": [ // credit
+        {
+            sentence: "She made sure to give her teammate full _______ for the idea.",
+            options: ["credit", "tension", "intention", "perspective"],
+            originalSentence: "She made sure to give her teammate full credit for the idea."
+        }
+    ],
+    "89-18": [ // correct it
+        {
+            sentence: "If you make a mistake in a meeting, the best thing to do is _______ _______ immediately.",
+            options: ["correct it", "start over", "move forward", "taking credit"],
+            originalSentence: "If you make a mistake in a meeting, the best thing to do is correct it immediately."
+        }
+    ],
+    "89-19": [ // relieved
+        {
+            sentence: "She felt _______ after they finally talked and cleared the air.",
+            options: ["relieved", "upset", "defensive", "invisible"],
+            originalSentence: "She felt relieved after they finally talked and cleared the air."
+        }
+    ],
+    "89-21": [ // move forward
+        {
+            sentence: "After the apology, both sides were ready to _______ _______ together.",
+            options: ["move forward", "start over", "correct it", "taking credit"],
+            originalSentence: "After the apology, both sides were ready to move forward together."
+        }
+    ],
+    "89-25": [ // pride
+        {
+            sentence: "Sometimes _______ gets in the way of saying a simple sorry.",
+            options: ["pride", "tension", "intention", "credit"],
+            originalSentence: "Sometimes pride gets in the way of saying a simple sorry."
+        }
+    ],
+    "89-27": [ // strengthen
+        {
+            sentence: "Resolving conflicts well can actually _______ a relationship over time.",
+            options: ["strengthen", "resolve", "compromise", "validate"],
+            originalSentence: "Resolving conflicts well can actually strengthen a relationship over time."
+        }
+    ],
+    "89-28": [ // grateful
+        {
+            sentence: "He was _______ that his colleague was honest with him about the problem.",
+            options: ["grateful", "relieved", "sensitive", "upset"],
+            originalSentence: "He was grateful that his colleague was honest with him about the problem."
+        }
+    ],
+    "89-31": [ // Nevertheless
+        {
+            sentence: "The conversation was difficult. _______, it needed to happen.",
+            options: ["Nevertheless", "Therefore", "However", "Moreover"],
+            originalSentence: "The conversation was difficult. Nevertheless, it needed to happen."
+        }
+    ],
+    "89-33": [ // compromise
+        {
+            sentence: "They reached a _______ that both of them felt was fair.",
+            options: ["compromise", "perspective", "tension", "intention"],
+            originalSentence: "They reached a compromise that both of them felt was fair."
+        }
+    ],
+    "89-34": [ // perspective
+        {
+            sentence: "Seeing the situation from the other person's _______ helped him understand better.",
+            options: ["perspective", "intention", "credit", "tension"],
+            originalSentence: "Seeing the situation from the other person's perspective helped him understand better."
+        }
+    ],
+    "89-35": [ // empathy
+        {
+            sentence: "Showing _______ during a disagreement can stop it from becoming a bigger conflict.",
+            options: ["empathy", "compromise", "perspective", "pride"],
+            originalSentence: "Showing empathy during a disagreement can stop it from becoming a bigger conflict."
+        }
+    ],
+    "89-36": [ // active listening"90-1": [ // leadership qualities
+        {
+            sentence: "Strong _______ _______ include honesty, vision, and the ability to inspire others.",
+            options: ["leadership qualities", "natural leader", "role model", "accountability"],
+            originalSentence: "Strong leadership qualities include honesty, vision, and the ability to inspire others."
+        }
+    ],
+    "90-2": [ // community center
+        {
+            sentence: "She volunteered at the local _______ _______ every weekend to help young people.",
+            options: ["community center", "technical drawings", "building confidence", "well-being"],
+            originalSentence: "She volunteered at the local community center every weekend to help young people."
+        }
+    ],
+    "90-4": [ // initiative
+        {
+            sentence: "He took the _______ to organize the team meeting without being asked.",
+            options: ["initiative", "input", "feedback", "recognition"],
+            originalSentence: "He took the initiative to organize the team meeting without being asked."
+        }
+    ],
+    "90-6": [ // intern
+        {
+            sentence: "The _______ surprised everyone with her creative ideas during the project.",
+            options: ["intern", "manager", "coach", "role model"],
+            originalSentence: "The intern surprised everyone with her creative ideas during the project."
+        }
+    ],
+    "90-7": [ // tight
+        {
+            sentence: "The deadline was very _______, so the team had to work quickly.",
+            options: ["tight", "exhausted", "refreshed", "gracious"],
+            originalSentence: "The deadline was very tight, so the team had to work quickly."
+        }
+    ],
+    "90-8": [ // input
+        {
+            sentence: "A good leader always asks for the team's _______ before making decisions.",
+            options: ["input", "feedback", "recognition", "vision"],
+            originalSentence: "A good leader always asks for the team's input before making decisions."
+        }
+    ],
+    "90-9": [ // hesitating
+        {
+            sentence: "She raised her hand without _______ and shared her idea with the group.",
+            options: ["hesitating", "delegating", "motivating", "collaborating"],
+            originalSentence: "She raised her hand without hesitating and shared her idea with the group."
+        }
+    ],
+    "90-10": [ // slow you down
+        {
+            sentence: "Fear of making mistakes can _______ _______ _______ and stop you from growing.",
+            options: ["slow you down", "build confidence", "delegate", "motivate"],
+            originalSentence: "Fear of making mistakes can slow you down and stop you from growing."
+        }
+    ],
+    "90-11": [ // delegate
+        {
+            sentence: "A smart leader knows how to _______ tasks to the right people.",
+            options: ["delegate", "motivate", "coach", "collaborate"],
+            originalSentence: "A smart leader knows how to delegate tasks to the right people."
+        }
+    ],
+    "90-12": [ // technical drawings
+        {
+            sentence: "He spent the afternoon reviewing the _______ _______ for the new building.",
+            options: ["technical drawings", "leadership qualities", "community center", "well-being"],
+            originalSentence: "He spent the afternoon reviewing the technical drawings for the new building."
+        }
+    ],
+    "90-13": [ // building confidence
+        {
+            sentence: "Giving positive feedback plays a big role in _______ _______ within a team.",
+            options: ["building confidence", "slow you down", "taking initiative", "delegating tasks"],
+            originalSentence: "Giving positive feedback plays a big role in building confidence within a team."
+        }
+    ],
+    "90-14": [ // disagreement
+        {
+            sentence: "They handled the _______ professionally without letting it affect the project.",
+            options: ["disagreement", "recognition", "vision", "integrity"],
+            originalSentence: "They handled the disagreement professionally without letting it affect the project."
+        }
+    ],
+    "90-16": [ // gracious
+        {
+            sentence: "She was _______ in accepting the criticism and promised to improve.",
+            options: ["gracious", "exhausted", "refreshed", "bossy"],
+            originalSentence: "She was gracious in accepting the criticism and promised to improve."
+        }
+    ],
+    "90-17": [ // exhausted
+        {
+            sentence: "After three days of back-to-back meetings, he was completely _______.",
+            options: ["exhausted", "refreshed", "gracious", "tight"],
+            originalSentence: "After three days of back-to-back meetings, he was completely exhausted."
+        }
+    ],
+    "90-20": [ // refreshed
+        {
+            sentence: "She came back from her holiday feeling fully _______ and ready to lead.",
+            options: ["refreshed", "exhausted", "gracious", "bossy"],
+            originalSentence: "She came back from her holiday feeling fully refreshed and ready to lead."
+        }
+    ],
+    "90-21": [ // manager
+        {
+            sentence: "A great _______ listens to the team and supports their growth.",
+            options: ["manager", "coach", "intern", "role model"],
+            originalSentence: "A great manager listens to the team and supports their growth."
+        }
+    ],
+    "90-22": [ // well-being
+        {
+            sentence: "Good leaders care about the _______ _______ of every member of their team.",
+            options: ["well-being", "technical drawings", "community center", "leadership qualities"],
+            originalSentence: "Good leaders care about the well-being of every member of their team."
+        }
+    ],
+    "90-25": [ // leadership
+        {
+            sentence: "True _______ is about serving others, not just giving orders.",
+            options: ["leadership", "accountability", "integrity", "resilience"],
+            originalSentence: "True leadership is about serving others, not just giving orders."
+        }
+    ],
+    "90-27": [ // bossy
+        {
+            sentence: "There is a big difference between being a strong leader and being _______.",
+            options: ["bossy", "gracious", "refreshed", "exhausted"],
+            originalSentence: "There is a big difference between being a strong leader and being bossy."
+        }
+    ],
+    "90-28": [ // natural leader
+        {
+            sentence: "Even as a child, she was a _______ _______ who others always looked up to.",
+            options: ["natural leader", "role model", "manager", "coach"],
+            originalSentence: "Even as a child, she was a natural leader who others always looked up to."
+        }
+    ],
+    "90-29": [ // role model
+        {
+            sentence: "A good _______ _______ leads by example and inspires others to do the same.",
+            options: ["role model", "natural leader", "manager", "coach"],
+            originalSentence: "A good role model leads by example and inspires others to do the same."
+        }
+    ],
+    "90-30": [ // accountability
+        {
+            sentence: "Taking _______ for your mistakes is a sign of strong character.",
+            options: ["accountability", "integrity", "resilience", "vision"],
+            originalSentence: "Taking accountability for your mistakes is a sign of strong character."
+        }
+    ],
+    "90-31": [ // motivate
+        {
+            sentence: "A great leader knows how to _______ their team even during difficult times.",
+            options: ["motivate", "delegate", "coach", "collaborate"],
+            originalSentence: "A great leader knows how to motivate their team even during difficult times."
+        }
+    ],
+    "90-32": [ // vision
+        {
+            sentence: "Every successful organization starts with a clear _______ for the future.",
+            options: ["vision", "integrity", "resilience", "accountability"],
+            originalSentence: "Every successful organization starts with a clear vision for the future."
+        }
+    ],
+    "90-33": [ // integrity
+        {
+            sentence: "She earned her team's respect by always acting with complete _______.",
+            options: ["integrity", "vision", "resilience", "accountability"],
+            originalSentence: "She earned her team's respect by always acting with complete integrity."
+        }
+    ],
+    "90-34": [ // resilience
+        {
+            sentence: "_______ helped the team recover quickly after the project failed.",
+            options: ["resilience", "integrity", "vision", "accountability"],
+            originalSentence: "Resilience helped the team recover quickly after the project failed."
+        }
+    ],
+    "90-36": [ // coach
+        {
+            sentence: "A good _______ helps people discover their own strengths rather than just telling them what to do.",
+            options: ["coach", "manager", "intern", "role model"],
+            originalSentence: "A good coach helps people discover their own strengths rather than just telling them what to do."
+        }
+    ],
+    "90-38": [ // collaboration
+        {
+            sentence: "The project succeeded because of strong _______ between all the departments.",
+            options: ["collaboration", "recognition", "feedback", "input"],
+            originalSentence: "The project succeeded because of strong collaboration between all the departments."
+        }
+    ],
+    "90-39": [ // feedback
+        {
+            sentence: "She always gave honest and constructive _______ to help her team improve.",
+            options: ["feedback", "input", "recognition", "collaboration"],
+            originalSentence: "She always gave honest and constructive feedback to help her team improve."
+        }
+    ],
+    "90-40": [ // recognition
+        {
+            sentence: "A simple word of _______ can go a long way in keeping a team motivated.",
+            options: ["recognition", "feedback", "input", "collaboration"],
+            originalSentence: "A simple word of recognition can go a long way in keeping a team motivated."
+        }
+    ],
+        {
+            sentence: "_______ _______ means giving your full attention without planning your reply.",
+            options: ["active listening", "conflict resolution", "validating feelings", "taking credit"],
+            originalSentence: "Active listening means giving your full attention without planning your reply."
+        }
+    ],
+    "89-37": [ // validating feelings
+        {
+            sentence: "_______ _______ does not mean you agree — it just means you understand.",
+            options: ["validating feelings", "active listening", "conflict resolution", "taking credit"],
+            originalSentence: "Validating feelings does not mean you agree — it just means you understand."
+        }
+    ],
+    
     // استكمال gapfillDB.js - الدرس رقم 301
     "301-1": [
         {
