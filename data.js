@@ -6445,10 +6445,7 @@ window.lessonsData = {
   "title": "The Shifting Dynamics of Deterrence in the Age of Hybrid Warfare",
   "content": "The emergence of Hybrid Warfare—which blends conventional military tools with non-kinetic actions such as cyberattacks, disinformation campaigns, and political manipulation—has fundamentally altered the equation of traditional strategic deterrence. Deterrence, at its core, relied on clear military parity and the mutual threat of \"Unacceptable Harm,\" a concept characterized by clarity in the realm of conventional and nuclear power. Now, the challenges reside in the \"Grey Zone\": operations that fall just below the threshold of triggering an explicit conventional military response, making Attribution of the actor and the choice of appropriate response exceedingly complicated.\n\nThe main problem is that hybrid actions aim to achieve strategic gains without crossing the red line that justifies overt military engagement. This deliberate ambiguity presents policymakers with a dilemma: Should a cyberattack be met with conventional firepower? The potential disproportionate nature of the response could lead to unwanted escalation. Therefore, modern deterrence strategies call for the development of Flexible Deterrence, which relies not solely on overwhelming firepower but incorporates economic tools (sanctions), diplomatic measures, and robust cyber defense capabilities capable of punishing the aggressor through non-military means. Effective deterrence in this era requires demonstrating the capacity to absorb hybrid attacks, respond in unexpected ways, and, most crucially, deny the aggressor their primary strategic objectives.",
   "audio": "audio/L306 aac.aac",
-  "terms": تفضل يا صديقي، لقد قمت بمسح النص رقم **306** بالكامل، واستخرجت كافة الكلمات والمصطلحات المتقدمة والأكاديمية التي تخدم المعنى السياقي، مع صياغتها بدقة داخل الكود المطلوب وبدون تكرار:
-
-```json
-[
+  "terms": [
     {"id": "306-1", "english": "Emergence", "arabic": "بروز / ظهور"},
     {"id": "306-2", "english": "Hybrid Warfare", "arabic": "حروب هجينة"},
     {"id": "306-3", "english": "Conventional", "arabic": "تقليدي"},
