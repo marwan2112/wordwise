@@ -25399,7 +25399,21 @@ window.gapfillDB = {
             originalSentence: "Showing empathy during a disagreement can stop it from becoming a bigger conflict."
         }
     ],
-    "89-36": [ // active listening"90-1": [ // leadership qualities
+    "89-36": [ [ // leadership qualities
+        {
+            sentence: "Strong _______ _______ include honesty, vision, and the ability to inspire others.",
+            options: ["leadership qualities", "natural leader", "role model", "accountability"],
+            originalSentence: "Strong leadership qualities include honesty, vision, and the ability to inspire others."
+        }
+    ],
+        "89-37": [ // validating feelings
+        {
+            sentence: "_______ _______ does not mean you agree — it just means you understand.",
+            options: ["validating feelings", "active listening", "conflict resolution", "taking credit"],
+            originalSentence: "Validating feelings does not mean you agree — it just means you understand."
+        }
+    ],
+"90-1": [ // leadership qualities
         {
             sentence: "Strong _______ _______ include honesty, vision, and the ability to inspire others.",
             options: ["leadership qualities", "natural leader", "role model", "accountability"],
@@ -25609,21 +25623,7 @@ window.gapfillDB = {
             originalSentence: "A simple word of recognition can go a long way in keeping a team motivated."
         }
     ],
-        {
-            sentence: "_______ _______ means giving your full attention without planning your reply.",
-            options: ["active listening", "conflict resolution", "validating feelings", "taking credit"],
-            originalSentence: "Active listening means giving your full attention without planning your reply."
-        }
-    ],
-    "89-37": [ // validating feelings
-        {
-            sentence: "_______ _______ does not mean you agree — it just means you understand.",
-            options: ["validating feelings", "active listening", "conflict resolution", "taking credit"],
-            originalSentence: "Validating feelings does not mean you agree — it just means you understand."
-        }
-    ],
-    
-    // استكمال gapfillDB.js - الدرس رقم 301
+              // استكمال gapfillDB.js - الدرس رقم 301
     "301-1": [
         {
             sentence: "The two neighboring countries signed a ______ agreement to manage water resources.",
