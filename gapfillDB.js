@@ -2254,368 +2254,284 @@ window.gapfillDB = {
         }
     ],
     // استكمال gapfillDB.js - الدرس الثامن (8-1 إلى 8-52)
-    "8-1": [ // clothes
+    "8-1": [ // food
         {
-            sentence: "I need to buy some new ______ for the summer.",
-            options: ["clothes", "drawers", "buttons", "pockets"],
-            originalSentence: "I need to buy some new clothes for the summer."
+            sentence: "There is a lot of _______ on the table for the party.",
+            options: ["food", "drink", "juice", "milk"],
+            originalSentence: "There is a lot of food on the table for the party."
         }
     ],
-    "8-2": [ // wear
+    "8-2": [ // drink
         {
-            sentence: "What should I ______ to the party tonight?",
-            options: ["wear", "choose", "fit", "zip"],
-            originalSentence: "What should I wear to the party tonight?"
+            sentence: "Would you like a _______ with your meal?",
+            options: ["drink", "food", "salad", "bread"],
+            originalSentence: "Would you like a drink with your meal?"
         }
     ],
-    "8-3": [ // put on
+    "8-3": [ // eat
         {
-            sentence: "It's cold outside; ______ your coat.",
-            options: ["put on", "take off", "choose", "fit"],
-            originalSentence: "It's cold outside; put on your coat."
+            sentence: "I like to _______ breakfast every morning before school.",
+            options: ["eat", "drink", "cook", "buy"],
+            originalSentence: "I like to eat breakfast every morning before school."
         }
     ],
-    "8-4": [ // take off
+    "8-4": [ // drink (verb)
         {
-            sentence: "Please ______ your shoes before entering the house.",
-            options: ["take off", "put on", "wear", "fit"],
-            originalSentence: "Please take off your shoes before entering the house."
+            sentence: "It is important to _______ enough water every day.",
+            options: ["drink", "eat", "cook", "buy"],
+            originalSentence: "It is important to drink enough water every day."
         }
     ],
-    "8-5": [ // shirt
+    "8-5": [ // pizza
         {
-            sentence: "He is wearing a white ______ and a tie.",
-            options: ["shirt", "skirt", "dress", "socks"],
-            originalSentence: "He is wearing a white shirt and a tie."
+            sentence: "We ordered a large _______ with cheese and tomatoes.",
+            options: ["pizza", "hamburger", "salad", "rice"],
+            originalSentence: "We ordered a large pizza with cheese and tomatoes."
         }
     ],
-    "8-6": [ // T-shirt
+    "8-6": [ // apple
         {
-            sentence: "I like wearing a comfortable ______ in summer.",
-            options: ["T-shirt", "coat", "scarf", "gloves"],
-            originalSentence: "I like wearing a comfortable T-shirt in summer."
+            sentence: "She put a red _______ in her bag as a healthy snack.",
+            options: ["apple", "banana", "tomato", "cucumber"],
+            originalSentence: "She put a red apple in her bag as a healthy snack."
         }
     ],
-    "8-7": [ // blouse
+    "8-7": [ // banana
         {
-            sentence: "She bought a beautiful silk ______.",
-            options: ["blouse", "belt", "pocket", "zip"],
-            originalSentence: "She bought a beautiful silk blouse."
+            sentence: "He eats a _______ every morning because it gives him energy.",
+            options: ["banana", "apple", "watermelon", "egg"],
+            originalSentence: "He eats a banana every morning because it gives him energy."
         }
     ],
-    "8-8": [ // dress
+    "8-8": [ // rice
         {
-            sentence: "She looks lovely in that pink ______.",
-            options: ["dress", "pants", "shorts", "hat"],
-            originalSentence: "She looks lovely in that pink dress."
+            sentence: "We had _______ and chicken for lunch today.",
+            options: ["rice", "bread", "salad", "cheese"],
+            originalSentence: "We had rice and chicken for lunch today."
         }
     ],
-    "8-9": [ // skirt
+    "8-9": [ // chicken
         {
-            sentence: "The girls have to wear a blue ______ as part of their school uniform.",
-            options: ["skirt", "tie", "belt", "cap"],
-            originalSentence: "The girls have to wear a blue skirt as part of their school uniform."
+            sentence: "My mother cooked grilled _______ for dinner last night.",
+            options: ["chicken", "fish", "egg", "rice"],
+            originalSentence: "My mother cooked grilled chicken for dinner last night."
         }
     ],
-    "8-10": [ // pants
+    "8-10": [ // juice
         {
-            sentence: "These ______ are too long for me.",
-            options: ["pants", "shirt", "blouse", "hat"],
-            originalSentence: "These pants are too long for me."
+            sentence: "She drank a glass of fresh _______ after her morning run.",
+            options: ["juice", "milk", "soda", "water"],
+            originalSentence: "She drank a glass of fresh juice after her morning run."
         }
     ],
-    "8-11": [ // jeans
+    "8-11": [ // milk
         {
-            sentence: "I prefer wearing ______ because they are strong and casual.",
-            options: ["jeans", "pajamas", "dresses", "skirts"],
-            originalSentence: "I prefer wearing jeans because they are strong and casual."
+            sentence: "Children should drink _______ every day to build strong bones.",
+            options: ["milk", "soda", "juice", "lemonade"],
+            originalSentence: "Children should drink milk every day to build strong bones."
         }
     ],
-    "8-12": [ // trousers
+    "8-12": [ // water
         {
-            sentence: "He is wearing black ______ with a formal shirt.",
-            options: ["trousers", "shorts", "caps", "scarves"],
-            originalSentence: "He is wearing black trousers with a formal shirt."
+            sentence: "Always carry a bottle of _______ when you go outside in the heat.",
+            options: ["water", "milk", "soda", "juice"],
+            originalSentence: "Always carry a bottle of water when you go outside in the heat."
         }
     ],
-    "8-13": [ // shorts
+    "8-13": [ // hamburger
         {
-            sentence: "It's very hot; I'll wear ______ today.",
-            options: ["shorts", "coats", "jackets", "sweaters"],
-            originalSentence: "It's very hot; I'll wear shorts today."
+            sentence: "He ordered a big _______ with fries at the restaurant.",
+            options: ["hamburger", "pizza", "salad", "chicken"],
+            originalSentence: "He ordered a big hamburger with fries at the restaurant."
         }
     ],
-    "8-14": [ // sweater
+    "8-14": [ // salad
         {
-            sentence: "This wool ______ keeps me very warm.",
-            options: ["sweater", "T-shirt", "belt", "sunglasses"],
-            originalSentence: "This wool sweater keeps me very warm."
+            sentence: "She made a fresh _______ with tomatoes and cucumbers.",
+            options: ["salad", "pizza", "rice", "bread"],
+            originalSentence: "She made a fresh salad with tomatoes and cucumbers."
         }
     ],
-    "8-15": [ // jacket
+    "8-15": [ // tomato
         {
-            sentence: "He put on a light ______ because it was a bit windy.",
-            options: ["jacket", "pajamas", "socks", "purse"],
-            originalSentence: "He put on a light jacket because it was a bit windy."
+            sentence: "He sliced a red _______ and added it to the salad.",
+            options: ["tomato", "cucumber", "apple", "banana"],
+            originalSentence: "He sliced a red tomato and added it to the salad."
         }
     ],
-    "8-16": [ // coat
+    "8-16": [ // cucumber
         {
-            sentence: "You need a heavy ______ in the snow.",
-            options: ["coat", "shirt", "blouse", "tie"],
-            originalSentence: "You need a heavy coat in the snow."
+            sentence: "A _______ is a cool and healthy vegetable great for salads.",
+            options: ["cucumber", "tomato", "watermelon", "banana"],
+            originalSentence: "A cucumber is a cool and healthy vegetable great for salads."
         }
     ],
-    "8-17": [ // scarf
+    "8-17": [ // ice cream
         {
-            sentence: "She wrapped a colorful ______ around her neck.",
-            options: ["scarf", "belt", "pocket", "zip"],
-            originalSentence: "She wrapped a colorful scarf around her neck."
+            sentence: "The children were very happy to get _______ _______ after dinner.",
+            options: ["ice cream", "orange juice", "soda", "lemonade"],
+            originalSentence: "The children were very happy to get ice cream after dinner."
         }
     ],
-    "8-18": [ // gloves
+    "8-18": [ // soda
         {
-            sentence: "My hands are cold; I need my ______.",
-            options: ["gloves", "shoes", "socks", "sneakers"],
-            originalSentence: "My hands are cold; I need my gloves."
+            sentence: "He drinks too much _______, which is not good for his health.",
+            options: ["soda", "milk", "juice", "water"],
+            originalSentence: "He drinks too much soda, which is not good for his health."
         }
     ],
-    "8-19": [ // cap
+    "8-19": [ // fish
         {
-            sentence: "He wears a baseball ______ to protect his eyes from the sun.",
-            options: ["cap", "skirt", "dress", "belt"],
-            originalSentence: "He wears a baseball cap to protect his eyes from the sun."
+            sentence: "Grilled _______ is a light and healthy dinner option.",
+            options: ["fish", "chicken", "egg", "cheese"],
+            originalSentence: "Grilled fish is a light and healthy dinner option."
         }
     ],
-    "8-20": [ // hat
+    "8-20": [ // lemonade
         {
-            sentence: "She wore a large ______ at the beach.",
-            options: ["hat", "sock", "tie", "pocket"],
-            originalSentence: "She wore a large hat at the beach."
+            sentence: "She made cold _______ to drink on a hot summer day.",
+            options: ["lemonade", "soda", "milk", "juice"],
+            originalSentence: "She made cold lemonade to drink on a hot summer day."
         }
     ],
-    "8-21": [ // shoes
+    "8-21": [ // healthy
         {
-            sentence: "My new ______ are a bit tight.",
-            options: ["shoes", "hats", "shirts", "pockets"],
-            originalSentence: "My new shoes are a bit tight."
+            sentence: "Eating fruits and vegetables every day is very _______.",
+            options: ["healthy", "sweet", "hot", "cold"],
+            originalSentence: "Eating fruits and vegetables every day is very healthy."
         }
     ],
-    "8-22": [ // sneakers
+    "8-22": [ // important
         {
-            sentence: "I wear ______ when I go running.",
-            options: ["sneakers", "dresses", "pajamas", "coats"],
-            originalSentence: "I wear sneakers when I go running."
+            sentence: "It is _______ to eat breakfast before you start your day.",
+            options: ["important", "healthy", "favorite", "delicious"],
+            originalSentence: "It is important to eat breakfast before you start your day."
         }
     ],
-    "8-23": [ // socks
+    "8-23": [ // favorite
         {
-            sentence: "I have a hole in my left ______.",
-            options: ["sock", "hat", "belt", "tie"],
-            originalSentence: "I have a hole in my left sock."
+            sentence: "Pizza is my _______ food because it is so delicious.",
+            options: ["favorite", "healthy", "important", "sweet"],
+            originalSentence: "Pizza is my favorite food because it is so delicious."
         }
     ],
-    "8-24": [ // pajamas
+    "8-24": [ // sometimes
         {
-            sentence: "I change into my ______ before going to sleep.",
-            options: ["pajamas", "uniform", "jacket", "jeans"],
-            originalSentence: "I change into my pajamas before going to sleep."
+            sentence: "I _______ eat ice cream as a treat on weekends.",
+            options: ["sometimes", "always", "never", "usually"],
+            originalSentence: "I sometimes eat ice cream as a treat on weekends."
         }
     ],
-    "8-25": [ // purse
+    "8-25": [ // cook
         {
-            sentence: "She left her money in her ______.",
-            options: ["purse", "pocket", "sock", "cap"],
-            originalSentence: "She left her money in her purse."
+            sentence: "My father likes to _______ dinner for the whole family on Fridays.",
+            options: ["cook", "eat", "drink", "buy"],
+            originalSentence: "My father likes to cook dinner for the whole family on Fridays."
         }
     ],
-    "8-26": [ // glasses
+    "8-26": [ // strong
         {
-            sentence: "I can't read the board without my ______.",
-            options: ["glasses", "gloves", "shoes", "buttons"],
-            originalSentence: "I can't read the board without my glasses."
+            sentence: "Eating healthy food helps your body stay _______ and fit.",
+            options: ["strong", "sweet", "cold", "hot"],
+            originalSentence: "Eating healthy food helps your body stay strong and fit."
         }
     ],
-    "8-27": [ // sunglasses
+    "8-27": [ // orange juice
         {
-            sentence: "It's very bright outside; wear your ______.",
-            options: ["sunglasses", "socks", "pajamas", "sweaters"],
-            originalSentence: "It's very bright outside; wear your sunglasses."
+            sentence: "A glass of _______ _______ in the morning is a great way to start the day.",
+            options: ["orange juice", "ice cream", "soda", "lemonade"],
+            originalSentence: "A glass of orange juice in the morning is a great way to start the day."
         }
     ],
-    "8-28": [ // watch
+    "8-28": [ // watermelon
         {
-            sentence: "What time is it? I don't have my ______.",
-            options: ["watch", "belt", "tie", "cap"],
-            originalSentence: "What time is it? I don't have my watch."
+            sentence: "We ate cold _______ at the picnic because the weather was very hot.",
+            options: ["watermelon", "banana", "apple", "tomato"],
+            originalSentence: "We ate cold watermelon at the picnic because the weather was very hot."
         }
     ],
-    "8-29": [ // belt
+    "8-29": [ // bread
         {
-            sentence: "My pants are too loose; I need a ______.",
-            options: ["belt", "scarf", "hat", "sock"],
-            originalSentence: "My pants are too loose; I need a belt."
+            sentence: "She made a sandwich using fresh _______ from the bakery.",
+            options: ["bread", "rice", "cheese", "egg"],
+            originalSentence: "She made a sandwich using fresh bread from the bakery."
         }
     ],
-    "8-30": [ // pocket
+    "8-30": [ // cheese
         {
-            sentence: "He put his phone in his front ______.",
-            options: ["pocket", "button", "zip", "belt"],
-            originalSentence: "He put his phone in his front pocket."
+            sentence: "He put _______ on top of his sandwich to make it more delicious.",
+            options: ["cheese", "bread", "egg", "rice"],
+            originalSentence: "He put cheese on top of his sandwich to make it more delicious."
         }
     ],
-    "8-31": [ // button
+    "8-31": [ // egg
         {
-            sentence: "Wait, you missed a ______ on your shirt.",
-            options: ["button", "pocket", "zip", "belt"],
-            originalSentence: "Wait, you missed a button on your shirt."
+            sentence: "She cooked a boiled _______ for her daughter's breakfast.",
+            options: ["egg", "cheese", "bread", "fish"],
+            originalSentence: "She cooked a boiled egg for her daughter's breakfast."
         }
     ],
-    "8-32": [ // zip
+    "8-32": [ // breakfast
         {
-            sentence: "Can you help me ______ up my jacket?",
-            options: ["zip", "wear", "fit", "choose"],
-            originalSentence: "Can you help me zip up my jacket?"
+            sentence: "_______ is the most important meal of the day.",
+            options: ["breakfast", "lunch", "dinner", "food"],
+            originalSentence: "Breakfast is the most important meal of the day."
         }
     ],
-    "8-33": [ // tie
+    "8-33": [ // lunch
         {
-            sentence: "He wears a ______ only for weddings.",
-            options: ["tie", "skirt", "dress", "purse"],
-            originalSentence: "He wears a tie only for weddings."
+            sentence: "The children eat _______ at school at twelve o'clock.",
+            options: ["lunch", "breakfast", "dinner", "food"],
+            originalSentence: "The children eat lunch at school at twelve o'clock."
         }
     ],
-    "8-34": [ // uniform
+    "8-34": [ // dinner
         {
-            sentence: "Police officers wear a blue ______.",
-            options: ["uniform", "pajama", "sweater", "scarf"],
-            originalSentence: "Police officers wear a blue uniform."
+            sentence: "The whole family sat together for _______ at seven in the evening.",
+            options: ["dinner", "lunch", "breakfast", "food"],
+            originalSentence: "The whole family sat together for dinner at seven in the evening."
         }
     ],
-    "8-35": [ // fit
+    "8-35": [ // hungry
         {
-            sentence: "This shirt doesn't ______ me; it's too small.",
-            options: ["fit", "wear", "zip", "choose"],
-            originalSentence: "This shirt doesn't fit me; it's too small."
+            sentence: "I am so _______ — I have not eaten anything since this morning.",
+            options: ["hungry", "thirsty", "strong", "healthy"],
+            originalSentence: "I am so hungry — I have not eaten anything since this morning."
         }
     ],
-    "8-36": [ // size
+    "8-36": [ // thirsty
         {
-            sentence: "What ______ are you? Medium or Large?",
-            options: ["size", "pair", "pocket", "button"],
-            originalSentence: "What size are you? Medium or Large?"
+            sentence: "After playing outside in the heat, the kids were very _______.",
+            options: ["thirsty", "hungry", "cold", "sweet"],
+            originalSentence: "After playing outside in the heat, the kids were very thirsty."
         }
     ],
-    "8-37": [ // pair
+    "8-37": [ // delicious
         {
-            sentence: "I bought a new ______ of shoes.",
-            options: ["pair", "size", "belt", "pocket"],
-            originalSentence: "I bought a new pair of shoes."
+            sentence: "The chocolate cake my grandmother made was absolutely _______.",
+            options: ["delicious", "sweet", "healthy", "hot"],
+            originalSentence: "The chocolate cake my grandmother made was absolutely delicious."
         }
     ],
-    "8-38": [ // cotton
+    "8-38": [ // sweet
         {
-            sentence: "This ______ T-shirt is very soft.",
-            options: ["cotton", "leather", "wool", "shiny"],
-            originalSentence: "This cotton T-shirt is very soft."
+            sentence: "This mango is very _______ and tastes great.",
+            options: ["sweet", "hot", "cold", "delicious"],
+            originalSentence: "This mango is very sweet and tastes great."
         }
     ],
-    "8-39": [ // leather
+    "8-39": [ // hot
         {
-            sentence: "He has a ______ jacket made of cowhide.",
-            options: ["leather", "cotton", "wool", "colorful"],
-            originalSentence: "He has a leather jacket made of cowhide."
+            sentence: "Be careful — the soup is very _______ right now.",
+            options: ["hot", "cold", "sweet", "delicious"],
+            originalSentence: "Be careful — the soup is very hot right now."
         }
     ],
-    "8-40": [ // wool
+    "8-40": [ // cold
         {
-            sentence: "This ______ scarf is perfect for winter.",
-            options: ["wool", "cotton", "leather", "shiny"],
-            originalSentence: "This wool scarf is perfect for winter."
-        }
-    ],
-    "8-41": [ // shiny
-        {
-            sentence: "She wore a ______ dress that sparkled in the light.",
-            options: ["shiny", "old", "clean", "wool"],
-            originalSentence: "She wore a shiny dress that sparkled in the light."
-        }
-    ],
-    "8-42": [ // colorful
-        {
-            sentence: "I like this ______ shirt with many colors.",
-            options: ["colorful", "formal", "clean", "old"],
-            originalSentence: "I like this colorful shirt with many colors."
-        }
-    ],
-    "8-43": [ // formal
-        {
-            sentence: "You must wear ______ clothes to the meeting.",
-            options: ["formal", "casual", "shiny", "colorful"],
-            originalSentence: "You must wear formal clothes to the meeting."
-        }
-    ],
-    "8-44": [ // cool
-        {
-            sentence: "Those sneakers are really ______!",
-            options: ["cool", "old", "formal", "cotton"],
-            originalSentence: "Those sneakers are really cool!"
-        }
-    ],
-    "8-45": [ // pretty
-        {
-            sentence: "She is wearing a ______ flower in her hair.",
-            options: ["pretty", "formal", "shiny", "leather"],
-            originalSentence: "She is wearing a pretty flower in her hair."
-        }
-    ],
-    "8-46": [ // beautiful
-        {
-            sentence: "The sunset is ______ tonight.",
-            options: ["beautiful", "shiny", "formal", "old"],
-            originalSentence: "The sunset is beautiful tonight."
-        }
-    ],
-    "8-47": [ // comfortable
-        {
-            sentence: "I like these shoes because they are very ______.",
-            options: ["comfortable", "formal", "shiny", "old"],
-            originalSentence: "I like these shoes because they are very comfortable."
-        }
-    ],
-    "8-48": [ // clean
-        {
-            sentence: "Please put on a ______ shirt.",
-            options: ["clean", "old", "shiny", "colorful"],
-            originalSentence: "Please put on a clean shirt."
-        }
-    ],
-    "8-49": [ // new
-        {
-            sentence: "I got a ______ watch for my birthday.",
-            options: ["new", "old", "formal", "cotton"],
-            originalSentence: "I got a new watch for my birthday."
-        }
-    ],
-    "8-50": [ // old
-        {
-            sentence: "I love this ______ sweater, even if it has holes.",
-            options: ["old", "new", "shiny", "clean"],
-            originalSentence: "I love this old sweater, even if it has holes."
-        }
-    ],
-    "8-51": [ // drawer
-        {
-            sentence: "Your socks are in the top ______.",
-            options: ["drawer", "pocket", "zip", "belt"],
-            originalSentence: "Your socks are in the top drawer."
-        }
-    ],
-    "8-52": [ // choose
-        {
-            sentence: "It is hard to ______ between the red or blue dress.",
-            options: ["choose", "fit", "zip", "wear"],
-            originalSentence: "It is hard to choose between the red or blue dress."
+            sentence: "She likes to drink _______ water on a hot summer day.",
+            options: ["cold", "hot", "sweet", "healthy"],
+            originalSentence: "She likes to drink cold water on a hot summer day."
         }
     ],
     // استكمال gapfillDB.js - الدرس التاسع (9-1 إلى 9-60)
