@@ -12,6 +12,7 @@ self.addEventListener('install', event => {
     caches.open(CACHE_NAME)
       .then(cache => cache.addAll(urlsToCache))
       .then(() => self.skipWaiting())
+      .catch(error => console.error('Install failed:', error))
   );
 });
 
@@ -41,11 +42,13 @@ self.addEventListener('fetch', event => {
     event.respondWith(
       fetch(event.request)
         .then(response => {
-          // إذا نجحت الشبكة، قم بتخزين نسخة في الكاش للاستخدام المستقبلي عند عدم الاتصال
-          if (response && response.status === 200) {
+          // فقط طلبات GET يتم تخزينها مؤقتاً
+          if (response && response.status === 200 && event.request.method === 'GET') {
             const responseToCache = response.clone();
             caches.open(CACHE_NAME).then(cache => {
-              cache.put(event.request, responseToCache);
+              cache.put(event.request, responseToCache).catch(err => {
+                console.warn('Failed to cache:', event.request.url, err);
+              });
             });
           }
           return response;
@@ -61,11 +64,17 @@ self.addEventListener('fetch', event => {
       caches.match(event.request)
         .then(response => {
           if (response) return response;
+          // فقط طلبات GET يتم تخزينها مؤقتاً
+          if (event.request.method !== 'GET') {
+            return fetch(event.request);
+          }
           return fetch(event.request).then(response => {
             if (!response || response.status !== 200) return response;
             const responseToCache = response.clone();
             caches.open(CACHE_NAME).then(cache => {
-              cache.put(event.request, responseToCache);
+              cache.put(event.request, responseToCache).catch(err => {
+                console.warn('Failed to cache:', event.request.url, err);
+              });
             });
             return response;
           });
