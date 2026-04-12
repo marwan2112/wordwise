@@ -42,28 +42,26 @@ class App {
         this.adaptiveTestLevelOrder = ['A1', 'A2', 'B1', 'B2', 'C1', 'C2'];
         this.adaptiveTestQuestionBank = {};
         
-        // ========== نظام اختبار المستوى السماعي ==========
+        // ========== نظام اختبار المستوى السماعي (المعدل) ==========
         this.adaptiveListeningActive = false;
         this.adaptiveListeningHistory = [];
         this.adaptiveListeningCurrentLevel = 'A1';
         this.adaptiveListeningPhase = 'initial';
         this.adaptiveListeningLevelStats = {};
-        this.adaptiveListeningUsedQuestions = {};
-        this.adaptiveListeningCurrentSetQuestions = [];
-        this.adaptiveListeningCurrentSetIndex = 0;
-        this.adaptiveListeningCurrentSetCorrect = 0;
-        this.adaptiveListeningConfirmationQuestions = [];
-        this.adaptiveListeningConfirmationCorrect = 0;
-        this.adaptiveListeningConfirmationTotal = 0;
-        this.adaptiveListeningAudioPlayed = {};
         this.adaptiveListeningTotalQuestions = 0;
-        this.adaptiveListeningMaxQuestions = 25;
-        this.adaptiveListeningMinQuestions = 15;
+        this.adaptiveListeningMinQuestions = 25;      // الحد الأدنى 25 سؤال
+        this.adaptiveListeningMaxQuestions = 50;      // الحد الأقصى 50
+        this.adaptiveListeningAnsweredCount = 0;
+        this.adaptiveListeningCurrentQuestionObj = null;
         this.adaptiveListeningLastAnswer = null;
         this.adaptiveListeningAnswered = false;
+        this.adaptiveListeningAudioPlayed = {};
+        this.adaptiveListeningAvailableQuestions = {};
+        this.listeningQuestionBank = {};
         this.listeningBestLevel = 'A1';
         this.readingStartLevelFromListening = 'A2';
         this.listeningResult = null;
+        this.listeningCompleted = false;
         
         // متغيرات التطبيق الأساسية
         this.repeatAllSessionMastered = [];
@@ -1235,402 +1233,193 @@ class App {
         }, 1200);
     }
 
-    // ====================== دوال اختبار المستوى السماعي ======================
+    // ====================== دوال اختبار المستوى السماعي (المعدلة) ======================
     showLevelTestInstructions() {
         this.currentPage = 'level_test_instructions';
         this.render();
     }
 
     startAdaptiveLevelTestListening() {
-        console.log("✅ startAdaptiveLevelTestListening تم استدعاؤها");
+        console.log("✅ بدء الاختبار السماعي التكيفي");
         if (!window.listeningBank) {
-            console.error("❌ window.listeningBank غير موجود");
-            this.showCustomModal('error', '❌', 'بيانات الاختبار السماعي غير متوفرة. تأكد من تحميل listeningBank.js');
+            this.showCustomModal('error', '❌', 'بيانات الاختبار السماعي غير متوفرة.');
             return;
         }
-        if (!window.listeningBank.A1 || window.listeningBank.A1.length === 0) {
-            console.warn("⚠️ listeningBank فارغ، جاري إضافة بيانات افتراضية");
-            this.addDefaultListeningQuestions();
+        
+        // تجهيز بنك الأسئلة لكل المستويات
+        this.listeningQuestionBank = {};
+        for (let level of this.adaptiveTestLevelOrder) {
+            if (window.listeningBank[level] && window.listeningBank[level].length > 0) {
+                this.listeningQuestionBank[level] = [...window.listeningBank[level]];
+            } else {
+                this.listeningQuestionBank[level] = [];
+            }
         }
+        
+        // إضافة أسئلة افتراضية إذا كانت فارغة
+        let hasAny = false;
+        for (let level of ['A1','A2','B1','B2']) {
+            if (this.listeningQuestionBank[level].length > 0) hasAny = true;
+        }
+        if (!hasAny) this.addDefaultListeningQuestions();
+        
+        // تهيئة المتغيرات
         this.adaptiveListeningActive = true;
-        this.listeningCompleted = false;
         this.adaptiveListeningHistory = [];
         this.adaptiveListeningCurrentLevel = 'A1';
         this.adaptiveListeningPhase = 'initial';
         this.adaptiveListeningTotalQuestions = 0;
-        this.adaptiveListeningMaxQuestions = 25;
-        
-        this.adaptiveListeningLevelStats = {
-            'A1': { correct: 0, total: 0 },
-            'A2': { correct: 0, total: 0 },
-            'B1': { correct: 0, total: 0 },
-            'B2': { correct: 0, total: 0 },
-            'C1': { correct: 0, total: 0 },
-            'C2': { correct: 0, total: 0 }
-        };
-        
-        this.adaptiveListeningUsedQuestions = {};
-        for (let level of this.adaptiveTestLevelOrder) {
-            this.adaptiveListeningUsedQuestions[level] = [];
-        }
-        
-        this.adaptiveListeningCurrentSetQuestions = [];
-        this.adaptiveListeningCurrentSetIndex = 0;
-        this.adaptiveListeningCurrentSetCorrect = 0;
-        this.adaptiveListeningConfirmationQuestions = [];
-        this.adaptiveListeningConfirmationCorrect = 0;
-        this.adaptiveListeningConfirmationTotal = 0;
-        this.adaptiveListeningAudioPlayed = {};
+        this.adaptiveListeningMinQuestions = 25;
+        this.adaptiveListeningMaxQuestions = 50;
+        this.adaptiveListeningAnsweredCount = 0;
+        this.adaptiveListeningCurrentQuestionObj = null;
         this.adaptiveListeningLastAnswer = null;
         this.adaptiveListeningAnswered = false;
+        this.adaptiveListeningAudioPlayed = {};
         
-        this.loadListeningQuestionSet('A1', 5);
+        // إحصائيات المستويات
+        this.adaptiveListeningLevelStats = {};
+        for (let level of this.adaptiveTestLevelOrder) {
+            this.adaptiveListeningLevelStats[level] = { correct: 0, total: 0 };
+        }
+        
+        // قوائم الأسئلة لكل مستوى
+        this.adaptiveListeningAvailableQuestions = {};
+        for (let level of this.adaptiveTestLevelOrder) {
+            this.adaptiveListeningAvailableQuestions[level] = [...this.listeningQuestionBank[level]];
+            this.shuffleArray(this.adaptiveListeningAvailableQuestions[level]);
+        }
+        
+        // تحميل أول سؤال
+        this.loadNextListeningQuestion();
         this.currentPage = 'adaptive_listening_test';
         this.render();
     }
 
-    addDefaultListeningQuestions() {
-        if (!window.listeningBank) window.listeningBank = {};
-        const levels = ['A1', 'A2', 'B1', 'B2'];
-        for (let level of levels) {
-            if (!window.listeningBank[level]) window.listeningBank[level] = [];
-            for (let i = 1; i <= 5; i++) {
-                window.listeningBank[level].push({
-                    id: `${level}_${i}`,
-                    audio: `audio/level_test/${level}_Q${i}.mp4`,
-                    text: `Sample question ${i} for ${level} level. Listen carefully and choose the correct answer.`,
-                    options: ["Option A", "Option B", "Option C", "Option D"],
-                    correct: "Option A",
-                    transcript: `This is the transcript for question ${i} of level ${level}.`
-                });
-            }
-        }
-    }
-
-    startAdaptiveLevelTestReading() {
-        console.log("✅ startAdaptiveLevelTestReading تم استدعاؤها");
+    loadNextListeningQuestion() {
+        const level = this.adaptiveListeningCurrentLevel;
+        let available = this.adaptiveListeningAvailableQuestions[level];
         
-        if (!window.placementBank) {
-            console.error("❌ window.placementBank غير موجود");
-            this.showCustomModal('error', '❌', 'بيانات اختبار القراءة غير متوفرة. تأكد من تحميل data.js');
-            return;
-        }
-        
-        this.prepareAdaptiveQuestionBank();
-        
-        let hasQuestions = false;
-        for (let level of ['A1', 'A2', 'B1', 'B2']) {
-            if (this.adaptiveTestQuestionBank[level] && this.adaptiveTestQuestionBank[level].length > 0) {
-                hasQuestions = true;
-                break;
-            }
-        }
-        
-        if (!hasQuestions) {
-            console.warn("⚠️ لا توجد أسئلة في placementBank، جاري إضافة أسئلة افتراضية");
-            this.addDefaultReadingQuestions();
-        }
-        
-        this.adaptiveTestActive = true;
-        this.adaptiveTestHistory = [];
-        this.adaptiveTestCurrentLevel = this.readingStartLevelFromListening || 'A2';
-        this.adaptiveTestPhase = 'initial';
-        this.adaptiveTestTotalQuestions = 0;
-        this.adaptiveTestMaxQuestions = 50;
-        
-        this.adaptiveTestLevelStats = {
-            'A1': { correct: 0, total: 0 },
-            'A2': { correct: 0, total: 0 },
-            'B1': { correct: 0, total: 0 },
-            'B2': { correct: 0, total: 0 },
-            'C1': { correct: 0, total: 0 },
-            'C2': { correct: 0, total: 0 }
-        };
-        
-        this.adaptiveTestUsedQuestions = {};
-        for (let level of this.adaptiveTestLevelOrder) {
-            this.adaptiveTestUsedQuestions[level] = [];
-        }
-        
-        this.adaptiveTestCurrentSetQuestions = [];
-        this.adaptiveTestCurrentSetIndex = 0;
-        this.adaptiveTestCurrentSetCorrect = 0;
-        this.adaptiveTestConfirmationQuestions = [];
-        this.adaptiveTestConfirmationCorrect = 0;
-        this.adaptiveTestConfirmationTotal = 0;
-        
-        this.loadAdaptiveQuestionSet(this.adaptiveTestCurrentLevel, 5);
-        this.currentPage = 'adaptive_test';
-        this.render();
-    }
-
-    addDefaultReadingQuestions() {
-        const levels = ['A1', 'A2', 'B1', 'B2'];
-        for (let level of levels) {
-            if (!this.adaptiveTestQuestionBank[level]) this.adaptiveTestQuestionBank[level] = [];
-            for (let i = 1; i <= 10; i++) {
-                this.adaptiveTestQuestionBank[level].push({
-                    id: `${level}_${i}`,
-                    q: `Sample reading question ${i} for ${level} level. What is the correct answer?`,
-                    options: ["Choice A", "Choice B", "Choice C", "Choice D"],
-                    correct: "Choice A",
-                    skill: "Reading"
-                });
-            }
-        }
-    }
-
-    loadListeningQuestionSet(level, count) {
-        const bank = window.listeningBank[level];
-        if (!bank || bank.length === 0) {
-            console.warn(`⚠️ لا توجد أسئلة سماعية للمستوى ${level}`);
-            this.addDefaultListeningQuestions();
-            return this.loadListeningQuestionSet(level, count);
-        }
-        const usedIds = this.adaptiveListeningUsedQuestions[level] || [];
-        let available = bank.filter(q => !usedIds.includes(q.id));
-        if (available.length < count) {
-            if (available.length === 0) {
-                this.adaptiveListeningUsedQuestions[level] = [];
-                available = [...bank];
-            }
-        }
-        const shuffled = [...available];
-        this.shuffleArray(shuffled);
-        const selected = shuffled.slice(0, count);
-        if (!this.adaptiveListeningUsedQuestions[level]) this.adaptiveListeningUsedQuestions[level] = [];
-        for (let q of selected) {
-            this.adaptiveListeningUsedQuestions[level].push(q.id);
-        }
-        this.adaptiveListeningCurrentSetQuestions = selected;
-        this.adaptiveListeningCurrentSetIndex = 0;
-        this.adaptiveListeningCurrentSetCorrect = 0;
-    }
-
-    getCurrentListeningQuestion() {
-        if (this.adaptiveListeningPhase === 'confirmation') {
-            if (this.adaptiveListeningConfirmationQuestions.length > 0) {
-                return this.adaptiveListeningConfirmationQuestions[0];
-            }
-            return null;
-        }
-        if (this.adaptiveListeningCurrentSetIndex >= this.adaptiveListeningCurrentSetQuestions.length) {
-            this.evaluateListeningSetAndTransition();
-            if (this.adaptiveListeningPhase === 'confirmation') {
-                if (this.adaptiveListeningConfirmationQuestions.length > 0) {
-                    return this.adaptiveListeningConfirmationQuestions[0];
+        if (!available || available.length === 0) {
+            // حاول الانتقال إلى مستوى أعلى
+            const levels = this.adaptiveTestLevelOrder;
+            let nextIdx = levels.indexOf(level) + 1;
+            if (nextIdx < levels.length) {
+                this.adaptiveListeningCurrentLevel = levels[nextIdx];
+                available = this.adaptiveListeningAvailableQuestions[this.adaptiveListeningCurrentLevel];
+                if (available && available.length > 0) {
+                    this.loadNextListeningQuestion();
+                    return;
                 }
-                return null;
-            } else {
-                if (this.adaptiveListeningCurrentSetQuestions.length === 0) {
-                    this.loadListeningQuestionSet(this.adaptiveListeningCurrentLevel, 4);
-                }
-                this.adaptiveListeningCurrentSetIndex = 0;
-                if (this.adaptiveListeningCurrentSetQuestions.length === 0) return null;
-                return this.adaptiveListeningCurrentSetQuestions[0];
             }
-        }
-        return this.adaptiveListeningCurrentSetQuestions[this.adaptiveListeningCurrentSetIndex];
-    }
-
-    evaluateListeningSetAndTransition() {
-        const setSize = this.adaptiveListeningCurrentSetQuestions.length;
-        const setCorrect = this.adaptiveListeningCurrentSetCorrect;
-        const percentage = setSize > 0 ? (setCorrect / setSize) * 100 : 0;
-
-        if (!this.adaptiveListeningLevelStats[this.adaptiveListeningCurrentLevel]) {
-            this.adaptiveListeningLevelStats[this.adaptiveListeningCurrentLevel] = { correct: 0, total: 0 };
-        }
-        this.adaptiveListeningLevelStats[this.adaptiveListeningCurrentLevel].correct += setCorrect;
-        this.adaptiveListeningLevelStats[this.adaptiveListeningCurrentLevel].total += setSize;
-
-        this.adaptiveListeningTotalQuestions += setSize;
-
-        if (this.adaptiveListeningTotalQuestions >= this.adaptiveListeningMaxQuestions) {
+            // إذا لم نجد أي أسئلة، أنهِ الاختبار
             this.finalizeListeningPhase();
             return;
         }
-
-        const levels = this.adaptiveTestLevelOrder;
-        const currentIdx = levels.indexOf(this.adaptiveListeningCurrentLevel);
-
-        if (this.adaptiveListeningPhase === 'initial') {
-            if (percentage >= 70) {
-                if (currentIdx < levels.length - 1) {
-                    this.adaptiveListeningCurrentLevel = levels[currentIdx + 1];
-                    this.adaptiveListeningPhase = 'moving_up';
-                } else {
-                    this.adaptiveListeningPhase = 'confirmation';
-                    this.prepareListeningConfirmationQuestions();
-                }
-            } else if (percentage <= 40) {
-                if (currentIdx > 0) {
-                    this.adaptiveListeningCurrentLevel = levels[currentIdx - 1];
-                    this.adaptiveListeningPhase = 'moving_down';
-                } else {
-                    this.adaptiveListeningPhase = 'confirmation';
-                    this.prepareListeningConfirmationQuestions();
-                }
-            } else {
-                this.adaptiveListeningPhase = 'confirmation';
-                this.prepareListeningConfirmationQuestions();
-            }
-        }
-        else if (this.adaptiveListeningPhase === 'moving_up' || this.adaptiveListeningPhase === 'moving_down') {
-            if (percentage >= 70) {
-                if (this.adaptiveListeningPhase === 'moving_up') {
-                    if (currentIdx < levels.length - 1) {
-                        this.adaptiveListeningCurrentLevel = levels[currentIdx + 1];
-                    } else {
-                        this.adaptiveListeningPhase = 'confirmation';
-                        this.prepareListeningConfirmationQuestions();
-                    }
-                } else {
-                    this.adaptiveListeningPhase = 'confirmation';
-                    this.prepareListeningConfirmationQuestions();
-                }
-            } else if (percentage <= 40) {
-                if (currentIdx > 0) {
-                    this.adaptiveListeningCurrentLevel = levels[currentIdx - 1];
-                    if (this.adaptiveListeningPhase === 'moving_up') {
-                        this.adaptiveListeningPhase = 'moving_down';
-                    }
-                } else {
-                    this.adaptiveListeningPhase = 'confirmation';
-                    this.prepareListeningConfirmationQuestions();
-                }
-            } else {
-                this.adaptiveListeningPhase = 'confirmation';
-                this.prepareListeningConfirmationQuestions();
-            }
-        }
-
-        if (this.adaptiveListeningPhase !== 'confirmation') {
-            this.loadListeningQuestionSet(this.adaptiveListeningCurrentLevel, 4);
-        }
-    }
-
-    prepareListeningConfirmationQuestions() {
-        let remaining = this.adaptiveListeningMaxQuestions - this.adaptiveListeningTotalQuestions;
-        let confirmCount = Math.min(8, Math.max(5, remaining));
-        if (confirmCount < 3) {
-            this.finalizeListeningPhase();
-            return;
-        }
-        const bank = window.listeningBank[this.adaptiveListeningCurrentLevel];
-        if (!bank || bank.length === 0) {
-            this.finalizeListeningPhase();
-            return;
-        }
-        const usedIds = this.adaptiveListeningUsedQuestions[this.adaptiveListeningCurrentLevel] || [];
-        let available = bank.filter(q => !usedIds.includes(q.id));
-        if (available.length < confirmCount) {
-            available = bank.filter(q => !usedIds.includes(q.id));
-            if (available.length === 0) {
-                this.adaptiveListeningUsedQuestions[this.adaptiveListeningCurrentLevel] = [];
-                available = [...bank];
-            }
-        }
-        const shuffled = [...available];
-        this.shuffleArray(shuffled);
-        this.adaptiveListeningConfirmationQuestions = shuffled.slice(0, confirmCount);
-        this.adaptiveListeningConfirmationCorrect = 0;
-        this.adaptiveListeningConfirmationTotal = this.adaptiveListeningConfirmationQuestions.length;
-        this.adaptiveListeningPhase = 'confirmation';
+        
+        const question = available.shift();
+        this.adaptiveListeningCurrentQuestionObj = question;
+        this.adaptiveListeningLastAnswer = null;
+        this.adaptiveListeningAnswered = false;
+        this.adaptiveListeningAudioPlayed[question.id] = false;
     }
 
     handleAdaptiveListeningAnswer(selected, correct, btnElement) {
-        console.log("🔊 handleAdaptiveListeningAnswer called", { selected, correct, isWaiting: this.isWaiting });
+        if (this.adaptiveListeningAnswered) return;
+        if (!this.adaptiveListeningCurrentQuestionObj) return;
         
-        if (this.isWaiting) return;
-        this.isWaiting = true;
-        
+        this.adaptiveListeningAnswered = true;
         const selectedTrim = selected.trim().toLowerCase();
         const correctTrim = correct.trim().toLowerCase();
         const isCorrect = (selectedTrim === correctTrim);
-        console.log("📊 Answer is correct?", isCorrect);
+        this.playTone(isCorrect ? 'correct' : 'error');
         
-        try {
-            this.playTone(isCorrect ? 'correct' : 'error');
-        } catch(e) {
-            console.error("❌ playTone error:", e);
+        const currentQuestion = this.adaptiveListeningCurrentQuestionObj;
+        this.adaptiveListeningHistory.push({
+            level: this.adaptiveListeningCurrentLevel,
+            question: currentQuestion.text,
+            audio: currentQuestion.audio,
+            options: currentQuestion.options,
+            correct: correct,
+            selected: selected,
+            isCorrect: isCorrect,
+            transcript: currentQuestion.transcript || ''
+        });
+        
+        this.adaptiveListeningLevelStats[this.adaptiveListeningCurrentLevel].total++;
+        if (isCorrect) {
+            this.adaptiveListeningLevelStats[this.adaptiveListeningCurrentLevel].correct++;
+        }
+        this.adaptiveListeningTotalQuestions++;
+        this.adaptiveListeningAnsweredCount++;
+        
+        this.adaptiveListeningLastAnswer = {
+            isCorrect: isCorrect,
+            transcript: currentQuestion.transcript || '',
+            showTranscript: false,
+            selectedAnswer: selected,
+            correctAnswer: correct
+        };
+        
+        this.disableAndColorOptionsListening(correctTrim, selectedTrim, isCorrect);
+        
+        // بعد كل 5 أسئلة، نقيّم ونعدل المستوى
+        if (this.adaptiveListeningAnsweredCount % 5 === 0 && this.adaptiveListeningAnsweredCount >= 5) {
+            this.adaptListeningLevel();
         }
         
-        let currentQuestion = null;
+        // التحقق من شروط إنهاء الاختبار
+        const remainingInCurrent = this.adaptiveListeningAvailableQuestions[this.adaptiveListeningCurrentLevel]?.length || 0;
+        const canContinue = remainingInCurrent > 0 || this.canMoveToNextLevel();
         
-        try {
-            if (this.adaptiveListeningPhase === 'confirmation') {
-                if (!this.adaptiveListeningConfirmationQuestions.length) {
-                    console.error("❌ No confirmation questions available");
-                    this.isWaiting = false;
-                    return;
-                }
-                currentQuestion = this.adaptiveListeningConfirmationQuestions[0];
-                if (isCorrect) this.adaptiveListeningConfirmationCorrect++;
-                this.adaptiveListeningHistory.push({
-                    level: this.adaptiveListeningCurrentLevel,
-                    phase: 'confirmation',
-                    question: currentQuestion.text,
-                    audio: currentQuestion.audio,
-                    options: currentQuestion.options,
-                    correct: correct,
-                    selected: selected,
-                    isCorrect: isCorrect,
-                    transcript: currentQuestion.transcript || ''
-                });
-                this.adaptiveListeningLastAnswer = {
-                    isCorrect: isCorrect,
-                    transcript: currentQuestion.transcript || '',
-                    showTranscript: false,
-                    currentQuestion: currentQuestion
-                };
-                this.adaptiveListeningConfirmationQuestions.shift();
-                this.adaptiveListeningTotalQuestions++;
-                this.adaptiveListeningAnswered = true;
-            } else {
-                if (!this.adaptiveListeningCurrentSetQuestions.length || this.adaptiveListeningCurrentSetIndex >= this.adaptiveListeningCurrentSetQuestions.length) {
-                    console.error("❌ No current set questions or index out of bounds");
-                    this.isWaiting = false;
-                    return;
-                }
-                currentQuestion = this.adaptiveListeningCurrentSetQuestions[this.adaptiveListeningCurrentSetIndex];
-                this.adaptiveListeningHistory.push({
-                    level: this.adaptiveListeningCurrentLevel,
-                    phase: this.adaptiveListeningPhase,
-                    question: currentQuestion.text,
-                    audio: currentQuestion.audio,
-                    options: currentQuestion.options,
-                    correct: correct,
-                    selected: selected,
-                    isCorrect: isCorrect,
-                    transcript: currentQuestion.transcript || ''
-                });
-                this.adaptiveListeningLastAnswer = {
-                    isCorrect: isCorrect,
-                    transcript: currentQuestion.transcript || '',
-                    showTranscript: false,
-                    currentQuestion: currentQuestion
-                };
-                if (isCorrect) {
-                    this.adaptiveListeningCurrentSetCorrect++;
-                }
-                this.adaptiveListeningCurrentSetIndex++;
-                this.adaptiveListeningTotalQuestions++;
-                this.adaptiveListeningAnswered = true;
-            }
-            
-            this.disableAndColorOptions(correctTrim, selectedTrim, isCorrect);
-            this.isWaiting = false;
-            this.render();
-            
-        } catch(error) {
-            console.error("❌ Error in handleAdaptiveListeningAnswer:", error);
-            this.isWaiting = false;
-            this.render();
+        if (this.adaptiveListeningAnsweredCount >= this.adaptiveListeningMinQuestions && !canContinue) {
+            setTimeout(() => this.finalizeListeningPhase(), 1500);
+        } else if (this.adaptiveListeningAnsweredCount >= this.adaptiveListeningMaxQuestions) {
+            setTimeout(() => this.finalizeListeningPhase(), 1500);
+        }
+        
+        this.render();
+    }
+
+    adaptListeningLevel() {
+        const stats = this.adaptiveListeningLevelStats[this.adaptiveListeningCurrentLevel];
+        if (!stats || stats.total < 5) return;
+        
+        const percent = (stats.correct / stats.total) * 100;
+        const levels = this.adaptiveTestLevelOrder;
+        const currentIdx = levels.indexOf(this.adaptiveListeningCurrentLevel);
+        
+        if (percent >= 70 && currentIdx < levels.length - 1) {
+            this.adaptiveListeningCurrentLevel = levels[currentIdx + 1];
+            console.log(`📈 تم رفع المستوى إلى ${this.adaptiveListeningCurrentLevel}`);
+        } else if (percent <= 40 && currentIdx > 0) {
+            this.adaptiveListeningCurrentLevel = levels[currentIdx - 1];
+            console.log(`📉 تم خفض المستوى إلى ${this.adaptiveListeningCurrentLevel}`);
+        }
+        
+        if (!this.adaptiveListeningAvailableQuestions[this.adaptiveListeningCurrentLevel] || 
+            this.adaptiveListeningAvailableQuestions[this.adaptiveListeningCurrentLevel].length === 0) {
+            this.adaptiveListeningAvailableQuestions[this.adaptiveListeningCurrentLevel] = 
+                [...this.listeningQuestionBank[this.adaptiveListeningCurrentLevel]];
+            this.shuffleArray(this.adaptiveListeningAvailableQuestions[this.adaptiveListeningCurrentLevel]);
         }
     }
 
-    disableAndColorOptions(correctTrim, selectedTrim, isCorrect) {
+    canMoveToNextLevel() {
+        const levels = this.adaptiveTestLevelOrder;
+        const currentIdx = levels.indexOf(this.adaptiveListeningCurrentLevel);
+        if (currentIdx + 1 < levels.length) {
+            const nextLevel = levels[currentIdx + 1];
+            if (this.adaptiveListeningAvailableQuestions[nextLevel]?.length > 0) return true;
+        }
+        if (currentIdx - 1 >= 0) {
+            const prevLevel = levels[currentIdx - 1];
+            if (this.adaptiveListeningAvailableQuestions[prevLevel]?.length > 0) return true;
+        }
+        return false;
+    }
+
+    disableAndColorOptionsListening(correctTrim, selectedTrim, isCorrect) {
         const allOptions = document.querySelectorAll('.quiz-opt-btn');
         allOptions.forEach(btn => {
             btn.disabled = true;
@@ -1645,6 +1434,14 @@ class App {
         });
     }
 
+    nextAdaptiveListeningQuestion() {
+        if (!this.adaptiveListeningActive) return;
+        if (this.adaptiveListeningLastAnswer !== null) {
+            this.loadNextListeningQuestion();
+            this.render();
+        }
+    }
+
     showListeningTranscript() {
         if (this.adaptiveListeningLastAnswer && this.adaptiveListeningLastAnswer.transcript) {
             this.adaptiveListeningLastAnswer.showTranscript = !this.adaptiveListeningLastAnswer.showTranscript;
@@ -1654,40 +1451,7 @@ class App {
         }
     }
 
-    nextAdaptiveListeningQuestion() {
-        // التحقق مما إذا كنا في مرحلة التأكيد أو المجموعة الحالية
-        if (this.adaptiveListeningPhase === 'confirmation') {
-            if (this.adaptiveListeningConfirmationQuestions.length === 0 || this.adaptiveListeningTotalQuestions >= this.adaptiveListeningMaxQuestions) {
-                // انتهى الجزء السماعي
-                this.finalizeListeningPhase();
-                return;
-            }
-        } else {
-            // ننتقل إلى السؤال التالي في المجموعة الحالية، أو نقيّم المجموعة
-            if (this.adaptiveListeningCurrentSetIndex >= this.adaptiveListeningCurrentSetQuestions.length) {
-                this.evaluateListeningSetAndTransition();
-                if (this.adaptiveListeningPhase === 'confirmation') {
-                    if (this.adaptiveListeningConfirmationQuestions.length === 0) {
-                        this.finalizeListeningPhase();
-                        return;
-                    }
-                } else {
-                    if (this.adaptiveListeningCurrentSetQuestions.length === 0) {
-                        this.loadListeningQuestionSet(this.adaptiveListeningCurrentLevel, 4);
-                    }
-                    this.adaptiveListeningCurrentSetIndex = 0;
-                }
-            }
-        }
-        
-        // إعادة تعيين حالة الإجابة
-        this.adaptiveListeningLastAnswer = null;
-        this.adaptiveListeningAnswered = false;
-        this.render();
-    }
-
     playListeningAudio(audioSrc, questionId) {
-        console.log("playListeningAudio called", audioSrc, questionId);
         if (this.adaptiveListeningAudioPlayed[questionId]) {
             this.showCustomModal('info', '🔊', this.t('يمكنك الاستماع إلى التسجيل مرة واحدة فقط.', 'You can listen to the recording only once.'));
             return;
@@ -1708,35 +1472,34 @@ class App {
 
     finalizeListeningPhase() {
         console.log("✅ انتهت مرحلة الاختبار السماعي");
+        this.adaptiveListeningActive = false;
+        
         let bestLevel = 'A1';
-        let bestPercentage = 0;
+        let bestScore = 0;
         for (let level of this.adaptiveTestLevelOrder) {
             const stats = this.adaptiveListeningLevelStats[level];
-            if (stats && stats.total >= 2 && (stats.correct / stats.total) * 100 >= 70) {
-                bestLevel = level;
-                bestPercentage = (stats.correct / stats.total) * 100;
+            if (stats && stats.total >= 2) {
+                const percent = (stats.correct / stats.total) * 100;
+                if (percent >= 60) {
+                    bestLevel = level;
+                    bestScore = percent;
+                }
             }
         }
         
-        if (this.adaptiveListeningPhase === 'confirmation' && this.adaptiveListeningConfirmationTotal > 0) {
-            const confirmPercent = (this.adaptiveListeningConfirmationCorrect / this.adaptiveListeningConfirmationTotal) * 100;
-            if (confirmPercent >= 60) {
-                bestLevel = this.adaptiveListeningCurrentLevel;
-            }
-        }
-        
-        let readingStartLevel = bestLevel;
         const levels = this.adaptiveTestLevelOrder;
-        const bestIdx = levels.indexOf(bestLevel);
-        if (bestIdx === 0) readingStartLevel = 'A2';
-        else readingStartLevel = levels[Math.min(bestIdx, levels.length-1)];
+        let readingStartLevel = bestLevel;
+        let idx = levels.indexOf(bestLevel);
+        if (idx === 0) readingStartLevel = 'A2';
+        else if (idx < levels.length - 1) readingStartLevel = levels[idx + 1];
         
         const listeningResult = {
             type: 'listening',
             level: bestLevel,
             date: new Date().toLocaleString('ar-EG'),
             score: this.adaptiveListeningHistory.filter(h => h.isCorrect).length,
-            totalQuestions: this.adaptiveListeningHistory.length
+            totalQuestions: this.adaptiveListeningHistory.length,
+            levelStats: this.adaptiveListeningLevelStats
         };
         this.userProfile.testsHistory.push(listeningResult);
         
@@ -1759,14 +1522,10 @@ class App {
         this.adaptiveTestTotalQuestions = 0;
         this.adaptiveTestMaxQuestions = 50;
         
-        this.adaptiveTestLevelStats = {
-            'A1': { correct: 0, total: 0 },
-            'A2': { correct: 0, total: 0 },
-            'B1': { correct: 0, total: 0 },
-            'B2': { correct: 0, total: 0 },
-            'C1': { correct: 0, total: 0 },
-            'C2': { correct: 0, total: 0 }
-        };
+        this.adaptiveTestLevelStats = {};
+        for (let level of this.adaptiveTestLevelOrder) {
+            this.adaptiveTestLevelStats[level] = { correct: 0, total: 0 };
+        }
         
         this.adaptiveTestUsedQuestions = {};
         for (let level of this.adaptiveTestLevelOrder) {
@@ -1788,14 +1547,16 @@ class App {
     finalizeAdaptiveTest() {
         console.log("✅ finalizeAdaptiveTest تم استدعاؤها");
         
-        // حساب أفضل مستوى للقراءة
         let bestReadingLevel = 'A1';
-        let bestReadingPercentage = 0;
+        let bestReadingPercent = 0;
         for (let level of this.adaptiveTestLevelOrder) {
             const stats = this.adaptiveTestLevelStats[level];
-            if (stats && stats.total >= 4 && (stats.correct / stats.total) * 100 >= 70) {
-                bestReadingLevel = level;
-                bestReadingPercentage = (stats.correct / stats.total) * 100;
+            if (stats && stats.total >= 4) {
+                const percent = (stats.correct / stats.total) * 100;
+                if (percent >= 70) {
+                    bestReadingLevel = level;
+                    bestReadingPercent = percent;
+                }
             }
         }
         
@@ -1806,35 +1567,26 @@ class App {
             }
         }
         
-        // حساب أفضل مستوى للاستماع (من this.listeningResult)
-        let bestListeningLevel = this.listeningResult ? this.listeningResult.level : 'A1';
-        
-        // تحديد المستوى النهائي (يمكن أن يكون المتوسط أو الأعلى)
-        const levelsOrder = this.adaptiveTestLevelOrder;
-        const listeningIdx = levelsOrder.indexOf(bestListeningLevel);
-        const readingIdx = levelsOrder.indexOf(bestReadingLevel);
+        const bestListeningLevel = this.listeningResult ? this.listeningResult.level : 'A1';
+        const levels = this.adaptiveTestLevelOrder;
+        const listeningIdx = levels.indexOf(bestListeningLevel);
+        const readingIdx = levels.indexOf(bestReadingLevel);
         const finalLevelIdx = Math.max(listeningIdx, readingIdx);
-        const finalLevel = levelsOrder[finalLevelIdx];
+        const finalLevel = levels[finalLevelIdx];
         
-        // تحليل نقاط القوة والضعف
         const strengths = [];
         const weaknesses = [];
         
-        // تحليل أداء الاستماع حسب المستويات
-        for (let level of levelsOrder) {
-            const stats = this.adaptiveListeningLevelStats[level];
-            if (stats && stats.total > 0) {
-                const percent = (stats.correct / stats.total) * 100;
+        for (let level of levels) {
+            const listenStats = this.adaptiveListeningLevelStats[level];
+            if (listenStats && listenStats.total >= 2) {
+                const percent = (listenStats.correct / listenStats.total) * 100;
                 if (percent >= 70) strengths.push(`${level} (استماع)`);
                 else if (percent <= 40) weaknesses.push(`${level} (استماع)`);
             }
-        }
-        
-        // تحليل أداء القراءة
-        for (let level of levelsOrder) {
-            const stats = this.adaptiveTestLevelStats[level];
-            if (stats && stats.total > 0) {
-                const percent = (stats.correct / stats.total) * 100;
+            const readStats = this.adaptiveTestLevelStats[level];
+            if (readStats && readStats.total >= 2) {
+                const percent = (readStats.correct / readStats.total) * 100;
                 if (percent >= 70) strengths.push(`${level} (قراءة)`);
                 else if (percent <= 40) weaknesses.push(`${level} (قراءة)`);
             }
@@ -1907,7 +1659,28 @@ class App {
         </div>`;
     }
     
-    getIeltsEquivalent(level) { const map = { 'A1': '2.0-3.0', 'A2': '3.0-4.0', 'B1': '4.0-5.0', 'B2': '5.5-6.5', 'C1': '7.0-8.0', 'C2': '8.5-9.0' }; return map[level]; }
+    getIeltsEquivalent(level) { 
+        const map = { 'A1': '2.0-3.0', 'A2': '3.0-4.0', 'B1': '4.0-5.0', 'B2': '5.5-6.5', 'C1': '7.0-8.0', 'C2': '8.5-9.0' }; 
+        return map[level]; 
+    }
+
+    addDefaultListeningQuestions() {
+        if (!window.listeningBank) window.listeningBank = {};
+        const levels = ['A1', 'A2', 'B1', 'B2'];
+        for (let level of levels) {
+            if (!window.listeningBank[level]) window.listeningBank[level] = [];
+            for (let i = 1; i <= 10; i++) {
+                window.listeningBank[level].push({
+                    id: `${level}_${i}`,
+                    audio: `audio/level_test/${level}_Q${i}.mp4`,
+                    text: `Sample question ${i} for ${level} level. Listen carefully and choose the correct answer.`,
+                    options: ["Option A", "Option B", "Option C", "Option D"],
+                    correct: "Option A",
+                    transcript: `This is the transcript for question ${i} of level ${level}.`
+                });
+            }
+        }
+    }
 
     // ====================== دوال التمارين الأساسية ======================
     prepareJumble() {
@@ -2479,7 +2252,6 @@ class App {
             if (action === 'gapfillShowExplanation') { this.showDetailedGapFillExplanation(); return; }
             if (action === 'adaptiveAnswer') { this.handleAdaptiveAnswer(param, correct, btn); return; }
             if (action === 'adaptiveListeningAnswer') { 
-                console.log("✅ adaptiveListeningAnswer triggered", param, correct);
                 this.handleAdaptiveListeningAnswer(param, correct, btn); 
                 return; 
             }
@@ -2499,7 +2271,6 @@ class App {
                 return;
             }
             if (action === 'test_sample_audio') {
-                // تشغيل عينة صوتية من أول درس في A1 (يمكن تعديل المسار)
                 const sampleAudioSrc = 'audio/lesson1.mp3';
                 this.playAudio(sampleAudioSrc);
                 return;
@@ -2719,13 +2490,10 @@ class App {
         }
         
         if (this.currentPage === 'adaptive_listening_test') {
-            if (!this.adaptiveListeningActive) {
-                return `<div class="reading-card"><p>${this.t('جاري الانتقال إلى اختبار القراءة...', 'Moving to reading test...')}</p></div>`;
+            if (!this.adaptiveListeningActive || !this.adaptiveListeningCurrentQuestionObj) {
+                return `<div class="reading-card"><p>${this.t('جاري تحميل السؤال...', 'Loading question...')}</p></div>`;
             }
-            const question = this.getCurrentListeningQuestion();
-            if (!question) {
-                return `<div class="reading-card"><p>${this.t('جاري تحميل السؤال التالي...', 'Loading next question...')}</p></div>`;
-            }
+            const question = this.adaptiveListeningCurrentQuestionObj;
             const opts = [...question.options].sort(() => 0.5 - Math.random());
             const correctAnswer = question.correct;
             const totalSoFar = this.adaptiveListeningHistory.length;
@@ -2738,6 +2506,9 @@ class App {
                     <span style="background:#e2e8f0; color:#475569; padding:4px 12px; border-radius:20px; font-weight:bold; font-size:0.8rem;">
                         ${this.t('السؤال', 'Question')} ${totalSoFar + 1} - ${this.t('استماع', 'Listening')}
                     </span>
+                    <span style="background:#e2e8f0; color:#475569; padding:4px 12px; border-radius:20px; font-weight:bold; font-size:0.8rem;">
+                        ${this.t('المستوى الحالي', 'Current Level')}: ${this.adaptiveListeningCurrentLevel}
+                    </span>
                 </div>
                 <div style="text-align:center; margin:20px 0;">
                     <button id="playAudioBtn_${questionId}" class="hero-btn" data-action="playListeningAudio" data-audio="${audioSrc}" data-id="${questionId}" style="background:#6366f1; font-size:1.5rem; padding:10px 20px; ${hasPlayed ? 'opacity:0.5;' : ''}" ${hasPlayed ? 'disabled' : ''}>
@@ -2746,11 +2517,12 @@ class App {
                 </div>
                 <h3 style="margin-bottom:20px; direction:ltr; text-align:center; font-size:1.1rem;">${question.text}</h3>
                 <div class="quiz-options" id="listeningOptions">
-                    ${opts.map(opt => `<button class="quiz-opt-btn listening-opt-btn" data-action="adaptiveListeningAnswer" data-param="${opt}" data-correct="${correctAnswer}">${opt}</button>`).join('')}
+                    ${opts.map(opt => `<button class="quiz-opt-btn listening-opt-btn" data-action="adaptiveListeningAnswer" data-param="${opt}" data-correct="${correctAnswer}" ${this.adaptiveListeningLastAnswer ? 'disabled' : ''}>${opt}</button>`).join('')}
                 </div>
                 ${this.adaptiveListeningLastAnswer ? `
                     <div class="spelling-feedback ${this.adaptiveListeningLastAnswer.isCorrect ? 'correct-feedback' : 'wrong-feedback'}" style="text-align:center; margin:12px 0;">
                         ${this.adaptiveListeningLastAnswer.isCorrect ? this.t('✅ إجابة صحيحة!', '✅ Correct answer!') : this.t('❌ إجابة خاطئة!', '❌ Wrong answer!')}
+                        <div style="font-size:0.8rem;">${this.t('الإجابة الصحيحة:', 'Correct answer:')} ${this.adaptiveListeningLastAnswer.correctAnswer}</div>
                     </div>
                     <button class="hero-btn" data-action="showListeningTranscript" style="background:#f59e0b; width:100%; margin:8px 0;">📝 ${this.t('عرض النص المكتوب', 'Show Transcript')}</button>
                     ${this.adaptiveListeningLastAnswer.showTranscript ? `<div style="margin:10px 0; padding:12px; background:#f1f5f9; border-radius:8px; direction:ltr; text-align:left; font-size:0.85rem;">${this.adaptiveListeningLastAnswer.transcript}</div>` : ''}
