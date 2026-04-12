@@ -1619,92 +1619,123 @@ class App {
     }
 
     handleListeningAnswer(selected, correct, btnElement) {
-        if (this.isWaiting) return;
+        console.log("🔊 handleListeningAnswer called", { selected, correct, isWaiting: this.isWaiting });
+        
+        if (this.isWaiting) {
+            console.log("⏳ isWaiting is true, returning");
+            return;
+        }
         this.isWaiting = true;
         
         const selectedTrim = selected.trim().toLowerCase();
         const correctTrim = correct.trim().toLowerCase();
         const isCorrect = (selectedTrim === correctTrim);
-        this.playTone(isCorrect ? 'correct' : 'error');
+        console.log("📊 Answer is correct?", isCorrect);
+        
+        try {
+            this.playTone(isCorrect ? 'correct' : 'error');
+        } catch(e) {
+            console.error("❌ playTone error:", e);
+        }
         
         let currentQuestion = null;
         
-        if (this.adaptiveListeningPhase === 'confirmation') {
-            currentQuestion = this.adaptiveListeningConfirmationQuestions[0];
-            if (isCorrect) this.adaptiveListeningConfirmationCorrect++;
-            this.adaptiveListeningHistory.push({
-                level: this.adaptiveListeningCurrentLevel,
-                phase: 'confirmation',
-                question: currentQuestion.text,
-                audio: currentQuestion.audio,
-                options: currentQuestion.options,
-                correct: correct,
-                selected: selected,
-                isCorrect: isCorrect,
-                transcript: currentQuestion.transcript || ''
-            });
-            this.adaptiveListeningLastAnswer = {
-                isCorrect: isCorrect,
-                transcript: currentQuestion.transcript || '',
-                showTranscript: false
-            };
-            this.adaptiveListeningConfirmationQuestions.shift();
-            this.adaptiveListeningTotalQuestions++;
-            
-            if (this.adaptiveListeningConfirmationQuestions.length === 0 || this.adaptiveListeningTotalQuestions >= this.adaptiveListeningMaxQuestions) {
-                setTimeout(() => {
-                    this.finalizeListeningPhase();
+        try {
+            if (this.adaptiveListeningPhase === 'confirmation') {
+                if (!this.adaptiveListeningConfirmationQuestions.length) {
+                    console.error("❌ No confirmation questions available");
                     this.isWaiting = false;
-                    this.render();
-                }, 1200);
-                const allOptions = document.querySelectorAll('.quiz-opt-btn');
-                allOptions.forEach(btn => {
-                    btn.disabled = true;
-                    const btnParam = btn.dataset.param ? btn.dataset.param.trim().toLowerCase() : '';
-                    if (btnParam === correctTrim) btn.classList.add('correct-answer');
-                    else if (btnParam === selectedTrim && !isCorrect) btn.classList.add('wrong-answer');
+                    return;
+                }
+                currentQuestion = this.adaptiveListeningConfirmationQuestions[0];
+                if (isCorrect) this.adaptiveListeningConfirmationCorrect++;
+                this.adaptiveListeningHistory.push({
+                    level: this.adaptiveListeningCurrentLevel,
+                    phase: 'confirmation',
+                    question: currentQuestion.text,
+                    audio: currentQuestion.audio,
+                    options: currentQuestion.options,
+                    correct: correct,
+                    selected: selected,
+                    isCorrect: isCorrect,
+                    transcript: currentQuestion.transcript || ''
                 });
-                return;
+                this.adaptiveListeningLastAnswer = {
+                    isCorrect: isCorrect,
+                    transcript: currentQuestion.transcript || '',
+                    showTranscript: false
+                };
+                this.adaptiveListeningConfirmationQuestions.shift();
+                this.adaptiveListeningTotalQuestions++;
+                
+                if (this.adaptiveListeningConfirmationQuestions.length === 0 || this.adaptiveListeningTotalQuestions >= this.adaptiveListeningMaxQuestions) {
+                    setTimeout(() => {
+                        this.finalizeListeningPhase();
+                        this.isWaiting = false;
+                        this.render();
+                    }, 1200);
+                    this.disableAndColorOptions(correctTrim, selectedTrim, isCorrect);
+                    return;
+                }
+            } else {
+                if (!this.adaptiveListeningCurrentSetQuestions.length || this.adaptiveListeningCurrentSetIndex >= this.adaptiveListeningCurrentSetQuestions.length) {
+                    console.error("❌ No current set questions or index out of bounds");
+                    this.isWaiting = false;
+                    return;
+                }
+                currentQuestion = this.adaptiveListeningCurrentSetQuestions[this.adaptiveListeningCurrentSetIndex];
+                this.adaptiveListeningHistory.push({
+                    level: this.adaptiveListeningCurrentLevel,
+                    phase: this.adaptiveListeningPhase,
+                    question: currentQuestion.text,
+                    audio: currentQuestion.audio,
+                    options: currentQuestion.options,
+                    correct: correct,
+                    selected: selected,
+                    isCorrect: isCorrect,
+                    transcript: currentQuestion.transcript || ''
+                });
+                this.adaptiveListeningLastAnswer = {
+                    isCorrect: isCorrect,
+                    transcript: currentQuestion.transcript || '',
+                    showTranscript: false
+                };
+                if (isCorrect) {
+                    this.adaptiveListeningCurrentSetCorrect++;
+                }
+                this.adaptiveListeningCurrentSetIndex++;
+                this.adaptiveListeningTotalQuestions++;
             }
-        } else {
-            currentQuestion = this.adaptiveListeningCurrentSetQuestions[this.adaptiveListeningCurrentSetIndex];
-            this.adaptiveListeningHistory.push({
-                level: this.adaptiveListeningCurrentLevel,
-                phase: this.adaptiveListeningPhase,
-                question: currentQuestion.text,
-                audio: currentQuestion.audio,
-                options: currentQuestion.options,
-                correct: correct,
-                selected: selected,
-                isCorrect: isCorrect,
-                transcript: currentQuestion.transcript || ''
-            });
-            this.adaptiveListeningLastAnswer = {
-                isCorrect: isCorrect,
-                transcript: currentQuestion.transcript || '',
-                showTranscript: false
-            };
-            if (isCorrect) {
-                this.adaptiveListeningCurrentSetCorrect++;
-            }
-            this.adaptiveListeningCurrentSetIndex++;
-            this.adaptiveListeningTotalQuestions++;
+            
+            this.disableAndColorOptions(correctTrim, selectedTrim, isCorrect);
+            
+            setTimeout(() => {
+                this.isWaiting = false;
+                this.adaptiveListeningAnswered = true;
+                this.render();
+            }, 1200);
+            
+        } catch(error) {
+            console.error("❌ Error in handleListeningAnswer:", error);
+            this.isWaiting = false;
+            this.render();
         }
-        
+    }
+
+    // أضف هذه الدالة المساعدة مباشرة بعد handleListeningAnswer
+    disableAndColorOptions(correctTrim, selectedTrim, isCorrect) {
         const allOptions = document.querySelectorAll('.quiz-opt-btn');
         allOptions.forEach(btn => {
             btn.disabled = true;
             const btnParam = btn.dataset.param ? btn.dataset.param.trim().toLowerCase() : '';
-            if (btnParam === correctTrim) btn.classList.add('correct-answer');
-            else if (btnParam === selectedTrim && !isCorrect) btn.classList.add('wrong-answer');
-            else btn.classList.add('other-option');
+            if (btnParam === correctTrim) {
+                btn.classList.add('correct-answer');
+            } else if (btnParam === selectedTrim && !isCorrect) {
+                btn.classList.add('wrong-answer');
+            } else {
+                btn.classList.add('other-option');
+            }
         });
-        
-        setTimeout(() => {
-            this.isWaiting = false;
-            this.adaptiveListeningAnswered = true;
-            this.render();
-        }, 1200);
     }
 
     showListeningTranscript() {
@@ -2359,8 +2390,11 @@ class App {
             if (action === 'gapfillNext') { this.handleGapFillNext(); return; }
             if (action === 'gapfillShowExplanation') { this.showDetailedGapFillExplanation(); return; }
             if (action === 'adaptiveAnswer') { this.handleAdaptiveAnswer(param, correct, btn); return; }
-            if (action === 'adaptiveListeningAnswer') { this.handleListeningAnswer(param, correct, btn); return; }
-            if (action === 'showListeningTranscript') { this.showListeningTranscript(); return; }
+if (action === 'adaptiveListeningAnswer') { 
+    console.log("✅ adaptiveListeningAnswer triggered", param, correct);
+    this.handleListeningAnswer(param, correct, btn); 
+    return; 
+}            if (action === 'showListeningTranscript') { this.showListeningTranscript(); return; }
             if (action === 'nextListeningQuestion') { this.nextListeningQuestion(); return; }
             if (action === 'playListeningAudio') {
                 const audioSrc = btn.dataset.audio;
