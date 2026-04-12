@@ -2342,133 +2342,140 @@ class App {
         document.head.appendChild(style); 
     }
     
-    setupGlobalEvents() {
-        document.addEventListener('click', async (e) => {
-            const btn = e.target.closest('[data-action]');
-            if (!btn) return;
-            const { action, param, correct, total, index } = btn.dataset;
-            
-            if (action === 'ansQ') { this.handleAnswer(param, correct, btn); return; }
-            if (action === 'levelTestAns') { this.handleLevelTestAnswer(param, correct, btn); return; }
-            if (action === 'gapfillAnswer') { this.handleGapFillAnswer(btn.dataset.english); return; }
-            if (action === 'gapfillNext') { this.handleGapFillNext(); return; }
-            if (action === 'gapfillShowExplanation') { this.showDetailedGapFillExplanation(); return; }
-            if (action === 'adaptiveAnswer') { this.handleAdaptiveAnswer(param, correct, btn); return; }
-            if (action === 'adaptiveListeningAnswer') { this.handleListeningAnswer(param, correct, btn); return; }
-            if (action === 'showListeningTranscript') { this.showListeningTranscript(); return; }
-            if (action === 'nextListeningQuestion') { this.nextListeningQuestion(); return; }
-            
-            switch (action) {
-                case 'masterWord': if (!this.masteredWords.includes(String(param))) { this.masteredWords.push(String(param)); this.addMasteredWordReward(param); if (this.selectedLessonId) this.grantLessonCompletionReward(this.selectedLessonId); await this.saveUserData(); } break;
-                case 'playAudio': this.playAudio(param); break;
-                case 'pauseAudio': this.pauseAudio(); break;
-                case 'stopAudio': this.stopAudio(); break;
-                case 'skipBack10': this.skipBack10(); break;
-                case 'skipForward10': this.skipForward10(); break;
-                case 'speedUp': this.speedUp(); this.render(); break;
-                case 'speedDown': this.speedDown(); this.render(); break;
-                case 'goHome': this.stopAudio(); this.currentPage = 'home'; this.selectedLessonId = null; this.isUnlockTest = false; this.viewingPlacementDetails = null; this.levelTestLevel = null; this.adaptiveTestActive = false; this.adaptiveListeningActive = false; break;
-                case 'logout': if (confirm(this.t('هل أنت متأكد من تسجيل الخروج؟', 'Are you sure you want to logout?'))) this.logout(); break;
-                case 'selLevel': this.selectedLevel = param; this.currentPage = (param === 'custom_list') ? 'custom_lessons_view' : 'lessons'; break;
-                case 'toggleTheme': this.toggleTheme(); break;
-                case 'toggleLang': this.toggleLanguage(); break;
-                case 'selLesson': this.scrollPos = window.scrollY; this.openLesson(param); break;
-                case 'unlockWithTest': const list = window.lessonsList[this.selectedLevel] || []; const curIdx = list.findIndex(l => l.id == param); const prevId = list[curIdx - 1]?.id; if (prevId) { this.tempLessonToUnlock = param; this.selectedLessonId = prevId; this.prepareQuiz(this.getLessonDataById(prevId).terms, true); this.currentPage = 'quiz'; } break;
-                case 'unlockWithCoins': this.unlockLessonWithCoins(param); break;
-                case 'setPage':
-                    if (param === 'listening' && this.selectedLessonId) { if (!this.listeningUnlocked[this.selectedLessonId]) { if (!this.unlockListening(this.selectedLessonId)) return; } else this.prepareListeningQuiz(); }
-                    else if (param === 'jumble' && this.selectedLessonId) { if (!this.jumbleUnlocked[this.selectedLessonId]) { if (!this.unlockJumble(this.selectedLessonId)) return; } else this.prepareJumble(); }
-                    else if (param === 'spelling' && this.selectedLessonId) { if (!this.spellingUnlocked[this.selectedLessonId]) { if (!this.unlockSpelling(this.selectedLessonId)) return; } else this.prepareSpelling(); }
-                    else if (param === 'quiz' && this.selectedLessonId) { const lessonData = this.getLessonDataById(this.selectedLessonId); if (lessonData) this.prepareQuiz(lessonData.terms, false); }
-                    else if (param === 'profile') { this.showProfile(); return; }
-                    else if (param === 'test_history') { this.showTestHistory(); return; }
-                    else if (param === 'gapfill' && this.selectedLessonId) { if (!this.gapFillUnlocked[this.selectedLessonId]) { if (!this.unlockGapFill(this.selectedLessonId)) return; } else this.prepareGapFill(); }
-                    else if (param === 'adaptive_test') { this.startAdaptiveLevelTestReading(); return; }
-                    else if (param === 'level_test_instructions') { this.showLevelTestInstructions(); return; }
-                    else if (param === 'start_listening_test') { this.startAdaptiveLevelTestListening(); return; }
-                    else if (param === 'start_reading_test') { this.startAdaptiveLevelTestReading(); return; }
-                    this.currentPage = param; this.currentCardIndex = 0; break;
-                case 'masterWordFlash': 
-                    const cardM = document.querySelector('.flashcard-container'); 
-                    if (cardM) { 
-                        cardM.classList.add('master-anim'); 
-                        setTimeout(() => cardM.classList.remove('master-anim'), 200);
-                        const wordId = String(param); 
-                        if (!this.masteredWords.includes(wordId)) { 
-                            this.masteredWords.push(wordId); 
-                            this.addMasteredWordReward(param); 
-                            if (this.selectedLessonId) this.grantLessonCompletionReward(this.selectedLessonId); 
-                            await this.saveUserData(); 
-                        } 
-                        if (this.showAllCardsTemporary && !this.repeatAllSessionMastered.includes(wordId)) { 
-                            this.repeatAllSessionMastered.push(wordId); 
-                            await this.saveUserData(); 
-                        } 
-                        this.render(); 
+setupGlobalEvents() {
+    document.addEventListener('click', async (e) => {
+        const btn = e.target.closest('[data-action]');
+        if (!btn) return;
+        const { action, param, correct, total, index } = btn.dataset;
+        
+        if (action === 'ansQ') { this.handleAnswer(param, correct, btn); return; }
+        if (action === 'levelTestAns') { this.handleLevelTestAnswer(param, correct, btn); return; }
+        if (action === 'gapfillAnswer') { this.handleGapFillAnswer(btn.dataset.english); return; }
+        if (action === 'gapfillNext') { this.handleGapFillNext(); return; }
+        if (action === 'gapfillShowExplanation') { this.showDetailedGapFillExplanation(); return; }
+        if (action === 'adaptiveAnswer') { this.handleAdaptiveAnswer(param, correct, btn); return; }
+        if (action === 'adaptiveListeningAnswer') { this.handleListeningAnswer(param, correct, btn); return; }
+        if (action === 'showListeningTranscript') { this.showListeningTranscript(); return; }
+        if (action === 'nextListeningQuestion') { this.nextListeningQuestion(); return; }
+        
+        switch (action) {
+            case 'masterWord': if (!this.masteredWords.includes(String(param))) { this.masteredWords.push(String(param)); this.addMasteredWordReward(param); if (this.selectedLessonId) this.grantLessonCompletionReward(this.selectedLessonId); await this.saveUserData(); } break;
+            case 'playAudio': this.playAudio(param); break;
+            case 'pauseAudio': this.pauseAudio(); break;
+            case 'stopAudio': this.stopAudio(); break;
+            case 'skipBack10': this.skipBack10(); break;
+            case 'skipForward10': this.skipForward10(); break;
+            case 'speedUp': this.speedUp(); this.render(); break;
+            case 'speedDown': this.speedDown(); this.render(); break;
+            case 'goHome': this.stopAudio(); this.currentPage = 'home'; this.selectedLessonId = null; this.isUnlockTest = false; this.viewingPlacementDetails = null; this.levelTestLevel = null; this.adaptiveTestActive = false; this.adaptiveListeningActive = false; break;
+            case 'logout': if (confirm(this.t('هل أنت متأكد من تسجيل الخروج؟', 'Are you sure you want to logout?'))) this.logout(); break;
+            case 'selLevel': this.selectedLevel = param; this.currentPage = (param === 'custom_list') ? 'custom_lessons_view' : 'lessons'; break;
+            case 'toggleTheme': this.toggleTheme(); break;
+            case 'toggleLang': this.toggleLanguage(); break;
+            case 'selLesson': this.scrollPos = window.scrollY; this.openLesson(param); break;
+            case 'unlockWithTest': const list = window.lessonsList[this.selectedLevel] || []; const curIdx = list.findIndex(l => l.id == param); const prevId = list[curIdx - 1]?.id; if (prevId) { this.tempLessonToUnlock = param; this.selectedLessonId = prevId; this.prepareQuiz(this.getLessonDataById(prevId).terms, true); this.currentPage = 'quiz'; } break;
+            case 'unlockWithCoins': this.unlockLessonWithCoins(param); break;
+            // أضف الحالتين الجديدتين هنا قبل setPage
+            case 'start_listening_test':
+                this.startAdaptiveLevelTestListening();
+                break;
+            case 'start_reading_test':
+                this.startAdaptiveLevelTestReading();
+                break;
+            case 'setPage':
+                if (param === 'listening' && this.selectedLessonId) { if (!this.listeningUnlocked[this.selectedLessonId]) { if (!this.unlockListening(this.selectedLessonId)) return; } else this.prepareListeningQuiz(); }
+                else if (param === 'jumble' && this.selectedLessonId) { if (!this.jumbleUnlocked[this.selectedLessonId]) { if (!this.unlockJumble(this.selectedLessonId)) return; } else this.prepareJumble(); }
+                else if (param === 'spelling' && this.selectedLessonId) { if (!this.spellingUnlocked[this.selectedLessonId]) { if (!this.unlockSpelling(this.selectedLessonId)) return; } else this.prepareSpelling(); }
+                else if (param === 'quiz' && this.selectedLessonId) { const lessonData = this.getLessonDataById(this.selectedLessonId); if (lessonData) this.prepareQuiz(lessonData.terms, false); }
+                else if (param === 'profile') { this.showProfile(); return; }
+                else if (param === 'test_history') { this.showTestHistory(); return; }
+                else if (param === 'gapfill' && this.selectedLessonId) { if (!this.gapFillUnlocked[this.selectedLessonId]) { if (!this.unlockGapFill(this.selectedLessonId)) return; } else this.prepareGapFill(); }
+                else if (param === 'adaptive_test') { this.startAdaptiveLevelTestReading(); return; }
+                else if (param === 'level_test_instructions') { this.showLevelTestInstructions(); return; }
+                // يمكن إزالة السطرين التاليين لأن لدينا حالات خاصة الآن
+                // else if (param === 'start_listening_test') { this.startAdaptiveLevelTestListening(); return; }
+                // else if (param === 'start_reading_test') { this.startAdaptiveLevelTestReading(); return; }
+                this.currentPage = param; this.currentCardIndex = 0; break;
+            case 'masterWordFlash': 
+                const cardM = document.querySelector('.flashcard-container'); 
+                if (cardM) { 
+                    cardM.classList.add('master-anim'); 
+                    setTimeout(() => cardM.classList.remove('master-anim'), 200);
+                    const wordId = String(param); 
+                    if (!this.masteredWords.includes(wordId)) { 
+                        this.masteredWords.push(wordId); 
+                        this.addMasteredWordReward(param); 
+                        if (this.selectedLessonId) this.grantLessonCompletionReward(this.selectedLessonId); 
+                        await this.saveUserData(); 
                     } 
-                    return;
-                case 'deleteWord': this.showConfirmModal(this.t('هل أنت متأكد من حذف هذه الكلمة نهائياً من بطاقاتك؟', 'Are you sure you want to permanently delete this word from your flashcards?'), async () => { const cardD = document.querySelector('.flashcard-container'); if (cardD) { cardD.classList.add('delete-anim'); setTimeout(async () => { this.hiddenFromCards.push(String(param)); await this.saveUserData(); this.render(); }, 300); } }); return;
-                case 'speak': this.speak(param); break;
-                case 'nextC': const lessonData = this.getCurrentLessonData(); const addedWords = this.userVocabulary.filter(v => v.lessonId == this.selectedLessonId); const allWords = lessonData ? [...lessonData.terms, ...addedWords] : []; let activeCards; if (this.showAllCardsTemporary) activeCards = allWords.filter(t => !this.hiddenFromCards.includes(String(t.id)) && !this.repeatAllSessionMastered.includes(String(t.id))); else activeCards = allWords.filter(t => !this.masteredWords.includes(String(t.id)) && !this.hiddenFromCards.includes(String(t.id))); if (activeCards.length === 0) break; const currentCard = activeCards[this.currentCardIndex]; if (currentCard && !this.skippedCards.includes(String(currentCard.id))) this.skippedCards.push(String(currentCard.id)); this.currentCardIndex++; if (this.currentCardIndex >= activeCards.length) this.currentCardIndex = 0; this.render(); break;
-                case 'prevC': const lessonPrev = this.getCurrentLessonData(); const addedPrev = this.userVocabulary.filter(v => v.lessonId == this.selectedLessonId); const allWordsPrev = lessonPrev ? [...lessonPrev.terms, ...addedPrev] : []; let activePrev; if (this.showAllCardsTemporary) activePrev = allWordsPrev.filter(t => !this.hiddenFromCards.includes(String(t.id)) && !this.repeatAllSessionMastered.includes(String(t.id))); else activePrev = allWordsPrev.filter(t => !this.masteredWords.includes(String(t.id)) && !this.hiddenFromCards.includes(String(t.id))); if (activePrev.length === 0) break; this.currentCardIndex--; if (this.currentCardIndex < 0) this.currentCardIndex = activePrev.length - 1; this.render(); break;
-                case 'restartCards':
-                    this.skippedCards = [];
-                    this.currentCardIndex = 0;
-                    if (param === 'all') {
-                        this.repeatAllSessionMastered = [];
-                        this.showAllCardsTemporary = true;
-                    } else if (param === 'remaining') {
-                        this.showAllCardsTemporary = false;
-                        this.repeatAllSessionMastered = [];
-                    }
-                    const cardShuffle = document.querySelector('.flashcard-container');
-                    if (cardShuffle) cardShuffle.classList.add('shuffle-anim-card');
-                    setTimeout(() => {
-                        if (cardShuffle) cardShuffle.classList.remove('shuffle-anim-card');
-                        this.render();
-                    }, 300);
-                    this.showAd('image');
-                    return;
-                case 'addNewWord': this.handleNewWord(); break;
-                case 'saveCardEdit': this.saveCardEdit(param); break;
-                case 'backToLessons': this.stopAudio(); this.currentPage = (this.selectedLevel === 'custom_list') ? 'custom_lessons_view' : 'lessons'; this.selectedLessonId = null; this.isUnlockTest = false; this.render(); setTimeout(() => window.scrollTo(0, this.scrollPos), 50); return;
-                case 'doLogin': this.handleLogin(); return;
-                case 'doSignup': this.handleSignup(); return;
-                case 'switchAuthMode': this.authMode = param; this.render(); return;
-                case 'viewPlacementDetails': const record = this.placementResults[parseInt(index)]; if (record) { this.viewingPlacementDetails = record; this.currentPage = 'placement_details'; this.render(); } break;
-                case 'viewTestHistoryDetails': this.viewTestDetails(parseInt(index)); break;
-                case 'deletePlacementTest': this.deletePlacementTest(parseInt(index)); break;
-                case 'backFromDetails': this.viewingPlacementDetails = null; this.currentPage = 'test_history'; this.render(); break;
-                case 'jumbleSelect': this.handleJumbleSelect(param); break;
-                case 'jumbleRemove': this.handleJumbleRemove(param); break;
-                case 'jumbleReset': this.handleJumbleReset(); break;
-                case 'jumbleCheck': this.handleJumbleCheck(); break;
-                case 'jumbleHint': this.handleJumbleHint(); break;
-                case 'jumbleNext': this.handleJumbleNext(); break;
-                case 'listeningAnswer': this.handleListeningAnswer(param); break;
-                case 'spellingCheck': this.handleSpellingCheck(); break;
-                case 'spellingNext': this.handleSpellingNext(); break;
-                case 'startLevelTest': this.prepareLevelTest(param); break;
-                case 'finishLevelTest': this.finishLevelTestEarly(); break;
-                case 'watchAds': this.watchAdsForCoins(); break;
-                case 'requestPurchase': this.requestPurchase(); break;
-                case 'toggleCoinModal': this.toggleCoinModal(); break;
-                case 'submitPurchase': this.submitPurchaseRequest(); break;
-                case 'updateProfile': this.updateProfile(); break;
-                case 'updateEmail': this.updateEmail(); break;
-                case 'goToProfile': this.showProfile(); break;
-                case 'showBadges': this.showBadgesModal(); break;
-                case 'showUserInfo': this.showUserInfo(); break;
-                case 'closeUserInfoModal': this.closeUserInfoModal(); break;
-                case 'changeUserPassword': this.changeUserPassword(); break;
-                case 'verifyEmail': this.verifyEmail(); break;
-                case 'syncTestHistory': this.syncTestHistoryFromBackup(); break;
-            }
-            this.render();
-        });
-        document.addEventListener('input', (e) => { if (e.target.id === 'spellingInput') this.spellingUserAnswer = e.target.value; });
-    }
-
+                    if (this.showAllCardsTemporary && !this.repeatAllSessionMastered.includes(wordId)) { 
+                        this.repeatAllSessionMastered.push(wordId); 
+                        await this.saveUserData(); 
+                    } 
+                    this.render(); 
+                } 
+                return;
+            case 'deleteWord': this.showConfirmModal(this.t('هل أنت متأكد من حذف هذه الكلمة نهائياً من بطاقاتك؟', 'Are you sure you want to permanently delete this word from your flashcards?'), async () => { const cardD = document.querySelector('.flashcard-container'); if (cardD) { cardD.classList.add('delete-anim'); setTimeout(async () => { this.hiddenFromCards.push(String(param)); await this.saveUserData(); this.render(); }, 300); } }); return;
+            case 'speak': this.speak(param); break;
+            case 'nextC': const lessonData = this.getCurrentLessonData(); const addedWords = this.userVocabulary.filter(v => v.lessonId == this.selectedLessonId); const allWords = lessonData ? [...lessonData.terms, ...addedWords] : []; let activeCards; if (this.showAllCardsTemporary) activeCards = allWords.filter(t => !this.hiddenFromCards.includes(String(t.id)) && !this.repeatAllSessionMastered.includes(String(t.id))); else activeCards = allWords.filter(t => !this.masteredWords.includes(String(t.id)) && !this.hiddenFromCards.includes(String(t.id))); if (activeCards.length === 0) break; const currentCard = activeCards[this.currentCardIndex]; if (currentCard && !this.skippedCards.includes(String(currentCard.id))) this.skippedCards.push(String(currentCard.id)); this.currentCardIndex++; if (this.currentCardIndex >= activeCards.length) this.currentCardIndex = 0; this.render(); break;
+            case 'prevC': const lessonPrev = this.getCurrentLessonData(); const addedPrev = this.userVocabulary.filter(v => v.lessonId == this.selectedLessonId); const allWordsPrev = lessonPrev ? [...lessonPrev.terms, ...addedPrev] : []; let activePrev; if (this.showAllCardsTemporary) activePrev = allWordsPrev.filter(t => !this.hiddenFromCards.includes(String(t.id)) && !this.repeatAllSessionMastered.includes(String(t.id))); else activePrev = allWordsPrev.filter(t => !this.masteredWords.includes(String(t.id)) && !this.hiddenFromCards.includes(String(t.id))); if (activePrev.length === 0) break; this.currentCardIndex--; if (this.currentCardIndex < 0) this.currentCardIndex = activePrev.length - 1; this.render(); break;
+            case 'restartCards':
+                this.skippedCards = [];
+                this.currentCardIndex = 0;
+                if (param === 'all') {
+                    this.repeatAllSessionMastered = [];
+                    this.showAllCardsTemporary = true;
+                } else if (param === 'remaining') {
+                    this.showAllCardsTemporary = false;
+                    this.repeatAllSessionMastered = [];
+                }
+                const cardShuffle = document.querySelector('.flashcard-container');
+                if (cardShuffle) cardShuffle.classList.add('shuffle-anim-card');
+                setTimeout(() => {
+                    if (cardShuffle) cardShuffle.classList.remove('shuffle-anim-card');
+                    this.render();
+                }, 300);
+                this.showAd('image');
+                return;
+            case 'addNewWord': this.handleNewWord(); break;
+            case 'saveCardEdit': this.saveCardEdit(param); break;
+            case 'backToLessons': this.stopAudio(); this.currentPage = (this.selectedLevel === 'custom_list') ? 'custom_lessons_view' : 'lessons'; this.selectedLessonId = null; this.isUnlockTest = false; this.render(); setTimeout(() => window.scrollTo(0, this.scrollPos), 50); return;
+            case 'doLogin': this.handleLogin(); return;
+            case 'doSignup': this.handleSignup(); return;
+            case 'switchAuthMode': this.authMode = param; this.render(); return;
+            case 'viewPlacementDetails': const record = this.placementResults[parseInt(index)]; if (record) { this.viewingPlacementDetails = record; this.currentPage = 'placement_details'; this.render(); } break;
+            case 'viewTestHistoryDetails': this.viewTestDetails(parseInt(index)); break;
+            case 'deletePlacementTest': this.deletePlacementTest(parseInt(index)); break;
+            case 'backFromDetails': this.viewingPlacementDetails = null; this.currentPage = 'test_history'; this.render(); break;
+            case 'jumbleSelect': this.handleJumbleSelect(param); break;
+            case 'jumbleRemove': this.handleJumbleRemove(param); break;
+            case 'jumbleReset': this.handleJumbleReset(); break;
+            case 'jumbleCheck': this.handleJumbleCheck(); break;
+            case 'jumbleHint': this.handleJumbleHint(); break;
+            case 'jumbleNext': this.handleJumbleNext(); break;
+            case 'listeningAnswer': this.handleListeningAnswer(param); break;
+            case 'spellingCheck': this.handleSpellingCheck(); break;
+            case 'spellingNext': this.handleSpellingNext(); break;
+            case 'startLevelTest': this.prepareLevelTest(param); break;
+            case 'finishLevelTest': this.finishLevelTestEarly(); break;
+            case 'watchAds': this.watchAdsForCoins(); break;
+            case 'requestPurchase': this.requestPurchase(); break;
+            case 'toggleCoinModal': this.toggleCoinModal(); break;
+            case 'submitPurchase': this.submitPurchaseRequest(); break;
+            case 'updateProfile': this.updateProfile(); break;
+            case 'updateEmail': this.updateEmail(); break;
+            case 'goToProfile': this.showProfile(); break;
+            case 'showBadges': this.showBadgesModal(); break;
+            case 'showUserInfo': this.showUserInfo(); break;
+            case 'closeUserInfoModal': this.closeUserInfoModal(); break;
+            case 'changeUserPassword': this.changeUserPassword(); break;
+            case 'verifyEmail': this.verifyEmail(); break;
+            case 'syncTestHistory': this.syncTestHistoryFromBackup(); break;
+        }
+        this.render();
+    });
+    document.addEventListener('input', (e) => { if (e.target.id === 'spellingInput') this.spellingUserAnswer = e.target.value; });
+}
     render() {
         const app = document.getElementById('app');
         if (!app) return;
