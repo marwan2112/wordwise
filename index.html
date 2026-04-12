@@ -103,8 +103,7 @@
         /** * تحميل ملفات المشروع برمجياً لضمان عدم تشغيل app.js 
          * إلا بعد أن يصبح Firebase جاهزاً تماماً في المتصفح
          */
-        const projectScripts = ["data.js", "gapfillDB.js", "app.js"];
-        
+const projectScripts = ["data.js", "gapfillDB.js", "listeningBank.js", "app.js"];        
         let loadedCount = 0;
         projectScripts.forEach(src => {
             const script = document.createElement('script');
