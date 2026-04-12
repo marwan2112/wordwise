@@ -1320,53 +1320,53 @@ class App {
         this.render();
     }
 
-startAdaptiveLevelTestListening() {
-    console.log("✅ startAdaptiveLevelTestListening تم استدعاؤها");
-    if (!window.listeningBank) {
-        console.error("❌ window.listeningBank غير موجود");
-        this.showCustomModal('error', '❌', 'بيانات الاختبار السماعي غير متوفرة. تأكد من تحميل listeningBank.js');
-        return;
+    startAdaptiveLevelTestListening() {
+        console.log("✅ startAdaptiveLevelTestListening تم استدعاؤها");
+        if (!window.listeningBank) {
+            console.error("❌ window.listeningBank غير موجود");
+            this.showCustomModal('error', '❌', 'بيانات الاختبار السماعي غير متوفرة. تأكد من تحميل listeningBank.js');
+            return;
+        }
+        if (!window.listeningBank.A1 || window.listeningBank.A1.length === 0) {
+            console.warn("⚠️ listeningBank فارغ، جاري إضافة بيانات افتراضية");
+            this.addDefaultListeningQuestions();
+        }
+        this.adaptiveListeningActive = true;
+        this.listeningCompleted = false;
+        this.adaptiveListeningHistory = [];
+        this.adaptiveListeningCurrentLevel = 'A1';
+        this.adaptiveListeningPhase = 'initial';
+        this.adaptiveListeningTotalQuestions = 0;
+        this.adaptiveListeningMaxQuestions = 25;
+        
+        this.adaptiveListeningLevelStats = {
+            'A1': { correct: 0, total: 0 },
+            'A2': { correct: 0, total: 0 },
+            'B1': { correct: 0, total: 0 },
+            'B2': { correct: 0, total: 0 },
+            'C1': { correct: 0, total: 0 },
+            'C2': { correct: 0, total: 0 }
+        };
+        
+        this.adaptiveListeningUsedQuestions = {};
+        for (let level of this.adaptiveTestLevelOrder) {
+            this.adaptiveListeningUsedQuestions[level] = [];
+        }
+        
+        this.adaptiveListeningCurrentSetQuestions = [];
+        this.adaptiveListeningCurrentSetIndex = 0;
+        this.adaptiveListeningCurrentSetCorrect = 0;
+        this.adaptiveListeningConfirmationQuestions = [];
+        this.adaptiveListeningConfirmationCorrect = 0;
+        this.adaptiveListeningConfirmationTotal = 0;
+        this.adaptiveListeningAudioPlayed = {};
+        this.adaptiveListeningLastAnswer = null;
+        this.adaptiveListeningAnswered = false;
+        
+        this.loadListeningQuestionSet('A1', 5);
+        this.currentPage = 'adaptive_listening_test';
+        this.render();
     }
-    if (!window.listeningBank.A1 || window.listeningBank.A1.length === 0) {
-        console.warn("⚠️ listeningBank فارغ، جاري إضافة بيانات افتراضية");
-        this.addDefaultListeningQuestions();
-    }
-    this.adaptiveListeningActive = true;
-    this.listeningCompleted = false;
-    this.adaptiveListeningHistory = [];
-    this.adaptiveListeningCurrentLevel = 'A1';
-    this.adaptiveListeningPhase = 'initial';
-    this.adaptiveListeningTotalQuestions = 0;
-    this.adaptiveListeningMaxQuestions = 25;
-    
-    this.adaptiveListeningLevelStats = {
-        'A1': { correct: 0, total: 0 },
-        'A2': { correct: 0, total: 0 },
-        'B1': { correct: 0, total: 0 },
-        'B2': { correct: 0, total: 0 },
-        'C1': { correct: 0, total: 0 },
-        'C2': { correct: 0, total: 0 }
-    };
-    
-    this.adaptiveListeningUsedQuestions = {};
-    for (let level of this.adaptiveTestLevelOrder) {
-        this.adaptiveListeningUsedQuestions[level] = [];
-    }
-    
-    this.adaptiveListeningCurrentSetQuestions = [];
-    this.adaptiveListeningCurrentSetIndex = 0;
-    this.adaptiveListeningCurrentSetCorrect = 0;
-    this.adaptiveListeningConfirmationQuestions = [];
-    this.adaptiveListeningConfirmationCorrect = 0;
-    this.adaptiveListeningConfirmationTotal = 0;
-    this.adaptiveListeningAudioPlayed = {};
-    this.adaptiveListeningLastAnswer = null;
-    this.adaptiveListeningAnswered = false;
-    
-    this.loadListeningQuestionSet('A1', 5);
-    this.currentPage = 'adaptive_listening_test';
-    this.render();
-}
 
     addDefaultListeningQuestions() {
         if (!window.listeningBank) window.listeningBank = {};
@@ -1389,7 +1389,6 @@ startAdaptiveLevelTestListening() {
     startAdaptiveLevelTestReading() {
         console.log("✅ startAdaptiveLevelTestReading تم استدعاؤها");
         
-        // التأكد من وجود placementBank
         if (!window.placementBank) {
             console.error("❌ window.placementBank غير موجود");
             this.showCustomModal('error', '❌', 'بيانات اختبار القراءة غير متوفرة. تأكد من تحميل data.js');
@@ -1398,7 +1397,6 @@ startAdaptiveLevelTestListening() {
         
         this.prepareAdaptiveQuestionBank();
         
-        // التحقق من وجود أسئلة
         let hasQuestions = false;
         for (let level of ['A1', 'A2', 'B1', 'B2']) {
             if (this.adaptiveTestQuestionBank[level] && this.adaptiveTestQuestionBank[level].length > 0) {
@@ -1724,51 +1722,105 @@ startAdaptiveLevelTestListening() {
         this.render();
     }
 
-finalizeListeningPhase() {
-    console.log("✅ انتهت مرحلة الاختبار السماعي");
-    let bestLevel = 'A1';
-    let bestPercentage = 0;
-    for (let level of this.adaptiveTestLevelOrder) {
-        const stats = this.adaptiveListeningLevelStats[level];
-        if (stats && stats.total >= 2 && (stats.correct / stats.total) * 100 >= 70) {
-            bestLevel = level;
-            bestPercentage = (stats.correct / stats.total) * 100;
+    playListeningAudio(audioSrc, questionId) {
+        console.log("playListeningAudio called", audioSrc, questionId);
+        if (this.adaptiveListeningAudioPlayed[questionId]) {
+            this.showCustomModal('info', '🔊', this.t('يمكنك الاستماع إلى التسجيل مرة واحدة فقط.', 'You can listen to the recording only once.'));
+            return;
+        }
+        if (audioSrc && audioSrc.trim() !== "") {
+            this.playAudio(audioSrc);
+            this.adaptiveListeningAudioPlayed[questionId] = true;
+            const playBtn = document.getElementById(`playAudioBtn_${questionId}`);
+            if (playBtn) {
+                playBtn.disabled = true;
+                playBtn.style.opacity = '0.5';
+                playBtn.innerText = '✓';
+            }
+        } else {
+            this.showCustomModal('error', '❌', this.t('ملف الصوت غير متوفر.', 'Audio file not available.'));
         }
     }
-    
-    if (this.adaptiveListeningPhase === 'confirmation' && this.adaptiveListeningConfirmationTotal > 0) {
-        const confirmPercent = (this.adaptiveListeningConfirmationCorrect / this.adaptiveListeningConfirmationTotal) * 100;
-        if (confirmPercent >= 60) {
-            bestLevel = this.adaptiveListeningCurrentLevel;
-        }
-    }
-    
-    let readingStartLevel = bestLevel;
-    const levels = this.adaptiveTestLevelOrder;
-    const bestIdx = levels.indexOf(bestLevel);
-    if (bestIdx === 0) readingStartLevel = 'A2';
-    else readingStartLevel = levels[Math.min(bestIdx, levels.length-1)];
-    
-    const listeningResult = {
-        type: 'listening',
-        level: bestLevel,
-        date: new Date().toLocaleString('ar-EG'),
-        score: this.adaptiveListeningHistory.filter(h => h.isCorrect).length,
-        totalQuestions: this.adaptiveListeningHistory.length
-    };
-    this.userProfile.testsHistory.push(listeningResult);
-    
-    this.listeningResult = listeningResult;
-    this.readingStartLevel = readingStartLevel;
-    this.listeningCompleted = true;
-    
-    this.showCustomModal('info', '🎧📖', this.t('انتهيت من الجزء السماعي. اضغط "متابعة" لبدء الجزء المقروء.', 'You have completed the listening part. Click "Continue" to start the reading part.'), () => {
-        this.continueToReadingTest();
-    });
-}
-    
 
-    // ====================== دوال التمارين الأساسية (مختصرة للاختصار) ======================
+    finalizeListeningPhase() {
+        console.log("✅ انتهت مرحلة الاختبار السماعي");
+        let bestLevel = 'A1';
+        let bestPercentage = 0;
+        for (let level of this.adaptiveTestLevelOrder) {
+            const stats = this.adaptiveListeningLevelStats[level];
+            if (stats && stats.total >= 2 && (stats.correct / stats.total) * 100 >= 70) {
+                bestLevel = level;
+                bestPercentage = (stats.correct / stats.total) * 100;
+            }
+        }
+        
+        if (this.adaptiveListeningPhase === 'confirmation' && this.adaptiveListeningConfirmationTotal > 0) {
+            const confirmPercent = (this.adaptiveListeningConfirmationCorrect / this.adaptiveListeningConfirmationTotal) * 100;
+            if (confirmPercent >= 60) {
+                bestLevel = this.adaptiveListeningCurrentLevel;
+            }
+        }
+        
+        let readingStartLevel = bestLevel;
+        const levels = this.adaptiveTestLevelOrder;
+        const bestIdx = levels.indexOf(bestLevel);
+        if (bestIdx === 0) readingStartLevel = 'A2';
+        else readingStartLevel = levels[Math.min(bestIdx, levels.length-1)];
+        
+        const listeningResult = {
+            type: 'listening',
+            level: bestLevel,
+            date: new Date().toLocaleString('ar-EG'),
+            score: this.adaptiveListeningHistory.filter(h => h.isCorrect).length,
+            totalQuestions: this.adaptiveListeningHistory.length
+        };
+        this.userProfile.testsHistory.push(listeningResult);
+        
+        this.listeningResult = listeningResult;
+        this.readingStartLevel = readingStartLevel;
+        this.listeningCompleted = true;
+        
+        this.showCustomModal('info', '🎧📖', this.t('انتهيت من الجزء السماعي. اضغط "متابعة" لبدء الجزء المقروء.', 'You have completed the listening part. Click "Continue" to start the reading part.'), () => {
+            this.continueToReadingTest();
+        });
+    }
+
+    continueToReadingTest() {
+        this.prepareAdaptiveQuestionBank();
+        this.adaptiveTestActive = true;
+        this.adaptiveTestHistory = [];
+        this.adaptiveTestCurrentLevel = this.readingStartLevel;
+        this.adaptiveTestPhase = 'initial';
+        this.adaptiveTestTotalQuestions = 0;
+        this.adaptiveTestMaxQuestions = 50;
+        
+        this.adaptiveTestLevelStats = {
+            'A1': { correct: 0, total: 0 },
+            'A2': { correct: 0, total: 0 },
+            'B1': { correct: 0, total: 0 },
+            'B2': { correct: 0, total: 0 },
+            'C1': { correct: 0, total: 0 },
+            'C2': { correct: 0, total: 0 }
+        };
+        
+        this.adaptiveTestUsedQuestions = {};
+        for (let level of this.adaptiveTestLevelOrder) {
+            this.adaptiveTestUsedQuestions[level] = [];
+        }
+        
+        this.adaptiveTestCurrentSetQuestions = [];
+        this.adaptiveTestCurrentSetIndex = 0;
+        this.adaptiveTestCurrentSetCorrect = 0;
+        this.adaptiveTestConfirmationQuestions = [];
+        this.adaptiveTestConfirmationCorrect = 0;
+        this.adaptiveTestConfirmationTotal = 0;
+        
+        this.loadAdaptiveQuestionSet(this.adaptiveTestCurrentLevel, 5);
+        this.currentPage = 'adaptive_test';
+        this.render();
+    }
+
+    // ====================== دوال التمارين الأساسية ======================
     prepareJumble() {
         const lesson = this.getCurrentLessonData();
         if (!lesson) return;
@@ -2295,140 +2347,143 @@ finalizeListeningPhase() {
         document.head.appendChild(style); 
     }
     
-setupGlobalEvents() {
-    document.addEventListener('click', async (e) => {
-        const btn = e.target.closest('[data-action]');
-        if (!btn) return;
-        const { action, param, correct, total, index } = btn.dataset;
-        
-        if (action === 'ansQ') { this.handleAnswer(param, correct, btn); return; }
-        if (action === 'levelTestAns') { this.handleLevelTestAnswer(param, correct, btn); return; }
-        if (action === 'gapfillAnswer') { this.handleGapFillAnswer(btn.dataset.english); return; }
-        if (action === 'gapfillNext') { this.handleGapFillNext(); return; }
-        if (action === 'gapfillShowExplanation') { this.showDetailedGapFillExplanation(); return; }
-        if (action === 'adaptiveAnswer') { this.handleAdaptiveAnswer(param, correct, btn); return; }
-        if (action === 'adaptiveListeningAnswer') { this.handleListeningAnswer(param, correct, btn); return; }
-        if (action === 'showListeningTranscript') { this.showListeningTranscript(); return; }
-        if (action === 'nextListeningQuestion') { this.nextListeningQuestion(); return; }
-        
-        switch (action) {
-            case 'masterWord': if (!this.masteredWords.includes(String(param))) { this.masteredWords.push(String(param)); this.addMasteredWordReward(param); if (this.selectedLessonId) this.grantLessonCompletionReward(this.selectedLessonId); await this.saveUserData(); } break;
-            case 'playAudio': this.playAudio(param); break;
-            case 'pauseAudio': this.pauseAudio(); break;
-            case 'stopAudio': this.stopAudio(); break;
-            case 'skipBack10': this.skipBack10(); break;
-            case 'skipForward10': this.skipForward10(); break;
-            case 'speedUp': this.speedUp(); this.render(); break;
-            case 'speedDown': this.speedDown(); this.render(); break;
-            case 'goHome': this.stopAudio(); this.currentPage = 'home'; this.selectedLessonId = null; this.isUnlockTest = false; this.viewingPlacementDetails = null; this.levelTestLevel = null; this.adaptiveTestActive = false; this.adaptiveListeningActive = false; break;
-            case 'logout': if (confirm(this.t('هل أنت متأكد من تسجيل الخروج؟', 'Are you sure you want to logout?'))) this.logout(); break;
-            case 'selLevel': this.selectedLevel = param; this.currentPage = (param === 'custom_list') ? 'custom_lessons_view' : 'lessons'; break;
-            case 'toggleTheme': this.toggleTheme(); break;
-            case 'toggleLang': this.toggleLanguage(); break;
-            case 'selLesson': this.scrollPos = window.scrollY; this.openLesson(param); break;
-            case 'unlockWithTest': const list = window.lessonsList[this.selectedLevel] || []; const curIdx = list.findIndex(l => l.id == param); const prevId = list[curIdx - 1]?.id; if (prevId) { this.tempLessonToUnlock = param; this.selectedLessonId = prevId; this.prepareQuiz(this.getLessonDataById(prevId).terms, true); this.currentPage = 'quiz'; } break;
-            case 'unlockWithCoins': this.unlockLessonWithCoins(param); break;
-            // أضف الحالتين الجديدتين هنا قبل setPage
-            case 'start_listening_test':
-                this.startAdaptiveLevelTestListening();
-                break;
-            case 'start_reading_test':
-                this.startAdaptiveLevelTestReading();
-                break;
-            case 'setPage':
-                if (param === 'listening' && this.selectedLessonId) { if (!this.listeningUnlocked[this.selectedLessonId]) { if (!this.unlockListening(this.selectedLessonId)) return; } else this.prepareListeningQuiz(); }
-                else if (param === 'jumble' && this.selectedLessonId) { if (!this.jumbleUnlocked[this.selectedLessonId]) { if (!this.unlockJumble(this.selectedLessonId)) return; } else this.prepareJumble(); }
-                else if (param === 'spelling' && this.selectedLessonId) { if (!this.spellingUnlocked[this.selectedLessonId]) { if (!this.unlockSpelling(this.selectedLessonId)) return; } else this.prepareSpelling(); }
-                else if (param === 'quiz' && this.selectedLessonId) { const lessonData = this.getLessonDataById(this.selectedLessonId); if (lessonData) this.prepareQuiz(lessonData.terms, false); }
-                else if (param === 'profile') { this.showProfile(); return; }
-                else if (param === 'test_history') { this.showTestHistory(); return; }
-                else if (param === 'gapfill' && this.selectedLessonId) { if (!this.gapFillUnlocked[this.selectedLessonId]) { if (!this.unlockGapFill(this.selectedLessonId)) return; } else this.prepareGapFill(); }
-                else if (param === 'adaptive_test') { this.startAdaptiveLevelTestReading(); return; }
-                else if (param === 'level_test_instructions') { this.showLevelTestInstructions(); return; }
-                // يمكن إزالة السطرين التاليين لأن لدينا حالات خاصة الآن
-                // else if (param === 'start_listening_test') { this.startAdaptiveLevelTestListening(); return; }
-                // else if (param === 'start_reading_test') { this.startAdaptiveLevelTestReading(); return; }
-                this.currentPage = param; this.currentCardIndex = 0; break;
-            case 'masterWordFlash': 
-                const cardM = document.querySelector('.flashcard-container'); 
-                if (cardM) { 
-                    cardM.classList.add('master-anim'); 
-                    setTimeout(() => cardM.classList.remove('master-anim'), 200);
-                    const wordId = String(param); 
-                    if (!this.masteredWords.includes(wordId)) { 
-                        this.masteredWords.push(wordId); 
-                        this.addMasteredWordReward(param); 
-                        if (this.selectedLessonId) this.grantLessonCompletionReward(this.selectedLessonId); 
-                        await this.saveUserData(); 
-                    } 
-                    if (this.showAllCardsTemporary && !this.repeatAllSessionMastered.includes(wordId)) { 
-                        this.repeatAllSessionMastered.push(wordId); 
-                        await this.saveUserData(); 
-                    } 
-                    this.render(); 
-                } 
+    setupGlobalEvents() {
+        document.addEventListener('click', async (e) => {
+            const btn = e.target.closest('[data-action]');
+            if (!btn) return;
+            const { action, param, correct, total, index } = btn.dataset;
+            
+            if (action === 'ansQ') { this.handleAnswer(param, correct, btn); return; }
+            if (action === 'levelTestAns') { this.handleLevelTestAnswer(param, correct, btn); return; }
+            if (action === 'gapfillAnswer') { this.handleGapFillAnswer(btn.dataset.english); return; }
+            if (action === 'gapfillNext') { this.handleGapFillNext(); return; }
+            if (action === 'gapfillShowExplanation') { this.showDetailedGapFillExplanation(); return; }
+            if (action === 'adaptiveAnswer') { this.handleAdaptiveAnswer(param, correct, btn); return; }
+            if (action === 'adaptiveListeningAnswer') { this.handleListeningAnswer(param, correct, btn); return; }
+            if (action === 'showListeningTranscript') { this.showListeningTranscript(); return; }
+            if (action === 'nextListeningQuestion') { this.nextListeningQuestion(); return; }
+            if (action === 'playListeningAudio') {
+                const audioSrc = btn.dataset.audio;
+                const qId = btn.dataset.id;
+                this.playListeningAudio(audioSrc, qId);
                 return;
-            case 'deleteWord': this.showConfirmModal(this.t('هل أنت متأكد من حذف هذه الكلمة نهائياً من بطاقاتك؟', 'Are you sure you want to permanently delete this word from your flashcards?'), async () => { const cardD = document.querySelector('.flashcard-container'); if (cardD) { cardD.classList.add('delete-anim'); setTimeout(async () => { this.hiddenFromCards.push(String(param)); await this.saveUserData(); this.render(); }, 300); } }); return;
-            case 'speak': this.speak(param); break;
-            case 'nextC': const lessonData = this.getCurrentLessonData(); const addedWords = this.userVocabulary.filter(v => v.lessonId == this.selectedLessonId); const allWords = lessonData ? [...lessonData.terms, ...addedWords] : []; let activeCards; if (this.showAllCardsTemporary) activeCards = allWords.filter(t => !this.hiddenFromCards.includes(String(t.id)) && !this.repeatAllSessionMastered.includes(String(t.id))); else activeCards = allWords.filter(t => !this.masteredWords.includes(String(t.id)) && !this.hiddenFromCards.includes(String(t.id))); if (activeCards.length === 0) break; const currentCard = activeCards[this.currentCardIndex]; if (currentCard && !this.skippedCards.includes(String(currentCard.id))) this.skippedCards.push(String(currentCard.id)); this.currentCardIndex++; if (this.currentCardIndex >= activeCards.length) this.currentCardIndex = 0; this.render(); break;
-            case 'prevC': const lessonPrev = this.getCurrentLessonData(); const addedPrev = this.userVocabulary.filter(v => v.lessonId == this.selectedLessonId); const allWordsPrev = lessonPrev ? [...lessonPrev.terms, ...addedPrev] : []; let activePrev; if (this.showAllCardsTemporary) activePrev = allWordsPrev.filter(t => !this.hiddenFromCards.includes(String(t.id)) && !this.repeatAllSessionMastered.includes(String(t.id))); else activePrev = allWordsPrev.filter(t => !this.masteredWords.includes(String(t.id)) && !this.hiddenFromCards.includes(String(t.id))); if (activePrev.length === 0) break; this.currentCardIndex--; if (this.currentCardIndex < 0) this.currentCardIndex = activePrev.length - 1; this.render(); break;
-            case 'restartCards':
-                this.skippedCards = [];
-                this.currentCardIndex = 0;
-                if (param === 'all') {
-                    this.repeatAllSessionMastered = [];
-                    this.showAllCardsTemporary = true;
-                } else if (param === 'remaining') {
-                    this.showAllCardsTemporary = false;
-                    this.repeatAllSessionMastered = [];
-                }
-                const cardShuffle = document.querySelector('.flashcard-container');
-                if (cardShuffle) cardShuffle.classList.add('shuffle-anim-card');
-                setTimeout(() => {
-                    if (cardShuffle) cardShuffle.classList.remove('shuffle-anim-card');
-                    this.render();
-                }, 300);
-                this.showAd('image');
-                return;
-            case 'addNewWord': this.handleNewWord(); break;
-            case 'saveCardEdit': this.saveCardEdit(param); break;
-            case 'backToLessons': this.stopAudio(); this.currentPage = (this.selectedLevel === 'custom_list') ? 'custom_lessons_view' : 'lessons'; this.selectedLessonId = null; this.isUnlockTest = false; this.render(); setTimeout(() => window.scrollTo(0, this.scrollPos), 50); return;
-            case 'doLogin': this.handleLogin(); return;
-            case 'doSignup': this.handleSignup(); return;
-            case 'switchAuthMode': this.authMode = param; this.render(); return;
-            case 'viewPlacementDetails': const record = this.placementResults[parseInt(index)]; if (record) { this.viewingPlacementDetails = record; this.currentPage = 'placement_details'; this.render(); } break;
-            case 'viewTestHistoryDetails': this.viewTestDetails(parseInt(index)); break;
-            case 'deletePlacementTest': this.deletePlacementTest(parseInt(index)); break;
-            case 'backFromDetails': this.viewingPlacementDetails = null; this.currentPage = 'test_history'; this.render(); break;
-            case 'jumbleSelect': this.handleJumbleSelect(param); break;
-            case 'jumbleRemove': this.handleJumbleRemove(param); break;
-            case 'jumbleReset': this.handleJumbleReset(); break;
-            case 'jumbleCheck': this.handleJumbleCheck(); break;
-            case 'jumbleHint': this.handleJumbleHint(); break;
-            case 'jumbleNext': this.handleJumbleNext(); break;
-            case 'listeningAnswer': this.handleListeningAnswer(param); break;
-            case 'spellingCheck': this.handleSpellingCheck(); break;
-            case 'spellingNext': this.handleSpellingNext(); break;
-            case 'startLevelTest': this.prepareLevelTest(param); break;
-            case 'finishLevelTest': this.finishLevelTestEarly(); break;
-            case 'watchAds': this.watchAdsForCoins(); break;
-            case 'requestPurchase': this.requestPurchase(); break;
-            case 'toggleCoinModal': this.toggleCoinModal(); break;
-            case 'submitPurchase': this.submitPurchaseRequest(); break;
-            case 'updateProfile': this.updateProfile(); break;
-            case 'updateEmail': this.updateEmail(); break;
-            case 'goToProfile': this.showProfile(); break;
-            case 'showBadges': this.showBadgesModal(); break;
-            case 'showUserInfo': this.showUserInfo(); break;
-            case 'closeUserInfoModal': this.closeUserInfoModal(); break;
-            case 'changeUserPassword': this.changeUserPassword(); break;
-            case 'verifyEmail': this.verifyEmail(); break;
-            case 'syncTestHistory': this.syncTestHistoryFromBackup(); break;
-        }
-        this.render();
-    });
-    document.addEventListener('input', (e) => { if (e.target.id === 'spellingInput') this.spellingUserAnswer = e.target.value; });
-}
+            }
+            
+            switch (action) {
+                case 'masterWord': if (!this.masteredWords.includes(String(param))) { this.masteredWords.push(String(param)); this.addMasteredWordReward(param); if (this.selectedLessonId) this.grantLessonCompletionReward(this.selectedLessonId); await this.saveUserData(); } break;
+                case 'playAudio': this.playAudio(param); break;
+                case 'pauseAudio': this.pauseAudio(); break;
+                case 'stopAudio': this.stopAudio(); break;
+                case 'skipBack10': this.skipBack10(); break;
+                case 'skipForward10': this.skipForward10(); break;
+                case 'speedUp': this.speedUp(); this.render(); break;
+                case 'speedDown': this.speedDown(); this.render(); break;
+                case 'goHome': this.stopAudio(); this.currentPage = 'home'; this.selectedLessonId = null; this.isUnlockTest = false; this.viewingPlacementDetails = null; this.levelTestLevel = null; this.adaptiveTestActive = false; this.adaptiveListeningActive = false; break;
+                case 'logout': if (confirm(this.t('هل أنت متأكد من تسجيل الخروج؟', 'Are you sure you want to logout?'))) this.logout(); break;
+                case 'selLevel': this.selectedLevel = param; this.currentPage = (param === 'custom_list') ? 'custom_lessons_view' : 'lessons'; break;
+                case 'toggleTheme': this.toggleTheme(); break;
+                case 'toggleLang': this.toggleLanguage(); break;
+                case 'selLesson': this.scrollPos = window.scrollY; this.openLesson(param); break;
+                case 'unlockWithTest': const list = window.lessonsList[this.selectedLevel] || []; const curIdx = list.findIndex(l => l.id == param); const prevId = list[curIdx - 1]?.id; if (prevId) { this.tempLessonToUnlock = param; this.selectedLessonId = prevId; this.prepareQuiz(this.getLessonDataById(prevId).terms, true); this.currentPage = 'quiz'; } break;
+                case 'unlockWithCoins': this.unlockLessonWithCoins(param); break;
+                case 'start_listening_test':
+                    this.startAdaptiveLevelTestListening();
+                    break;
+                case 'start_reading_test':
+                    this.startAdaptiveLevelTestReading();
+                    break;
+                case 'setPage':
+                    if (param === 'listening' && this.selectedLessonId) { if (!this.listeningUnlocked[this.selectedLessonId]) { if (!this.unlockListening(this.selectedLessonId)) return; } else this.prepareListeningQuiz(); }
+                    else if (param === 'jumble' && this.selectedLessonId) { if (!this.jumbleUnlocked[this.selectedLessonId]) { if (!this.unlockJumble(this.selectedLessonId)) return; } else this.prepareJumble(); }
+                    else if (param === 'spelling' && this.selectedLessonId) { if (!this.spellingUnlocked[this.selectedLessonId]) { if (!this.unlockSpelling(this.selectedLessonId)) return; } else this.prepareSpelling(); }
+                    else if (param === 'quiz' && this.selectedLessonId) { const lessonData = this.getLessonDataById(this.selectedLessonId); if (lessonData) this.prepareQuiz(lessonData.terms, false); }
+                    else if (param === 'profile') { this.showProfile(); return; }
+                    else if (param === 'test_history') { this.showTestHistory(); return; }
+                    else if (param === 'gapfill' && this.selectedLessonId) { if (!this.gapFillUnlocked[this.selectedLessonId]) { if (!this.unlockGapFill(this.selectedLessonId)) return; } else this.prepareGapFill(); }
+                    else if (param === 'adaptive_test') { this.startAdaptiveLevelTestReading(); return; }
+                    else if (param === 'level_test_instructions') { this.showLevelTestInstructions(); return; }
+                    this.currentPage = param; this.currentCardIndex = 0; break;
+                case 'masterWordFlash': 
+                    const cardM = document.querySelector('.flashcard-container'); 
+                    if (cardM) { 
+                        cardM.classList.add('master-anim'); 
+                        setTimeout(() => cardM.classList.remove('master-anim'), 200);
+                        const wordId = String(param); 
+                        if (!this.masteredWords.includes(wordId)) { 
+                            this.masteredWords.push(wordId); 
+                            this.addMasteredWordReward(param); 
+                            if (this.selectedLessonId) this.grantLessonCompletionReward(this.selectedLessonId); 
+                            await this.saveUserData(); 
+                        } 
+                        if (this.showAllCardsTemporary && !this.repeatAllSessionMastered.includes(wordId)) { 
+                            this.repeatAllSessionMastered.push(wordId); 
+                            await this.saveUserData(); 
+                        } 
+                        this.render(); 
+                    } 
+                    return;
+                case 'deleteWord': this.showConfirmModal(this.t('هل أنت متأكد من حذف هذه الكلمة نهائياً من بطاقاتك؟', 'Are you sure you want to permanently delete this word from your flashcards?'), async () => { const cardD = document.querySelector('.flashcard-container'); if (cardD) { cardD.classList.add('delete-anim'); setTimeout(async () => { this.hiddenFromCards.push(String(param)); await this.saveUserData(); this.render(); }, 300); } }); return;
+                case 'speak': this.speak(param); break;
+                case 'nextC': const lessonData = this.getCurrentLessonData(); const addedWords = this.userVocabulary.filter(v => v.lessonId == this.selectedLessonId); const allWords = lessonData ? [...lessonData.terms, ...addedWords] : []; let activeCards; if (this.showAllCardsTemporary) activeCards = allWords.filter(t => !this.hiddenFromCards.includes(String(t.id)) && !this.repeatAllSessionMastered.includes(String(t.id))); else activeCards = allWords.filter(t => !this.masteredWords.includes(String(t.id)) && !this.hiddenFromCards.includes(String(t.id))); if (activeCards.length === 0) break; const currentCard = activeCards[this.currentCardIndex]; if (currentCard && !this.skippedCards.includes(String(currentCard.id))) this.skippedCards.push(String(currentCard.id)); this.currentCardIndex++; if (this.currentCardIndex >= activeCards.length) this.currentCardIndex = 0; this.render(); break;
+                case 'prevC': const lessonPrev = this.getCurrentLessonData(); const addedPrev = this.userVocabulary.filter(v => v.lessonId == this.selectedLessonId); const allWordsPrev = lessonPrev ? [...lessonPrev.terms, ...addedPrev] : []; let activePrev; if (this.showAllCardsTemporary) activePrev = allWordsPrev.filter(t => !this.hiddenFromCards.includes(String(t.id)) && !this.repeatAllSessionMastered.includes(String(t.id))); else activePrev = allWordsPrev.filter(t => !this.masteredWords.includes(String(t.id)) && !this.hiddenFromCards.includes(String(t.id))); if (activePrev.length === 0) break; this.currentCardIndex--; if (this.currentCardIndex < 0) this.currentCardIndex = activePrev.length - 1; this.render(); break;
+                case 'restartCards':
+                    this.skippedCards = [];
+                    this.currentCardIndex = 0;
+                    if (param === 'all') {
+                        this.repeatAllSessionMastered = [];
+                        this.showAllCardsTemporary = true;
+                    } else if (param === 'remaining') {
+                        this.showAllCardsTemporary = false;
+                        this.repeatAllSessionMastered = [];
+                    }
+                    const cardShuffle = document.querySelector('.flashcard-container');
+                    if (cardShuffle) cardShuffle.classList.add('shuffle-anim-card');
+                    setTimeout(() => {
+                        if (cardShuffle) cardShuffle.classList.remove('shuffle-anim-card');
+                        this.render();
+                    }, 300);
+                    this.showAd('image');
+                    return;
+                case 'addNewWord': this.handleNewWord(); break;
+                case 'saveCardEdit': this.saveCardEdit(param); break;
+                case 'backToLessons': this.stopAudio(); this.currentPage = (this.selectedLevel === 'custom_list') ? 'custom_lessons_view' : 'lessons'; this.selectedLessonId = null; this.isUnlockTest = false; this.render(); setTimeout(() => window.scrollTo(0, this.scrollPos), 50); return;
+                case 'doLogin': this.handleLogin(); return;
+                case 'doSignup': this.handleSignup(); return;
+                case 'switchAuthMode': this.authMode = param; this.render(); return;
+                case 'viewPlacementDetails': const record = this.placementResults[parseInt(index)]; if (record) { this.viewingPlacementDetails = record; this.currentPage = 'placement_details'; this.render(); } break;
+                case 'viewTestHistoryDetails': this.viewTestDetails(parseInt(index)); break;
+                case 'deletePlacementTest': this.deletePlacementTest(parseInt(index)); break;
+                case 'backFromDetails': this.viewingPlacementDetails = null; this.currentPage = 'test_history'; this.render(); break;
+                case 'jumbleSelect': this.handleJumbleSelect(param); break;
+                case 'jumbleRemove': this.handleJumbleRemove(param); break;
+                case 'jumbleReset': this.handleJumbleReset(); break;
+                case 'jumbleCheck': this.handleJumbleCheck(); break;
+                case 'jumbleHint': this.handleJumbleHint(); break;
+                case 'jumbleNext': this.handleJumbleNext(); break;
+                case 'listeningAnswer': this.handleListeningAnswer(param); break;
+                case 'spellingCheck': this.handleSpellingCheck(); break;
+                case 'spellingNext': this.handleSpellingNext(); break;
+                case 'startLevelTest': this.prepareLevelTest(param); break;
+                case 'finishLevelTest': this.finishLevelTestEarly(); break;
+                case 'watchAds': this.watchAdsForCoins(); break;
+                case 'requestPurchase': this.requestPurchase(); break;
+                case 'toggleCoinModal': this.toggleCoinModal(); break;
+                case 'submitPurchase': this.submitPurchaseRequest(); break;
+                case 'updateProfile': this.updateProfile(); break;
+                case 'updateEmail': this.updateEmail(); break;
+                case 'goToProfile': this.showProfile(); break;
+                case 'showBadges': this.showBadgesModal(); break;
+                case 'showUserInfo': this.showUserInfo(); break;
+                case 'closeUserInfoModal': this.closeUserInfoModal(); break;
+                case 'changeUserPassword': this.changeUserPassword(); break;
+                case 'verifyEmail': this.verifyEmail(); break;
+                case 'syncTestHistory': this.syncTestHistoryFromBackup(); break;
+            }
+            this.render();
+        });
+        document.addEventListener('input', (e) => { if (e.target.id === 'spellingInput') this.spellingUserAnswer = e.target.value; });
+    }
+
     render() {
         const app = document.getElementById('app');
         if (!app) return;
@@ -2484,40 +2539,7 @@ setupGlobalEvents() {
             modalDiv.innerHTML = modalContent; app.appendChild(modalDiv);
         }
     }
-    continueToReadingTest() {
-    this.prepareAdaptiveQuestionBank();
-    this.adaptiveTestActive = true;
-    this.adaptiveTestHistory = [];
-    this.adaptiveTestCurrentLevel = this.readingStartLevel;
-    this.adaptiveTestPhase = 'initial';
-    this.adaptiveTestTotalQuestions = 0;
-    this.adaptiveTestMaxQuestions = 50;
-    
-    this.adaptiveTestLevelStats = {
-        'A1': { correct: 0, total: 0 },
-        'A2': { correct: 0, total: 0 },
-        'B1': { correct: 0, total: 0 },
-        'B2': { correct: 0, total: 0 },
-        'C1': { correct: 0, total: 0 },
-        'C2': { correct: 0, total: 0 }
-    };
-    
-    this.adaptiveTestUsedQuestions = {};
-    for (let level of this.adaptiveTestLevelOrder) {
-        this.adaptiveTestUsedQuestions[level] = [];
-    }
-    
-    this.adaptiveTestCurrentSetQuestions = [];
-    this.adaptiveTestCurrentSetIndex = 0;
-    this.adaptiveTestCurrentSetCorrect = 0;
-    this.adaptiveTestConfirmationQuestions = [];
-    this.adaptiveTestConfirmationCorrect = 0;
-    this.adaptiveTestConfirmationTotal = 0;
-    
-    this.loadAdaptiveQuestionSet(this.adaptiveTestCurrentLevel, 5);
-    this.currentPage = 'adaptive_test';
-    this.render();
-}
+
     getHeader() {
         if (this.currentPage === 'auth') return '';
         let nav = '';
@@ -2526,7 +2548,7 @@ setupGlobalEvents() {
         }
         return `<header class="header"><div class="header-content"><div class="logo-container" data-action="goHome"><img src="wordwise_logo.png" alt="WordWise"><h2>WordWise</h2></div><div class="header-buttons"><button class="header-btn lang-btn" data-action="toggleLang" title="${this.t('تغيير اللغة', 'Change Language')}">${this.lang === 'ar' ? 'EN' : 'عربي'}</button><button class="header-btn" data-action="toggleTheme" title="${this.t('الوضع الليلي', 'Dark Mode')}">${this.theme === 'light' ? '🌙' : '☀️'}</button><div class="coin-display" data-action="toggleCoinModal" title="${this.t('رصيد اللآلئ', 'Pearls Balance')}"><span>💎</span> ${this.userCoins}<span style="font-size:0.9rem;">➕</span></div><button class="header-btn" data-action="goToProfile" title="${this.t('الملف الشخصي', 'Profile')}">👤</button></div></div>${nav}</header>`;
     }
-    
+
     getView(lesson, allTerms) {
         if (this.currentPage === 'auth') {
             return `<main class="main-content"><div class="auth-container"><img src="wordwise_logo.png" alt="WordWise"><h1>WordWise</h1><p>${this.t('كن حكيماً في اختيار كلماتك', 'Be wise in choosing your words')}</p></div><div class="reading-card auth-card"><div class="auth-tabs"><div class="auth-tab ${this.authMode === 'login' ? 'active' : ''}" data-action="switchAuthMode" data-param="login">${this.t('تسجيل الدخول', 'Login')}</div><div class="auth-tab ${this.authMode === 'signup' ? 'active' : ''}" data-action="switchAuthMode" data-param="signup">${this.t('إنشاء حساب', 'Sign Up')}</div></div>${this.authMode === 'login' ? `<input id="loginEmail" placeholder="${this.t('البريد الإلكتروني', 'Email')}" class="auth-input"><input type="password" id="loginPass" placeholder="${this.t('كلمة المرور', 'Password')}" class="auth-input"><button class="hero-btn" data-action="doLogin" style="width:100%;">${this.t('تسجيل الدخول', 'Login')}</button>` : `<input id="signupName" placeholder="${this.t('الاسم الكامل', 'Full Name')}" class="auth-input"><input id="signupEmail" placeholder="${this.t('البريد الإلكتروني', 'Email')}" class="auth-input"><input type="password" id="signupPass" placeholder="${this.t('كلمة المرور', 'Password')}" class="auth-input"><input type="password" id="signupConfirmPass" placeholder="${this.t('تأكيد كلمة المرور', 'Confirm Password')}" class="auth-input"><input id="signupAge" placeholder="${this.t('العمر (اختياري)', 'Age (Optional)')}" class="auth-input"><button class="hero-btn" data-action="doSignup" style="width:100%;">${this.t('إنشاء حساب', 'Sign Up')}</button>`}<p style="margin-top:12px; font-size:0.75rem; color:#666; text-align:center;">${this.t('جميع بياناتك محفوظة ومرتبطة بهذا البريد.', 'All your data is stored and linked to this email.')}</p></div></main>`;
@@ -2560,69 +2582,71 @@ setupGlobalEvents() {
             </main>`;
         }
         
-if (this.currentPage === 'adaptive_listening_test') {
-    if (!this.adaptiveListeningActive) {
-        return `<div class="reading-card"><p>${this.t('جاري الانتقال إلى اختبار القراءة...', 'Moving to reading test...')}</p></div>`;
-    }
-    const question = this.getCurrentListeningQuestion();
-    if (!question) {
-        return `<div class="reading-card"><p>${this.t('جاري تحميل السؤال التالي...', 'Loading next question...')}</p></div>`;
-    }
-    const opts = [...question.options].sort(() => 0.5 - Math.random());
-    const correctAnswer = question.correct;
-    const totalSoFar = this.adaptiveListeningHistory.length;
-    const questionId = question.id;
-    const audioSrc = question.audio;
-    const hasPlayed = this.adaptiveListeningAudioPlayed[questionId] || false;
-    
-    return `<div class="reading-card">
-        <div style="display:flex; justify-content:space-between; margin-bottom:15px; flex-wrap:wrap; gap:8px;">
-            <span style="background:#e2e8f0; color:#475569; padding:4px 12px; border-radius:20px; font-weight:bold; font-size:0.8rem;">
-                ${this.t('السؤال', 'Question')} ${totalSoFar + 1} - ${this.t('استماع', 'Listening')}
-            </span>
-        </div>
-        <div style="text-align:center; margin:20px 0;">
-            <button id="playAudioBtn_${questionId}" class="hero-btn" onclick="appInstance.playListeningAudio('${audioSrc}', '${questionId}')" style="background:#6366f1; font-size:1.5rem; padding:10px 20px; ${hasPlayed ? 'opacity:0.5;' : ''}" ${hasPlayed ? 'disabled' : ''}>
-                🔊
-            </button>
-        </div>
-        <h3 style="margin-bottom:20px; direction:ltr; text-align:center; font-size:1.1rem;">${question.text}</h3>
-        <div class="quiz-options" id="listeningOptions">
-            ${opts.map(opt => `<button class="quiz-opt-btn listening-opt-btn" data-action="adaptiveListeningAnswer" data-param="${opt}" data-correct="${correctAnswer}">${opt}</button>`).join('')}
-        </div>
-        ${this.adaptiveListeningLastAnswer ? `
-            <div class="spelling-feedback ${this.adaptiveListeningLastAnswer.isCorrect ? 'correct-feedback' : 'wrong-feedback'}" style="text-align:center; margin:12px 0;">
-                ${this.adaptiveListeningLastAnswer.isCorrect ? this.t('✅ إجابة صحيحة!', '✅ Correct answer!') : this.t('❌ إجابة خاطئة!', '❌ Wrong answer!')}
-            </div>
-            <button class="hero-btn" data-action="showListeningTranscript" style="background:#f59e0b; width:100%; margin:8px 0;">📝 ${this.t('عرض النص المكتوب', 'Show Transcript')}</button>
-            ${this.adaptiveListeningLastAnswer.showTranscript ? `<div style="margin:10px 0; padding:12px; background:#f1f5f9; border-radius:8px; direction:ltr; text-align:left; font-size:0.85rem;">${this.adaptiveListeningLastAnswer.transcript}</div>` : ''}
-            <button class="hero-btn" data-action="nextListeningQuestion" style="background:#3b82f6; width:100%;">➡️ ${this.t('التالي', 'Next')}</button>
-        ` : ''}
-    </div>`;
-}        if (this.currentPage === 'adaptive_test') {
-    if (!this.adaptiveTestActive) {
-        return this.showAdaptiveResult();
-    }
-    const question = this.getCurrentAdaptiveQuestion();
-    if (!question) {
-        return `<div class="reading-card"><p>${this.t('جاري تحميل السؤال التالي...', 'Loading next question...')}</p></div>`;
-    }
-    const opts = [...question.options].sort(() => 0.5 - Math.random());
-    const correctAnswer = question.correct;
-    const totalSoFar = this.adaptiveTestHistory.length;
-
-    return `<div class="reading-card">
-        <div style="display:flex; justify-content:flex-end; margin-bottom:15px; flex-wrap:wrap; gap:8px;">
-            <span style="background:#e2e8f0; color:#475569; padding:4px 12px; border-radius:20px; font-weight:bold; font-size:0.8rem;">
-                ${this.t('السؤال', 'Question')} ${totalSoFar + 1}
-            </span>
-        </div>
-        <h2 style="margin-bottom:25px; direction:ltr; text-align:left; line-height:1.4; font-size:1.2rem;">${question.q}</h2>
-        <div class="quiz-options">
-            ${opts.map(opt => `<button class="quiz-opt-btn" data-action="adaptiveAnswer" data-param="${opt}" data-correct="${correctAnswer}">${opt}</button>`).join('')}
-        </div>
-    </div>`;
-}
+        if (this.currentPage === 'adaptive_listening_test') {
+            if (!this.adaptiveListeningActive) {
+                return `<div class="reading-card"><p>${this.t('جاري الانتقال إلى اختبار القراءة...', 'Moving to reading test...')}</p></div>`;
+            }
+            const question = this.getCurrentListeningQuestion();
+            if (!question) {
+                return `<div class="reading-card"><p>${this.t('جاري تحميل السؤال التالي...', 'Loading next question...')}</p></div>`;
+            }
+            const opts = [...question.options].sort(() => 0.5 - Math.random());
+            const correctAnswer = question.correct;
+            const totalSoFar = this.adaptiveListeningHistory.length;
+            const questionId = question.id;
+            const audioSrc = question.audio;
+            const hasPlayed = this.adaptiveListeningAudioPlayed[questionId] || false;
+            
+            return `<div class="reading-card">
+                <div style="display:flex; justify-content:space-between; margin-bottom:15px; flex-wrap:wrap; gap:8px;">
+                    <span style="background:#e2e8f0; color:#475569; padding:4px 12px; border-radius:20px; font-weight:bold; font-size:0.8rem;">
+                        ${this.t('السؤال', 'Question')} ${totalSoFar + 1} - ${this.t('استماع', 'Listening')}
+                    </span>
+                </div>
+                <div style="text-align:center; margin:20px 0;">
+                    <button id="playAudioBtn_${questionId}" class="hero-btn" data-action="playListeningAudio" data-audio="${audioSrc}" data-id="${questionId}" style="background:#6366f1; font-size:1.5rem; padding:10px 20px; ${hasPlayed ? 'opacity:0.5;' : ''}" ${hasPlayed ? 'disabled' : ''}>
+                        🔊
+                    </button>
+                </div>
+                <h3 style="margin-bottom:20px; direction:ltr; text-align:center; font-size:1.1rem;">${question.text}</h3>
+                <div class="quiz-options" id="listeningOptions">
+                    ${opts.map(opt => `<button class="quiz-opt-btn listening-opt-btn" data-action="adaptiveListeningAnswer" data-param="${opt}" data-correct="${correctAnswer}">${opt}</button>`).join('')}
+                </div>
+                ${this.adaptiveListeningLastAnswer ? `
+                    <div class="spelling-feedback ${this.adaptiveListeningLastAnswer.isCorrect ? 'correct-feedback' : 'wrong-feedback'}" style="text-align:center; margin:12px 0;">
+                        ${this.adaptiveListeningLastAnswer.isCorrect ? this.t('✅ إجابة صحيحة!', '✅ Correct answer!') : this.t('❌ إجابة خاطئة!', '❌ Wrong answer!')}
+                    </div>
+                    <button class="hero-btn" data-action="showListeningTranscript" style="background:#f59e0b; width:100%; margin:8px 0;">📝 ${this.t('عرض النص المكتوب', 'Show Transcript')}</button>
+                    ${this.adaptiveListeningLastAnswer.showTranscript ? `<div style="margin:10px 0; padding:12px; background:#f1f5f9; border-radius:8px; direction:ltr; text-align:left; font-size:0.85rem;">${this.adaptiveListeningLastAnswer.transcript}</div>` : ''}
+                    <button class="hero-btn" data-action="nextListeningQuestion" style="background:#3b82f6; width:100%;">➡️ ${this.t('التالي', 'Next')}</button>
+                ` : ''}
+            </div>`;
+        }
+        
+        if (this.currentPage === 'adaptive_test') {
+            if (!this.adaptiveTestActive) {
+                return this.showAdaptiveResult();
+            }
+            const question = this.getCurrentAdaptiveQuestion();
+            if (!question) {
+                return `<div class="reading-card"><p>${this.t('جاري تحميل السؤال التالي...', 'Loading next question...')}</p></div>`;
+            }
+            const opts = [...question.options].sort(() => 0.5 - Math.random());
+            const correctAnswer = question.correct;
+            const totalSoFar = this.adaptiveTestHistory.length;
+        
+            return `<div class="reading-card">
+                <div style="display:flex; justify-content:flex-end; margin-bottom:15px; flex-wrap:wrap; gap:8px;">
+                    <span style="background:#e2e8f0; color:#475569; padding:4px 12px; border-radius:20px; font-weight:bold; font-size:0.8rem;">
+                        ${this.t('السؤال', 'Question')} ${totalSoFar + 1}
+                    </span>
+                </div>
+                <h2 style="margin-bottom:25px; direction:ltr; text-align:left; line-height:1.4; font-size:1.2rem;">${question.q}</h2>
+                <div class="quiz-options">
+                    ${opts.map(opt => `<button class="quiz-opt-btn" data-action="adaptiveAnswer" data-param="${opt}" data-correct="${correctAnswer}">${opt}</button>`).join('')}
+                </div>
+            </div>`;
+        }
         
         if (this.currentPage === 'adaptive_test_result') {
             return this.showAdaptiveResult();
@@ -2643,11 +2667,13 @@ if (this.currentPage === 'adaptive_listening_test') {
             return `<div class="reading-card"><button class="hero-btn" data-action="backFromDetails" style="margin-bottom:15px; background:#64748b;">← ${this.t('رجوع', 'Back')}</button><h2 style="text-align:center;">${this.t('تفاصيل اختبار', 'Test Details')} ${this.viewingPlacementDetails.date}</h2><p style="text-align:center;">${this.t('المستوى النهائي:', 'Final Level:')} <strong>${this.viewingPlacementDetails.displayLevel || this.viewingPlacementDetails.level}</strong> | ${this.t('الدرجة:', 'Score:')} ${this.viewingPlacementDetails.score}/${this.viewingPlacementDetails.totalQuestions}</p><div style="max-height:350px; overflow-y:auto; border:1px solid #e2e8f0; border-radius:8px; padding:10px;">${details.map((d, i) => `<div style="border-bottom:1px solid #e2e8f0; padding:8px; margin-bottom:5px;"><p><strong>${this.t('س', 'Q')}${i + 1}:</strong> ${d.question}</p><p>${this.t('مستوى السؤال:', 'Question level:')} ${d.level || this.t('غير محدد', 'Not specified')}</p><p>${this.t('إجابتك:', 'Your answer:')} ${d.selected || this.t('لم يجب', 'Not answered')} - ${d.isCorrect ? '✅' : '❌'}</p><p>${this.t('الإجابة الصحيحة:', 'Correct answer:')} ${d.correct || this.t('غير معروفة', 'Unknown')}</p></div>`).join('')}</div></div>`; 
         }
         
-        if (this.currentPage === 'lessons') { const list = this.getLessonsForCurrentLevel(); let testLevelParam = ''; if (this.selectedLevel === 'beginner') testLevelParam = 'beginner'; else if (this.selectedLevel === 'intermediate') testLevelParam = 'intermediate'; else if (this.selectedLevel === 'advanced') testLevelParam = 'advanced'; const addLessonButton = `<div class="feature-card" data-action="setPage" data-param="addLesson" style="border: 2px dashed #10b981; background: linear-gradient(135deg, #e0f2e9, #d1fae5);"><h3 style="font-size:0.95rem;">📝 ${this.t('إضافة درس يدوي', 'Add Manual Lesson')}</h3><p style="font-size:0.7rem; margin-top:4px;">${this.t('أضف درساً خاصاً بك', 'Add your own lesson')}</p></div>`; return `<main class="main-content"><button class="hero-btn" data-action="goHome" style="margin-bottom:15px; background:#64748b;">← ${this.t('رجوع', 'Back')}</button>${testLevelParam ? `<div style="margin-bottom:15px; text-align:center;"><button class="hero-btn" data-action="startLevelTest" data-param="${testLevelParam}" style="background:#8b5cf6;">📊 ${this.t('اختبار المستوى الشامل', 'Comprehensive Level Test')}</button></div>` : ''}<div class="features-grid">${list.map(l => { const isOk = (list[0].id == l.id || this.unlockedLessons.includes(String(l.id))) && !l.isGenerated; const displayLock = (!isOk && !l.isGenerated) ? '🔒 ' : ''; return `<div class="feature-card" data-action="selLesson" data-param="${l.id}" style="${(!isOk && !l.isGenerated) ? 'opacity:0.6;' : ''}"><h3 style="font-size:0.9rem;">${displayLock}${l.title}</h3>${l.isGenerated ? `<div style="display:flex; justify-content:center; gap:8px; margin-top:8px; flex-wrap:wrap;"><button class="hero-btn" data-action="deleteGeneratedLesson" data-param="${l.id}" style="background:#ef4444; padding:4px 8px; font-size:0.65rem;">🗑️ ${this.t('حذف', 'Delete')}</button><button class="hero-btn" data-action="regenerateAILesson" data-param="${this.selectedLevel},${l.id}" style="background:#f59e0b; padding:4px 8px; font-size:0.65rem;">🔄 ${this.t('إعادة توليد', 'Regenerate')}</button></div>` : ''}</div>`; }).join('')}${addLessonButton}</div></main>`; }
+        if (this.currentPage === 'lessons') { const list = this.getLessonsForCurrentLevel(); let testLevelParam = ''; if (this.selectedLevel === 'beginner') testLevelParam = 'beginner'; else if (this.selectedLevel === 'intermediate') testLevelParam = 'intermediate'; else if (this.selectedLevel === 'advanced') testLevelParam = 'advanced'; const addLessonButton = `<div class="feature-card" data-action="setPage" data-param="addLesson" style="border: 2px dashed #10b981; background: linear-gradient(135deg, #e0f2e9, #d1fae5);"><h3 style="font-size:0.95rem;">📝 ${this.t('إضافة درس يدوي', 'Add Manual Lesson')}</h3><p style="font-size:0.7rem; margin-top:4px;">${this.t('أضف درساً خاصاً بك', 'Add your own lesson')}</p></div>`; return `<main class="main-content"><button class="hero-btn" data-action="goHome" style="margin-bottom:15px; background:#64748b;">← ${this.t('رجوع', 'Back')}</button>${testLevelParam ? `<div style="margin-bottom:15px; text-align:center;"><button class="hero-btn" data-action="startLevelTest" data-param="${testLevelParam}" style="background:#8b5cf6;">📊 ${this.t('اختبار المستوى الشامل', 'Comprehensive Level Test')}</button></div>` : ''}<div class="features-grid">${list.map(l => { const isOk = (list[0].id == l.id || this.unlockedLessons.includes(String(l.id))) && !l.isGenerated; const displayLock = (!isOk && !l.isGenerated) ? '🔒 ' : ''; return `<div class="feature-card" data-action="selLesson" data-param="${l.id}" style="${(!isOk && !l.isGenerated) ? 'opacity:0.6;' : ''}"><h3 style="font-size:0.9rem;">${displayLock}${l.title}</h3>${l.isGenerated ? `<div style="display:flex; justify-content:center; gap:8px; margin-top:8px; flex-wrap:wrap;"><button class="hero-btn" data-action="deleteGeneratedLesson" data-param="${l.id}" style="background:#ef4444; padding:4px 8px; font-size:0.65rem;">🗑️ ${this.t('حذف', 'Delete')}</button><button class="hero-btn" data-action="regenerateAILesson" data-param="${this.selectedLevel},${l.id}" style="background:#f59e0b; padding:4px 8px; font-size:0.65rem;">🔄 ${this.t('إعادة توليد', 'Regenerate')}</button></div>` : ''}</div>`; }).join('')}${addLessonButton}</div></main>`;
+        }
         
         if (this.currentPage === 'unlock_choice') return `<div class="reading-card" style="text-align:center;"><h3>🔓 ${this.t('فتح الدرس', 'Unlock Lesson')}</h3><p style="margin:10px 0;">${this.t('اختر طريقة فتح الدرس:', 'Choose how to unlock the lesson:')}</p><div class="unlock-choice"><button class="hero-btn" data-action="unlockWithTest" data-param="${this.tempLessonToUnlock}" style="background:#3b82f6;">🧪 ${this.t('خوض الاختبار', 'Take Test')}</button><button class="hero-btn" data-action="unlockWithCoins" data-param="${this.tempLessonToUnlock}" style="background:#ffd700; color:#000;">💰 ${this.t('دفع 100 لؤلؤة', 'Pay 100 Pearls')} (${this.t('رصيدك:', 'Your balance:')} ${this.userCoins})</button></div><button class="hero-btn" data-action="goHome" style="margin-top:15px; background:#64748b;">${this.t('الرئيسية', 'Home')}</button></div>`;
         
-        if (this.currentPage === 'custom_lessons_view') { const lessons = Object.values(this.customLessons); return `<main class="main-content"><button class="hero-btn" data-action="goHome" style="margin-bottom:15px; background:#64748b;">← ${this.t('العودة للرئيسية', 'Back to Home')}</button><h2 style="margin-bottom:15px; text-align:center; font-size:1.3rem;">📂 ${this.t('نصوصي الخاصة', 'My Custom Texts')}</h2>${lessons.length === 0 ? `<div class="reading-card" style="text-align:center; padding:25px; color:#666;">${this.t('لا توجد نصوص محفوظة. صوّر نصك الأول الآن!', 'No saved texts. Capture your first text now!')}</div>` : ''}<div style="display: flex; flex-direction: column; gap: 12px;">${lessons.map(l => `<div class="reading-card" style="border-right: 4px solid #6366f1;"><div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; flex-wrap:wrap; gap:8px;"><h3 style="margin:0; color:#4f46e5; cursor:pointer; font-size:1rem;" data-action="selLesson" data-param="${l.id}">${l.title}</h3><div style="display: flex; gap: 10px;"><button onclick="appInstance.editLessonTitle('${l.id}')" style="background:none; border:none; cursor:pointer; font-size:1rem;">✏️</button><button onclick="appInstance.editLessonContent('${l.id}')" style="background:none; border:none; cursor:pointer; font-size:1rem;">📝</button><button onclick="appInstance.deleteCustomLesson('${l.id}')" style="background:none; border:none; cursor:pointer; font-size:1rem;">🗑️</button></div></div><p style="font-size:0.8rem; color:#555; margin-bottom:10px; display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden; direction:ltr; text-align:left;">${l.content}</p><button class="hero-btn" data-action="selLesson" data-param="${l.id}" style="width:100%; padding:8px; font-size:0.85rem; background:#6366f1;">📖 ${this.t('فتح النص للدراسة', 'Open Text for Study')}</button></div>`).join('')}</div></main>`; }
+        if (this.currentPage === 'custom_lessons_view') { const lessons = Object.values(this.customLessons); return `<main class="main-content"><button class="hero-btn" data-action="goHome" style="margin-bottom:15px; background:#64748b;">← ${this.t('العودة للرئيسية', 'Back to Home')}</button><h2 style="margin-bottom:15px; text-align:center; font-size:1.3rem;">📂 ${this.t('نصوصي الخاصة', 'My Custom Texts')}</h2>${lessons.length === 0 ? `<div class="reading-card" style="text-align:center; padding:25px; color:#666;">${this.t('لا توجد نصوص محفوظة. صوّر نصك الأول الآن!', 'No saved texts. Capture your first text now!')}</div>` : ''}<div style="display: flex; flex-direction: column; gap: 12px;">${lessons.map(l => `<div class="reading-card" style="border-right: 4px solid #6366f1;"><div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; flex-wrap:wrap; gap:8px;"><h3 style="margin:0; color:#4f46e5; cursor:pointer; font-size:1rem;" data-action="selLesson" data-param="${l.id}">${l.title}</h3><div style="display: flex; gap: 10px;"><button onclick="appInstance.editLessonTitle('${l.id}')" style="background:none; border:none; cursor:pointer; font-size:1rem;">✏️</button><button onclick="appInstance.editLessonContent('${l.id}')" style="background:none; border:none; cursor:pointer; font-size:1rem;">📝</button><button onclick="appInstance.deleteCustomLesson('${l.id}')" style="background:none; border:none; cursor:pointer; font-size:1rem;">🗑️</button></div></div><p style="font-size:0.8rem; color:#555; margin-bottom:10px; display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden; direction:ltr; text-align:left;">${l.content}</p><button class="hero-btn" data-action="selLesson" data-param="${l.id}" style="width:100%; padding:8px; font-size:0.85rem; background:#6366f1;">📖 ${this.t('فتح النص للدراسة', 'Open Text for Study')}</button></div>`).join('')}</div></main>`;
+        }
         
         if (this.currentPage === 'reading') { 
             const audioSrc = lesson.audio || `audio/${lesson.id}.mp3`; 
