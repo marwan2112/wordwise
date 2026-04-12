@@ -1,4 +1,4 @@
-// ====================== app.js كامل ومعدل ======================
+// ====================== app.js - النسخة النهائية المعدلة بالكامل ======================
 window.addEventListener('error', function(e) {
     alert('❌ خطأ في السطر: ' + e.lineno + '\nالملف: ' + e.filename + '\nالرسالة: ' + e.message);
     document.body.innerHTML = '<pre style="color:red; background:white; padding:10px;">خطأ في السطر: ' + e.lineno + '\n' + e.message + '</pre>';
@@ -61,6 +61,9 @@ class App {
         this.adaptiveListeningMinQuestions = 15;
         this.adaptiveListeningLastAnswer = null;
         this.adaptiveListeningAnswered = false;
+        this.listeningBestLevel = 'A1';
+        this.readingStartLevelFromListening = 'A2';
+        this.listeningResult = null;
         
         // متغيرات التطبيق الأساسية
         this.repeatAllSessionMastered = [];
@@ -190,7 +193,7 @@ class App {
         this.quizIndex = 0;
         this.quizScore = 0;
         this.quizOptions = [];
-        this.audioCtx = null; // ✅ سيتم إنشاؤه عند أول نقرة
+        this.audioCtx = null;
         this.isWaiting = false;
         this.scrollPos = 0;
         this.levelTestResultMessage = '';
@@ -1232,99 +1235,6 @@ class App {
         }, 1200);
     }
 
-    finalizeAdaptiveTest() {
-        console.log("✅ finalizeAdaptiveTest تم استدعاؤها");
-        
-        let bestLevel = 'A1';
-        let bestPercentage = 0;
-        for (let level of this.adaptiveTestLevelOrder) {
-            const stats = this.adaptiveTestLevelStats[level];
-            if (stats.total >= 4 && (stats.correct / stats.total) * 100 >= 70) {
-                bestLevel = level;
-                bestPercentage = (stats.correct / stats.total) * 100;
-            }
-        }
-        
-        if (this.adaptiveTestPhase === 'confirmation' && this.adaptiveTestConfirmationTotal > 0) {
-            const confirmPercent = (this.adaptiveTestConfirmationCorrect / this.adaptiveTestConfirmationTotal) * 100;
-            if (confirmPercent >= 60) {
-                bestLevel = this.adaptiveTestCurrentLevel;
-            }
-        }
-        
-        const levels = this.adaptiveTestLevelOrder;
-        const bestIdx = levels.indexOf(bestLevel);
-        let nearHigher = false;
-        if (bestIdx < levels.length - 1) {
-            const nextStats = this.adaptiveTestLevelStats[levels[bestIdx+1]];
-            if (nextStats && nextStats.total >= 2 && (nextStats.correct / nextStats.total) * 100 >= 50) {
-                nearHigher = true;
-            }
-        }
-        
-        let finalDisplay = bestLevel;
-        if (nearHigher) finalDisplay = `${bestLevel} (${this.t('قريب من', 'close to')} ${levels[bestIdx+1]})`;
-        
-        const result = {
-            level: bestLevel,
-            displayLevel: finalDisplay,
-            date: new Date().toLocaleString('ar-EG'),
-            score: this.adaptiveTestHistory.filter(h => h.isCorrect).length,
-            totalQuestions: this.adaptiveTestHistory.length,
-            ielts: this.getIeltsEquivalent(bestLevel),
-            details: this.adaptiveTestHistory,
-            levelStats: [],
-            skillAnalysis: { strengths: [], weaknesses: [] }
-        };
-        
-        this.placementResults.unshift(result);
-        this.placementFullHistory.push(result);
-        this.userProfile.level = result.level;
-        this.userProfile.testsHistory.push({
-            type: 'اختبار مستوى متكامل',
-            date: result.date,
-            score: `${result.score}/${result.totalQuestions}`,
-            level: result.displayLevel
-        });
-        
-        try {
-            localStorage.setItem('placementResults_backup', JSON.stringify(this.placementResults));
-            localStorage.setItem('userProfile_backup', JSON.stringify(this.userProfile));
-        } catch(e) { console.error(e); }
-        
-        if (this.currentUser) {
-            if (!this.canSave) {
-                this.canSave = true;
-            }
-            this.saveUserData();
-        }
-        
-        this.adaptiveTestActive = false;
-        this.currentPage = 'adaptive_test_result';
-        this.render();
-    }
-
-    showAdaptiveResult() {
-        const lastResult = this.placementResults[0];
-        if (!lastResult) return `<div class="reading-card"><p>${this.t('لا توجد نتيجة', 'No result')}</p></div>`;
-        
-        return `<div class="reading-card result-card">
-            <h2 style="text-align:center;">🏁 ${this.t('نتيجة اختبار المستوى', 'Level Test Result')}</h2>
-            <div style="background:#f0f7ff; padding:15px; border-radius:10px; margin:10px 0; text-align:center;">
-                <h1 style="color:#1e40af; margin-bottom:5px; font-size:1.8rem;">${lastResult.displayLevel}</h1>
-                <p style="font-weight:bold; color:#3b82f6;">IELTS: ${lastResult.ielts}</p>
-                <p style="font-size:0.85rem; color:#64748b;">${this.t('الإجابات الصحيحة:', 'Correct answers:')} ${lastResult.score} / ${lastResult.totalQuestions}</p>
-                <p style="font-size:0.8rem; color:#64748b; margin-top:5px;">${this.t('تاريخ الاختبار:', 'Test date:')} ${lastResult.date}</p>
-            </div>
-            <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:15px;">
-                <button class="hero-btn" onclick="appInstance.showLevelTestInstructions()" style="background:#ec4899; flex:1;">${this.t('إعادة الاختبار 🔄', 'Retake Test 🔄')}</button>
-                <button class="hero-btn" data-action="goHome" style="background:#64748b; flex:1;">${this.t('الرئيسية', 'Home')}</button>
-            </div>
-        </div>`;
-    }
-    
-    getIeltsEquivalent(level) { const map = { 'A1': '2.0-3.0', 'A2': '3.0-4.0', 'B1': '4.0-5.0', 'B2': '5.5-6.5', 'C1': '7.0-8.0', 'C2': '8.5-9.0' }; return map[level]; }
-
     // ====================== دوال اختبار المستوى السماعي ======================
     showLevelTestInstructions() {
         this.currentPage = 'level_test_instructions';
@@ -1423,7 +1333,7 @@ class App {
         
         this.adaptiveTestActive = true;
         this.adaptiveTestHistory = [];
-        this.adaptiveTestCurrentLevel = 'A2';
+        this.adaptiveTestCurrentLevel = this.readingStartLevelFromListening || 'A2';
         this.adaptiveTestPhase = 'initial';
         this.adaptiveTestTotalQuestions = 0;
         this.adaptiveTestMaxQuestions = 50;
@@ -1449,7 +1359,7 @@ class App {
         this.adaptiveTestConfirmationCorrect = 0;
         this.adaptiveTestConfirmationTotal = 0;
         
-        this.loadAdaptiveQuestionSet('A2', 5);
+        this.loadAdaptiveQuestionSet(this.adaptiveTestCurrentLevel, 5);
         this.currentPage = 'adaptive_test';
         this.render();
     }
@@ -1629,14 +1539,10 @@ class App {
         this.adaptiveListeningPhase = 'confirmation';
     }
 
-    // ✅ الدالة المعدلة (تم تغيير اسمها لتجنب التضارب)
     handleAdaptiveListeningAnswer(selected, correct, btnElement) {
         console.log("🔊 handleAdaptiveListeningAnswer called", { selected, correct, isWaiting: this.isWaiting });
         
-        if (this.isWaiting) {
-            console.log("⏳ isWaiting is true, returning");
-            return;
-        }
+        if (this.isWaiting) return;
         this.isWaiting = true;
         
         const selectedTrim = selected.trim().toLowerCase();
@@ -1675,20 +1581,12 @@ class App {
                 this.adaptiveListeningLastAnswer = {
                     isCorrect: isCorrect,
                     transcript: currentQuestion.transcript || '',
-                    showTranscript: false
+                    showTranscript: false,
+                    currentQuestion: currentQuestion
                 };
                 this.adaptiveListeningConfirmationQuestions.shift();
                 this.adaptiveListeningTotalQuestions++;
-                
-                if (this.adaptiveListeningConfirmationQuestions.length === 0 || this.adaptiveListeningTotalQuestions >= this.adaptiveListeningMaxQuestions) {
-                    setTimeout(() => {
-                        this.finalizeListeningPhase();
-                        this.isWaiting = false;
-                        this.render();
-                    }, 1200);
-                    this.disableAndColorOptions(correctTrim, selectedTrim, isCorrect);
-                    return;
-                }
+                this.adaptiveListeningAnswered = true;
             } else {
                 if (!this.adaptiveListeningCurrentSetQuestions.length || this.adaptiveListeningCurrentSetIndex >= this.adaptiveListeningCurrentSetQuestions.length) {
                     console.error("❌ No current set questions or index out of bounds");
@@ -1710,22 +1608,20 @@ class App {
                 this.adaptiveListeningLastAnswer = {
                     isCorrect: isCorrect,
                     transcript: currentQuestion.transcript || '',
-                    showTranscript: false
+                    showTranscript: false,
+                    currentQuestion: currentQuestion
                 };
                 if (isCorrect) {
                     this.adaptiveListeningCurrentSetCorrect++;
                 }
                 this.adaptiveListeningCurrentSetIndex++;
                 this.adaptiveListeningTotalQuestions++;
+                this.adaptiveListeningAnswered = true;
             }
             
             this.disableAndColorOptions(correctTrim, selectedTrim, isCorrect);
-            
-            setTimeout(() => {
-                this.isWaiting = false;
-                this.adaptiveListeningAnswered = true;
-                this.render();
-            }, 1200);
+            this.isWaiting = false;
+            this.render();
             
         } catch(error) {
             console.error("❌ Error in handleAdaptiveListeningAnswer:", error);
@@ -1734,7 +1630,6 @@ class App {
         }
     }
 
-    // دالة مساعدة لتلوين الأزرار
     disableAndColorOptions(correctTrim, selectedTrim, isCorrect) {
         const allOptions = document.querySelectorAll('.quiz-opt-btn');
         allOptions.forEach(btn => {
@@ -1759,7 +1654,33 @@ class App {
         }
     }
 
-    nextListeningQuestion() {
+    nextAdaptiveListeningQuestion() {
+        // التحقق مما إذا كنا في مرحلة التأكيد أو المجموعة الحالية
+        if (this.adaptiveListeningPhase === 'confirmation') {
+            if (this.adaptiveListeningConfirmationQuestions.length === 0 || this.adaptiveListeningTotalQuestions >= this.adaptiveListeningMaxQuestions) {
+                // انتهى الجزء السماعي
+                this.finalizeListeningPhase();
+                return;
+            }
+        } else {
+            // ننتقل إلى السؤال التالي في المجموعة الحالية، أو نقيّم المجموعة
+            if (this.adaptiveListeningCurrentSetIndex >= this.adaptiveListeningCurrentSetQuestions.length) {
+                this.evaluateListeningSetAndTransition();
+                if (this.adaptiveListeningPhase === 'confirmation') {
+                    if (this.adaptiveListeningConfirmationQuestions.length === 0) {
+                        this.finalizeListeningPhase();
+                        return;
+                    }
+                } else {
+                    if (this.adaptiveListeningCurrentSetQuestions.length === 0) {
+                        this.loadListeningQuestionSet(this.adaptiveListeningCurrentLevel, 4);
+                    }
+                    this.adaptiveListeningCurrentSetIndex = 0;
+                }
+            }
+        }
+        
+        // إعادة تعيين حالة الإجابة
         this.adaptiveListeningLastAnswer = null;
         this.adaptiveListeningAnswered = false;
         this.render();
@@ -1820,7 +1741,8 @@ class App {
         this.userProfile.testsHistory.push(listeningResult);
         
         this.listeningResult = listeningResult;
-        this.readingStartLevel = readingStartLevel;
+        this.listeningBestLevel = bestLevel;
+        this.readingStartLevelFromListening = readingStartLevel;
         this.listeningCompleted = true;
         
         this.showCustomModal('info', '🎧📖', this.t('انتهيت من الجزء السماعي. اضغط "متابعة" لبدء الجزء المقروء.', 'You have completed the listening part. Click "Continue" to start the reading part.'), () => {
@@ -1832,7 +1754,7 @@ class App {
         this.prepareAdaptiveQuestionBank();
         this.adaptiveTestActive = true;
         this.adaptiveTestHistory = [];
-        this.adaptiveTestCurrentLevel = this.readingStartLevel;
+        this.adaptiveTestCurrentLevel = this.readingStartLevelFromListening || 'A2';
         this.adaptiveTestPhase = 'initial';
         this.adaptiveTestTotalQuestions = 0;
         this.adaptiveTestMaxQuestions = 50;
@@ -1862,6 +1784,130 @@ class App {
         this.currentPage = 'adaptive_test';
         this.render();
     }
+
+    finalizeAdaptiveTest() {
+        console.log("✅ finalizeAdaptiveTest تم استدعاؤها");
+        
+        // حساب أفضل مستوى للقراءة
+        let bestReadingLevel = 'A1';
+        let bestReadingPercentage = 0;
+        for (let level of this.adaptiveTestLevelOrder) {
+            const stats = this.adaptiveTestLevelStats[level];
+            if (stats && stats.total >= 4 && (stats.correct / stats.total) * 100 >= 70) {
+                bestReadingLevel = level;
+                bestReadingPercentage = (stats.correct / stats.total) * 100;
+            }
+        }
+        
+        if (this.adaptiveTestPhase === 'confirmation' && this.adaptiveTestConfirmationTotal > 0) {
+            const confirmPercent = (this.adaptiveTestConfirmationCorrect / this.adaptiveTestConfirmationTotal) * 100;
+            if (confirmPercent >= 60) {
+                bestReadingLevel = this.adaptiveTestCurrentLevel;
+            }
+        }
+        
+        // حساب أفضل مستوى للاستماع (من this.listeningResult)
+        let bestListeningLevel = this.listeningResult ? this.listeningResult.level : 'A1';
+        
+        // تحديد المستوى النهائي (يمكن أن يكون المتوسط أو الأعلى)
+        const levelsOrder = this.adaptiveTestLevelOrder;
+        const listeningIdx = levelsOrder.indexOf(bestListeningLevel);
+        const readingIdx = levelsOrder.indexOf(bestReadingLevel);
+        const finalLevelIdx = Math.max(listeningIdx, readingIdx);
+        const finalLevel = levelsOrder[finalLevelIdx];
+        
+        // تحليل نقاط القوة والضعف
+        const strengths = [];
+        const weaknesses = [];
+        
+        // تحليل أداء الاستماع حسب المستويات
+        for (let level of levelsOrder) {
+            const stats = this.adaptiveListeningLevelStats[level];
+            if (stats && stats.total > 0) {
+                const percent = (stats.correct / stats.total) * 100;
+                if (percent >= 70) strengths.push(`${level} (استماع)`);
+                else if (percent <= 40) weaknesses.push(`${level} (استماع)`);
+            }
+        }
+        
+        // تحليل أداء القراءة
+        for (let level of levelsOrder) {
+            const stats = this.adaptiveTestLevelStats[level];
+            if (stats && stats.total > 0) {
+                const percent = (stats.correct / stats.total) * 100;
+                if (percent >= 70) strengths.push(`${level} (قراءة)`);
+                else if (percent <= 40) weaknesses.push(`${level} (قراءة)`);
+            }
+        }
+        
+        const combinedResult = {
+            level: finalLevel,
+            displayLevel: finalLevel,
+            date: new Date().toLocaleString('ar-EG'),
+            listeningScore: this.listeningResult ? this.listeningResult.score : 0,
+            listeningTotal: this.listeningResult ? this.listeningResult.totalQuestions : 0,
+            readingScore: this.adaptiveTestHistory.filter(h => h.isCorrect).length,
+            readingTotal: this.adaptiveTestHistory.length,
+            totalScore: (this.listeningResult ? this.listeningResult.score : 0) + this.adaptiveTestHistory.filter(h => h.isCorrect).length,
+            totalQuestions: (this.listeningResult ? this.listeningResult.totalQuestions : 0) + this.adaptiveTestHistory.length,
+            ielts: this.getIeltsEquivalent(finalLevel),
+            strengths: strengths,
+            weaknesses: weaknesses,
+            details: {
+                listening: this.adaptiveListeningHistory,
+                reading: this.adaptiveTestHistory
+            }
+        };
+        
+        this.placementResults.unshift(combinedResult);
+        this.placementFullHistory.push(combinedResult);
+        this.userProfile.level = combinedResult.level;
+        this.userProfile.testsHistory.push({
+            type: 'اختبار مستوى متكامل (استماع وقراءة)',
+            date: combinedResult.date,
+            score: `${combinedResult.totalScore}/${combinedResult.totalQuestions}`,
+            level: combinedResult.displayLevel
+        });
+        
+        this.saveUserData();
+        
+        this.adaptiveTestActive = false;
+        this.adaptiveListeningActive = false;
+        this.currentPage = 'adaptive_test_result';
+        this.render();
+    }
+
+    showAdaptiveResult() {
+        const lastResult = this.placementResults[0];
+        if (!lastResult) return `<div class="reading-card"><p>${this.t('لا توجد نتيجة', 'No result')}</p></div>`;
+        
+        const strengthsHtml = lastResult.strengths && lastResult.strengths.length > 0 
+            ? `<div style="margin-top:10px;"><strong>✅ ${this.t('نقاط القوة:', 'Strengths:')}</strong> ${lastResult.strengths.join(', ')}</div>` 
+            : '';
+        const weaknessesHtml = lastResult.weaknesses && lastResult.weaknesses.length > 0 
+            ? `<div style="margin-top:5px;"><strong>⚠️ ${this.t('نقاط الضعف:', 'Weaknesses:')}</strong> ${lastResult.weaknesses.join(', ')}</div>` 
+            : '';
+        
+        return `<div class="reading-card result-card">
+            <h2 style="text-align:center;">🏁 ${this.t('نتيجة الاختبار المتكامل', 'Integrated Test Result')}</h2>
+            <div style="background:#f0f7ff; padding:15px; border-radius:10px; margin:10px 0; text-align:center;">
+                <h1 style="color:#1e40af; margin-bottom:5px; font-size:1.8rem;">${lastResult.displayLevel}</h1>
+                <p style="font-weight:bold; color:#3b82f6;">IELTS: ${lastResult.ielts}</p>
+                <p style="font-size:0.85rem; color:#64748b;">${this.t('الاستماع:', 'Listening:')} ${lastResult.listeningScore}/${lastResult.listeningTotal}</p>
+                <p style="font-size:0.85rem; color:#64748b;">${this.t('القراءة:', 'Reading:')} ${lastResult.readingScore}/${lastResult.readingTotal}</p>
+                <p style="font-size:0.9rem; font-weight:bold; margin-top:8px;">${this.t('المجموع:', 'Total:')} ${lastResult.totalScore}/${lastResult.totalQuestions}</p>
+                ${strengthsHtml}
+                ${weaknessesHtml}
+                <p style="font-size:0.8rem; color:#64748b; margin-top:10px;">${this.t('تاريخ الاختبار:', 'Test date:')} ${lastResult.date}</p>
+            </div>
+            <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:15px;">
+                <button class="hero-btn" onclick="appInstance.showLevelTestInstructions()" style="background:#ec4899; flex:1;">${this.t('إعادة الاختبار 🔄', 'Retake Test 🔄')}</button>
+                <button class="hero-btn" data-action="goHome" style="background:#64748b; flex:1;">${this.t('الرئيسية', 'Home')}</button>
+            </div>
+        </div>`;
+    }
+    
+    getIeltsEquivalent(level) { const map = { 'A1': '2.0-3.0', 'A2': '3.0-4.0', 'B1': '4.0-5.0', 'B2': '5.5-6.5', 'C1': '7.0-8.0', 'C2': '8.5-9.0' }; return map[level]; }
 
     // ====================== دوال التمارين الأساسية ======================
     prepareJumble() {
@@ -1938,7 +1984,6 @@ class App {
         this.speak(this.listeningCurrent.english);
     }
 
-    // ✅ دالة الاستماع العادي (تم تغيير اسمها)
     handleNormalListeningAnswer(selectedArabic) {
         if (this.listeningAnswered || !this.listeningCurrent) return;
         this.listeningAnswered = true;
@@ -2101,7 +2146,7 @@ class App {
     async translateText(text) { if (!text) return ''; try { const res = await fetch(`https://api.mymemory.translated.net/get?q=${encodeURIComponent(text)}&langpair=en|ar`); const data = await res.json(); return data.responseData.translatedText || ''; } catch (e) { return ''; } }
     
     playTone(type) {
-        this.initAudioContext(); // إنشاء واستئناف السياق عند أول استخدام
+        this.initAudioContext();
         if (!this.audioCtx) return;
         if (this.audioCtx.state === 'suspended') {
             this.audioCtx.resume().then(() => this._playTone(type)).catch(() => {});
@@ -2433,23 +2478,30 @@ class App {
             if (action === 'gapfillNext') { this.handleGapFillNext(); return; }
             if (action === 'gapfillShowExplanation') { this.showDetailedGapFillExplanation(); return; }
             if (action === 'adaptiveAnswer') { this.handleAdaptiveAnswer(param, correct, btn); return; }
-            // ✅ تم تعديل هذا السطر لاستخدام الدالة الجديدة
             if (action === 'adaptiveListeningAnswer') { 
                 console.log("✅ adaptiveListeningAnswer triggered", param, correct);
                 this.handleAdaptiveListeningAnswer(param, correct, btn); 
                 return; 
             }
             if (action === 'showListeningTranscript') { this.showListeningTranscript(); return; }
-            if (action === 'nextListeningQuestion') { this.nextListeningQuestion(); return; }
+            if (action === 'nextAdaptiveListeningQuestion') { 
+                this.nextAdaptiveListeningQuestion(); 
+                return; 
+            }
             if (action === 'playListeningAudio') {
                 const audioSrc = btn.dataset.audio;
                 const qId = btn.dataset.id;
                 this.playListeningAudio(audioSrc, qId);
                 return;
             }
-            // ✅ إضافة معالجة لتمرين الاستماع العادي
             if (action === 'normalListeningAnswer') {
                 this.handleNormalListeningAnswer(param);
+                return;
+            }
+            if (action === 'test_sample_audio') {
+                // تشغيل عينة صوتية من أول درس في A1 (يمكن تعديل المسار)
+                const sampleAudioSrc = 'audio/lesson1.mp3';
+                this.playAudio(sampleAudioSrc);
                 return;
             }
             
@@ -2544,7 +2596,6 @@ class App {
                 case 'jumbleCheck': this.handleJumbleCheck(); break;
                 case 'jumbleHint': this.handleJumbleHint(); break;
                 case 'jumbleNext': this.handleJumbleNext(); break;
-                // تم إزالة 'listeningAnswer' من هنا واستبدالها بـ 'normalListeningAnswer' أعلاه
                 case 'spellingCheck': this.handleSpellingCheck(); break;
                 case 'spellingNext': this.handleSpellingNext(); break;
                 case 'startLevelTest': this.prepareLevelTest(param); break;
@@ -2651,17 +2702,18 @@ class App {
             return `<main class="main-content">
                 <button class="hero-btn" data-action="goHome" style="margin-bottom:15px; background:#64748b;">← ${this.t('رجوع', 'Back')}</button>
                 <div class="reading-card">
-                    <h2 style="text-align:center;">🧠 ${this.t('اختبار تحديد المستوى', 'Level Test')}</h2>
-                    <p style="margin:15px 0; line-height:1.6;">${this.t('هذا الاختبار يتكون من جزئين:', 'This test consists of two parts:')}</p>
+                    <h2 style="text-align:center;">🧠 ${this.t('اختبار تحديد المستوى المتقدم', 'Advanced Level Test')}</h2>
+                    <p style="margin:15px 0; line-height:1.6;">${this.t('هذا الاختبار يتكون من جزئين متكاملين، وسيتكيف مع مستواك تلقائياً:', 'This test consists of two integrated parts, and will automatically adapt to your level:')}</p>
                     <ul style="margin:10px 20px; line-height:1.8;">
-                        <li><strong>🎧 ${this.t('الجزء الأول: اختبار الاستماع', 'Part 1: Listening Test')}</strong> - ${this.t('سيتم تشغيل تسجيلات قصيرة مرة واحدة فقط، ثم الإجابة على أسئلة عنها. يبدأ من مستوى A1.', 'Short recordings played once, then answer questions. Starts from A1.')}</li>
-                        <li><strong>📖 ${this.t('الجزء الثاني: اختبار القراءة والقواعد', 'Part 2: Reading & Grammar Test')}</strong> - ${this.t('أسئلة قراءة وقواعد. يبدأ من مستوى A2.', 'Reading and grammar questions. Starts from A2.')}</li>
+                        <li><strong>🎧 ${this.t('الجزء الأول: اختبار الاستماع التكيفي', 'Part 1: Adaptive Listening Test')}</strong> - ${this.t('سيتم تشغيل تسجيلات قصيرة مرة واحدة فقط، ثم الإجابة على أسئلة. يبدأ من مستوى A1 ويتكيف مع إجاباتك.', 'Short recordings played once, then answer questions. Starts at A1 and adapts to your answers.')}</li>
+                        <li><strong>📖 ${this.t('الجزء الثاني: اختبار القراءة والقواعد التكيفي', 'Part 2: Adaptive Reading & Grammar Test')}</strong> - ${this.t('أسئلة قراءة وقواعد. يبدأ من المستوى الذي وصلت إليه في الجزء الأول.', 'Reading and grammar questions. Starts from the level you reached in part one.')}</li>
                     </ul>
-                    <p style="margin:15px 0; background:#fef3c7; padding:10px; border-radius:8px;">💡 ${this.t('نصيحة: تأكد من سماع التسجيل جيداً، لا يمكن إعادة تشغيل الصوت.', 'Tip: Listen carefully, audio cannot be replayed.')}</p>
+                    <p style="margin:15px 0; background:#fef3c7; padding:10px; border-radius:8px;">💡 ${this.t('نصيحة: تأكد من سماع التسجيل جيداً، لا يمكن إعادة تشغيل الصوت. الاختبار يتكيف مع إجاباتك، لذا حاول قدر الإمكان.', 'Tip: Listen carefully, audio cannot be replayed. The test adapts to your answers, so do your best.')}</p>
                     <div style="display:flex; gap:12px; flex-wrap:wrap; justify-content:center; margin-top:20px;">
-                        <button class="hero-btn" data-action="start_listening_test" style="background:#8b5cf6; flex:1;">🎧 ${this.t('بدء الاختبار السماعي', 'Start Listening Test')}</button>
-                        <button class="hero-btn" data-action="start_reading_test" style="background:#3b82f6; flex:1;">📖 ${this.t('بدء الاختبار المقروء', 'Start Reading Test')}</button>
+                        <button class="hero-btn" data-action="test_sample_audio" style="background:#f59e0b; flex:1;">🔊 ${this.t('اختبار عينة صوتية', 'Sample Audio Test')}</button>
+                        <button class="hero-btn" data-action="start_listening_test" style="background:#8b5cf6; flex:1;">🎧 ${this.t('بدء الاختبار المتكامل', 'Start Integrated Test')}</button>
                     </div>
+                    <p style="margin-top:15px; font-size:0.75rem; color:#666; text-align:center;">${this.t('سيتم عرض نتيجة موحدة في النهاية مع تحليل نقاط القوة والضعف.', 'A unified result with strengths and weaknesses analysis will be shown at the end.')}</p>
                 </div>
             </main>`;
         }
@@ -2702,7 +2754,7 @@ class App {
                     </div>
                     <button class="hero-btn" data-action="showListeningTranscript" style="background:#f59e0b; width:100%; margin:8px 0;">📝 ${this.t('عرض النص المكتوب', 'Show Transcript')}</button>
                     ${this.adaptiveListeningLastAnswer.showTranscript ? `<div style="margin:10px 0; padding:12px; background:#f1f5f9; border-radius:8px; direction:ltr; text-align:left; font-size:0.85rem;">${this.adaptiveListeningLastAnswer.transcript}</div>` : ''}
-                    <button class="hero-btn" data-action="nextListeningQuestion" style="background:#3b82f6; width:100%;">➡️ ${this.t('التالي', 'Next')}</button>
+                    <button class="hero-btn" data-action="nextAdaptiveListeningQuestion" style="background:#3b82f6; width:100%;">➡️ ${this.t('التالي', 'Next')}</button>
                 ` : ''}
             </div>`;
         }
@@ -2744,11 +2796,11 @@ class App {
             return `<main class="main-content"><button class="hero-btn" data-action="goHome" style="margin-bottom:15px; background:#64748b;">← ${this.t('رجوع', 'Back')}</button><div class="reading-card profile-container"><div class="profile-image" onclick="document.getElementById('profileImage').click()">${this.userProfile.image ? `<img src="${this.userProfile.image}" alt="profile">` : `<svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" viewBox="0 0 24 24" fill="#aaa"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>`}</div><input type="file" id="profileImage" accept="image/*" style="display:none;" onchange="appInstance.updateProfile()"><div class="profile-info"><div class="info-row"><span>${this.t('الاسم:', 'Name:')}</span> <span><input type="text" id="profileName" value="${this.userProfile.name || this.userData?.name || ''}" placeholder="${this.t('الاسم', 'Name')}"></span></div><div class="info-row"><span>${this.t('العمر:', 'Age:')}</span> <span><input type="number" id="profileAge" value="${this.userProfile.age || ''}" placeholder="${this.t('العمر', 'Age')}"></span></div><div class="info-row"><span>${this.t('تاريخ الانضمام:', 'Join Date:')}</span> <span>${this.userProfile.joinDate}</span></div><div class="info-row"><span>${this.t('مستوى اللغة:', 'Language Level:')}</span> <span>${englishLevel}</span></div><div class="info-row"><span>${this.t('نقاط الخبرة (XP):', 'XP:')}</span> <span>${this.userStats.xp}</span></div><div class="info-row"><span>${this.t('اللآلئ:', 'Pearls:')}</span> <span>${this.userCoins} 💎</span></div></div><button class="hero-btn user-info-btn" data-action="showUserInfo" style="background:#8b5cf6;">📋 ${this.t('إعدادات الحساب', 'Account Settings')}</button><div style="width:100%; margin:12px 0;"><div style="display:flex; justify-content:space-between; font-size:0.85rem;"><span>${this.t('التقدم العام', 'Overall Progress')}</span><span>${totalLessons} ${this.t('درس', 'Lesson')} / 100</span></div><div class="progress-bar-container"><div class="progress-bar-fill" style="width: ${progressPercent}%;"></div></div></div><h4 style="margin:15px 0 8px;">🏅 ${this.t('الأوسمة والإنجازات', 'Badges & Achievements')}</h4>${this.getBadgesDisplay()}<h4 style="margin:15px 0 8px;">📜 ${this.t('سجل الاختبارات', 'Test History')}</h4><button class="hero-btn" data-action="setPage" data-param="test_history" style="background:#3b82f6;">${this.t('عرض سجل الاختبارات', 'View Test History')}</button><button class="hero-btn" data-action="updateProfile" style="background:#10b981; margin-top:15px;">${this.t('حفظ التغييرات', 'Save Changes')}</button></div></main>`;
         }
         
-        if (this.currentPage === 'test_history') return `<main class="main-content"><button class="hero-btn" data-action="goHome" style="margin-bottom:15px; background:#64748b;">← ${this.t('الرجوع للرئيسية', 'Back to Home')}</button><button class="hero-btn" data-action="syncTestHistory" style="margin-bottom:15px; background:#f59e0b;">🔄 ${this.t('استعادة الاختبارات', 'Restore Tests')}</button><div class="reading-card"><h2 style="text-align:center;">📋 ${this.t('سجل اختبارات المستوى', 'Level Test History')}</h2>${this.placementResults.length === 0 ? `<p style="text-align:center; color:#666; padding:20px;">${this.t('لا توجد اختبارات سابقة', 'No previous tests')}</p>` : `<div class="history-list">${this.placementResults.map((r, idx) => `<div class="history-item" onclick="appInstance.viewTestDetails(${idx})"><div style="display:flex; justify-content:space-between; flex-wrap:wrap; gap:5px;"><span><strong>${r.date}</strong></span><span>${this.t('المستوى:', 'Level:')} ${r.displayLevel || r.level}</span></div><div style="display:flex; justify-content:space-between; margin-top:5px; flex-wrap:wrap; gap:5px;"><span>${this.t('الدرجة:', 'Score:')} ${r.score}/${r.totalQuestions}</span><span>IELTS: ${r.ielts}</span></div><button class="hero-btn" data-action="deletePlacementTest" data-index="${idx}" style="margin-top:5px; background:#ef4444; padding:4px 8px; font-size:0.7rem;">🗑️ ${this.t('حذف', 'Delete')}</button></div>`).join('')}</div>`}</div></main>`;
+        if (this.currentPage === 'test_history') return `<main class="main-content"><button class="hero-btn" data-action="goHome" style="margin-bottom:15px; background:#64748b;">← ${this.t('الرجوع للرئيسية', 'Back to Home')}</button><button class="hero-btn" data-action="syncTestHistory" style="margin-bottom:15px; background:#f59e0b;">🔄 ${this.t('استعادة الاختبارات', 'Restore Tests')}</button><div class="reading-card"><h2 style="text-align:center;">📋 ${this.t('سجل اختبارات المستوى', 'Level Test History')}</h2>${this.placementResults.length === 0 ? `<p style="text-align:center; color:#666; padding:20px;">${this.t('لا توجد اختبارات سابقة', 'No previous tests')}</p>` : `<div class="history-list">${this.placementResults.map((r, idx) => `<div class="history-item" onclick="appInstance.viewTestDetails(${idx})"><div style="display:flex; justify-content:space-between; flex-wrap:wrap; gap:5px;"><span><strong>${r.date}</strong></span><span>${this.t('المستوى:', 'Level:')} ${r.displayLevel || r.level}</span></div><div style="display:flex; justify-content:space-between; margin-top:5px; flex-wrap:wrap; gap:5px;"><span>${this.t('الدرجة:', 'Score:')} ${r.totalScore || r.score}/${r.totalQuestions}</span><span>IELTS: ${r.ielts}</span></div><button class="hero-btn" data-action="deletePlacementTest" data-index="${idx}" style="margin-top:5px; background:#ef4444; padding:4px 8px; font-size:0.7rem;">🗑️ ${this.t('حذف', 'Delete')}</button></div>`).join('')}</div>`}</div></main>`;
         
         if (this.currentPage === 'placement_details' && this.viewingPlacementDetails) { 
             const details = this.viewingPlacementDetails.details || []; 
-            return `<div class="reading-card"><button class="hero-btn" data-action="backFromDetails" style="margin-bottom:15px; background:#64748b;">← ${this.t('رجوع', 'Back')}</button><h2 style="text-align:center;">${this.t('تفاصيل اختبار', 'Test Details')} ${this.viewingPlacementDetails.date}</h2><p style="text-align:center;">${this.t('المستوى النهائي:', 'Final Level:')} <strong>${this.viewingPlacementDetails.displayLevel || this.viewingPlacementDetails.level}</strong> | ${this.t('الدرجة:', 'Score:')} ${this.viewingPlacementDetails.score}/${this.viewingPlacementDetails.totalQuestions}</p><div style="max-height:350px; overflow-y:auto; border:1px solid #e2e8f0; border-radius:8px; padding:10px;">${details.map((d, i) => `<div style="border-bottom:1px solid #e2e8f0; padding:8px; margin-bottom:5px;"><p><strong>${this.t('س', 'Q')}${i + 1}:</strong> ${d.question}</p><p>${this.t('مستوى السؤال:', 'Question level:')} ${d.level || this.t('غير محدد', 'Not specified')}</p><p>${this.t('إجابتك:', 'Your answer:')} ${d.selected || this.t('لم يجب', 'Not answered')} - ${d.isCorrect ? '✅' : '❌'}</p><p>${this.t('الإجابة الصحيحة:', 'Correct answer:')} ${d.correct || this.t('غير معروفة', 'Unknown')}</p></div>`).join('')}</div></div>`; 
+            return `<div class="reading-card"><button class="hero-btn" data-action="backFromDetails" style="margin-bottom:15px; background:#64748b;">← ${this.t('رجوع', 'Back')}</button><h2 style="text-align:center;">${this.t('تفاصيل اختبار', 'Test Details')} ${this.viewingPlacementDetails.date}</h2><p style="text-align:center;">${this.t('المستوى النهائي:', 'Final Level:')} <strong>${this.viewingPlacementDetails.displayLevel || this.viewingPlacementDetails.level}</strong> | ${this.t('الدرجة:', 'Score:')} ${this.viewingPlacementDetails.totalScore || this.viewingPlacementDetails.score}/${this.viewingPlacementDetails.totalQuestions}</p><div style="max-height:350px; overflow-y:auto; border:1px solid #e2e8f0; border-radius:8px; padding:10px;">${details.map((d, i) => `<div style="border-bottom:1px solid #e2e8f0; padding:8px; margin-bottom:5px;"><p><strong>${this.t('س', 'Q')}${i + 1}:</strong> ${d.question}</p><p>${this.t('مستوى السؤال:', 'Question level:')} ${d.level || this.t('غير محدد', 'Not specified')}</p><p>${this.t('إجابتك:', 'Your answer:')} ${d.selected || this.t('لم يجب', 'Not answered')} - ${d.isCorrect ? '✅' : '❌'}</p><p>${this.t('الإجابة الصحيحة:', 'Correct answer:')} ${d.correct || this.t('غير معروفة', 'Unknown')}</p></div>`).join('')}</div></div>`; 
         }
         
         if (this.currentPage === 'lessons') { const list = this.getLessonsForCurrentLevel(); let testLevelParam = ''; if (this.selectedLevel === 'beginner') testLevelParam = 'beginner'; else if (this.selectedLevel === 'intermediate') testLevelParam = 'intermediate'; else if (this.selectedLevel === 'advanced') testLevelParam = 'advanced'; const addLessonButton = `<div class="feature-card" data-action="setPage" data-param="addLesson" style="border: 2px dashed #10b981; background: linear-gradient(135deg, #e0f2e9, #d1fae5);"><h3 style="font-size:0.95rem;">📝 ${this.t('إضافة درس يدوي', 'Add Manual Lesson')}</h3><p style="font-size:0.7rem; margin-top:4px;">${this.t('أضف درساً خاصاً بك', 'Add your own lesson')}</p></div>`; return `<main class="main-content"><button class="hero-btn" data-action="goHome" style="margin-bottom:15px; background:#64748b;">← ${this.t('رجوع', 'Back')}</button>${testLevelParam ? `<div style="margin-bottom:15px; text-align:center;"><button class="hero-btn" data-action="startLevelTest" data-param="${testLevelParam}" style="background:#8b5cf6;">📊 ${this.t('اختبار المستوى الشامل', 'Comprehensive Level Test')}</button></div>` : ''}<div class="features-grid">${list.map(l => { const isOk = (list[0].id == l.id || this.unlockedLessons.includes(String(l.id))) && !l.isGenerated; const displayLock = (!isOk && !l.isGenerated) ? '🔒 ' : ''; return `<div class="feature-card" data-action="selLesson" data-param="${l.id}" style="${(!isOk && !l.isGenerated) ? 'opacity:0.6;' : ''}"><h3 style="font-size:0.9rem;">${displayLock}${l.title}</h3>${l.isGenerated ? `<div style="display:flex; justify-content:center; gap:8px; margin-top:8px; flex-wrap:wrap;"><button class="hero-btn" data-action="deleteGeneratedLesson" data-param="${l.id}" style="background:#ef4444; padding:4px 8px; font-size:0.65rem;">🗑️ ${this.t('حذف', 'Delete')}</button><button class="hero-btn" data-action="regenerateAILesson" data-param="${this.selectedLevel},${l.id}" style="background:#f59e0b; padding:4px 8px; font-size:0.65rem;">🔄 ${this.t('إعادة توليد', 'Regenerate')}</button></div>` : ''}</div>`; }).join('')}${addLessonButton}</div></main>`;
@@ -2926,7 +2978,6 @@ class App {
             setTimeout(() => this.init(), 500); 
             return; 
         } 
-        // لا ننشئ AudioContext هنا، بل نتركه للاستخدام الأول
         this.audioCtx = null;
         this.setupGlobalEvents(); 
         onAuthStateChanged(auth, async (user) => { 
