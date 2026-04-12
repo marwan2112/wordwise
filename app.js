@@ -1,3 +1,4 @@
+// ====================== app.js كامل ومعدل ======================
 window.addEventListener('error', function(e) {
     alert('❌ خطأ في السطر: ' + e.lineno + '\nالملف: ' + e.filename + '\nالرسالة: ' + e.message);
     document.body.innerHTML = '<pre style="color:red; background:white; padding:10px;">خطأ في السطر: ' + e.lineno + '\n' + e.message + '</pre>';
@@ -83,7 +84,7 @@ class App {
         this.showCoinModal = false;
         this.showPurchaseForm = false;
 
-        // متغيرات التمارين (سيتم إكمالها ولكن باختصار)
+        // متغيرات التمارين
         this.jumbleOriginalSentence = '';
         this.jumbleWords = [];
         this.jumbleUserAnswer = [];
@@ -189,7 +190,7 @@ class App {
         this.quizIndex = 0;
         this.quizScore = 0;
         this.quizOptions = [];
-        this.audioCtx = null;
+        this.audioCtx = null; // ✅ سيتم إنشاؤه عند أول نقرة
         this.isWaiting = false;
         this.scrollPos = 0;
         this.levelTestResultMessage = '';
@@ -269,6 +270,16 @@ class App {
             const j = Math.floor(Math.random() * (i + 1)); 
             [arr[i], arr[j]] = [arr[j], arr[i]]; 
         } 
+    }
+
+    // ====================== نظام AudioContext الآمن ======================
+    initAudioContext() {
+        if (!this.audioCtx) {
+            this.audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        }
+        if (this.audioCtx.state === 'suspended') {
+            this.audioCtx.resume().catch(e => console.warn("AudioContext resume error:", e));
+        }
     }
 
     // ====================== نظام نقاط الخبرة (XP) مع منع التكرار ======================
@@ -1618,8 +1629,9 @@ class App {
         this.adaptiveListeningPhase = 'confirmation';
     }
 
-    handleListeningAnswer(selected, correct, btnElement) {
-        console.log("🔊 handleListeningAnswer called", { selected, correct, isWaiting: this.isWaiting });
+    // ✅ الدالة المعدلة (تم تغيير اسمها لتجنب التضارب)
+    handleAdaptiveListeningAnswer(selected, correct, btnElement) {
+        console.log("🔊 handleAdaptiveListeningAnswer called", { selected, correct, isWaiting: this.isWaiting });
         
         if (this.isWaiting) {
             console.log("⏳ isWaiting is true, returning");
@@ -1716,13 +1728,13 @@ class App {
             }, 1200);
             
         } catch(error) {
-            console.error("❌ Error in handleListeningAnswer:", error);
+            console.error("❌ Error in handleAdaptiveListeningAnswer:", error);
             this.isWaiting = false;
             this.render();
         }
     }
 
-    // أضف هذه الدالة المساعدة مباشرة بعد handleListeningAnswer
+    // دالة مساعدة لتلوين الأزرار
     disableAndColorOptions(correctTrim, selectedTrim, isCorrect) {
         const allOptions = document.querySelectorAll('.quiz-opt-btn');
         allOptions.forEach(btn => {
@@ -1926,7 +1938,8 @@ class App {
         this.speak(this.listeningCurrent.english);
     }
 
-    handleListeningAnswer(selectedArabic) {
+    // ✅ دالة الاستماع العادي (تم تغيير اسمها)
+    handleNormalListeningAnswer(selectedArabic) {
         if (this.listeningAnswered || !this.listeningCurrent) return;
         this.listeningAnswered = true;
         const isCorrect = (selectedArabic === this.listeningCurrent.arabic);
@@ -2086,8 +2099,38 @@ class App {
     speak(text) { if (!text) return; window.speechSynthesis.cancel(); const u = new SpeechSynthesisUtterance(text); u.lang = 'en-US'; u.rate = 0.85; window.speechSynthesis.speak(u); }
     async translateAuto(text, targetId) { const el = document.getElementById(targetId); if (!el) return; if (!text.trim()) { if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') el.value = ""; else el.innerText = ""; return; } try { const res = await fetch(`https://api.mymemory.translated.net/get?q=${encodeURIComponent(text)}&langpair=en|ar`); const data = await res.json(); const translatedText = data.responseData.translatedText; if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') el.value = translatedText; else el.innerText = translatedText; } catch (e) {} }
     async translateText(text) { if (!text) return ''; try { const res = await fetch(`https://api.mymemory.translated.net/get?q=${encodeURIComponent(text)}&langpair=en|ar`); const data = await res.json(); return data.responseData.translatedText || ''; } catch (e) { return ''; } }
-    playTone(type) { if (!this.audioCtx) return; if (this.audioCtx.state === 'suspended') this.audioCtx.resume().then(() => this._playTone(type)).catch(() => {}); else this._playTone(type); }
-    _playTone(type) { const osc = this.audioCtx.createOscillator(); const gain = this.audioCtx.createGain(); osc.connect(gain); gain.connect(this.audioCtx.destination); if (type === 'correct') { osc.frequency.setValueAtTime(523.25, this.audioCtx.currentTime); osc.frequency.exponentialRampToValueAtTime(880, this.audioCtx.currentTime + 0.1); gain.gain.setValueAtTime(0.1, this.audioCtx.currentTime); gain.gain.exponentialRampToValueAtTime(0.01, this.audioCtx.currentTime + 0.3); } else { osc.frequency.setValueAtTime(220, this.audioCtx.currentTime); osc.frequency.linearRampToValueAtTime(110, this.audioCtx.currentTime + 0.2); gain.gain.setValueAtTime(0.2, this.audioCtx.currentTime); gain.gain.exponentialRampToValueAtTime(0.01, this.audioCtx.currentTime + 0.4); } osc.start(); osc.stop(this.audioCtx.currentTime + 0.4); }
+    
+    playTone(type) {
+        this.initAudioContext(); // إنشاء واستئناف السياق عند أول استخدام
+        if (!this.audioCtx) return;
+        if (this.audioCtx.state === 'suspended') {
+            this.audioCtx.resume().then(() => this._playTone(type)).catch(() => {});
+        } else {
+            this._playTone(type);
+        }
+    }
+    
+    _playTone(type) {
+        if (!this.audioCtx) return;
+        const osc = this.audioCtx.createOscillator();
+        const gain = this.audioCtx.createGain();
+        osc.connect(gain);
+        gain.connect(this.audioCtx.destination);
+        if (type === 'correct') {
+            osc.frequency.setValueAtTime(523.25, this.audioCtx.currentTime);
+            osc.frequency.exponentialRampToValueAtTime(880, this.audioCtx.currentTime + 0.1);
+            gain.gain.setValueAtTime(0.1, this.audioCtx.currentTime);
+            gain.gain.exponentialRampToValueAtTime(0.01, this.audioCtx.currentTime + 0.3);
+        } else {
+            osc.frequency.setValueAtTime(220, this.audioCtx.currentTime);
+            osc.frequency.linearRampToValueAtTime(110, this.audioCtx.currentTime + 0.2);
+            gain.gain.setValueAtTime(0.2, this.audioCtx.currentTime);
+            gain.gain.exponentialRampToValueAtTime(0.01, this.audioCtx.currentTime + 0.4);
+        }
+        osc.start();
+        osc.stop(this.audioCtx.currentTime + 0.4);
+    }
+    
     playAudio(src) { const fullSrc = new URL(src, window.location.href).href; if (this.currentAudio) { if (this.currentAudio.src === fullSrc && !this.currentAudio.ended) { this.currentAudio.play(); return; } else this.currentAudio.pause(); } this.currentAudio = new Audio(fullSrc); this.currentAudio.playbackRate = this.audioPlaybackRate; this.currentAudio.play().catch(e => console.log("Audio play error:", e)); }
     pauseAudio() { if (this.currentAudio) this.currentAudio.pause(); }
     stopAudio() { if (this.currentAudio) { this.currentAudio.pause(); this.currentAudio.currentTime = 0; } }
@@ -2390,16 +2433,23 @@ class App {
             if (action === 'gapfillNext') { this.handleGapFillNext(); return; }
             if (action === 'gapfillShowExplanation') { this.showDetailedGapFillExplanation(); return; }
             if (action === 'adaptiveAnswer') { this.handleAdaptiveAnswer(param, correct, btn); return; }
-if (action === 'adaptiveListeningAnswer') { 
-    console.log("✅ adaptiveListeningAnswer triggered", param, correct);
-    this.handleListeningAnswer(param, correct, btn); 
-    return; 
-}            if (action === 'showListeningTranscript') { this.showListeningTranscript(); return; }
+            // ✅ تم تعديل هذا السطر لاستخدام الدالة الجديدة
+            if (action === 'adaptiveListeningAnswer') { 
+                console.log("✅ adaptiveListeningAnswer triggered", param, correct);
+                this.handleAdaptiveListeningAnswer(param, correct, btn); 
+                return; 
+            }
+            if (action === 'showListeningTranscript') { this.showListeningTranscript(); return; }
             if (action === 'nextListeningQuestion') { this.nextListeningQuestion(); return; }
             if (action === 'playListeningAudio') {
                 const audioSrc = btn.dataset.audio;
                 const qId = btn.dataset.id;
                 this.playListeningAudio(audioSrc, qId);
+                return;
+            }
+            // ✅ إضافة معالجة لتمرين الاستماع العادي
+            if (action === 'normalListeningAnswer') {
+                this.handleNormalListeningAnswer(param);
                 return;
             }
             
@@ -2494,7 +2544,7 @@ if (action === 'adaptiveListeningAnswer') {
                 case 'jumbleCheck': this.handleJumbleCheck(); break;
                 case 'jumbleHint': this.handleJumbleHint(); break;
                 case 'jumbleNext': this.handleJumbleNext(); break;
-                case 'listeningAnswer': this.handleListeningAnswer(param); break;
+                // تم إزالة 'listeningAnswer' من هنا واستبدالها بـ 'normalListeningAnswer' أعلاه
                 case 'spellingCheck': this.handleSpellingCheck(); break;
                 case 'spellingNext': this.handleSpellingNext(); break;
                 case 'startLevelTest': this.prepareLevelTest(param); break;
@@ -2781,7 +2831,7 @@ if (action === 'adaptiveListeningAnswer') {
         
         if (this.currentPage === 'jumble') { if (!this.jumbleUnlocked[this.selectedLessonId]) return `<div class="reading-card" style="text-align: center;"><h3>🔤 ${this.t('ترتيب الجمل', 'Sentence Jumble')}</h3><p>${this.t('لفتح هذا التمرين تحتاج 50 💎 لؤلؤة (مرة واحدة فقط للدرس).', 'To unlock this exercise you need 50 💎 pearls (one-time per lesson).')}</p><p>${this.t('رصيدك الحالي:', 'Your balance:')} ${this.userCoins} 💎</p><button class="hero-btn" onclick="appInstance.unlockJumble('${this.selectedLessonId}')" style="background: #8b5cf6;">${this.t('فتح (50 💎)', 'Unlock (50 💎)')}</button></div>`; return `<div class="reading-card"><h3>🔤 ${this.t('رتب الكلمات لتكوين جملة صحيحة', 'Arrange the words to form a correct sentence')}</h3><div style="display: flex; flex-wrap: wrap; gap: 6px; margin: 15px 0; padding: 10px; background: ${this.jumbleChecked ? (this.jumbleCorrect ? '#d1fae5' : '#fee2e2') : '#f1f5f9'}; border-radius: 8px; min-height: 55px;">${this.jumbleUserAnswer.map(word => `<span class="jumble-word-top" data-action="jumbleRemove" data-param="${word}" style="cursor: pointer; background: #3b82f6; color: white; padding: 5px 10px; border-radius: 20px; font-size: 0.9rem;">${word}</span>`).join('')}</div><div style="display: flex; flex-wrap: wrap; gap: 6px; margin: 15px 0; padding: 10px; background: #e2e8f0; border-radius: 8px; min-height: 55px;">${this.jumbleWords.map(word => `<button class="hero-btn" data-action="jumbleSelect" data-param="${word}" style="padding: 5px 10px; background: #64748b; font-size: 0.85rem; ${this.jumbleChecked ? 'opacity:0.5; pointer-events:none;' : ''}">${word}</button>`).join('')}</div><div style="display: flex; gap: 6px; justify-content: center; flex-wrap: wrap;"><button class="hero-btn" data-action="jumbleReset" style="background:#f59e0b; padding:6px 12px;">🔄 ${this.t('إعادة', 'Reset')}</button><button class="hero-btn" data-action="jumbleCheck" style="background:#10b981; padding:6px 12px;" ${this.jumbleChecked ? 'disabled' : ''}>✅ ${this.t('تحقق', 'Check')}</button><button class="hero-btn" data-action="jumbleHint" style="background:#3b82f6; padding:6px 12px;" ${this.jumbleChecked || this.jumbleHintUsedCount >= 3 ? 'disabled' : ''}>💡 ${this.t('تلميح', 'Hint')} (${this.jumbleHintUsedCount}/3)</button>${this.jumbleChecked ? `<button class="hero-btn" data-action="jumbleNext" style="background:#3b82f6; padding:6px 12px;">➡️ ${this.t('التالي', 'Next')}</button>` : ''}</div>${this.jumbleArabicHint ? `<div style="margin-top: 12px; padding: 8px; background: #e0f2fe; border-radius: 8px; text-align: center; font-size: 0.85rem;">🔍 ${this.t('الترجمة:', 'Translation:')} ${this.jumbleArabicHint}</div>` : ''}</div>`; }
         
-        if (this.currentPage === 'listening') { if (!this.listeningUnlocked[this.selectedLessonId]) return `<div class="reading-card" style="text-align: center;"><h3>🎧 ${this.t('اختبار الاستماع', 'Listening Test')}</h3><p>${this.t('لفتح هذا الاختبار تحتاج 50 💎 لؤلؤة (مرة واحدة فقط للدرس).', 'To unlock this test you need 50 💎 pearls (one-time per lesson).')}</p><p>${this.t('رصيدك الحالي:', 'Your balance:')} ${this.userCoins} 💎</p><button class="hero-btn" onclick="appInstance.unlockListening('${this.selectedLessonId}')" style="background: #8b5cf6;">${this.t('فتح (50 💎)', 'Unlock (50 💎)')}</button></div>`; if (!this.listeningCurrent) { this.prepareListeningQuiz(); return `<div class="reading-card"><p>${this.t('جاري تحضير التمرين...', 'Preparing exercise...')}</p></div>`; } return `<div class="reading-card"><h3>🎧 ${this.t('استمع واختر الكلمة الصحيحة', 'Listen and choose the correct word')}</h3><div style="text-align: center; margin: 20px 0;"><button class="hero-btn" data-action="speak" data-param="${this.listeningCurrent.english}" style="font-size: 1.3rem; padding: 12px; background: #6366f1;">🔊 ${this.t('استمع مرة أخرى', 'Listen Again')}</button></div><div class="quiz-options">${this.listeningOptions.map(opt => `<button class="quiz-opt-btn listening-opt-btn" data-action="listeningAnswer" data-param="${opt}">${opt}</button>`).join('')}</div></div>`; }
+        if (this.currentPage === 'listening') { if (!this.listeningUnlocked[this.selectedLessonId]) return `<div class="reading-card" style="text-align: center;"><h3>🎧 ${this.t('اختبار الاستماع', 'Listening Test')}</h3><p>${this.t('لفتح هذا الاختبار تحتاج 50 💎 لؤلؤة (مرة واحدة فقط للدرس).', 'To unlock this test you need 50 💎 pearls (one-time per lesson).')}</p><p>${this.t('رصيدك الحالي:', 'Your balance:')} ${this.userCoins} 💎</p><button class="hero-btn" onclick="appInstance.unlockListening('${this.selectedLessonId}')" style="background: #8b5cf6;">${this.t('فتح (50 💎)', 'Unlock (50 💎)')}</button></div>`; if (!this.listeningCurrent) { this.prepareListeningQuiz(); return `<div class="reading-card"><p>${this.t('جاري تحضير التمرين...', 'Preparing exercise...')}</p></div>`; } return `<div class="reading-card"><h3>🎧 ${this.t('استمع واختر الكلمة الصحيحة', 'Listen and choose the correct word')}</h3><div style="text-align: center; margin: 20px 0;"><button class="hero-btn" data-action="speak" data-param="${this.listeningCurrent.english}" style="font-size: 1.3rem; padding: 12px; background: #6366f1;">🔊 ${this.t('استمع مرة أخرى', 'Listen Again')}</button></div><div class="quiz-options">${this.listeningOptions.map(opt => `<button class="quiz-opt-btn listening-opt-btn" data-action="normalListeningAnswer" data-param="${opt}">${opt}</button>`).join('')}</div></div>`; }
         
         if (this.currentPage === 'spelling') { if (!this.spellingUnlocked[this.selectedLessonId]) return `<div class="reading-card" style="text-align: center;"><h3>✍️ ${this.t('تمرين الكتابة', 'Spelling Exercise')}</h3><p>${this.t('لفتح هذا التمرين تحتاج 50 💎 لؤلؤة (مرة واحدة فقط للدرس).', 'To unlock this exercise you need 50 💎 pearls (one-time per lesson).')}</p><p>${this.t('رصيدك الحالي:', 'Your balance:')} ${this.userCoins} 💎</p><button class="hero-btn" onclick="appInstance.unlockSpelling('${this.selectedLessonId}')" style="background: #8b5cf6;">${this.t('فتح (50 💎)', 'Unlock (50 💎)')}</button></div>`; if (!this.spellingCurrent) { this.prepareSpelling(); return `<div class="reading-card"><p>${this.t('جاري تحضير التمرين...', 'Preparing exercise...')}</p></div>`; } return `<div class="reading-card spelling-card"><h3>✍️ ${this.t('اكتب الكلمة بالانجليزية', 'Write the word in English')}</h3><div style="font-size:1.3rem; text-align:center; margin:15px 0; padding:12px; background:#f0f7ff; border-radius:12px;">${this.spellingCurrent.arabic}</div><input type="text" id="spellingInput" class="spelling-input" placeholder="${this.t('اكتب الكلمة هنا...', 'Write the word here...')}" value="${this.spellingUserAnswer}" ${this.spellingAnswered ? 'disabled' : ''} style="padding:10px; font-size:1rem;">${this.spellingResult ? `<div class="spelling-feedback ${this.spellingResult === 'correct' ? 'correct-feedback' : 'wrong-feedback'}" style="text-align:center; margin:10px 0;">${this.spellingResult === 'correct' ? this.t('✅ إجابة صحيحة!', '✅ Correct answer!') : this.t('❌ إجابة خاطئة!', '❌ Wrong answer!')}</div>` : ''}<div style="display:flex; gap:8px; justify-content:center;"><button class="hero-btn" data-action="spellingCheck" style="background:#10b981;" ${this.spellingAnswered ? 'disabled' : ''}>✅ ${this.t('تحقق', 'Check')}</button>${this.spellingAnswered ? `<button class="hero-btn" data-action="spellingNext" style="background:#3b82f6;">➡️ ${this.t('التالي', 'Next')}</button>` : ''}</div></div>`; }
         
@@ -2876,8 +2926,8 @@ if (action === 'adaptiveListeningAnswer') {
             setTimeout(() => this.init(), 500); 
             return; 
         } 
-        this.audioCtx = new (window.AudioContext || window.webkitAudioContext)(); 
-        if (this.audioCtx.state === 'suspended') this.audioCtx.resume(); 
+        // لا ننشئ AudioContext هنا، بل نتركه للاستخدام الأول
+        this.audioCtx = null;
         this.setupGlobalEvents(); 
         onAuthStateChanged(auth, async (user) => { 
             if (this.isProcessingAuth) return; 
