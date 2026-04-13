@@ -21316,14 +21316,14 @@ window.gapfillDB = {
     ],
     "76-1": [ // problem solving
         {
-            sentence: "Critical thinking and _______ _______ are essential skills in any career.",
+            sentence: "Critical thinking and _______ are essential skills in any career.",
             options: ["problem solving", "teamwork", "persistence", "proposal"],
             originalSentence: "Critical thinking and problem solving are essential skills in any career."
         }
     ],
     "76-2": [ // group project
         {
-            sentence: "We need to divide the tasks for our _______ _______ to finish on time.",
+            sentence: "We need to divide the tasks for our _______ to finish on time.",
             options: ["group project", "pilot program", "city council", "campaign"],
             originalSentence: "We need to divide the tasks for our group project to finish on time."
         }
@@ -21344,7 +21344,7 @@ window.gapfillDB = {
     ],
     "76-5": [ // plastic waste
         {
-            sentence: "Recycling is one way to manage the growing _______ _______ problem.",
+            sentence: "Recycling is one way to manage the growing _______ problem.",
             options: ["plastic waste", "alternatives", "findings", "sources"],
             originalSentence: "Recycling is one way to manage the growing plastic waste problem."
         }
@@ -21400,7 +21400,7 @@ window.gapfillDB = {
     ],
     "76-13": [ // single-use plastics
         {
-            sentence: "Many cafes are replacing _______ _______ with paper straws.",
+            sentence: "Many cafes are replacing _______ with paper straws.",
             options: ["single-use plastics", "reusable bags", "alternatives", "sources"],
             originalSentence: "Many cafes are replacing single-use plastics with paper straws."
         }
@@ -21519,7 +21519,7 @@ window.gapfillDB = {
     ],
     "76-30": [ // reusable bags
         {
-            sentence: "Please remember to bring your _______ _______ when you go shopping.",
+            sentence: "Please remember to bring your _______ when you go shopping.",
             options: ["reusable bags", "single-use plastics", "alternatives", "findings"],
             originalSentence: "Please remember to bring your reusable bags when you go shopping."
         }
@@ -21547,7 +21547,7 @@ window.gapfillDB = {
     ],
     "76-34": [ // council member
         {
-            sentence: "The _______ _______ listened to the concerns of the citizens.",
+            sentence: "The _______ listened to the concerns of the citizens.",
             options: ["council member", "official", "resident", "volunteer"],
             originalSentence: "The council member listened to the concerns of the citizens."
         }
@@ -21568,7 +21568,7 @@ window.gapfillDB = {
     ],
     "76-37": [ // public awareness
         {
-            sentence: "The goal of the campaign is to increase _______ _______ about cancer.",
+            sentence: "The goal of the campaign is to increase _______ about cancer.",
             options: ["public awareness", "problem solving", "pilot program", "group project"],
             originalSentence: "The goal of the campaign is to increase public awareness about cancer."
         }
@@ -21589,7 +21589,7 @@ window.gapfillDB = {
     ],
     "76-40": [ // pilot program
         {
-            sentence: "The school is testing the new curriculum in a _______ _______.",
+            sentence: "The school is testing the new curriculum in a _______.",
             options: ["pilot program", "city council", "group project", "public awareness"],
             originalSentence: "The school is testing the new curriculum in a pilot program."
         }
@@ -21638,7 +21638,7 @@ window.gapfillDB = {
     ],
     "77-1": [ // decision making
         {
-            sentence: "Effective _______ _______ is a key leadership quality.",
+            sentence: "Effective _______ is a key leadership quality.",
             options: ["decision making", "sustainable design", "new chapter", "support"],
             originalSentence: "Effective decision making is a key leadership quality."
         }
@@ -21659,7 +21659,7 @@ window.gapfillDB = {
     ],
     "77-4": [ // architecture programs
         {
-            sentence: "The university is famous for its creative _______ _______.",
+            sentence: "The university is famous for its creative _______.",
             options: ["architecture programs", "unique programs", "excellent reviews", "new chapters"],
             originalSentence: "The university is famous for its creative architecture programs."
         }
@@ -21673,28 +21673,28 @@ window.gapfillDB = {
     ],
     "77-6": [ // long history
         {
-            sentence: "This ancient city has a very _______ _______ and rich culture.",
+            sentence: "This ancient city has a very _______ and rich culture.",
             options: ["long history", "fast-paced", "unique program", "brave choice"],
             originalSentence: "This ancient city has a very long history and rich culture."
         }
     ],
     "77-7": [ // unique program
         {
-            sentence: "The school offers a _______ _______ that combines art and science.",
+            sentence: "The school offers a _______ that combines art and science.",
             options: ["unique program", "pros and cons", "new chapter", "brave choice"],
             originalSentence: "The school offers a unique program that combines art and science."
         }
     ],
     "77-8": [ // focused on
         {
-            sentence: "The meeting was _______ _______ finding ways to reduce costs.",
+            sentence: "The meeting was _______ finding ways to reduce costs.",
             options: ["focused on", "aligns with", "torn", "at ease"],
             originalSentence: "The meeting was focused on finding ways to reduce costs."
         }
     ],
     "77-9": [ // sustainable design
         {
-            sentence: "Architects today are prioritizing _______ _______ to save the environment.",
+            sentence: "Architects today are prioritizing _______ to save the environment.",
             options: ["sustainable design", "architecture programs", "excellent reviews", "new chapter"],
             originalSentence: "Architects today are prioritizing sustainable design to save the environment."
         }
@@ -21706,23 +21706,9 @@ window.gapfillDB = {
             originalSentence: "I was torn between two great job offers and didn't know what to do."
         }
     ],
-    "77-11": [ // weight of the decision
-        {
-            sentence: "He felt the _______ _______ _______ _______ when he chose to move abroad.",
-            options: ["weight of the decision", "pros and cons", "reputation", "new chapter"],
-            originalSentence: "He felt the weight of the decision when he chose to move abroad."
-        }
-    ],
-    "77-12": [ // shape his future
-        {
-            sentence: "Studying hard now will help _______ _______ _______ in a positive way.",
-            options: ["shape his future", "innovate", "support", "cheering"],
-            originalSentence: "Studying hard now will help shape his future in a positive way."
-        }
-    ],
     "77-13": [ // pros and cons
         {
-            sentence: "You should list the _______ _______ _______ before making a final choice.",
+            sentence: "You should list the _______ before making a final choice.",
             options: ["pros and cons", "brochures", "campuses", "professors"],
             originalSentence: "You should list the pros and cons before making a final choice."
         }
@@ -21757,7 +21743,7 @@ window.gapfillDB = {
     ],
     "77-18": [ // aligns with
         {
-            sentence: "The new project _______ _______ our long-term goals.",
+            sentence: "The new project _______ our long-term goals.",
             options: ["aligns with", "focused on", "innovate", "cheering"],
             originalSentence: "The new project aligns with our long-term goals."
         }
@@ -21776,13 +21762,6 @@ window.gapfillDB = {
             originalSentence: "Tech companies must innovate constantly to stay ahead."
         }
     ],
-    "77-21": [ // follow your heart
-        {
-            sentence: "Sometimes, the best advice is to _______ _______ _______.",
-            options: ["follow your heart", "shape his future", "innovate", "support"],
-            originalSentence: "Sometimes, the best advice is to follow your heart."
-        }
-    ],
     "77-22": [ // sustainability
         {
             sentence: "Environmental _______ is a major topic in today's politics.",
@@ -21792,7 +21771,7 @@ window.gapfillDB = {
     ],
     "77-23": [ // excellent reviews
         {
-            sentence: "I chose this restaurant because it had _______ _______ online.",
+            sentence: "I chose this restaurant because it had _______  online.",
             options: ["excellent reviews", "brochures", "architecture programs", "new chapters"],
             originalSentence: "I chose this restaurant because it had excellent reviews online."
         }
@@ -21802,13 +21781,6 @@ window.gapfillDB = {
             sentence: "She was _______ for the opportunity to study abroad.",
             options: ["grateful", "overwhelmed", "relieved", "distracted"],
             originalSentence: "She was grateful for the opportunity to study abroad."
-        }
-    ],
-    "77-25": [ // right or wrong choice
-        {
-            sentence: "In some situations, there is no simple _______ _______ _______ _______.",
-            options: ["right or wrong choice", "pros and cons", "brave choice", "new chapter"],
-            originalSentence: "In some situations, there is no simple right or wrong choice."
         }
     ],
     "77-26": [ // academically
@@ -21862,7 +21834,7 @@ window.gapfillDB = {
     ],
     "77-33": [ // at ease
         {
-            sentence: "The soft music helped to put the nervous patients _______ _______.",
+            sentence: "The soft music helped to put the nervous patients _______.",
             options: ["at ease", "torn", "distracted", "passionate"],
             originalSentence: "The soft music helped to put the nervous patients at ease."
         }
@@ -21897,7 +21869,7 @@ window.gapfillDB = {
     ],
     "77-38": [ // brave choice
         {
-            sentence: "Leaving her secure job to start a business was a _______ _______.",
+            sentence: "Leaving her secure job to start a business was a _______.",
             options: ["brave choice", "right or wrong choice", "unique program", "new chapter"],
             originalSentence: "Leaving her secure job to start a business was a brave choice."
         }
@@ -21937,16 +21909,9 @@ window.gapfillDB = {
             originalSentence: "Thank you for all the emotional support during my recovery."
         }
     ],
-    "77-44": [ // listening to your heart
-        {
-            sentence: "He realized that _______ _______ _______ _______ was the key to happiness.",
-            options: ["listening to your heart", "decision making", "shape his future", "innovate"],
-            originalSentence: "He realized that listening to your heart was the key to happiness."
-        }
-    ],
     "77-45": [ // new chapter
         {
-            sentence: "Graduation marks the beginning of a _______ _______ in your life.",
+            sentence: "Graduation marks the beginning of a _______ in your life.",
             options: ["new chapter", "brave choice", "unique program", "pros and cons"],
             originalSentence: "Graduation marks the beginning of a new chapter in your life."
         }
@@ -21967,14 +21932,14 @@ window.gapfillDB = {
     ],
     "78-3": [ // advanced enormously
         {
-            sentence: "Technology has _______ _______ in the last twenty years.",
+            sentence: "Technology has _______ in the last twenty years.",
             options: ["advanced enormously", "advanced slightly", "decreased", "failed"],
             originalSentence: "Technology has advanced enormously in the last twenty years."
         }
     ],
     "78-4": [ // flying cars
         {
-            sentence: "In old movies, people thought we would have _______ _______ by the year 2020.",
+            sentence: "In old movies, people thought we would have _______ by the year 2020.",
             options: ["flying cars", "fossil fuels", "renewable energy", "materials"],
             originalSentence: "In old movies, people thought we would have flying cars by the year 2020."
         }
@@ -22002,7 +21967,7 @@ window.gapfillDB = {
     ],
     "78-8": [ // climate change
         {
-            sentence: "Rising sea levels are a direct result of _______ _______.",
+            sentence: "Rising sea levels are a direct result of _______.",
             options: ["climate change", "global cooperation", "space exploration", "architecture"],
             originalSentence: "Rising sea levels are a direct result of climate change."
         }
@@ -22016,7 +21981,7 @@ window.gapfillDB = {
     ],
     "78-10": [ // global cooperation
         {
-            sentence: "Stopping a pandemic requires strong _______ _______.",
+            sentence: "Stopping a pandemic requires strong _______.",
             options: ["global cooperation", "space exploration", "fossil fuels", "architecture"],
             originalSentence: "Stopping a pandemic requires strong global cooperation."
         }
@@ -22030,7 +21995,7 @@ window.gapfillDB = {
     ],
     "78-12": [ // renewable energy
         {
-            sentence: "Wind and solar power are forms of _______ _______.",
+            sentence: "Wind and solar power are forms of _______.",
             options: ["renewable energy", "fossil fuels", "climate change", "architecture"],
             originalSentence: "Wind and solar power are forms of renewable energy."
         }
@@ -22044,7 +22009,7 @@ window.gapfillDB = {
     ],
     "78-14": [ // fossil fuels
         {
-            sentence: "Burning _______ _______ like coal and oil releases carbon dioxide.",
+            sentence: "Burning _______ like coal and oil releases carbon dioxide.",
             options: ["fossil fuels", "renewable energy", "materials", "predictions"],
             originalSentence: "Burning fossil fuels like coal and oil releases carbon dioxide."
         }
@@ -22058,7 +22023,7 @@ window.gapfillDB = {
     ],
     "78-16": [ // space exploration
         {
-            sentence: "_______ _______ allows us to learn more about our solar system.",
+            sentence: "_______ allows us to learn more about our solar system.",
             options: ["space exploration", "global cooperation", "climate change", "architecture"],
             originalSentence: "Space exploration allows us to learn more about our solar system."
         }
@@ -22107,7 +22072,7 @@ window.gapfillDB = {
     ],
     "78-24": [ // project manager
         {
-            sentence: "The _______ _______ is responsible for keeping the team on schedule.",
+            sentence: "The _______ is responsible for keeping the team on schedule.",
             options: ["project manager", "journalist", "scientist", "official"],
             originalSentence: "The project manager is responsible for keeping the team on schedule."
         }
@@ -22163,14 +22128,14 @@ window.gapfillDB = {
     ],
     "78-33": [ // raising his cup
         {
-            sentence: "He stood up and was _______ _______ _______ to make a toast.",
+            sentence: "He stood up and was _______ to make a toast.",
             options: ["raising his cup", "clinking cups", "dreaming", "testing"],
             originalSentence: "He stood up and was raising his cup to make a toast."
         }
     ],
     "78-34": [ // clinking cups
         {
-            sentence: "The sound of _______ _______ filled the room during the celebration.",
+            sentence: "The sound of _______ filled the room during the celebration.",
             options: ["clinking cups", "raising his cup", "space exploration", "fossil fuels"],
             originalSentence: "The sound of clinking cups filled the room during the celebration."
         }
@@ -22191,7 +22156,7 @@ window.gapfillDB = {
     ],
     "78-37": [ // no matter what
         {
-            sentence: "I will support you _______ _______ _______ happens.",
+            sentence: "I will support you _______ happens.",
             options: ["no matter what", "inevitable", "uncertain", "meaningful"],
             originalSentence: "I will support you no matter what happens."
         }
@@ -22212,7 +22177,7 @@ window.gapfillDB = {
     ],
     "78-40": [ // full of promise
         {
-            sentence: "The young athlete's career is _______ _______ _______.",
+            sentence: "The young athlete's career is _______.",
             options: ["full of promise", "uncertain", "pessimistic", "inevitable"],
             originalSentence: "The young athlete's career is full of promise."
         }
@@ -22254,7 +22219,7 @@ window.gapfillDB = {
     ],
     "79-1": [ // technology trends
         {
-            sentence: "Staying updated with the latest _______ _______ is crucial for developers.",
+            sentence: "Staying updated with the latest _______ is crucial for developers.",
             options: ["technology trends", "ethical concerns", "everyday objects", "young professionals"],
             originalSentence: "Staying updated with the latest technology trends is crucial for developers."
         }
@@ -22298,7 +22263,7 @@ window.gapfillDB = {
     ],
     "79-8": [ // artificial intelligence
         {
-            sentence: "Many apps now use _______ _______ to provide better recommendations.",
+            sentence: "Many apps now use _______ to provide better recommendations.",
             options: ["artificial intelligence", "cybersecurity", "Internet of Things", "virtual reality"],
         }
     ],
@@ -22334,7 +22299,7 @@ window.gapfillDB = {
     ],
     "79-14": [ // virtual reality
         {
-            sentence: "Gamers love _______ _______ because it makes them feel inside the game.",
+            sentence: "Gamers love _______ because it makes them feel inside the game.",
             options: ["virtual reality", "cybersecurity", "Internet of Things", "artificial intelligence"],
         }
     ],
@@ -22346,7 +22311,7 @@ window.gapfillDB = {
     ],
     "79-16": [ // virtual building
         {
-            sentence: "The architect showed us a _______ _______ before construction began.",
+            sentence: "The architect showed us a _______ before construction began.",
             options: ["virtual building", "smart city", "smart home", "workshop"],
         }
     ],
@@ -22400,7 +22365,7 @@ window.gapfillDB = {
     ],
     "79-26": [ // ethical concerns
         {
-            sentence: "The use of facial recognition has raised several _______ _______.",
+            sentence: "The use of facial recognition has raised several _______.",
             options: ["ethical concerns", "technology trends", "everyday objects", "young professionals"],
         }
     ],
@@ -22436,13 +22401,13 @@ window.gapfillDB = {
     ],
     "79-32": [ // Internet of Things
         {
-            sentence: "The _______ _______ _______ allows your fridge to talk to your phone.",
+            sentence: "The _______ allows your fridge to talk to your phone.",
             options: ["Internet of Things", "cybersecurity", "artificial intelligence", "virtual reality"],
         }
     ],
     "79-33": [ // everyday objects
         {
-            sentence: "Smart technology is now being built into _______ _______ like watches.",
+            sentence: "Smart technology is now being built into _______ like watches.",
             options: ["everyday objects", "ethical concerns", "technology trends", "young professionals"],
         }
     ],
@@ -22454,13 +22419,13 @@ window.gapfillDB = {
     ],
     "79-35": [ // smart homes
         {
-            sentence: "_______ _______ allow people to control lights and locks remotely.",
+            sentence: "_______ allow people to control lights and locks remotely.",
             options: ["smart homes", "smart cities", "virtual buildings", "workshops"],
         }
     ],
     "79-36": [ // smart cities
         {
-            sentence: "_______ _______ use data to manage traffic and reduce energy use.",
+            sentence: "_______ use data to manage traffic and reduce energy use.",
             options: ["smart cities", "smart homes", "virtual buildings", "sites"],
         }
     ],
@@ -22472,13 +22437,13 @@ window.gapfillDB = {
     ],
     "79-38": [ // share energy
         {
-            sentence: "Smart grids allow buildings to _______ _______ efficiently.",
+            sentence: "Smart grids allow buildings to _______ efficiently.",
             options: ["share energy", "reduce waste", "personalize", "generate"],
         }
     ],
     "79-39": [ // reduce waste
         {
-            sentence: "Effective recycling programs help cities _______ _______.",
+            sentence: "Effective recycling programs help cities _______.",
             options: ["reduce waste", "share energy", "generate", "transform"],
         }
     ],
@@ -22514,7 +22479,7 @@ window.gapfillDB = {
     ],
     "79-45": [ // young professionals
         {
-            sentence: "The city is attracting many _______ _______ in the tech sector.",
+            sentence: "The city is attracting many _______ in the tech sector.",
             options: ["young professionals", "everyday objects", "technology trends", "ethical concerns"],
         }
     ],
@@ -22556,14 +22521,14 @@ window.gapfillDB = {
     ],
     "80-1": [ // global economy
         {
-            sentence: "Events in one country can quickly affect the _______ _______.",
+            sentence: "Events in one country can quickly affect the _______.",
             options: ["global economy", "trade agreement", "green design", "lecture hall"],
             originalSentence: "Events in one country can quickly affect the global economy."
         }
     ],
     "80-2": [ // lecture hall
         {
-            sentence: "The university built a new _______ _______ to accommodate more students.",
+            sentence: "The university built a new _______ to accommodate more students.",
             options: ["lecture hall", "community center", "factory", "port"],
         }
     ],
@@ -22611,7 +22576,7 @@ window.gapfillDB = {
     ],
     "80-10": [ // supply chain
         {
-            sentence: "The delivery was delayed due to a break in the _______ _______.",
+            sentence: "The delivery was delayed due to a break in the _______.",
             options: ["supply chain", "trade agreement", "global market", "central bank"],
         }
     ],
@@ -22641,7 +22606,7 @@ window.gapfillDB = {
     ],
     "80-15": [ // basic goods
         {
-            sentence: "The government should ensure that _______ _______ remain affordable.",
+            sentence: "The government should ensure that _______ remain affordable.",
             options: ["basic goods", "emerging economies", "green design", "savings"],
         }
     ],
@@ -22665,7 +22630,7 @@ window.gapfillDB = {
     ],
     "80-19": [ // shut down
         {
-            sentence: "The old coal mine was _______ _______ because of safety concerns.",
+            sentence: "The old coal mine was _______ because of safety concerns.",
             options: ["shut down", "recovered", "managed", "informed"],
         }
     ],
@@ -22719,7 +22684,7 @@ window.gapfillDB = {
     ],
     "80-30": [ // trade agreement
         {
-            sentence: "The two countries signed a _______ _______ to increase exports.",
+            sentence: "The two countries signed a _______ to increase exports.",
             options: ["trade agreement", "supply chain", "green design", "lecture hall"],
         }
     ],
@@ -22767,7 +22732,7 @@ window.gapfillDB = {
     ],
     "80-38": [ // economic factors
         {
-            sentence: "Many _______ _______ affect the value of a currency.",
+            sentence: "Many _______ affect the value of a currency.",
             options: ["economic factors", "basic goods", "green designs", "global markets"],
         }
     ],
@@ -22791,19 +22756,19 @@ window.gapfillDB = {
     ],
     "80-42": [ // green design
         {
-            sentence: "The new office building uses _______ _______ to save energy.",
+            sentence: "The new office building uses _______ to save energy.",
             options: ["green design", "economic factors", "trade agreement", "supply chain"],
         }
     ],
     "80-43": [ // global markets
         {
-            sentence: "Companies must compete in _______ _______ to be successful.",
+            sentence: "Companies must compete in _______ to be successful.",
             options: ["global markets", "lecture halls", "factories", "community centers"],
         }
     ],
     "80-44": [ // emerging economies
         {
-            sentence: "Countries like Vietnam are considered _______ _______.",
+            sentence: "Countries like Vietnam are considered _______.",
             options: ["emerging economies", "central banks", "economic factors", "basic goods"],
         }
     ],
@@ -22815,25 +22780,25 @@ window.gapfillDB = {
     ],
     "80-46": [ // economic inequality
         {
-            sentence: "_______ _______ remains a major challenge for many nations.",
+            sentence: "_______ remains a major challenge for many nations.",
             options: ["economic inequality", "global economy", "trade agreement", "green design"],
         }
     ],
     "80-47": [ // affordable housing
         {
-            sentence: "The city is investing in _______ _______ for low-income families.",
+            sentence: "The city is investing in _______ for low-income families.",
             options: ["affordable housing", "community centers", "lecture halls", "factories"],
         }
     ],
     "80-48": [ // community centers
         {
-            sentence: "Local _______ _______ offer classes and sports for everyone.",
+            sentence: "Local _______ offer classes and sports for everyone.",
             options: ["community centers", "central banks", "ports", "factories"],
         }
     ],
     "80-49": [ // make a difference
         {
-            sentence: "Even small actions can _______ _______ _______ in the world.",
+            sentence: "Even small actions can _______ in the world.",
             options: ["make a difference", "manage", "struggle", "afford"],
         }
     ],
@@ -22845,13 +22810,13 @@ window.gapfillDB = {
     ],
     "80-51": [ // at heart
         {
-            sentence: "Although he lives in the city, he is a farmer _______ _______.",
+            sentence: "Although he lives in the city, he is a farmer _______.",
             options: ["at heart", "informed", "grateful", "complicated"],
         }
     ],
     "80-52": [ // famous economist
         {
-            sentence: "Adam Smith is a _______ _______ known for his book 'The Wealth of Nations'.",
+            sentence: "Adam Smith is a _______ known for his book 'The Wealth of Nations'.",
             options: ["famous economist", "young professional", "council member", "resident"],
         }
     ],
@@ -22869,7 +22834,7 @@ window.gapfillDB = {
     ],
     "80-55": [ // keep learning
         {
-            sentence: "To stay ahead in your job, you must _______ _______.",
+            sentence: "To stay ahead in your job, you must _______.",
             options: ["keep learning", "make a difference", "manage", "struggle"],
         }
     ],"81-1": [ // CV
@@ -22881,28 +22846,28 @@ window.gapfillDB = {
     ],
     "81-2": [ // career center
         {
-            sentence: "The university's _______ _______ helps students find jobs after graduation.",
+            sentence: "The university's _______ helps students find jobs after graduation.",
             options: ["career center", "lecture hall", "community center", "central bank"],
             originalSentence: "The university's career center helps students find jobs after graduation."
         }
     ],
     "81-3": [ // career advisor
         {
-            sentence: "She met with a _______ _______ to get advice on her future plans.",
+            sentence: "She met with a _______ to get advice on her future plans.",
             options: ["career advisor", "native speaker", "team leader", "debate member"],
             originalSentence: "She met with a career advisor to get advice on her future plans."
         }
     ],
     "81-4": [ // final year
         {
-            sentence: "In her _______ _______ at university, she started applying for jobs.",
+            sentence: "In her _______ at university, she started applying for jobs.",
             options: ["final year", "work experience", "first draft", "support system"],
             originalSentence: "In her final year at university, she started applying for jobs."
         }
     ],
     "81-5": [ // applying for jobs
         {
-            sentence: "_______ _______ _______ can be stressful but also exciting.",
+            sentence: "_______ can be stressful but also exciting.",
             options: ["applying for jobs", "landing interviews", "seeking internship", "job hunt"],
             originalSentence: "Applying for jobs can be stressful but also exciting."
         }
@@ -22916,7 +22881,7 @@ window.gapfillDB = {
     ],
     "81-7": [ // landing interviews
         {
-            sentence: "A strong CV is key to _______ _______.",
+            sentence: "A strong CV is key to _______.",
             options: ["landing interviews", "applying for jobs", "seeking internship", "job hunt"],
             originalSentence: "A strong CV is key to landing interviews."
         }
@@ -22944,7 +22909,7 @@ window.gapfillDB = {
     ],
     "81-12": [ // personal statement
         {
-            sentence: "Your _______ _______ should explain who you are and what you want.",
+            sentence: "Your _______ should explain who you are and what you want.",
             options: ["personal statement", "job description", "work experience", "first draft"],
             originalSentence: "Your personal statement should explain who you are and what you want."
         }
@@ -22972,7 +22937,7 @@ window.gapfillDB = {
     ],
     "81-16": [ // experienced professionals
         {
-            sentence: "_______ _______ often mentor younger employees in the office.",
+            sentence: "_______ often mentor younger employees in the office.",
             options: ["experienced professionals", "native speakers", "debate teams", "career advisors"],
             originalSentence: "Experienced professionals often mentor younger employees in the office."
         }
@@ -22993,7 +22958,7 @@ window.gapfillDB = {
     ],
     "81-19": [ // high school diploma
         {
-            sentence: "He received his _______ _______ _______ before going to university.",
+            sentence: "He received his _______ before going to university.",
             options: ["high school diploma", "bachelor's degree", "relevant courses", "work experience"],
             originalSentence: "He received his high school diploma before going to university."
         }
@@ -23014,14 +22979,14 @@ window.gapfillDB = {
     ],
     "81-23": [ // relevant courses
         {
-            sentence: "Add _______ _______ to your CV to show your academic knowledge.",
+            sentence: "Add _______ to your CV to show your academic knowledge.",
             options: ["relevant courses", "soft skills", "technical skills", "work experience"],
             originalSentence: "Add relevant courses to your CV to show your academic knowledge."
         }
     ],
     "81-24": [ // work experience
         {
-            sentence: "Employers always look at the _______ _______ section of your CV.",
+            sentence: "Employers always look at the _______ section of your CV.",
             options: ["work experience", "relevant courses", "personal statement", "support system"],
             originalSentence: "Employers always look at the work experience section of your CV."
         }
@@ -23042,28 +23007,28 @@ window.gapfillDB = {
     ],
     "81-27": [ // project planning
         {
-            sentence: "He was involved in _______ _______ for the new building.",
+            sentence: "He was involved in _______ for the new building.",
             options: ["project planning", "design sketches", "client meetings", "action verbs"],
             originalSentence: "He was involved in project planning for the new building."
         }
     ],
     "81-28": [ // design sketches
         {
-            sentence: "The architect presented her _______ _______ to the team.",
+            sentence: "The architect presented her _______ to the team.",
             options: ["design sketches", "client meetings", "project planning", "action verbs"],
             originalSentence: "The architect presented her design sketches to the team."
         }
     ],
     "81-29": [ // client meetings
         {
-            sentence: "He attended several _______ _______ to discuss the project details.",
+            sentence: "He attended several _______ to discuss the project details.",
             options: ["client meetings", "design sketches", "project planning", "soft skills"],
             originalSentence: "He attended several client meetings to discuss the project details."
         }
     ],
     "81-30": [ // action verbs
         {
-            sentence: "Using strong _______ _______ makes your CV sound more impressive.",
+            sentence: "Using strong _______ makes your CV sound more impressive.",
             options: ["action verbs", "soft skills", "technical skills", "relevant courses"],
             originalSentence: "Using strong action verbs makes your CV sound more impressive."
         }
@@ -23098,7 +23063,7 @@ window.gapfillDB = {
     ],
     "81-35": [ // technical skills
         {
-            sentence: "Strong _______ _______ are very important in the technology industry.",
+            sentence: "Strong _______ are very important in the technology industry.",
             options: ["technical skills", "soft skills", "action verbs", "relevant courses"],
             originalSentence: "Strong technical skills are very important in the technology industry."
         }
@@ -23119,14 +23084,14 @@ window.gapfillDB = {
     ],
     "81-38": [ // Adobe Photoshop
         {
-            sentence: "He edited the images for the magazine using _______ _______.",
+            sentence: "He edited the images for the magazine using _______.",
             options: ["Adobe Photoshop", "AutoCAD", "SketchUp", "design sketches"],
             originalSentence: "He edited the images for the magazine using Adobe Photoshop."
         }
     ],
     "81-39": [ // soft skills
         {
-            sentence: "Employers value _______ _______ like patience and teamwork.",
+            sentence: "Employers value _______ like patience and teamwork.",
             options: ["soft skills", "technical skills", "action verbs", "relevant courses"],
             originalSentence: "Employers value soft skills like patience and teamwork."
         }
@@ -23161,7 +23126,7 @@ window.gapfillDB = {
     ],
     "81-44": [ // native speaker
         {
-            sentence: "He is a _______ _______ of Arabic and also speaks English well.",
+            sentence: "He is a _______ of Arabic and also speaks English well.",
             options: ["native speaker", "career advisor", "experienced professional", "debate team"],
             originalSentence: "He is a native speaker of Arabic and also speaks English well."
         }
@@ -23182,21 +23147,21 @@ window.gapfillDB = {
     ],
     "81-47": [ // science fair
         {
-            sentence: "He won first place at the school _______ _______ last year.",
+            sentence: "He won first place at the school _______ last year.",
             options: ["science fair", "debate team", "sustainable housing", "career center"],
             originalSentence: "He won first place at the school science fair last year."
         }
     ],
     "81-48": [ // sustainable housing
         {
-            sentence: "Her project on _______ _______ won an award at the university.",
+            sentence: "Her project on _______ won an award at the university.",
             options: ["sustainable housing", "science fair", "debate team", "affordable housing"],
             originalSentence: "Her project on sustainable housing won an award at the university."
         }
     ],
     "81-49": [ // debate team
         {
-            sentence: "Being on the _______ _______ helped him improve his public speaking.",
+            sentence: "Being on the _______ helped him improve his public speaking.",
             options: ["debate team", "science fair", "support system", "career center"],
             originalSentence: "Being on the debate team helped him improve his public speaking."
         }
@@ -23245,7 +23210,7 @@ window.gapfillDB = {
     ],
     "81-56": [ // first draft
         {
-            sentence: "Always write a _______ _______ before sending your CV to anyone.",
+            sentence: "Always write a _______ before sending your CV to anyone.",
             options: ["first draft", "personal statement", "job description", "support system"],
             originalSentence: "Always write a first draft before sending your CV to anyone."
         }
@@ -23259,7 +23224,7 @@ window.gapfillDB = {
     ],
     "81-58": [ // job description
         {
-            sentence: "Read the _______ _______ carefully before writing your cover letter.",
+            sentence: "Read the _______ carefully before writing your cover letter.",
             options: ["job description", "personal statement", "first draft", "support system"],
             originalSentence: "Read the job description carefully before writing your cover letter."
         }
@@ -23280,7 +23245,7 @@ window.gapfillDB = {
     ],
     "81-61": [ // job hunt
         {
-            sentence: "The _______ _______ can take months, so stay patient.",
+            sentence: "The _______ can take months, so stay patient.",
             options: ["job hunt", "career center", "support system", "first draft"],
             originalSentence: "The job hunt can take months, so stay patient."
         }
@@ -23294,14 +23259,14 @@ window.gapfillDB = {
     ],
     "81-63": [ // support system
         {
-            sentence: "Having a strong _______ _______ helps you stay motivated during tough times.",
+            sentence: "Having a strong _______ helps you stay motivated during tough times.",
             options: ["support system", "career center", "job hunt", "debate team"],
             originalSentence: "Having a strong support system helps you stay motivated during tough times."
         }
     ],
     "82-1": [ // cover letter
         {
-            sentence: "She wrote a strong _______ _______ to go with her CV.",
+            sentence: "She wrote a strong _______ to go with her CV.",
             options: ["cover letter", "job description", "personal statement", "first draft"],
             originalSentence: "She wrote a strong cover letter to go with her CV."
         }
@@ -23322,14 +23287,14 @@ window.gapfillDB = {
     ],
     "82-4": [ // job applications
         {
-            sentence: "She sent out ten _______ _______ in one week.",
+            sentence: "She sent out ten _______ in one week.",
             options: ["job applications", "cover letters", "green buildings", "hiring managers"],
             originalSentence: "She sent out ten job applications in one week."
         }
     ],
     "82-5": [ // heard back
         {
-            sentence: "He finally _______ _______ from the company after two weeks.",
+            sentence: "He finally _______ from the company after two weeks.",
             options: ["heard back", "specialize in", "contribute", "customize"],
             originalSentence: "He finally heard back from the company after two weeks."
         }
@@ -23399,21 +23364,21 @@ window.gapfillDB = {
     ],
     "82-21": [ // specialize in
         {
-            sentence: "This firm likes to _______ _______ sustainable urban design.",
+            sentence: "This firm likes to _______ sustainable urban design.",
             options: ["specialize in", "contribute to", "customize for", "prepare for"],
             originalSentence: "This firm likes to specialize in sustainable urban design."
         }
     ],
     "82-22": [ // green building
         {
-            sentence: "The new library was designed as a _______ _______ to save energy.",
+            sentence: "The new library was designed as a _______ to save energy.",
             options: ["green building", "energy-efficient", "cover letter", "hiring manager"],
             originalSentence: "The new library was designed as a green building to save energy."
         }
     ],
     "82-23": [ // hiring manager
         {
-            sentence: "Address your cover letter directly to the _______ _______.",
+            sentence: "Address your cover letter directly to the _______.",
             options: ["hiring manager", "career advisor", "experienced professional", "native speaker"],
             originalSentence: "Address your cover letter directly to the hiring manager."
         }
@@ -23455,7 +23420,7 @@ window.gapfillDB = {
     ],
     "82-31": [ // energy-efficient
         {
-            sentence: "The new office building is designed to be fully _______-_______.",
+            sentence: "The new office building is designed to be fully _______.",
             options: ["energy-efficient", "green building", "personalized", "specific"],
             originalSentence: "The new office building is designed to be fully energy-efficient."
         }
@@ -23560,7 +23525,7 @@ window.gapfillDB = {
     ],
     "83-1": [ // job offer
         {
-            sentence: "She received a _______ _______ from a company in Dubai.",
+            sentence: "She received a _______ from a company in Dubai.",
             options: ["job offer", "counter-offer", "benefits package", "verbal offer"],
             originalSentence: "She received a job offer from a company in Dubai."
         }
@@ -23602,7 +23567,7 @@ window.gapfillDB = {
     ],
     "83-7": [ // similar roles
         {
-            sentence: "He compared his offer to salaries in _______ _______ across the industry.",
+            sentence: "He compared his offer to salaries in _______ across the industry.",
             options: ["similar roles", "industry standards", "market rate", "benefits package"],
             originalSentence: "He compared his offer to salaries in similar roles across the industry."
         }
@@ -23637,14 +23602,14 @@ window.gapfillDB = {
     ],
     "83-18": [ // aligned with
         {
-            sentence: "The offer was not _______ _______ her experience and qualifications.",
+            sentence: "The offer was not _______ her experience and qualifications.",
             options: ["aligned with", "look forward to", "walk away", "cheering"],
             originalSentence: "The offer was not aligned with her experience and qualifications."
         }
     ],
     "83-19": [ // industry standards
         {
-            sentence: "The salary should match _______ _______ for this type of role.",
+            sentence: "The salary should match _______ for this type of role.",
             options: ["industry standards", "similar roles", "market rate", "benefits package"],
             originalSentence: "The salary should match industry standards for this type of role."
         }
@@ -23658,7 +23623,7 @@ window.gapfillDB = {
     ],
     "83-21": [ // deep breath
         {
-            sentence: "She took a _______ _______ before making the call to the hiring manager.",
+            sentence: "She took a _______ before making the call to the hiring manager.",
             options: ["deep breath", "verbal offer", "written offer", "sign-on bonus"],
             originalSentence: "She took a deep breath before making the call to the hiring manager."
         }
@@ -23693,14 +23658,14 @@ window.gapfillDB = {
     ],
     "83-30": [ // look forward to
         {
-            sentence: "I _______ _______ _______ joining your team next month.",
+            sentence: "I _______ joining your team next month.",
             options: ["look forward to", "walk away", "aligned with", "cheering"],
             originalSentence: "I look forward to joining your team next month."
         }
     ],
     "83-31": [ // professional life
         {
-            sentence: "This job could be the best decision of her _______ _______.",
+            sentence: "This job could be the best decision of her _______.",
             options: ["professional life", "support system", "benefits package", "retirement plan"],
             originalSentence: "This job could be the best decision of her professional life."
         }
@@ -23721,70 +23686,70 @@ window.gapfillDB = {
     ],
     "83-34": [ // support system
         {
-            sentence: "Her _______ _______ encouraged her to ask for a better offer.",
+            sentence: "Her _______ encouraged her to ask for a better offer.",
             options: ["support system", "professional life", "benefits package", "retirement plan"],
             originalSentence: "Her support system encouraged her to ask for a better offer."
         }
     ],
     "83-36": [ // counter-offer
         {
-            sentence: "He sent a _______ _______ asking for a higher starting salary.",
+            sentence: "He sent a _______ asking for a higher starting salary.",
             options: ["counter-offer", "verbal offer", "written offer", "job offer"],
             originalSentence: "He sent a counter-offer asking for a higher starting salary."
         }
     ],
     "83-37": [ // benefits package
         {
-            sentence: "The _______ _______ included health insurance and annual leave.",
+            sentence: "The _______ included health insurance and annual leave.",
             options: ["benefits package", "retirement plan", "sign-on bonus", "counter-offer"],
             originalSentence: "The benefits package included health insurance and annual leave."
         }
     ],
     "83-38": [ // annual leave
         {
-            sentence: "She negotiated for more _______ _______ in addition to her salary.",
+            sentence: "She negotiated for more _______ in addition to her salary.",
             options: ["annual leave", "health insurance", "sign-on bonus", "retirement plan"],
             originalSentence: "She negotiated for more annual leave in addition to her salary."
         }
     ],
     "83-39": [ // health insurance
         {
-            sentence: "The company offers full _______ _______ for all employees.",
+            sentence: "The company offers full _______ for all employees.",
             options: ["health insurance", "annual leave", "retirement plan", "sign-on bonus"],
             originalSentence: "The company offers full health insurance for all employees."
         }
     ],
     "83-40": [ // retirement plan
         {
-            sentence: "A good _______ _______ is an important part of any job offer.",
+            sentence: "A good _______ is an important part of any job offer.",
             options: ["retirement plan", "health insurance", "annual leave", "benefits package"],
             originalSentence: "A good retirement plan is an important part of any job offer."
         }
     ],
     "83-41": [ // sign-on bonus
         {
-            sentence: "The company offered a _______ _______ to encourage her to join quickly.",
+            sentence: "The company offered a _______ to encourage her to join quickly.",
             options: ["sign-on bonus", "counter-offer", "verbal offer", "adjustment"],
             originalSentence: "The company offered a sign-on bonus to encourage her to join quickly."
         }
     ],
     "83-42": [ // negotiation skills
         {
-            sentence: "Strong _______ _______ can help you get a much better deal.",
+            sentence: "Strong _______ can help you get a much better deal.",
             options: ["negotiation skills", "industry standards", "similar roles", "market rate"],
             originalSentence: "Strong negotiation skills can help you get a much better deal."
         }
     ],
     "83-43": [ // market rate
         {
-            sentence: "His salary request was based on the current _______ _______ for his role.",
+            sentence: "His salary request was based on the current _______ for his role.",
             options: ["market rate", "industry standards", "similar roles", "negotiation skills"],
             originalSentence: "His salary request was based on the current market rate for his role."
         }
     ],
     "83-44": [ // walk away
         {
-            sentence: "Sometimes it is better to _______ _______ from an unfair offer.",
+            sentence: "Sometimes it is better to _______ from an unfair offer.",
             options: ["walk away", "look forward to", "aligned with", "cheering"],
             originalSentence: "Sometimes it is better to walk away from an unfair offer."
         }
@@ -23798,21 +23763,21 @@ window.gapfillDB = {
     ],
     "83-46": [ // verbal offer
         {
-            sentence: "He received a _______ _______ over the phone before getting the contract.",
+            sentence: "He received a _______ over the phone before getting the contract.",
             options: ["verbal offer", "written offer", "job offer", "counter-offer"],
             originalSentence: "He received a verbal offer over the phone before getting the contract."
         }
     ],
     "83-47": [ // written offer
         {
-            sentence: "Always wait for a _______ _______ before resigning from your current job.",
+            sentence: "Always wait for a _______ before resigning from your current job.",
             options: ["written offer", "verbal offer", "counter-offer", "job offer"],
             originalSentence: "Always wait for a written offer before resigning from your current job."
         }
     ],
     "84-1": [ // world peace
         {
-            sentence: "Many leaders gathered to discuss how to achieve _______  _______.",
+            sentence: "Many leaders gathered to discuss how to achieve _______.",
             options: ["world peace", "critical thinking", "human rights", "Nobel Peace Prize"],
             originalSentence: "Many leaders gathered to discuss how to achieve world peace."
         }
@@ -23833,7 +23798,7 @@ window.gapfillDB = {
     ],
     "84-5": [ // Nobel Peace Prize
         {
-            sentence: "She was awarded the _______ _______ _______ for her work with refugees.",
+            sentence: "She was awarded the _______ for her work with refugees.",
             options: ["Nobel Peace Prize", "world peace", "critical thinking", "human rights"],
             originalSentence: "She was awarded the Nobel Peace Prize for her work with refugees."
         }
@@ -23889,7 +23854,7 @@ window.gapfillDB = {
     ],
     "84-13": [ // Q&A session
         {
-            sentence: "After the lecture, there was a lively _______ _______ with the audience.",
+            sentence: "After the lecture, there was a lively _______ with the audience.",
             options: ["Q&A session", "ceasefire", "Nobel Peace Prize", "powerful tool"],
             originalSentence: "After the lecture, there was a lively Q&A session with the audience."
         }
@@ -23917,21 +23882,21 @@ window.gapfillDB = {
     ],
     "84-22": [ // powerful tool
         {
-            sentence: "Dialogue can be a _______ _______ for resolving disputes.",
+            sentence: "Dialogue can be a _______ for resolving disputes.",
             options: ["powerful tool", "critical thinking", "ceasefire", "Q&A session"],
             originalSentence: "Dialogue can be a powerful tool for resolving disputes."
         }
     ],
     "84-23": [ // critical thinking
         {
-            sentence: "Schools should teach _______ _______ to help students question what they read.",
+            sentence: "Schools should teach _______ to help students question what they read.",
             options: ["critical thinking", "powerful tool", "world peace", "human rights"],
             originalSentence: "Schools should teach critical thinking to help students question what they read."
         }
     ],
     "84-24": [ // breaks down
         {
-            sentence: "Travel often _______ _______ barriers between people of different cultures.",
+            sentence: "Travel often _______ barriers between people of different cultures.",
             options: ["breaks down", "gives up", "takes away", "brings together"],
             originalSentence: "Travel often breaks down barriers between people of different cultures."
         }
@@ -23945,7 +23910,7 @@ window.gapfillDB = {
     ],
     "84-26": [ // creates empathy
         {
-            sentence: "Reading stories from different perspectives _______ _______ in young readers.",
+            sentence: "Reading stories from different perspectives _______ in young readers.",
             options: ["creates empathy", "breaks down", "gives up", "brings together"],
             originalSentence: "Reading stories from different perspectives creates empathy in young readers."
         }
@@ -24050,7 +24015,7 @@ window.gapfillDB = {
     ],
     "84-41": [ // give up
         {
-            sentence: "We must never _______ _______ on the dream of a more peaceful world.",
+            sentence: "We must never _______ on the dream of a more peaceful world.",
             options: ["give up", "take away", "bring together", "break down"],
             originalSentence: "We must never give up on the dream of a more peaceful world."
         }
@@ -24064,14 +24029,14 @@ window.gapfillDB = {
     ],
     "84-45": [ // contribute to
         {
-            sentence: "Each one of us can _______ _______ a more just society.",
+            sentence: "Each one of us can _______ a more just society.",
             options: ["contribute to", "give up on", "take away from", "bring together"],
             originalSentence: "Each one of us can contribute to a more just society."
         }
     ],
     "84-47": [ // bring together
         {
-            sentence: "Music has the power to _______ _______ people from all walks of life.",
+            sentence: "Music has the power to _______ people from all walks of life.",
             options: ["bring together", "give up on", "take away from", "breaks down"],
             originalSentence: "Music has the power to bring together people from all walks of life."
         }
@@ -24085,7 +24050,7 @@ window.gapfillDB = {
     ],
     "84-50": [ // take away
         {
-            sentence: "What did you _______ _______ from the lecture today?",
+            sentence: "What did you _______ from the lecture today?",
             options: ["take away", "give up", "contribute to", "bring together"],
             originalSentence: "What did you take away from the lecture today?"
         }
@@ -24134,7 +24099,7 @@ window.gapfillDB = {
     ],
     "84-59": [ // human rights
         {
-            sentence: "Every government has a duty to protect the _______ _______ of its citizens.",
+            sentence: "Every government has a duty to protect the _______ of its citizens.",
             options: ["human rights", "world peace", "critical thinking", "Nobel Peace Prize"],
             originalSentence: "Every government has a duty to protect the human rights of its citizens."
         }
@@ -24197,7 +24162,7 @@ window.gapfillDB = {
     ],
     "85-4": [ // square cap
         {
-            sentence: "He threw his _______ _______ into the air after receiving his diploma.",
+            sentence: "He threw his _______ into the air after receiving his diploma.",
             options: ["square cap", "gown", "diploma", "stage"],
             originalSentence: "He threw his square cap into the air after receiving his diploma."
         }
@@ -24232,7 +24197,7 @@ window.gapfillDB = {
     ],
     "85-9": [ // late nights
         {
-            sentence: "All those _______ _______ studying finally paid off.",
+            sentence: "All those _______ studying finally paid off.",
             options: ["late nights", "clinking glasses", "raising a toast", "entry-level"],
             originalSentence: "All those late nights studying finally paid off."
         }
@@ -24344,7 +24309,7 @@ window.gapfillDB = {
     ],
     "85-34": [ // stay in touch
         {
-            sentence: "They promised to _______ _______ _______ even after moving to different cities.",
+            sentence: "They promised to _______ even after moving to different cities.",
             options: ["stay in touch", "paid off", "give up", "raise a toast"],
             originalSentence: "They promised to stay in touch even after moving to different cities."
         }
@@ -24358,14 +24323,14 @@ window.gapfillDB = {
     ],
     "85-36": [ // raising a toast
         {
-            sentence: "Her father stood up, _______ _______ _______ to celebrate her success.",
+            sentence: "Her father stood up, _______ to celebrate her success.",
             options: ["raising a toast", "clinking glasses", "staying in touch", "paid off"],
             originalSentence: "Her father stood up, raising a toast to celebrate her success."
         }
     ],
     "85-37": [ // clinking glasses
         {
-            sentence: "The friends celebrated by _______ _______ and laughing together.",
+            sentence: "The friends celebrated by _______ and laughing together.",
             options: ["clinking glasses", "raising a toast", "staying in touch", "reminiscing"],
             originalSentence: "The friends celebrated by clinking glasses and laughing together."
         }
@@ -24379,7 +24344,7 @@ window.gapfillDB = {
     ],
     "85-39": [ // paid off
         {
-            sentence: "All the hard work and sacrifices had finally _______ _______.",
+            sentence: "All the hard work and sacrifices had finally _______.",
             options: ["paid off", "grown", "apply", "deserve"],
             originalSentence: "All the hard work and sacrifices had finally paid off."
         }
@@ -24449,21 +24414,21 @@ window.gapfillDB = {
     ],
     "85-60": [ // entry-level
         {
-            sentence: "He accepted an _______ _______ position at a local engineering firm.",
+            sentence: "He accepted an _______ position at a local engineering firm.",
             options: ["entry-level", "junior", "surreal", "quiet"],
             originalSentence: "He accepted an entry-level position at a local engineering firm."
         }
     ],
     "85-61": [ // career path
         {
-            sentence: "She was still deciding which _______ _______ to follow after graduation.",
+            sentence: "She was still deciding which _______ to follow after graduation.",
             options: ["career path", "journey", "reunion", "commencement"],
             originalSentence: "She was still deciding which career path to follow after graduation."
         }
     ],
     "86-1": [ // mental health
         {
-            sentence: "Taking care of your _______ _______ is just as important as physical health.",
+            sentence: "Taking care of your _______ is just as important as physical health.",
             options: ["mental health", "self-care", "coping strategies", "balance"],
             originalSentence: "Taking care of your mental health is just as important as physical health."
         }
@@ -24519,7 +24484,7 @@ window.gapfillDB = {
     ],
     "86-13": [ // sneaks up
         {
-            sentence: "Burnout often _______ _______ on you before you even notice it.",
+            sentence: "Burnout often _______ on you before you even notice it.",
             options: ["sneaks up", "start again", "clear your mind", "ups and downs"],
             originalSentence: "Burnout often sneaks up on you before you even notice it."
         }
@@ -24547,14 +24512,14 @@ window.gapfillDB = {
     ],
     "86-18": [ // self-care
         {
-            sentence: "Simple habits like sleeping well and eating right are forms of _______-_______.",
+            sentence: "Simple habits like sleeping well and eating right are forms of _______.",
             options: ["self-care", "mental health", "coping strategies", "balance"],
             originalSentence: "Simple habits like sleeping well and eating right are forms of self-care."
         }
     ],
     "86-19": [ // clear your mind
         {
-            sentence: "A short walk in the park can help _______ _______ _______ after a long day.",
+            sentence: "A short walk in the park can help _______ after a long day.",
             options: ["clear your mind", "start again", "sneaks up", "ups and downs"],
             originalSentence: "A short walk in the park can help clear your mind after a long day."
         }
@@ -24596,14 +24561,14 @@ window.gapfillDB = {
     ],
     "86-26": [ // coping strategies
         {
-            sentence: "Her therapist helped her develop healthy _______ _______ for dealing with anxiety.",
+            sentence: "Her therapist helped her develop healthy _______ for dealing with anxiety.",
             options: ["coping strategies", "mental health", "self-care", "ups and downs"],
             originalSentence: "Her therapist helped her develop healthy coping strategies for dealing with anxiety."
         }
     ],
     "86-29": [ // ups and downs
         {
-            sentence: "Every career has its _______ _______ _______, so stay patient.",
+            sentence: "Every career has its _______, so stay patient.",
             options: ["ups and downs", "coping strategies", "self-care", "mental health"],
             originalSentence: "Every career has its ups and downs, so stay patient."
         }
@@ -24617,14 +24582,14 @@ window.gapfillDB = {
     ],
     "86-35": [ // start again
         {
-            sentence: "It is never too late to _______ _______ and make a fresh plan.",
+            sentence: "It is never too late to _______ and make a fresh plan.",
             options: ["start again", "clear your mind", "sneaks up", "face"],
             originalSentence: "It is never too late to start again and make a fresh plan."
         }
     ],
     "87-1": [ // stress management
         {
-            sentence: "Good _______ _______ skills help you stay calm during difficult times.",
+            sentence: "Good _______ skills help you stay calm during difficult times.",
             options: ["stress management", "practical strategies", "mindfulness", "self-compassion"],
             originalSentence: "Good stress management skills help you stay calm during difficult times."
         }
@@ -24638,7 +24603,7 @@ window.gapfillDB = {
     ],
     "87-3": [ // practical strategies
         {
-            sentence: "The workshop offered _______ _______ for dealing with workplace pressure.",
+            sentence: "The workshop offered _______ for dealing with workplace pressure.",
             options: ["practical strategies", "stress management", "coping tools", "mindfulness"],
             originalSentence: "The workshop offered practical strategies for dealing with workplace pressure."
         }
@@ -24652,7 +24617,7 @@ window.gapfillDB = {
     ],
     "87-7": [ // nervous system
         {
-            sentence: "Deep breathing activates the part of the _______ _______ that promotes relaxation.",
+            sentence: "Deep breathing activates the part of the _______ that promotes relaxation.",
             options: ["nervous system", "endorphins", "mindfulness", "burnout"],
             originalSentence: "Deep breathing activates the part of the nervous system that promotes relaxation."
         }
@@ -24687,7 +24652,7 @@ window.gapfillDB = {
     ],
     "87-13": [ // blow off steam
         {
-            sentence: "Going for a run is a great way to _______ _______ _______ after a hard day.",
+            sentence: "Going for a run is a great way to _______ after a hard day.",
             options: ["blow off steam", "wind down", "cut down on", "follow through"],
             originalSentence: "Going for a run is a great way to blow off steam after a hard day."
         }
@@ -24743,28 +24708,28 @@ window.gapfillDB = {
     ],
     "87-21": [ // cope with
         {
-            sentence: "Everyone needs healthy ways to _______ _______ pressure at work.",
+            sentence: "Everyone needs healthy ways to _______ pressure at work.",
             options: ["cope with", "cut down on", "take up", "wind down"],
             originalSentence: "Everyone needs healthy ways to cope with pressure at work."
         }
     ],
     "87-23": [ // evidence-based
         {
-            sentence: "The therapist recommended _______ _______ methods supported by research.",
+            sentence: "The therapist recommended _______ methods supported by research.",
             options: ["evidence-based", "practical strategies", "stress management", "mindfulness"],
             originalSentence: "The therapist recommended evidence-based methods supported by research."
         }
     ],
     "87-25": [ // to-do list
         {
-            sentence: "Writing a _______ _______ _______ each morning helps reduce mental clutter.",
+            sentence: "Writing a _______ each morning helps reduce mental clutter.",
             options: ["to-do list", "practical strategies", "stress management", "self-compassion"],
             originalSentence: "Writing a to-do list each morning helps reduce mental clutter."
         }
     ],
     "87-26": [ // setting aside
         {
-            sentence: "She started _______ _______ thirty minutes each day just for herself.",
+            sentence: "She started _______ thirty minutes each day just for herself.",
             options: ["setting aside", "handling", "protecting", "reflecting"],
             originalSentence: "She started setting aside thirty minutes each day just for herself."
         }
@@ -24834,28 +24799,28 @@ window.gapfillDB = {
     ],
     "87-42": [ // wind down
         {
-            sentence: "It is important to _______ _______ before going to sleep each night.",
+            sentence: "It is important to _______ before going to sleep each night.",
             options: ["wind down", "blow off steam", "cut down on", "take up"],
             originalSentence: "It is important to wind down before going to sleep each night."
         }
     ],
     "87-43": [ // cut down on
         {
-            sentence: "The doctor advised him to _______ _______ _______ caffeine to sleep better.",
+            sentence: "The doctor advised him to _______ caffeine to sleep better.",
             options: ["cut down on", "take up", "wind down", "follow through"],
             originalSentence: "The doctor advised him to cut down on caffeine to sleep better."
         }
     ],
     "87-44": [ // take up
         {
-            sentence: "She decided to _______ _______ yoga as a way to manage her anxiety.",
+            sentence: "She decided to _______ yoga as a way to manage her anxiety.",
             options: ["take up", "cut down on", "blow off steam", "follow through"],
             originalSentence: "She decided to take up yoga as a way to manage her anxiety."
         }
     ],
     "87-45": [ // follow through
         {
-            sentence: "It is not enough to make a plan — you also need to _______ _______ with it.",
+            sentence: "It is not enough to make a plan — you also need to _______ with it.",
             options: ["follow through", "wind down", "take up", "cope with"],
             originalSentence: "It is not enough to make a plan — you also need to follow through with it."
         }
@@ -24869,7 +24834,7 @@ window.gapfillDB = {
     ],
     "87-47": [ // self-compassion
         {
-            sentence: "Practicing _______ _______ means being as kind to yourself as you are to others.",
+            sentence: "Practicing _______ means being as kind to yourself as you are to others.",
             options: ["self-compassion", "mindfulness", "stress management", "resilience"],
             originalSentence: "Practicing self-compassion means being as kind to yourself as you are to others."
         }
@@ -24890,14 +24855,14 @@ window.gapfillDB = {
     ],
     "88-1": [ // healthy relationships
         {
-            sentence: "Building _______ _______ takes time, honesty, and effort.",
+            sentence: "Building _______ takes time, honesty, and effort.",
             options: ["healthy relationships", "mutual trust", "emotional intelligence", "connections"],
             originalSentence: "Building healthy relationships takes time, honesty, and effort."
         }
     ],
     "88-2": [ // catching up
         {
-            sentence: "The two old friends spent the afternoon _______ _______ over coffee.",
+            sentence: "The two old friends spent the afternoon _______ over coffee.",
             options: ["catching up", "getting along", "grow individually", "taking effort"],
             originalSentence: "The two old friends spent the afternoon catching up over coffee."
         }
@@ -24911,7 +24876,7 @@ window.gapfillDB = {
     ],
     "88-5": [ // getting along
         {
-            sentence: "The two new colleagues started _______ _______ very well from the first day.",
+            sentence: "The two new colleagues started _______ very well from the first day.",
             options: ["getting along", "catching up", "grow individually", "lasting"],
             originalSentence: "The two new colleagues started getting along very well from the first day."
         }
@@ -24953,7 +24918,7 @@ window.gapfillDB = {
     ],
     "88-13": [ // grow individually
         {
-            sentence: "Good partners support each other and allow each other to _______ _______.",
+            sentence: "Good partners support each other and allow each other to _______.",
             options: ["grow individually", "catching up", "getting along", "worth it"],
             originalSentence: "Good partners support each other and allow each other to grow individually."
         }
@@ -25009,7 +24974,7 @@ window.gapfillDB = {
     ],
     "88-25": [ // I wonder if
         {
-            sentence: "_______ _______ _______ we could talk about what has been bothering you.",
+            sentence: "_______ we could talk about what has been bothering you.",
             options: ["I wonder if", "worth it", "takes effort", "grow individually"],
             originalSentence: "I wonder if we could talk about what has been bothering you."
         }
@@ -25065,14 +25030,14 @@ window.gapfillDB = {
     ],
     "88-37": [ // takes effort
         {
-            sentence: "Every good relationship _______ _______ from both sides.",
+            sentence: "Every good relationship _______ from both sides.",
             options: ["takes effort", "worth it", "grow individually", "lasting"],
             originalSentence: "Every good relationship takes effort from both sides."
         }
     ],
     "88-38": [ // worth it
         {
-            sentence: "Investing in good friendships is always _______ _______ in the long run.",
+            sentence: "Investing in good friendships is always _______ in the long run.",
             options: ["worth it", "takes effort", "lasting", "mutual"],
             originalSentence: "Investing in good friendships is always worth it in the long run."
         }
@@ -25107,14 +25072,14 @@ window.gapfillDB = {
     ],
     "88-46": [ // emotional intelligence
         {
-            sentence: "High _______ _______ helps you manage your feelings and understand others better.",
+            sentence: "High _______ helps you manage your feelings and understand others better.",
             options: ["emotional intelligence", "healthy relationships", "mutual trust", "self-compassion"],
             originalSentence: "High emotional intelligence helps you manage your feelings and understand others better."
         }
     ],
     "88-48": [ // non-judgmental
         {
-            sentence: "A good listener is _______ _______ and makes you feel safe to share.",
+            sentence: "A good listener is _______ and makes you feel safe to share.",
             options: ["non-judgmental", "reassuring", "platonic", "mutual"],
             originalSentence: "A good listener is non-judgmental and makes you feel safe to share."
         }
@@ -25135,7 +25100,7 @@ window.gapfillDB = {
     ],
     "89-1": [ // conflict resolution
         {
-            sentence: "Good _______ _______ skills help teams work better together.",
+            sentence: "Good _______ skills help teams work better together.",
             options: ["conflict resolution", "active listening", "validating feelings", "compromise"],
             originalSentence: "Good conflict resolution skills help teams work better together."
         }
@@ -25156,7 +25121,7 @@ window.gapfillDB = {
     ],
     "89-4": [ // taking credit
         {
-            sentence: "He was accused of _______ _______ for ideas that were not his own.",
+            sentence: "He was accused of _______ for ideas that were not his own.",
             options: ["taking credit", "move forward", "start over", "validating feelings"],
             originalSentence: "He was accused of taking credit for ideas that were not his own."
         }
@@ -25212,7 +25177,7 @@ window.gapfillDB = {
     ],
     "89-13": [ // start over
         {
-            sentence: "They agreed to _______ _______ and rebuild their working relationship.",
+            sentence: "They agreed to _______ and rebuild their working relationship.",
             options: ["start over", "move forward", "correct it", "taking credit"],
             originalSentence: "They agreed to start over and rebuild their working relationship."
         }
@@ -25247,7 +25212,7 @@ window.gapfillDB = {
     ],
     "89-18": [ // correct it
         {
-            sentence: "If you make a mistake in a meeting, the best thing to do is _______ _______ immediately.",
+            sentence: "If you make a mistake in a meeting, the best thing to do is _______ immediately.",
             options: ["correct it", "start over", "move forward", "taking credit"],
             originalSentence: "If you make a mistake in a meeting, the best thing to do is correct it immediately."
         }
@@ -25261,7 +25226,7 @@ window.gapfillDB = {
     ],
     "89-21": [ // move forward
         {
-            sentence: "After the apology, both sides were ready to _______ _______ together.",
+            sentence: "After the apology, both sides were ready to _______ together.",
             options: ["move forward", "start over", "correct it", "taking credit"],
             originalSentence: "After the apology, both sides were ready to move forward together."
         }
@@ -25317,28 +25282,28 @@ window.gapfillDB = {
     ],
     "89-36": [  // leadership qualities
         {
-            sentence: "Strong _______ _______ include honesty, vision, and the ability to inspire others.",
+            sentence: "Strong _______ include honesty, vision, and the ability to inspire others.",
             options: ["leadership qualities", "natural leader", "role model", "accountability"],
             originalSentence: "Strong leadership qualities include honesty, vision, and the ability to inspire others."
         }
     ],
  "89-37": [ // validating feelings
         {
-            sentence: "_______ _______ does not mean you agree — it just means you understand.",
+            sentence: "_______ does not mean you agree — it just means you understand.",
             options: ["validating feelings", "active listening", "conflict resolution", "taking credit"],
             originalSentence: "Validating feelings does not mean you agree — it just means you understand."
         }
     ],
 "90-1": [ // leadership qualities
         {
-            sentence: "Strong _______ _______ include honesty, vision, and the ability to inspire others.",
+            sentence: "Strong _______ include honesty, vision, and the ability to inspire others.",
             options: ["leadership qualities", "natural leader", "role model", "accountability"],
             originalSentence: "Strong leadership qualities include honesty, vision, and the ability to inspire others."
         }
     ],
     "90-2": [ // community center
         {
-            sentence: "She volunteered at the local _______ _______ every weekend to help young people.",
+            sentence: "She volunteered at the local _______ every weekend to help young people.",
             options: ["community center", "technical drawings", "building confidence", "well-being"],
             originalSentence: "She volunteered at the local community center every weekend to help young people."
         }
@@ -25380,7 +25345,7 @@ window.gapfillDB = {
     ],
     "90-10": [ // slow you down
         {
-            sentence: "Fear of making mistakes can _______ _______ _______ and stop you from growing.",
+            sentence: "Fear of making mistakes can _______ and stop you from growing.",
             options: ["slow you down", "build confidence", "delegate", "motivate"],
             originalSentence: "Fear of making mistakes can slow you down and stop you from growing."
         }
@@ -25394,14 +25359,14 @@ window.gapfillDB = {
     ],
     "90-12": [ // technical drawings
         {
-            sentence: "He spent the afternoon reviewing the _______ _______ for the new building.",
+            sentence: "He spent the afternoon reviewing the _______ for the new building.",
             options: ["technical drawings", "leadership qualities", "community center", "well-being"],
             originalSentence: "He spent the afternoon reviewing the technical drawings for the new building."
         }
     ],
     "90-13": [ // building confidence
         {
-            sentence: "Giving positive feedback plays a big role in _______ _______ within a team.",
+            sentence: "Giving positive feedback plays a big role in _______ within a team.",
             options: ["building confidence", "slow you down", "taking initiative", "delegating tasks"],
             originalSentence: "Giving positive feedback plays a big role in building confidence within a team."
         }
@@ -25443,7 +25408,7 @@ window.gapfillDB = {
     ],
     "90-22": [ // well-being
         {
-            sentence: "Good leaders care about the _______ _______ of every member of their team.",
+            sentence: "Good leaders care about the _______ of every member of their team.",
             options: ["well-being", "technical drawings", "community center", "leadership qualities"],
             originalSentence: "Good leaders care about the well-being of every member of their team."
         }
@@ -25464,14 +25429,14 @@ window.gapfillDB = {
     ],
     "90-28": [ // natural leader
         {
-            sentence: "Even as a child, she was a _______ _______ who others always looked up to.",
+            sentence: "Even as a child, she was a _______ who others always looked up to.",
             options: ["natural leader", "role model", "manager", "coach"],
             originalSentence: "Even as a child, she was a natural leader who others always looked up to."
         }
     ],
     "90-29": [ // role model
         {
-            sentence: "A good _______ _______ leads by example and inspires others to do the same.",
+            sentence: "A good _______ leads by example and inspires others to do the same.",
             options: ["role model", "natural leader", "manager", "coach"],
             originalSentence: "A good role model leads by example and inspires others to do the same."
         }
@@ -25537,6 +25502,475 @@ window.gapfillDB = {
             sentence: "A simple word of _______ can go a long way in keeping a team motivated.",
             options: ["recognition", "feedback", "input", "collaboration"],
             originalSentence: "A simple word of recognition can go a long way in keeping a team motivated."
+        }
+    ],
+    "91-1": [ // parenting challenges
+        {
+            sentence: "_______ are something every mother and father faces at some point.",
+            options: ["parenting challenges", "sleepless nights", "unseen challenges", "tough moments"],
+            originalSentence: "Parenting challenges are something every mother and father faces at some point."
+        }
+    ],
+    "91-2": [ // sleepless nights
+        {
+            sentence: "New parents often go through weeks of _______ with a newborn.",
+            options: ["sleepless nights", "tough moments", "ups and downs", "constant worry"],
+            originalSentence: "New parents often go through weeks of sleepless nights with a newborn."
+        }
+    ],
+    "91-3": [ // constant worry
+        {
+            sentence: "_______ about your child's health and happiness never fully goes away.",
+            options: ["constant worry", "sleepless nights", "parenting challenges", "tough moments"],
+            originalSentence: "Constant worry about your child's health and happiness never fully goes away."
+        }
+    ],
+    "91-4": [ // regretted
+        {
+            sentence: "She _______ shouting at her son and apologized to him that evening.",
+            options: ["regretted", "sacrificed", "accepted", "supported"],
+            originalSentence: "She regretted shouting at her son and apologized to him that evening."
+        }
+    ],
+    "91-5": [ // balance
+        {
+            sentence: "Finding the right _______ between work and family time is not easy.",
+            options: ["balance", "discipline", "freedom", "destination"],
+            originalSentence: "Finding the right balance between work and family time is not easy."
+        }
+    ],
+    "91-6": [ // discipline
+        {
+            sentence: "Children need both love and _______ to grow into responsible adults.",
+            options: ["discipline", "freedom", "balance", "respect"],
+            originalSentence: "Children need both love and discipline to grow into responsible adults."
+        }
+    ],
+    "91-7": [ // freedom
+        {
+            sentence: "Giving children some _______ helps them learn to make their own decisions.",
+            options: ["freedom", "discipline", "balance", "instructions"],
+            originalSentence: "Giving children some freedom helps them learn to make their own decisions."
+        }
+    ],
+    "91-8": [ // guilty
+        {
+            sentence: "Many parents feel _______ when they cannot spend enough time with their children.",
+            options: ["guilty", "grateful", "patient", "supported"],
+            originalSentence: "Many parents feel guilty when they cannot spend enough time with their children."
+        }
+    ],
+    "91-9": [ // manages
+        {
+            sentence: "She somehow _______ to work full time and still be present for her kids.",
+            options: ["manages", "demands", "accepts", "supports"],
+            originalSentence: "She somehow manages to work full time and still be present for her kids."
+        }
+    ],
+    "91-10": [ // supported
+        {
+            sentence: "He always felt _______ by his parents no matter what decisions he made.",
+            options: ["supported", "accepted", "guilty", "patient"],
+            originalSentence: "He always felt supported by his parents no matter what decisions he made."
+        }
+    ],
+    "91-11": [ // accepted
+        {
+            sentence: "She _______ that she could not be a perfect parent and that was okay.",
+            options: ["accepted", "regretted", "sacrificed", "managed"],
+            originalSentence: "She accepted that she could not be a perfect parent and that was okay."
+        }
+    ],
+    "91-12": [ // perfect formula
+        {
+            sentence: "There is no _______ for raising children — every family is different.",
+            options: ["perfect formula", "parenting challenges", "constant worry", "split responsibilities"],
+            originalSentence: "There is no perfect formula for raising children — every family is different."
+        }
+    ],
+    "91-13": [ // patient
+        {
+            sentence: "Being _______ with young children is one of the hardest parts of parenting.",
+            options: ["patient", "guilty", "grateful", "healthy"],
+            originalSentence: "Being patient with young children is one of the hardest parts of parenting."
+        }
+    ],
+    "91-14": [ // instructions
+        {
+            sentence: "He wished that babies came with _______ to make parenting easier.",
+            options: ["instructions", "destination", "example", "journey"],
+            originalSentence: "He wished that babies came with instructions to make parenting easier."
+        }
+    ],
+    "91-15": [ // sacrificed
+        {
+            sentence: "She _______ her career for several years to raise her children at home.",
+            options: ["sacrificed", "regretted", "accepted", "managed"],
+            originalSentence: "She sacrificed her career for several years to raise her children at home."
+        }
+    ],
+    "91-16": [ // waving her hand
+        {
+            sentence: "She stood at the school gate _______ until her son disappeared inside.",
+            options: ["waving her hand", "showing up", "compare myself", "communicate openly"],
+            originalSentence: "She stood at the school gate waving her hand until her son disappeared inside."
+        }
+    ],
+    "91-17": [ // failing
+        {
+            sentence: "Many parents worry that they are _______ their children when things go wrong.",
+            options: ["failing", "managing", "demanding", "raising"],
+            originalSentence: "Many parents worry that they are failing their children when things go wrong."
+        }
+    ],
+    "91-18": [ // demands
+        {
+            sentence: "Parenting _______ a lot of energy, patience, and time every single day.",
+            options: ["demands", "manages", "supports", "accepts"],
+            originalSentence: "Parenting demands a lot of energy, patience, and time every single day."
+        }
+    ],
+    "91-19": [ // compare myself
+        {
+            sentence: "I try not to _______ to other parents because every situation is different.",
+            options: ["compare myself", "showing up", "communicate openly", "split responsibilities"],
+            originalSentence: "I try not to compare myself to other parents because every situation is different."
+        }
+    ],
+    "91-20": [ // openly
+        {
+            sentence: "Talking _______ with your children builds trust and a stronger relationship.",
+            options: ["openly", "definitely", "patiently", "freely"],
+            originalSentence: "Talking openly with your children builds trust and a stronger relationship."
+        }
+    ],
+    "91-21": [ // split responsibilities
+        {
+            sentence: "The couple decided to _______ so neither one felt too overwhelmed.",
+            options: ["split responsibilities", "communicate openly", "showing up", "compare myself"],
+            originalSentence: "The couple decided to split responsibilities so neither one felt too overwhelmed."
+        }
+    ],
+    "91-22": [ // worry
+        {
+            sentence: "It is natural to _______ about your child, but too much can affect your health.",
+            options: ["worry", "manage", "demand", "fail"],
+            originalSentence: "It is natural to worry about your child, but too much can affect your health."
+        }
+    ],
+    "91-23": [ // definitely
+        {
+            sentence: "Raising children is _______ one of the hardest jobs in the world.",
+            options: ["definitely", "openly", "patiently", "freely"],
+            originalSentence: "Raising children is definitely one of the hardest jobs in the world."
+        }
+    ],
+    "91-24": [ // unseen challenges
+        {
+            sentence: "Every family deals with _______ that others may never know about.",
+            options: ["unseen challenges", "parenting challenges", "tough moments", "sleepless nights"],
+            originalSentence: "Every family deals with unseen challenges that others may never know about."
+        }
+    ],
+    "91-25": [ // journey
+        {
+            sentence: "Parenting is a long _______ with many unexpected turns along the way.",
+            options: ["journey", "destination", "balance", "example"],
+            originalSentence: "Parenting is a long journey with many unexpected turns along the way."
+        }
+    ],
+    "91-26": [ // destination
+        {
+            sentence: "There is no final _______ in parenting — it is a lifelong process.",
+            options: ["destination", "journey", "balance", "instructions"],
+            originalSentence: "There is no final destination in parenting — it is a lifelong process."
+        }
+    ],
+    "91-27": [ // ups and downs
+        {
+            sentence: "Every parent goes through _______ but the love never changes.",
+            options: ["ups and downs", "sleepless nights", "tough moments", "constant worry"],
+            originalSentence: "Every parent goes through ups and downs but the love never changes."
+        }
+    ],
+    "91-28": [ // showing up
+        {
+            sentence: "Sometimes _______ and being present is all your child really needs.",
+            options: ["showing up", "waving her hand", "compare myself", "split responsibilities"],
+            originalSentence: "Sometimes showing up and being present is all your child really needs."
+        }
+    ],
+    "91-29": [ // parenting
+        {
+            sentence: "Good _______ is about love, consistency, and always trying your best.",
+            options: ["parenting", "raising", "discipline", "childhood"],
+            originalSentence: "Good parenting is about love, consistency, and always trying your best."
+        }
+    ],
+    "91-30": [ // raising
+        {
+            sentence: "_______ a kind and confident child is every parent's dream.",
+            options: ["raising", "parenting", "managing", "accepting"],
+            originalSentence: "Raising a kind and confident child is every parent's dream."
+        }
+    ],
+    "91-31": [ // childhood
+        {
+            sentence: "A happy _______ gives children the confidence to face the world.",
+            options: ["childhood", "journey", "destination", "balance"],
+            originalSentence: "A happy childhood gives children the confidence to face the world."
+        }
+    ],
+    "91-32": [ // tough moments
+        {
+            sentence: "Getting through _______ together can actually bring a family closer.",
+            options: ["tough moments", "sleepless nights", "ups and downs", "unseen challenges"],
+            originalSentence: "Getting through tough moments together can actually bring a family closer."
+        }
+    ],
+    "91-33": [ // example
+        {
+            sentence: "Children learn the most by watching the _______ set by their parents.",
+            options: ["example", "instructions", "discipline", "freedom"],
+            originalSentence: "Children learn the most by watching the example set by their parents."
+        }
+    ],
+    "91-34": [ // grateful
+        {
+            sentence: "Despite the challenges, most parents feel deeply _______ for their children.",
+            options: ["grateful", "guilty", "patient", "supported"],
+            originalSentence: "Despite the challenges, most parents feel deeply grateful for their children."
+        }
+    ],
+    "91-35": [ // I wonder if
+        {
+            sentence: "_______ I am doing enough to prepare my children for life.",
+            options: ["I wonder if", "I would try to", "compare myself", "showing up"],
+            originalSentence: "I wonder if I am doing enough to prepare my children for life."
+        }
+    ],
+    "91-37": [ // I would try to
+        {
+            sentence: "If I could do it again, _______ worry less and enjoy more.",
+            options: ["I would try to", "I wonder if", "compare myself", "split responsibilities"],
+            originalSentence: "If I could do it again, I would try to worry less and enjoy more."
+        }
+    ],
+    "91-38": [ // communicate openly
+        {
+            sentence: "She made it a habit to _______ with her teenagers about difficult topics.",
+            options: ["communicate openly", "split responsibilities", "showing up", "compare myself"],
+            originalSentence: "She made it a habit to communicate openly with her teenagers about difficult topics."
+        }
+    ],
+    "91-39": [ // healthy
+        {
+            sentence: "Setting a _______ routine helps children feel safe and secure at home.",
+            options: ["healthy", "patient", "grateful", "guilty"],
+            originalSentence: "Setting a healthy routine helps children feel safe and secure at home."
+        }
+    ],
+    "91-40": [ // respect
+        {
+            sentence: "Teaching children to show _______ to others is one of the most important lessons.",
+            options: ["respect", "discipline", "freedom", "balance"],
+            originalSentence: "Teaching children to show respect to others is one of the most important lessons."
+        }
+    ],
+    "92-1": [ // friendship dynamics
+        {
+            sentence: "Understanding _______ helps you build stronger and longer-lasting friendships.",
+            options: ["friendship dynamics", "long-distance", "mutual trust", "emotional support"],
+            originalSentence: "Understanding friendship dynamics helps you build stronger and longer-lasting friendships."
+        }
+    ],
+    "92-2": [ // drifting apart
+        {
+            sentence: "After moving to different cities, the two friends slowly started _______.",
+            options: ["drifting apart", "grow apart", "reconnect", "showing up"],
+            originalSentence: "After moving to different cities, the two friends slowly started drifting apart."
+        }
+    ],
+    "92-3": [ // responsibilities
+        {
+            sentence: "As people get older, new _______ make it harder to stay in touch.",
+            options: ["responsibilities", "limits", "priorities", "intentions"],
+            originalSentence: "As people get older, new responsibilities make it harder to stay in touch."
+        }
+    ],
+    "92-5": [ // takes effort
+        {
+            sentence: "Keeping a strong friendship _______ from both people.",
+            options: ["takes effort", "showing up", "grow apart", "drifting apart"],
+            originalSentence: "Keeping a strong friendship takes effort from both people."
+        }
+    ],
+    "92-6": [ // one-sided
+        {
+            sentence: "She felt the friendship had become _______ because she was always the one reaching out.",
+            options: ["one-sided", "long-distance", "mutual", "emotional"],
+            originalSentence: "She felt the friendship had become one-sided because she was always the one reaching out."
+        }
+    ],
+    "92-7": [ // evolve
+        {
+            sentence: "It is natural for friendships to _______ as people grow and change.",
+            options: ["evolve", "fade", "rekindle", "invest"],
+            originalSentence: "It is natural for friendships to evolve as people grow and change."
+        }
+    ],
+    "92-9": [ // reflecting
+        {
+            sentence: "She spent the evening _______ on the friendships that had meant the most to her.",
+            options: ["reflecting", "reconnecting", "investing", "rekindling"],
+            originalSentence: "She spent the evening reflecting on the friendships that had meant the most to her."
+        }
+    ],
+    "92-11": [ // fade
+        {
+            sentence: "Without regular contact, even the closest friendships can slowly _______.",
+            options: ["fade", "evolve", "rekindle", "invest"],
+            originalSentence: "Without regular contact, even the closest friendships can slowly fade."
+        }
+    ],
+    "92-13": [ // guilty
+        {
+            sentence: "He felt _______ for not calling his old friend for over a year.",
+            options: ["guilty", "grateful", "connected", "emotional"],
+            originalSentence: "He felt guilty for not calling his old friend for over a year."
+        }
+    ],
+    "92-16": [ // grateful
+        {
+            sentence: "She was deeply _______ for the friends who had stood by her through hard times.",
+            options: ["grateful", "guilty", "connected", "mutual"],
+            originalSentence: "She was deeply grateful for the friends who had stood by her through hard times."
+        }
+    ],
+    "92-17": [ // intention
+        {
+            sentence: "His _______ was always to stay close, but life kept getting in the way.",
+            options: ["intention", "priority", "limit", "vulnerability"],
+            originalSentence: "His intention was always to stay close, but life kept getting in the way."
+        }
+    ],
+    "92-18": [ // nurtured
+        {
+            sentence: "She had carefully _______ that friendship for over fifteen years.",
+            options: ["nurtured", "rekindled", "invested", "reconnected"],
+            originalSentence: "She had carefully nurtured that friendship for over fifteen years."
+        }
+    ],
+    "92-20": [ // immediately
+        {
+            sentence: "When they met again after five years, they _______ felt like no time had passed.",
+            options: ["immediately", "gradually", "openly", "mutually"],
+            originalSentence: "When they met again after five years, they immediately felt like no time had passed."
+        }
+    ],
+    "92-21": [ // connected
+        {
+            sentence: "Despite the distance, they still felt deeply _______ through weekly calls.",
+            options: ["connected", "guilty", "grateful", "mutual"],
+            originalSentence: "Despite the distance, they still felt deeply connected through weekly calls."
+        }
+    ],
+    "92-22": [ // perfection
+        {
+            sentence: "Friendship is not about _______ — it is about being there for each other.",
+            options: ["perfection", "vulnerability", "priority", "trust"],
+            originalSentence: "Friendship is not about perfection — it is about being there for each other."
+        }
+    ],
+    "92-23": [ // showing up
+        {
+            sentence: "Sometimes _______ during a difficult moment means more than any gift.",
+            options: ["showing up", "drifting apart", "grow apart", "checking in"],
+            originalSentence: "Sometimes showing up during a difficult moment means more than any gift."
+        }
+    ],
+    "92-24": [ // limits
+        {
+            sentence: "Good friends respect each other's _______ and never push too hard.",
+            options: ["limits", "intentions", "responsibilities", "priorities"],
+            originalSentence: "Good friends respect each other's limits and never push too hard."
+        }
+    ],
+    "92-27": [ // invest
+        {
+            sentence: "You have to _______ time and energy into friendships to keep them strong.",
+            options: ["invest", "rekindle", "evolve", "fade"],
+            originalSentence: "You have to invest time and energy into friendships to keep them strong."
+        }
+    ],
+    "92-29": [ // long-distance
+        {
+            sentence: "Maintaining a _______ friendship requires creativity and commitment.",
+            options: ["long-distance", "one-sided", "mutual", "emotional"],
+            originalSentence: "Maintaining a long-distance friendship requires creativity and commitment."
+        }
+    ],
+    "92-30": [ // reconnect
+        {
+            sentence: "She reached out to an old classmate hoping to _______ after many years.",
+            options: ["reconnect", "rekindle", "invest", "evolve"],
+            originalSentence: "She reached out to an old classmate hoping to reconnect after many years."
+        }
+    ],
+    "92-33": [ // check in
+        {
+            sentence: "A simple message to _______ on a friend can make their whole day.",
+            options: ["check in", "showing up", "grow apart", "drifting apart"],
+            originalSentence: "A simple message to check in on a friend can make their whole day."
+        }
+    ],
+    "92-34": [ // emotional
+        {
+            sentence: "She provided _______ support to her friend during a very difficult divorce.",
+            options: ["emotional", "mutual", "long-distance", "one-sided"],
+            originalSentence: "She provided emotional support to her friend during a very difficult divorce."
+        }
+    ],
+    "92-35": [ // grow apart
+        {
+            sentence: "It is okay to _______ from some friends as your lives change.",
+            options: ["grow apart", "drifting apart", "fade", "reconnect"],
+            originalSentence: "It is okay to grow apart from some friends as your lives change."
+        }
+    ],
+    "92-36": [ // rekindle
+        {
+            sentence: "The reunion gave them a chance to _______ a friendship they had both missed.",
+            options: ["rekindle", "reconnect", "invest", "evolve"],
+            originalSentence: "The reunion gave them a chance to rekindle a friendship they had both missed."
+        }
+    ],
+    "92-37": [ // priority
+        {
+            sentence: "Making time for friends should always be a _______ in your life.",
+            options: ["priority", "limit", "intention", "vulnerability"],
+            originalSentence: "Making time for friends should always be a priority in your life."
+        }
+    ],
+    "92-38": [ // mutual
+        {
+            sentence: "A healthy friendship is based on _______ respect and care.",
+            options: ["mutual", "emotional", "long-distance", "one-sided"],
+            originalSentence: "A healthy friendship is based on mutual respect and care."
+        }
+    ],
+    "92-39": [ // trust
+        {
+            sentence: "It takes time to build _______, but only a moment to lose it.",
+            options: ["trust", "vulnerability", "priority", "perfection"],
+            originalSentence: "It takes time to build trust, but only a moment to lose it."
+        }
+    ],
+    "92-40": [ // vulnerability
+        {
+            sentence: "Sharing your _______ with a true friend brings you much closer together.",
+            options: ["vulnerability", "trust", "priority", "perfection"],
+            originalSentence: "Sharing your vulnerability with a true friend brings you much closer together."
         }
     ],
               // استكمال gapfillDB.js - الدرس رقم 301
