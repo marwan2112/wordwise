@@ -25973,6 +25973,265 @@ window.gapfillDB = {
             originalSentence: "Sharing your vulnerability with a true friend brings you much closer together."
         }
     ],
+    "93-1": [ // teamwork skills
+        {
+            sentence: "Strong _______ help a group finish projects faster and more effectively.",
+            options: ["teamwork skills", "structural design", "collaboration", "synergy"],
+            originalSentence: "Strong teamwork skills help a group finish projects faster and more effectively."
+        }
+    ],
+    "93-2": [ // assigned
+        {
+            sentence: "Each member was _______ a specific task at the start of the project.",
+            options: ["assigned", "revised", "impressed", "compiled"],
+            originalSentence: "Each member was assigned a specific task at the start of the project."
+        }
+    ],
+    "93-4": [ // brainstorming
+        {
+            sentence: "The team spent an hour _______ ideas before choosing the best one.",
+            options: ["brainstorming", "coordinating", "dividing", "compiling"],
+            originalSentence: "The team spent an hour brainstorming ideas before choosing the best one."
+        }
+    ],
+    "93-5": [ // concept
+        {
+            sentence: "The architect presented a bold new _______ for the community building.",
+            options: ["concept", "draft", "detail", "flow"],
+            originalSentence: "The architect presented a bold new concept for the community building."
+        }
+    ],
+    "93-6": [ // efficient
+        {
+            sentence: "Dividing tasks fairly makes the whole team more _______.",
+            options: ["efficient", "modern", "reliable", "open"],
+            originalSentence: "Dividing tasks fairly makes the whole team more efficient."
+        }
+    ],
+    "93-7": [ // modern
+        {
+            sentence: "The client asked for a _______ design that would attract younger visitors.",
+            options: ["modern", "efficient", "revised", "open"],
+            originalSentence: "The client asked for a modern design that would attract younger visitors."
+        }
+    ],
+    "93-8": [ // frowning
+        {
+            sentence: "She kept _______ at the screen, clearly unhappy with the latest draft.",
+            options: ["frowning", "stepping in", "avoiding", "compiling"],
+            originalSentence: "She kept frowning at the screen, clearly unhappy with the latest draft."
+        }
+    ],
+    "93-9": [ // stepping in
+        {
+            sentence: "The manager avoided _______ unless the conflict became too serious.",
+            options: ["stepping in", "avoiding", "frowning", "dividing"],
+            originalSentence: "The manager avoided stepping in unless the conflict became too serious."
+        }
+    ],
+    "93-10": [ // balance
+        {
+            sentence: "A good design needs the right _______ between function and beauty.",
+            options: ["balance", "flow", "concept", "merit"],
+            originalSentence: "A good design needs the right balance between function and beauty."
+        }
+    ],
+    "93-11": [ // combine
+        {
+            sentence: "They decided to _______ both ideas into one stronger proposal.",
+            options: ["combine", "divide", "revise", "compile"],
+            originalSentence: "They decided to combine both ideas into one stronger proposal."
+        }
+    ],
+    "93-12": [ // structural design
+        {
+            sentence: "The engineer reviewed the _______ to make sure the building was safe.",
+            options: ["structural design", "teamwork skills", "collaboration", "synergy"],
+            originalSentence: "The engineer reviewed the structural design to make sure the building was safe."
+        }
+    ],
+    "93-13": [ // coordinating
+        {
+            sentence: "She was responsible for _______ between the design and engineering teams.",
+            options: ["coordinating", "dividing", "compiling", "brainstorming"],
+            originalSentence: "She was responsible for coordinating between the design and engineering teams."
+        }
+    ],
+    "93-14": [ // client
+        {
+            sentence: "The team had a meeting with the _______ to present their final proposal.",
+            options: ["client", "concept", "draft", "detail"],
+            originalSentence: "The team had a meeting with the client to present their final proposal."
+        }
+    ],
+    "93-15": [ // dividing
+        {
+            sentence: "_______ the work equally helped the team meet the tight deadline.",
+            options: ["dividing", "combining", "compiling", "coordinating"],
+            originalSentence: "Dividing the work equally helped the team meet the tight deadline."
+        }
+    ],
+    "93-16": [ // drafts
+        {
+            sentence: "They went through several _______ before finalizing the design.",
+            options: ["drafts", "concepts", "details", "concerns"],
+            originalSentence: "They went through several drafts before finalizing the design."
+        }
+    ],
+    "93-17": [ // compiling
+        {
+            sentence: "He was in charge of _______ all the research into one clear report.",
+            options: ["compiling", "dividing", "coordinating", "brainstorming"],
+            originalSentence: "He was in charge of compiling all the research into one clear report."
+        }
+    ],
+    "93-18": [ // upset
+        {
+            sentence: "She was clearly _______ when her idea was rejected without discussion.",
+            options: ["upset", "skeptical", "impressed", "open"],
+            originalSentence: "She was clearly upset when her idea was rejected without discussion."
+        }
+    ],
+    "93-20": [ // flow
+        {
+            sentence: "The presentation had a natural _______ that kept the audience engaged.",
+            options: ["flow", "balance", "concept", "merit"],
+            originalSentence: "The presentation had a natural flow that kept the audience engaged."
+        }
+    ],
+    "93-22": [ // concern
+        {
+            sentence: "She raised a valid _______ about the building's safety during heavy rain.",
+            options: ["concern", "detail", "draft", "concept"],
+            originalSentence: "She raised a valid concern about the building's safety during heavy rain."
+        }
+    ],
+    "93-23": [ // details
+        {
+            sentence: "The client wanted to go over the _______ of the contract one more time.",
+            options: ["details", "drafts", "concerns", "concepts"],
+            originalSentence: "The client wanted to go over the details of the contract one more time."
+        }
+    ],
+    "93-24": [ // disrespectful
+        {
+            sentence: "Interrupting someone in the middle of a presentation is considered _______.",
+            options: ["disrespectful", "skeptical", "efficient", "reliable"],
+            originalSentence: "Interrupting someone in the middle of a presentation is considered disrespectful."
+        }
+    ],
+    "93-25": [ // merit
+        {
+            sentence: "Every idea should be judged on its own _______, not on who suggested it.",
+            options: ["merit", "concept", "flow", "balance"],
+            originalSentence: "Every idea should be judged on its own merit, not on who suggested it."
+        }
+    ],
+    "93-26": [ // revised
+        {
+            sentence: "She _______ the report three times before submitting it to the client.",
+            options: ["revised", "assigned", "compiled", "combined"],
+            originalSentence: "She revised the report three times before submitting it to the client."
+        }
+    ],
+    "93-27": [ // avoiding
+        {
+            sentence: "He kept _______ the topic instead of addressing the problem directly.",
+            options: ["avoiding", "stepping in", "frowning", "coordinating"],
+            originalSentence: "He kept avoiding the topic instead of addressing the problem directly."
+        }
+    ],
+    "93-32": [ // open
+        {
+            sentence: "She was _______ to new ideas even when they challenged her own views.",
+            options: ["open", "skeptical", "impressed", "upset"],
+            originalSentence: "She was open to new ideas even when they challenged her own views."
+        }
+    ],
+    "93-34": [ // impressed
+        {
+            sentence: "The manager was clearly _______ by how well the team worked together.",
+            options: ["impressed", "skeptical", "upset", "open"],
+            originalSentence: "The manager was clearly impressed by how well the team worked together."
+        }
+    ],
+    "93-36": [ // skeptical
+        {
+            sentence: "He was _______ about the new approach but agreed to give it a try.",
+            options: ["skeptical", "impressed", "open", "upset"],
+            originalSentence: "He was skeptical about the new approach but agreed to give it a try."
+        }
+    ],
+    "93-37": [ // brought us together
+        {
+            sentence: "This project truly _______ and helped us understand each other better.",
+            options: ["brought us together", "divided us", "stepped in", "avoided us"],
+            originalSentence: "This project truly brought us together and helped us understand each other better."
+        }
+    ],
+    "93-38": [ // skill
+        {
+            sentence: "Communication is the most important _______ in any team environment.",
+            options: ["skill", "concept", "draft", "detail"],
+            originalSentence: "Communication is the most important skill in any team environment."
+        }
+    ],
+    "93-40": [ // collaboration
+        {
+            sentence: "The success of the project was a result of strong _______ between all departments.",
+            options: ["collaboration", "synergy", "accountability", "compromise"],
+            originalSentence: "The success of the project was a result of strong collaboration between all departments."
+        }
+    ],
+    "93-41": [ // conflict
+        {
+            sentence: "Knowing how to handle _______ is an essential part of working in a team.",
+            options: ["conflict", "feedback", "synergy", "accountability"],
+            originalSentence: "Knowing how to handle conflict is an essential part of working in a team."
+        }
+    ],
+    "93-43": [ // divide
+        {
+            sentence: "It is important to _______ tasks based on each person's strengths.",
+            options: ["divide", "combine", "compile", "revise"],
+            originalSentence: "It is important to divide tasks based on each person's strengths."
+        }
+    ],
+    "93-44": [ // accountability
+        {
+            sentence: "Taking _______ for your part of the work builds trust within the team.",
+            options: ["accountability", "collaboration", "synergy", "compromise"],
+            originalSentence: "Taking accountability for your part of the work builds trust within the team."
+        }
+    ],
+    "93-45": [ // reliable
+        {
+            sentence: "A _______ team member always delivers their work on time.",
+            options: ["reliable", "efficient", "modern", "open"],
+            originalSentence: "A reliable team member always delivers their work on time."
+        }
+    ],
+    "93-46": [ // feedback
+        {
+            sentence: "Giving and receiving _______ respectfully is key to improving as a team.",
+            options: ["feedback", "conflict", "accountability", "compromise"],
+            originalSentence: "Giving and receiving feedback respectfully is key to improving as a team."
+        }
+    ],
+    "93-47": [ // compromise
+        {
+            sentence: "They reached a _______ that satisfied everyone on the team.",
+            options: ["compromise", "feedback", "conflict", "synergy"],
+            originalSentence: "They reached a compromise that satisfied everyone on the team."
+        }
+    ],
+    "93-48": [ // synergy
+        {
+            sentence: "When the team worked well together, there was real _______ in everything they produced.",
+            options: ["synergy", "collaboration", "compromise", "accountability"],
+            originalSentence: "When the team worked well together, there was real synergy in everything they produced."
+        }
+    ],
               // استكمال gapfillDB.js - الدرس رقم 301
     "301-1": [
         {
