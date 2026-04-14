@@ -26232,7 +26232,525 @@ window.gapfillDB = {
             originalSentence: "When the team worked well together, there was real synergy in everything they produced."
         }
     ],
-              // استكمال gapfillDB.js - الدرس رقم 301
+    "94-1": [ // volunteering abroad
+        {
+            sentence: "She decided to spend her summer _______ in a small village in Africa.",
+            options: ["volunteering abroad", "partnering with", "sustainable development", "global citizen"],
+            originalSentence: "She decided to spend her summer volunteering abroad in a small village in Africa."
+        }
+    ],
+    "94-2": [ // partnering with
+        {
+            sentence: "The university was _______ a local organization to build new schools.",
+            options: ["partnering with", "adapting", "accepting", "volunteering abroad"],
+            originalSentence: "The university was partnering with a local organization to build new schools."
+        }
+    ],
+    "94-3": [ // organization
+        {
+            sentence: "She applied to a non-profit _______ that sends volunteers to developing countries.",
+            options: ["organization", "placement", "village", "celebration"],
+            originalSentence: "She applied to a non-profit organization that sends volunteers to developing countries."
+        }
+    ],
+    "94-4": [ // rural
+        {
+            sentence: "The project was located in a _______ area far from the nearest city.",
+            options: ["rural", "hilly", "local", "half-built"],
+            originalSentence: "The project was located in a rural area far from the nearest city."
+        }
+    ],
+    "94-5": [ // lasts
+        {
+            sentence: "The volunteer program _______ for three months from June to August.",
+            options: ["lasts", "returns", "installs", "adapts"],
+            originalSentence: "The volunteer program lasts for three months from June to August."
+        }
+    ],
+    "94-6": [ // placement
+        {
+            sentence: "She was excited when she received her _______ letter for Kenya.",
+            options: ["placement", "speech", "celebration", "organization"],
+            originalSentence: "She was excited when she received her placement letter for Kenya."
+        }
+    ],
+    "94-9": [ // for good
+        {
+            sentence: "He wanted to use his skills _______ by helping communities in need.",
+            options: ["for good", "nearly", "available", "incredible"],
+            originalSentence: "He wanted to use his skills for good by helping communities in need."
+        }
+    ],
+    "94-10": [ // accepting
+        {
+            sentence: "Living with a host family means _______ a different way of life.",
+            options: ["accepting", "adapting", "partnering with", "volunteering abroad"],
+            originalSentence: "Living with a host family means accepting a different way of life."
+        }
+    ],
+    "94-11": [ // Nairobi
+        {
+            sentence: "The volunteers flew into _______ before travelling to their project site.",
+            options: ["Nairobi", "Swahili", "Kenya", "village"],
+            originalSentence: "The volunteers flew into Nairobi before travelling to their project site."
+        }
+    ],
+    "94-12": [ // village
+        {
+            sentence: "The whole _______ came out to welcome the new volunteers on arrival.",
+            options: ["village", "organization", "placement", "celebration"],
+            originalSentence: "The whole village came out to welcome the new volunteers on arrival."
+        }
+    ],
+    "94-13": [ // struck by
+        {
+            sentence: "She was immediately _______ the beauty of the landscape around her.",
+            options: ["struck by", "adapting", "partnering with", "accepting"],
+            originalSentence: "She was immediately struck by the beauty of the landscape around her."
+        }
+    ],
+    "94-14": [ // landscape
+        {
+            sentence: "The green _______ of the hills took her breath away on the first morning.",
+            options: ["landscape", "village", "placement", "cement"],
+            originalSentence: "The green landscape of the hills took her breath away on the first morning."
+        }
+    ],
+    "94-15": [ // hilly
+        {
+            sentence: "The _______ terrain made it difficult to transport building materials.",
+            options: ["hilly", "rural", "local", "half-built"],
+            originalSentence: "The hilly terrain made it difficult to transport building materials."
+        }
+    ],
+    "94-16": [ // welcoming
+        {
+            sentence: "The community was incredibly _______ and made the volunteers feel at home.",
+            options: ["welcoming", "incredible", "available", "local"],
+            originalSentence: "The community was incredibly welcoming and made the volunteers feel at home."
+        }
+    ],
+    "94-17": [ // local
+        {
+            sentence: "The volunteers worked closely with _______ builders who had years of experience.",
+            options: ["local", "rural", "hilly", "welcoming"],
+            originalSentence: "The volunteers worked closely with local builders who had years of experience."
+        }
+    ],
+    "94-18": [ // Swahili
+        {
+            sentence: "She learned a few basic words in _______ to communicate with the community.",
+            options: ["Swahili", "Nairobi", "placement", "organization"],
+            originalSentence: "She learned a few basic words in Swahili to communicate with the community."
+        }
+    ],
+    "94-20": [ // half-built
+        {
+            sentence: "The team arrived to find a _______ school waiting for them to complete.",
+            options: ["half-built", "rural", "hilly", "local"],
+            originalSentence: "The team arrived to find a half-built school waiting for them to complete."
+        }
+    ],
+    "94-21": [ // plastering
+        {
+            sentence: "She spent most of the week _______ the interior walls of the new classroom.",
+            options: ["plastering", "painting", "sweating", "laying bricks"],
+            originalSentence: "She spent most of the week plastering the interior walls of the new classroom."
+        }
+    ],
+    "94-22": [ // ventilation
+        {
+            sentence: "Good _______ was essential to keep the classrooms cool in the African heat.",
+            options: ["ventilation", "cement", "electricity", "materials"],
+            originalSentence: "Good ventilation was essential to keep the classrooms cool in the African heat."
+        }
+    ],
+    "94-23": [ // adapting
+        {
+            sentence: "_______ to life without running water was challenging at first.",
+            options: ["adapting", "accepting", "partnering with", "volunteering abroad"],
+            originalSentence: "Adapting to life without running water was challenging at first."
+        }
+    ],
+    "94-24": [ // cement
+        {
+            sentence: "The workers mixed _______ by hand under the hot afternoon sun.",
+            options: ["cement", "materials", "electricity", "ventilation"],
+            originalSentence: "The workers mixed cement by hand under the hot afternoon sun."
+        }
+    ],
+    "94-25": [ // laying bricks
+        {
+            sentence: "He spent his first week _______ alongside experienced local builders.",
+            options: ["laying bricks", "plastering", "painting", "sweating"],
+            originalSentence: "He spent his first week laying bricks alongside experienced local builders."
+        }
+    ],
+    "94-26": [ // sweating
+        {
+            sentence: "Everyone was _______ heavily under the midday sun but nobody complained.",
+            options: ["sweating", "plastering", "painting", "adapting"],
+            originalSentence: "Everyone was sweating heavily under the midday sun but nobody complained."
+        }
+    ],
+    "94-27": [ // patience
+        {
+            sentence: "Working in challenging conditions requires a great deal of _______ and determination.",
+            options: ["patience", "skill", "electricity", "cement"],
+            originalSentence: "Working in challenging conditions requires a great deal of patience and determination."
+        }
+    ],
+    "94-28": [ // electricity
+        {
+            sentence: "The village had no _______, so the team worked only during daylight hours.",
+            options: ["electricity", "cement", "ventilation", "materials"],
+            originalSentence: "The village had no electricity, so the team worked only during daylight hours."
+        }
+    ],
+    "94-29": [ // materials
+        {
+            sentence: "All building _______ had to be carried up the hill on foot.",
+            options: ["materials", "cement", "electricity", "ventilation"],
+            originalSentence: "All building materials had to be carried up the hill on foot."
+        }
+    ],
+    "94-30": [ // available
+        {
+            sentence: "The team had to work with whatever tools were _______ in the village.",
+            options: ["available", "incredible", "local", "welcoming"],
+            originalSentence: "The team had to work with whatever tools were available in the village."
+        }
+    ],
+    "94-32": [ // incredible
+        {
+            sentence: "Watching the finished school rise from nothing was an _______ feeling.",
+            options: ["incredible", "available", "welcoming", "rural"],
+            originalSentence: "Watching the finished school rise from nothing was an incredible feeling."
+        }
+    ],
+    "94-33": [ // skill
+        {
+            sentence: "Each volunteer brought a different _______ that helped the project move forward.",
+            options: ["skill", "patience", "cement", "placement"],
+            originalSentence: "Each volunteer brought a different skill that helped the project move forward."
+        }
+    ],
+    "94-36": [ // nearly
+        {
+            sentence: "By the end of the second month, the school was _______ complete.",
+            options: ["nearly", "incredibly", "locally", "rurally"],
+            originalSentence: "By the end of the second month, the school was nearly complete."
+        }
+    ],
+    "94-37": [ // installed
+        {
+            sentence: "The windows and doors were _______ on the final day of the project.",
+            options: ["installed", "painted", "plastered", "adapted"],
+            originalSentence: "The windows and doors were installed on the final day of the project."
+        }
+    ],
+    "94-38": [ // painting
+        {
+            sentence: "The children from the village helped by _______ the outside walls bright blue.",
+            options: ["painting", "plastering", "sweating", "laying bricks"],
+            originalSentence: "The children from the village helped by painting the outside walls bright blue."
+        }
+    ],
+    "94-41": [ // celebration
+        {
+            sentence: "The whole community joined in the _______ when the school was finally opened.",
+            options: ["celebration", "speech", "organization", "placement"],
+            originalSentence: "The whole community joined in the celebration when the school was finally opened."
+        }
+    ],
+    "94-42": [ // chief
+        {
+            sentence: "The village _______ gave a warm speech thanking the volunteers for their work.",
+            options: ["chief", "organization", "placement", "village"],
+            originalSentence: "The village chief gave a warm speech thanking the volunteers for their work."
+        }
+    ],
+    "94-43": [ // speech
+        {
+            sentence: "She was asked to give a short _______ on behalf of all the volunteers.",
+            options: ["speech", "celebration", "placement", "organization"],
+            originalSentence: "She was asked to give a short speech on behalf of all the volunteers."
+        }
+    ],
+    "94-45": [ // meant to do
+        {
+            sentence: "Standing there, she felt this was exactly what she was _______.",
+            options: ["meant to do", "struck by", "partnering with", "adapting"],
+            originalSentence: "Standing there, she felt this was exactly what she was meant to do."
+        }
+    ],
+    "94-46": [ // return
+        {
+            sentence: "She promised to _______ the following year to help build a second classroom.",
+            options: ["return", "adapt", "accept", "install"],
+            originalSentence: "She promised to return the following year to help build a second classroom."
+        }
+    ],
+    "94-48": [ // immersion
+        {
+            sentence: "Cultural _______ is one of the greatest benefits of volunteering abroad.",
+            options: ["immersion", "ventilation", "placement", "celebration"],
+            originalSentence: "Cultural immersion is one of the greatest benefits of volunteering abroad."
+        }
+    ],
+    "94-49": [ // global citizen
+        {
+            sentence: "Volunteering in another country helps you become a true _______.",
+            options: ["global citizen", "local builder", "rural volunteer", "sustainable developer"],
+            originalSentence: "Volunteering in another country helps you become a true global citizen."
+        }
+    ],
+    "94-50": [ // sustainable development
+        {
+            sentence: "The project was designed with _______ in mind so the community could maintain it.",
+            options: ["sustainable development", "volunteering abroad", "global citizen", "immersion"],
+            originalSentence: "The project was designed with sustainable development in mind so the community could maintain it."
+        }
+    ],
+    "95-1": [ // charity work
+        {
+            sentence: "She spent every Saturday doing _______ at a local shelter.",
+            options: ["charity work", "fundraising", "outreach", "social impact"],
+            originalSentence: "She spent every Saturday doing charity work at a local shelter."
+        }
+    ],
+    "95-2": [ // storefront
+        {
+            sentence: "The organization turned an empty _______ into a community food bank.",
+            options: ["storefront", "shelter", "food pantry", "nonprofit"],
+            originalSentence: "The organization turned an empty storefront into a community food bank."
+        }
+    ],
+    "95-3": [ // homeless
+        {
+            sentence: "The shelter provides meals and beds for _______ people every night.",
+            options: ["homeless", "former", "fragile", "thrilled"],
+            originalSentence: "The shelter provides meals and beds for homeless people every night."
+        }
+    ],
+    "95-4": [ // canned food
+        {
+            sentence: "They collected boxes of _______ to distribute to families in need.",
+            options: ["canned food", "laundry", "grants", "donations"],
+            originalSentence: "They collected boxes of canned food to distribute to families in need."
+        }
+    ],
+    "95-5": [ // coordinator
+        {
+            sentence: "The _______ organized the volunteers and assigned tasks each morning.",
+            options: ["coordinator", "donor", "sponsor", "guest"],
+            originalSentence: "The coordinator organized the volunteers and assigned tasks each morning."
+        }
+    ],
+    "95-7": [ // give back
+        {
+            sentence: "He wanted to _______ to the community that had supported him growing up.",
+            options: ["give back", "fund", "sponsor", "alleviate poverty"],
+            originalSentence: "He wanted to give back to the community that had supported him growing up."
+        }
+    ],
+    "95-8": [ // shelter
+        {
+            sentence: "The city opened a new _______ to house families during the cold winter months.",
+            options: ["shelter", "storefront", "food pantry", "nonprofit"],
+            originalSentence: "The city opened a new shelter to house families during the cold winter months."
+        }
+    ],
+    "95-9": [ // chopping
+        {
+            sentence: "She spent two hours _______ vegetables for the evening meal.",
+            options: ["chopping", "shouting", "fundraising", "sponsoring"],
+            originalSentence: "She spent two hours chopping vegetables for the evening meal."
+        }
+    ],
+    "95-10": [ // buzzing with activity
+        {
+            sentence: "By eight in the morning, the kitchen was already _______.",
+            options: ["buzzing with activity", "thrilled", "overjoyed", "fragile"],
+            originalSentence: "By eight in the morning, the kitchen was already buzzing with activity."
+        }
+    ],
+    "95-11": [ // laundry
+        {
+            sentence: "Volunteers helped residents with cooking, cleaning, and _______.",
+            options: ["laundry", "grants", "outreach", "donations"],
+            originalSentence: "Volunteers helped residents with cooking, cleaning, and laundry."
+        }
+    ],
+    "95-13": [ // fund
+        {
+            sentence: "The government agreed to _______ the shelter for another three years.",
+            options: ["fund", "sponsor", "give back", "alleviate poverty"],
+            originalSentence: "The government agreed to fund the shelter for another three years."
+        }
+    ],
+    "95-14": [ // donations
+        {
+            sentence: "The charity relies entirely on _______ from the local community.",
+            options: ["donations", "grants", "funds", "drives"],
+            originalSentence: "The charity relies entirely on donations from the local community."
+        }
+    ],
+    "95-15": [ // grants
+        {
+            sentence: "They applied for government _______ to expand their food program.",
+            options: ["grants", "donations", "funds", "drives"],
+            originalSentence: "They applied for government grants to expand their food program."
+        }
+    ],
+    "95-16": [ // fundraising
+        {
+            sentence: "The school organized a _______ event to support the local food bank.",
+            options: ["fundraising", "outreach", "charity work", "social impact"],
+            originalSentence: "The school organized a fundraising event to support the local food bank."
+        }
+    ],
+    "95-18": [ // guests
+        {
+            sentence: "The shelter welcomes its _______ with a warm meal and a clean bed.",
+            options: ["guests", "donors", "coordinators", "sponsors"],
+            originalSentence: "The shelter welcomes its guests with a warm meal and a clean bed."
+        }
+    ],
+    "95-19": [ // former
+        {
+            sentence: "A _______ resident of the shelter came back to volunteer every weekend.",
+            options: ["former", "homeless", "fragile", "thrilled"],
+            originalSentence: "A former resident of the shelter came back to volunteer every weekend."
+        }
+    ],
+    "95-20": [ // pandemic
+        {
+            sentence: "The number of people needing support grew sharply during the _______.",
+            options: ["pandemic", "drive", "outreach", "connection"],
+            originalSentence: "The number of people needing support grew sharply during the pandemic."
+        }
+    ],
+    "95-21": [ // fragile
+        {
+            sentence: "Many of the shelter's guests were in a _______ state when they first arrived.",
+            options: ["fragile", "former", "homeless", "thrilled"],
+            originalSentence: "Many of the shelter's guests were in a fragile state when they first arrived."
+        }
+    ],
+    "95-24": [ // sponsor
+        {
+            sentence: "A local business agreed to _______ the charity's annual dinner event.",
+            options: ["sponsor", "fund", "give back", "alleviate poverty"],
+            originalSentence: "A local business agreed to sponsor the charity's annual dinner event."
+        }
+    ],
+    "95-26": [ // thrilled
+        {
+            sentence: "The children were _______ when they received new school bags and supplies.",
+            options: ["thrilled", "overjoyed", "fragile", "former"],
+            originalSentence: "The children were thrilled when they received new school bags and supplies."
+        }
+    ],
+    "95-27": [ // overjoyed
+        {
+            sentence: "She was _______ when she heard the shelter had received enough funds to stay open.",
+            options: ["overjoyed", "thrilled", "fragile", "homeless"],
+            originalSentence: "She was overjoyed when she heard the shelter had received enough funds to stay open."
+        }
+    ],
+    "95-28": [ // satisfaction
+        {
+            sentence: "Volunteering gave her a deep sense of _______ that no job had ever provided.",
+            options: ["satisfaction", "connection", "dignity", "outreach"],
+            originalSentence: "Volunteering gave her a deep sense of satisfaction that no job had ever provided."
+        }
+    ],
+    "95-29": [ // dignity
+        {
+            sentence: "The shelter was designed to treat every guest with respect and _______.",
+            options: ["dignity", "satisfaction", "connection", "social impact"],
+            originalSentence: "The shelter was designed to treat every guest with respect and dignity."
+        }
+    ],
+    "95-31": [ // connection
+        {
+            sentence: "She felt a strong _______ with the people she served every week.",
+            options: ["connection", "satisfaction", "dignity", "outreach"],
+            originalSentence: "She felt a strong connection with the people she served every week."
+        }
+    ],
+    "95-32": [ // shouting
+        {
+            sentence: "She could hear the coordinator _______ instructions across the busy kitchen.",
+            options: ["shouting", "chopping", "fundraising", "sponsoring"],
+            originalSentence: "She could hear the coordinator shouting instructions across the busy kitchen."
+        }
+    ],
+    "95-34": [ // what matters
+        {
+            sentence: "At the end of a long day, helping others is truly _______.",
+            options: ["what matters", "give back", "social impact", "alleviate poverty"],
+            originalSentence: "At the end of a long day, helping others is truly what matters."
+        }
+    ],
+    "95-36": [ // food pantry
+        {
+            sentence: "Families in need can visit the _______ every Tuesday to collect groceries.",
+            options: ["food pantry", "storefront", "shelter", "nonprofit"],
+            originalSentence: "Families in need can visit the food pantry every Tuesday to collect groceries."
+        }
+    ],
+    "95-37": [ // outreach
+        {
+            sentence: "The team did community _______ to let people know about the available services.",
+            options: ["outreach", "fundraising", "charity work", "social impact"],
+            originalSentence: "The team did community outreach to let people know about the available services."
+        }
+    ],
+    "95-38": [ // donor
+        {
+            sentence: "A generous _______ gave enough money to keep the shelter open for another year.",
+            options: ["donor", "coordinator", "sponsor", "guest"],
+            originalSentence: "A generous donor gave enough money to keep the shelter open for another year."
+        }
+    ],
+    "95-39": [ // nonprofit
+        {
+            sentence: "She started a _______ organization to provide free meals to elderly residents.",
+            options: ["nonprofit", "storefront", "food pantry", "shelter"],
+            originalSentence: "She started a nonprofit organization to provide free meals to elderly residents."
+        }
+    ],
+    "95-42": [ // fundraising
+        {
+            sentence: "The team ran a successful _______ campaign that raised thousands of dollars.",
+            options: ["fundraising", "outreach", "charity work", "social impact"],
+            originalSentence: "The team ran a successful fundraising campaign that raised thousands of dollars."
+        }
+    ],
+    "95-43": [ // drive
+        {
+            sentence: "They organized a clothing _______ to collect winter items for homeless families.",
+            options: ["drive", "grant", "donation", "fund"],
+            originalSentence: "They organized a clothing drive to collect winter items for homeless families."
+        }
+    ],
+    "95-44": [ // alleviate poverty
+        {
+            sentence: "The goal of the program is to _______ in the most vulnerable communities.",
+            options: ["alleviate poverty", "give back", "fund", "sponsor"],
+            originalSentence: "The goal of the program is to alleviate poverty in the most vulnerable communities."
+        }
+    ],
+    "95-45": [ // social impact
+        {
+            sentence: "Measuring _______ helps organizations understand how much difference they are making.",
+            options: ["social impact", "charity work", "outreach", "fundraising"],
+            originalSentence: "Measuring social impact helps organizations understand how much difference they are making."
+        }
+    ],
+    // استكمال gapfillDB.js - الدرس رقم 301
     "301-1": [
         {
             sentence: "The two neighboring countries signed a ______ agreement to manage water resources.",
