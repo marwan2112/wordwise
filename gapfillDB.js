@@ -27121,7 +27121,265 @@ window.gapfillDB = {
             originalSentence: "Her resilience after every setback was what made her a truly strong leader."
         }
     ],
-    
+    "98-1": [ // time management
+        {
+            sentence: "Good _______ helps you get more done without feeling constantly stressed.",
+            options: ["time management", "procrastination", "work-life balance", "time blocking"],
+            originalSentence: "Good time management helps you get more done without feeling constantly stressed."
+        }
+    ],
+    "98-2": [ // inbox
+        {
+            sentence: "She opened her _______ to find over two hundred unread messages waiting.",
+            options: ["inbox", "timer", "notifications", "deadlines"],
+            originalSentence: "She opened her inbox to find over two hundred unread messages waiting."
+        }
+    ],
+    "98-3": [ // deadlines
+        {
+            sentence: "He had three _______ on the same day and had no idea where to start.",
+            options: ["deadlines", "tips", "techniques", "boundaries"],
+            originalSentence: "He had three deadlines on the same day and had no idea where to start."
+        }
+    ],
+    "98-4": [ // overwhelmed
+        {
+            sentence: "She felt completely _______ by the number of tasks on her to-do list.",
+            options: ["overwhelmed", "exhausted", "intimidating", "glad"],
+            originalSentence: "She felt completely overwhelmed by the number of tasks on her to-do list."
+        }
+    ],
+    "98-6": [ // overflowing
+        {
+            sentence: "His desk was _______ with papers, notes, and half-finished reports.",
+            options: ["overflowing", "exhausted", "overwhelmed", "intimidating"],
+            originalSentence: "His desk was overflowing with papers, notes, and half-finished reports."
+        }
+    ],
+    "98-7": [ // expression
+        {
+            sentence: "The look on her face was the perfect _______ of someone who needed a break.",
+            options: ["expression", "timer", "interruption", "advice"],
+            originalSentence: "The look on her face was the perfect expression of someone who needed a break."
+        }
+    ],
+    "98-8": [ // exhausted
+        {
+            sentence: "By Friday afternoon, the whole team was completely _______.",
+            options: ["exhausted", "overwhelmed", "intimidating", "glad"],
+            originalSentence: "By Friday afternoon, the whole team was completely exhausted."
+        }
+    ],
+    "98-9": [ // pull up
+        {
+            sentence: "She asked him to _______ the project schedule on the shared screen.",
+            options: ["pull up", "grab", "circle", "prioritize"],
+            originalSentence: "She asked him to pull up the project schedule on the shared screen."
+        }
+    ],
+    "98-10": [ // prioritize
+        {
+            sentence: "Learning to _______ your tasks is the first step to better time management.",
+            options: ["prioritize", "grab", "circle", "pull up"],
+            originalSentence: "Learning to prioritize your tasks is the first step to better time management."
+        }
+    ],
+    "98-11": [ // urgent
+        {
+            sentence: "Not everything that feels _______ is actually important in the long run.",
+            options: ["urgent", "important", "huge", "intimidating"],
+            originalSentence: "Not everything that feels urgent is actually important in the long run."
+        }
+    ],
+    "98-12": [ // important
+        {
+            sentence: "Focus on tasks that are truly _______ rather than just easy to complete.",
+            options: ["important", "urgent", "huge", "glad"],
+            originalSentence: "Focus on tasks that are truly important rather than just easy to complete."
+        }
+    ],
+    "98-13": [ // grab
+        {
+            sentence: "She told him to _______ a pen and write down the three most urgent tasks.",
+            options: ["grab", "circle", "pull up", "prioritize"],
+            originalSentence: "She told him to grab a pen and write down the three most urgent tasks."
+        }
+    ],
+    "98-14": [ // circle
+        {
+            sentence: "He used a red pen to _______ the most important deadline on his calendar.",
+            options: ["circle", "grab", "pull up", "prioritize"],
+            originalSentence: "He used a red pen to circle the most important deadline on his calendar."
+        }
+    ],
+    "98-16": [ // intimidating
+        {
+            sentence: "A long list of tasks can feel very _______ when you do not know where to begin.",
+            options: ["intimidating", "overwhelmed", "exhausted", "urgent"],
+            originalSentence: "A long list of tasks can feel very intimidating when you do not know where to begin."
+        }
+    ],
+    "98-17": [ // Pomodoro method
+        {
+            sentence: "She started using the _______ to break her work into focused twenty-five minute blocks.",
+            options: ["Pomodoro method", "time blocking", "time management", "work-life balance"],
+            originalSentence: "She started using the Pomodoro method to break her work into focused twenty-five minute blocks."
+        }
+    ],
+    "98-18": [ // timer
+        {
+            sentence: "He set a _______ for twenty-five minutes and worked without any interruptions.",
+            options: ["timer", "inbox", "notifications", "deadlines"],
+            originalSentence: "He set a timer for twenty-five minutes and worked without any interruptions."
+        }
+    ],
+    "98-19": [ // interruption
+        {
+            sentence: "Even a small _______ can break your focus and cost you valuable time.",
+            options: ["interruption", "short break", "timer", "notification"],
+            originalSentence: "Even a small interruption can break your focus and cost you valuable time."
+        }
+    ],
+    "98-20": [ // short break
+        {
+            sentence: "Taking a _______ every hour helps your brain stay fresh and focused.",
+            options: ["short break", "interruption", "timer", "notification"],
+            originalSentence: "Taking a short break every hour helps your brain stay fresh and focused."
+        }
+    ],
+    "98-21": [ // stretching
+        {
+            sentence: "She spent her break _______ at her desk to release the tension in her neck.",
+            options: ["stretching", "prioritizing", "circling", "grabbing"],
+            originalSentence: "She spent her break stretching at her desk to release the tension in her neck."
+        }
+    ],
+    "98-23": [ // huge
+        {
+            sentence: "Turning off your phone during work can make a _______ difference to your focus.",
+            options: ["huge", "urgent", "important", "glad"],
+            originalSentence: "Turning off your phone during work can make a huge difference to your focus."
+        }
+    ],
+    "98-24": [ // tips
+        {
+            sentence: "She shared her top _______ for staying productive during a busy work week.",
+            options: ["tips", "techniques", "advice", "boundaries"],
+            originalSentence: "She shared her top tips for staying productive during a busy work week."
+        }
+    ],
+    "98-25": [ // techniques
+        {
+            sentence: "There are many _______ you can use to manage your time more effectively.",
+            options: ["techniques", "tips", "advice", "distractions"],
+            originalSentence: "There are many techniques you can use to manage your time more effectively."
+        }
+    ],
+    "98-27": [ // boundaries
+        {
+            sentence: "Setting clear _______ between work and personal time is essential for wellbeing.",
+            options: ["boundaries", "distractions", "notifications", "deadlines"],
+            originalSentence: "Setting clear boundaries between work and personal time is essential for wellbeing."
+        }
+    ],
+    "98-28": [ // notifications
+        {
+            sentence: "Turning off _______ during deep work sessions helps you stay in the zone.",
+            options: ["notifications", "boundaries", "distractions", "deadlines"],
+            originalSentence: "Turning off notifications during deep work sessions helps you stay in the zone."
+        }
+    ],
+    "98-29": [ // decreasing
+        {
+            sentence: "Her stress levels were slowly _______ as she got better at managing her time.",
+            options: ["decreasing", "overflowing", "exhausting", "overwhelming"],
+            originalSentence: "Her stress levels were slowly decreasing as she got better at managing her time."
+        }
+    ],
+    "98-32": [ // advice
+        {
+            sentence: "The best _______ she ever received was to plan her week every Sunday evening.",
+            options: ["advice", "tips", "techniques", "expression"],
+            originalSentence: "The best advice she ever received was to plan her week every Sunday evening."
+        }
+    ],
+    "98-33": [ // wasted
+        {
+            sentence: "He realized he had _______ two hours scrolling through social media instead of working.",
+            options: ["wasted", "grabbed", "circled", "pulled up"],
+            originalSentence: "He realized he had wasted two hours scrolling through social media instead of working."
+        }
+    ],
+    "98-35": [ // glad
+        {
+            sentence: "She was _______ she had planned ahead when the unexpected meeting appeared.",
+            options: ["glad", "exhausted", "overwhelmed", "intimidating"],
+            originalSentence: "She was glad she had planned ahead when the unexpected meeting appeared."
+        }
+    ],
+    "98-37": [ // procrastination
+        {
+            sentence: "_______ is one of the biggest enemies of good time management.",
+            options: ["procrastination", "distractions", "focus", "efficiency"],
+            originalSentence: "Procrastination is one of the biggest enemies of good time management."
+        }
+    ],
+    "98-38": [ // distractions
+        {
+            sentence: "Removing _______ from your workspace helps you concentrate for longer periods.",
+            options: ["distractions", "procrastination", "notifications", "boundaries"],
+            originalSentence: "Removing distractions from your workspace helps you concentrate for longer periods."
+        }
+    ],
+    "98-39": [ // time blocking
+        {
+            sentence: "She used _______ to schedule specific tasks into fixed slots throughout the day.",
+            options: ["time blocking", "Pomodoro method", "time management", "work-life balance"],
+            originalSentence: "She used time blocking to schedule specific tasks into fixed slots throughout the day."
+        }
+    ],
+    "98-40": [ // focus
+        {
+            sentence: "Strong _______ is a skill that gets better the more you practise it.",
+            options: ["focus", "efficiency", "productivity", "balance"],
+            originalSentence: "Strong focus is a skill that gets better the more you practise it."
+        }
+    ],
+    "98-41": [ // efficiency
+        {
+            sentence: "Working with high _______ means getting more done in less time.",
+            options: ["efficiency", "productivity", "focus", "balance"],
+            originalSentence: "Working with high efficiency means getting more done in less time."
+        }
+    ],
+    "98-42": [ // productivity
+        {
+            sentence: "Her _______ improved dramatically once she stopped multitasking.",
+            options: ["productivity", "efficiency", "focus", "balance"],
+            originalSentence: "Her productivity improved dramatically once she stopped multitasking."
+        }
+    ],
+    "98-43": [ // balance
+        {
+            sentence: "Finding the right _______ between rest and work is key to long-term success.",
+            options: ["balance", "focus", "efficiency", "productivity"],
+            originalSentence: "Finding the right balance between rest and work is key to long-term success."
+        }
+    ],
+    "98-44": [ // work-life balance
+        {
+            sentence: "Protecting your _______ prevents burnout and keeps you motivated over time.",
+            options: ["work-life balance", "time blocking", "Pomodoro method", "time management"],
+            originalSentence: "Protecting your work-life balance prevents burnout and keeps you motivated over time."
+        }
+    ],
+    "98-45": [ // pressure
+        {
+            sentence: "Some people work better under _______, while others need a calmer environment.",
+            options: ["pressure", "focus", "efficiency", "productivity"],
+            originalSentence: "Some people work better under pressure, while others need a calmer environment."
+        }
+    ],
     // استكمال gapfillDB.js - الدرس رقم 301
     "301-1": [
         {
