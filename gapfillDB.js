@@ -28575,6 +28575,165 @@ window.gapfillDB = {
         originalSentence: "Media literacy teaches people how to analyze and question the messages they see in the media."
     }
 ],
+"104-1": [
+    {
+        sentence: "Working in construction often means facing _______ between profit and protecting the environment.",
+        options: ["ethical dilemmas", "irreversible decisions", "alternative solutions", "conflicted feelings"],
+        originalSentence: "Working in construction often means facing ethical dilemmas between profit and protecting the environment."
+    }
+],
+
+"104-2": [
+    {
+        sentence: "The architect had to tell her _______ that the project could not be built in that location.",
+        options: ["client", "alternative", "reputation", "integrity"],
+        originalSentence: "The architect had to tell her client that the project could not be built in that location."
+    }
+],
+
+"104-3": [
+    {
+        sentence: "The developer wanted to build a _______ on the coast to attract wealthy tourists.",
+        options: ["luxury resort", "brownfield", "protected wetlands", "alternative"],
+        originalSentence: "The developer wanted to build a luxury resort on the coast to attract wealthy tourists."
+    }
+],
+
+"104-4": [
+    {
+        sentence: "The construction company was not allowed to build on the _______ because they are home to endangered species.",
+        options: ["protected wetlands", "brownfield", "luxury resort", "redevelopment"],
+        originalSentence: "The construction company was not allowed to build on the protected wetlands because they are home to endangered species."
+    }
+],
+
+"104-5": [
+    {
+        sentence: "The wetlands are home to several _______ birds that cannot be found anywhere else in the region.",
+        options: ["rare", "preserved", "conflicted", "irreversible"],
+        originalSentence: "The wetlands are home to several rare birds that cannot be found anywhere else in the region."
+    }
+],
+
+"104-6": [
+    {
+        sentence: "She felt _______ because she needed the money but didn't want to harm the environment.",
+        options: ["conflicted", "hesitating", "preserved", "compromising"],
+        originalSentence: "She felt conflicted because she needed the money but didn't want to harm the environment."
+    }
+],
+
+"104-7": [
+    {
+        sentence: "Destroying the wetlands would cause _______ damage to the local ecosystem.",
+        options: ["irreversible", "rare", "preserved", "conflicted"],
+        originalSentence: "Destroying the wetlands would cause irreversible damage to the local ecosystem."
+    }
+],
+
+"104-8": [
+    {
+        sentence: "Choosing between the project and the environment was a real _______ for the engineer.",
+        options: ["dilemma", "alternative", "integrity", "reputation"],
+        originalSentence: "Choosing between the project and the environment was a real dilemma for the engineer."
+    }
+],
+
+"104-9": [
+    {
+        sentence: "She refused to accept the deal, saying it meant _______ her professional values.",
+        options: ["compromising", "hesitating", "scheduling", "composing"],
+        originalSentence: "She refused to accept the deal, saying it meant compromising her professional values."
+    }
+],
+
+"104-10": [
+    {
+        sentence: "His _______ told him something was wrong with the plan, even before he saw the environmental report.",
+        options: ["gut", "integrity", "reputation", "dilemma"],
+        originalSentence: "His gut told him something was wrong with the plan, even before he saw the environmental report."
+    }
+],
+
+"104-11": [
+    {
+        sentence: "The firm's _______ would suffer if it became known they had ignored environmental laws.",
+        options: ["reputation", "integrity", "gut", "alternative"],
+        originalSentence: "The firm's reputation would suffer if it became known they had ignored environmental laws."
+    }
+],
+
+"104-12": [
+    {
+        sentence: "She spent the evening _______ an email to her client explaining why she could not continue with the project.",
+        options: ["composing", "hesitating", "scheduling", "compromising"],
+        originalSentence: "She spent the evening composing an email to her client explaining why she could not continue with the project."
+    }
+],
+
+"104-13": [
+    {
+        sentence: "Thanks to new environmental laws, the historic wetlands have been _______ for future generations.",
+        options: ["preserved", "transformed", "compromised", "conflicted"],
+        originalSentence: "Thanks to new environmental laws, the historic wetlands have been preserved for future generations."
+    }
+],
+
+"104-14": [
+    {
+        sentence: "He kept _______ before sending the report because he knew it would upset the client.",
+        options: ["hesitating", "composing", "scheduling", "compromising"],
+        originalSentence: "He kept hesitating before sending the report because he knew it would upset the client."
+    }
+],
+
+"104-17": [
+    {
+        sentence: "The engineer suggested building on a brownfield site as an _______ to destroying the wetlands.",
+        options: ["alternative", "dilemma", "redevelopment", "integrity"],
+        originalSentence: "The engineer suggested building on a brownfield site as an alternative to destroying the wetlands."
+    }
+],
+
+"104-18": [
+    {
+        sentence: "They are _______ a meeting to discuss whether the project can move to a different location.",
+        options: ["scheduling", "composing", "hesitating", "compromising"],
+        originalSentence: "They are scheduling a meeting to discuss whether the project can move to a different location."
+    }
+],
+
+"104-21": [
+    {
+        sentence: "She chose to turn down the project because she believed that professional _______ was more important than money.",
+        options: ["integrity", "reputation", "gut", "alternative"],
+        originalSentence: "She chose to turn down the project because she believed that professional integrity was more important than money."
+    }
+],
+
+"104-25": [
+    {
+        sentence: "Building on a _______ is better for the environment than clearing natural land.",
+        options: ["brownfield", "protected wetlands", "luxury resort", "redevelopment"],
+        originalSentence: "Building on a brownfield is better for the environment than clearing natural land."
+    }
+],
+
+"104-26": [
+    {
+        sentence: "The city approved the _______ of the old industrial area into a modern neighborhood.",
+        options: ["redevelopment", "brownfield", "alternative", "transformation"],
+        originalSentence: "The city approved the redevelopment of the old industrial area into a modern neighborhood."
+    }
+],
+
+"104-27": [
+    {
+        sentence: "The plan was to _______ the abandoned factory site into an eco-friendly business park.",
+        options: ["transform", "preserve", "compromise", "redevelop"],
+        originalSentence: "The plan was to transform the abandoned factory site into an eco-friendly business park."
+    }
+],    
     // استكمال gapfillDB.js - الدرس رقم 301
     "301-1": [
         {
