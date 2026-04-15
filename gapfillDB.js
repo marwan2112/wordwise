@@ -27380,6 +27380,874 @@ window.gapfillDB = {
             originalSentence: "Some people work better under pressure, while others need a calmer environment."
         }
     ],
+    "99-1": [ // goal setting
+        {
+            sentence: "Effective _______ is the first step toward achieving success.",
+            options: ["goal setting", "career", "motivation", "marathon"],
+            originalSentence: "Effective goal setting is the first step toward achieving success."
+        }
+    ],
+    "99-3": [ // challenged
+        {
+            sentence: "The difficult project _______ his skills as a developer.",
+            options: ["challenged", "accomplished", "assigned", "broken down"],
+            originalSentence: "The difficult project challenged his skills as a developer."
+        }
+    ],
+    "99-4": [ // wishes
+        {
+            sentence: "Goals are different from _______ because they require a plan of action.",
+            options: ["wishes", "milestones", "actions", "requirements"],
+            originalSentence: "Goals are different from wishes because they require a plan of action."
+        }
+    ],
+    "99-5": [ // vague
+        {
+            sentence: "If your plan is too _______, it will be hard to know what to do next.",
+            options: ["vague", "grounded", "consistent", "healthier"],
+            originalSentence: "If your plan is too vague, it will be hard to know what to do next."
+        }
+    ],
+    "99-7": [ // career
+        {
+            sentence: "She is looking for a _______ that offers growth and stability.",
+            options: ["career", "commute", "pace", "fund"],
+            originalSentence: "She is looking for a career that offers growth and stability."
+        }
+    ],
+    "99-13": [ // build a network
+        {
+            sentence: "Attending conferences is a great way to _______.",
+            options: ["build a network", "track progress", "break down", "assigning"],
+            originalSentence: "Attending conferences is a great way to build a network."
+        }
+    ],
+    "99-15": [ // business management
+        {
+            sentence: "He decided to study _______ to learn how to run a company.",
+            options: ["business management", "language app", "long-term vision", "accountability"],
+            originalSentence: "He decided to study business management to learn how to run a company."
+        }
+    ],
+    "99-16": [ // grounded
+        {
+            sentence: "Even with his success, he remains _______ and humble.",
+            options: ["grounded", "vague", "conversational", "accomplished"],
+            originalSentence: "Even with his success, he remains grounded and humble."
+        }
+    ],
+    "99-18": [ // marathon
+        {
+            sentence: "Training for a _______ requires months of preparation and running.",
+            options: ["marathon", "commute", "career", "fund"],
+            originalSentence: "Training for a marathon requires months of preparation and running."
+        }
+    ],
+    "99-19": [ // fund
+        {
+            sentence: "The university created a special _______ to support student research.",
+            options: ["fund", "pace", "wishes", "accountability"],
+            originalSentence: "The university created a special fund to support student research."
+        }
+    ],
+    "99-23": [ // conversational
+        {
+            sentence: "My goal is to reach a _______ level in English by next year.",
+            options: ["conversational", "vague", "grounded", "healthier"],
+            originalSentence: "My goal is to reach a conversational level in English by next year."
+        }
+    ],
+    "99-24": [ // break down
+        {
+            sentence: "You should _______ big tasks into smaller, manageable steps.",
+            options: ["break down", "track progress", "build a network", "assigning"],
+            originalSentence: "You should break down big tasks into smaller, manageable steps."
+        }
+    ],
+    "99-25": [ // language app
+        {
+            sentence: "I use a _______ on my phone to practice vocabulary every day.",
+            options: ["language app", "business management", "long-term vision", "marathon"],
+            originalSentence: "I use a language app on my phone to practice vocabulary every day."
+        }
+    ],
+    "99-29": [ // step by step
+        {
+            sentence: "The guide explains how to install the software _______.",
+            options: ["step by step", "consistent actions", "short distances", "long-term"],
+            originalSentence: "The guide explains how to install the software step by step."
+        }
+    ],
+    "99-30": [ // consistent actions
+        {
+            sentence: "Success comes from taking _______ every single day.",
+            options: ["consistent actions", "short-term milestones", "vague wishes", "short distances"],
+            originalSentence: "Success comes from taking consistent actions every single day."
+        }
+    ],
+    "99-31": [ // commute
+        {
+            sentence: "Listening to podcasts during my _______ helps me save time.",
+            options: ["commute", "pace", "marathon", "career"],
+            originalSentence: "Listening to podcasts during my commute helps me save time."
+        }
+    ],
+    "99-32": [ // making progress
+        {
+            sentence: "Although it is slow, I feel that I am _______ in my studies.",
+            options: ["making progress", "breaking down", "assigning", "challenging"],
+            originalSentence: "Although it is slow, I feel that I am making progress in my studies."
+        }
+    ],
+    "99-33": [ // short distances
+        {
+            sentence: "I prefer walking _______ instead of taking a taxi.",
+            options: ["short distances", "short-term milestones", "consistent actions", "vague wishes"],
+            originalSentence: "I prefer walking short distances instead of taking a taxi."
+        }
+    ],
+    "99-34": [ // pace
+        {
+            sentence: "You need to find a _______ that you can maintain for a long time.",
+            options: ["pace", "fund", "career", "commute"],
+            originalSentence: "You need to find a pace that you can maintain for a long time."
+        }
+    ],
+    "99-35": [ // healthier
+        {
+            sentence: "Eating more vegetables will help you become _______.",
+            options: ["healthier", "grounded", "vague", "conversational"],
+            originalSentence: "Eating more vegetables will help you become healthier."
+        }
+    ],
+    "99-36": [ // assigning
+        {
+            sentence: "The manager is _______ tasks to each member of the team.",
+            options: ["assigning", "accomplishing", "breaking down", "tracking"],
+            originalSentence: "The manager is assigning tasks to each member of the team."
+        }
+    ],
+    "99-39": [ // accomplished
+        {
+            sentence: "She felt very proud after she _______ her goal of losing weight.",
+            options: ["accomplished", "challenged", "assigned", "broken down"],
+            originalSentence: "She felt very proud after she accomplished her goal of losing weight."
+        }
+    ],
+    "99-41": [ // long-term vision
+        {
+            sentence: "Having a _______ helps you stay focused on the big picture.",
+            options: ["long-term vision", "short-term milestone", "language app", "business management"],
+            originalSentence: "Having a long-term vision helps you stay focused on the big picture."
+        }
+    ],
+    "99-42": [ // short-term milestones
+        {
+            sentence: "Celebrate your _______ to stay motivated during the journey.",
+            options: ["short-term milestones", "consistent actions", "short distances", "vague wishes"],
+            originalSentence: "Celebrate your short-term milestones to stay motivated during the journey."
+        }
+    ],
+    "99-43": [ // accountability
+        {
+            sentence: "Having a study partner provides _______ and keeps you on track.",
+            options: ["accountability", "motivation", "pace", "fund"],
+            originalSentence: "Having a study partner provides accountability and keeps you on track."
+        }
+    ],
+    "99-44": [ // motivation
+        {
+            sentence: "His primary _______ for working hard is to provide for his family.",
+            options: ["motivation", "accountability", "career", "pace"],
+            originalSentence: "His primary motivation for working hard is to provide for his family."
+        }
+    ],
+    "99-45": [ // track progress
+        {
+            sentence: "Use a journal to _______ and see how far you have come.",
+            options: ["track progress", "build a network", "break down", "assign tasks"],
+            originalSentence: "Use a journal to track progress and see how far you have come."
+        }
+    ],
+    "100-1": [ // work-life balance
+        {
+            sentence: "Achieving a good _______ is essential for long-term happiness.",
+            options: ["work-life balance", "mental health", "quality time", "self-care"],
+            originalSentence: "Achieving a good work-life balance is essential for long-term happiness."
+        }
+    ],
+    "100-2": [ // packed with
+        {
+            sentence: "His schedule is _______ meetings from morning until night.",
+            options: ["packed with", "neglecting", "blocking out", "honoring"],
+            originalSentence: "His schedule is packed with meetings from morning until night."
+        }
+    ],
+    "100-5": [ // neglecting
+        {
+            sentence: "Focusing only on work often leads to _______ your personal health.",
+            options: ["neglecting", "honoring", "recharging", "ordering takeout"],
+            originalSentence: "Focusing only on work often leads to neglecting your personal health."
+        }
+    ],
+    "100-6": [ // sustainable
+        {
+            sentence: "Working 80 hours a week is not a _______ lifestyle.",
+            options: ["sustainable", "reasonable", "energized", "exhausted"],
+            originalSentence: "Working 80 hours a week is not a sustainable lifestyle."
+        }
+    ],
+    "100-7": [ // burn out
+        {
+            sentence: "If you don't take breaks, you will eventually _______.",
+            options: ["burn out", "recharge", "honor", "overwork"],
+            originalSentence: "If you don't take breaks, you will eventually burn out."
+        }
+    ],
+    "100-10": [ // honor
+        {
+            sentence: "It is important to _______ your commitments to your family.",
+            options: ["honor", "neglect", "burn out", "exhaust"],
+            originalSentence: "It is important to honor your commitments to your family."
+        }
+    ],
+    "100-11": [ // blocking out
+        {
+            sentence: "I am _______ two hours every Sunday for my hobbies.",
+            options: ["blocking out", "neglecting", "ordering takeout", "exhausting"],
+            originalSentence: "I am blocking out two hours every Sunday for my hobbies."
+        }
+    ],
+    "100-13": [ // exhausted
+        {
+            sentence: "She felt completely _______ after the long flight.",
+            options: ["exhausted", "energized", "sustainable", "reasonable"],
+            originalSentence: "She felt completely exhausted after the long flight."
+        }
+    ],
+    "100-14": [ // deathbed
+        {
+            sentence: "Nobody on their _______ ever said they wished they had spent more time at the office.",
+            options: ["deathbed", "downtime", "self-care", "fulfillment"],
+            originalSentence: "Nobody on their deathbed ever said they wished they had spent more time at the office."
+        }
+    ],
+    "100-17": [ // reasonable
+        {
+            sentence: "The boss gave us a _______ deadline for the new project.",
+            options: ["reasonable", "exhausted", "sustainable", "packed with"],
+            originalSentence: "The boss gave us a reasonable deadline for the new project."
+        }
+    ],
+    "100-19": [ // ordering takeout
+        {
+            sentence: "We were too tired to cook, so we ended up _______.",
+            options: ["ordering takeout", "blocking out", "recharging", "neglecting"],
+            originalSentence: "We were too tired to cook, so we ended up ordering takeout."
+        }
+    ],
+    "100-20": [ // energized
+        {
+            sentence: "A quick workout in the morning makes me feel _______ all day.",
+            options: ["energized", "exhausted", "neglected", "guilty"],
+            originalSentence: "A quick workout in the morning makes me feel energized all day."
+        }
+    ],
+    "100-27": [ // reminder
+        {
+            sentence: "I set a _______ on my phone to drink water every hour.",
+            options: ["reminder", "priority", "guilt", "downtime"],
+            originalSentence: "I set a reminder on my phone to drink water every hour."
+        }
+    ],
+    "100-28": [ // guilt
+        {
+            sentence: "Many parents feel _______ when they have to work late.",
+            options: ["guilt", "fulfillment", "well-being", "self-care"],
+            originalSentence: "Many parents feel guilt when they have to work late."
+        }
+    ],
+    "100-29": [ // priorities
+        {
+            sentence: "You need to reorganize your _______ to focus on what matters most.",
+            options: ["priorities", "reminders", "takeouts", "deadlines"],
+            originalSentence: "You need to reorganize your priorities to focus on what matters most."
+        }
+    ],
+    "100-30": [ // recharge
+        {
+            sentence: "A weekend in the mountains is a perfect way to _______.",
+            options: ["recharge", "burn out", "neglect", "overwork"],
+            originalSentence: "A weekend in the mountains is a perfect way to recharge."
+        }
+    ],
+    "100-31": [ // downtime
+        {
+            sentence: "Everyone needs some _______ to relax and disconnect from work.",
+            options: ["downtime", "overwork", "deathbed", "guilt"],
+            originalSentence: "Everyone needs some downtime to relax and disconnect from work."
+        }
+    ],
+    "100-33": [ // self-care
+        {
+            sentence: "Practicing _______ is not selfish; it is necessary for health.",
+            options: ["self-care", "overwork", "neglect", "takeout"],
+            originalSentence: "Practicing self-care is not selfish; it is necessary for health."
+        }
+    ],
+    "100-34": [ // mental health
+        {
+            sentence: "Stress at work can have a negative impact on your _______.",
+            options: ["mental health", "quality time", "work-life balance", "fulfillment"],
+            originalSentence: "Stress at work can have a negative impact on your mental health."
+        }
+    ],
+    "100-35": [ // quality time
+        {
+            sentence: "I try to spend _______ with my children every evening.",
+            options: ["quality time", "downtime", "self-care", "mental health"],
+            originalSentence: "I try to spend quality time with my children every evening."
+        }
+    ],
+    "100-36": [ // fulfillment
+        {
+            sentence: "Helping others gives him a great sense of _______.",
+            options: ["fulfillment", "guilt", "reminder", "overwork"],
+            originalSentence: "Helping others gives him a great sense of fulfillment."
+        }
+    ],
+    "100-38": [ // overwork
+        {
+            sentence: "Continuous _______ can lead to serious physical health problems.",
+            options: ["overwork", "recharge", "fulfillment", "downtime"],
+            originalSentence: "Continuous overwork can lead to serious physical health problems."
+        }
+    ],
+    "100-39": [ // well-being
+        {
+            sentence: "The company's new policy focuses on the _______ of its employees.",
+            options: ["well-being", "guilt", "deathbed", "takeout"],
+            originalSentence: "The company's new policy focuses on the well-being of its employees."
+        }
+    ],
+    "101-1": [ // renewable energy
+        {
+            sentence: "Switching to _______ is the best way to fight global warming.",
+            options: ["renewable energy", "carbon", "grid", "tax credits"],
+            originalSentence: "Switching to renewable energy is the best way to fight global warming."
+        }
+    ],
+    "101-2": [ // workshop
+        {
+            sentence: "The engineer held a _______ to teach us how to install solar panels.",
+            options: ["workshop", "proposal", "installation", "grant"],
+            originalSentence: "The engineer held a workshop to teach us how to install solar panels."
+        }
+    ],
+    "101-4": [ // solar panels
+        {
+            sentence: "Many houses now have _______ on their roofs to generate electricity.",
+            options: ["solar panels", "wind turbines", "thermal mass", "energy storage"],
+            originalSentence: "Many houses now have solar panels on their roofs to generate electricity."
+        }
+    ],
+    "101-5": [ // wind turbines
+        {
+            sentence: "Huge _______ can be seen on the hills where the wind is strong.",
+            options: ["wind turbines", "solar panels", "grids", "incentives"],
+            originalSentence: "Huge wind turbines can be seen on the hills where the wind is strong."
+        }
+    ],
+    "101-6": [ // necessity
+        {
+            sentence: "Clean water is a basic _______ for all human beings.",
+            options: ["necessity", "accomplishment", "benefit", "orientation"],
+            originalSentence: "Clean water is a basic necessity for all human beings."
+        }
+    ],
+    "101-7": [ // energy-efficient
+        {
+            sentence: "Buying _______ appliances can help you save a lot on your electric bill.",
+            options: ["energy-efficient", "passive", "gleaming", "long-term"],
+            originalSentence: "Buying energy-efficient appliances can help you save a lot on your electric bill."
+        }
+    ],
+    "101-8": [ // incorporate
+        {
+            sentence: "We should _______ more fresh vegetables into our daily diet.",
+            options: ["incorporate", "calculate", "apply for", "capture"],
+            originalSentence: "We should incorporate more fresh vegetables into our daily diet."
+        }
+    ],
+    "101-9": [ // integrate
+        {
+            sentence: "The new software is designed to _______ perfectly with your existing apps.",
+            options: ["integrate", "retrofit", "calculate", "capture"],
+            originalSentence: "The new software is designed to integrate perfectly with your existing apps."
+        }
+    ],
+    "101-10": [ // orientation
+        {
+            sentence: "The _______ of the building affects how much sunlight it receives.",
+            options: ["orientation", "necessity", "benefit", "installation"],
+            originalSentence: "The orientation of the building affects how much sunlight it receives."
+        }
+    ],
+    "101-11": [ // capture
+        {
+            sentence: "These new devices can _______ energy from the waves in the ocean.",
+            options: ["capture", "incorporate", "calculate", "retrofit"],
+            originalSentence: "These new devices can capture energy from the waves in the ocean."
+        }
+    ],
+    "101-12": [ // grant
+        {
+            sentence: "The scientist received a government _______ to continue her research.",
+            options: ["grant", "tax credit", "proposal", "incentive"],
+            originalSentence: "The scientist received a government grant to continue her research."
+        }
+    ],
+    "101-13": [ // tax credits
+        {
+            sentence: "The government offers _______ to people who buy electric cars.",
+            options: ["tax credits", "benefits", "grants", "installations"],
+            originalSentence: "The government offers tax credits to people who buy electric cars."
+        }
+    ],
+    "101-15": [ // apply for
+        {
+            sentence: "You need to _______ _______ a visa before you can travel to that country.",
+            options: ["apply for", "calculate", "incorporate", "integrate"],
+            originalSentence: "You need to apply for a visa before you can travel to that country."
+        }
+    ],
+    "101-16": [ // calculate
+        {
+            sentence: "Can you help me _______ the total cost of the trip?",
+            options: ["calculate", "capture", "incorporate", "retrofit"],
+            originalSentence: "Can you help me calculate the total cost of the trip?"
+        }
+    ],
+    "101-17": [ // installation
+        {
+            sentence: "The _______ of the new heating system took only three hours.",
+            options: ["installation", "orientation", "necessity", "accomplishment"],
+            originalSentence: "The installation of the new heating system took only three hours."
+        }
+    ],
+    "101-18": [ // payback
+        {
+            sentence: "The _______ period for solar energy systems is usually about 5 to 7 years.",
+            options: ["payback", "benefit", "grant", "incentive"],
+            originalSentence: "The payback period for solar energy systems is usually about 5 to 7 years."
+        }
+    ],
+    "101-19": [ // proposal
+        {
+            sentence: "The committee is currently reviewing the _______ for the new park.",
+            options: ["proposal", "installation", "accomplishment", "workshop"],
+            originalSentence: "The committee is currently reviewing the proposal for the new park."
+        }
+    ],
+    "101-20": [ // affordable
+        {
+            sentence: "We are looking for a house that is both comfortable and _______.",
+            options: ["affordable", "gleaming", "hopeful", "passive"],
+            originalSentence: "We are looking for a house that is both comfortable and affordable."
+        }
+    ],
+    "101-21": [ // long-term
+        {
+            sentence: "We need a _______ solution to the plastic pollution problem.",
+            options: ["long-term", "gleaming", "energy-efficient", "passive"],
+            originalSentence: "We need a long-term solution to the plastic pollution problem."
+        }
+    ],
+    "101-22": [ // benefits
+        {
+            sentence: "Regular exercise has many _______ for your mental health.",
+            options: ["benefits", "tax credits", "incentives", "grants"],
+            originalSentence: "Regular exercise has many benefits for your mental health."
+        }
+    ],
+    "101-23": [ // accomplishment
+        {
+            sentence: "Finishing the marathon was a huge personal _______ for him.",
+            options: ["accomplishment", "necessity", "orientation", "proposal"],
+            originalSentence: "Finishing the marathon was a huge personal accomplishment for him."
+        }
+    ],
+    "101-24": [ // gleaming
+        {
+            sentence: "The new car was _______ under the bright showroom lights.",
+            options: ["gleaming", "affordable", "hopeful", "passive"],
+            originalSentence: "The new car was gleaming under the bright showroom lights."
+        }
+    ],
+    "101-26": [ // hopeful
+        {
+            sentence: "Despite the challenges, I am _______ that we will find a solution.",
+            options: ["hopeful", "affordable", "gleaming", "energy-efficient"],
+            originalSentence: "Despite the challenges, I am hopeful that we will find a solution."
+        }
+    ],
+    "101-27": [ // carbon
+        {
+            sentence: "Reducing your _______ footprint helps protect the environment.",
+            options: ["carbon", "photovoltaic", "hydroelectric", "geothermal"],
+            originalSentence: "Reducing your carbon footprint helps protect the environment."
+        }
+    ],
+    "101-28": [ // net-zero
+        {
+            sentence: "The city aims to become _______ by the year 2050.",
+            options: ["net-zero", "energy-efficient", "long-term", "affordable"],
+            originalSentence: "The city aims to become net-zero by the year 2050."
+        }
+    ],
+    "101-29": [ // photovoltaic
+        {
+            sentence: "_______ cells convert sunlight directly into electricity.",
+            options: ["photovoltaic", "hydroelectric", "geothermal", "thermal mass"],
+            originalSentence: "Photovoltaic cells convert sunlight directly into electricity."
+        }
+    ],
+    "101-30": [ // geothermal
+        {
+            sentence: "_______ energy uses the heat from inside the earth.",
+            options: ["geothermal", "hydroelectric", "photovoltaic", "net-zero"],
+            originalSentence: "Geothermal energy uses the heat from inside the earth."
+        }
+    ],
+    "101-31": [ // hydroelectric
+        {
+            sentence: "Dams are used to generate _______ power from flowing water.",
+            options: ["hydroelectric", "geothermal", "photovoltaic", "thermal mass"],
+            originalSentence: "Dams are used to generate hydroelectric power from flowing water."
+        }
+    ],
+    "101-32": [ // energy storage
+        {
+            sentence: "Large batteries are needed for _______ when the sun isn't shining.",
+            options: ["energy storage", "grid", "incentive", "audit"],
+            originalSentence: "Large batteries are needed for energy storage when the sun isn't shining."
+        }
+    ],
+    "101-33": [ // grid
+        {
+            sentence: "Excess energy from the solar panels can be sent back to the _______.",
+            options: ["grid", "incentive", "audit", "installation"],
+            originalSentence: "Excess energy from the solar panels can be sent back to the grid."
+        }
+    ],
+    "101-34": [ // incentive
+        {
+            sentence: "The free breakfast was a great _______ for guests to arrive early.",
+            options: ["incentive", "grant", "benefit", "tax credit"],
+            originalSentence: "The free breakfast was a great incentive for guests to arrive early."
+        }
+    ],
+    "101-35": [ // sustainable development
+        {
+            sentence: "The United Nations works to promote _______ worldwide.",
+            options: ["sustainable development", "energy storage", "carbon footprint", "net-zero"],
+            originalSentence: "The United Nations works to promote sustainable development worldwide."
+        }
+    ],
+    "101-37": [ // energy audit
+        {
+            sentence: "We had an _______ to see where our house was losing heat.",
+            options: ["energy audit", "proposal", "workshop", "installation"],
+            originalSentence: "We had an energy audit to see where our house was losing heat."
+        }
+    ],
+    "101-38": [ // retrofit
+        {
+            sentence: "It is often cheaper to _______ an old building than to build a new one.",
+            options: ["retrofit", "calculate", "integrate", "capture"],
+            originalSentence: "It is often cheaper to retrofit an old building than to build a new one."
+        }
+    ],
+    "101-39": [ // passive
+        {
+            sentence: "A _______ solar house stays warm without using heaters.",
+            options: ["passive", "gleaming", "hopeful", "affordable"],
+            originalSentence: "A passive solar house stays warm without using heaters."
+        }
+    ],
+    "101-40": [ // thermal mass
+        {
+            sentence: "Concrete walls provide _______ that keeps the building cool in summer.",
+            options: ["thermal mass", "energy storage", "sustainable development", "net-zero"],
+            originalSentence: "Concrete walls provide thermal mass that keeps the building cool in summer."
+        }
+    ],
+    "102-1": [ // entrepreneurship
+        {
+            sentence: "Starting your own company requires a strong passion for ______.",
+            options: ["entrepreneurship", "liability", "partnership", "cash flow"],
+            originalSentence: "Starting your own company requires a strong passion for entrepreneurship."
+        }
+    ],
+    "102-2": [ // financial analyst
+        {
+            sentence: "The ______ advised the company to reduce its operational costs.",
+            options: ["financial analyst", "investor", "developer", "entrepreneur"],
+            originalSentence: "The financial analyst advised the company to reduce its operational costs."
+        }
+    ],
+    "102-3": [ // business
+        {
+            sentence: "He decided to quit his job and start his own ______.",
+            options: ["business", "contract", "invoice", "pitch"],
+            originalSentence: "He decided to quit his job and start his own business."
+        }
+    ],
+    "102-4": [ // consulting
+        {
+            sentence: "After years of experience, she opened a ______ firm to help startups.",
+            options: ["consulting", "bootstrapping", "scalable", "terrifying"],
+            originalSentence: "After years of experience, she opened a consulting firm to help startups."
+        }
+    ],
+    "102-5": [ // developer
+        {
+            sentence: "The lead ______ is responsible for writing the core code of the app.",
+            options: ["developer", "investor", "financial analyst", "entrepreneur"],
+            originalSentence: "The lead developer is responsible for writing the core code of the app."
+        }
+    ],
+    "102-7": [ // terrifying
+        {
+            sentence: "The thought of losing all his savings was absolutely ______ to him.",
+            options: ["terrifying", "affordable", "scalable", "lean"],
+            originalSentence: "The thought of losing all his savings was absolutely terrifying to him."
+        }
+    ],
+    "102-11": [ // target clients
+        {
+            sentence: "Our ______ are mainly small tech companies in Europe.",
+            options: ["target clients", "design concepts", "cost savings", "partnerships"],
+            originalSentence: "Our target clients are mainly small tech companies in Europe."
+        }
+    ],
+    "102-12": [ // startup
+        {
+            sentence: "A ______ needs to grow quickly to survive in a competitive market.",
+            options: ["startup", "partnership", "liability", "contract"],
+            originalSentence: "A startup needs to grow quickly to survive in a competitive market."
+        }
+    ],
+    "102-13": [ // entrepreneur
+        {
+            sentence: "A successful ______ must be willing to take risks and work hard.",
+            options: ["entrepreneur", "financial analyst", "developer", "investor"],
+            originalSentence: "A successful entrepreneur must be willing to take risks and work hard."
+        }
+    ],
+    "102-14": [ // potential clients
+        {
+            sentence: "The marketing team is reaching out to ______ via email.",
+            options: ["potential clients", "seed funding", "design concepts", "invoices"],
+            originalSentence: "The marketing team is reaching out to potential clients via email."
+        }
+    ],
+    "102-15": [ // estimating expenses
+        {
+            sentence: "Correctly ______ is crucial for maintaining a healthy budget.",
+            options: ["estimating expenses", "taking the leap", "bootstrapping", "incorporating"],
+            originalSentence: "Correctly estimating expenses is crucial for maintaining a healthy budget."
+        }
+    ],
+    "102-16": [ // portfolio
+        {
+            sentence: "A graphic designer should have a strong ______ to show their work.",
+            options: ["portfolio", "logo", "contract", "invoice"],
+            originalSentence: "A graphic designer should have a strong portfolio to show their work."
+        }
+    ],
+    "102-17": [ // pricing model
+        {
+            sentence: "Choosing the right ______ can determine if a product succeeds.",
+            options: ["pricing model", "seed funding", "cash flow", "prototype"],
+            originalSentence: "Choosing the right pricing model can determine if a product succeeds."
+        }
+    ],
+    "102-18": [ // logo
+        {
+            sentence: "The company's ______ is a simple blue bird that everyone recognizes.",
+            options: ["logo", "portfolio", "contract", "venture"],
+            originalSentence: "The company's logo is a simple blue bird that everyone recognizes."
+        }
+    ],
+    "102-19": [ // venture
+        {
+            sentence: "They embarked on a new ______ to build eco-friendly homes.",
+            options: ["venture", "liability", "invoice", "pitch"],
+            originalSentence: "They embarked on a new venture to build eco-friendly homes."
+        }
+    ],
+    "102-20": [ // terrified
+        {
+            sentence: "He was ______ of failing his first presentation to investors.",
+            options: ["terrified", "affordable", "scalable", "lean"],
+            originalSentence: "He was terrified of failing his first presentation to investors."
+        }
+    ],
+    "102-22": [ // developer
+        {
+            sentence: "Every software ______ knows that debugging is a major part of the job.",
+            options: ["developer", "investor", "financial analyst", "entrepreneur"],
+            originalSentence: "Every software developer knows that debugging is a major part of the job."
+        }
+    ],
+    "102-23": [ // affordable housing
+        {
+            sentence: "The government is investing in ______ for low-income families.",
+            options: ["affordable housing", "seed funding", "design concepts", "cash flow"],
+            originalSentence: "The government is investing in affordable housing for low-income families."
+        }
+    ],
+    "102-24": [ // design concepts
+        {
+            sentence: "The architect presented three different ______ for the museum.",
+            options: ["design concepts", "target clients", "cost savings", "partnerships"],
+            originalSentence: "The architect presented three different design concepts for the museum."
+        }
+    ],
+    "102-25": [ // cost savings
+        {
+            sentence: "Using solar energy resulted in significant ______ for the factory.",
+            options: ["cost savings", "seed funding", "pricing models", "liabilities"],
+            originalSentence: "Using solar energy resulted in significant cost savings for the factory."
+        }
+    ],
+    "102-26": [ // approach
+        {
+            sentence: "We need a new ______ to solve this complex technical problem.",
+            options: ["approach", "venture", "contract", "invoice"],
+            originalSentence: "We need a new approach to solve this complex technical problem."
+        }
+    ],
+    "102-27": [ // surge of pride
+        {
+            sentence: "He felt a ______ when he saw his product in the store.",
+            options: ["surge of pride", "cash flow", "seed funding", "liability"],
+            originalSentence: "He felt a surge of pride when he saw his product in the store."
+        }
+    ],
+    "102-29": [ // possibilities
+        {
+            sentence: "New technologies open up endless ______ for future innovations.",
+            options: ["possibilities", "liabilities", "contracts", "invoices"],
+            originalSentence: "New technologies open up endless possibilities for future innovations."
+        }
+    ],
+    "102-30": [ // take the leap
+        {
+            sentence: "It takes a lot of courage to quit your job and ______.",
+            options: ["take the leap", "break even", "bootstrapping", "incorporate"],
+            originalSentence: "It takes a lot of courage to quit your job and take the leap."
+        }
+    ],
+    "102-31": [ // seed funding
+        {
+            sentence: "The startup received ______ to build its first prototype.",
+            options: ["seed funding", "cost savings", "pricing model", "liability"],
+            originalSentence: "The startup received seed funding to build its first prototype."
+        }
+    ],
+    "102-32": [ // investor
+        {
+            sentence: "An ______ provides capital in exchange for equity in a company.",
+            options: ["investor", "developer", "entrepreneur", "financial analyst"],
+            originalSentence: "An investor provides capital in exchange for equity in a company."
+        }
+    ],
+    "102-33": [ // bootstrapping
+        {
+            sentence: "______ means starting a company using only your personal savings.",
+            options: ["bootstrapping", "incorporating", "taking the leap", "breaking even"],
+            originalSentence: "Bootstrapping means starting a company using only your personal savings."
+        }
+    ],
+    "102-34": [ // scalable
+        {
+            sentence: "Software businesses are highly ______ because they can grow easily.",
+            options: ["scalable", "terrifying", "affordable", "lean"],
+            originalSentence: "Software businesses are highly scalable because they can grow easily."
+        }
+    ],
+    "102-35": [ // lean startup
+        {
+            sentence: "The ______ method focuses on building a product with minimum waste.",
+            options: ["lean startup", "seed funding", "partnership", "venture"],
+            originalSentence: "The lean startup method focuses on building a product with minimum waste."
+        }
+    ],
+    "102-36": [ // prototype
+        {
+            sentence: "We built a ______ to test the basic functions of the device.",
+            options: ["prototype", "logo", "portfolio", "invoice"],
+            originalSentence: "We built a prototype to test the basic functions of the device."
+        }
+    ],
+    "102-37": [ // pitch
+        {
+            sentence: "You have only five minutes to ______ your idea to the judges.",
+            options: ["pitch", "incorporate", "break even", "take the leap"],
+            originalSentence: "You have only five minutes to pitch your idea to the judges."
+        }
+    ],
+    "102-39": [ // cash flow
+        {
+            sentence: "Managing ______ is essential to keep the business running.",
+            options: ["cash flow", "seed funding", "cost savings", "liability"],
+            originalSentence: "Managing cash flow is essential to keep the business running."
+        }
+    ],
+    "102-40": [ // break even
+        {
+            sentence: "It took the coffee shop two years to finally ______.",
+            options: ["break even", "take the leap", "incorporate", "pitch"],
+            originalSentence: "It took the coffee shop two years to finally break even."
+        }
+    ],
+    "102-41": [ // liability
+        {
+            sentence: "In a partnership, each partner shares the ______ for debts.",
+            options: ["liability", "possibility", "portfolio", "venture"],
+            originalSentence: "In a partnership, each partner shares the liability for debts."
+        }
+    ],
+    "102-42": [ // incorporate
+        {
+            sentence: "They decided to ______ their business to protect their personal assets.",
+            options: ["incorporate", "break even", "pitch", "take the leap"],
+            originalSentence: "They decided to incorporate their business to protect their personal assets."
+        }
+    ],
+    "102-43": [ // partnership
+        {
+            sentence: "A successful ______ is based on trust and shared goals.",
+            options: ["partnership", "startup", "venture", "contract"],
+            originalSentence: "A successful partnership is based on trust and shared goals."
+        }
+    ],
+    "102-44": [ // contract
+        {
+            sentence: "Always read the ______ carefully before you sign your name.",
+            options: ["contract", "invoice", "logo", "portfolio"],
+            originalSentence: "Always read the contract carefully before you sign your name."
+        }
+    ],
+    "102-45": [ // invoice
+        {
+            sentence: "Please send the ______ to the accounting department for payment.",
+            options: ["invoice", "contract", "logo", "pitch"],
+            originalSentence: "Please send the invoice to the accounting department for payment."
+        }
+    ],
     // استكمال gapfillDB.js - الدرس رقم 301
     "301-1": [
         {
