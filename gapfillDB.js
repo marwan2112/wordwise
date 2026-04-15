@@ -28248,6 +28248,333 @@ window.gapfillDB = {
             originalSentence: "Please send the invoice to the accounting department for payment."
         }
     ],
+    "103-1": [
+    {
+        sentence: "Schools now teach _______ so students can use the internet safely and wisely.",
+        options: ["digital literacy", "media literacy", "critical thinking", "filter bubble"],
+        originalSentence: "Schools now teach digital literacy so students can use the internet safely and wisely."
+    }
+],
+
+"103-2": [
+    {
+        sentence: "It's important to _______ a website before using it as a source for your research.",
+        options: ["evaluate", "fact-check", "navigate", "limit"],
+        originalSentence: "It's important to evaluate a website before using it as a source for your research."
+    }
+],
+
+"103-3": [
+    {
+        sentence: "Always check the _______ of the information before sharing it online.",
+        options: ["source", "module", "agenda", "footprint"],
+        originalSentence: "Always check the source of the information before sharing it online."
+    }
+],
+
+"103-4": [
+    {
+        sentence: "Read the app's settings carefully to protect your _______.",
+        options: ["privacy", "credentials", "encryption", "citations"],
+        originalSentence: "Read the app's settings carefully to protect your privacy."
+    }
+],
+
+"103-5": [
+    {
+        sentence: "She was excited about her _______ on the digital literacy quiz.",
+        options: ["scoring", "module", "tracking", "footprint"],
+        originalSentence: "She was excited about her scoring on the digital literacy quiz."
+    }
+],
+
+"103-6": [
+    {
+        sentence: "Before sharing a viral post, you should _______ the story first.",
+        options: ["fact-check", "evaluate", "navigate", "limit"],
+        originalSentence: "Before sharing a viral post, you should fact-check the story first."
+    }
+],
+
+"103-7": [
+    {
+        sentence: "A good media reader can _______ in a news article and question its fairness.",
+        options: ["recognize bias", "protect data", "fact-check", "filter bubble"],
+        originalSentence: "A good media reader can recognize bias in a news article and question its fairness."
+    }
+],
+
+"103-8": [
+    {
+        sentence: "Use strong passwords and two-factor authentication to _______ from hackers.",
+        options: ["protect data", "limit tracking", "fact-check", "navigate"],
+        originalSentence: "Use strong passwords and two-factor authentication to protect data from hackers."
+    }
+],
+
+"103-9": [
+    {
+        sentence: "The photo was _______ to make the politician look angry.",
+        options: ["manipulated", "verified", "empowered", "reliable"],
+        originalSentence: "The photo was manipulated to make the politician look angry."
+    }
+],
+
+"103-10": [
+    {
+        sentence: "She didn't check the facts before sharing the _______, and it turned out to be false.",
+        options: ["viral post", "filter bubble", "echo chamber", "scam"],
+        originalSentence: "She didn't check the facts before sharing the viral post, and it turned out to be false."
+    }
+],
+
+"103-11": [
+    {
+        sentence: "Only share news from _______ accounts and trusted organizations.",
+        options: ["verified", "reliable", "empowered", "manipulated"],
+        originalSentence: "Only share news from verified accounts and trusted organizations."
+    }
+],
+
+"103-12": [
+    {
+        sentence: "He felt _______ after realizing he had shared misinformation with his friends.",
+        options: ["ashamed", "amazed", "empowered", "verified"],
+        originalSentence: "He felt ashamed after realizing he had shared misinformation with his friends."
+    }
+],
+
+"103-13": [
+    {
+        sentence: "She is _______ for the new digital literacy course starting next week.",
+        options: ["signing up", "updating", "tracking", "evaluating"],
+        originalSentence: "She is signing up for the new digital literacy course starting next week."
+    }
+],
+
+"103-14": [
+    {
+        sentence: "The course has a _______ on cybersecurity that takes about two hours to complete.",
+        options: ["module", "agenda", "source", "footprint"],
+        originalSentence: "The course has a module on cybersecurity that takes about two hours to complete."
+    }
+],
+
+"103-15": [
+    {
+        sentence: "The lesson focuses on _______ online sources for accuracy and reliability.",
+        options: ["evaluating", "updating", "tracking", "signing up"],
+        originalSentence: "The lesson focuses on evaluating online sources for accuracy and reliability."
+    }
+],
+
+"103-16": [
+    {
+        sentence: "Some news websites have a hidden _______ that influences how they report stories.",
+        options: ["agenda", "algorithm", "module", "footprint"],
+        originalSentence: "Some news websites have a hidden agenda that influences how they report stories."
+    }
+],
+
+"103-17": [
+    {
+        sentence: "Always check the author's _______ before trusting an article on a medical topic.",
+        options: ["credentials", "citations", "agenda", "module"],
+        originalSentence: "Always check the author's credentials before trusting an article on a medical topic."
+    }
+],
+
+"103-18": [
+    {
+        sentence: "A reliable research paper always includes _______ so readers can check the original sources.",
+        options: ["citations", "credentials", "trackers", "cookies"],
+        originalSentence: "A reliable research paper always includes citations so readers can check the original sources."
+    }
+],
+
+"103-19": [
+    {
+        sentence: "Wikipedia is useful for general ideas, but it is not always a _______ source.",
+        options: ["reliable", "verified", "empowered", "manipulated"],
+        originalSentence: "Wikipedia is useful for general ideas, but it is not always a reliable source."
+    }
+],
+
+"103-20": [
+    {
+        sentence: "After the course, students felt _______ to spot fake news on their own.",
+        options: ["empowered", "ashamed", "amazed", "verified"],
+        originalSentence: "After the course, students felt empowered to spot fake news on their own."
+    }
+],
+
+"103-21": [
+    {
+        sentence: "Websites use _______ to remember your preferences and track your visits.",
+        options: ["cookies", "trackers", "data brokers", "encryption"],
+        originalSentence: "Websites use cookies to remember your preferences and track your visits."
+    }
+],
+
+"103-22": [
+    {
+        sentence: "She installed a browser extension to block _______ that follow her across websites.",
+        options: ["trackers", "cookies", "data brokers", "phishing"],
+        originalSentence: "She installed a browser extension to block trackers that follow her across websites."
+    }
+],
+
+"103-23": [
+    {
+        sentence: "_______ collect personal information and sell it to advertisers.",
+        options: ["data brokers", "trackers", "cookies", "scam"],
+        originalSentence: "Data brokers collect personal information and sell it to advertisers."
+    }
+],
+
+"103-26": [
+    {
+        sentence: "Many free apps make money by _______ what users search for and buy online.",
+        options: ["tracking", "updating", "evaluating", "signing up"],
+        originalSentence: "Many free apps make money by tracking what users search for and buy online."
+    }
+],
+
+"103-27": [
+    {
+        sentence: "You can go to your phone settings to _______ how much data apps can collect.",
+        options: ["limit", "navigate", "evaluate", "fact-check"],
+        originalSentence: "You can go to your phone settings to limit how much data apps can collect."
+    }
+],
+
+"103-28": [
+    {
+        sentence: "She was _______ by how much personal data the app had collected without her knowing.",
+        options: ["amazed", "ashamed", "empowered", "manipulated"],
+        originalSentence: "She was amazed by how much personal data the app had collected without her knowing."
+    }
+],
+
+"103-30": [
+    {
+        sentence: "_______ your software regularly helps protect your device from new security threats.",
+        options: ["Updating", "Tracking", "Evaluating", "Signing up"],
+        originalSentence: "Updating your software regularly helps protect your device from new security threats."
+    }
+],
+
+"103-32": [
+    {
+        sentence: "Digital literacy helps people _______ the internet confidently and safely.",
+        options: ["navigate", "limit", "evaluate", "fact-check"],
+        originalSentence: "Digital literacy helps people navigate the internet confidently and safely."
+    }
+],
+
+"103-33": [
+    {
+        sentence: "_______ spreads quickly online because people share stories without checking the facts.",
+        options: ["Misinformation", "Disinformation", "Phishing", "Scam"],
+        originalSentence: "Misinformation spreads quickly online because people share stories without checking the facts."
+    }
+],
+
+"103-34": [
+    {
+        sentence: "Unlike misinformation, _______ is false information spread deliberately to deceive people.",
+        options: ["disinformation", "misinformation", "phishing", "echo chamber"],
+        originalSentence: "Unlike misinformation, disinformation is false information spread deliberately to deceive people."
+    }
+],
+
+"103-35": [
+    {
+        sentence: "The social media _______ decides which posts you see based on your past activity.",
+        options: ["algorithm", "filter bubble", "echo chamber", "agenda"],
+        originalSentence: "The social media algorithm decides which posts you see based on your past activity."
+    }
+],
+
+"103-36": [
+    {
+        sentence: "Living in a _______ means you mostly see content that matches your existing views.",
+        options: ["filter bubble", "echo chamber", "algorithm", "module"],
+        originalSentence: "Living in a filter bubble means you mostly see content that matches your existing views."
+    }
+],
+
+"103-37": [
+    {
+        sentence: "Social media can become an _______ where everyone agrees and no one questions ideas.",
+        options: ["echo chamber", "filter bubble", "agenda", "algorithm"],
+        originalSentence: "Social media can become an echo chamber where everyone agrees and no one questions ideas."
+    }
+],
+
+"103-38": [
+    {
+        sentence: "He almost clicked a _______ email that looked like it was from his bank.",
+        options: ["phishing", "scam", "disinformation", "tracking"],
+        originalSentence: "He almost clicked a phishing email that looked like it was from his bank."
+    }
+],
+
+"103-39": [
+    {
+        sentence: "The message promised a free phone, but it was actually a _______.",
+        options: ["scam", "phishing", "misinformation", "filter bubble"],
+        originalSentence: "The message promised a free phone, but it was actually a scam."
+    }
+],
+
+"103-40": [
+    {
+        sentence: "Enable _______ on your accounts so that a password alone is not enough to log in.",
+        options: ["two-factor authentication", "encryption", "cybersecurity", "digital literacy"],
+        originalSentence: "Enable two-factor authentication on your accounts so that a password alone is not enough to log in."
+    }
+],
+
+"103-41": [
+    {
+        sentence: "Messaging apps use _______ to make sure only the sender and receiver can read the messages.",
+        options: ["encryption", "two-factor authentication", "cybersecurity", "cookies"],
+        originalSentence: "Messaging apps use encryption to make sure only the sender and receiver can read the messages."
+    }
+],
+
+"103-42": [
+    {
+        sentence: "Every website you visit and every post you like adds to your digital _______.",
+        options: ["footprint", "agenda", "module", "source"],
+        originalSentence: "Every website you visit and every post you like adds to your digital footprint."
+    }
+],
+
+"103-43": [
+    {
+        sentence: "Companies invest heavily in _______ to protect their systems from online attacks.",
+        options: ["cybersecurity", "encryption", "two-factor authentication", "digital literacy"],
+        originalSentence: "Companies invest heavily in cybersecurity to protect their systems from online attacks."
+    }
+],
+
+"103-44": [
+    {
+        sentence: "_______ means asking questions and not accepting every claim you read online.",
+        options: ["Critical thinking", "Media literacy", "Digital literacy", "Recognize bias"],
+        originalSentence: "Critical thinking means asking questions and not accepting every claim you read online."
+    }
+],
+
+"103-45": [
+    {
+        sentence: "_______ teaches people how to analyze and question the messages they see in the media.",
+        options: ["Media literacy", "Digital literacy", "Critical thinking", "Cybersecurity"],
+        originalSentence: "Media literacy teaches people how to analyze and question the messages they see in the media."
+    }
+],
     // استكمال gapfillDB.js - الدرس رقم 301
     "301-1": [
         {
