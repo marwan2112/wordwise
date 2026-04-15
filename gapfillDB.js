@@ -26750,6 +26750,378 @@ window.gapfillDB = {
             originalSentence: "Measuring social impact helps organizations understand how much difference they are making."
         }
     ],
+    "96-1": [ // overcoming fears
+        {
+            sentence: "_______ is one of the most important steps in personal growth.",
+            options: ["overcoming fears", "stage fright", "visualization", "encouragement"],
+            originalSentence: "Overcoming fears is one of the most important steps in personal growth."
+        }
+    ],
+    "96-2": [ // conference
+        {
+            sentence: "She was asked to speak at a national _______ in front of five hundred people.",
+            options: ["conference", "rehearsal", "podium", "applause"],
+            originalSentence: "She was asked to speak at a national conference in front of five hundred people."
+        }
+    ],
+    "96-3": [ // stomach drops
+        {
+            sentence: "Her _______ every time she thinks about standing in front of a large crowd.",
+            options: ["stomach drops", "wave of panic", "palms sweaty", "stage fright"],
+            originalSentence: "Her stomach drops every time she thinks about standing in front of a large crowd."
+        }
+    ],
+    "96-4": [ // regional
+        {
+            sentence: "He won first place at the _______ public speaking competition last spring.",
+            options: ["regional", "silly", "tense", "reluctantly"],
+            originalSentence: "He won first place at the regional public speaking competition last spring."
+        }
+    ],
+    "96-5": [ // wave of panic
+        {
+            sentence: "A sudden _______ hit her the moment she saw how large the audience was.",
+            options: ["wave of panic", "stomach drops", "stage fright", "absence of fear"],
+            originalSentence: "A sudden wave of panic hit her the moment she saw how large the audience was."
+        }
+    ],
+    "96-6": [ // sweat
+        {
+            sentence: "Her hands started to _______ as soon as she heard her name called.",
+            options: ["sweat", "freeze", "pound", "drop"],
+            originalSentence: "Her hands started to sweat as soon as she heard her name called."
+        }
+    ],
+    "96-9": [ // reluctantly
+        {
+            sentence: "He _______ agreed to give the presentation after his manager insisted.",
+            options: ["reluctantly", "tense", "silly", "backstage"],
+            originalSentence: "He reluctantly agreed to give the presentation after his manager insisted."
+        }
+    ],
+    "96-10": [ // huge mistake
+        {
+            sentence: "She worried that accepting the invitation had been a _______.",
+            options: ["huge mistake", "wave of panic", "stage fright", "absence of fear"],
+            originalSentence: "She worried that accepting the invitation had been a huge mistake."
+        }
+    ],
+    "96-11": [ // freeze
+        {
+            sentence: "He tends to completely _______ whenever someone puts him on the spot.",
+            options: ["freeze", "sweat", "pound", "drop"],
+            originalSentence: "He tends to completely freeze whenever someone puts him on the spot."
+        }
+    ],
+    "96-12": [ // by heart
+        {
+            sentence: "She practised her speech until she knew every single word _______.",
+            options: ["by heart", "backstage", "reluctantly", "tense"],
+            originalSentence: "She practised her speech until she knew every single word by heart."
+        }
+    ],
+    "96-13": [ // speech
+        {
+            sentence: "He stayed up late rewriting his _______ the night before the conference.",
+            options: ["speech", "rehearsal", "applause", "podium"],
+            originalSentence: "He stayed up late rewriting his speech the night before the conference."
+        }
+    ],
+    "96-14": [ // tense
+        {
+            sentence: "The atmosphere in the room felt very _______ as the speakers waited their turn.",
+            options: ["tense", "silly", "regional", "reluctantly"],
+            originalSentence: "The atmosphere in the room felt very tense as the speakers waited their turn."
+        }
+    ],
+    "96-16": [ // silly
+        {
+            sentence: "Looking back, she realized how _______ her fear had been all along.",
+            options: ["silly", "tense", "regional", "reluctantly"],
+            originalSentence: "Looking back, she realized how silly her fear had been all along."
+        }
+    ],
+    "96-17": [ // backstage
+        {
+            sentence: "She paced nervously _______ while waiting for her turn to speak.",
+            options: ["backstage", "reluctantly", "tense", "silly"],
+            originalSentence: "She paced nervously backstage while waiting for her turn to speak."
+        }
+    ],
+    "96-18": [ // pounding
+        {
+            sentence: "Her heart was _______ so loudly she was sure the audience could hear it.",
+            options: ["pounding", "freezing", "sweating", "dropping"],
+            originalSentence: "Her heart was pounding so loudly she was sure the audience could hear it."
+        }
+    ],
+    "96-19": [ // palms sweaty
+        {
+            sentence: "She wiped her _______ on her trousers just before walking on stage.",
+            options: ["palms sweaty", "stomach drops", "wave of panic", "stage fright"],
+            originalSentence: "She wiped her palms sweaty on her trousers just before walking on stage."
+        }
+    ],
+    "96-20": [ // absence of fear
+        {
+            sentence: "True courage is not the _______ — it is acting despite being afraid.",
+            options: ["absence of fear", "stage fright", "wave of panic", "overcoming fears"],
+            originalSentence: "True courage is not the absence of fear — it is acting despite being afraid."
+        }
+    ],
+    "96-21": [ // podium
+        {
+            sentence: "She gripped the sides of the _______ to stop her hands from shaking.",
+            options: ["podium", "conference", "rehearsal", "applause"],
+            originalSentence: "She gripped the sides of the podium to stop her hands from shaking."
+        }
+    ],
+    "96-23": [ // applause
+        {
+            sentence: "The room filled with loud _______ the moment she finished her speech.",
+            options: ["applause", "speech", "rehearsal", "podium"],
+            originalSentence: "The room filled with loud applause the moment she finished her speech."
+        }
+    ],
+    "96-29": [ // anxiety
+        {
+            sentence: "Deep breathing is one of the best ways to manage _______ before a performance.",
+            options: ["anxiety", "bravery", "vulnerability", "encouragement"],
+            originalSentence: "Deep breathing is one of the best ways to manage anxiety before a performance."
+        }
+    ],
+    "96-30": [ // stage fright
+        {
+            sentence: "Even experienced actors sometimes suffer from _______ before a big show.",
+            options: ["stage fright", "anxiety", "wave of panic", "absence of fear"],
+            originalSentence: "Even experienced actors sometimes suffer from stage fright before a big show."
+        }
+    ],
+    "96-31": [ // visualization
+        {
+            sentence: "She used _______ to imagine herself speaking confidently in front of the crowd.",
+            options: ["visualization", "rehearsal", "encouragement", "bravery"],
+            originalSentence: "She used visualization to imagine herself speaking confidently in front of the crowd."
+        }
+    ],
+    "96-34": [ // rehearsal
+        {
+            sentence: "The final _______ gave her the confidence she needed before the real event.",
+            options: ["rehearsal", "applause", "podium", "conference"],
+            originalSentence: "The final rehearsal gave her the confidence she needed before the real event."
+        }
+    ],
+    "96-36": [ // encouragement
+        {
+            sentence: "A few words of _______ from her mentor made a huge difference on the day.",
+            options: ["encouragement", "bravery", "vulnerability", "anxiety"],
+            originalSentence: "A few words of encouragement from her mentor made a huge difference on the day."
+        }
+    ],
+    "96-37": [ // vulnerability
+        {
+            sentence: "Sharing your _______ with an audience can actually make your speech more powerful.",
+            options: ["vulnerability", "bravery", "encouragement", "anxiety"],
+            originalSentence: "Sharing your vulnerability with an audience can actually make your speech more powerful."
+        }
+    ],
+    "96-38": [ // bravery
+        {
+            sentence: "Standing up and speaking in public takes real _______ for many people.",
+            options: ["bravery", "vulnerability", "encouragement", "anxiety"],
+            originalSentence: "Standing up and speaking in public takes real bravery for many people."
+        }
+    ],
+    "97-1": [ // building confidence
+        {
+            sentence: "_______ takes time and requires stepping outside your comfort zone regularly.",
+            options: ["building confidence", "impostor syndrome", "growth mindset", "self-doubt"],
+            originalSentence: "Building confidence takes time and requires stepping outside your comfort zone regularly."
+        }
+    ],
+    "97-2": [ // replaying
+        {
+            sentence: "She kept _______ the moment in her head, wishing she had spoken up sooner.",
+            options: ["replaying", "summarizing", "doubting", "approaching"],
+            originalSentence: "She kept replaying the moment in her head, wishing she had spoken up sooner."
+        }
+    ],
+    "97-5": [ // confident
+        {
+            sentence: "He walked into the room looking calm and _______ despite his nerves.",
+            options: ["confident", "loud", "quiet", "nominated"],
+            originalSentence: "He walked into the room looking calm and confident despite his nerves."
+        }
+    ],
+    "97-6": [ // buzzes
+        {
+            sentence: "Her phone _______ with a message just as she is about to start the meeting.",
+            options: ["buzzes", "skips", "doubts", "replays"],
+            originalSentence: "Her phone buzzes with a message just as she is about to start the meeting."
+        }
+    ],
+    "97-9": [ // committee
+        {
+            sentence: "She was invited to join a _______ that reviews new housing projects in the city.",
+            options: ["committee", "advisory board", "community", "mentor"],
+            originalSentence: "She was invited to join a committee that reviews new housing projects in the city."
+        }
+    ],
+    "97-10": [ // advisory board
+        {
+            sentence: "The organization formed an _______ made up of experts from different fields.",
+            options: ["advisory board", "committee", "community", "mentor"],
+            originalSentence: "The organization formed an advisory board made up of experts from different fields."
+        }
+    ],
+    "97-11": [ // nominated
+        {
+            sentence: "She was _______ by her colleagues to represent the team at the city meeting.",
+            options: ["nominated", "doubted", "summarized", "approached"],
+            originalSentence: "She was nominated by her colleagues to represent the team at the city meeting."
+        }
+    ],
+    "97-12": [ // heart skips
+        {
+            sentence: "Her _______ a beat when she sees her name on the list of speakers.",
+            options: ["heart skips", "self-doubt", "impostor syndrome", "feeling small"],
+            originalSentence: "Her heart skips a beat when she sees her name on the list of speakers."
+        }
+    ],
+    "97-15": [ // city officials
+        {
+            sentence: "She presented her proposal directly to _______ at the town hall meeting.",
+            options: ["city officials", "advisory board", "committee", "mentor"],
+            originalSentence: "She presented her proposal directly to city officials at the town hall meeting."
+        }
+    ],
+    "97-17": [ // community
+        {
+            sentence: "She wanted to do something meaningful for her local _______ and its residents.",
+            options: ["community", "committee", "advisory board", "destination"],
+            originalSentence: "She wanted to do something meaningful for her local community and its residents."
+        }
+    ],
+    "97-18": [ // feeling small
+        {
+            sentence: "Sitting among such experienced professionals left her _______ at first.",
+            options: ["feeling small", "impostor syndrome", "self-doubt", "replaying"],
+            originalSentence: "Sitting among such experienced professionals left her feeling small at first."
+        }
+    ],
+    "97-19": [ // chair
+        {
+            sentence: "The _______ opened the meeting and asked each member to introduce themselves.",
+            options: ["chair", "mentor", "committee", "advisory board"],
+            originalSentence: "The chair opened the meeting and asked each member to introduce themselves."
+        }
+    ],
+    "97-20": [ // summarizing
+        {
+            sentence: "She was responsible for _______ the key points at the end of each session.",
+            options: ["summarizing", "replaying", "approaching", "doubting"],
+            originalSentence: "She was responsible for summarizing the key points at the end of each session."
+        }
+    ],
+    "97-21": [ // input
+        {
+            sentence: "The chair asked everyone for their _______ before making a final decision.",
+            options: ["input", "feedback", "affirmations", "resilience"],
+            originalSentence: "The chair asked everyone for their input before making a final decision."
+        }
+    ],
+    "97-23": [ // approach
+        {
+            sentence: "She decided to _______ each meeting as a learning opportunity rather than a test.",
+            options: ["approach", "summarize", "replay", "doubt"],
+            originalSentence: "She decided to approach each meeting as a learning opportunity rather than a test."
+        }
+    ],
+    "97-27": [ // loud
+        {
+            sentence: "He was always the most _______ person in the room, full of energy and ideas.",
+            options: ["loud", "quiet", "confident", "nominated"],
+            originalSentence: "He was always the most loud person in the room, full of energy and ideas."
+        }
+    ],
+    "97-28": [ // quiet
+        {
+            sentence: "She was the _______ one in the group but always had the most thoughtful ideas.",
+            options: ["quiet", "loud", "confident", "nominated"],
+            originalSentence: "She was the quiet one in the group but always had the most thoughtful ideas."
+        }
+    ],
+    "97-29": [ // destination
+        {
+            sentence: "Confidence is not a _______ — it is something you keep building every day.",
+            options: ["destination", "community", "committee", "feedback"],
+            originalSentence: "Confidence is not a destination — it is something you keep building every day."
+        }
+    ],
+    "97-30": [ // practice
+        {
+            sentence: "With enough _______, even the most nervous speaker can become a strong one.",
+            options: ["practice", "feedback", "resilience", "affirmations"],
+            originalSentence: "With enough practice, even the most nervous speaker can become a strong one."
+        }
+    ],
+    "97-31": [ // doubted
+        {
+            sentence: "There were moments when she _______ whether she belonged in the room at all.",
+            options: ["doubted", "nominated", "summarized", "approached"],
+            originalSentence: "There were moments when she doubted whether she belonged in the room at all."
+        }
+    ],
+    "97-34": [ // impostor syndrome
+        {
+            sentence: "Many successful people quietly struggle with _______ throughout their careers.",
+            options: ["impostor syndrome", "self-doubt", "growth mindset", "building confidence"],
+            originalSentence: "Many successful people quietly struggle with impostor syndrome throughout their careers."
+        }
+    ],
+    "97-35": [ // self-doubt
+        {
+            sentence: "Learning to manage _______ is just as important as building new skills.",
+            options: ["self-doubt", "impostor syndrome", "growth mindset", "resilience"],
+            originalSentence: "Learning to manage self-doubt is just as important as building new skills."
+        }
+    ],
+    "97-36": [ // affirmations
+        {
+            sentence: "She repeated positive _______ to herself every morning before important meetings.",
+            options: ["affirmations", "feedback", "input", "practice"],
+            originalSentence: "She repeated positive affirmations to herself every morning before important meetings."
+        }
+    ],
+    "97-41": [ // mentor
+        {
+            sentence: "Having a good _______ helped her navigate the challenges of her new role.",
+            options: ["mentor", "chair", "committee", "advisory board"],
+            originalSentence: "Having a good mentor helped her navigate the challenges of her new role."
+        }
+    ],
+    "97-42": [ // feedback
+        {
+            sentence: "She always asked for honest _______ after her presentations to improve.",
+            options: ["feedback", "input", "affirmations", "practice"],
+            originalSentence: "She always asked for honest feedback after her presentations to improve."
+        }
+    ],
+    "97-43": [ // growth mindset
+        {
+            sentence: "Adopting a _______ means seeing every challenge as a chance to learn.",
+            options: ["growth mindset", "impostor syndrome", "self-doubt", "resilience"],
+            originalSentence: "Adopting a growth mindset means seeing every challenge as a chance to learn."
+        }
+    ],
+    "97-44": [ // resilience
+        {
+            sentence: "Her _______ after every setback was what made her a truly strong leader.",
+            options: ["resilience", "growth mindset", "self-doubt", "impostor syndrome"],
+            originalSentence: "Her resilience after every setback was what made her a truly strong leader."
+        }
+    ],
+    
     // استكمال gapfillDB.js - الدرس رقم 301
     "301-1": [
         {
