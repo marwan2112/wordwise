@@ -508,159 +508,1708 @@ window.listeningBank = {
 ],
 
 B2: [
-        { id: "B2_01", audio: "audio/level_test/B2-Q01.mp3", text: "What does the lecturer argue is more effective than recycling?", options: ["Using renewable energy at home", "Reducing consumption", "Buying recyclable packaging only", "Composting food waste"], correct: "Reducing consumption", transcript: "Lecturer: Many people believe that recycling is the most important thing individuals can do for the environment. But reducing consumption is actually more effective. For example, producing a single cotton t-shirt requires approximately two thousand seven hundred litres of water. That's enough for one person to drink for two and a half years. So buying a second-hand shirt, or simply buying less, saves far more than recycling the shirt afterwards." },
-        { id: "B2_02", audio: "audio/level_test/B2-Q02.mp3", text: "What do open-plan offices actually produce, according to research?", options: ["Increased creativity and innovation", "More collaboration between departments", "Higher levels of distraction and lower productivity", "Improved team morale"], correct: "Higher levels of distraction and lower productivity", transcript: "Professor: Open-plan offices were introduced with the idea of encouraging collaboration. However, a growing body of research now suggests they achieve the opposite. Workers in open-plan environments take more sick days, report higher levels of distraction, and are less productive than those in private offices or working from home. The noise and lack of privacy appear to trigger a stress response that undermines concentration." },
-        { id: "B2_03", audio: "audio/level_test/B2-Q03.mp3", text: "What is the definition of a nudge according to Dr. Patel?", options: ["A rule that forces people to change their behaviour", "A financial incentive to encourage better choices", "A small environmental change that makes a behaviour more likely without removing choice", "A public awareness campaign that changes attitudes"], correct: "A small environmental change that makes a behaviour more likely without removing choice", transcript: "Host: Today we're discussing the concept of nudge theory with Dr. Patel. Dr. Patel, can you explain what a nudge is? Dr. Patel: A nudge is any small change to the environment that makes a certain behaviour more likely, without restricting freedom of choice. For example, placing fruit at eye level in a canteen, instead of hiding it at the back. People still choose what they want, but healthier options become more salient. Host: And where is this being used in policy? Dr. Patel: In pension enrolment, organ donation, and even energy consumption. In the UK, switching the default for pension contributions to opt-out rather than opt-in dramatically increased participation rates." },
-        { id: "B2_04", audio: "audio/level_test/B2-Q04.mp3", text: "What does the researcher say seems clearer from the evidence?", options: ["All social media use is harmful to mental health", "Social media causes depression in adolescents", "Active social interaction is more harmful than passive consumption", "Passive consumption of others' content appears more harmful"], correct: "Passive consumption of others' content appears more harmful", transcript: "Researcher: The relationship between social media use and mental health is not straightforward. Some studies find correlations between heavy use and anxiety or depression, particularly in adolescents. However, correlation is not causation. It may be that people who are already struggling emotionally are more likely to turn to social media. What seems clearer is that the type of use matters. Passive consumption of others' content appears more harmful than active social interaction." },
-        { id: "B2_05", audio: "audio/level_test/B2-Q05.mp3", text: "What is Panellist B's main argument against carbon taxes?", options: ["They don't actually reduce emissions", "They are too complicated to administer", "They are politically unpopular because they affect household budgets", "They harm businesses more than individuals"], correct: "They are politically unpopular because they affect household budgets", transcript: "Moderator: The question is whether carbon taxes are the most effective tool for reducing emissions. Panellist A: Carbon taxes send a clear price signal to businesses and consumers. They're administratively simple and can generate revenue for green investment. Panellist B: But they're politically unpopular because they feel like a direct hit on household budgets. Regulation and investment in public transport often achieve more with less public resistance." },
-        { id: "B2_06", audio: "audio/level_test/B2-Q06.mp3", text: "What lesson did the candidate take from that experience?", options: ["To always negotiate a higher salary", "To ask for a contract before starting", "To ask more specific questions and meet the team before accepting", "To avoid roles that involve team management"], correct: "To ask more specific questions and meet the team before accepting", transcript: "Interviewer: You left your previous role after only eight months. Can you explain? Candidate: The role was misrepresented during the hiring process. I was told I'd be leading a team of ten, but on my first day the team had just been restructured and I'd be working independently. I raised it with my manager, but nothing changed. I made the difficult decision to leave. Interviewer: And what did you learn from that experience? Candidate: To ask much more specific questions during the interview process. And to ask to meet the team before accepting an offer." },
-        { id: "B2_07", audio: "audio/level_test/B2-Q07.mp3", text: "What happens if not enough people take voluntary redundancy?", options: ["The restructure will be cancelled", "A second voluntary round will be offered", "There will be compulsory redundancies", "The consultation period will be extended"], correct: "There will be compulsory redundancies", transcript: "Man: The board has approved the restructure. Half the regional offices are closing. Woman: I heard. It's going to affect around two hundred positions. Man: Yes. They're offering voluntary redundancy first, but if they don't get enough volunteers, there'll be compulsory redundancies. Woman: How long do employees have to decide? Man: The consultation period closes in six weeks." },
-        { id: "B2_08", audio: "audio/level_test/B2-Q08.mp3", text: "What did Finland's UBI pilot scheme find about participants' work behaviour?", options: ["They were less motivated to find work", "They stopped working entirely", "They became more selective about job offers", "They were no less likely to seek employment"], correct: "They were no less likely to seek employment", transcript: "Woman: What do you make of the proposal to introduce universal basic income? Man: I see the appeal, especially for people in precarious employment. But the cost is staggering. Some models estimate it would require doubling income tax. Woman: There's also the question of what it would do to the labour market. Would people stop working? Man: Most pilot schemes suggest not. In Finland, participants actually reported better mental health and were no less likely to seek employment." },
-        { id: "B2_09", audio: "audio/level_test/B2-Q09.mp3", text: "What does the supervisor recommend?", options: ["Expand the research to cover both angles", "Start the research again from scratch", "Focus on the angle supported by the most original data", "Ask a second supervisor for their opinion"], correct: "Focus on the angle supported by the most original data", transcript: "Student: I'm struggling to narrow my research question. I keep finding more interesting angles. Supervisor: That's common at this stage. The danger is that you try to cover everything and end up saying very little about anything. You need to make a choice and commit to it. Student: Should I go with the economic angle or the sociological one? Supervisor: Which one do you have the most original data for? Student: Probably the sociological angle. I've done twelve interviews. Supervisor: Then that's your answer. Build around what you have." },
-        { id: "B2_10", audio: "audio/level_test/B2-Q10.mp3", text: "What is Dr. Webb's concern about tuition fees?", options: ["They reduce the quality of teaching", "They create debt that disproportionately affects lower-income students", "They make it harder for universities to attract international students", "They lead to overcrowding at popular universities"], correct: "They create debt that disproportionately affects lower-income students", transcript: "Presenter: Should universities charge tuition fees? We have two guests with opposing views. Dr. Webb, you're against fees. Dr. Webb: Higher education should be a public good, not a commodity. Tuition fees create debt that disproportionately affects students from lower-income backgrounds, and they shift the purpose of a degree from intellectual development to return on investment. Presenter: And Professor Gray, you support fees. Professor Gray: Without fees, universities can't maintain quality. Public funding has never been sufficient. The evidence actually shows that graduate earnings justify the investment for most graduates." },
-        { id: "B2_11", audio: "audio/level_test/B2-Q11.mp3", text: "What concern do residents near the site have?", options: ["They disagree with the cost of the project", "They think the sports complex is unnecessary", "They are worried about noise and traffic during construction", "They believe the site is too small"], correct: "They are worried about noise and traffic during construction", transcript: "The city council has approved plans to construct a new sports complex in the east of the city, including an Olympic-size swimming pool, four tennis courts, and a fitness centre. Construction will begin next spring and is expected to take two years. The project has divided opinion, with business owners welcoming the economic boost but residents near the site raising concerns about noise and traffic during construction." },
-        { id: "B2_12", audio: "audio/level_test/B2-Q12.mp3", text: "What does Professor Chen warn about hybrid working?", options: ["It increases absenteeism significantly", "It requires too much investment in technology", "It can create two-tier workforces if not managed carefully", "It only works in the technology sector"], correct: "It can create two-tier workforces if not managed carefully", transcript: "Host: Professor Chen, your new report suggests remote work has had a more complex impact than initially thought. Professor Chen: Productivity in many sectors has held steady or increased. But we're seeing challenges around collaboration and what we call organisational culture. People get their tasks done, but the informal exchanges that drive innovation are being lost. Hybrid working seems the best compromise, but it needs careful management to avoid creating two-tier workforces." },
-        { id: "B2_13", audio: "audio/level_test/B2-Q13.mp3", text: "Why do financial advisers say consumer debt is more dangerous than mortgage debt?", options: ["It accumulates faster because of lifestyle choices", "It is harder to track and manage", "It has higher interest rates and no underlying asset", "It affects credit scores more severely"], correct: "It has higher interest rates and no underlying asset", transcript: "Narrator: In the last decade, average household debt in many developed economies has risen to record levels. Unlike mortgage debt, much of this is consumer debt: credit cards, car finance, and buy-now-pay-later schemes. Financial advisers warn that this type of debt is more dangerous because it comes with higher interest rates and no underlying asset to show for it." },
-        { id: "B2_14", audio: "audio/level_test/B2-Q14.mp3", text: "What is the campaigner's argument for mandatory labelling?", options: ["People should be warned about the dangers of alcohol", "Calorie information would reduce underage drinking", "Consumers have the right to make informed choices", "Alcohol companies are currently breaking the law"], correct: "Consumers have the right to make informed choices", transcript: "Interviewer: You've been campaigning for mandatory nutritional labelling on alcohol products. Why? Campaigner: Alcohol is one of the few food products that doesn't require calorie information on the label. A standard glass of wine has as many calories as a slice of cake, but most people have no idea. We believe consumers have a right to make informed choices." },
-        { id: "B2_15", audio: "audio/level_test/B2-Q15.mp3", text: "According to the expert, what is new in this UN report?", options: ["The list of species at risk is longer than expected", "It proposes a global treaty on biodiversity", "The emphasis on the systemic and interconnected nature of the threats", "It focuses on climate change as the single biggest driver"], correct: "The emphasis on the systemic and interconnected nature of the threats", transcript: "Host: The UN report released this week on biodiversity is being described as a wake-up call. What does it actually say? Expert: In summary, around one million species are currently at risk of extinction, more than at any other point in human history. The main drivers are habitat destruction, overexploitation, climate change, pollution, and invasive species. What's new in this report is the emphasis on the systemic nature of these threats. You can't address one without addressing the others." },
-        { id: "B2_16", audio: "audio/level_test/B2-Q16.mp3", text: "What does the manager mean by 'let's park those for now'?", options: ["The ideas are rejected permanently", "The ideas will be considered after the core strategy is agreed", "Everyone should go home and think about the ideas", "The ideas need to be written down before the meeting ends"], correct: "The ideas will be considered after the core strategy is agreed", transcript: "Manager: I appreciate everyone's contributions today. Some interesting ideas came up. Let's park those for now and revisit them once we've finalised the core strategy." },
-        { id: "B2_17", audio: "audio/level_test/B2-Q17.mp3", text: "What can be inferred from this statement?", options: ["The presentation was excellent", "The presentation was quite poor", "The colleague didn't attend the presentation", "The colleague is being overly modest"], correct: "The presentation was quite poor", transcript: "Colleague: I wouldn't exactly say the presentation went brilliantly." },
-        { id: "B2_18", audio: "audio/level_test/B2-Q18.mp3", text: "What does the man most likely mean?", options: ["He admires the courage behind the decision", "He thinks the decision is unwise or risky", "He is asking for more information", "He would like to make the same choice"], correct: "He thinks the decision is unwise or risky", transcript: "Man: You're very brave to take that career risk." },
-        { id: "B2_19", audio: "audio/level_test/B2-Q19.mp3", text: "What does the chair mean?", options: ["The group will vote on the issue next week", "The disagreement has been resolved", "The group cannot reach agreement and should move forward", "Everyone now agrees on the issue"], correct: "The group cannot reach agreement and should move forward", transcript: "Chair of a meeting: I think we've been going around in circles. Let's agree to disagree for now and move on to the next point." },
-        { id: "B2_20", audio: "audio/level_test/B2-Q20.mp3", text: "What does this statement suggest about the woman's feelings?", options: ["She is very satisfied with the outcome", "She is expressing reluctant, faint acceptance", "She is enthusiastic and positive", "She is very angry about what happened"], correct: "She is expressing reluctant, faint acceptance", transcript: "Woman: I suppose it could have been worse." },
-        { id: "B2_21", audio: "audio/level_test/B2-Q21.mp3", text: "What will happen within five working days?", options: ["The complaint will be resolved", "The customer will receive a refund", "A team member will contact the customer", "The customer will receive written confirmation"], correct: "A team member will contact the customer", transcript: "Thank you for contacting the complaints department. Your query has been logged and a member of our team will be in touch within five working days. For urgent matters, please contact our helpline directly." },
-        { id: "B2_22", audio: "audio/level_test/B2-Q22.mp3", text: "What is subject to regulatory clearance?", options: ["The budget for the upcoming financial year", "The approved merger", "The appointment of a new board member", "The company's expansion into new markets"], correct: "The approved merger", transcript: "Further to our meeting on Thursday, I am writing to confirm that the board has approved the proposed merger, subject to regulatory clearance. The anticipated timeline for completion is six to nine months from today. We will keep all stakeholders informed of progress." },
-        { id: "B2_23", audio: "audio/level_test/B2-Q23.mp3", text: "What happens to expense claims submitted after thirty days?", options: ["They are automatically approved", "They are passed to the finance director", "They are rejected without exception", "They may not be reimbursed unless exceptional circumstances are approved"], correct: "They may not be reimbursed unless exceptional circumstances are approved", transcript: "With immediate effect, all employees travelling on company business must submit expense claims within thirty days of the trip. Claims submitted after this period will not be reimbursed unless exceptional circumstances are documented and approved by a line manager." },
-        { id: "B2_24", audio: "audio/level_test/B2-Q24.mp3", text: "What happens if the terms are not met within fourteen days?", options: ["A second warning will be issued", "The agreement becomes void", "A fine will be applied", "Legal proceedings will begin without further notice"], correct: "Legal proceedings will begin without further notice", transcript: "Failure to comply with the terms of this agreement within fourteen days of receipt will result in legal proceedings being initiated without further notice." },
-        { id: "B2_25", audio: "audio/level_test/B2-Q25.mp3", text: "What will the speaker cover first?", options: ["The key findings and recommendations", "The history of the project", "A brief outline of the methodology", "The implications for the sector"], correct: "A brief outline of the methodology", transcript: "I'd like to take this opportunity to outline the key findings of our eighteen-month pilot study. I'll cover the methodology briefly, before presenting the data and what we believe are the most significant implications for the wider sector." },
-        { id: "B2_26", audio: "audio/level_test/B2-Q26.mp3", text: "What happened after Mr. Karim refused to submit the inaccurate report?", options: ["He was transferred to another department", "His contract was changed", "He was dismissed the next day", "He was given a formal warning"], correct: "He was dismissed the next day", transcript: "Officer: Mr. Karim, you were dismissed for misconduct. Can you describe the events of the fourteenth? Mr. Karim: I was told by my supervisor to submit a report I knew contained inaccurate data. I refused. I was dismissed the following day for insubordination. Officer: Did you raise a grievance through formal channels? Mr. Karim: I tried to. My manager told me it wasn't necessary and discouraged me from proceeding." },
-        { id: "B2_27", audio: "audio/level_test/B2-Q27.mp3", text: "What does the representative suggest the customer do about the hospital's payment request?", options: ["Pay out of pocket and claim the money back", "Ask the hospital to contact the insurance company directly", "Send the hospital a letter explaining the claim is under review", "Cancel the procedure invoice"], correct: "Send the hospital a letter explaining the claim is under review", transcript: "Customer: I had a procedure last month and submitted my claim three weeks ago. I still haven't heard anything. Representative: I apologise. Our current processing time is four to six weeks. Your claim should be reviewed within the next two weeks. Customer: The hospital is asking for payment. I don't want to pay out of pocket. Representative: I'd recommend sending the hospital a letter explaining that your claim is under review. Most hospitals will wait." },
-        { id: "B2_28", audio: "audio/level_test/B2-Q28.mp3", text: "What must the organisation document under the new regulations?", options: ["All financial transactions involving clients", "Only newly collected personal data", "All instances where personal data is processed, including existing data", "Data shared with third parties only"], correct: "All instances where personal data is processed, including existing data", transcript: "Manager: The new data protection regulations require us to document every instance where we process personal data. Employee: Does that include the client database we use daily? Manager: Yes, everything. Any system that stores names, emails, phone numbers, anything personally identifiable. Employee: What if we're using data that was collected before the regulation came into effect? Manager: Doesn't matter. If you're processing it now, it must be documented. We have six months to comply." },
-        { id: "B2_29", audio: "audio/level_test/B2-Q29.mp3", text: "What does the buyer offer in exchange for a lower price?", options: ["A larger deposit payment", "Paying all legal fees", "A quick exchange of contracts", "A cash payment with no mortgage"], correct: "A quick exchange of contracts", transcript: "Buyer: We're interested in the property, but the asking price is above our budget. Seller's agent: The vendors are motivated to sell quickly. There may be some flexibility. Buyer: We could offer five percent below asking price, on the condition of a quick exchange. Agent: I'll put it to the vendors. A quick exchange is attractive to them, so it may work in your favour." },
-        { id: "B2_30", audio: "audio/level_test/B2-Q30.mp3", text: "How will documents be protected in the new system?", options: ["Paper copies will be kept alongside digital files", "Documents will be stored on a single secure cloud server", "Important documents will be printed monthly", "Two backup systems will be used, including cloud and local server"], correct: "Two backup systems will be used, including cloud and local server", transcript: "Employee: I've just heard we're switching to a digital-only filing system from next month. Colleague: Yes. The paper archives will be scanned and then destroyed. Employee: I'm a bit worried. What if a document gets corrupted or lost in the digital system? Colleague: Apparently, there will be two backup systems. And anything from the last ten years will be kept in both the cloud and on a local server." },
-        { id: "B2_31", audio: "audio/level_test/B2-Q31.mp3", text: "What has early data from Paris shown?", options: ["Increases in property prices near cycle lanes", "Reductions in car use and improvements in air quality", "Higher rates of retail business failure", "Increased pedestrian accidents"], correct: "Reductions in car use and improvements in air quality", transcript: "Welcome to tonight's documentary on the fifteen-minute city. This concept, popularised by Carlos Moreno in Paris, proposes that all essential services and activities should be accessible within a fifteen-minute walk or cycle from home. Paris has been redesigning its infrastructure along these lines, adding hundreds of kilometres of cycle lanes and converting car parks into community spaces. Early data suggests significant reductions in car use and improvements in air quality in pilot neighbourhoods." },
-        { id: "B2_32", audio: "audio/level_test/B2-Q32.mp3", text: "What weakness do critics identify in the fifteen-minute city model?", options: ["It ignores public transport entirely", "It encourages overbuilding in city centres", "It works less well in lower-income or peripheral areas where services are sparse", "It was designed only for Paris and cannot be applied elsewhere"], correct: "It works less well in lower-income or peripheral areas where services are sparse", transcript: "Critics, however, point out that the fifteen-minute city assumes a certain density of provision that works well in affluent central districts but is much harder to replicate in peripheral or lower-income neighbourhoods, where services are already sparse. A fifteen-minute city with no nearby services is, effectively, no city at all." },
-        { id: "B2_33", audio: "audio/level_test/B2-Q33.mp3", text: "What standard did the journalist apply to major claims in the investigation?", options: ["One expert source was sufficient if they were credible", "Each claim needed to be confirmed by a company spokesperson", "Claims needed at least three independent sources", "All claims had to be supported by documentary evidence only"], correct: "Claims needed at least three independent sources", transcript: "Journalist: The investigation took two years. We began with a data leak from a whistleblower inside the company. The challenge was verifying everything before we could publish, because if we got anything wrong, we'd face legal action and lose all credibility. Host: How do you verify something on that scale? Journalist: You cross-reference multiple sources. Every major claim in the piece has at least three independent sources. Anything we couldn't verify to that standard was left out, even if it was highly compelling." },
-        { id: "B2_34", audio: "audio/level_test/B2-Q34.mp3", text: "What do thriving high streets have in common, according to the expert?", options: ["They stock products unavailable online", "They offer the lowest prices in the region", "They have free parking and good transport links", "They have combined food, entertainment, and community events with retail"], correct: "They have combined food, entertainment, and community events with retail", transcript: "Retail expert: The retail sector is undergoing a structural shift, not just a temporary disruption. Footfall in town centres has declined continuously since 2012, not just because of online shopping, but because of how people spend their leisure time more broadly. The high streets that are thriving are those that have reinvented themselves as social destinations: combining food, entertainment, and community events with retail, not competing with online shopping on its own terms." },
-        { id: "B2_35", audio: "audio/level_test/B2-Q35.mp3", text: "Why is phishing effective, according to the lecture?", options: ["Because antivirus software cannot detect it", "Because it targets outdated operating systems", "Because it exploits human psychology, particularly urgency", "Because it only targets senior staff"], correct: "Because it exploits human psychology, particularly urgency", transcript: "Phishing remains one of the most effective forms of cyber attack, not because it exploits technical vulnerabilities, but because it exploits human psychology. Attackers typically create a sense of urgency: your account will be locked, your parcel can't be delivered, your payment has failed. This urgency overrides our critical thinking. The most effective defence is not software but training people to pause and verify before clicking." },
-        { id: "B2_36", audio: "audio/level_test/B2-Q36.mp3", text: "What distinction does the professor draw?", options: ["The policy is definitely effective", "The policy is ineffective and should be scrapped", "Lack of evidence for success is different from evidence of failure", "The data is completely unreliable and should be ignored"], correct: "Lack of evidence for success is different from evidence of failure", transcript: "Student: So are you saying the policy has been completely ineffective? Professor: I'm saying the evidence doesn't clearly support the claim that it's been effective. That's different from saying it's failed. We simply don't have enough longitudinal data yet." },
-        { id: "B2_37", audio: "audio/level_test/B2-Q37.mp3", text: "What does the speaker mean by 'not quite what we had hoped'?", options: ["The results exceeded expectations", "The results were exactly as predicted", "The results were disappointing", "The results are being investigated"], correct: "The results were disappointing", transcript: "The results from Q3 were, let's say, not quite what we had hoped. Revenue fell by twelve percent year on year, which puts us behind our annual target by a significant margin." },
-        { id: "B2_38", audio: "audio/level_test/B2-Q38.mp3", text: "What is the speaker implying about the company?", options: ["They have published the data but it is misleading", "Their marketing and their actual behaviour are inconsistent", "They are the most transparent company in the sector", "They have not understood what transparency means"], correct: "Their marketing and their actual behaviour are inconsistent", transcript: "Speaker: I find it somewhat ironic that a company that markets itself on transparency has never published its environmental impact data." },
-        { id: "B2_39", audio: "audio/level_test/B2-Q39.mp3", text: "What does the candidate acknowledge with 'the benefit of hindsight'?", options: ["They regret taking the technical route entirely", "They wish they had left the industry sooner", "They would have moved into management earlier", "They would have studied a different subject at university"], correct: "They would have moved into management earlier", transcript: "Interviewer: One last question: is there anything you would have done differently in your career so far? Candidate: With the benefit of hindsight, I probably would have moved into management earlier. I stayed in a technical role for a long time out of comfort rather than strategy. But those technical years gave me a depth of knowledge that still serves me very well." },
-        { id: "B2_40", audio: "audio/level_test/B2-Q40.mp3", text: "What is the panellist's argument?", options: ["Efficiency is the most important goal for any organisation", "Efficiency should be measured differently", "Efficiency without the right purpose is not valuable", "The organisation should focus less on measurement"], correct: "Efficiency without the right purpose is not valuable", transcript: "Panellist: I take the point about efficiency. But efficiency in service of what? If we're becoming more efficient at doing the wrong things, we're just getting better at failing." },
-        { id: "B2_41", audio: "audio/level_test/B2-Q41.mp3", text: "Why hadn't the customer been offered the lower tariff before?", options: ["They didn't meet the eligibility criteria", "The tariff was only recently introduced", "Customers have to ask for it", "It was only available to new customers"], correct: "Customers have to ask for it", transcript: "Customer: I've been a customer for twelve years and I'm genuinely considering switching. Adviser: I completely understand your frustration. Let me see what I can do. Looking at your account, you're currently on our standard rate. I can offer you our loyalty tariff, which is eighteen percent lower. Customer: Why wasn't I offered that before? Adviser: The loyalty tariff is available to customers who ask for it, which I acknowledge isn't ideal." },
-        { id: "B2_42", audio: "audio/level_test/B2-Q42.mp3", text: "What is the risk every time you recall a memory?", options: ["It becomes stronger and more accurate", "It is partially rebuilt and may be subtly altered", "It is replaced by a newer memory", "It becomes harder to access in future"], correct: "It is partially rebuilt and may be subtly altered", transcript: "One common misconception is that human memory works like a video recorder, storing events faithfully and replaying them on demand. In reality, memory is reconstructive. Every time you recall a memory, you are partially rebuilding it, and in doing so you risk subtly altering it. This has profound implications for eyewitness testimony in legal cases." },
-        { id: "B2_43", audio: "audio/level_test/B2-Q43.mp3", text: "What is the key difference between a social enterprise and a charity, according to the founder?", options: ["Social enterprises focus on profit; charities don't", "Social enterprises are larger than charities", "Charities rely on donations; social enterprises are financially self-sustaining", "Social enterprises are regulated differently"], correct: "Charities rely on donations; social enterprises are financially self-sustaining", transcript: "Interviewer: Your organisation is described as a social enterprise. How does that differ from a charity? Founder: We generate income through commercial activity, just like any business. But rather than distributing profit to shareholders, we reinvest it into our mission. A charity tends to rely on donations and grants. We're financially self-sustaining." },
-        { id: "B2_44", audio: "audio/level_test/B2-Q44.mp3", text: "What is the deadline for regulated bodies to comply with the new legislation?", options: ["First of April", "Thirty-first of March", "Thirtieth of June", "End of the calendar year"], correct: "Thirtieth of June", transcript: "Official: The new legislation will come into effect on the first of April. All regulated bodies have until the thirtieth of June to achieve compliance. Non-compliance after that date will result in financial penalties and, in serious cases, suspension of operating licences." },
-        { id: "B2_45", audio: "audio/level_test/B2-Q45.mp3", text: "What does the presenter say the study proves?", options: ["Social isolation directly causes cognitive decline", "The relationship between the two variables is not worth investigating", "Reducing social isolation will improve cognitive performance", "A correlation between social isolation and cognitive decline"], correct: "A correlation between social isolation and cognitive decline", transcript: "Presenter: I want to be clear about what this study does and doesn't show. It demonstrates a correlation between social isolation and cognitive decline. It does not demonstrate causation. We cannot yet say that social isolation causes cognitive decline, only that the two frequently occur together." },
-        { id: "B2_46", audio: "audio/level_test/B2-Q46.mp3", text: "What does the panellist say is the political problem with prevention spending?", options: ["It is too expensive to justify", "It is unpopular with the medical profession", "The benefits are long-term and invisible while the costs are immediate", "Prevention programmes have a poor record of success"], correct: "The benefits are long-term and invisible while the costs are immediate", transcript: "Panellist: Prevention costs a fraction of treatment. Every pound spent on early intervention, whether that's mental health support for young people, cancer screening programmes, or diabetes management, saves several pounds in acute hospital care down the line. The problem is that prevention doesn't win elections. The benefits are long-term and invisible; the costs are immediate and visible." },
-        { id: "B2_47", audio: "audio/level_test/B2-Q47.mp3", text: "What is the speaker's main concern about AI in hiring decisions?", options: ["AI systems are expensive to implement", "They make the process slower", "They embed and perpetuate historical biases invisibly", "They cannot assess soft skills effectively"], correct: "They embed and perpetuate historical biases invisibly", transcript: "Speaker: The question is not whether AI can do this, it clearly can. The question is whether it should. Automating hiring decisions using historical data embeds historical biases permanently into the process. If your company historically hired a certain type of person, the algorithm will simply perpetuate that. And crucially, it does so invisibly, making the bias harder to challenge than if a human made the same decision." },
-        { id: "B2_48", audio: "audio/level_test/B2-Q48.mp3", text: "What does the host say about statutory consumer rights?", options: ["They only apply to new goods, not second-hand items", "They can be reduced if the retailer provides a warranty", "They cannot be removed by any retailer", "They expire after six months of use"], correct: "They cannot be removed by any retailer", transcript: "Host: You're entitled to a full refund if an item is faulty, even if you've used it. What many people don't realise is that this right exists regardless of whether the seller offers a warranty. The warranty is additional. Your statutory rights are the baseline and cannot be signed away by any retailer." },
-        { id: "B2_49", audio: "audio/level_test/B2-Q49.mp3", text: "What is the reviewer's main criticism of the film?", options: ["The performances are unconvincing", "The film is too long", "The third act undermines the careful work of the previous two hours", "The visual effects are overused"], correct: "The third act undermines the careful work of the previous two hours", transcript: "Reviewer: The film is visually stunning, and the performances are uniformly excellent. Where it stumbles is in the third act. The narrative logic that has been so carefully built over two hours unravels in the final twenty minutes, as though the writers ran out of ideas and reached for the most obvious resolution. It left me feeling deflated rather than satisfied." },
-        { id: "B2_50", audio: "audio/level_test/B2-Q50.mp3", text: "What do nutritionists caution against?", options: ["Skipping breakfast entirely", "Eating high-calorie snacks", "Overstating the findings, given other lifestyle factors", "Relying on a single research report for dietary advice"], correct: "Overstating the findings, given other lifestyle factors", transcript: "Host: Our final story: a new report suggests that over forty percent of people in the UK regularly skip breakfast, which researchers link to lower concentration and higher rates of snacking on high-calorie foods later in the day. However, nutritionists caution against overstating the findings, noting that breakfast habits interact with many other lifestyle factors." }
-    ],
-    C1: [
-        { id: "C1_01", audio: "audio/level_test/C1-Q01.mp3", text: "What does the professor say about System Two thinking in modern life?", options: ["It functions better under stress", "It is rarely needed in everyday decision-making", "It is undermined by information overload and stress", "It becomes stronger as people get older"], correct: "It is undermined by information overload and stress", transcript: "Professor: Today I want to examine confirmation bias more closely. When Kahneman describes System One thinking as fast, intuitive, and automatic, he's describing the mental mode that makes us most susceptible to bias. System Two, our slow, deliberate, rational mode, is capable of overriding these biases. But it's easily fatigued, and modern life, with its information overload and chronic stress, constantly undermines our capacity to engage it. The practical implication is sobering: our objective reasoning degrades precisely when we need it most." },
-        { id: "C1_02", audio: "audio/level_test/C1-Q02.mp3", text: "What do critics argue output provides that input alone cannot?", options: ["More vocabulary exposure", "A different kind of noticing", "Better grammatical accuracy", "More confidence in speaking"], correct: "A different kind of noticing", transcript: "Speaker: Krashen's input hypothesis suggests that we acquire language by encountering it at a level just beyond our current competence, what he calls i plus one. The theory implies that comprehensible input is more important than grammar instruction or output production. Critics argue, however, that output, being forced to produce language, creates a different kind of noticing that input alone cannot generate." },
-        { id: "C1_03", audio: "audio/level_test/C1-Q03.mp3", text: "Why do some political actors introduce extreme positions, according to the lecturer?", options: ["Because they expect them to be widely adopted", "To make previously radical policies appear more moderate", "To confuse the media and distract from other issues", "Because it reflects their genuine ideology"], correct: "To make previously radical policies appear more moderate", transcript: "Lecturer: The Overton Window is not merely a descriptive concept. It has increasingly been weaponised by political actors who deliberately introduce extreme positions into the public discourse, not necessarily because they expect those positions to be adopted, but because their presence shifts the window. Policies that once seemed radical now seem moderate by comparison. This is sometimes called the Overton shift as a strategic tool." },
-        { id: "C1_04", audio: "audio/level_test/C1-Q04.mp3", text: "What does the researcher say is less discussed in the literature?", options: ["The link between poverty and academic failure", "The impact of low-resourced schools on attainment", "How the physical environment shapes what people allow themselves to aspire to", "The role of family structure in intergenerational poverty"], correct: "How the physical environment shapes what people allow themselves to aspire to", transcript: "Researcher: The relationship between spatial segregation and intergenerational poverty is well established. Children who grow up in high-poverty neighbourhoods are exposed to fewer successful adult role models, attend lower-resourced schools, and have diminished social networks. What is less discussed is how place itself shapes aspiration. Growing up in an environment where material success seems structurally unattainable can fundamentally alter what a young person allows themselves to want." },
-        { id: "C1_05", audio: "audio/level_test/C1-Q05.mp3", text: "What does Kuhn's work show about how scientists actually behave?", options: ["They immediately revise theories when anomalies arise", "They frequently discard falsifiable theories too quickly", "They are often motivated by financial incentives", "They rarely abandon theories on the basis of a single anomalous result"], correct: "They rarely abandon theories on the basis of a single anomalous result", transcript: "Professor: Popper's criterion of falsifiability attempts to draw a demarcation between science and non-science. A theory is scientific, for Popper, only if it makes predictions that could, in principle, be proven false. The problem with this criterion is that, as Kuhn later showed, scientists rarely abandon a theory simply because an anomalous result appears. They interpret the anomaly as a measurement error, or they add an auxiliary hypothesis to explain it away." },
-        { id: "C1_06", audio: "audio/level_test/C1-Q06.mp3", text: "What does the CEO identify as the second distinguishing quality?", options: ["Making painful decisions early", "Understanding financial data", "Communicating difficult decisions honestly rather than using corporate euphemism", "Building strong relationships with the board"], correct: "Communicating difficult decisions honestly rather than using corporate euphemism", transcript: "Interviewer: You've led the company through two recessions. What distinguishes the leaders who survive from those who don't? CEO: Two things: the willingness to make painful decisions early, before the data is unambiguous, and the ability to communicate those decisions with honesty rather than corporate euphemism. Leaders who wait for certainty before acting and then dress up bad news in reassuring language lose both time and credibility." },
-        { id: "C1_07", audio: "audio/level_test/C1-Q07.mp3", text: "What does the scientist say is morally untenable?", options: ["Being optimistic about climate change", "Publishing pessimistic probability estimates", "Giving up because catastrophe seems probable", "Holding back funding from renewables"], correct: "Giving up because catastrophe seems probable", transcript: "Interviewer: Are you optimistic about the prospect of limiting warming to one and a half degrees? Scientist: I think optimism and pessimism are both cognitive traps. The honest answer is: it's extremely unlikely at current trajectories, but not technically impossible. The question should be: what do we do in the face of that? And the answer has to be: everything possible, regardless of probability estimates. Because the alternative, acquiescing to catastrophe because it seems probable, is morally untenable." },
-        { id: "C1_08", audio: "audio/level_test/C1-Q08.mp3", text: "How does the author describe the novel's purpose?", options: ["To deliver a clear moral message", "To entertain without engaging moral questions", "To reflect the author's personal political beliefs", "To invite readers to think rather than provide clean answers"], correct: "To invite readers to think rather than provide clean answers", transcript: "Host: Your fiction is often described as deeply political without being didactic. How do you achieve that balance? Author: I try never to resolve the moral question for the reader. If my characters behave in ways that are morally complex, I want the reader to feel uncomfortable, to have to sit with the ambiguity rather than receive a clean verdict. The novel isn't a sermon. It's an invitation to think." },
-        { id: "C1_09", audio: "audio/level_test/C1-Q09.mp3", text: "What does the candidate mean by 'nominal in a larger one'?", options: ["Being paid more than they are worth", "Having a senior title but little real influence", "Working in a larger city", "Being famous but not successful"], correct: "Having a senior title but little real influence", transcript: "Interviewer: You turned down a much higher-paying offer to stay here. Can you explain that decision? Candidate: I've become convinced that autonomy is more valuable than income beyond a certain threshold. Here I have genuine ownership of my work. The other offer came with a more senior title but more oversight, more bureaucracy, and less latitude to shape strategy. I'd rather be influential in a smaller sphere than nominal in a larger one." },
-        { id: "C1_10", audio: "audio/level_test/C1-Q10.mp3", text: "What does the expert say is the role of non-executive directors?", options: ["To implement the company's strategy", "To provide financial analysis to the board", "To act as the public face of the company", "To provide independent oversight of executive decisions"], correct: "To provide independent oversight of executive decisions", transcript: "Interviewer: The scandal at Norland Capital revealed systematic failures at multiple levels. Who ultimately bears responsibility? Expert: The board. Non-executive directors are supposed to provide independent oversight, not rubber-stamp executive decisions. When they become too close to management, either socially or financially, that independence is compromised. The Norland case shows what happens when there is no effective internal counterweight to executive power." },
-        { id: "C1_11", audio: "audio/level_test/C1-Q11.mp3", text: "What is the debater's argument about algorithms?", options: ["They make content too predictable", "They reflect but do not change our preferences", "They systematically amplify outrage and tribalism to maximise engagement", "They are primarily designed to sell advertising"], correct: "They systematically amplify outrage and tribalism to maximise engagement", transcript: "Debater: Algorithmic content recommendation systems don't just reflect our preferences; they amplify them. When a platform's success metric is engagement time, the algorithm learns that outrage, anxiety, and tribalism are the most reliable engagement drivers. It then systematically selects for them. We are not simply being shown content we like. We are being trained to want content that keeps us on the platform." },
-        { id: "C1_12", audio: "audio/level_test/C1-Q12.mp3", text: "What does Professor A argue about hedonic and eudaimonic wellbeing?", options: ["They are the same thing measured differently", "High hedonic wellbeing guarantees a meaningful life", "Hedonic wellbeing predicts eudaimonic wellbeing reliably", "They are distinct and high hedonic wellbeing does not guarantee eudaimonic wellbeing"], correct: "They are distinct and high hedonic wellbeing does not guarantee eudaimonic wellbeing", transcript: "Professor A: The problem with most happiness research is that it conflates hedonic wellbeing, pleasure and the absence of pain, with eudaimonic wellbeing, flourishing and meaning. They're distinct constructs and they respond to different variables. Professor B: Though they're not entirely uncorrelated. People who score high on meaning often report higher life satisfaction overall. Professor A: True, but the reverse isn't necessarily true. High hedonic wellbeing doesn't predict high eudaimonic wellbeing. You can feel good and be living shallowly." },
-        { id: "C1_13", audio: "audio/level_test/C1-Q13.mp3", text: "What is the critic's main economic concern about UBI?", options: ["It would make people less motivated to work", "The administrative system would be too complex", "The tax rates needed to fund a liveable UBI could reduce productive investment", "It would mainly benefit already wealthy individuals"], correct: "The tax rates needed to fund a liveable UBI could reduce productive investment", transcript: "Critic: The administrative argument for UBI, replacing the complexity of means-tested benefits with a single universal payment, is appealing. But it ignores the massive redistribution required to fund it at meaningful levels. To give every adult a genuinely liveable income, you'd need marginal tax rates that would very likely reduce the productive investment this economy depends on." },
-        { id: "C1_14", audio: "audio/level_test/C1-Q14.mp3", text: "What does the professor mean by saying the curriculum choice is a political act?", options: ["Curriculum choices are influenced by government pressure", "Teaching history is not appropriate in a democracy", "Deciding what to include and exclude in education reflects and reproduces power", "The professor agrees the curriculum contains propaganda"], correct: "Deciding what to include and exclude in education reflects and reproduces power", transcript: "Student: A lot of what I was taught about the British Empire at school was essentially propaganda. Professor: That's a strong word. But you're pointing at something real. The curriculum has historically emphasised certain narratives, trade, industrialisation, exploration, while systematically marginalising others: displacement, exploitation, and violence. The question of what to teach, and what to leave out, is itself a political act." },
-        { id: "C1_15", audio: "audio/level_test/C1-Q15.mp3", text: "What limitation of the marketplace of ideas does the philosopher identify?", options: ["Bad ideas are usually more convincing than good ones", "The model assumes that people can think rationally", "The model assumes equal access, which doesn't exist in practice", "Refutation of bad ideas is impossible in a digital environment"], correct: "The model assumes equal access, which doesn't exist in practice", transcript: "Philosopher: The case for absolute free speech rests on what Mill called the marketplace of ideas: bad ideas should be exposed and refuted through open debate, not suppressed. The problem is that this model assumes rough equality of access to the marketplace. In practice, well-funded actors with media access can amplify harmful ideas to millions before any refutation reaches the same audience." },
-        { id: "C1_16", audio: "audio/level_test/C1-Q16.mp3", text: "What is the director's real concern?", options: ["The strategy is too complicated", "The market conditions are clearly wrong", "The strategy depends on assumptions about market conditions that may be incorrect", "The presentation was not well prepared"], correct: "The strategy depends on assumptions about market conditions that may be incorrect", transcript: "Chair: I'd like to invite comments on the proposed strategy before we vote. Director: I want to be measured in what I say. I think the strategy is coherent and well-presented. My reservations relate not to the strategy itself but to the assumptions about market conditions on which it rests. If those assumptions prove incorrect, the strategy's coherence becomes somewhat academic." },
-        { id: "C1_17", audio: "audio/level_test/C1-Q17.mp3", text: "What does Colleague B most likely mean?", options: ["The proposal was impressive and well-researched", "The proposal was so polished it raised suspicions about its substance", "The consultant had an excellent reputation", "The proposal was delivered too quickly"], correct: "The proposal was so polished it raised suspicions about its substance", transcript: "Colleague A: What did you make of the consultant's proposal? Colleague B: I thought it was slick. Very slick, actually." },
-        { id: "C1_18", audio: "audio/level_test/C1-Q18.mp3", text: "What is the reviewer's concern?", options: ["The methodology is flawed", "The paper is too short", "The paper implies broader generalisability than the sample justifies", "The references are incomplete"], correct: "The paper implies broader generalisability than the sample justifies", transcript: "Reviewer: The methodology is technically sound. My concern is with what the paper doesn't say. The discussion section presents the findings as if they generalise broadly, but the sample was highly selective." },
-        { id: "C1_19", audio: "audio/level_test/C1-Q19.mp3", text: "What does the politician regret?", options: ["Resigning before the crisis was resolved", "Not consulting enough international experts", "Legislation rushed through during a crisis that caused unforeseen long-term damage", "His communication strategy during the crisis"], correct: "Legislation rushed through during a crisis that caused unforeseen long-term damage", transcript: "Interviewer: Looking back, is there anything you did that you now regret? Politician: I regret the legislation we rushed through in the wake of the crisis. I understood the pressure we were under, and I stand by the intention. But speed and fear are not good parents of good law, and some of what we passed has caused enduring damage that I don't think any of us foresaw." },
-        { id: "C1_20", audio: "audio/level_test/C1-Q20.mp3", text: "What is Writer B's position on critical feedback?", options: ["Kindness is always more important than honesty in criticism", "All feedback should be delivered gently to encourage writers", "Honest, even harsh, criticism serves writers and the field better than false praise", "Critical reviews should be avoided as they damage relationships"], correct: "Honest, even harsh, criticism serves writers and the field better than false praise", transcript: "Writer A: Your last review wasn't exactly generous. Writer B: I called it as I saw it. I don't think doing someone the disservice of pretending mediocre work is good helps them or the field. Writer A: Some would say you were needlessly cruel. Writer B: I'd rather be honestly useful than dishonestly kind." },
-        { id: "C1_21", audio: "audio/level_test/C1-Q21.mp3", text: "What does the documentary say about memory retrieval?", options: ["It strengthens the accuracy of memories over time", "It creates entirely new memories to replace old ones", "It can distort memories because they are partially reconstructed during recall", "It is only active for emotionally significant events"], correct: "It can distort memories because they are partially reconstructed during recall", transcript: "Narrator: The hippocampus plays a central role in the formation of new memories. But what is less commonly known is that it is also active during the consolidation of old ones. When we recall a memory, the hippocampus partially reconstructs it, incorporating the context in which the memory is recalled. This means that our memories of past events are not static archives but dynamic reconstructions, vulnerable to distortion with every retrieval." },
-        { id: "C1_22", audio: "audio/level_test/C1-Q22.mp3", text: "Why does the barrister say the burden of proof must rest with the state?", options: ["Because the legal system requires it", "Because the state has the necessary expertise", "Because the state has far greater resources than any individual", "Because defendants are usually guilty"], correct: "Because the state has far greater resources than any individual", transcript: "Barrister: The principle that a person is innocent until proven guilty is not merely a legal formality. It is an epistemic and moral safeguard. The burden of proof must rest with the state precisely because the state has infinitely more resources to investigate, prosecute, and punish than any individual. Where that burden is reversed, the presumption of innocence dissolves, and we lose the very architecture that prevents the abuse of state power." },
-        { id: "C1_23", audio: "audio/level_test/C1-Q23.mp3", text: "What does the documentary say about ecosystem services and technology?", options: ["Technology is already replacing some ecosystem services effectively", "The cost of ecosystem services is exaggerated", "Technology can partially replicate ecosystem services", "Ecosystem services are irreplaceable by any known technology"], correct: "Ecosystem services are irreplaceable by any known technology", transcript: "One of the least visible consequences of biodiversity loss is the disruption of ecosystem services: the processes by which healthy ecosystems clean water, pollinate crops, regulate climate, and cycle nutrients. These services have been estimated to be worth over one hundred and twenty-five trillion dollars annually to the global economy. Crucially, they are irreplaceable by any known technology. When we lose a species, we risk losing its contribution to processes we depend on but barely understand." },
-        { id: "C1_24", audio: "audio/level_test/C1-Q24.mp3", text: "What does the philosopher say is the most honest way to define art?", options: ["Art is whatever formal traditions classify as such", "Art is defined by the intention of the creator", "Art is whatever the art world designates", "Art is a family resemblance concept with no single defining feature"], correct: "Art is a family resemblance concept with no single defining feature", transcript: "Host: What makes something art? And who decides? Philosopher: If we define art as whatever the art world says is art, we get a circular and elitist answer. If we define it by formal properties, we can't account for the readymades of Duchamp, where a urinal became art simply by being placed in a gallery. I think the most honest answer is that art is a family resemblance concept, meaning that there is no single defining feature, only a cluster of overlapping similarities." },
-        { id: "C1_25", audio: "audio/level_test/C1-Q25.mp3", text: "What does the professor emphasise about antibiotic resistance?", options: ["It is a future crisis that needs preparation now", "It is already happening, is man-made, and is largely preventable", "It mainly affects low-income countries", "It can be solved through better vaccine technology"], correct: "It is already happening, is man-made, and is largely preventable", transcript: "Professor: We often speak of antibiotic resistance as a future problem. It is not. It is a present crisis that currently kills around seven hundred thousand people annually worldwide. By 2050, on current trajectories, the figure could reach ten million per year, exceeding cancer as a cause of death. The tragedy is that this crisis is almost entirely man-made, driven by the overuse of antibiotics in agriculture and human medicine, and it is almost entirely preventable." },
-        { id: "C1_26", audio: "audio/level_test/C1-Q26.mp3", text: "What is the woman's criticism of the keynote?", options: ["The speaker was not sufficiently qualified", "The audience was too large for the format", "Too much time was spent on problems and too little on solutions", "The delivery was poor despite the content being strong"], correct: "Too much time was spent on problems and too little on solutions", transcript: "Man: What did you make of the keynote? Woman: Impressive delivery. Though I noticed she spent forty minutes on problems we all already understand and about five minutes on solutions. Man: Classic keynote format. Woman: Exactly. Long on diagnosis, short on prescription." },
-        { id: "C1_27", audio: "audio/level_test/C1-Q27.mp3", text: "What distinction does the speaker draw between voting and democracy?", options: ["Voting is more important than civic engagement", "Voting is the only meaningful form of democratic participation", "Democracy requires ongoing civic engagement, not just periodic voting", "Voting should be made compulsory to strengthen democracy"], correct: "Democracy requires ongoing civic engagement, not just periodic voting", transcript: "Speaker: We have fetishised the vote as the defining act of democratic participation. But democracy is not merely the periodic aggregation of preferences. It is, at its best, a culture of deliberation, accountability, and civic engagement. A society in which people vote every few years but disengage entirely in between is not a healthy democracy. It is a managed one." },
-        { id: "C1_28", audio: "audio/level_test/C1-Q28.mp3", text: "What does the researcher say about parental education and children's outcomes?", options: ["Intelligence is the strongest predictor of success", "Schools alone can eliminate the gap between children from different backgrounds", "Parental education is powerful because it transmits cultural capital and institutional knowledge", "Children from less educated families lack the ability to succeed"], correct: "Parental education is powerful because it transmits cultural capital and institutional knowledge", transcript: "Researcher: The evidence consistently shows that the most powerful predictor of a child's educational outcome is the education level of their parents. This is not primarily about intelligence. It's about the cultural capital that educated parents can transmit: language, aspirations, the ability to navigate institutions, knowledge of how to access opportunities. Closing the gap requires understanding that you are not just teaching children; you are contesting the reproduction of social class." },
-        { id: "C1_29", audio: "audio/level_test/C1-Q29.mp3", text: "What does the journalist say is needed for serious journalism to survive?", options: ["More government funding for all media", "Stricter regulation of social media platforms", "Sustainable business models such as subscriptions or philanthropy", "Merging small media organisations into larger ones"], correct: "Sustainable business models such as subscriptions or philanthropy", transcript: "Journalist: The digital advertising model has been catastrophic for serious journalism. When revenue depends on clicks, the incentive is always to produce outrage over analysis, speed over accuracy, simplification over nuance. The media organisations that survive as serious journalism operations are increasingly those that have found sustainable models: subscriptions, philanthropic funding, or public ownership." },
-        { id: "C1_30", audio: "audio/level_test/C1-Q30.mp3", text: "How does the professor reframe resistance to change?", options: ["As a disciplinary issue that needs firm management", "As a sign that the change is unnecessary", "As information that may reflect genuine understanding of the consequences", "As a predictable and irrational emotional response"], correct: "As information that may reflect genuine understanding of the consequences", transcript: "Professor: Most change management frameworks treat resistance as a problem to be overcome. I want to suggest a different framing. Resistance is often information. Employees who resist a change sometimes understand its consequences better than those driving it. Treating their objections as obstacles to be managed, rather than data to be processed, is a systematic way of making bad decisions worse." },
-        { id: "C1_31", audio: "audio/level_test/C1-Q31.mp3", text: "What does the director say is the most common reason excellent strategies fail?", options: ["The strategy is too ambitious", "There is insufficient funding to implement it", "The gap between the plan and the daily behaviour of those executing it", "The senior leadership is not sufficiently committed"], correct: "The gap between the plan and the daily behaviour of those executing it", transcript: "Director: I want to stress that the success of this initiative depends entirely on implementation. The strategy itself is excellent. What typically kills excellent strategies is not the plan but the gap between the plan and the daily behaviour of the people responsible for executing it." },
-        { id: "C1_32", audio: "audio/level_test/C1-Q32.mp3", text: "What does the professor say is the limitation of thought experiments in ethics?", options: ["They are too complicated for non-philosophers", "They produce conclusions that contradict scientific findings", "They strip away the contextual complexity of real moral decisions", "They were designed for a different era and are now outdated"], correct: "They strip away the contextual complexity of real moral decisions", transcript: "Professor: Trolley problems and other philosophical thought experiments are designed to isolate variables, to strip away all the contextual factors that normally inform our moral judgments. This is their strength as analytical tools. But it's also their limitation. Real moral decisions are always embedded in relationships, histories, and competing obligations that no thought experiment can replicate. Using them to derive binding moral principles is therefore inherently suspect." },
-        { id: "C1_33", audio: "audio/level_test/C1-Q33.mp3", text: "What does the speaker argue about neurodivergent employees beyond accommodation?", options: ["They primarily need extra support to meet standard expectations", "They should only be hired in specialist roles", "They possess strengths that conventional processes fail to surface and should be leveraged as assets", "Organisations overestimate the challenges of managing neurodivergent employees"], correct: "They possess strengths that conventional processes fail to surface and should be leveraged as assets", transcript: "Speaker: When organisations talk about neurodiversity, they typically focus on accommodating difference: providing quiet rooms, flexible deadlines, written instructions. These things matter. But accommodation alone is an impoverished model. The more transformative question is: what does this person bring that conventional hiring processes systematically failed to surface? Neurodivergent thinkers often excel at pattern recognition, sustained focus on complex problems, and lateral thinking. Those are not deficits we're accommodating; they are assets we've failed to leverage." },
-        { id: "C1_34", audio: "audio/level_test/C1-Q34.mp3", text: "What does the woman mean by 'the performance of consultation'?", options: ["The consultation was conducted by professional actors", "The consultation was very well organised", "The consultation was public theatre, not genuine engagement with dissent", "The consultation was too short to be meaningful"], correct: "The consultation was public theatre, not genuine engagement with dissent", transcript: "Woman: I don't understand why they went ahead without a proper consultation. Man: In fairness, they did run a consultation. The problem was it was structured in a way that made dissent very difficult to articulate. Woman: That's not a consultation. That's the performance of consultation." },
-        { id: "C1_35", audio: "audio/level_test/C1-Q35.mp3", text: "What does the panellist say is genuinely unprecedented?", options: ["The speed at which AI is developing", "The potential of AI to transform industry", "The concentration of that level of power with so little accountability", "The number of people now using AI tools"], correct: "The concentration of that level of power with so little accountability", transcript: "Panellist: My concern is not with AI in the abstract. It is with the concentration of AI capabilities in a small number of extremely powerful private companies. The decisions they make about how these systems are trained, what objectives they optimise for, and who has access to them will shape the information environment that billions of people inhabit. That kind of power with that level of accountability is genuinely unprecedented." },
-        { id: "C1_36", audio: "audio/level_test/C1-Q36.mp3", text: "What point is the professor making about political language?", options: ["Political language is always honest when used by democratic governments", "The public is too sophisticated to be misled by political language", "Orwell's criticism of political language is now out of date", "Language choices in politics deliberately shape how events are morally and emotionally perceived"], correct: "Language choices in politics deliberately shape how events are morally and emotionally perceived", transcript: "Professor: Orwell observed that political language is designed to make lies sound truthful and murder respectable. Language choices are rarely neutral. When a government describes drone strikes as surgical precision operations, or describes the reduction of public services as efficiency savings, it is doing something very deliberate with language: it is managing the emotional and moral response of the public by controlling the vocabulary through which events are perceived." },
-        { id: "C1_37", audio: "audio/level_test/C1-Q37.mp3", text: "What is the director's central argument?", options: ["Homelessness is caused by personal failings that are hard to address", "Finland's model cannot be replicated in other countries", "The solutions to homelessness are known but lack the political will to be implemented", "The charity sector is more effective than government at addressing homelessness"], correct: "The solutions to homelessness are known but lack the political will to be implemented", transcript: "Interviewer: You've said that homelessness is a political choice rather than an inevitability. What do you mean? Director: Simply that we know how to end homelessness. Finland has come very close. The interventions are well-evidenced: Housing First, targeted mental health support, coordinated services. What's lacking is not knowledge or technology. It's the political will to prioritise and fund it. When we say we can't solve homelessness, what we usually mean is we have chosen not to." },
-        { id: "C1_38", audio: "audio/level_test/C1-Q38.mp3", text: "What does the speaker say about divergent thinking?", options: ["Education systems are strong at teaching it", "It is less valuable than convergent thinking", "It is essential for problems where new options need to be generated", "It cannot be taught and is purely innate"], correct: "It is essential for problems where new options need to be generated", transcript: "Speaker: We have built education systems that are extraordinarily effective at producing convergent thinkers: people who can select the best answer from a range of given options. We are much less effective at producing divergent thinkers: people who can generate new options that weren't on the list. The first skill is essential for stable, well-understood problems. The second is essential for everything else." },
-        { id: "C1_39", audio: "audio/level_test/C1-Q39.mp3", text: "Why is Researcher B cautious about the findings?", options: ["The trial methodology was flawed", "The effect size was too large to be credible", "The sample was too large and unrepresentative", "The modest effect size and specific sample make broader generalisation premature"], correct: "The modest effect size and specific sample make broader generalisation premature", transcript: "Researcher A: Do you think the trial's findings will survive replication? Researcher B: I'm genuinely uncertain. The effect size was modest and the sample was from a fairly specific population. I'd want to see it replicated in two or three different contexts before drawing any broader conclusions." },
-        { id: "C1_40", audio: "audio/level_test/C1-Q40.mp3", text: "What is the first step in design thinking, according to the guest?", options: ["Generating as many solutions as possible", "Understanding the human experience to find the real problem", "Analysing the data related to the problem", "Testing potential solutions quickly"], correct: "Understanding the human experience to find the real problem", transcript: "Host: What distinguishes design thinking from other problem-solving approaches? Guest: Most problem-solving begins with a given problem and moves towards a solution. Design thinking begins with empathy: understanding the actual experience of the person who has the problem, which often reveals that the stated problem is not the real problem. Only once you've understood the human experience do you define the problem you're actually solving." },
-        { id: "C1_41", audio: "audio/level_test/C1-Q41.mp3", text: "What does the man say distinguished this leader?", options: ["He gave detailed instructions for every task", "He was very demanding about quality", "He was never available when needed", "He clarified what success looked like and then gave people autonomy"], correct: "He clarified what success looked like and then gave people autonomy", transcript: "Man: The best leader I ever worked for never told us what to do. Woman: Really? How did things get done? Man: He made it absolutely clear what success looked like and then got out of the way. People figured out their own routes. He was the opposite of a micromanager. And the output was consistently exceptional." },
-        { id: "C1_42", audio: "audio/level_test/C1-Q42.mp3", text: "What does research suggest about the deficit model?", options: ["Providing more information consistently increases public trust in science", "The model works well for topics like climate change", "More information often increases polarisation rather than reducing scepticism", "The model has never been widely adopted in practice"], correct: "More information often increases polarisation rather than reducing scepticism", transcript: "Speaker: The deficit model of science communication assumes that public scepticism about science arises from a lack of information and that providing more information will correct it. Decades of research suggest this is wrong. People who are given more information about contested scientific topics often become more polarised, not less. This is because information is interpreted through pre-existing values and identities, not processed in a neutral, rational vacuum." },
-        { id: "C1_43", audio: "audio/level_test/C1-Q43.mp3", text: "What is the compatibilist position on moral responsibility?", options: ["Moral responsibility is impossible under determinism", "People are only responsible for deliberate actions", "Moral responsibility requires only that behaviour responds to reasons, not the absence of causation", "Genetics and upbringing eliminate all moral responsibility"], correct: "Moral responsibility requires only that behaviour responds to reasons, not the absence of causation", transcript: "Professor: If we accept that behaviour is caused by factors outside our control, whether genetics, upbringing, or circumstance, it becomes difficult to sustain the traditional concept of moral responsibility. The hard determinist concludes that nobody is ever truly responsible for anything. The compatibilist response is that moral responsibility doesn't require the absence of causation. It requires only that behaviour responds to reasons, that the person can be influenced by praise, blame, or the presentation of better arguments." },
-        { id: "C1_44", audio: "audio/level_test/C1-Q44.mp3", text: "Which factor does the economist say is most underappreciated?", options: ["Technological change", "Globalisation", "The erosion of labour institutions", "The financialisation of the economy"], correct: "The erosion of labour institutions", transcript: "Host: Inequality within countries has increased significantly since the 1980s. Why? Economist: Three main factors: technological change that rewards skills and punishes routine work; globalisation, which compressed wages by exposing workers to international competition; and the erosion of labour institutions, particularly trade unions, which previously counterbalanced the bargaining power of employers. Of these, the erosion of labour institutions is perhaps the most underappreciated." },
-        { id: "C1_45", audio: "audio/level_test/C1-Q45.mp3", text: "What practical behaviour does the endowment effect and loss aversion explain?", options: ["People invest in risky assets when they should not", "People hold losing investments too long and sell winning ones too early", "People overestimate the future value of their assets", "People are unwilling to invest without guarantees"], correct: "People hold losing investments too long and sell winning ones too early", transcript: "Professor: The endowment effect describes the tendency of people to value things more highly once they own them. This creates an asymmetry: the price at which someone will sell an item is typically higher than the price at which they would buy the same item. Loss aversion, the tendency to weight losses more heavily than equivalent gains, is the psychological mechanism underlying this. In practical terms, it explains why so many people hold losing investments too long and sell winning ones too early." },
-        { id: "C1_46", audio: "audio/level_test/C1-Q46.mp3", text: "What would happen to the building if the community company fails financially?", options: ["It would be sold to a private developer", "It would be bought by the council", "The building would stay in community ownership", "Shareholders would be compensated by the council"], correct: "The building would stay in community ownership", transcript: "Woman: The residents' association is proposing a community buy-out of the old post office building. Man: How would that work? Woman: People in the neighbourhood would buy shares in a community company that would own and run the building. It could be a café, a co-working space, shared workshops, whatever the community decides. Man: And if it doesn't work out financially? Woman: Shareholders lose their investment, but the building stays in community ownership. A private buyer would just convert it to flats." },
-        { id: "C1_47", audio: "audio/level_test/C1-Q47.mp3", text: "What does the documentary say about sophisticated propaganda?", options: ["It relies entirely on fabricated information", "It is easily detected by educated audiences", "It relies on selective truth, framing, and context removal rather than outright lies", "It was only effective before the age of mass media"], correct: "It relies on selective truth, framing, and context removal rather than outright lies", transcript: "Narrator: What distinguishes sophisticated propaganda from crude propaganda is not the absence of falsehood but the presence of enough truth to create plausibility. The most effective propaganda operations in history have not relied primarily on outright lies. They have relied on selective truth, context removal, framing effects, and strategic ambiguity, techniques that leave no obvious lie to be refuted but nonetheless systematically distort understanding." },
-        { id: "C1_48", audio: "audio/level_test/C1-Q48.mp3", text: "What is the ethicist's deeper concern about AI in life-and-death decisions?", options: ["AI systems are not yet technically capable of such decisions", "The cost of implementing AI in these contexts is too high", "Accountability and the ability to hold a system responsible are not yet adequately resolved", "The public will never accept AI making such decisions"], correct: "Accountability and the ability to hold a system responsible are not yet adequately resolved", transcript: "Interviewer: Should AI systems be allowed to make life-and-death decisions in medical or military contexts? Ethicist: This question often gets framed as a technical one: can AI make these decisions reliably? But the deeper question is whether accountability is possible when an AI makes a decision that causes death or harm. A human who makes such a decision can be held responsible, can explain their reasoning, can be judged by the standards we care about. Can a system? I don't think we have adequate answers to that yet." },
-        { id: "C1_49", audio: "audio/level_test/C1-Q49.mp3", text: "What is the key difference between high-context and low-context communication styles?", options: ["High-context cultures use more formal language", "In low-context cultures, words carry most of the meaning; in high-context, meaning is carried by relationship, tone and implication", "Low-context cultures rely more on non-verbal communication", "High-context cultures communicate more directly"], correct: "In low-context cultures, words carry most of the meaning; in high-context, meaning is carried by relationship, tone and implication", transcript: "Speaker: One of the most common sources of misunderstanding in cross-cultural communication is not vocabulary or grammar but high-context versus low-context communication styles. In low-context cultures, typified by northern Europe and North America, meaning is primarily carried by the words. In high-context cultures, typified by much of East Asia and the Middle East, meaning is carried by relationship, tone, timing, and implication. When a low-context communicator says that's an interesting idea, they mean exactly that. When a high-context communicator says the same thing, it may be a polite refusal." },
-        { id: "C1_50", audio: "audio/level_test/C1-Q50.mp3", text: "What does Economist B mean by 'flying on instruments in fog'?", options: ["The central bank is using the wrong policy tools", "The economic data is misleading", "The central bank is navigating without clear visibility of where the economy is", "The economists are not communicating clearly with each other"], correct: "The central bank is navigating without clear visibility of where the economy is", transcript: "Economist A: Do you think the central bank made the right call raising rates so aggressively? Economist B: It's complicated. The theory was right: tighten monetary conditions to reduce demand and bring inflation down. But the lag effects mean we won't see the full impact for another twelve to eighteen months. If the economy tips into recession before that, it'll look like they overcorrected. Economist A: And will they cut in time? Economist B: That's the question. They're flying on instruments in fog. Nobody knows exactly where they are." }
-    ],
+    { 
+        id: "B2_01", 
+        audio: "audio/level_test/B2-Q01.mp3", 
+        text: "What does the lecturer argue is more effective than recycling?", 
+        options: ["Shifting towards renewable energy sources in households", "Lowering the overall volume of goods purchased", "Prioritizing products with sustainable packaging", "Implementing organic waste management systems"], 
+        correct: "Lowering the overall volume of goods purchased", 
+        transcript: "Lecturer: Many people believe that recycling is the most important thing individuals can do for the environment. But reducing consumption is actually more effective. For example, producing a single cotton t-shirt requires approximately two thousand seven hundred litres of water. That's enough for one person to drink for two and a half years. So buying a second-hand shirt, or simply buying less, saves far more than recycling the shirt afterwards." 
+    },
+    { 
+        id: "B2_02", 
+        audio: "audio/level_test/B2-Q02.mp3", 
+        text: "What do open-plan offices actually produce, according to research?", 
+        options: ["A surge in creative thinking and original ideas", "Enhanced cooperation across various company sectors", "Increased interruptions and a decrease in work efficiency", "A notable boost in the general spirit of the workforce"], 
+        correct: "Increased interruptions and a decrease in work efficiency", 
+        transcript: "Professor: Open-plan offices were introduced with the idea of encouraging collaboration. However, a growing body of research now suggests they achieve the opposite. Workers in open-plan environments take more sick days, report higher levels of distraction, and are less productive than those in private offices or working from home. The noise and lack of privacy appear to trigger a stress response that undermines concentration." 
+    },
+    { 
+        id: "B2_03", 
+        audio: "audio/level_test/B2-Q03.mp3", 
+        text: "What is the definition of a nudge according to Dr. Patel?", 
+        options: ["A mandatory regulation that forces behavioral change", "A monetary reward designed to encourage better habits", "A subtle contextual adjustment that guides behavior without coercion", "A marketing initiative aimed at shifting public perception"], 
+        correct: "A subtle contextual adjustment that guides behavior without coercion", 
+        transcript: "Host: Today we're discussing the concept of nudge theory with Dr. Patel. Dr. Patel, can you explain what a nudge is? Dr. Patel: A nudge is any small change to the environment that makes a certain behaviour more likely, without restricting freedom of choice. For example, placing fruit at eye level in a canteen, instead of hiding it at the back. People still choose what they want, but healthier options become more salient. Host: And where is this being used in policy? Dr. Patel: In pension enrolment, organ donation, and even energy consumption. In the UK, switching the default for pension contributions to opt-out rather than opt-in dramatically increased participation rates." 
+    },
+    { 
+        id: "B2_04", 
+        audio: "audio/level_test/B2-Q04.mp3", 
+        text: "What does the researcher say seems clearer from the evidence?", 
+        options: ["Any degree of social media engagement is detrimental", "There is a direct causal link between social apps and teen depression", "Direct digital communication is more damaging than browsing", "The non-active consumption of digital content is linked to higher risk"], 
+        correct: "The non-active consumption of digital content is linked to higher risk", 
+        transcript: "Researcher: The relationship between social media use and mental health is not straightforward. Some studies find correlations between heavy use and anxiety or depression, particularly in adolescents. However, correlation is not causation. It may be that people who are already struggling emotionally are more likely to turn to social media. What seems clearer is that the type of use matters. Passive consumption of others' content appears more harmful than active social interaction." 
+    },
+    { 
+        id: "B2_05", 
+        audio: "audio/level_test/B2-Q05.mp3", 
+        text: "What is Panellist B's main argument against carbon taxes?", 
+        options: ["Their inability to actually lower global emission rates", "The logistical complexity of their implementation", "Lack of public support due to the impact on daily expenses", "The unfair financial burden they place on large enterprises"], 
+        correct: "Lack of public support due to the impact on daily expenses", 
+        transcript: "Moderator: The question is whether carbon taxes are the most effective tool for reducing emissions. Panellist A: Carbon taxes send a clear price signal to businesses and consumers. They're administratively simple and can generate revenue for green investment. Panellist B: But they're politically unpopular because they feel like a direct hit on household budgets. Regulation and investment in public transport often achieve more with less public resistance." 
+    },
+    { 
+        id: "B2_06", 
+        audio: "audio/level_test/B2-Q06.mp3", 
+        text: "What lesson did the candidate take from that experience?", 
+        options: ["The importance of negotiating better financial terms", "The necessity of receiving a written contract immediately", "Conducting deeper inquiries and interviewing the staff beforehand", "Avoiding any positions that involve managing others"], 
+        correct: "Conducting deeper inquiries and interviewing the staff beforehand", 
+        transcript: "Interviewer: You left your previous role after only eight months. Can you explain? Candidate: The role was misrepresented during the hiring process. I was told I'd be leading a team of ten, but on my first day the team had just been restructured and I'd be working independently. I raised it with my manager, but nothing changed. I made the difficult decision to leave. Interviewer: And what did you learn from that experience? Candidate: To ask much more specific questions during the interview process. And to ask to meet the team before accepting an offer." 
+    },
+    { 
+        id: "B2_07", 
+        audio: "audio/level_test/B2-Q07.mp3", 
+        text: "What happens if not enough people take voluntary redundancy?", 
+        options: ["The planned reorganization will be scrapped", "Management will offer a second round of incentives", "The company will initiate mandatory job cuts", "The period for internal discussion will be lengthened"], 
+        correct: "The company will initiate mandatory job cuts", 
+        transcript: "Man: The board has approved the restructure. Half the regional offices are closing. Woman: I heard. It's going to affect around two hundred positions. Man: Yes. They're offering voluntary redundancy first, but if they don't get enough volunteers, there'll be compulsory redundancies. Woman: How long do employees have to decide? Man: The consultation period closes in six weeks." 
+    },
+    { 
+        id: "B2_08", 
+        audio: "audio/level_test/B2-Q08.mp3", 
+        text: "What did Finland's UBI pilot scheme find about participants' work behaviour?", 
+        options: ["Their drive to find employment significantly decreased", "Most individuals opted to exit the workforce entirely", "Participants became overly critical of job opportunities", "The desire to find a job remained largely unchanged"], 
+        correct: "The desire to find a job remained largely unchanged", 
+        transcript: "Woman: What do you make of the proposal to introduce universal basic income? Man: I see the appeal, especially for people in precarious employment. But the cost is staggering. Some models estimate it would require doubling income tax. Woman: There's also the question of what it would do to the labour market. Would people stop working? Man: Most pilot schemes suggest not. In Finland, participants actually reported better mental health and were no less likely to seek employment." 
+    },
+    { 
+        id: "B2_09", 
+        audio: "audio/level_test/B2-Q09.mp3", 
+        text: "What does the supervisor recommend?", 
+        options: ["Broadening the study to incorporate multiple perspectives", "Re-evaluating the entire project from the beginning", "Concentrating on the path where the most primary evidence exists", "Consulting an alternative academic for a new viewpoint"], 
+        correct: "Concentrating on the path where the most primary evidence exists", 
+        transcript: "Student: I'm struggling to narrow my research question. I keep finding more interesting angles. Supervisor: That's common at this stage. The danger is that you try to cover everything and end up saying very little about anything. You need to make a choice and commit to it. Student: Should I go with the economic angle or the sociological one? Supervisor: Which one do you have the most original data for? Student: Probably the sociological angle. I've done twelve interviews. Supervisor: Then that's your answer. Build around what you have." 
+    },
+    { 
+        id: "B2_10", 
+        audio: "audio/level_test/B2-Q10.mp3", 
+        text: "What is Dr. Webb's concern about tuition fees?", 
+        options: ["They compromise the standards of academic instruction", "The financial burden unfairly impacts less wealthy students", "They make the institution less attractive to foreign applicants", "They cause administrative issues in oversubscribed courses"], 
+        correct: "The financial burden unfairly impacts less wealthy students", 
+        transcript: "Presenter: Should universities charge tuition fees? We have two guests with opposing views. Dr. Webb, you're against fees. Dr. Webb: Higher education should be a public good, not a commodity. Tuition fees create debt that disproportionately affects students from lower-income backgrounds, and they shift the purpose of a degree from intellectual development to return on investment. Presenter: And Professor Gray, you support fees. Professor Gray: Without fees, universities can't maintain quality. Public funding has never been sufficient. The evidence actually shows that graduate earnings justify the investment for most graduates." 
+    },
+    { 
+        id: "B2_11", 
+        audio: "audio/level_test/B2-Q11.mp3", 
+        text: "What concern do residents near the site have?", 
+        options: ["The high public cost of the development", "The lack of necessity for such a facility", "Potential auditory pollution and increased road congestion", "The unsuitability of the chosen physical location"], 
+        correct: "Potential auditory pollution and increased road congestion", 
+        transcript: "The city council has approved plans to construct a new sports complex in the east of the city, including an Olympic-size swimming pool, four tennis courts, and a fitness centre. Construction will begin next spring and is expected to take two years. The project has divided opinion, with business owners welcoming the economic boost but residents near the site raising concerns about noise and traffic during construction." 
+    },
+    { 
+        id: "B2_12", 
+        audio: "audio/level_test/B2-Q12.mp3", 
+        text: "What does Professor Chen warn about hybrid working?", 
+        options: ["It leads to a sharp increase in unscheduled absences", "The initial cost of digital infrastructure is prohibitive", "It may lead to inequality within the workforce if poorly handled", "Its effectiveness is limited to technical industries"], 
+        correct: "It may lead to inequality within the workforce if poorly handled", 
+        transcript: "Host: Professor Chen, your new report suggests remote work has had a more complex impact than initially thought. Professor Chen: Productivity in many sectors has held steady or increased. But we're seeing challenges around collaboration and what we call organisational culture. People get their tasks done, but the informal exchanges that drive innovation are being lost. Hybrid working seems the best compromise, but it needs careful management to avoid creating two-tier workforces." 
+    },
+    { 
+        id: "B2_13", 
+        audio: "audio/level_test/B2-Q13.mp3", 
+        text: "Why do financial advisers say consumer debt is more dangerous than mortgage debt?", 
+        options: ["It tends to grow faster due to poor spending habits", "The lack of visibility makes it difficult to monitor", "Higher borrowing costs and the absence of a tangible asset", "It has a more immediate negative impact on credit ratings"], 
+        correct: "Higher borrowing costs and the absence of a tangible asset", 
+        transcript: "Narrator: In the last decade, average household debt in many developed economies has risen to record levels. Unlike mortgage debt, much of this is consumer debt: credit cards, car finance, and buy-now-pay-later schemes. Financial advisers warn that this type of debt is more dangerous because it comes with higher interest rates and no underlying asset to show for it." 
+    },
+    { 
+        id: "B2_14", 
+        audio: "audio/level_test/B2-Q14.mp3", 
+        text: "What is the campaigner's argument for mandatory labelling?", 
+        options: ["To alert the public to the long-term health risks of alcohol", "To discourage the consumption of alcohol by minors", "To provide people with the necessary data for educated decisions", "To ensure producers comply with existing legal frameworks"], 
+        correct: "To provide people with the necessary data for educated decisions", 
+        transcript: "Interviewer: You've been campaigning for mandatory nutritional labelling on alcohol products. Why? Campaigner: Alcohol is one of the few food products that doesn't require calorie information on the label. A standard glass of wine has as many calories as a slice of cake, but most people have no idea. We believe consumers have a right to make informed choices." 
+    },
+    { 
+        id: "B2_15", 
+        audio: "audio/level_test/B2-Q15.mp3", 
+        text: "According to the expert, what is new in this UN report?", 
+        options: ["A revision of the total number of endangered species", "The proposal of a legally binding international agreement", "The focus on how various environmental threats are linked", "Identifying global warming as the primary and only catalyst"], 
+        correct: "The focus on how various environmental threats are linked", 
+        transcript: "Host: The UN report released this week on biodiversity is being described as a wake-up call. What does it actually say? Expert: In summary, around one million species are currently at risk of extinction, more than at any other point in human history. The main drivers are habitat destruction, overexploitation, climate change, pollution, and invasive species. What's new in this report is the emphasis on the systemic nature of these threats. You can't address one without addressing the others." 
+    },
+    { 
+        id: "B2_16", 
+        audio: "audio/level_test/B2-Q16.mp3", 
+        text: "What does the manager mean by \"let's park those for now\"?", 
+        options: ["The suggestions have been discarded entirely", "Discussion will resume after the primary plan is settled", "The team should reflect on the ideas individually after the meeting", "The ideas require immediate written documentation"], 
+        correct: "Discussion will resume after the primary plan is settled", 
+        transcript: "Manager (in a meeting): I appreciate everyone's contributions today. Some interesting ideas came up. Let's park those for now and revisit them once we've finalised the core strategy." 
+    },
+    { 
+        id: "B2_17", 
+        audio: "audio/level_test/B2-Q17.mp3", 
+        text: "What can be inferred from this statement?", 
+        options: ["The speaker was extremely impressed by the talk", "The speaker found the performance unsatisfactory", "The speaker was not present during the event", "The speaker is downplaying a successful outcome"], 
+        correct: "The speaker found the performance unsatisfactory", 
+        transcript: "Colleague: I wouldn't exactly say the presentation went brilliantly." 
+    },
+    { 
+        id: "B2_18", 
+        audio: "audio/level_test/B2-Q18.mp3", 
+        text: "What does the man most likely mean?", 
+        options: ["He is expressing genuine admiration for the choice", "He is subtly suggesting that the move was ill-advised", "He is inquiring about the details of the transition", "He is considering making a similar move himself"], 
+        correct: "He is subtly suggesting that the move was ill-advised", 
+        transcript: "Man: You're very brave to take that career risk." 
+    },
+    { 
+        id: "B2_19", 
+        audio: "audio/level_test/B2-Q19.mp3", 
+        text: "What does the chair mean?", 
+        options: ["A formal vote is required to resolve the dispute", "The conflicting views have been successfully integrated", "The group should stop debating and proceed despite the conflict", "A consensus has finally been reached by all members"], 
+        correct: "The group should stop debating and proceed despite the conflict", 
+        transcript: "Chair of a meeting: I think we've been going around in circles. Let's agree to disagree for now and move on to the next point." 
+    },
+    { 
+        id: "B2_20", 
+        audio: "audio/level_test/B2-Q20.mp3", 
+        text: "What does this statement suggest about the woman's feelings?", 
+        options: ["She is fully content with the current situation", "She is showing a hesitant and minimal level of approval", "She is visibly excited and optimistic about the news", "She is deeply frustrated by the turn of events"], 
+        correct: "She is showing a hesitant and minimal level of approval", 
+        transcript: "Woman: I suppose it could have been worse." 
+    },
+    { 
+        id: "B2_21", 
+        audio: "audio/level_test/B2-Q21.mp3", 
+        text: "What will happen within five working days?", 
+        options: ["A final resolution will be reached", "The financial reimbursement will be processed", "An employee will initiate contact with the caller", "An automated confirmation will be dispatched"], 
+        correct: "An employee will initiate contact with the caller", 
+        transcript: "Recorded message: Thank you for contacting the complaints department. Your query has been logged and a member of our team will be in touch within five working days. For urgent matters, please contact our helpline directly." 
+    },
+    { 
+        id: "B2_22", 
+        audio: "audio/level_test/B2-Q22.mp3", 
+        text: "What is subject to regulatory clearance?", 
+        options: ["The financial projections for the next quarter", "The decision to combine the two organizations", "The selection of the new chairperson", "The entry of the firm into international territory"], 
+        correct: "The decision to combine the two organizations", 
+        transcript: "Further to our meeting on Thursday, I am writing to confirm that the board has approved the proposed merger, subject to regulatory clearance. The anticipated timeline for completion is six to nine months from today. We will keep all stakeholders informed of progress." 
+    },
+    { 
+        id: "B2_23", 
+        audio: "audio/level_test/B2-Q23.mp3", 
+        text: "What happens to expense claims submitted after thirty days?", 
+        options: ["They will be processed after a short delay", "The request is forwarded to the head of finance", "They are rejected regardless of the situation", "Payment is conditional upon the approval of special reasoning"], 
+        correct: "Payment is conditional upon the approval of special reasoning", 
+        transcript: "HR announcement: With immediate effect, all employees travelling on company business must submit expense claims within thirty days of the trip. Claims submitted after this period will not be reimbursed unless exceptional circumstances are documented and approved by a line manager." 
+    },
+    { 
+        id: "B2_24", 
+        audio: "audio/level_test/B2-Q24.mp3", 
+        text: "What happens if the terms are not met within fourteen days?", 
+        options: ["A final formal warning will be issued", "The original contract is automatically cancelled", "A fixed financial penalty will be enforced", "The matter will be referred to court without warning"], 
+        correct: "The matter will be referred to court without warning", 
+        transcript: "Legal notice read aloud: Failure to comply with the terms of this agreement within fourteen days of receipt will result in legal proceedings being initiated without further notice." 
+    },
+    { 
+        id: "B2_25", 
+        audio: "audio/level_test/B2-Q25.mp3", 
+        text: "What will the speaker cover first?", 
+        options: ["The core conclusions and advice", "A chronological history of the study", "A summary of the research methods used", "The expected impact on the industry"], 
+        correct: "A summary of the research methods used", 
+        transcript: "I'd like to take this opportunity to outline the key findings of our eighteen-month pilot study. I'll cover the methodology briefly, before presenting the data and what we believe are the most significant implications for the wider sector." 
+    },
+    { 
+        id: "B2_26", 
+        audio: "audio/level_test/B2-Q26.mp3", 
+        text: "What happened after Mr. Karim refused to submit the inaccurate report?", 
+        options: ["He was reassigned to a different office", "His employment terms were modified", "His employment was terminated the next day", "Management issued a formal disciplinary letter"], 
+        correct: "His employment was terminated the next day", 
+        transcript: "Officer: Mr. Karim, you were dismissed for misconduct. Can you describe the events of the fourteenth? Mr. Karim: I was told by my supervisor to submit a report I knew contained inaccurate data. I refused. I was dismissed the following day for insubordination. Officer: Did you raise a grievance through formal channels? Mr. Karim: I tried to. My manager told me it wasn't necessary and discouraged me from proceeding." 
+    },
+    { 
+        id: "B2_27", 
+        audio: "audio/level_test/B2-Q27.mp3", 
+        text: "What does the representative suggest the customer do about the hospital's payment request?", 
+        options: ["Settle the bill and wait for a later reimbursement", "Request the facility to speak with the insurer", "Inform the facility in writing that the claim is in progress", "Request the hospital to void the current invoice"], 
+        correct: "Inform the facility in writing that the claim is in progress", 
+        transcript: "Customer: I had a procedure last month and submitted my claim three weeks ago. I still haven't heard anything. Representative: I apologise. Our current processing time is four to six weeks. Your claim should be reviewed within the next two weeks. Customer: The hospital is asking for payment. I don't want to pay out of pocket. Representative: I'd recommend sending the hospital a letter explaining that your claim is under review. Most hospitals will wait." 
+    },
+    { 
+        id: "B2_28", 
+        audio: "audio/level_test/B2-Q28.mp3", 
+        text: "What must the organisation document under the new regulations?", 
+        options: ["All monetary dealings with external clients", "Only the data gathered from this point forward", "Any processing of personal info, regardless of when it was gathered", "Only data that is transferred to external partners"], 
+        correct: "Any processing of personal info, regardless of when it was gathered", 
+        transcript: "Manager: The new data protection regulations require us to document every instance where we process personal data. Employee: Does that include the client database we use daily? Manager: Yes, everything. Any system that stores names, emails, phone numbers, anything personally identifiable. Employee: What if we're using data that was collected before the regulation came into effect? Manager: Doesn't matter. If you're processing it now, it must be documented. We have six months to comply." 
+    },
+    { 
+        id: "B2_29", 
+        audio: "audio/level_test/B2-Q29.mp3", 
+        text: "What does the buyer offer in exchange for a lower price?", 
+        options: ["An increase in the initial down payment", "Taking responsibility for all transaction costs", "A commitment to finalize the deal quickly", "A full cash offer without needing a bank loan"], 
+        correct: "A commitment to finalize the deal quickly", 
+        transcript: "Buyer: We're interested in the property, but the asking price is above our budget. Seller's agent: The vendors are motivated to sell quickly. There may be some flexibility. Buyer: We could offer five percent below asking price, on the condition of a quick exchange. Agent: I'll put it to the vendors. A quick exchange is attractive to them, so it may work in your favour." 
+    },
+    { 
+        id: "B2_30", 
+        audio: "audio/level_test/B2-Q30.mp3", 
+        text: "How will documents be protected in the new system?", 
+        options: ["Physical versions will be archived as a safety measure", "All data will reside on one highly encrypted cloud drive", "Periodic printing of essential records will be required", "Redundant storage will be utilized across cloud and local servers"], 
+        correct: "Redundant storage will be utilized across cloud and local servers", 
+        transcript: "Employee: I've just heard we're switching to a digital-only filing system from next month. Colleague: Yes. The paper archives will be scanned and then destroyed. Employee: I'm a bit worried. What if a document gets corrupted or lost in the digital system? Colleague: Apparently, there will be two backup systems. And anything from the last ten years will be kept in both the cloud and on a local server." 
+    },
+    { 
+        id: "B2_31", 
+        audio: "audio/level_test/B2-Q31.mp3", 
+        text: "What has early data from Paris shown?", 
+        options: ["A rise in property values near bike paths", "Decreased vehicle reliance and cleaner atmosphere", "Challenges for retail businesses in the area", "A statistical increase in walking-related accidents"], 
+        correct: "Decreased vehicle reliance and cleaner atmosphere", 
+        transcript: "Welcome to tonight's documentary on the fifteen-minute city. This concept, popularised by Carlos Moreno in Paris, proposes that all essential services and activities should be accessible within a fifteen-minute walk or cycle from home. Paris has been redesigning its infrastructure along these lines, adding hundreds of kilometres of cycle lanes and converting car parks into community spaces. Early data suggests significant reductions in car use and improvements in air quality in pilot neighbourhoods." 
+    },
+    { 
+        id: "B2_32", 
+        audio: "audio/level_test/B2-Q32.mp3", 
+        text: "What weakness do critics identify in the fifteen-minute city model?", 
+        options: ["The complete omission of underground rail systems", "It risks causing excessive density in urban hubs", "Difficulties in implementing it where infrastructure is already limited", "The model is culturally specific to Western Europe only"], 
+        correct: "Difficulties in implementing it where infrastructure is already limited", 
+        transcript: "Critics, however, point out that the fifteen-minute city assumes a certain density of provision that works well in affluent central districts but is much harder to replicate in peripheral or lower-income neighbourhoods, where services are already sparse. A fifteen-minute city with no nearby services is, effectively, no city at all." 
+    },
+    { 
+        id: "B2_33", 
+        audio: "audio/level_test/B2-Q33.mp3", 
+        text: "What standard did the journalist apply to major claims in the investigation?", 
+        options: ["Validation from a single highly reputable expert", "Direct verification from the corporation's official voice", "Corroboration from no fewer than three unique sources", "Relying strictly on digital records and leaks"], 
+        correct: "Corroboration from no fewer than three unique sources", 
+        transcript: "Journalist: The investigation took two years. We began with a data leak from a whistleblower inside the company. The challenge was verifying everything before we could publish, because if we got anything wrong, we'd face legal action and lose all credibility. Host: How do you verify something on that scale? Journalist: You cross-reference multiple sources. Every major claim in the piece has at least three independent sources. Anything we couldn't verify to that standard was left out, even if it was highly compelling." 
+    },
+    { 
+        id: "B2_34", 
+        audio: "audio/level_test/B2-Q34.mp3", 
+        text: "What do thriving high streets have in common, according to the expert?", 
+        options: ["Inventory that is exclusively unavailable digitally", "A strategy focused on aggressive price competition", "Superior accessibility and free automotive parking", "Integrating leisure and social experiences with shopping"], 
+        correct: "Integrating leisure and social experiences with shopping", 
+        transcript: "Retail expert: The retail sector is undergoing a structural shift, not just a temporary disruption. Footfall in town centres has declined continuously since 2012, not just because of online shopping, but because of how people spend their leisure time more broadly. The high streets that are thriving are those that have reinvented themselves as social destinations: combining food, entertainment, and community events with retail, not competing with online shopping on its own terms." 
+    },
+    { 
+        id: "B2_35", 
+        audio: "audio/level_test/B2-Q35.mp3", 
+        text: "Why is phishing effective, according to the lecture?", 
+        options: ["It bypasses firewalls and modern security software", "It targets security holes in legacy software", "It leverages psychological triggers like a sense of crisis", "It focuses primarily on individuals with limited authority"], 
+        correct: "It leverages psychological triggers like a sense of crisis", 
+        transcript: "Phishing remains one of the most effective forms of cyber attack, not because it exploits technical vulnerabilities, but because it exploits human psychology. Attackers typically create a sense of urgency: your account will be locked, your parcel can't be delivered, your payment has failed. This urgency overrides our critical thinking. The most effective defence is not software but training people to pause and verify before clicking." 
+    },
+    { 
+        id: "B2_36", 
+        audio: "audio/level_test/B2-Q36.mp3", 
+        text: "What distinction does the professor draw?", 
+        options: ["The program has reached its stated objectives", "The initiative is clearly flawed and requires termination", "Absence of proof for success is not identical to proof of failure", "The available statistics are too flawed to be useful"], 
+        correct: "Absence of proof for success is not identical to proof of failure", 
+        transcript: "Student: So are you saying the policy has been completely ineffective? Professor: I'm saying the evidence doesn't clearly support the claim that it's been effective. That's different from saying it's failed. We simply don't have enough longitudinal data yet." 
+    },
+    { 
+        id: "B2_37", 
+        audio: "audio/level_test/B2-Q37.mp3", 
+        text: "What does the speaker mean by \"not quite what we had hoped\"?", 
+        options: ["The performance significantly surpassed the goals", "The figures aligned perfectly with initial forecasts", "The financial outcomes were unsatisfying", "The data is currently being audited for errors"], 
+        correct: "The financial outcomes were unsatisfying", 
+        transcript: "The results from Q3 were, let's say, not quite what we had hoped. Revenue fell by twelve percent year on year, which puts us behind our annual target by a significant margin." 
+    },
+    { 
+        id: "B2_38", 
+        audio: "audio/level_test/B2-Q38.mp3", 
+        text: "What is the speaker implying about the company?", 
+        options: ["The reports they publish contain false information", "Their public image is at odds with their practical actions", "The company is a leader in corporate openness", "The firm lacks a clear understanding of the term 'transparency'"], 
+        correct: "Their public image is at odds with their practical actions", 
+        transcript: "Speaker: I find it somewhat ironic that a company that markets itself on transparency has never published its environmental impact data." 
+    },
+    { 
+        id: "B2_39", 
+        audio: "audio/level_test/B2-Q39.mp3", 
+        text: "What does the candidate acknowledge with \"the benefit of hindsight\"?", 
+        options: ["Regretting the decision to work in a specialized area", "Wishing they had transitioned to a new industry earlier", "A preference for having entered leadership sooner", "Wishing they had pursued a different academic path"], 
+        correct: "A preference for having entered leadership sooner", 
+        transcript: "Interviewer: One last question: is there anything you would have done differently in your career so far? Candidate: With the benefit of hindsight, I probably would have moved into management earlier. I stayed in a technical role for a long time out of comfort rather than strategy. But those technical years gave me a depth of knowledge that still serves me very well." 
+    },
+    { 
+        id: "B2_40", 
+        audio: "audio/level_test/B2-Q40.mp3", 
+        text: "What is the panellist's argument?", 
+        options: ["The primary objective should always be operational speed", "The way we quantify productivity needs to change", "Operational efficiency is meaningless without the correct aim", "The firm should reduce its reliance on objective metrics"], 
+        correct: "Operational efficiency is meaningless without the correct aim", 
+        transcript: "Panellist: I take the point about efficiency. But efficiency in service of what? If we're becoming more efficient at doing the wrong things, we're just getting better at failing." 
+    },
+    { 
+        id: "B2_41", 
+        audio: "audio/level_test/B2-Q41.mp3", 
+        text: "Why hadn't the customer been offered the lower tariff before?", 
+        options: ["They failed to qualify based on their usage history", "The specific plan was only added recently", "It requires a proactive request from the user", "The offer was restricted to individuals joining the service"], 
+        correct: "It requires a proactive request from the user", 
+        transcript: "Customer: I've been a customer for twelve years and I'm genuinely considering switching. Adviser: I completely understand your frustration. Let me see what I can do. Looking at your account, you're currently on our standard rate. I can offer you our loyalty tariff, which is eighteen percent lower. Customer: Why wasn't I offered that before? Adviser: The loyalty tariff is available to customers who ask for it, which I acknowledge isn't ideal." 
+    },
+    { 
+        id: "B2_42", 
+        audio: "audio/level_test/B2-Q42.mp3", 
+        text: "According to the lecture, what is the risk every time you recall a memory?", 
+        options: ["The neural connection is reinforced and made clearer", "It undergoes a process that might unintentionally modify it", "The older information is overwritten by current events", "The memory becomes increasingly difficult to retrieve"], 
+        correct: "It undergoes a process that might unintentionally modify it", 
+        transcript: "One common misconception is that human memory works like a video recorder, storing events faithfully and replaying them on demand. In reality, memory is reconstructive. Every time you recall a memory, you are partially rebuilding it, and in doing so you risk subtly altering it. This has profound implications for eyewitness testimony in legal cases." 
+    },
+    { 
+        id: "B2_43", 
+        audio: "audio/level_test/B2-Q43.mp3", 
+        text: "What is the key difference between a social enterprise and a charity, according to the founder?", 
+        options: ["One prioritizes wealth creation while the other does not", "The size and scale of the workforce and operation", "The reliance on external funding versus internal revenue", "The legal framework and tax regulations they follow"], 
+        correct: "The reliance on external funding versus internal revenue", 
+        transcript: "Interviewer: Your organisation is described as a social enterprise. How does that differ from a charity? Founder: We generate income through commercial activity, just like any business. But rather than distributing profit to shareholders, we reinvest it into our mission. A charity tends to rely on donations and grants. We're financially self-sustaining." 
+    },
+    { 
+        id: "B2_44", 
+        audio: "audio/level_test/B2-Q44.mp3", 
+        text: "What is the deadline for regulated bodies to comply with the new legislation?", 
+        options: ["The beginning of April", "The final day of March", "The end of June", "The conclusion of the current year"], 
+        correct: "The end of June", 
+        transcript: "Official: The new legislation will come into effect on the first of April. All regulated bodies have until the thirtieth of June to achieve compliance. Non-compliance after that date will result in financial penalties and, in serious cases, suspension of operating licences." 
+    },
+    { 
+        id: "B2_45", 
+        audio: "audio/level_test/B2-Q45.mp3", 
+        text: "What does the presenter say the study proves?", 
+        options: ["A direct cause-and-effect link between isolation and decline", "That the relationship is statistically insignificant", "That improving social life leads to cognitive gains", "A statistical connection where two factors appear together"], 
+        correct: "A statistical connection where two factors appear together", 
+        transcript: "Presenter: I want to be clear about what this study does and doesn't show. It demonstrates a correlation between social isolation and cognitive decline. It does not demonstrate causation. We cannot yet say that social isolation causes cognitive decline, only that the two frequently occur together." 
+    },
+    { 
+        id: "B2_46", 
+        audio: "audio/level_test/B2-Q46.mp3", 
+        text: "What does the panellist say is the political problem with prevention spending?", 
+        options: ["The massive scale of investment is hard to justify", "Strong opposition from within the healthcare industry", "The delay between immediate costs and delayed, unnoticeable gains", "A historical lack of effectiveness in preventive programs"], 
+        correct: "The delay between immediate costs and delayed, unnoticeable gains", 
+        transcript: "Panellist: Prevention costs a fraction of treatment. Every pound spent on early intervention, whether that's mental health support for young people, cancer screening programmes, or diabetes management, saves several pounds in acute hospital care down the line. The problem is that prevention doesn't win elections. The benefits are long-term and invisible; the costs are immediate and visible." 
+    },
+    { 
+        id: "B2_47", 
+        audio: "audio/level_test/B2-Q47.mp3", 
+        text: "What is the speaker's main concern about AI in hiring decisions?", 
+        options: ["The high financial barrier to technology adoption", "The reduction in speed during the recruitment phase", "The secret continuation of past prejudices within the system", "The inability of machines to judge non-technical abilities"], 
+        correct: "The secret continuation of past prejudices within the system", 
+        transcript: "Speaker: The question is not whether AI can do this, it clearly can. The question is whether it should. Automating hiring decisions using historical data embeds historical biases permanently into the process. If your company historically hired a certain type of person, the algorithm will simply perpetuate that. And crucially, it does so invisibly, making the bias harder to challenge than if a human made the same decision." 
+    },
+    { 
+        id: "B2_48", 
+        audio: "audio/level_test/B2-Q48.mp3", 
+        text: "What does the host say about statutory consumer rights?", 
+        options: ["They are restricted to newly manufactured merchandise", "They are secondary to the terms provided in a seller's warranty", "They represent a legal baseline that no merchant can override", "They become invalid once a product has been in use for half a year"], 
+        correct: "They represent a legal baseline that no merchant can override", 
+        transcript: "Host: You're entitled to a full refund if an item is faulty, even if you've used it. What many people don't realise is that this right exists regardless of whether the seller offers a warranty. The warranty is additional. Your statutory rights are the baseline and cannot be signed away by any retailer." 
+    },
+    { 
+        id: "B2_49", 
+        audio: "audio/level_test/B2-Q49.mp3", 
+        text: "What is the reviewer's main criticism of the film?", 
+        options: ["The cast members fail to deliver believable performances", "The overall duration of the feature is excessive", "The conclusion fails to maintain the quality of the earlier segments", "The reliance on digital imagery distracts from the story"], 
+        correct: "The conclusion fails to maintain the quality of the earlier segments", 
+        transcript: "Reviewer: The film is visually stunning, and the performances are uniformly excellent. Where it stumbles is in the third act. The narrative logic that has been so carefully built over two hours unravels in the final twenty minutes, as though the writers ran out of ideas and reached for the most obvious resolution. It left me feeling deflated rather than satisfied." 
+    },
+    { 
+        id: "B2_50", 
+        audio: "audio/level_test/B2-Q50.mp3", 
+        text: "What do nutritionists caution against?", 
+        options: ["The potential health risks associated with missing the first meal", "The consumption of energy-dense snacks later in the afternoon", "Making broad conclusions without considering broader lifestyle variables", "Drawing dietary guidelines from a single, unverified academic paper"], 
+        correct: "Making broad conclusions without considering broader lifestyle variables", 
+        transcript: "Host: Our final story: a new report suggests that over forty percent of people in the UK regularly skip breakfast, which researchers link to lower concentration and higher rates of snacking on high-calorie foods later in the day. However, nutritionists caution against overstating the findings, noting that breakfast habits interact with many other lifestyle factors." 
+    }
+],
+B2: [
+    { 
+        id: "C1_01", 
+        audio: "audio/level_test/C1-Q01.mp3", 
+        text: "What does the professor say about System Two thinking in modern life?", 
+        options: [
+            "Its efficiency is markedly enhanced during periods of psychological pressure", 
+            "It is seldom utilized or required in the context of mundane daily choices", 
+            "It is frequently compromised by cognitive saturation and persistent tension", 
+            "It exhibits a natural tendency to strengthen as a byproduct of the aging process"
+        ], 
+        correct: "It is frequently compromised by cognitive saturation and persistent tension", 
+        transcript: "Professor: Today I want to examine confirmation bias more closely. When Kahneman describes System One thinking as fast, intuitive, and automatic, he's describing the mental mode that makes us most susceptible to bias. System Two, our slow, deliberate, rational mode, is capable of overriding these biases. But it's easily fatigued, and modern life, with its information overload and chronic stress, constantly undermines our capacity to engage it. The practical implication is sobering: our objective reasoning degrades precisely when we need it most." 
+    },
+    { 
+        id: "C1_02", 
+        audio: "audio/level_test/C1-Q02.mp3", 
+        text: "What do critics argue output provides that input alone cannot?", 
+        options: [
+            "An intensified exposure to a broader range of specialized terminology", 
+            "A distinct cognitive realization triggered by the necessity of production", 
+            "A superior level of structural precision in complex sentence formation", 
+            "A significant elevation in the speaker's self-assurance and fluency"
+        ], 
+        correct: "A distinct cognitive realization triggered by the necessity of production", 
+        transcript: "Speaker: Krashen's input hypothesis suggests that we acquire language by encountering it at a level just beyond our current competence, what he calls i plus one. The theory implies that comprehensible input is more important than grammar instruction or output production. Critics argue, however, that output, being forced to produce language, creates a different kind of noticing that input alone cannot generate." 
+    },
+    { 
+        id: "C1_03", 
+        audio: "audio/level_test/C1-Q03.mp3", 
+        text: "Why do some political actors introduce extreme positions, according to the lecturer?", 
+        options: [
+            "Out of a sincere expectation that such policies will be universally embraced", 
+            "To recalibrate the public's perception of radicalism and normalize moderate ideas", 
+            "To deliberately obscure media coverage and divert attention from critical failures", 
+            "To ensure their legislative proposals remain strictly aligned with their core ideology"
+        ], 
+        correct: "To recalibrate the public's perception of radicalism and normalize moderate ideas", 
+        transcript: "Lecturer: The Overton Window is not merely a descriptive concept. It has increasingly been weaponised by political actors who deliberately introduce extreme positions into the public discourse, not necessarily because they expect those positions to be adopted, but because their presence shifts the window. Policies that once seemed radical now seem moderate by comparison. This is sometimes called the Overton shift as a strategic tool." 
+    },
+    { 
+        id: "C1_04", 
+        audio: "audio/level_test/C1-Q04.mp3", 
+        text: "What does the researcher say is less discussed in the literature?", 
+        options: [
+            "The established correlation between economic hardship and scholastic underperformance", 
+            "The specific influence of underfunded educational facilities on student achievement", 
+            "The role of the physical landscape in delineating the boundaries of individual ambition", 
+            "The function of household dynamics in perpetuating cyclical economic disadvantage"
+        ], 
+        correct: "The role of the physical landscape in delineating the boundaries of individual ambition", 
+        transcript: "Researcher: The relationship between spatial segregation and intergenerational poverty is well established. Children who grow up in high-poverty neighbourhoods are exposed to fewer successful adult role models, attend lower-resourced schools, and have diminished social networks. What is less discussed is how place itself shapes aspiration. Growing up in an environment where material success seems structurally unattainable can fundamentally alter what a young person allows themselves to want." 
+    },
+    { 
+        id: "C1_05", 
+        audio: "audio/level_test/C1-Q05.mp3", 
+        text: "What does Kuhn's work show about how scientists actually behave?", 
+        options: [
+            "They demonstrate an immediate willingness to discard models upon encountering inconsistencies", 
+            "They habitually reject falsifiable theories with insufficient experimental justification", 
+            "They are predominantly driven by the prospect of commercial and financial gain", 
+            "They seldom relinquish established paradigms based on a solitary conflicting observation"
+        ], 
+        correct: "They seldom relinquish established paradigms based on a solitary conflicting observation", 
+        transcript: "Professor: Popper's criterion of falsifiability attempts to draw a demarcation between science and non-science. A theory is scientific, for Popper, only if it makes predictions that could, in principle, be proven false. The problem with this criterion is that, as Kuhn later showed, scientists rarely abandon a theory simply because an anomalous result appears. They interpret the anomaly as a measurement error, or they add an auxiliary hypothesis to explain it away." 
+    },
+    { 
+        id: "C1_06", 
+        audio: "audio/level_test/C1-Q06.mp3", 
+        text: "What does the CEO identify as the second distinguishing quality?", 
+        options: [
+            "The capacity to execute agonizing choices during the earliest signs of crisis", 
+            "A profound proficiency in interpreting and articulating complex fiscal datasets", 
+            "Conveying regrettable outcomes with transparency instead of using linguistic obfuscation", 
+            "Cultivating robust and strategic alliances with the organization's governing board"
+        ], 
+        correct: "Conveying regrettable outcomes with transparency instead of using linguistic obfuscation", 
+        transcript: "Interviewer: You've led the company through two recessions. What distinguishes the leaders who survive from those who don't? CEO: Two things: the willingness to make painful decisions early, before the data is unambiguous, and the ability to communicate those decisions with honesty rather than corporate euphemism. Leaders who wait for certainty before acting and then dress up bad news in reassuring language lose both time and credibility." 
+    },
+    { 
+        id: "C1_07", 
+        audio: "audio/level_test/C1-Q07.mp3", 
+        text: "What does the scientist say is morally untenable?", 
+        options: [
+            "Maintaining an overly idealistic outlook regarding future climate trajectories", 
+            "Disclosing highly discouraging probability forecasts to the general public", 
+            "Ceasing intervention efforts on the grounds that a disastrous outcome is likely", 
+            "Deliberately obstructing the allocation of resources toward sustainable energy"
+        ], 
+        correct: "Ceasing intervention efforts on the grounds that a disastrous outcome is likely", 
+        transcript: "Interviewer: Are you optimistic about the prospect of limiting warming to one and a half degrees? Scientist: I think optimism and pessimism are both cognitive traps. The honest answer is: it's extremely unlikely at current trajectories, but not technically impossible. The question should be: what do we do in the face of that? And the answer has to be: everything possible, regardless of probability estimates. Because the alternative, acquiescing to catastrophe because it seems probable, is morally untenable." 
+    },
+    { 
+        id: "C1_08", 
+        audio: "audio/level_test/C1-Q08.mp3", 
+        text: "How does the author describe the novel's purpose?", 
+        options: [
+            "To function as a vehicle for a transparent and didactic ethical message", 
+            "To provide pure amusement while strictly avoiding complex moral dilemmas", 
+            "To serve as a direct manifestation of the writer's own political convictions", 
+            "To prompt intellectual engagement rather than offering definitive resolutions"
+        ], 
+        correct: "To prompt intellectual engagement rather than offering definitive resolutions", 
+        transcript: "Host: Your fiction is often described as deeply political without being didactic. How do you achieve that balance? Author: I try never to resolve the moral question for the reader. If my characters behave in ways that are morally complex, I want the reader to feel uncomfortable, to have to sit with the ambiguity rather than receive a clean verdict. The novel isn't a sermon. It's an invitation to think." 
+    },
+    { 
+        id: "C1_09", 
+        audio: "audio/level_test/C1-Q09.mp3", 
+        text: "What does the candidate mean by 'nominal in a larger one'?", 
+        options: [
+            "Securing a level of compensation that exceeds one's professional worth", 
+            "Holding an elevated title while possessing minimal substantive authority", 
+            "Relocating for a position within a more prominent metropolitan hub", 
+            "Achieving a degree of public recognition without corresponding material success"
+        ], 
+        correct: "Holding an elevated title while possessing minimal substantive authority", 
+        transcript: "Interviewer: You turned down a much higher-paying offer to stay here. Can you explain that decision? Candidate: I've become convinced that autonomy is more valuable than income beyond a certain threshold. Here I have genuine ownership of my work. The other offer came with a more senior title but more oversight, more bureaucracy, and less latitude to shape strategy. I'd rather be influential in a smaller sphere than nominal in a larger one." 
+    },
+    { 
+        id: "C1_10", 
+        audio: "audio/level_test/C1-Q10.mp3", 
+        text: "What does the expert say is the role of non-executive directors?", 
+        options: [
+            "To facilitate the practical execution of the firm's long-term strategy", 
+            "To provide specialized financial modelling and risk assessment for the board", 
+            "To represent the organization as its primary liaison to the general public", 
+            "To offer impartial scrutiny and verification of executive management's actions"
+        ], 
+        correct: "To offer impartial scrutiny and verification of executive management's actions", 
+        transcript: "Interviewer: The scandal at Norland Capital revealed systematic failures at multiple levels. Who ultimately bears responsibility? Expert: The board. Non-executive directors are supposed to provide independent oversight, not rubber-stamp executive decisions. When they become too close to management, either socially or financially, that independence is compromised. The Norland case shows what happens when there is no effective internal counterweight to executive power." 
+    },
+    { 
+        id: "C1_11", 
+        audio: "audio/level_test/C1-Q11.mp3", 
+        text: "What is the debater's argument about algorithms?", 
+        options: [
+            "They render the digital experience monotonous and overly predictable", 
+            "They act as passive mirrors of user taste without influencing behavior", 
+            "They deliberately incentivize divisive and extremist content to optimize retention", 
+            "Their primary architecture is intended solely for the precision of advertisement targeting"
+        ], 
+        correct: "They deliberately incentivize divisive and extremist content to optimize retention", 
+        transcript: "Debater: Algorithmic content recommendation systems don't just reflect our preferences; they amplify them. When a platform's success metric is engagement time, the algorithm learns that outrage, anxiety, and tribalism are the most reliable engagement drivers. It then systematically selects for them. We are not simply being shown content we like. We are being trained to want content that keeps us on the platform." 
+    },
+    { 
+        id: "C1_12", 
+        audio: "audio/level_test/C1-Q12.mp3", 
+        text: "What does Professor A argue about hedonic and eudaimonic wellbeing?", 
+        options: [
+            "They represent identical psychological states evaluated through different metrics", 
+            "A high level of sensory pleasure is a certain indicator of a purposeful existence", 
+            "Surface-level satisfaction serves as a consistent predictor of existential fulfillment", 
+            "They are separate entities, and transient pleasure does not imply deeper meaning"
+        ], 
+        correct: "They are separate entities, and transient pleasure does not imply deeper meaning", 
+        transcript: "Professor A: The problem with most happiness research is that it conflates hedonic wellbeing, pleasure and the absence of pain, with eudaimonic wellbeing, flourishing and meaning. They're distinct constructs and they respond to different variables. Professor B: Though they're not entirely uncorrelated. People who score high on meaning often report higher life satisfaction overall. Professor A: True, but the reverse isn't necessarily true. High hedonic wellbeing doesn't predict high eudaimonic wellbeing. You can feel good and be living shallowly." 
+    },
+    { 
+        id: "C1_13", 
+        audio: "audio/level_test/C1-Q13.mp3", 
+        text: "What is the critic's main economic concern about UBI?", 
+        options: [
+            "That it would fundamentally erode the workforce's inherent drive to contribute", 
+            "The bureaucratic intricacies would prove too burdensome for existing institutions", 
+            "The required fiscal restructuring might stifle the capital investment vital to growth", 
+            "It would inadvertently concentrate more wealth in the hands of the already affluent"
+        ], 
+        correct: "The required fiscal restructuring might stifle the capital investment vital to growth", 
+        transcript: "Critic: The administrative argument for UBI, replacing the complexity of means-tested benefits with a single universal payment, is appealing. But it ignores the massive redistribution required to fund it at meaningful levels. To give every adult a genuinely liveable income, you'd need marginal tax rates that would very likely reduce the productive investment this economy depends on." 
+    },
+    { 
+        id: "C1_14", 
+        audio: "audio/level_test/C1-Q14.mp3", 
+        text: "What does the professor mean by saying the curriculum choice is a political act?", 
+        options: [
+            "Educational priorities are direct results of coercive government intervention", 
+            "The instruction of historical events is fundamentally incompatible with democratic values", 
+            "Selective inclusion and omission in education serve to sustain existing power structures", 
+            "The instructor concedes that the current syllabus is primarily composed of state propaganda"
+        ], 
+        correct: "Selective inclusion and omission in education serve to sustain existing power structures", 
+        transcript: "Student: A lot of what I was taught about the British Empire at school was essentially propaganda. Professor: That's a strong word. But you're pointing at something real. The curriculum has historically emphasised certain narratives, trade, industrialisation, exploration, while systematically marginalising others: displacement, exploitation, and violence. The question of what to teach, and what to leave out, is itself a political act." 
+    },
+    { 
+        id: "C1_15", 
+        audio: "audio/level_test/C1-Q15.mp3", 
+        text: "What limitation of the marketplace of ideas does the philosopher identify?", 
+        options: [
+            "Harmful concepts are inherently more persuasive than factual or beneficial ones", 
+            "The theory mistakenly presumes that the populace consistently applies logical reasoning", 
+            "The premise fails to account for the systemic inequality of communicative reach", 
+            "The effective refutation of misinformation is technically impossible in the modern era"
+        ], 
+        correct: "The premise fails to account for the systemic inequality of communicative reach", 
+        transcript: "Philosopher: The case for absolute free speech rests on what Mill called the marketplace of ideas: bad ideas should be exposed and refuted through open debate, not suppressed. The problem is that this model assumes rough equality of access to the marketplace. In practice, well-funded actors with media access can amplify harmful ideas to millions before any refutation reaches the same audience." 
+    },
+    { 
+        id: "C1_16", 
+        audio: "audio/level_test/C1-Q16.mp3", 
+        text: "What is the director's real concern?", 
+        options: [
+            "The proposed operational plan is excessively intricate and difficult to navigate", 
+            "The external market indicators suggest an immediate failure of the initiative", 
+            "The plan's viability is contingent upon potentially flawed environmental premises", 
+            "The delivery of the proposal lacked sufficient rigor and preparatory depth"
+        ], 
+        correct: "The plan's viability is contingent upon potentially flawed environmental premises", 
+        transcript: "Chair: I'd like to invite comments on the proposed strategy before we vote. Director: I want to be measured in what I say. I think the strategy is coherent and well-presented. My reservations relate not to the strategy itself but to the assumptions about market conditions on which it rests. If those assumptions prove incorrect, the strategy's coherence becomes somewhat academic." 
+    },
+    { 
+        id: "C1_17", 
+        audio: "audio/level_test/C1-Q17.mp3", 
+        text: "What does Colleague B most likely mean?", 
+        options: [
+            "The presentation was highly authoritative and meticulously substantiated", 
+            "The presentation's extreme polish suggested a potential deficit in genuine content", 
+            "The external advisor possessed an unimpeachable professional standing", 
+            "The delivery of the recommendation was performed at an accelerated pace"
+        ], 
+        correct: "The presentation's extreme polish suggested a potential deficit in genuine content", 
+        transcript: "Colleague A: What did you make of the consultant's proposal? Colleague B: I thought it was slick. Very slick, actually." 
+    },
+    { 
+        id: "C1_18", 
+        audio: "audio/level_test/C1-Q18.mp3", 
+        text: "What is the reviewer's concern?", 
+        options: [
+            "The underlying research framework is fundamentally compromised", 
+            "The manuscript fails to meet the required length for a full publication", 
+            "The narrative claims a level of universal applicability that the data does not support", 
+            "The bibliographic references are insufficient to support the central thesis"
+        ], 
+        correct: "The narrative claims a level of universal applicability that the data does not support", 
+        transcript: "Reviewer: The methodology is technically sound. My concern is with what the paper doesn't say. The discussion section presents the findings as if they generalise broadly, but the sample was highly selective." 
+    },
+    { 
+        id: "C1_19", 
+        audio: "audio/level_test/C1-Q19.mp3", 
+        text: "What does the politician regret?", 
+        options: [
+            "Relinquishing his post before the crisis had reached a definitive conclusion", 
+            "The failure to engage a sufficient number of global subject-matter experts", 
+            "Enacting reactive legislation that resulted in unanticipated long-term complications", 
+            "The overall effectiveness of the communicative strategy employed during the event"
+        ], 
+        correct: "Enacting reactive legislation that resulted in unanticipated long-term complications", 
+        transcript: "Interviewer: Looking back, is there anything you did that you now regret? Politician: I regret the legislation we rushed through in the wake of the crisis. I understood the pressure we were under, and I stand by the intention. But speed and fear are not good parents of good law, and some of what we passed has caused enduring damage that I don't think any of us foresaw." 
+    },
+    { 
+        id: "C1_20", 
+        audio: "audio/level_test/C1-Q20.mp3", 
+        text: "What is Writer B's position on critical feedback?", 
+        options: [
+            "Benevolence should take precedence over veracity in any literary appraisal", 
+            "All critiques ought to be softened to nurture the writer's creative growth", 
+            "Unfiltered scrutiny provides more value to the profession than mendacious acclaim", 
+            "Adverse evaluations should be avoided to prevent the erosion of professional ties"
+        ], 
+        correct: "Unfiltered scrutiny provides more value to the profession than mendacious acclaim", 
+        transcript: "Writer A: Your last review wasn't exactly generous. Writer B: I called it as I saw it. I don't think doing someone the disservice of pretending mediocre work is good helps them or the field. Writer A: Some would say you were needlessly cruel. Writer B: I'd rather be honestly useful than dishonestly kind." 
+    },
+    { 
+        id: "C1_21", 
+        audio: "audio/level_test/C1-Q21.mp3", 
+        text: "What does the documentary say about memory retrieval?", 
+        options: [
+            "It reinforces the historical fidelity of stored information over decades", 
+            "It generates entirely fabricated narratives to overwrite authentic experiences", 
+            "It may induce inaccuracies as memories are actively rebuilt during the act of recall", 
+            "The mechanism is only triggered during events of high emotional significance"
+        ], 
+        correct: "It may induce inaccuracies as memories are actively rebuilt during the act of recall", 
+        transcript: "Narrator: The hippocampus plays a central role in the formation of new memories. But what is less commonly known is that it is also active during the consolidation of old ones. When we recall a memory, the hippocampus partially reconstructs it, incorporating the context in which the memory is recalled. This means that our memories of past events are not static archives but dynamic reconstructions, vulnerable to distortion with every retrieval." 
+    },
+    { 
+        id: "C1_22", 
+        audio: "audio/level_test/C1-Q22.mp3", 
+        text: "Why does the barrister say the burden of proof must rest with the state?", 
+        options: [
+            "Because it is an inherent requirement of the existing administrative code", 
+            "Because the governmental agencies possess the requisite forensic competence", 
+            "Because the state's investigative capacity far exceeds that of a private citizen", 
+            "Because statistically, the majority of defendants are likely to be culpable"
+        ], 
+        correct: "Because the state's investigative capacity far exceeds that of a private citizen", 
+        transcript: "Barrister: The principle that a person is innocent until proven guilty is not merely a legal formality. It is an epistemic and moral safeguard. The burden of proof must rest with the state precisely because the state has infinitely more resources to investigate, prosecute, and punish than any individual. Where that burden is reversed, the presumption of innocence dissolves, and we lose the very architecture that prevents the abuse of state power." 
+    },
+    { 
+        id: "C1_23", 
+        audio: "audio/level_test/C1-Q23.mp3", 
+        text: "What does the documentary say about ecosystem services and technology?", 
+        options: [
+            "Digital innovations are already successfully substituting for natural processes", 
+            "The economic valuation of these natural functions is often grossly overstated", 
+            "Artificial systems are capable of replicating these services on a minor scale", 
+            "Natural biological functions are fundamentally beyond the reach of current human innovation"
+        ], 
+        correct: "Natural biological functions are fundamentally beyond the reach of current human innovation", 
+        transcript: "One of the least visible consequences of biodiversity loss is the disruption of ecosystem services: the processes by which healthy ecosystems clean water, pollinate crops, regulate climate, and cycle nutrients. These services have been estimated to be worth over one hundred and twenty-five trillion dollars annually to the global economy. Crucially, they are irreplaceable by any known technology. When we lose a species, we risk losing its contribution to processes we depend on but barely understand." 
+    },
+    { 
+        id: "C1_24", 
+        audio: "audio/level_test/C1-Q24.mp3", 
+        text: "What does the philosopher say is the most honest way to define art?", 
+        options: [
+            "As any creative output that aligns with traditional formalist classifications", 
+            "As a manifestation purely defined by the subjective intent of its originator", 
+            "As whatever the authoritative institutions within the creative field designate as such", 
+            "As a concept of shared similarities without a singular, essential characteristic"
+        ], 
+        correct: "As a concept of shared similarities without a singular, essential characteristic", 
+        transcript: "Host: What makes something art? And who decides? Philosopher: If we define art as whatever the art world says is art, we get a circular and elitist answer. If we define it by formal properties, we can't account for the readymades of Duchamp, where a urinal became art simply by being placed in a gallery. I think the most honest answer is that art is a family resemblance concept, meaning that there is no single defining feature, only a cluster of overlapping similarities." 
+    },
+    { 
+        id: "C1_25", 
+        audio: "audio/level_test/C1-Q25.mp3", 
+        text: "What does the professor emphasise about antibiotic resistance?", 
+        options: [
+            "It represents a localized threat primarily affecting developing jurisdictions", 
+            "It is an anthropogenic phenomenon that is already in an advanced stage", 
+            "It can be effectively neutralized through the advancement of vaccine science", 
+            "It is a hypothetical future crisis for which we must now begin to prepare"
+        ], 
+        correct: "It is an anthropogenic phenomenon that is already in an advanced stage", 
+        transcript: "Professor: We often speak of antibiotic resistance as a future problem. It is not. It is a present crisis that currently kills around seven hundred thousand people annually worldwide. By 2050, on current trajectories, the figure could reach ten million per year, exceeding cancer as a cause of death. The tragedy is that this crisis is almost entirely man-made, driven by the overuse of antibiotics in agriculture and human medicine, and it is almost entirely preventable." 
+    },
+    { 
+        id: "C1_26", 
+        audio: "audio/level_test/C1-Q26.mp3", 
+        text: "What is the woman's criticism of the keynote?", 
+        options: [
+            "The presenter lacked the requisite professional credentials for the topic", 
+            "The scale of the audience was incompatible with the chosen presentation format", 
+            "The discourse focused excessively on diagnostics while neglecting actionable remedies", 
+            "The technical execution was substandard despite the intellectual merit of the content"
+        ], 
+        correct: "The discourse focused excessively on diagnostics while neglecting actionable remedies", 
+        transcript: "Man: What did you make of the keynote? Woman: Impressive delivery. Though I noticed she spent forty minutes on problems we all already understand and about five minutes on solutions. Man: Classic keynote format. Woman: Exactly. Long on diagnosis, short on prescription." 
+    },
+    { 
+        id: "C1_27", 
+        audio: "audio/level_test/C1-Q27.mp3", 
+        text: "What distinction does the speaker draw between voting and democracy?", 
+        options: [
+            "The act of casting a ballot is fundamentally superior to broader civic participation", 
+            "Electoral participation represents the sole substantive manifestation of democratic will", 
+            "A robust democracy necessitates persistent civic involvement beyond the ballot box", 
+            "Mandatory voting should be implemented as a mechanism to fortify democratic health"
+        ], 
+        correct: "A robust democracy necessitates persistent civic involvement beyond the ballot box", 
+        transcript: "Speaker: We have fetishised the vote as the defining act of democratic participation. But democracy is not merely the periodic aggregation of preferences. It is, at its best, a culture of deliberation, accountability, and civic engagement. A society in which people vote every few years but disengage entirely in between is not a healthy democracy. It is a managed one." 
+    },
+    { 
+        id: "C1_28", 
+        audio: "audio/level_test/C1-Q28.mp3", 
+        text: "What does the researcher say about parental education and children's outcomes?", 
+        options: [
+            "Innate cognitive ability remains the most reliable indicator of long-term success", 
+            "Formal schooling possesses the inherent capacity to eradicate socio-economic disparities", 
+            "It facilitates the transmission of cultural capital and nuanced institutional literacy", 
+            "Youth from disadvantaged academic backgrounds lack the intrinsic aptitude for achievement"
+        ], 
+        correct: "It facilitates the transmission of cultural capital and nuanced institutional literacy", 
+        transcript: "Researcher: The evidence consistently shows that the most powerful predictor of a child's educational outcome is the education level of their parents. This is not primarily about intelligence. It's about the cultural capital that educated parents can transmit: language, aspirations, the ability to navigate institutions, knowledge of how to access opportunities. Closing the gap requires understanding that you are not just teaching children; you are contesting the reproduction of social class." 
+    },
+    { 
+        id: "C1_29", 
+        audio: "audio/level_test/C1-Q29.mp3", 
+        text: "What does the journalist say is needed for serious journalism to survive?", 
+        options: [
+            "The implementation of comprehensive state subsidies across all media sectors", 
+            "The introduction of more stringent regulatory frameworks for digital platforms", 
+            "The establishment of viable fiscal frameworks like user-funding or endowment", 
+            "The consolidation of minor independent outlets into monolithic media conglomerates"
+        ], 
+        correct: "The establishment of viable fiscal frameworks like user-funding or endowment", 
+        transcript: "Journalist: The digital advertising model has been catastrophic for serious journalism. When revenue depends on clicks, the incentive is always to produce outrage over analysis, speed over accuracy, simplification over nuance. The media organisations that survive as serious journalism operations are increasingly those that have found sustainable models: subscriptions, philanthropic funding, or public ownership." 
+    },
+    { 
+        id: "C1_30", 
+        audio: "audio/level_test/C1-Q30.mp3", 
+        text: "How does the professor reframe resistance to change?", 
+        options: [
+            "As an underlying behavioral deficit that requires rigorous managerial oversight", 
+            "As a definitive indicator that the proposed organizational shift is redundant", 
+            "As a source of valuable insight that may highlight unforeseen practical consequences", 
+            "As a predictable manifestation of irrational psychological pushback from the workforce"
+        ], 
+        correct: "As a source of valuable insight that may highlight unforeseen practical consequences", 
+        transcript: "Professor: Most change management frameworks treat resistance as a problem to be overcome. I want to suggest a different framing. Resistance is often information. Employees who resist a change sometimes understand its consequences better than those driving it. Treating their objections as obstacles to be managed, rather than data to be processed, is a systematic way of making bad decisions worse." 
+    },
+    { 
+        id: "C1_31", 
+        audio: "audio/level_test/C1-Q31.mp3", 
+        text: "What does the director say is the most common reason excellent strategies fail?", 
+        options: [
+            "The overarching objectives are excessively grand and practically unattainable", 
+            "The fiscal resources allocated for the project are insufficient for total completion", 
+            "The discrepancy between the high-level vision and the concrete daily output of the staff", 
+            "The executive leadership demonstrates a profound lack of ideological commitment"
+        ], 
+        correct: "The discrepancy between the high-level vision and the concrete daily output of the staff", 
+        transcript: "Director: I want to stress that the success of this initiative depends entirely on implementation. The strategy itself is excellent. What typically kills excellent strategies is not the plan but the gap between the plan and the daily behaviour of the people responsible for executing it." 
+    },
+    { 
+        id: "C1_32", 
+        audio: "audio/level_test/C1-Q32.mp3", 
+        text: "What does the professor say is the limitation of thought experiments in ethics?", 
+        options: [
+            "They are characterized by an intellectual complexity that alienates the layperson", 
+            "They yield philosophical deductions that frequently conflict with empirical data", 
+            "They eliminate the intricate situational nuances inherent in authentic moral choice", 
+            "They were formulated for a historical context that is no longer relevant today"
+        ], 
+        correct: "They eliminate the intricate situational nuances inherent in authentic moral choice", 
+        transcript: "Professor: Trolley problems and other philosophical thought experiments are designed to isolate variables, to strip away all the contextual factors that normally inform our moral judgments. This is their strength as analytical tools. But it's also their limitation. Real moral decisions are always embedded in relationships, histories, and competing obligations that no thought experiment can replicate. Using them to derive binding moral principles is therefore inherently suspect." 
+    },
+    { 
+        id: "C1_33", 
+        audio: "audio/level_test/C1-Q33.mp3", 
+        text: "What does the speaker argue about neurodivergent employees beyond accommodation?", 
+        options: [
+            "They essentially require additional organizational scaffolding to meet baseline targets", 
+            "They should be channeled exclusively into highly specialized technical capacities", 
+            "They offer unique cognitive advantages that traditional metrics fail to identify", 
+            "Management tends to overstate the logistical difficulties of integrating such staff"
+        ], 
+        correct: "They offer unique cognitive advantages that traditional metrics fail to identify", 
+        transcript: "Speaker: When organisations talk about neurodiversity, they typically focus on accommodating difference: providing quiet rooms, flexible deadlines, written instructions. These things matter. But accommodation alone is an impoverished model. The more transformative question is: what does this person bring that conventional hiring processes systematically failed to surface? Neurodivergent thinkers often excel at pattern recognition, sustained focus on complex problems, and lateral thinking. Those are not deficits we're accommodating; they are assets we've failed to leverage." 
+    },
+    { 
+        id: "C1_34", 
+        audio: "audio/level_test/C1-Q34.mp3", 
+        text: "What does the woman mean by 'the performance of consultation'?", 
+        options: [
+            "The advisory session was conducted by individuals from a theatrical background", 
+            "The gathering was exceptionally well-structured from a logistical perspective", 
+            "The process was a superficial exercise designed to mask a lack of genuine engagement", 
+            "The duration of the meeting was too brief to facilitate meaningful discourse"
+        ], 
+        correct: "The process was a superficial exercise designed to mask a lack of genuine engagement", 
+        transcript: "Woman: I don't understand why they went ahead without a proper consultation. Man: In fairness, they did run a consultation. The problem was it was structured in a way that made dissent very difficult to articulate. Woman: That's not a consultation. That's the performance of consultation." 
+    },
+    { 
+        id: "C1_35", 
+        audio: "audio/level_test/C1-Q35.mp3", 
+        text: "What does the panellist say is genuinely unprecedented?", 
+        options: [
+            "The exponential velocity at which artificial intelligence is currently advancing", 
+            "The latent potential for AI to fundamentally revolutionize global industrial sectors", 
+            "The immense centralization of authority paired with a deficit of public oversight", 
+            "The sheer volume of individuals who have gained access to AI-driven interfaces"
+        ], 
+        correct: "The immense centralization of authority paired with a deficit of public oversight", 
+        transcript: "Panellist: My concern is not with AI in the abstract. It is with the concentration of AI capabilities in a small number of extremely powerful private companies. The decisions they make about how these systems are trained, what objectives they optimise for, and who has access to them will shape the information environment that billions of people inhabit. That kind of power with that level of accountability is genuinely unprecedented." 
+    },
+    { 
+        id: "C1_36", 
+        audio: "audio/level_test/C1-Q36.mp3", 
+        text: "What point is the professor making about political language?", 
+        options: [
+            "Linguistic transparency is a consistent hallmark of stable democratic governance", 
+            "The general public possesses the analytical rigor to resist linguistic manipulation", 
+            "Orwellian critiques of political rhetoric have lost their relevance in the digital age", 
+            "Strategic phrasing is utilized to predetermine the ethical perception of events"
+        ], 
+        correct: "Strategic phrasing is utilized to predetermine the ethical perception of events", 
+        transcript: "Professor: Orwell observed that political language is designed to make lies sound truthful and murder respectable. Language choices are rarely neutral. When a government describes drone strikes as surgical precision operations, or describes the reduction of public services as efficiency savings, it is doing something very deliberate with language: it is managing the emotional and moral response of the public by controlling the vocabulary through which events are perceived." 
+    },
+    { 
+        id: "C1_37", 
+        audio: "audio/level_test/C1-Q37.mp3", 
+        text: "What is the director's central argument?", 
+        options: [
+            "Homelessness originates from deep-seated personal shortcomings that resist intervention", 
+            "Specific international models are fundamentally non-transferable to other societies", 
+            "Effective strategies exist but their implementation is hindered by a lack of political resolve", 
+            "Non-profit organizations demonstrate greater efficiency than states in mitigating the crisis"
+        ], 
+        correct: "Effective strategies exist but their implementation is hindered by a lack of political resolve", 
+        transcript: "Interviewer: You've said that homelessness is a political choice rather than an inevitability. What do you mean? Director: Simply that we know how to end homelessness. Finland has come very close. The interventions are well-evidenced: Housing First, targeted mental health support, coordinated services. What's lacking is not knowledge or technology. It's the political will to prioritise and fund it. When we say we can't solve homelessness, what we usually mean is we have chosen not to." 
+    },
+    { 
+        id: "C1_38", 
+        audio: "audio/level_test/C1-Q38.mp3", 
+        text: "What does the speaker say about divergent thinking?", 
+        options: [
+            "Modern pedagogical frameworks are highly adept at cultivating this cognitive skill", 
+            "It holds less practical utility than its counterpart, convergent thinking", 
+            "It is indispensable for navigating scenarios that require the creation of novel alternatives", 
+            "It is a purely inherent trait that remains resistant to educational development"
+        ], 
+        correct: "It is indispensable for navigating scenarios that require the creation of novel alternatives", 
+        transcript: "Speaker: We have built education systems that are extraordinarily effective at producing convergent thinkers: people who can select the best answer from a range of given options. We are much less effective at producing divergent thinkers: people who can generate new options that weren't on the list. The first skill is essential for stable, well-understood problems. The second is essential for everything else." 
+    },
+    { 
+        id: "C1_39", 
+        audio: "audio/level_test/C1-Q39.mp3", 
+        text: "Why is Researcher B cautious about the findings?", 
+        options: [
+            "The procedural methodology of the initial trial was fundamentally compromised", 
+            "The magnitude of the observed effect was so substantial that it lacked plausibility", 
+            "The participant pool was excessively large and failed to represent the target population", 
+            "The limited effect size and niche demographic necessitate further validation"
+        ], 
+        correct: "The limited effect size and niche demographic necessitate further validation", 
+        transcript: "Researcher A: Do you think the trial's findings will survive replication? Researcher B: I'm genuinely uncertain. The effect size was modest and the sample was from a fairly specific population. I'd want to see it replicated in two or three different contexts before drawing any broader conclusions." 
+    },
+    { 
+        id: "C1_40", 
+        audio: "audio/level_test/C1-Q40.mp3", 
+        text: "What is the first step in design thinking, according to the guest?", 
+        options: [
+            "Brainstorming the maximum number of potential solutions to a stated problem", 
+            "Deeply exploring user experience to uncover the core underlying challenge", 
+            "Conducting a rigorous quantitative analysis of all data points related to the issue", 
+            "Rapidly prototyping and evaluating multiple iterations of a proposed solution"
+        ], 
+        correct: "Deeply exploring user experience to uncover the core underlying challenge", 
+        transcript: "Host: What distinguishes design thinking from other problem-solving approaches? Guest: Most problem-solving begins with a given problem and moves towards a solution. Design thinking begins with empathy: understanding the actual experience of the person who has the problem, which often reveals that the stated problem is not the real problem. Only once you've understood the human experience do you define the problem you're actually solving." 
+    },
+    { 
+        id: "C1_41", 
+        audio: "audio/level_test/C1-Q41.mp3", 
+        text: "What does the man say distinguished this leader?", 
+        options: [
+            "He provided exhaustive and meticulous directives for every individual assignment", 
+            "He maintained a remarkably high and uncompromising standard for technical quality", 
+            "He adopted a detached approach and was consistently unavailable for consultation", 
+            "He established clear definitions of success and granted significant professional latitude"
+        ], 
+        correct: "He established clear definitions of success and granted significant professional latitude", 
+        transcript: "Man: The best leader I ever worked for never told us what to do. Woman: Really? How did things get done? Man: He made it absolutely clear what success looked like and then got out of the way. People figured out their own routes. He was the opposite of a micromanager. And the output was consistently exceptional." 
+    },
+    { 
+        id: "C1_42", 
+        audio: "audio/level_test/C1-Q42.mp3", 
+        text: "What does research suggest about the deficit model?", 
+        options: [
+            "The mere provision of data reliably fosters public confidence in scientific findings", 
+            "The framework has proven highly effective in addressing climate-related skepticism", 
+            "Increased information exposure frequently intensifies ideological entrenchment", 
+            "The model is a theoretical construct that has never been implemented in communication"
+        ], 
+        correct: "Increased information exposure frequently intensifies ideological entrenchment", 
+        transcript: "Speaker: The deficit model of science communication assumes that public scepticism about science arises from a lack of information and that providing more information will correct it. Decades of research suggest this is wrong. People who are given more information about contested scientific topics often become more polarised, not less. This is because information is interpreted through pre-existing values and identities, not processed in a neutral, rational vacuum." 
+    },
+    { 
+        id: "C1_43", 
+        audio: "audio/level_test/C1-Q43.mp3", 
+        text: "What is the compatibilist position on moral responsibility?", 
+        options: [
+            "Personal accountability is logically irreconcilable with a deterministic universe", 
+            "Individuals should only be held liable for actions that are entirely premeditated", 
+            "Accountability hinges on rational responsiveness rather than the absence of prior causes", 
+            "Biological predispositions and upbringing effectively negate any ethical liability"
+        ], 
+        correct: "Accountability hinges on rational responsiveness rather than the absence of prior causes", 
+        transcript: "Professor: If we accept that behaviour is caused by factors outside our control, whether genetics, upbringing, or circumstance, it becomes difficult to sustain the traditional concept of moral responsibility. The hard determinist concludes that nobody is ever truly responsible for anything. The compatibilist response is that moral responsibility doesn't require the absence of causation. It requires only that behaviour responds to reasons, that the person can be influenced by praise, blame, or the presentation of better arguments." 
+    },
+    { 
+        id: "C1_44", 
+        audio: "audio/level_test/C1-Q44.mp3", 
+        text: "Which factor does the economist say is most underappreciated?", 
+        options: [
+            "The rapid evolution of technological capabilities within the labor market", 
+            "The expansive impact of global market integration on domestic wages", 
+            "The steady decline of organized labor frameworks and their bargaining influence", 
+            "The increasing dominance of financial motives over industrial production"
+        ], 
+        correct: "The steady decline of organized labor frameworks and their bargaining influence", 
+        transcript: "Host: Inequality within countries has increased significantly since the 1980s. Why? Economist: Three main factors: technological change that rewards skills and punishes routine work; globalisation, which compressed wages by exposing workers to international competition; and the erosion of labour institutions, particularly trade unions, which previously counterbalanced the bargaining power of employers. Of these, the erosion of labour institutions is perhaps the most underappreciated." 
+    },
+    { 
+        id: "C1_45", 
+        audio: "audio/level_test/C1-Q45.mp3", 
+        text: "What practical behaviour does the endowment effect and loss aversion explain?", 
+        options: [
+            "The tendency for individuals to allocate capital toward high-risk, speculative assets", 
+            "The inclination to retain depreciating assets while divesting from profitable ones", 
+            "The habit of overestimating the projected appreciation of one's current holdings", 
+            "The refusal to participate in investment opportunities without ironclad guarantees"
+        ], 
+        correct: "The inclination to retain depreciating assets while divesting from profitable ones", 
+        transcript: "Professor: The endowment effect describes the tendency of people to value things more highly once they own them. This creates an asymmetry: the price at which someone will sell an item is typically higher than the price at which they would buy the same item. Loss aversion, the tendency to weight losses more heavily than equivalent gains, is the psychological mechanism underlying this. In practical terms, it explains why so many people hold losing investments too long and sell winning ones too early." 
+    },
+    { 
+        id: "C1_46", 
+        audio: "audio/level_test/C1-Q46.mp3", 
+        text: "What would happen to the building if the community company fails financially?", 
+        options: [
+            "The asset would be liquidated and sold to a commercial real estate developer", 
+            "The local municipality would assume full fiscal and legal responsibility for the site", 
+            "The property would remain under the collective jurisdiction of the local population", 
+            "Individual shareholders would receive financial restitution from the local council"
+        ], 
+        correct: "The property would remain under the collective jurisdiction of the local population", 
+        transcript: "Woman: The residents' association is proposing a community buy-out of the old post office building. Man: How would that work? Woman: People in the neighbourhood would buy shares in a community company that would own and run the building. It could be a café, a co-working space, shared workshops, whatever the community decides. Man: And if it doesn't work out financially? Woman: Shareholders lose their investment, but the building stays in community ownership. A private buyer would just convert it to flats." 
+    },
+    { 
+        id: "C1_47", 
+        audio: "audio/level_test/C1-Q47.mp3", 
+        text: "What does the documentary say about sophisticated propaganda?", 
+        options: [
+            "It functions through the dissemination of entirely fabricated or false narratives", 
+            "It is easily identified and dismissed by demographics with higher educational attainment", 
+            "It utilizes contextual manipulation and selective truth to distort public perception", 
+            "Its effectiveness was largely confined to the era preceding mass digital communication"
+        ], 
+        correct: "It utilizes contextual manipulation and selective truth to distort public perception", 
+        transcript: "Narrator: What distinguishes sophisticated propaganda from crude propaganda is not the absence of falsehood but the presence of enough truth to create plausibility. The most effective propaganda operations in history have not relied primarily on outright lies. They have relied on selective truth, context removal, framing effects, and strategic ambiguity, techniques that leave no obvious lie to be refuted but nonetheless systematically distort understanding." 
+    },
+    { 
+        id: "C1_48", 
+        audio: "audio/level_test/C1-Q48.mp3", 
+        text: "What is the ethicist's deeper concern about AI in life-and-death decisions?", 
+        options: [
+            "Artificial systems currently lack the technical precision for such critical maneuvers", 
+            "The financial burden of integrating AI into these sectors is prohibitively high", 
+            "The resolution of legal accountability and system responsibility remains elusive", 
+            "General public sentiment will never permit autonomous systems to make such choices"
+        ], 
+        correct: "The resolution of legal accountability and system responsibility remains elusive", 
+        transcript: "Interviewer: Should AI systems be allowed to make life-and-death decisions in medical or military contexts? Ethicist: This question often gets framed as a technical one: can AI make these decisions reliably? But the deeper question is whether accountability is possible when an AI makes a decision that causes death or harm. A human who makes such a decision can be held responsible, can explain their reasoning, can be judged by the standards we care about. Can a system? I don't think we have adequate answers to that yet." 
+    },
+    { 
+        id: "C1_49", 
+        audio: "audio/level_test/C1-Q49.mp3", 
+        text: "What is the key difference between high-context and low-context communication styles?", 
+        options: [
+            "High-context societies utilize a more rigid and formal linguistic structure", 
+            "Meaning in high-context cultures is derived from implication and social nuance", 
+            "Low-context cultures place a greater emphasis on non-verbal cues and gestures", 
+            "High-context communicators are characterized by a preference for extreme directness"
+        ], 
+        correct: "Meaning in high-context cultures is derived from implication and social nuance", 
+        transcript: "Speaker: One of the most common sources of misunderstanding in cross-cultural communication is not vocabulary or grammar but high-context versus low-context communication styles. In low-context cultures, typified by northern Europe and North America, meaning is primarily carried by the words. In high-context cultures, typified by much of East Asia and the Middle East, meaning is carried by relationship, tone, timing, and implication. When a low-context communicator says that's an interesting idea, they mean exactly that. When a high-context communicator says the same thing, it may be a polite refusal." 
+    },
+    { 
+        id: "C1_50", 
+        audio: "audio/level_test/C1-Q50.mp3", 
+        text: "What does Economist B mean by 'flying on instruments in fog'?", 
+        options: [
+            "The institution is utilizing fundamentally flawed monetary intervention tools", 
+            "The current economic indicators are intentionally deceptive or inaccurate", 
+            "The central bank is managing policy without sufficient visibility or real-time data", 
+            "There is a profound breakdown in communication between high-level fiscal advisors"
+        ], 
+        correct: "The central bank is managing policy without sufficient visibility or real-time data", 
+        transcript: "Economist A: Do you think the central bank made the right call raising rates so aggressively? Economist B: It's complicated. The theory was right: tighten monetary conditions to reduce demand and bring inflation down. But the lag effects mean we won't see the full impact for another twelve to eighteen months. If the economy tips into recession before that, it'll look like they overcorrected. Economist A: And will they cut in time? Economist B: That's the question. They're flying on instruments in fog. Nobody knows exactly where they are." 
+    }
+],
     C2: [
-        { id: "C2_01", audio: "audio/level_test/C2-Q01.mp3", text: "What is Davidson's principle of charity a precondition for?", options: ["Being generous to other speakers", "Learning a foreign language", "Interpreting what others say at all", "Building cross-cultural understanding"], correct: "Interpreting what others say at all", transcript: "Professor: Davidson's principle of charity proposes that when we interpret utterances in an unfamiliar language, we must assume that the speaker is broadly rational and that their beliefs are mostly true. Without this assumption, Davidson argues, interpretation becomes impossible, because we would have no leverage on where to begin. Every sentence could, in principle, mean anything. The principle is not about being generous to speakers; it is about the logical preconditions for interpretation itself." },
-        { id: "C2_02", audio: "audio/level_test/C2-Q02.mp3", text: "What is the key claim of the weak form of the Sapir-Whorf hypothesis?", options: ["Language determines thought entirely", "Concepts without words are unthinkable", "Language influences thought without constraining it entirely", "Cognitive processes are unaffected by language structure"], correct: "Language influences thought without constraining it entirely", transcript: "Linguist: The strong form of the Sapir-Whorf hypothesis, linguistic determinism, claims that language determines thought entirely, making concepts without corresponding words literally unthinkable. This has largely been discredited. The weak form, linguistic relativity, claims that language influences rather than determines thought. The evidence here is more nuanced: studies of colour perception and spatial reasoning show that linguistic structure does appear to subtly shape cognitive processes, without constraining them entirely." },
-        { id: "C2_03", audio: "audio/level_test/C2-Q03.mp3", text: "What does the counterexample reveal, according to the professor?", options: ["Consequentialism is entirely wrong as a moral theory", "Utilitarian calculations should apply only in emergencies", "The surgeon should always save the five patients", "Consequentialism alone is incomplete because it doesn't account for rights and duties"], correct: "Consequentialism alone is incomplete because it doesn't account for rights and duties", transcript: "Professor: The utilitarian calculus demands we maximise aggregate welfare. But this leads to classic counterexamples: the surgeon who kills one healthy patient to save five. Strict utilitarianism seems to endorse this. What this reveals is not that consequentialism is wrong but that it is incomplete. Our moral lives are structured by rights, duties, and special obligations that don't reduce to welfare calculations. The question is how to integrate these deontological constraints into a broader, pluralist account." },
-        { id: "C2_04", audio: "audio/level_test/C2-Q04.mp3", text: "What does Gadamer mean by saying understanding is never final?", options: ["We can never fully understand a text", "Every act of understanding is a new event shaped by the interpreter's historical situation", "Old texts are harder to understand than new ones", "Authors cannot control the meaning of their own texts"], correct: "Every act of understanding is a new event shaped by the interpreter's historical situation", transcript: "Professor: Gadamer's central contribution is the concept of the fusion of horizons. When we interpret a text, we do not shed our own historical and cultural situation. Rather, we bring our horizon into productive contact with the horizon of the text. Understanding is not the recovery of an author's original intention. It is an event in which both the text and the interpreter are changed. This is why, for Gadamer, understanding is always historically situated and never final." },
-        { id: "C2_05", audio: "audio/level_test/C2-Q05.mp3", text: "Why would agents behind the veil of ignorance choose to protect the worst-off?", options: ["Because they are morally obligated to do so", "Because they could not know whether they themselves would be among the worst-off", "Because protecting the worst-off maximises aggregate happiness", "Because Rawls instructs them to"], correct: "Because they could not know whether they themselves would be among the worst-off", transcript: "Professor: Rawls' veil of ignorance is a thought experiment, not a description of a real process. Behind the veil, you don't know your position in society, your wealth, talents, or values. Rawls argues that rational agents in this position would choose principles that protect the worst-off members of society, because they would reason: I might be one of them. The device generates what Rawls calls justice as fairness, principles that no one could reasonably reject from a position of ignorance." },
-        { id: "C2_06", audio: "audio/level_test/C2-Q06.mp3", text: "What is the historian's main argument?", options: ["Nation-states are the most effective form of political organisation", "Empires were more successful than nation-states", "The nation-state is not a natural or eternal form but a recent historical construct", "The concept of the nation-state was invented in the eighteenth century"], correct: "The nation-state is not a natural or eternal form but a recent historical construct", transcript: "Interviewer: You've argued that the concept of the nation-state is a relatively recent invention. What do you mean? Historian: The idea that the world should naturally be divided into sovereign states corresponding to distinct nations and cultures is a product of the nineteenth century, not of human nature. Most of human history was organised around empires, city-states, tribal confederacies, and religious communities that bore no relationship to the concept of the nation-state. The naturalness of the nation-state is a historical construct that we have learned to take for granted." },
-        { id: "C2_07", audio: "audio/level_test/C2-Q07.mp3", text: "What is Philosopher B's position?", options: ["Moral judgments have no validity whatsoever", "Slavery was not actually wrong, just disapproved of", "Moral commitments are grounded in what it means to be human, not in metaphysical moral facts", "All cultures have equally valid moral frameworks"], correct: "Moral commitments are grounded in what it means to be human, not in metaphysical moral facts", transcript: "Philosopher A: If moral realism is true, there are moral facts independent of what any culture believes. This explains why we can say that slavery was wrong, not just that we disapprove of it now. Philosopher B: But what are these facts made of? What is their ontological status? The anti-realist doesn't deny that we make moral judgments. She denies that those judgments describe a mind-independent moral reality. Philosopher A: Which leads you to the conclusion that the wrongness of genocide is merely a matter of cultural preference. Philosopher B: No. It leads me to the conclusion that our deepest moral commitments are not grounded in metaphysics but in what it means to be the kinds of beings we are." },
-        { id: "C2_08", audio: "audio/level_test/C2-Q08.mp3", text: "What does the neuroscientist say about the popular interpretation of Libet's findings?", options: ["It correctly proves that free will does not exist", "It accurately represents the complexity of the findings", "It overstates what the experiments actually showed", "It has been confirmed by later research"], correct: "It overstates what the experiments actually showed", transcript: "Interviewer: The question of free will seems to be resolved by neuroscience: our decisions are made before we're conscious of them. Neuroscientist: That's an overstatement of what Libet's experiments actually showed. The readiness potential he measured preceded the reported intention to move by a few hundred milliseconds. But consciousness of an intention is not the same as the intention itself. And there's growing evidence that we exercise veto power over motor impulses even after awareness. The relationship between neural activity, consciousness, and agency is far more complex than the popular interpretation of Libet suggests." },
-        { id: "C2_09", audio: "audio/level_test/C2-Q09.mp3", text: "What does the panellist say Spivak is actually asking?", options: ["Whether colonised peoples have developed their own languages", "Whether conditions exist for subaltern speech to be heard, recognised, and given authority", "Whether colonialism has silenced indigenous cultures permanently", "Whether literature can adequately represent the subaltern experience"], correct: "Whether conditions exist for subaltern speech to be heard, recognised, and given authority", transcript: "Panellist: Spivak's famous essay asks whether the subaltern can speak. She's not asking whether they have vocal cords. She's asking whether the conditions exist in which their speech can be heard and given epistemic authority. When the only available representational frameworks are those inherited from colonialism, speech may occur but comprehension, recognition, and power transfer may not. The subaltern speaks, but into a void." },
-        { id: "C2_10", audio: "audio/level_test/C2-Q10.mp3", text: "What does the researcher identify as the structural problem with peer review?", options: ["Reviewers are frequently biased against new ideas", "The quality of reviews has declined significantly", "Unpaid expert labour is used to generate profits for private publishers who sell publicly funded research back to the public", "Too many papers are being published, lowering overall quality"], correct: "Unpaid expert labour is used to generate profits for private publishers who sell publicly funded research back to the public", transcript: "Researcher: The peer review system has serious problems, but people often misdiagnose them. The problem isn't that reviewers are biased or lazy, though some are. The structural problem is that the system asks experts to donate unpaid labour to increase the profits of private publishers, who then sell the publicly funded research back to the public institutions that funded it at monopolistic prices. It's a remarkable extraction mechanism that everyone in academia understands and continues to participate in." },
-        { id: "C2_11", audio: "audio/level_test/C2-Q11.mp3", text: "What does Kant say the sublime experience ultimately reveals?", options: ["The terrifying power of the natural world", "The limits of human rational understanding", "The difference between beauty and ugliness", "The dignity of human rational nature in comprehending what overwhelms us"], correct: "The dignity of human rational nature in comprehending what overwhelms us", transcript: "Philosopher: Burke distinguished the sublime from the beautiful on psychological grounds. Beauty produces love and pleasure; it is smooth, small, clear. The sublime produces astonishment, even a degree of terror, but a terror that is pleasurable when the source of danger is safely removed. Kant later internalised the sublime: the real source of the sublime experience is not nature's vastness but the mind's capacity to comprehend what initially overwhelms it. In confronting what exceeds our physical grasp, we discover the dignity of our rational nature." },
-        { id: "C2_12", audio: "audio/level_test/C2-Q12.mp3", text: "How does Wittgenstein's later philosophy understand meaning?", options: ["As a logical correspondence between words and objects", "As a private mental state in the mind of the speaker", "As constituted by use within social practices and forms of life", "As defined by the grammatical structure of sentences"], correct: "As constituted by use within social practices and forms of life", transcript: "Narrator: Wittgenstein's later philosophy represents a radical departure from his early work. Where the Tractatus proposed that language pictures reality, the Philosophical Investigations argues that meaning is constituted by use within social practices, what Wittgenstein calls forms of life. His concept of language games captures the idea that different contexts impose different rules and purposes on language. To understand language is not to decode a logical syntax but to participate in a form of life." },
-        { id: "C2_13", audio: "audio/level_test/C2-Q13.mp3", text: "What is the paradox of the sociology of knowledge that Mannheim faces?", options: ["Educated people are more biased than uneducated people", "Social science cannot be conducted objectively", "The claim that all ideas are ideologically conditioned must itself be such a claim", "Knowledge cannot be taught in a classroom setting"], correct: "The claim that all ideas are ideologically conditioned must itself be such a claim", transcript: "Sociologist: Mannheim's central claim in Ideology and Utopia is that all thought, except mathematics and natural science, is socially situated and therefore perspective-bound. He calls this the relational character of knowledge. This creates the paradox of the sociology of knowledge: the claim that all ideas are ideologically conditioned must itself be an ideologically conditioned claim. Mannheim's response is the concept of the free-floating intelligentsia: an educated stratum that, by virtue of its multiple social affiliations, achieves a broader perspective than those embedded in a single class or interest group." },
-        { id: "C2_14", audio: "audio/level_test/C2-Q14.mp3", text: "How does the professor say hamartia is better understood?", options: ["As the punishment gods inflict on the morally corrupt", "As a moral defect that makes the hero unworthy of sympathy", "As an error of judgment in a situation of genuine complexity", "As a fatal weakness in the hero's character"], correct: "As an error of judgment in a situation of genuine complexity", transcript: "Professor: Aristotle's concept of hamartia is often translated as tragic flaw, but this is misleading. Hamartia is better understood as an error of judgment rather than a moral defect. The tragic hero doesn't fall because he is evil but because he makes a mistake, often in a situation of genuine complexity, where the right course of action was not available. This is what makes tragedy genuinely tragic rather than merely morally instructive." },
-        { id: "C2_15", audio: "audio/level_test/C2-Q15.mp3", text: "According to the host, what does anaphora do to the audience's relationship with the content?", options: ["It makes the content easier to memorise", "It creates logical clarity through structure", "It transforms factual assertions into emotional pledges and acts", "It signals the end of the speech"], correct: "It transforms factual assertions into emotional pledges and acts", transcript: "Host: Anaphora is one of the most powerful rhetorical devices. Churchill's we shall fight on the beaches, we shall fight on the landing grounds, we shall fight in the fields creates momentum through repetition. Each repetition narrows the question of whether resistance is possible and intensifies the emotional commitment of the audience. The device transforms a factual assertion into a pledge, a piece of information into an act." },
-        { id: "C2_16", audio: "audio/level_test/C2-Q16.mp3", text: "What is the professor communicating about the analysis?", options: ["It is flawed in its technical execution", "It is technically correct but lacks insight, originality or emotional resonance", "It is too emotionally driven to be academically credible", "It needs to be presented in a different format"], correct: "It is technically correct but lacks insight, originality or emotional resonance", transcript: "Professor: Your analysis is technically impeccable. Student: Thank you. Professor: And yet it leaves me entirely cold." },
-        { id: "C2_17", audio: "audio/level_test/C2-Q17.mp3", text: "What is Journalist B implying?", options: ["The minister was entirely truthful", "The minister used technically true statements to create a misleading impression", "The minister refused to answer the question", "Journalist B is defending the minister"], correct: "The minister used technically true statements to create a misleading impression", transcript: "Journalist A: Did the minister lie? Journalist B: He didn't say anything that was technically false." },
-        { id: "C2_18", audio: "audio/level_test/C2-Q18.mp3", text: "What is the speaker doing?", options: ["Dismissing the data as worthless", "Claiming the data proves the hypothesis", "Accurately acknowledging the limitations of the evidence while presenting it", "Warning the audience not to take the research seriously"], correct: "Accurately acknowledging the limitations of the evidence while presenting it", transcript: "Speaker: The data is, of course, suggestive rather than conclusive." },
-        { id: "C2_19", audio: "audio/level_test/C2-Q19.mp3", text: "What is the woman implying?", options: ["The man is open to negotiations", "Expressing openness is a genuine signal of willingness to proceed", "Expressing openness is his way of deferring without committing", "The man should negotiate harder"], correct: "Expressing openness is his way of deferring without committing", transcript: "Man: He said he was very open to the idea. Woman: He said that to you as well? He tells everyone he's open to everything. It's how he buys time." },
-        { id: "C2_20", audio: "audio/level_test/C2-Q20.mp3", text: "What does the critic imply about the rest of the novel?", options: ["It is equally well-written", "It has not been read carefully", "It is written in a different style", "It is not of the same quality as the final chapter"], correct: "It is not of the same quality as the final chapter", transcript: "Critic: The novel's final chapter is masterfully written. Every word is in precisely the right place. Interviewer: And the rest? Critic: I said the final chapter is masterfully written." },
-        { id: "C2_21", audio: "audio/level_test/C2-Q21.mp3", text: "What distinguishes epistemic humility from epistemic cowardice, according to the speaker?", options: ["Epistemic humility involves more evidence; epistemic cowardice does not", "Epistemic humility is genuine openness to revision; epistemic cowardice uses uncertainty to avoid commitment", "Epistemic humility is only found in academics; epistemic cowardice is common in politicians", "They are two names for the same intellectual stance"], correct: "Epistemic humility is genuine openness to revision; epistemic cowardice uses uncertainty to avoid commitment", transcript: "Speaker: There is a tendency in public discourse to conflate two quite different relationships to uncertainty. The first is what I'll call epistemic humility: acknowledging that you might be wrong, holding your conclusions provisionally, and remaining genuinely open to revision. The second is what I'll call epistemic cowardice: using uncertainty as a permanent refuge from commitment, as a way of avoiding the responsibility of taking a position. These look superficially similar but serve very different intellectual and ethical functions." },
-        { id: "C2_22", audio: "audio/level_test/C2-Q22.mp3", text: "What paradox does the commentator identify?", options: ["Deliberative democracy works best when people are most educated", "Deliberative democracy requires civic conditions that are absent precisely when they are most needed", "Deliberative democracy produces worse outcomes than representative democracy", "Citizens cannot understand complex policy arguments"], correct: "Deliberative democracy requires civic conditions that are absent precisely when they are most needed", transcript: "Commentator: There is a paradox at the heart of deliberative democracy. It asks citizens to engage with perspectives they find alien, offensive, even threatening, and to change their minds in response to the better argument. But the conditions under which this is possible, good faith, shared epistemic standards, sufficient trust, are precisely the conditions that are absent when democracy is under most stress. Deliberative theory presupposes the very civic culture whose erosion it is supposed to address." },
-        { id: "C2_23", audio: "audio/level_test/C2-Q23.mp3", text: "What does Lyotard's postmodernism question?", options: ["All scientific knowledge and empirical evidence", "Grand theoretical frameworks that claim to explain everything and justify action", "Scepticism as a philosophical method", "The existence of progress in human history"], correct: "Grand theoretical frameworks that claim to explain everything and justify action", transcript: "Professor: Lyotard's definition of postmodernism as incredulity towards metanarratives does not mean we should be sceptical of everything. It means we should be sceptical of grand theoretical frameworks, whether Marxism, liberalism, or religion, that claim to explain everything and to justify political action on the basis of those total explanations. The postmodern turn is a loss of faith in the redemptive power of any single story about history, progress, and human emancipation." },
-        { id: "C2_24", audio: "audio/level_test/C2-Q24.mp3", text: "What is the hard problem of consciousness?", options: ["How the brain processes sensory information", "Why certain brain states are associated with specific behaviours", "Why physical processes in the brain are accompanied by subjective experience at all", "How consciousness can be measured objectively"], correct: "Why physical processes in the brain are accompanied by subjective experience at all", transcript: "Speaker: Chalmers' hard problem of consciousness asks why there is subjective experience at all. We can explain in principle why a system processes information, detects stimuli, and produces behaviour. What we cannot explain is why any of this is accompanied by a felt quality, why it's like something to see red rather than simply to process the wavelength six hundred and twenty nanometres. This residual question is the hard problem, and no physical account of the brain has yet come close to answering it." },
-        { id: "C2_25", audio: "audio/level_test/C2-Q25.mp3", text: "Why does Aristotle consider ethos the most powerful mode of persuasion?", options: ["Because emotional appeals are unreliable", "Because logical arguments are too complex for most audiences", "Because it operates before the argument begins, through trust in the speaker's character", "Because audiences remember character more than content"], correct: "Because it operates before the argument begins, through trust in the speaker's character", transcript: "Professor: Aristotle's three modes of persuasion are logos, pathos, and ethos. Logos is the appeal to reason: the quality of the argument itself. Pathos is the appeal to emotion: putting the audience in the right frame of mind. Ethos is the appeal to character: persuasion through the credibility, virtue, and goodwill of the speaker. Aristotle considers ethos the most powerful because it operates before the argument begins. We are persuaded by people we trust before they say anything." },
-        { id: "C2_26", audio: "audio/level_test/C2-Q26.mp3", text: "What is Professor A implying?", options: ["The committee was very supportive", "The revisions were minor and acceptable", "The proposal was so changed by conditions that it is barely the same proposal", "The committee rejected the proposal"], correct: "The proposal was so changed by conditions that it is barely the same proposal", transcript: "Professor A: The committee approved our proposal. Professor B: I heard. Though I'm told the approval was conditional on some significant revisions. Professor A: That's one way of putting it. Another way is that they approved a different proposal and called it ours." },
-        { id: "C2_27", audio: "audio/level_test/C2-Q27.mp3", text: "What does the professor argue euphemism does?", options: ["It makes difficult subjects easier to discuss", "It is a neutral stylistic choice with no political implications", "It strategically removes moral categories from events to manage public perception", "It allows speakers to be more precise than ordinary language allows"], correct: "It strategically removes moral categories from events to manage public perception", transcript: "Professor: The euphemism is not merely a polite alternative. It is a mechanism of ideological distortion. When a state describes civilian deaths as collateral damage, it is not choosing a gentler word. It is strategically removing the moral category of human life from the frame of analysis. The goal is not clarity but managed perception. The language does not describe the event; it pre-empts the judgment." },
-        { id: "C2_28", audio: "audio/level_test/C2-Q28.mp3", text: "What does Russell's analysis reveal about sentences with non-existent referents?", options: ["They are grammatically incorrect", "They have no meaning whatsoever", "They are false, not meaningless, because the existence claim they contain fails", "They should be replaced by more precise scientific language"], correct: "They are false, not meaningless, because the existence claim they contain fails", transcript: "Philosopher: Russell's theory of descriptions was motivated by a puzzle about reference to non-existent objects. How can the sentence the present King of France is bald be meaningful when there is no present King of France? Russell's solution is to analyse the definite description not as a name referring to an object, but as a quantified expression: there exists exactly one thing that is King of France and it is bald. Since no such thing exists, the sentence is false, not meaningless." },
-        { id: "C2_29", audio: "audio/level_test/C2-Q29.mp3", text: "What is the central mechanism of ideological control in Adorno's culture industry thesis?", options: ["Direct censorship of alternative cultural forms", "Shaping people's desires so that what they want is what the industry produces", "Using entertainment to distract people from political action", "Suppressing genuine artistic expression"], correct: "Shaping people's desires so that what they want is what the industry produces", transcript: "Professor: Adorno's culture industry thesis argues that mass culture, rather than liberating people through entertainment, produces a form of social conformity that reinforces the existing order. The consumer is not free in their choices; their desires have already been shaped by the industry that will satisfy them. The culture industry doesn't give people what they want; it trains them to want what it gives." },
-        { id: "C2_30", audio: "audio/level_test/C2-Q30.mp3", text: "What is Benjamin's view of what good translation reveals?", options: ["The translator's own interpretation of the original", "How close the target language is to the source language", "Something the original text reaches towards but cannot fully express", "The historical context in which the original was written"], correct: "Something the original text reaches towards but cannot fully express", transcript: "Speaker: Benjamin's essay on the task of the translator argues against the view that translation aims to convey the meaning of the original to new readers. For Benjamin, the translator's task is to illuminate what the original text reaches towards but cannot fully express: the relationship between all languages' attempt to name the world. Translation, on this view, is not a pale copy of the original but a form that reveals something the original conceals." },
-        { id: "C2_31", audio: "audio/level_test/C2-Q31.mp3", text: "What does Writer B mean by saying all fiction is political?", options: ["All good fiction contains explicit political content", "Fiction always reflects the author's party-political allegiances", "All fiction makes choices about whose lives and stories are centred, which are inherently political", "Fiction is more reliable than journalism as political commentary"], correct: "All fiction makes choices about whose lives and stories are centred, which are inherently political", transcript: "Writer A: You said in your lecture that all fiction is political. Do you really believe that? Writer B: I believe that all fiction makes choices about which lives to illuminate and which to leave in shadow, whose inner world to explore and whose to treat as background, what counts as a story worth telling. Those are always political choices, whether or not the author is conscious of them." },
-        { id: "C2_32", audio: "audio/level_test/C2-Q32.mp3", text: "What is the core insight of comparative advantage?", options: ["Countries should produce everything they can domestically", "Absolute productivity determines whether trade is beneficial", "Opportunity cost rather than absolute productivity determines the gains from trade", "Free trade always benefits both parties equally"], correct: "Opportunity cost rather than absolute productivity determines the gains from trade", transcript: "Professor: The concept of comparative advantage is one of the most counterintuitive in economics. It says that even if one country is more efficient at producing everything than another, it can still benefit from trading by specialising in what it is relatively more efficient at producing. The model rests on assumptions, including free mobility of capital and labour, that are frequently violated in practice. But the core insight remains: opportunity cost, not absolute productivity, determines the gains from trade." },
-        { id: "C2_33", audio: "audio/level_test/C2-Q33.mp3", text: "What does Hegel mean by 'the rational is the actual'?", options: ["That everything that exists is rational and therefore good", "That history is entirely random and beyond human understanding", "That what is historically necessary will ultimately prevail", "That reason can be found in all human beings"], correct: "That what is historically necessary will ultimately prevail", transcript: "Philosopher: For Hegel, history is not a series of arbitrary events but the progressive self-actualisation of Spirit. The dialectical movement of thesis, antithesis, and synthesis is not a method he explicitly endorses but a structure he identifies in how ideas develop over time: a position generates its own contradiction, and the tension between them produces a higher, more adequate position. The famous phrase the rational is the actual and the actual is the rational means not that everything that exists is good but that what is historically necessary will ultimately triumph." },
-        { id: "C2_34", audio: "audio/level_test/C2-Q34.mp3", text: "What is Ricoeur's argument about narrative and experience?", options: ["Narrative is a secondary description of events that have already happened", "Narrative structures how we constitute experience as meaningful in the first place", "Human beings naturally understand time without the need for stories", "Stories distort our perception of raw experience"], correct: "Narrative structures how we constitute experience as meaningful in the first place", transcript: "Host: Ricoeur argues that time becomes human time to the extent that it is narrated. What does that mean? Philosopher: We don't experience raw time. We experience it through stories: beginnings, middles, endings, causality, character. Narrative is not how we describe our lives after the fact; it's the cognitive structure through which we constitute experience as meaningful in the first place. Without narrative, experience would be a succession of disconnected moments, undifferentiated flux." },
-        { id: "C2_35", audio: "audio/level_test/C2-Q35.mp3", text: "What does Lakoff and Johnson's work argue about conceptual metaphors?", options: ["They are decorative additions to literal thought", "They are used only by poets and writers", "They are constitutive of thought itself, not merely illustrative", "They distort our understanding of abstract concepts"], correct: "They are constitutive of thought itself, not merely illustrative", transcript: "Speaker: Lakoff and Johnson's Metaphors We Live By argues that abstract concepts are not independently understood but are structured by embodied metaphor. When we say an argument has a foundation, is built on solid ground, or is constructed carefully, we are not making decorative comparisons. We are thinking through the conceptual metaphor argument is building. These metaphors are not poetic additions to thought; they are constitutive of it. We cannot think about time, argument, love, or morality without them." },
-        { id: "C2_36", audio: "audio/level_test/C2-Q36.mp3", text: "What is the commentator's assessment of the chancellor's statement?", options: ["It was impressively nuanced and clear", "It was deliberately vague in order to avoid commitment while appearing balanced", "It was confused and poorly prepared", "It was the most honest statement a politician has made this year"], correct: "It was deliberately vague in order to avoid commitment while appearing balanced", transcript: "Commentator: The chancellor's statement was a masterclass in managed ambiguity. She committed to nothing, ruled nothing out, and left every interested party free to hear what they wanted. It was a linguistic performance of strategic vagueness dressed as balanced nuance." },
-        { id: "C2_37", audio: "audio/level_test/C2-Q37.mp3", text: "What is Sandel's critique of the original position?", options: ["It produces excessively egalitarian outcomes", "The veil of ignorance removes too much knowledge to be useful", "The self behind the veil is an impoverished fiction that presupposes a liberal conception of the self", "Rawls' theory is too abstract to have practical applications"], correct: "The self behind the veil is an impoverished fiction that presupposes a liberal conception of the self", transcript: "Student: Isn't Rawls' original position just a liberal thought experiment that smuggles in liberal conclusions? Professor: That's a sophisticated critique and not entirely wrong. Critics like Sandel argue that the self behind the veil of ignorance is an impoverished fiction: a person stripped of all the attachments, commitments, and identities that actually make them who they are. If you remove everything that constitutes a person's values and ask what they would choose, you're not describing neutrality; you're presupposing a particular, liberal conception of the self." },
-        { id: "C2_38", audio: "audio/level_test/C2-Q38.mp3", text: "What does 'instrumental reason' refer to in this context?", options: ["The use of reason to pursue knowledge for its own sake", "The use of reason to question authority and tradition", "Reason deployed solely in the service of domination and efficiency", "The Enlightenment's original commitment to human liberation"], correct: "Reason deployed solely in the service of domination and efficiency", transcript: "Narrator: Adorno and Horkheimer's Dialectic of Enlightenment argues that the Enlightenment project of reason, originally aimed at liberating humanity from myth and superstition, has turned against itself. Instrumental reason, reason deployed solely in the service of domination and efficiency, has supplanted genuinely emancipatory reason. The result is not freedom but new forms of administered unfreedom: the rationalisation of exploitation, the culture industry, the bureaucratic management of populations." },
-        { id: "C2_39", audio: "audio/level_test/C2-Q39.mp3", text: "What does Said argue discourse about the Orient does?", options: ["Accurately describes the cultural differences between East and West", "Describes an existing reality that is just different from the Western perspective", "Produces a construction of the Orient that serves and naturalises colonial power", "Reflects genuine academic curiosity about unfamiliar cultures"], correct: "Produces a construction of the Orient that serves and naturalises colonial power", transcript: "Interviewer: Said's Orientalism is widely cited. What is its central argument? Scholar: Said argues that Western discourse about the Orient, in literature, scholarship, and political analysis, is not a neutral description of a pre-existing reality but a productive discourse: it creates the Orient as an object of knowledge in ways that serve Western imperial power. The Orient is constructed as static, exotic, inferior, and in need of Western enlightenment. This construction does not merely describe the Orient; it produces conditions that make colonial domination seem natural and necessary." },
-        { id: "C2_40", audio: "audio/level_test/C2-Q40.mp3", text: "What is Philosopher B's objection to compatibilism?", options: ["Compatibilism is logically inconsistent", "Compatibilism redefines freedom in a way that trivialises it by ignoring that desires themselves are determined", "Compatibilism requires believing in determinism, which is false", "Compatibilism is only relevant to thought experiments, not real life"], correct: "Compatibilism redefines freedom in a way that trivialises it by ignoring that desires themselves are determined", transcript: "Philosopher A: I remain persuaded that free will is compatible with determinism. Philosopher B: The compatibilist move always feels like a semantic sleight of hand to me. You redefine freedom to mean acting in accordance with your desires, and then point out, correctly, that this is consistent with determinism. But the desires themselves are determined. You haven't rescued freedom; you've just lowered the bar." },
-        { id: "C2_41", audio: "audio/level_test/C2-Q41.mp3", text: "What does the historian call teleological thinking in historical analysis?", options: ["Explaining events using economic models", "Treating historical events as morally equivalent", "The assumption that events were moving towards an outcome we now know occurred", "Comparing historical events across different cultures"], correct: "The assumption that events were moving towards an outcome we now know occurred", transcript: "Historian: There is a persistent temptation to explain historical events in terms of what came after. We call this teleological thinking: the assumption that events were moving towards a specific outcome that we now know occurred, and that the people at the time were in some sense heading there. This is an illusion created by retrospective certainty. The people who lived through any historical moment did not know how it would end. Explaining their choices as rational steps towards the known outcome is a form of hindsight bias masquerading as analysis." },
-        { id: "C2_42", audio: "audio/level_test/C2-Q42.mp3", text: "What does Derrida's logic of the supplement reveal?", options: ["That writing is inferior to speech", "That the secondary term in a binary opposition turns out to be constitutive of the primary term", "That binary oppositions are always equal in importance", "That deconstruction can be applied to visual art as well as texts"], correct: "That the secondary term in a binary opposition turns out to be constitutive of the primary term", transcript: "Professor: Derrida's central strategy is to identify in a text the hierarchical binary oppositions through which meaning is organised, such as presence and absence, speech and writing, nature and culture, and to show that the privileged term of the pair is actually defined by its relation to the supposedly inferior term. The hierarchy is therefore unstable. This is what Derrida calls the logic of the supplement: what appears to be a secondary addition turns out to be constitutive of the primary term it was supposed merely to supplement." },
-        { id: "C2_43", audio: "audio/level_test/C2-Q43.mp3", text: "What does the lecturer argue the poem's unresolved ending represents?", options: ["A structural flaw in the poem's composition", "The poet's inability to find a satisfactory conclusion", "An honest refusal to falsify complexity by forcing resolution", "A deliberate challenge to the reader's patience"], correct: "An honest refusal to falsify complexity by forcing resolution", transcript: "Lecturer: The poem's final line refuses to resolve the ambiguity it has spent its length creating. Student: Is that a weakness? Lecturer: Only if you think poetry is obliged to comfort its readers. The refusal to resolve is itself the meaning. To demand resolution would be to demand that the poem lie." },
-        { id: "C2_44", audio: "audio/level_test/C2-Q44.mp3", text: "How does Barthes define myth in this context?", options: ["A false belief held by primitive societies", "A story that explains natural phenomena", "Connotative meaning that presents contingent cultural meaning as natural and inevitable", "A type of literary text with symbolic content"], correct: "Connotative meaning that presents contingent cultural meaning as natural and inevitable", transcript: "Speaker: Barthes distinguishes two levels of meaning in images and texts. The first is denotation: the literal, descriptive content, what is simply there. The second is connotation: the cultural associations, ideological implications, and emotional resonances that attach to the denotative content. Myth, for Barthes, operates at the level of connotation. It takes a piece of contingent cultural meaning and presents it as natural and inevitable, draining it of its history." },
-        { id: "C2_45", audio: "audio/level_test/C2-Q45.mp3", text: "What is the key criterion distinguishing permissible from impermissible action under the doctrine of double effect?", options: ["The action must save more lives than it harms", "The action must be approved by a legal authority", "The bad effect must not be the means to the good effect, and the agent must intend only the good", "The patient must have given explicit consent"], correct: "The bad effect must not be the means to the good effect, and the agent must intend only the good", transcript: "Professor: The doctrine of double effect holds that an action with both good and bad effects may be permissible if four conditions are met: the action itself is not wrong, the agent intends only the good effect, the bad effect is not the means to the good effect, and there is proportionate reason for the risk. This doctrine is invoked in cases of palliative sedation in medicine, where the intention is to relieve suffering, not to hasten death, even though the risk of the latter may exist." },
-        { id: "C2_46", audio: "audio/level_test/C2-Q46.mp3", text: "What problem does the professor identify with New Criticism's approach?", options: ["It leads to overly emotional readings of texts", "It was only effective for poetry, not prose", "Texts cannot be isolated from the cultural and historical contexts that shape how they are read", "It made literary scholarship too scientific"], correct: "Texts cannot be isolated from the cultural and historical contexts that shape how they are read", transcript: "Professor: New Criticism insisted on the autonomy of the literary text, the idea that meaning is fully contained within the work itself and that biographical or historical context is irrelevant. This was a useful corrective to scholarship that had become dominated by literary biography. But it created its own problems: texts do not exist in cultural and historical vacuums. The meaning we make of a text is always shaped by the context in which we read it, however rigorously we try to isolate the text." },
-        { id: "C2_47", audio: "audio/level_test/C2-Q47.mp3", text: "Why does Freire say the banking model of education is politically oppressive?", options: ["It favours wealthy students over poor ones", "It mirrors and reinforces structures of social domination that prevent critical consciousness", "It prioritises science over the humanities", "It was designed by colonial powers to suppress indigenous cultures"], correct: "It mirrors and reinforces structures of social domination that prevent critical consciousness", transcript: "Professor: Freire's Pedagogy of the Oppressed argues against what he calls the banking concept of education, in which the teacher is an active depositor and the student a passive recipient. This model, for Freire, is not merely pedagogically inefficient; it is politically oppressive because it mirrors and reinforces the social structures of domination that prevent the oppressed from developing critical consciousness. The alternative, what Freire calls problem-posing education, treats learning as a joint investigation of the world by teacher and student together." },
-        { id: "C2_48", audio: "audio/level_test/C2-Q48.mp3", text: "What does the speaker argue large language models lack?", options: ["The ability to generate grammatically correct sentences", "Access to up-to-date information", "Genuine intentionality and meaning in the philosophical sense", "The capacity to produce creative writing"], correct: "Genuine intentionality and meaning in the philosophical sense", transcript: "Speaker: Large language models generate text by predicting the next token based on statistical patterns in vast training corpora. They are extraordinarily good at producing fluent, contextually plausible language. What they cannot do, and what is routinely misunderstood in popular discourse, is mean anything. Meaning, in the philosophical sense, involves intentionality, aboutness, the relation between a sign and what it stands for in the world. There is no world, for a language model. There are only patterns." },
-        { id: "C2_49", audio: "audio/level_test/C2-Q49.mp3", text: "What does Kuhn mean by saying two paradigms are incommensurable?", options: ["They cannot be translated into each other because they share different standards, questions, and criteria", "One is scientifically superior to the other", "Both paradigms are equally valid and neither should be preferred", "Scientific progress is impossible because paradigms cannot be compared"], correct: "They cannot be translated into each other because they share different standards, questions, and criteria", transcript: "Professor: Kuhn's concept of paradigm shift describes the way scientific progress actually happens: not through the gradual accumulation of confirmed facts but through periodic revolutions in which one framework of assumptions is replaced by an incommensurable new one. Incommensurable is the key word. Kuhn is not saying that one paradigm is merely different from another. He is saying that the standards of evidence, the definition of questions, and the criteria of success are themselves different, making direct comparison problematic." },
-        { id: "C2_50", audio: "audio/level_test/C2-Q50.mp3", text: "What does the barrister say the instruction to ignore outside information protects?", options: ["The jury from being influenced by media", "The defendant's right to a fair trial", "The integrity of the process by which evidence is evaluated", "The legal system from public criticism"], correct: "The integrity of the process by which evidence is evaluated", transcript: "Barrister: The jury will be told to decide the case only on the evidence presented in court. Journalist: But the background to this case is known to everyone. Isn't it unrealistic to expect them to ignore it? Barrister: It is unrealistic, yes. But the instruction serves a function that transcends realism. It marks out the categories of evidence that have been subjected to adversarial testing and cross-examination from those that haven't. What we're protecting is not the jury's naivety but the integrity of the process by which evidence is evaluated." }
-    ]
-};
+    { 
+        id: "C2_01", 
+        audio: "audio/level_test/C2-Q01.mp3", 
+        text: "What is Davidson's principle of charity a precondition for?", 
+        options: [
+            "Manifesting interpersonal benevolence toward interlocutors", 
+            "The pedagogical process of acquiring a secondary language", 
+            "The fundamental logical possibility of linguistic interpretation", 
+            "Cultivating empathetic bridges across divergent cultural frameworks"
+        ], 
+        correct: "The fundamental logical possibility of linguistic interpretation", 
+        transcript: "Professor: Davidson's principle of charity proposes that when we interpret utterances in an unfamiliar language, we must assume that the speaker is broadly rational and that their beliefs are mostly true. Without this assumption, Davidson argues, interpretation becomes impossible, because we would have no leverage on where to begin. Every sentence could, in principle, mean anything. The principle is not about being generic to speakers; it is about the logical preconditions for interpretation itself." 
+    },
+    { 
+        id: "C2_02", 
+        audio: "audio/level_test/C2-Q02.mp3", 
+        text: "What is the key claim of the weak form of the Sapir-Whorf hypothesis?", 
+        options: [
+            "Linguistic structures exert absolute determinism over human cognition", 
+            "Conceptual thought is strictly bounded by available lexical inventory", 
+            "Language modulates cognitive tendencies without imposing rigid constraints", 
+            "Neuro-cognitive processes remain fundamentally insulated from linguistic influence"
+        ], 
+        correct: "Language modulates cognitive tendencies without imposing rigid constraints", 
+        transcript: "Linguist: The strong form of the Sapir-Whorf hypothesis, linguistic determinism, claims that language determines thought entirely, making concepts without corresponding words literally unthinkable. This has largely been discredited. The weak form, linguistic relativity, claims that language influences rather than determines thought. The evidence here is more nuanced: studies of colour perception and spatial reasoning show that linguistic structure does appear to subtly shape cognitive processes, without constraining them entirely." 
+    },
+    { 
+        id: "C2_03", 
+        audio: "audio/level_test/C2-Q03.mp3", 
+        text: "What does the counterexample reveal, according to the professor?", 
+        options: [
+            "Consequentialism is fundamentally flawed as a theoretical moral construct", 
+            "Utilitarian metrics should be restricted to acute existential emergencies", 
+            "Surgical intervention is morally mandated when it maximizes aggregate life", 
+            "Pure consequentialism fails to encapsulate deontological rights and duties"
+        ], 
+        correct: "Pure consequentialism fails to encapsulate deontological rights and duties", 
+        transcript: "Professor: The utilitarian calculus demands we maximise aggregate welfare. But this leads to classic counterexamples: the surgeon who kills one healthy patient to save five. Strict utilitarianism seems to endorse this. What this reveals is not that consequentialism is wrong but that it is incomplete. Our moral lives are structured by rights, duties, and special obligations that don't reduce to welfare calculations. The question is how to integrate these deontological constraints into a broader, pluralist account." 
+    },
+    { 
+        id: "C2_04", 
+        audio: "audio/level_test/C2-Q04.mp3", 
+        text: "What does Gadamer mean by saying understanding is never final?", 
+        options: [
+            "The semantic depth of a text remains perpetually beyond human grasp", 
+            "Hermeneutic acts are dynamic events mediated by the interpreter's temporality", 
+            "Archaic texts present insurmountable barriers to contemporary comprehension", 
+            "Authorial intent remains the sole, albeit unreachable, arbiter of meaning"
+        ], 
+        correct: "Hermeneutic acts are dynamic events mediated by the interpreter's temporality", 
+        transcript: "Professor: Gadamer's central contribution is the concept of the fusion of horizons. When we interpret a text, we do not shed our own historical and cultural situation. Rather, we bring our horizon into productive contact with the horizon of the text. Understanding is not the recovery of an author's original intention. It is an event in which both the text and the interpreter are changed. This is why, for Gadamer, understanding is always historically situated and never final." 
+    },
+    { 
+        id: "C2_05", 
+        audio: "audio/level_test/C2-Q05.mp3", 
+        text: "Why would agents behind the veil of ignorance choose to protect the worst-off?", 
+        options: [
+            "They are governed by an intrinsic, categorical moral imperative", 
+            "A lack of self-knowledge necessitates a risk-averse rational strategy", 
+            "The prioritization of the marginalized maximizes global utilitarian output", 
+            "It is a prescriptive rule explicitly dictated by the Rawlsian framework"
+        ], 
+        correct: "A lack of self-knowledge necessitates a risk-averse rational strategy", 
+        transcript: "Professor: Rawls' veil of ignorance is a thought experiment, not a description of a real process. Behind the veil, you don't know your position in society, your wealth, talents, or values. Rawls argues that rational agents in this position would choose principles that protect the worst-off members of society, because they would reason: I might be one of them. The device generates what Rawls calls justice as fairness, principles that no one could reasonably reject from a position of ignorance." 
+    },
+    { 
+        id: "C2_06", 
+        audio: "audio/level_test/C2-Q06.mp3", 
+        text: "What is the historian's main argument?", 
+        options: [
+            "The nation-state represents the pinnacle of socio-political evolution", 
+            "Imperial structures demonstrated greater historical longevity and success", 
+            "The nation-state is a contingent historical phenomenon, not an ontological truth", 
+            "The conceptual framework of the nation-state is an Enlightenment-era fabrication"
+        ], 
+        correct: "The nation-state is a contingent historical phenomenon, not an ontological truth", 
+        transcript: "Interviewer: You've argued that the concept of the nation-state is a relatively recent invention. What do you mean? Historian: The idea that the world should naturally be divided into sovereign states corresponding to distinct nations and cultures is a product of the nineteenth century, not of human nature. Most of human history was organised around empires, city-states, tribal confederacies, and religious communities that bore no relationship to the concept of the nation-state. The naturalness of the nation-state is a historical construct that we have learned to take for granted." 
+    },
+    { 
+        id: "C2_07", 
+        audio: "audio/level_test/C2-Q07.mp3", 
+        text: "What is Philosopher B's position?", 
+        options: [
+            "Ethical propositions lack any form of normative or cognitive validity", 
+            "Historical atrocities were morally neutral relative to their specific eras", 
+            "Moral imperatives are rooted in anthropocentric reality rather than metaphysics", 
+            "Relativism dictates that all cultural moral frameworks possess equal legitimacy"
+        ], 
+        correct: "Moral imperatives are rooted in anthropocentric reality rather than metaphysics", 
+        transcript: "Philosopher A: If moral realism is true, there are moral facts independent of what any culture believes. This explains why we can say that slavery was wrong, not just that we disapprove of it now. Philosopher B: But what are these facts made of? What is their ontological status? The anti-realist doesn't deny that we make moral judgments. She denies that those judgments describe a mind-independent moral reality. Philosopher A: Which leads you to the conclusion that the wrongness of genocide is merely a matter of cultural preference. Philosopher B: No. It leads me to the conclusion that our deepest moral commitments are not grounded in metaphysics but in what it means to be the kinds of beings we are." 
+    },
+    { 
+        id: "C2_08", 
+        audio: "audio/level_test/C2-Q08.mp3", 
+        text: "What does the neuroscientist say about the popular interpretation of Libet's findings?", 
+        options: [
+            "It definitively falsifies the existence of human autonomous agency", 
+            "It provides a nuanced representation of the experimental complexity", 
+            "It extrapolates far beyond the empirical constraints of the actual data", 
+            "It has been comprehensively validated by subsequent neuro-imaging trials"
+        ], 
+        correct: "It extrapolates far beyond the empirical constraints of the actual data", 
+        transcript: "Interviewer: The question of free will seems to be resolved by neuroscience: our decisions are made before we're conscious of them. Neuroscientist: That's an overstatement of what Libet's experiments actually showed. The readiness potential he measured preceded the reported intention to move by a few hundred milliseconds. But consciousness of an intention is not the same as the intention itself. And there's growing evidence that we exercise veto power over motor impulses even after awareness. The relationship between neural activity, consciousness, and agency is far more complex than the popular interpretation of Libet suggests." 
+    },
+    { 
+        id: "C2_09", 
+        audio: "audio/level_test/C2-Q09.mp3", 
+        text: "What does the panellist say Spivak is actually asking?", 
+        options: [
+            "Whether marginalized populations possess their own autonomous dialects", 
+            "Whether structural conditions permit subaltern discourse to attain epistemic authority", 
+            "Whether the colonial project has succeeded in the permanent erasure of indigenity", 
+            "Whether literary mimetic practices can truly represent the subaltern condition"
+        ], 
+        correct: "Whether structural conditions permit subaltern discourse to attain epistemic authority", 
+        transcript: "Panellist: Spivak's famous essay asks whether the subaltern can speak. She's not asking whether they have vocal cords. She's asking whether the conditions exist in which their speech can be heard and given epistemic authority. When the only available representational frameworks are those inherited from colonialism, speech may occur but comprehension, recognition, and power transfer may not. The subaltern speaks, but into a void." 
+    },
+    { 
+        id: "C2_10", 
+        audio: "audio/level_test/C2-Q10.mp3", 
+        text: "What does the researcher identify as the structural problem with peer review?", 
+        options: [
+            "Reviewers exhibit a systemic bias against heterodox or novel paradigms", 
+            "There has been a precipitous decline in the qualitative rigor of critical reviews", 
+            "The monetization of uncompensated intellectual labor by predatory publishers", 
+            "An inflationary trend in publication volume is diluting academic excellence"
+        ], 
+        correct: "The monetization of uncompensated intellectual labor by predatory publishers", 
+        transcript: "Researcher: The peer review system has serious problems, but people often misdiagnose them. The problem isn't that reviewers are biased or lazy, though some are. The structural problem is that the system asks experts to donate unpaid labour to increase the profits of private publishers, who then sell the publicly funded research back to the public institutions that funded it at monopolistic prices. It's a remarkable extraction mechanism that everyone in academia understands and continues to participate in." 
+    },
+    { 
+        id: "C2_11", 
+        audio: "audio/level_test/C2-Q11.mp3", 
+        text: "What does Kant say the sublime experience ultimately reveals?", 
+        options: [
+            "The inherent fragility of the human form against nature's chaotic power", 
+            "The terminal boundaries of human empirical and rational understanding", 
+            "The aesthetic demarcation between harmonious beauty and dissonant ugliness", 
+            "The transcendence of human reason in conceptualizing the uncontainable"
+        ], 
+        correct: "The transcendence of human reason in conceptualizing the uncontainable", 
+        transcript: "Philosopher: Burke distinguished the sublime from the beautiful on psychological grounds. Beauty produces love and pleasure; it is smooth, small, clear. The sublime produces astonishment, even a degree of terror, but a terror that is pleasurable when the source of danger is safely removed. Kant later internalised the sublime: the real source of the sublime experience is not nature's vastness but the mind's capacity to comprehend what initially overwhelms it. In confronting what exceeds our physical grasp, we discover the dignity of our rational nature." 
+    },
+    { 
+        id: "C2_12", 
+        audio: "audio/level_test/C2-Q12.mp3", 
+        text: "How does Wittgenstein's later philosophy understand meaning?", 
+        options: [
+            "As a semantic correspondence between linguistic signs and external objects", 
+            "As an internal psychological state residing within the speaker's consciousness", 
+            "As a function of usage embedded within social praxis and 'forms of life'", 
+            "As an emergent property of the innate grammatical architecture of sentences"
+        ], 
+        correct: "As a function of usage embedded within social praxis and 'forms of life'", 
+        transcript: "Narrator: Wittgenstein's later philosophy represents a radical departure from his early work. Where the Tractatus proposed that language pictures reality, the Philosophical Investigations argues that meaning is constituted by use within social practices, what Wittgenstein calls forms of life. His concept of language games captures the idea that different contexts impose different rules and purposes on language. To understand language is not to decode a logical syntax but to participate in a form of life." 
+    },
+    { 
+        id: "C2_13", 
+        audio: "audio/level_test/C2-Q13.mp3", 
+        text: "What is the paradox of the sociology of knowledge that Mannheim faces?", 
+        options: [
+            "Intellectual elites demonstrate greater cognitive bias than the general populace", 
+            "Sociological inquiry is inherently incapable of attaining empirical objectivity", 
+            "The thesis of universal ideological conditioning must itself be ideologically reflexive", 
+            "Authentic knowledge cannot be transmitted through institutionalized pedagogical means"
+        ], 
+        correct: "The thesis of universal ideological conditioning must itself be ideologically reflexive", 
+        transcript: "Sociologist: Mannheim's central claim in Ideology and Utopia is that all thought, except mathematics and natural science, is socially situated and therefore perspective-bound. He calls this the relational character of knowledge. This creates the paradox of the sociology of knowledge: the claim that all ideas are ideologically conditioned must itself be an ideologically conditioned claim. Mannheim's response is the concept of the free-floating intelligentsia: an educated stratum that, by virtue of its multiple social affiliations, achieves a broader perspective than those embedded in a single class or interest group." 
+    },
+    { 
+        id: "C2_14", 
+        audio: "audio/level_test/C2-Q14.mp3", 
+        text: "How does the professor say hamartia is better understood?", 
+        options: [
+            "As a divine retribution visited upon those with fundamental moral corruption", 
+            "As a characterological pathology that renders the protagonist unsympathetic", 
+            "As a cognitive miscalculation within a matrix of insurmountable complexity", 
+            "As an inherent and fatalistic defect residing within the hero's psyche"
+        ], 
+        correct: "As a cognitive miscalculation within a matrix of insurmountable complexity", 
+        transcript: "Professor: Aristotle's concept of hamartia is often translated as tragic flaw, but this is misleading. Hamartia is better understood as an error of judgment rather than a moral defect. The tragic hero doesn't fall because he is evil but because he makes a mistake, often in a situation of genuine complexity, where the right course of action was not available. This is what makes tragedy genuinely tragic rather than merely morally instructive." 
+    },
+    { 
+        id: "C2_15", 
+        audio: "audio/level_test/C2-Q15.mp3", 
+        text: "According to the host, what does anaphora do to the audience's relationship with the content?", 
+        options: [
+            "It facilitates the mnemonic retention of the speaker's primary propositions", 
+            "It enhances the perceived logical coherence of the oratorical structure", 
+            "It transmutes objective data into an affective and performative commitment", 
+            "It serves as a conventionalized linguistic marker signaling discursive closure"
+        ], 
+        correct: "It transmutes objective data into an affective and performative commitment", 
+        transcript: "Host: Anaphora is one of the most powerful rhetorical devices. Churchill's we shall fight on the beaches, we shall fight on the landing grounds, we shall fight in the fields creates momentum through repetition. Each repetition narrows the question of whether resistance is possible and intensifies the emotional commitment of the audience. The device transforms a factual assertion into a pledge, a piece of information into an act." 
+    },
+    { 
+        id: "C2_16", 
+        audio: "audio/level_test/C2-Q16.mp3", 
+        text: "What is the professor communicating about the analysis?", 
+        options: [
+            "It is significantly compromised by foundational technical inaccuracies", 
+            "It attains technical perfection but lacks intellectual vitality and original insight", 
+            "It is overly subordinated to subjective emotionality at the expense of rigor", 
+            "It necessitates a complete structural reconfiguration to meet academic standards"
+        ], 
+        correct: "It attains technical perfection but lacks intellectual vitality and original insight", 
+        transcript: "Professor: Your analysis is technically impeccable. Student: Thank you. Professor: And yet it leaves me entirely cold." 
+    },
+    { 
+        id: "C2_17", 
+        audio: "audio/level_test/C2-Q17.mp3", 
+        text: "What is Journalist B implying?", 
+        options: [
+            "The official provided a comprehensive and transparent account of the situation", 
+            "The official utilized semantic accuracy to cultivate a deceptive narrative", 
+            "The official exercised their right to remain silent in the face of questioning", 
+            "The journalist is offering an ideological defense of the official's conduct"
+        ], 
+        correct: "The official utilized semantic accuracy to cultivate a deceptive narrative", 
+        transcript: "Journalist A: Did the minister lie? Journalist B: He didn't say anything that was technically false." 
+    },
+    { 
+        id: "C2_18", 
+        audio: "audio/level_test/C2-Q18.mp3", 
+        text: "What is the speaker doing?", 
+        options: [
+            "Rejecting the empirical value of the presented dataset as negligible", 
+            "Asserting that the provided evidence constitutes a definitive proof of the thesis", 
+            "Exercising epistemic caution by delineating the boundaries of the evidence", 
+            "Advising the audience to disregard the research due to methodological flaws"
+        ], 
+        correct: "Exercising epistemic caution by delineating the boundaries of the evidence", 
+        transcript: "Speaker: The data is, of course, suggestive rather than conclusive." 
+    },
+    { 
+        id: "C2_19", 
+        audio: "audio/level_test/C2-Q19.mp3", 
+        text: "What is the woman implying?", 
+        options: [
+            "The individual in question is genuinely amenable to reaching a settlement", 
+            "Declarations of openness function as a sincere indicator of intent to collaborate", 
+            "Affirmative rhetoric is employed as a tactical delay to avoid concrete obligation", 
+            "The individual should adopt a more aggressive posture during the negotiation"
+        ], 
+        correct: "Affirmative rhetoric is employed as a tactical delay to avoid concrete obligation", 
+        transcript: "Man: He said he was very open to the idea. Woman: He said that to you as well? He tells everyone he's open to everything. It's how he buys time." 
+    },
+    { 
+        id: "C2_20", 
+        audio: "audio/level_test/C2-Q20.mp3", 
+        text: "What does the critic imply about the rest of the novel?", 
+        options: [
+            "The literary quality is consistent throughout the entire narrative arc", 
+            "The preceding chapters have suffered from a lack of critical scrutiny", 
+            "The stylistic approach undergoes a radical and jarring transformation", 
+            "The qualitative merit of the remainder fails to match the concluding brilliance"
+        ], 
+        correct: "The qualitative merit of the remainder fails to match the concluding brilliance", 
+        transcript: "Critic: The novel's final chapter is masterfully written. Every word is in precisely the right place. Interviewer: And the rest? Critic: I said the final chapter is masterfully written." 
+    },
+    { 
+        id: "C2_21", 
+        audio: "audio/level_test/C2-Q21.mp3", 
+        text: "What distinguishes epistemic humility from epistemic cowardice?", 
+        options: [
+            "Humility demands a higher threshold of empirical verification", 
+            "Humility entails a sincere openness to revision versus a strategic evasion of stance", 
+            "Humility is an academic virtue, whereas cowardice is a political necessity", 
+            "They represent synonymous descriptions of an identical intellectual posture"
+        ], 
+        correct: "Humility entails a sincere openness to revision versus a strategic evasion of stance", 
+        transcript: "Speaker: There is a tendency in public discourse to conflate two quite different relationships to uncertainty. The first is what I'll call epistemic humility: acknowledging that you might be wrong, holding your conclusions provisionally, and remaining genuinely open to revision. The second is what I'll call epistemic cowardice: using uncertainty as a permanent refuge from commitment, as a way of avoiding the responsibility of taking a position. These look superficially similar but serve very different intellectual and ethical functions." 
+    },
+    { 
+        id: "C2_22", 
+        audio: "audio/level_test/C2-Q22.mp3", 
+        text: "What paradox does the commentator identify?", 
+        options: [
+            "Deliberative models function optimally when the citizenry is highly educated", 
+            "Deliberative democracy presupposes civic virtues that its own crisis has eroded", 
+            "Deliberative frameworks consistently yield inferior outcomes to majoritarian ones", 
+            "The citizenry lacks the cognitive capacity to engage with complex policy discourse"
+        ], 
+        correct: "Deliberative democracy presupposes civic virtues that its own crisis has eroded", 
+        transcript: "Commentator: There is a paradox at the heart of deliberative democracy. It asks citizens to engage with perspectives they find alien, offensive, even threatening, and to change their minds in response to the better argument. But the conditions under which this is possible, good faith, shared epistemic standards, sufficient trust, are precisely the conditions that are absent when democracy is under most stress. Deliberative theory presupposes the very civic culture whose erosion it is supposed to address." 
+    },
+    { 
+        id: "C2_23", 
+        audio: "audio/level_test/C2-Q23.mp3", 
+        text: "What does Lyotard's postmodernism question?", 
+        options: [
+            "The validity of all scientific inquiry and empirical methodology", 
+            "Totalizing theoretical constructs that seek to explain and justify history", 
+            "Skepticism when employed as a rigorous philosophical or scientific method", 
+            "The actual existence of any form of historical or social progress"
+        ], 
+        correct: "Totalizing theoretical constructs that seek to explain and justify history", 
+        transcript: "Professor: Lyotard's definition of postmodernism as incredulity towards metanarratives does not mean we should be sceptical of everything. It means we should be sceptical of grand theoretical frameworks, whether Marxism, liberalism, or religion, that claim to explain everything and to justify political action on the basis of those total explanations. The postmodern turn is a loss of faith in the redemptive power of any single story about history, progress, and human emancipation." 
+    },
+    { 
+        id: "C2_24", 
+        audio: "audio/level_test/C2-Q24.mp3", 
+        text: "What is the hard problem of consciousness?", 
+        options: [
+            "The neurological mechanism by which the brain encodes sensory input", 
+            "Determining why specific neural states correlate with observable behaviors", 
+            "Explaining why objective physical processes give rise to subjective experience", 
+            "Developing a standardized metric for the objective measurement of consciousness"
+        ], 
+        correct: "Explaining why objective physical processes give rise to subjective experience", 
+        transcript: "Speaker: Chalmers' hard problem of consciousness asks why there is subjective experience at all. We can explain in principle why a system processes information, detects stimuli, and produces behaviour. What we cannot explain is why any of this is accompanied by a felt quality, why it's like something to see red rather than simply to process the wavelength six hundred and twenty nanometres. This residual question is the hard problem, and no physical account of the brain has yet come close to answering it." 
+    },
+    { 
+        id: "C2_25", 
+        audio: "audio/level_test/C2-Q25.mp3", 
+        text: "Why does Aristotle consider ethos the most powerful mode of persuasion?", 
+        options: [
+            "Because emotional appeals are inherently transient and intellectually unreliable", 
+            "Because logical syllogisms are too cognitively demanding for typical audiences", 
+            "Because it establishes credibility and trust prior to the presentation of arguments", 
+            "Because audiences demonstrate higher mnemonic retention for character over data"
+        ], 
+        correct: "Because it establishes credibility and trust prior to the presentation of arguments", 
+        transcript: "Professor: Aristotle's three modes of persuasion are logos, pathos, and ethos. Logos is the appeal to reason: the quality of the argument itself. Pathos is the appeal to emotion: putting the audience in the right frame of mind. Ethos is the appeal to character: persuasion through the credibility, virtue, and goodwill of the speaker. Aristotle considers ethos the most powerful because it operates before the argument begins. We are persuaded by people we trust before they say anything." 
+    },
+    { 
+        id: "C2_26", 
+        audio: "audio/level_test/C2-Q26.mp3", 
+        text: "What is Professor A implying?", 
+        options: [
+            "The executive committee provided unqualified support for the initiative", 
+            "The mandated modifications were largely perfunctory and easily integrated", 
+            "The conditional constraints have fundamentally altered the original identity of the proposal", 
+            "The committee summarily dismissed the proposal based on structural flaws"
+        ], 
+        correct: "The conditional constraints have fundamentally altered the original identity of the proposal", 
+        transcript: "Professor A: The committee approved our proposal. Professor B: I heard. Though I'm told the approval was conditional on some significant revisions. Professor A: That's one way of putting it. Another way is that they approved a different proposal and called it ours." 
+    },
+    { 
+        id: "C2_27", 
+        audio: "audio/level_test/C2-Q27.mp3", 
+        text: "What does the professor argue euphemism does?", 
+        options: [
+            "It facilitates the discussion of sensitive or taboo subjects in civil discourse", 
+            "It represents a benign stylistic preference devoid of sociological impact", 
+            "It strategically evacuates moral categories from the perception of events", 
+            "It enables a higher degree of precision than is possible in vernacular speech"
+        ], 
+        correct: "It strategically evacuates moral categories from the perception of events", 
+        transcript: "Professor: The euphemism is not merely a polite alternative. It is a mechanism of ideological distortion. When a state describes civilian deaths as collateral damage, it is not choosing a gentler word. It is strategically removing the moral category of human life from the frame of analysis. The goal is not clarity but managed perception. The language does not describe the event; it pre-empts the judgment." 
+    },
+    { 
+        id: "C2_28", 
+        audio: "audio/level_test/C2-Q28.mp3", 
+        text: "What does Russell's analysis reveal about sentences with non-existent referents?", 
+        options: [
+            "They constitute a violation of foundational grammatical and syntactic rules", 
+            "They are entirely devoid of any discernible semantic or logical meaning", 
+            "They possess a truth-value of 'false' due to the failure of their existential claim", 
+            "They should be systematically purged in favor of a formalized scientific language"
+        ], 
+        correct: "They possess a truth-value of 'false' due to the failure of their existential claim", 
+        transcript: "Philosopher: Russell's theory of descriptions was motivated by a puzzle about reference to non-existent objects. How can the sentence the present King of France is bald be meaningful when there is no present King of France? Russell's solution is to analyse the definite description not as a name referring to an object, but as a quantified expression: there exists exactly one thing that is King of France and it is bald. Since no such thing exists, the sentence is false, not meaningless." 
+    },
+    { 
+        id: "C2_29", 
+        audio: "audio/level_test/C2-Q29.mp3", 
+        text: "What is the central mechanism of ideological control in Adorno's culture industry thesis?", 
+        options: [
+            "The overt state censorship of any heterodox or subversive cultural output", 
+            "The pre-fabrication of consumer desires to align with industrial production", 
+            "The deployment of entertainment as a strategic diversion from political praxis", 
+            "The systematic suppression of authentic and unmediated artistic expression"
+        ], 
+        correct: "The pre-fabrication of consumer desires to align with industrial production", 
+        transcript: "Professor: Adorno's culture industry thesis argues that mass culture, rather than liberating people through entertainment, produces a form of social conformity that reinforces the existing order. The consumer is not free in their choices; their desires have already been shaped by the industry that will satisfy them. The culture industry doesn't give people what they want; it trains them to want what it gives." 
+    },
+    { 
+        id: "C2_30", 
+        audio: "audio/level_test/C2-Q30.mp3", 
+        text: "What is Benjamin's view of what good translation reveals?", 
+        options: [
+            "The translator's subjective hermeneutic interpretation of the source material", 
+            "The degree of linguistic proximity between the source and target languages", 
+            "A latent dimension that the original text points toward but cannot encapsulate", 
+            "The precise historical and socio-cultural milieu of the original authorship"
+        ], 
+        correct: "A latent dimension that the original text points toward but cannot encapsulate", 
+        transcript: "Speaker: Benjamin's essay on the task of the translator argues against the view that translation aims to convey the meaning of the original to new readers. For Benjamin, the translator's task is to illuminate what the original text reaches towards but cannot fully express: the relationship between all languages' attempt to name the world. Translation, on this view, is not a pale copy of the original but a form that reveals something the original conceals." 
+    },
+    { 
+        id: "C2_31", 
+        audio: "audio/level_test/C2-Q31.mp3", 
+        text: "What does Writer B mean by saying all fiction is political?", 
+        options: [
+            "Canonical fiction must incorporate overt partisan commentary", 
+            "Narratives invariably mirror the specific ideological affiliations of the author", 
+            "The selective prioritization of specific lives over others is an inherently political act", 
+            "Literary fiction functions as a more rigorous medium for political analysis than journalism"
+        ], 
+        correct: "The selective prioritization of specific lives over others is an inherently political act", 
+        transcript: "Writer A: You said in your lecture that all fiction is political. Do you really believe that? Writer B: I believe that all fiction makes choices about which lives to illuminate and which to leave in shadow, whose inner world to explore and whose to treat as background, what counts as a story worth telling. Those are always political choices, whether or not the author is conscious of them." 
+    },
+    { 
+        id: "C2_32", 
+        audio: "audio/level_test/C2-Q32.mp3", 
+        text: "What is the core insight of comparative advantage?", 
+        options: [
+            "Sovereign nations should prioritize domestic autarky over international trade", 
+            "The absolute industrial productivity of a nation dictates its trade surplus", 
+            "Trade gains are derived from relative opportunity costs rather than absolute efficiency", 
+            "Bilateral trade agreements invariably distribute economic benefits with perfect equity"
+        ], 
+        correct: "Trade gains are derived from relative opportunity costs rather than absolute efficiency", 
+        transcript: "Professor: The concept of comparative advantage is one of the most counterintuitive in economics. It says that even if one country is more efficient at producing everything than another, it can still benefit from trading by specialising in what it is relatively more efficient at producing. The model rests on assumptions, including free mobility of capital and labour, that are frequently violated in practice. But the core insight remains: opportunity cost, not absolute productivity, determines the gains from trade." 
+    },
+    { 
+        id: "C2_33", 
+        audio: "audio/level_test/C2-Q33.mp3", 
+        text: "What does Hegel mean by 'the rational is the actual'?", 
+        options: [
+            "Every existing phenomenon is inherently rational and therefore ethically sound", 
+            "The unfolding of history is a stochastic process beyond human conceptualization", 
+            "Historical necessity is destined to attain concrete manifestation in reality", 
+            "The capacity for reason is a universal and static attribute of the human species"
+        ], 
+        correct: "Historical necessity is destined to attain concrete manifestation in reality", 
+        transcript: "Philosopher: For Hegel, history is not a series of arbitrary events but the progressive self-actualisation of Spirit. The dialectical movement of thesis, antithesis, and synthesis is not a method he explicitly endorses but a structure he identifies in how ideas develop over time: a position generates its own contradiction, and the tension between them produces a higher, more adequate position. The famous phrase the rational is the actual and the actual is the rational means not that everything that exists is good but that what is historically necessary will ultimately triumph." 
+    },
+    { 
+        id: "C2_34", 
+        audio: "audio/level_test/C2-Q34.mp3", 
+        text: "What is Ricoeur's argument about narrative and experience?", 
+        options: [
+            "Narrative constitutes a post-hoc and secondary reflection on lived events", 
+            "Narrativity is the fundamental cognitive framework that renders experience intelligible", 
+            "Human temporal perception exists independently of linguistic or narrative constructs", 
+            "Narrative structures inherently distort the authenticity of raw, immediate experience"
+        ], 
+        correct: "Narrativity is the fundamental cognitive framework that renders experience intelligible", 
+        transcript: "Host: Ricoeur argues that time becomes human time to the extent that it is narrated. What does that mean? Philosopher: We don't experience raw time. We experience it through stories: beginnings, middles, endings, causality, character. Narrative is not how we describe our lives after the fact; it's the cognitive structure through which we constitute experience as meaningful in the first place. Without narrative, experience would be a succession of disconnected moments, undifferentiated flux." 
+    },
+    { 
+        id: "C2_35", 
+        audio: "audio/level_test/C2-Q35.mp3", 
+        text: "What does Lakoff and Johnson's work argue about conceptual metaphors?", 
+        options: [
+            "Metaphors serve as ornamental rhetorical devices applied to literal thought", 
+            "Metaphorical thinking is exclusively localized within the domain of poetic discourse", 
+            "Metaphors are epistemologically constitutive of thought itself, not merely illustrative", 
+            "Conceptual metaphors fundamentally obfuscate our apprehension of abstract reality"
+        ], 
+        correct: "Metaphors are epistemologically constitutive of thought itself, not merely illustrative", 
+        transcript: "Speaker: Lakoff and Johnson's Metaphors We Live By argues that abstract concepts are not independently understood but are structured by embodied metaphor. When we say an argument has a foundation, is built on solid ground, or is constructed carefully, we are not making decorative comparisons. We are thinking through the conceptual metaphor argument is building. These metaphors are not poetic additions to thought; they are constitutive of it. We cannot think about time, argument, love, or morality without them." 
+    },
+    { 
+        id: "C2_36", 
+        audio: "audio/level_test/C2-Q36.mp3", 
+        text: "What is the commentator's assessment of the chancellor's statement?", 
+        options: [
+            "It was characterized by an impressive degree of conceptual clarity and nuance", 
+            "It utilized strategic ambiguity to evade commitment while maintaining a facade of balance", 
+            "The discourse was fundamentally incoherent and lacked sufficient preparation", 
+            "It represented a rare instance of radical transparency in contemporary political rhetoric"
+        ], 
+        correct: "It utilized strategic ambiguity to evade commitment while maintaining a facade of balance", 
+        transcript: "Commentator: The chancellor's statement was a masterclass in managed ambiguity. She committed to nothing, ruled nothing out, and left every interested party free to hear what they wanted. It was a linguistic performance of strategic vagueness dressed as balanced nuance." 
+    },
+    { 
+        id: "C2_37", 
+        audio: "audio/level_test/C2-Q37.mp3", 
+        text: "What is Sandel's critique of the original position?", 
+        options: [
+            "The model generates socio-economic outcomes that are excessively egalitarian", 
+            "The epistemic constraints of the veil render the thought experiment functionally useless", 
+            "The subject behind the veil is an ontologically hollow fiction presupposing liberal individualism", 
+            "Rawlsian abstraction fails to provide a viable framework for practical legislative application"
+        ], 
+        correct: "The subject behind the veil is an ontologically hollow fiction presupposing liberal individualism", 
+        transcript: "Student: Isn't Rawls' original position just a liberal thought experiment that smuggles in liberal conclusions? Professor: That's a sophisticated critique and not entirely wrong. Critics like Sandel argue that the self behind the veil of ignorance is an impoverished fiction: a person stripped of all the attachments, commitments, and identities that actually make them who they are. If you remove everything that constitutes a person's values and ask what they would choose, you're not describing neutrality; you're presupposing a particular, liberal conception of the self." 
+    },
+    { 
+        id: "C2_38", 
+        audio: "audio/level_test/C2-Q38.mp3", 
+        text: "What does 'instrumental reason' refer to in this context?", 
+        options: [
+            "The deployment of rationality for the pursuit of intrinsic, non-utilitarian knowledge", 
+            "The exercise of critical reason to challenge entrenched authority and tradition", 
+            "Reason subsumed by the imperatives of systemic domination and technical efficiency", 
+            "The Enlightenment's foundational commitment to universal human emancipation"
+        ], 
+        correct: "Reason subsumed by the imperatives of systemic domination and technical efficiency", 
+        transcript: "Narrator: Adorno and Horkheimer's Dialectic of Enlightenment argues that the Enlightenment project of reason, originally aimed at liberating humanity from myth and superstition, has turned against itself. Instrumental reason, reason deployed solely in the service of domination and efficiency, has supplanted genuinely emancipatory reason. The result is not freedom but new forms of administered unfreedom: the rationalisation of exploitation, the culture industry, the bureaucratic management of populations." 
+    },
+    { 
+        id: "C2_39", 
+        audio: "audio/level_test/C2-Q39.mp3", 
+        text: "What does Said argue discourse about the Orient does?", 
+        options: [
+            "Objectively delineates the cultural and ontological distinctions between East and West", 
+            "Captures a pre-existing cultural reality from an external Western vantage point", 
+            "Constructs an artificial 'Orient' that legitimizes and naturalizes imperial hegemony", 
+            "Reflects an unmediated academic inquiry into the complexities of foreign cultures"
+        ], 
+        correct: "Constructs an artificial 'Orient' that legitimizes and naturalizes imperial hegemony", 
+        transcript: "Interviewer: Said's Orientalism is widely cited. What is its central argument? Scholar: Said argues that Western discourse about the Orient, in literature, scholarship, and political analysis, is not a neutral description of a pre-existing reality but a productive discourse: it creates the Orient as an object of knowledge in ways that serve Western imperial power. The Orient is constructed as static, exotic, inferior, and in need of Western enlightenment. This construction does not merely describe the Orient; it produces conditions that make colonial domination seem natural and necessary." 
+    },
+    { 
+        id: "C2_40", 
+        audio: "audio/level_test/C2-Q40.mp3", 
+        text: "What is Philosopher B's objection to compatibilism?", 
+        options: [
+            "Compatibilism suffers from internal logical inconsistencies and contradictions", 
+            "It employs a semantic redefinition of freedom that ignores the determinism of desire", 
+            "The framework necessitates an adherence to determinism, which remains unproven", 
+            "Compatibilist arguments are restricted to theoretical abstraction with no pragmatic utility"
+        ], 
+        correct: "It employs a semantic redefinition of freedom that ignores the determinism of desire", 
+        transcript: "Philosopher A: I remain persuaded that free will is compatible with determinism. Philosopher B: The compatibilist move always feels like a semantic sleight of hand to me. You redefine freedom to mean acting in accordance with your desires, and then point out, correctly, that this is consistent with determinism. But the desires themselves are determined. You haven't rescued freedom; you've just lowered the bar." 
+    },
+    { 
+        id: "C2_41", 
+        audio: "audio/level_test/C2-Q41.mp3", 
+        text: "What does the historian call teleological thinking in historical analysis?", 
+        options: [
+            "The analytical application of economic models to interpret historical shifts", 
+            "The moral equalization of divergent historical events across different eras", 
+            "The retrospective fallacy that history moved linearly toward a known outcome", 
+            "The comparative study of historical trajectories across non-contiguous cultures"
+        ], 
+        correct: "The retrospective fallacy that history moved linearly toward a known outcome", 
+        transcript: "Historian: There is a persistent temptation to explain historical events in terms of what came after. We call this teleological thinking: the assumption that events were moving towards a specific outcome that we now know occurred, and that the people at the time were in some sense heading there. This is an illusion created by retrospective certainty. The people who lived through any historical moment did not know how it would end. Explaining their choices as rational steps towards the known outcome is a form of hindsight bias masquerading as analysis." 
+    },
+    { 
+        id: "C2_42", 
+        audio: "audio/level_test/C2-Q42.mp3", 
+        text: "What does Derrida's logic of the supplement reveal?", 
+        options: [
+            "The inherent semiotic inferiority of written language compared to spoken discourse", 
+            "That the subordinate term in a binary is actually constitutive of the dominant term", 
+            "That binary oppositions maintain a state of perfect ontological equilibrium", 
+            "That deconstructive methodologies are applicable only to non-textual aesthetic forms"
+        ], 
+        correct: "That the subordinate term in a binary is actually constitutive of the dominant term", 
+        transcript: "Professor: Derrida's central strategy is to identify in a text the hierarchical binary oppositions through which meaning is organised, such as presence and absence, speech and writing, nature and culture, and to show that the privileged term of the pair is actually defined by its relation to the supposedly inferior term. The hierarchy is therefore unstable. This is what Derrida calls the logic of the supplement: what appears to be a secondary addition turns out to be constitutive of the primary term it was supposed merely to supplement." 
+    },
+    { 
+        id: "C2_43", 
+        audio: "audio/level_test/C2-Q43.mp3", 
+        text: "What does the lecturer argue the poem's unresolved ending represents?", 
+        options: [
+            "A structural deficiency in the poet's formal execution of the work", 
+            "The author's inability to synthesize a coherent thematic conclusion", 
+            "A principled refusal to compromise complexity through forced resolution", 
+            "A calculated rhetorical provocation intended to alienate the reader"
+        ], 
+        correct: "A principled refusal to compromise complexity through forced resolution", 
+        transcript: "Lecturer: The poem's final line refuses to resolve the ambiguity it has spent its length creating. Student: Is that a weakness? Lecturer: Only if you think poetry is obliged to comfort its readers. The refusal to resolve is itself the meaning. To demand resolution would be to demand that the poem lie." 
+    },
+    { 
+        id: "C2_44", 
+        audio: "audio/level_test/C2-Q44.mp3", 
+        text: "How does Barthes define myth in this context?", 
+        options: [
+            "An erroneous metaphysical belief prevalent in pre-modern societies", 
+            "A narrative structure specifically designed to explain natural phenomena", 
+            "Connotative systems that present contingent cultural values as natural truths", 
+            "A genre of literary symbolism characterized by universal archetypes"
+        ], 
+        correct: "Connotative systems that present contingent cultural values as natural truths", 
+        transcript: "Speaker: Barthes distinguishes two levels of meaning in images and texts. The first is denotation: the literal, descriptive content, what is simply there. The second is connotation: the cultural associations, ideological implications, and emotional resonances that attach to the denotative content. Myth, for Barthes, operates at the level of connotation. It takes a piece of contingent cultural meaning and presents it as natural and inevitable, draining it of its history." 
+    },
+    { 
+        id: "C2_45", 
+        audio: "audio/level_test/C2-Q45.mp3", 
+        text: "What is the key criterion in the doctrine of double effect?", 
+        options: [
+            "The ethical validity of an action is determined solely by its aggregate utility", 
+            "Actions must receive prior validation from a recognized judicial authority", 
+            "The negative outcome must not be the means to the end, and the intent must be pure", 
+            "The recipient of the action must provide informed and explicit ethical consent"
+        ], 
+        correct: "The negative outcome must not be the means to the end, and the intent must be pure", 
+        transcript: "Professor: The doctrine of double effect holds that an action with both good and bad effects may be permissible if four conditions are met: the action itself is not wrong, the agent intends only the good effect, the bad effect is not the means to the good effect, and there is proportionate reason for the risk. This doctrine is invoked in cases of palliative sedation in medicine, where the intention is to relieve suffering, not to hasten death, even though the risk of the latter may exist." 
+    },
+    { 
+        id: "C2_46", 
+        audio: "audio/level_test/C2-Q46.mp3", 
+        text: "What problem does the professor identify with New Criticism?", 
+        options: [
+            "It facilitates a hyper-emotional and subjective engagement with literary texts", 
+            "The methodology remains ineffective when applied to long-form prose fiction", 
+            "Texts cannot be hermetically sealed from the socio-historical contexts that shape them", 
+            "The approach renders literary inquiry excessively empirical and scientific"
+        ], 
+        correct: "Texts cannot be hermetically sealed from the socio-historical contexts that shape them", 
+        transcript: "Professor: New Criticism insisted on the autonomy of the literary text, the idea that meaning is fully contained within the work itself and that biographical or historical context is irrelevant. This was a useful corrective to scholarship that had become dominated by literary biography. But it created its own problems: texts do not exist in cultural and historical vacuums. The meaning we make of a text is always shaped by the context in which we read it, however rigorously we try to isolate the text." 
+    },
+    { 
+        id: "C2_47", 
+        audio: "audio/level_test/C2-Q47.mp3", 
+        text: "Why is the banking model of education considered oppressive?", 
+        options: [
+            "It creates systemic economic barriers for students from lower-income backgrounds", 
+            "It institutionalizes social domination by suppressing critical, transformative consciousness", 
+            "It prioritizes empirical scientific knowledge over the critical humanities", 
+            "It was strategically formulated by colonial powers to erase indigenous history"
+        ], 
+        correct: "It institutionalizes social domination by suppressing critical, transformative consciousness", 
+        transcript: "Professor: Freire's Pedagogy of the Oppressed argues against what he calls the banking concept of education, in which the teacher is an active depositor and the student a passive recipient. This model, for Freire, is not merely pedagogically inefficient; it is politically oppressive because it mirrors and reinforces the social structures of domination that prevent the oppressed from developing critical consciousness. The alternative, what Freire calls problem-posing education, treats learning as a joint investigation of the world by teacher and student together." 
+    },
+    { 
+        id: "C2_48", 
+        audio: "audio/level_test/C2-Q48.mp3", 
+        text: "What does the speaker argue large language models lack?", 
+        options: [
+            "The computational capacity to adhere to complex syntactic and grammatical rules", 
+            "Real-time access to dynamic and empirical external datasets", 
+            "Authentic philosophical intentionality and the capacity for unmediated meaning", 
+            "The generative flexibility required for authentic creative literary production"
+        ], 
+        correct: "Authentic philosophical intentionality and the capacity for unmediated meaning", 
+        transcript: "Speaker: Large language models generate text by predicting the next token based on statistical patterns in vast training corpora. They are extraordinarily good at producing fluent, contextually plausible language. What they cannot do, and what is routinely misunderstood in popular discourse, is mean anything. Meaning, in the philosophical sense, involves intentionality, aboutness, the relation between a sign and what it stands for in the world. There is no world, for a language model. There are only patterns." 
+    },
+    { 
+        id: "C2_49", 
+        audio: "audio/level_test/C2-Q49.mp3", 
+        text: "What does Kuhn mean by saying paradigms are incommensurable?", 
+        options: [
+            "They diverge so fundamentally in standards and criteria that direct comparison is impossible", 
+            "One conceptual framework is demonstrably superior in empirical scientific rigor", 
+            "Multiple paradigms maintain equal validity, necessitating a pluralistic approach", 
+            "The lack of a common language renders any form of scientific progress unattainable"
+        ], 
+        correct: "They diverge so fundamentally in standards and criteria that direct comparison is impossible", 
+        transcript: "Professor: Kuhn's concept of paradigm shift describes the way scientific progress actually happens: not through the gradual accumulation of confirmed facts but through periodic revolutions in which one framework of assumptions is replaced by an incommensurable new one. Incommensurable is the key word. Kuhn is not saying that one paradigm is merely different from another. He is saying that the standards of evidence, the definition of questions, and the criteria of success are themselves different, making direct comparison problematic." 
+    },
+    { 
+        id: "C2_50", 
+        audio: "audio/level_test/C2-Q50.mp3", 
+        text: "What does the instruction to ignore outside information protect?", 
+        options: [
+            "The psychological insulation of the jury from external media influence", 
+            "The procedural right of the defendant to a fair and impartial adjudication", 
+            "The systemic integrity of the adversarial process of evidence evaluation", 
+            "The legal institution from the pressures of volatile public criticism"
+        ], 
+        correct: "The systemic integrity of the adversarial process of evidence evaluation", 
+        transcript: "Barrister: The jury will be told to decide the case only on the evidence presented in court. Journalist: But the background to this case is known to everyone. Isn't it unrealistic to expect them to ignore it? Barrister: It is unrealistic, yes. But the instruction serves a function that transcends realism. It marks out the categories of evidence that have been subjected to adversarial testing and cross-examination from those that haven't. What we're protecting is not the jury's naivety but the integrity of the process by which evidence is evaluated." 
+    }
+];
