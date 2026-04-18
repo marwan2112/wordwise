@@ -28733,7 +28733,596 @@ window.gapfillDB = {
         options: ["transform", "preserve", "compromise", "redevelop"],
         originalSentence: "The plan was to transform the abandoned factory site into an eco-friendly business park."
     }
-],    
+],  
+ "105-1": [ // cultural heritage
+        {
+            sentence: "The old city centre is full of _______ that tells the story of its people.",
+            options: ["cultural heritage", "architectural heritage", "historic preservation", "heritage conservation"],
+            originalSentence: "The old city centre is full of cultural heritage that tells the story of its people."
+        }
+    ],
+    "105-2": [ // district
+        {
+            sentence: "The historic _______ is home to some of the oldest buildings in the city.",
+            options: ["district", "landmark", "campaign", "city council"],
+            originalSentence: "The historic district is home to some of the oldest buildings in the city."
+        }
+    ],
+    "105-3": [ // historic preservation
+        {
+            sentence: "She studied _______ because she wanted to protect old buildings from demolition.",
+            options: ["historic preservation", "heritage conservation", "adaptive reuse", "cultural heritage"],
+            originalSentence: "She studied historic preservation because she wanted to protect old buildings from demolition."
+        }
+    ],
+    "105-4": [ // century-old
+        {
+            sentence: "The _______ mosque in the city centre attracts thousands of visitors every year.",
+            options: ["century-old", "boarded up", "endangered", "restored"],
+            originalSentence: "The century-old mosque in the city centre attracts thousands of visitors every year."
+        }
+    ],
+    "105-6": [ // Ottoman architecture
+        {
+            sentence: "The building is a stunning example of _______ with its arched windows and courtyard.",
+            options: ["Ottoman architecture", "architectural heritage", "adaptive reuse", "cultural heritage"],
+            originalSentence: "The building is a stunning example of Ottoman architecture with its arched windows and courtyard."
+        }
+    ],
+    "105-7": [ // boarded up
+        {
+            sentence: "The old theatre had been _______ for years before the restoration project began.",
+            options: ["boarded up", "restored", "endangered", "century-old"],
+            originalSentence: "The old theatre had been boarded up for years before the restoration project began."
+        }
+    ],
+    "105-8": [ // tear down
+        {
+            sentence: "The developer wanted to _______ the historic building and replace it with a car park.",
+            options: ["tear down", "preserve", "restore", "respect"],
+            originalSentence: "The developer wanted to tear down the historic building and replace it with a car park."
+        }
+    ],
+    "105-10": [ // restored
+        {
+            sentence: "The old hammam was carefully _______ and is now open to the public again.",
+            options: ["restored", "boarded up", "endangered", "demolished"],
+            originalSentence: "The old hammam was carefully restored and is now open to the public again."
+        }
+    ],
+    "105-11": [ // disappear
+        {
+            sentence: "Without proper protection, these traditional crafts will slowly _______ forever.",
+            options: ["disappear", "preserve", "restore", "respect"],
+            originalSentence: "Without proper protection, these traditional crafts will slowly disappear forever."
+        }
+    ],
+    "105-12": [ // artifacts
+        {
+            sentence: "The museum displays thousands of _______ found during the excavation of the old city.",
+            options: ["artifacts", "landmarks", "campaigns", "districts"],
+            originalSentence: "The museum displays thousands of artifacts found during the excavation of the old city."
+        }
+    ],
+    "105-13": [ // preserve
+        {
+            sentence: "It is our responsibility to _______ these buildings for future generations.",
+            options: ["preserve", "tear down", "disappear", "restore"],
+            originalSentence: "It is our responsibility to preserve these buildings for future generations."
+        }
+    ],
+    "105-14": [ // air condition
+        {
+            sentence: "Installing _______ in a historic building must be done carefully to avoid damage.",
+            options: ["air condition", "artifacts", "landmarks", "campaign"],
+            originalSentence: "Installing air condition in a historic building must be done carefully to avoid damage."
+        }
+    ],
+    "105-15": [ // respect
+        {
+            sentence: "Any new development in the old city must _______ the character of its surroundings.",
+            options: ["respect", "preserve", "restore", "tear down"],
+            originalSentence: "Any new development in the old city must respect the character of its surroundings."
+        }
+    ],
+    "105-17": [ // valuable specialty
+        {
+            sentence: "Heritage conservation has become a _______ for architects who care about history.",
+            options: ["valuable specialty", "growing need", "adaptive reuse", "cultural heritage"],
+            originalSentence: "Heritage conservation has become a valuable specialty for architects who care about history."
+        }
+    ],
+    "105-19": [ // growing need
+        {
+            sentence: "There is a _______ for professionals who can balance modern design with historic buildings.",
+            options: ["growing need", "valuable specialty", "campaign", "city council"],
+            originalSentence: "There is a growing need for professionals who can balance modern design with historic buildings."
+        }
+    ],
+    "105-21": [ // heritage conservation
+        {
+            sentence: "She wrote her thesis on _______ in rapidly developing cities across the Middle East.",
+            options: ["heritage conservation", "historic preservation", "adaptive reuse", "architectural heritage"],
+            originalSentence: "She wrote her thesis on heritage conservation in rapidly developing cities across the Middle East."
+        }
+    ],
+    "105-26": [ // campaign
+        {
+            sentence: "Local residents launched a _______ to stop the demolition of the old market.",
+            options: ["campaign", "city council", "landmark", "district"],
+            originalSentence: "Local residents launched a campaign to stop the demolition of the old market."
+        }
+    ],
+    "105-28": [ // city council
+        {
+            sentence: "The _______ voted to protect the historic neighbourhood from further development.",
+            options: ["city council", "campaign", "preservationist", "UNESCO"],
+            originalSentence: "The city council voted to protect the historic neighbourhood from further development."
+        }
+    ],
+    "105-30": [ // worth fighting for
+        {
+            sentence: "She believed that the city's history was absolutely _______ no matter the cost.",
+            options: ["worth fighting for", "boarded up", "torn down", "gentrification"],
+            originalSentence: "She believed that the city's history was absolutely worth fighting for no matter the cost."
+        }
+    ],
+    "105-31": [ // heritage
+        {
+            sentence: "The government created a _______ zone to protect the oldest part of the city.",
+            options: ["heritage", "century-old", "endangered", "restored"],
+            originalSentence: "The government created a heritage zone to protect the oldest part of the city."
+        }
+    ],
+    "105-32": [ // UNESCO
+        {
+            sentence: "The ancient city was added to the _______ World Heritage List last year.",
+            options: ["UNESCO", "city council", "campaign", "preservationist"],
+            originalSentence: "The ancient city was added to the UNESCO World Heritage List last year."
+        }
+    ],
+    "105-33": [ // architectural heritage
+        {
+            sentence: "The country's _______ reflects centuries of different cultures and civilizations.",
+            options: ["architectural heritage", "cultural heritage", "heritage conservation", "adaptive reuse"],
+            originalSentence: "The country's architectural heritage reflects centuries of different cultures and civilizations."
+        }
+    ],
+    "105-34": [ // adaptive reuse
+        {
+            sentence: "_______ involves converting old buildings into new uses while keeping their original character.",
+            options: ["adaptive reuse", "historic preservation", "heritage conservation", "gentrification"],
+            originalSentence: "Adaptive reuse involves converting old buildings into new uses while keeping their original character."
+        }
+    ],
+    "105-35": [ // preservationist
+        {
+            sentence: "The _______ fought hard to prevent the demolition of the last remaining Ottoman house.",
+            options: ["preservationist", "city council", "campaign", "UNESCO"],
+            originalSentence: "The preservationist fought hard to prevent the demolition of the last remaining Ottoman house."
+        }
+    ],
+    "105-36": [ // landmark
+        {
+            sentence: "The old clock tower is a beloved _______ that defines the city's skyline.",
+            options: ["landmark", "district", "artifact", "campaign"],
+            originalSentence: "The old clock tower is a beloved landmark that defines the city's skyline."
+        }
+    ],
+    "105-37": [ // endangered
+        {
+            sentence: "Many traditional neighbourhoods are now _______ due to rapid urban development.",
+            options: ["endangered", "restored", "boarded up", "century-old"],
+            originalSentence: "Many traditional neighbourhoods are now endangered due to rapid urban development."
+        }
+    ],
+    "105-38": [ // demolition
+        {
+            sentence: "The community was devastated when they heard about the planned _______ of the old school.",
+            options: ["demolition", "campaign", "restoration", "landmark"],
+            originalSentence: "The community was devastated when they heard about the planned demolition of the old school."
+        }
+    ],
+    "105-39": [ // gentrification
+        {
+            sentence: "_______ often raises property prices and pushes long-time residents out of their neighbourhoods.",
+            options: ["gentrification", "adaptive reuse", "historic preservation", "heritage conservation"],
+            originalSentence: "Gentrification often raises property prices and pushes long-time residents out of their neighbourhoods."
+        }
+    ],
+    "106-1": [ // migration
+        {
+            sentence: "_______ has shaped the culture and identity of cities around the world.",
+            options: ["migration", "integration", "diversity", "tolerance"],
+            originalSentence: "Migration has shaped the culture and identity of cities around the world."
+        }
+    ],
+    "106-2": [ // diversity
+        {
+            sentence: "The school celebrates its _______ by hosting a yearly international food festival.",
+            options: ["diversity", "tolerance", "belonging", "integration"],
+            originalSentence: "The school celebrates its diversity by hosting a yearly international food festival."
+        }
+    ],
+    "106-3": [ // cultural
+        {
+            sentence: "The neighbourhood holds a _______ festival every summer to celebrate its many traditions.",
+            options: ["cultural", "commercial", "traditional", "multicultural"],
+            originalSentence: "The neighbourhood holds a cultural festival every summer to celebrate its many traditions."
+        }
+    ],
+    "106-4": [ // immigrants
+        {
+            sentence: "Many _______ start small businesses that become important parts of the local economy.",
+            options: ["immigrants", "refugees", "newcomers", "generations"],
+            originalSentence: "Many immigrants start small businesses that become important parts of the local economy."
+        }
+    ],
+    "106-5": [ // generations
+        {
+            sentence: "The family has lived in this city for three _______, each one building on the last.",
+            options: ["generations", "backgrounds", "immigrants", "newcomers"],
+            originalSentence: "The family has lived in this city for three generations, each one building on the last."
+        }
+    ],
+    "106-6": [ // backgrounds
+        {
+            sentence: "The team was made up of people from very different _______ and experiences.",
+            options: ["backgrounds", "generations", "identities", "refugees"],
+            originalSentence: "The team was made up of people from very different backgrounds and experiences."
+        }
+    ],
+    "106-7": [ // Syria
+        {
+            sentence: "Her family left _______ during the war and eventually settled in Germany.",
+            options: ["Syria", "Lebanon", "Somalia", "migration"],
+            originalSentence: "Her family left Syria during the war and eventually settled in Germany."
+        }
+    ],
+    "106-10": [ // bakery
+        {
+            sentence: "He opened a _______ that sells traditional pastries from his home country.",
+            options: ["bakery", "hall", "festival", "celebration"],
+            originalSentence: "He opened a bakery that sells traditional pastries from his home country."
+        }
+    ],
+    "106-11": [ // immigrated
+        {
+            sentence: "Her grandparents _______ to Canada in the 1970s in search of a better life.",
+            options: ["immigrated", "moved", "embraced", "integrated"],
+            originalSentence: "Her grandparents immigrated to Canada in the 1970s in search of a better life."
+        }
+    ],
+    "106-12": [ // Lebanon
+        {
+            sentence: "He grew up in _______ before moving abroad to study architecture.",
+            options: ["Lebanon", "Syria", "Somalia", "migration"],
+            originalSentence: "He grew up in Lebanon before moving abroad to study architecture."
+        }
+    ],
+    "106-14": [ // Somalia
+        {
+            sentence: "She came from _______ as a child and is now a successful doctor in Sweden.",
+            options: ["Somalia", "Lebanon", "Syria", "migration"],
+            originalSentence: "She came from Somalia as a child and is now a successful doctor in Sweden."
+        }
+    ],
+    "106-15": [ // engineering
+        {
+            sentence: "He studied _______ back home and found work in the same field after moving abroad.",
+            options: ["engineering", "migration", "integration", "diversity"],
+            originalSentence: "He studied engineering back home and found work in the same field after moving abroad."
+        }
+    ],
+    "106-16": [ // moved
+        {
+            sentence: "The community was deeply _______ by the stories shared at the refugee support event.",
+            options: ["moved", "embraced", "integrated", "immigrated"],
+            originalSentence: "The community was deeply moved by the stories shared at the refugee support event."
+        }
+    ],
+    "106-18": [ // commercial
+        {
+            sentence: "The _______ district was transformed by the arrival of businesses from many different cultures.",
+            options: ["commercial", "cultural", "traditional", "multicultural"],
+            originalSentence: "The commercial district was transformed by the arrival of businesses from many different cultures."
+        }
+    ],
+    "106-19": [ // hall
+        {
+            sentence: "The community _______ was filled with music and food from dozens of different countries.",
+            options: ["hall", "bakery", "festival", "celebration"],
+            originalSentence: "The community hall was filled with music and food from dozens of different countries."
+        }
+    ],
+    "106-20": [ // traditional
+        {
+            sentence: "She wore her _______ dress to the festival to share her culture with neighbours.",
+            options: ["traditional", "cultural", "commercial", "multicultural"],
+            originalSentence: "She wore her traditional dress to the festival to share her culture with neighbours."
+        }
+    ],
+    "106-21": [ // winning praise
+        {
+            sentence: "The young architect's design was _______ from both locals and international critics.",
+            options: ["winning praise", "social cohesion", "shared experiences", "cross-cultural"],
+            originalSentence: "The young architect's design was winning praise from both locals and international critics."
+        }
+    ],
+    "106-22": [ // festival
+        {
+            sentence: "The annual _______ brings together communities from across the city to share their traditions.",
+            options: ["festival", "celebration", "hall", "bakery"],
+            originalSentence: "The annual festival brings together communities from across the city to share their traditions."
+        }
+    ],
+    "106-24": [ // tolerance
+        {
+            sentence: "Teaching children _______ from a young age helps build a more peaceful society.",
+            options: ["tolerance", "belonging", "identity", "diversity"],
+            originalSentence: "Teaching children tolerance from a young age helps build a more peaceful society."
+        }
+    ],
+    "106-25": [ // celebration
+        {
+            sentence: "The street party was a joyful _______ of the neighbourhood's many cultures.",
+            options: ["celebration", "festival", "hall", "bakery"],
+            originalSentence: "The street party was a joyful celebration of the neighbourhood's many cultures."
+        }
+    ],
+    "106-26": [ // embrace
+        {
+            sentence: "The city has learned to _______ its diverse population as one of its greatest strengths.",
+            options: ["embrace", "integrate", "immigrate", "belong"],
+            originalSentence: "The city has learned to embrace its diverse population as one of its greatest strengths."
+        }
+    ],
+    "106-27": [ // newcomers
+        {
+            sentence: "The community centre offers free language classes to help _______ settle in.",
+            options: ["newcomers", "immigrants", "refugees", "generations"],
+            originalSentence: "The community centre offers free language classes to help newcomers settle in."
+        }
+    ],
+    "106-28": [ // benefits
+        {
+            sentence: "Every member of a diverse society _______ from the mix of ideas and perspectives.",
+            options: ["benefits", "embraces", "integrates", "belongs"],
+            originalSentence: "Every member of a diverse society benefits from the mix of ideas and perspectives."
+        }
+    ],
+    "106-29": [ // multicultural
+        {
+            sentence: "London is one of the most _______ cities in the world with hundreds of languages spoken.",
+            options: ["multicultural", "commercial", "traditional", "cultural"],
+            originalSentence: "London is one of the most multicultural cities in the world with hundreds of languages spoken."
+        }
+    ],
+    "106-30": [ // integration
+        {
+            sentence: "Successful _______ means newcomers can fully participate in society while keeping their identity.",
+            options: ["integration", "migration", "tolerance", "belonging"],
+            originalSentence: "Successful integration means newcomers can fully participate in society while keeping their identity."
+        }
+    ],
+    "106-31": [ // refugees
+        {
+            sentence: "The city welcomed thousands of _______ and helped them rebuild their lives.",
+            options: ["refugees", "immigrants", "newcomers", "generations"],
+            originalSentence: "The city welcomed thousands of refugees and helped them rebuild their lives."
+        }
+    ],
+    "106-32": [ // asylum
+        {
+            sentence: "She applied for _______ after fleeing conflict in her home country.",
+            options: ["asylum", "migration", "integration", "belonging"],
+            originalSentence: "She applied for asylum after fleeing conflict in her home country."
+        }
+    ],
+    "106-33": [ // belonging
+        {
+            sentence: "Creating a sense of _______ is essential for the wellbeing of any community member.",
+            options: ["belonging", "identity", "tolerance", "diversity"],
+            originalSentence: "Creating a sense of belonging is essential for the wellbeing of any community member."
+        }
+    ],
+    "106-34": [ // identity
+        {
+            sentence: "Many second-generation immigrants struggle to balance their dual _______.",
+            options: ["identity", "belonging", "tolerance", "diversity"],
+            originalSentence: "Many second-generation immigrants struggle to balance their dual identity."
+        }
+    ],
+    "106-35": [ // inclusive
+        {
+            sentence: "The school worked hard to create an _______ environment where every student felt welcome.",
+            options: ["inclusive", "multicultural", "commercial", "traditional"],
+            originalSentence: "The school worked hard to create an inclusive environment where every student felt welcome."
+        }
+    ],
+    "106-37": [ // cross-cultural
+        {
+            sentence: "_______ communication skills are essential for anyone working in an international team.",
+            options: ["cross-cultural", "multicultural", "traditional", "commercial"],
+            originalSentence: "Cross-cultural communication skills are essential for anyone working in an international team."
+        }
+    ],
+    "106-39": [ // social cohesion
+        {
+            sentence: "Strong _______ makes it easier for communities to work through difficult challenges together.",
+            options: ["social cohesion", "shared experiences", "cross-cultural", "integration"],
+            originalSentence: "Strong social cohesion makes it easier for communities to work through difficult challenges together."
+        }
+    ],
+    "106-40": [ // shared experiences
+        {
+            sentence: "_______ between people of different backgrounds can build deep and lasting friendships.",
+            options: ["shared experiences", "social cohesion", "cross-cultural", "belonging"],
+            originalSentence: "Shared experiences between people of different backgrounds can build deep and lasting friendships."
+        }
+    ],
+    "107-1": [ // media literacy
+        {
+            sentence: "_______ teaches people how to evaluate news and identify unreliable sources.",
+            options: ["media literacy", "digital citizenship", "critical thinking", "fact-checking"],
+            originalSentence: "Media literacy teaches people how to evaluate news and identify unreliable sources."
+        }
+    ],
+    "107-3": [ // claiming
+        {
+            sentence: "A viral post was _______ that a famous scientist had died, but it was completely false.",
+            options: ["claiming", "spread", "alarmed", "outraged"],
+            originalSentence: "A viral post was claiming that a famous scientist had died, but it was completely false."
+        }
+    ],
+    "107-4": [ // outraged
+        {
+            sentence: "People were _______ when they discovered the news story had been completely fabricated.",
+            options: ["outraged", "alarmed", "engaged", "spread"],
+            originalSentence: "People were outraged when they discovered the news story had been completely fabricated."
+        }
+    ],
+    "107-5": [ // alarmed
+        {
+            sentence: "Parents were _______ by the false health warning that was circulating on social media.",
+            options: ["alarmed", "outraged", "engaged", "verified"],
+            originalSentence: "Parents were alarmed by the false health warning that was circulating on social media."
+        }
+    ],
+    "107-7": [ // spread
+        {
+            sentence: "False information can _______ across the internet within minutes of being posted.",
+            options: ["spread", "verify", "spot", "correct"],
+            originalSentence: "False information can spread across the internet within minutes of being posted."
+        }
+    ],
+    "107-8": [ // correction
+        {
+            sentence: "The newspaper published a _______ after realizing the original story contained errors.",
+            options: ["correction", "clue", "bias", "algorithm"],
+            originalSentence: "The newspaper published a correction after realizing the original story contained errors."
+        }
+    ],
+    "107-9": [ // verify
+        {
+            sentence: "Always _______ information before sharing it with friends or family.",
+            options: ["verify", "spread", "spot", "claim"],
+            originalSentence: "Always verify information before sharing it with friends or family."
+        }
+    ],
+    "107-10": [ // misinformation
+        {
+            sentence: "_______ about vaccines caused many people to make uninformed health decisions.",
+            options: ["misinformation", "disinformation", "propaganda", "sensationalism"],
+            originalSentence: "Misinformation about vaccines caused many people to make uninformed health decisions."
+        }
+    ],
+    "107-11": [ // spot
+        {
+            sentence: "With practice, you can learn to _______ a fake news article in just a few seconds.",
+            options: ["spot", "verify", "spread", "correct"],
+            originalSentence: "With practice, you can learn to spot a fake news article in just a few seconds."
+        }
+    ],
+    "107-12": [ // clues
+        {
+            sentence: "Poor grammar and missing sources are common _______ that a story may be false.",
+            options: ["clues", "corrections", "algorithms", "biases"],
+            originalSentence: "Poor grammar and missing sources are common clues that a story may be false."
+        }
+    ],
+    "107-13": [ // official documents
+        {
+            sentence: "She cross-checked the claims against _______ published by the government.",
+            options: ["official documents", "credible sources", "clues", "corrections"],
+            originalSentence: "She cross-checked the claims against official documents published by the government."
+        }
+    ],
+    "107-17": [ // engaged
+        {
+            sentence: "Students who are _______ with current events are better at detecting fake news.",
+            options: ["engaged", "outraged", "alarmed", "spread"],
+            originalSentence: "Students who are engaged with current events are better at detecting fake news."
+        }
+    ],
+    "107-24": [ // fact-checking
+        {
+            sentence: "_______ websites help users confirm whether a news story is accurate or false.",
+            options: ["fact-checking", "clickbait", "propaganda", "sensationalism"],
+            originalSentence: "Fact-checking websites help users confirm whether a news story is accurate or false."
+        }
+    ],
+    "107-25": [ // clickbait
+        {
+            sentence: "The headline was pure _______ designed to get people to click without reading carefully.",
+            options: ["clickbait", "propaganda", "sensationalism", "bias"],
+            originalSentence: "The headline was pure clickbait designed to get people to click without reading carefully."
+        }
+    ],
+    "107-26": [ // bias
+        {
+            sentence: "Every news outlet has some degree of _______ which can affect how stories are reported.",
+            options: ["bias", "algorithm", "echo chamber", "correction"],
+            originalSentence: "Every news outlet has some degree of bias which can affect how stories are reported."
+        }
+    ],
+    "107-27": [ // echo chamber
+        {
+            sentence: "Social media can create an _______ where people only see opinions that match their own.",
+            options: ["echo chamber", "algorithm", "bias", "credible source"],
+            originalSentence: "Social media can create an echo chamber where people only see opinions that match their own."
+        }
+    ],
+    "107-28": [ // algorithm
+        {
+            sentence: "The platform's _______ shows you more of what you already like, limiting your perspective.",
+            options: ["algorithm", "echo chamber", "bias", "correction"],
+            originalSentence: "The platform's algorithm shows you more of what you already like, limiting your perspective."
+        }
+    ],
+    "107-29": [ // credible source
+        {
+            sentence: "Always check whether information comes from a _______ before believing or sharing it.",
+            options: ["credible source", "official document", "clue", "correction"],
+            originalSentence: "Always check whether information comes from a credible source before believing or sharing it."
+        }
+    ],
+    "107-30": [ // disinformation
+        {
+            sentence: "Unlike misinformation, _______ is false information spread with the deliberate intention to deceive.",
+            options: ["disinformation", "misinformation", "propaganda", "sensationalism"],
+            originalSentence: "Unlike misinformation, disinformation is false information spread with the deliberate intention to deceive."
+        }
+    ],
+    "107-31": [ // propaganda
+        {
+            sentence: "Governments sometimes use _______ to shape public opinion during times of conflict.",
+            options: ["propaganda", "disinformation", "misinformation", "sensationalism"],
+            originalSentence: "Governments sometimes use propaganda to shape public opinion during times of conflict."
+        }
+    ],
+    "107-32": [ // sensationalism
+        {
+            sentence: "_______ in the media makes stories seem more dramatic than they actually are.",
+            options: ["sensationalism", "propaganda", "clickbait", "bias"],
+            originalSentence: "Sensationalism in the media makes stories seem more dramatic than they actually are."
+        }
+    ],
+    "107-34": [ // critical thinking
+        {
+            sentence: "_______ helps you question what you read rather than accepting everything at face value.",
+            options: ["critical thinking", "media literacy", "digital citizenship", "fact-checking"],
+            originalSentence: "Critical thinking helps you question what you read rather than accepting everything at face value."
+        }
+    ],
+    "107-35": [ // digital citizenship
+        {
+            sentence: "Good _______ means using the internet responsibly and treating others with respect online.",
+            options: ["digital citizenship", "media literacy", "critical thinking", "fact-checking"],
+            originalSentence: "Good digital citizenship means using the internet responsibly and treating others with respect online."
+        }
+    ],
+    
     // استكمال gapfillDB.js - الدرس رقم 301
     "301-1": [
         {
