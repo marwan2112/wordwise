@@ -50,7 +50,7 @@ class App {
         this.adaptiveListeningLevelStats = {};
         this.adaptiveListeningTotalQuestions = 0;
         this.adaptiveListeningMinQuestions = 25;      // الحد الأدنى 25 سؤال
-        this.adaptiveListeningMaxQuestions = 50;      // الحد الأقصى 50
+        this.adaptiveListeningMaxQuestions = 35;      // الحد الأقصى 35
         this.adaptiveListeningAnsweredCount = 0;
         this.adaptiveListeningCurrentQuestionObj = null;
         this.adaptiveListeningLastAnswer = null;
@@ -877,7 +877,14 @@ class App {
     
     showTestHistory() { this.currentPage = 'test_history'; this.render(); }
     
-    viewTestDetails(index) { const record = this.placementResults[index]; if (record) { this.viewingPlacementDetails = record; this.currentPage = 'placement_details'; this.render(); } }
+    viewTestDetails(index) { 
+        const record = this.placementResults[index]; 
+        if (record) { 
+            this.viewingPlacementDetails = record; 
+            this.currentPage = 'placement_details'; 
+            this.render(); 
+        } 
+    }
     
     deletePlacementTest(index) {
         this.showConfirmModal(this.t('هل أنت متأكد من حذف هذا الاختبار من السجل؟', 'Are you sure you want to delete this test from history?'), () => {
@@ -1270,7 +1277,7 @@ class App {
         this.adaptiveListeningPhase = 'initial';
         this.adaptiveListeningTotalQuestions = 0;
         this.adaptiveListeningMinQuestions = 25;
-        this.adaptiveListeningMaxQuestions = 50;
+        this.adaptiveListeningMaxQuestions = 35;
         this.adaptiveListeningAnsweredCount = 0;
         this.adaptiveListeningCurrentQuestionObj = null;
         this.adaptiveListeningLastAnswer = null;
