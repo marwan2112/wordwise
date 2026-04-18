@@ -109,419 +109,405 @@ window.listeningBank = {
         id: "B1_01", 
         audio: "audio/level_test/B1-Q01.mp3", 
         text: "What does Anna ask Mark to do?", 
-        options: ["Complete the final summary", "Forward the document to the executive", "Verify the data on a specific page", "Update the previous year's figures"], 
-        correct: "Verify the data on a specific page", 
+        options: ["Finish the end of the report", "Send an email to the manager", "Make sure the numbers on page five are right", "Update the sales figures from the past"], 
+        correct: "Make sure the numbers on page five are right", 
         transcript: "Mark: Hi Anna. Did you finish the report? Anna: Almost. I just need to add the sales figures from last quarter. Mark: The boss needs it by three PM. Anna: Don't worry, I'll send it before lunch. Can you double-check the numbers on page five? I'm not a hundred percent sure about them. Mark: Sure, no problem." 
     },
     { 
         id: "B1_02", 
         audio: "audio/level_test/B1-Q02.mp3", 
         text: "What does Sarah think is causing the drop in afternoon satisfaction?", 
-        options: ["The quality of the merchandise", "Inadequate employee guidance", "Insufficient personnel during peak hours", "Technical malfunctions in the equipment"], 
-        correct: "Insufficient personnel during peak hours", 
+        options: ["The products are not good quality", "The staff need more training", "Not enough workers during that time", "The machines break in the afternoon"], 
+        correct: "Not enough workers during that time", 
         transcript: "Manager: Sarah, I've seen your report on customer feedback. The numbers look good overall, but there's a drop in satisfaction in the afternoons. Sarah: I think it's because we're understaffed between one and three PM. Customers are waiting longer. Manager: Can you propose a solution by Friday? Sarah: I'd like to hire two part-time staff for those hours. I've already spoken to HR. Manager: Write it up and I'll approve it if the budget allows." 
     },
     { 
         id: "B1_03", 
         audio: "audio/level_test/B1-Q03.mp3", 
         text: "Why is the colleague concerned about room four?", 
-        options: ["It lacks presentation tools", "The location is too inconvenient", "The capacity is smaller than the group size", "It is reserved for the morning session"], 
-        correct: "The capacity is smaller than the group size", 
+        options: ["It doesn't have a projector", "It is too far away", "It's too small for the whole group", "It's busy in the morning"], 
+        correct: "It's too small for the whole group", 
         transcript: "Colleague A: Did you book the meeting room for Thursday? Colleague B: I tried, but rooms two and three are taken. I managed to get room four, but it only fits eight people. Will that be enough? Colleague A: We have nine confirmed. Let me see if anyone can dial in remotely. Colleague B: Good idea. I'll set up the video conference link just in case." 
     },
     { 
         id: "B1_04", 
         audio: "audio/level_test/B1-Q04.mp3", 
         text: "What are the core hours under the new flexible working policy?", 
-        options: ["From 08:00 to 16:00", "Standard nine-to-five schedule", "A mandatory block from 10:00 to 15:00", "A late shift ending at 18:00"], 
-        correct: "A mandatory block from 10:00 to 15:00", 
+        options: ["8:00 AM to 4:00 PM", "9:00 AM to 5:00 PM", "From 10:00 AM until 3:00 PM", "From 10:00 AM until 6:00 PM"], 
+        correct: "From 10:00 AM until 3:00 PM", 
         transcript: "Manager: We're introducing flexible working hours next month. Core hours will be ten to three. Outside those hours, you can choose when to work. Employee: So if I start at eight, I can finish at four? Manager: Exactly. Or you could start at ten and finish at six. The total must still be seven and a half hours a day." 
     },
     { 
         id: "B1_05", 
         audio: "audio/level_test/B1-Q05.mp3", 
         text: "What area does the HR Manager say needs improvement?", 
-        options: ["Efficiency and punctuality", "Interaction with clients", "Oral expression", "Correspondence and clarity"], 
-        correct: "Correspondence and clarity", 
+        options: ["How the employee manages time", "Helping customers with problems", "Speaking skills", "Writing clear emails"], 
+        correct: "Writing clear emails", 
         transcript: "HR Manager: I want to discuss your probation review. Overall, your performance has been excellent. We're particularly pleased with how you handled the client complaints last month. Employee: Thank you. I found those quite challenging at first. HR Manager: We'd like to confirm your permanent contract. There's one area we'd like you to develop: written communication. Your verbal skills are strong, but some of your emails need more clarity." 
     },
     { 
         id: "B1_06", 
         audio: "audio/level_test/B1-Q06.mp3", 
         text: "Who is the character Henry based on?", 
-        options: ["The writer's grandparent", "A male relative from the author's family", "A person living in the neighborhood", "The author's own father"], 
-        correct: "A male relative from the author's family", 
+        options: ["A grandparent", "A member of the author's family", "A person living next door", "The author's father"], 
+        correct: "A member of the author's family", 
         transcript: "Interviewer: Your new novel The Silent Garden has become very popular. How long did it take to write? Author: About two years. But the idea came much earlier, maybe five years ago, when I visited my grandmother's old house. Interviewer: Who is your favourite character? Author: The old gardener, Henry. He's based on my uncle. Interviewer: Will there be a sequel? Author: I'm thinking about it, but no promises yet." 
     },
     { 
         id: "B1_07", 
         audio: "audio/level_test/B1-Q07.mp3", 
         text: "What is the main benefit of urban farming mentioned in the podcast?", 
-        options: ["Conserving water resources", "Decreasing transportation distance for produce", "Providing employment opportunities", "Enhancing the city's atmosphere"], 
-        correct: "Decreasing transportation distance for produce", 
+        options: ["Using less water", "Reducing the distance food travels", "Giving people more jobs", "Making the air cleaner"], 
+        correct: "Reducing the distance food travels", 
         transcript: "Host: Urban farming is growing rapidly in cities around the world. One of its main benefits is reducing food miles, the distance food travels from farm to table. In some cities, residents can now buy vegetables grown on rooftops just a few blocks away." 
     },
     { 
         id: "B1_08", 
         audio: "audio/level_test/B1-Q08.mp3", 
         text: "What do researchers recommend to reduce the risk?", 
-        options: ["Morning workout routines", "Limiting digital device usage", "Frequent short periods of movement", "Switching to a balanced diet"], 
-        correct: "Frequent short periods of movement", 
+        options: ["Exercising every morning", "Looking at screens less", "Taking short walks often", "Eating healthy food"], 
+        correct: "Taking short walks often", 
         transcript: "A new study has found that people who spend more than three hours a day sitting are twenty percent more likely to develop heart disease. Researchers recommend taking a five-minute walk every hour as a simple preventive measure." 
     },
     { 
         id: "B1_09", 
         audio: "audio/level_test/B1-Q09.mp3", 
         text: "What is Jake's concern about the four-day week?", 
-        options: ["Potential reduction in wages", "Difficulties in recruitment", "Negative effects on professional relations and income", "A significant drop in output"], 
-        correct: "Negative effects on professional relations and income", 
+        options: ["Lower salaries for staff", "Difficulties finding new workers", "Losing money and client trust", "A drop in how much work gets done"], 
+        correct: "Losing money and client trust", 
         transcript: "Presenter: Is four-day working week a good idea? Let's hear from our two guests. Emma, you're in favour. Emma: Yes. Research shows productivity actually increases when people work four days instead of five. They're more focused and less tired. Presenter: And Jake, you're against? Jake: I understand the appeal, but for client-facing businesses, being unavailable one extra day a week could damage relationships and revenue." 
     },
     { 
         id: "B1_10", 
         audio: "audio/level_test/B1-Q10.mp3", 
         text: "What does the presenter suggest the caller do?", 
-        options: ["Confiscate the device indefinitely", "Enforce rules without prior consultation", "Allow unrestricted mobile usage", "Engage the child in the decision-making process"], 
-        correct: "Engage the child in the decision-making process", 
+        options: ["Take the phone away", "Make a strict rule alone", "Allow her to use it anytime", "Let her help decide the rules"], 
+        correct: "Let her help decide the rules", 
         transcript: "Caller: My daughter is fifteen and she spends about six hours a day on her phone. I've tried setting limits, but she just argues. Presenter: Have you tried making it a family agreement rather than a parental rule? Sit down together, discuss the reasons, and let her be part of setting her own limits. Teenagers respond better when they feel involved." 
     },
     { 
         id: "B1_11", 
         audio: "audio/level_test/B1-Q11.mp3", 
         text: "Why might the man need to make a decision quickly?", 
-        options: ["The property will be taken down", "The asking price is rising", "The owner is relocating soon", "Other potential purchasers are interested"], 
-        correct: "Other potential purchasers are interested", 
+        options: ["The house might be destroyed", "The price is going up soon", "He is leaving the city", "Other people want to buy it"], 
+        correct: "Other people want to buy it", 
         transcript: "Woman: I heard you've been looking at houses. Have you found anything? Man: We've seen a few. There's one we really like, but it's slightly over our budget. Woman: Have you thought about making a lower offer? Man: We're considering it. The estate agent says there's interest from other buyers, so we might need to move quickly." 
     },
     { 
         id: "B1_12", 
         audio: "audio/level_test/B1-Q12.mp3", 
         text: "Why does the man want to do a master's degree?", 
-        options: ["To switch to a different industry", "To advance to a leadership role", "Because of a direct order from work", "Due to a lack of interest in his current tasks"], 
-        correct: "To advance to a leadership role", 
+        options: ["To find a completely new job", "To get a higher position at work", "Because his boss told him to", "Because his work is boring"], 
+        correct: "To get a higher position at work", 
         transcript: "Man: I'm thinking about going back to study. I want to do a part-time master's degree. Woman: That sounds great. What subject? Man: Business administration. I want to move into management. Woman: Have you looked at the costs? Some of them are quite expensive. Man: I'm hoping my employer will fund part of it. They have a training budget." 
     },
     { 
         id: "B1_13", 
         audio: "audio/level_test/B1-Q13.mp3", 
         text: "What aspect of the documentary did both find most interesting?", 
-        options: ["Data regarding ocean levels", "Conversations with global authorities", "The debate between personal and corporate duties", "Visuals of environmental damage"], 
-        correct: "The debate between personal and corporate duties", 
+        options: ["The numbers about sea levels", "Interviews with famous leaders", "Who is responsible for the environment", "Photos of hurt animals"], 
+        correct: "Who is responsible for the environment", 
         transcript: "Woman: Did you see that documentary about climate change? Man: Yes, I watched it last night. It was deeply unsettling. Woman: I thought the statistics were shocking. But what I found most interesting was the section on individual actions versus corporate responsibility. Man: Me too. It made me feel that personal changes alone won't be enough without systemic action." 
     },
     { 
         id: "B1_14", 
         audio: "audio/level_test/B1-Q14.mp3", 
         text: "What is the man's concern about the new supermarket?", 
-        options: ["Escalation of traffic congestion", "Unaffordable pricing for locals", "The survival of small-scale businesses", "Environmental noise and pollution"], 
-        correct: "The survival of small-scale businesses", 
+        options: ["It will cause more traffic", "It will be too expensive", "It will be bad for local businesses", "It will be too noisy"], 
+        correct: "It will be bad for local businesses", 
         transcript: "Woman: Have you heard they're building a new supermarket on Elm Street? Man: Yes. I have mixed feelings. It'll be convenient, but I'm worried about the impact on the smaller local shops. Woman: The hardware shop and the independent bakery have already said they're concerned. Man: I went to the council meeting last week and apparently the planning decision will be made next month." 
     },
     { 
         id: "B1_15", 
         audio: "audio/level_test/B1-Q15.mp3", 
         text: "What does the friend advise about the rail pass?", 
-        options: ["It is an unnecessary expense", "Purchase it upon arrival in Tokyo", "Secure the ticket digitally before departure", "Request the accommodation to handle it"], 
-        correct: "Secure the ticket digitally before departure", 
+        options: ["Don't buy it", "Buy it in Japan", "Get it online before the trip", "Ask the hotel for one"], 
+        correct: "Get it online before the trip", 
         transcript: "Man: I've just booked flights to Japan for October. Woman: That's a wonderful time to go. The autumn leaves are stunning. Man: I know, I saw photos online. I'm planning to spend four days in Tokyo and three days in Kyoto. Woman: Have you sorted out a rail pass? It makes getting around much easier. Man: I was going to buy one at the airport, but a friend said it's better to buy it online before you go." 
     },
     { 
         id: "B1_16", 
         audio: "audio/level_test/B1-Q16.mp3", 
         text: "What must passengers for Dublin do right now?", 
-        options: ["Retrieve their personal items", "Report to the check-in counter", "Await instructions at the information point", "Head to the departure exit immediately"], 
-        correct: "Head to the departure exit immediately", 
+        options: ["Get their bags", "Go to the check-in", "Wait for more news", "Go to the gate immediately"], 
+        correct: "Go to the gate immediately", 
         transcript: "This is a final boarding call for flight BA 247 to Dublin. Passengers travelling to Dublin, please proceed immediately to gate twelve. The gate will close in five minutes. Passengers Mr. Smith and Ms. Johnson, please contact ground staff at the information desk immediately." 
     },
     { 
         id: "B1_17", 
         audio: "audio/level_test/B1-Q17.mp3", 
         text: "What is the visitor asked NOT to do?", 
-        options: ["Handle the exhibits", "Take any pictures", "Use artificial lighting during photography", "Consume food inside the gallery"], 
-        correct: "Use artificial lighting during photography", 
+        options: ["Touch the art", "Take any photos", "Use the flash on their camera", "Bring food inside"], 
+        correct: "Use the flash on their camera", 
         transcript: "You are now standing in the Victorian Gallery. The collection on your left dates from the 1840s and focuses on industrial development in Northern England. The paintings on your right were donated in 1962 by the Hartley family and represent domestic life in the same period. Photography is permitted here, but please ensure your flash is turned off." 
     },
     { 
         id: "B1_18", 
         audio: "audio/level_test/B1-Q18.mp3", 
         text: "Why is the flat available again?", 
-        options: ["The rent has been lowered", "The property was recently renovated", "The owner changed their mind", "The previous candidate cancelled their interest"], 
-        correct: "The previous candidate cancelled their interest", 
+        options: ["The price went down", "It was painted recently", "The landlord changed the plan", "The first person decided not to take it"], 
+        correct: "The first person decided not to take it", 
         transcript: "Hi, this is Mike from Greenwood Lettings. I'm calling about the one-bedroom flat you enquired about. Good news: the previous applicant has withdrawn, so it's available again. The landlord would like to arrange a viewing this week if possible. Could you call me back on zero seven seven double two, five four one, three eight six? The flat will probably go quickly, so sooner rather than later would be ideal." 
     },
     { 
         id: "B1_19", 
         audio: "audio/level_test/B1-Q19.mp3", 
         text: "What is one of the learning outcomes for today's lecture?", 
-        options: ["Memorizing a psychological hierarchy", "Drafting a comprehensive motivation essay", "Distinguishing between internal and external drive", "Critiquing corporate employment strategies"], 
-        correct: "Distinguishing between internal and external drive", 
+        options: ["Learn a whole list of needs", "Write a long essay", "Explain two types of motivation", "Look at a company's rules"], 
+        correct: "Explain two types of motivation", 
         transcript: "Good morning. Today's lecture is on the psychology of motivation. We'll be looking at two key theories: Maslow's hierarchy of needs, and self-determination theory. By the end of today, you should be able to explain the main differences between intrinsic and extrinsic motivation and give examples of each from real workplace situations." 
     },
     { 
         id: "B1_20", 
         audio: "audio/level_test/B1-Q20.mp3", 
         text: "What has caused coral bleaching on the reef?", 
-        options: ["Excessive fishing activities", "Contamination from maritime traffic", "The warming of ocean waters", "Natural disasters like flooding"], 
-        correct: "The warming of ocean waters", 
+        options: ["Too much fishing", "Dirty water from ships", "The ocean becoming warmer", "Too much rain"], 
+        correct: "The ocean becoming warmer", 
         transcript: "Narrator: The Great Barrier Reef covers an area of three hundred and forty-four thousand square kilometres and is home to over fifteen hundred species of fish. However, scientists warn that rising sea temperatures have caused coral bleaching on more than half the reef in the last decade. Without significant reductions in global carbon emissions, large sections of the reef could become irreversibly damaged within thirty years." 
     },
     { 
         id: "B1_21", 
         audio: "audio/level_test/B1-Q21.mp3", 
         text: "What will the shop do if it's a manufacturing fault?", 
-        options: ["Provide a monetary return only", "Charge the client for the maintenance", "Fix or provide a new unit at no expense", "Give a discount on a different model"], 
-        correct: "Fix or provide a new unit at no expense", 
+        options: ["Only give money back", "Ask the customer for money", "Fix or replace it for free", "Offer a different laptop"], 
+        correct: "Fix or replace it for free", 
         transcript: "Customer: I bought this laptop two weeks ago and the screen keeps flickering. Technician: That sounds like a hardware issue. Did you buy it with a warranty? Customer: Yes, two years. Technician: In that case, bring it in and we can run diagnostics. If it's a manufacturing fault, we'll repair or replace it at no cost to you." 
     },
     { 
         id: "B1_22", 
         audio: "audio/level_test/B1-Q22.mp3", 
         text: "What extra charge is there for renewing in person?", 
-        options: ["A minor 2-pound fee", "A 3-pound administration cost", "A 5-pound processing surcharge", "A 10-pound personal service fee"], 
-        correct: "A 5-pound processing surcharge", 
+        options: ["Two pounds", "Three pounds", "Five pounds", "Ten pounds"], 
+        correct: "Five pounds", 
         transcript: "Man: I need to renew my driving licence. I've had the same one for ten years. Clerk: Driving licences now need to be renewed every ten years for drivers under seventy. You'll need a recent photo and your current licence. You can do it online in about fifteen minutes. Man: Can I do it in person? Clerk: Yes, but the post office charges an additional five pounds for the service." 
     },
     { 
         id: "B1_23", 
         audio: "audio/level_test/B1-Q23.mp3", 
         text: "What are the flatmates going to do?", 
-        options: ["Relocate to a different property", "Attempt to repair the heating system", "Withhold the monthly rent payment", "Submit an official written grievance"], 
-        correct: "Submit an official written grievance", 
+        options: ["Find a new house", "Try to fix the heat", "Stop paying for the flat", "Write an official letter to the landlord"], 
+        correct: "Write an official letter to the landlord", 
         transcript: "Woman: The boiler has stopped working again. This is the third time this winter. Man: I called the landlord this morning but he hasn't called back. Woman: I think we should send a formal written complaint. It's getting ridiculous. Man: You're right. Legally, he has to provide heating and hot water. We should mention that in the letter." 
     },
     { 
         id: "B1_24", 
         audio: "audio/level_test/B1-Q24.mp3", 
         text: "What did the candidate do when the system failed?", 
-        options: ["Postponed the meeting with the client", "Abandoned the scheduled presentation", "Coordinated the staff to recreate the materials", "Fixed the technical error alone overnight"], 
-        correct: "Coordinated the staff to recreate the materials", 
+        options: ["Asked for a new date", "Cancelled the event", "Worked with the team to fix the slides", "Worked all night alone"], 
+        correct: "Worked with the team to fix the slides", 
         transcript: "Interviewer: Tell me about a time you had to deal with a difficult situation at work. Candidate: In my last job, we had a major system failure two hours before a client presentation. I reorganised the team quickly, divided the tasks, and we rebuilt the key slides manually. The presentation went ahead successfully. Interviewer: How did the client react? Candidate: They had no idea anything had gone wrong. We kept calm and it paid off." 
     },
     { 
         id: "B1_25", 
         audio: "audio/level_test/B1-Q25.mp3", 
         text: "What is the presenter's key piece of practical advice?", 
-        options: ["Opt for an extended protection plan", "Retain the payment confirmation document", "Purchase items from major retailers only", "Ensure quick returns within one week"], 
-        correct: "Retain the payment confirmation document", 
+        options: ["Get a long warranty", "Save your receipt", "Only buy from big shops", "Return items in one week"], 
+        correct: "Save your receipt", 
         transcript: "Presenter: If a product you've bought turns out to be faulty, you have rights. In most countries, you have the right to a repair, a replacement, or a refund. Importantly, these rights exist regardless of whether the retailer offers a warranty. Always keep your receipt as proof of purchase." 
     },
     { 
         id: "B1_26", 
         audio: "audio/level_test/B1-Q26.mp3", 
         text: "What has changed in the neighbourhood according to the man?", 
-        options: ["The population has declined", "Educational facilities have shut down", "Large corporations have replaced local businesses", "The local eatery has relocated"], 
-        correct: "Large corporations have replaced local businesses", 
+        options: ["People are moving out", "The schools are gone", "Small shops are now big chain stores", "The café has a new owner"], 
+        correct: "Small shops are now big chain stores", 
         transcript: "Woman: This neighbourhood has changed so much in the last five years. Man: I know. When I moved here there were mostly independent shops. Now it's all chains. Woman: The café on the corner is still there, though. Man: Yes, and they've actually expanded. They bought the space next door." 
     },
     { 
         id: "B1_27", 
         audio: "audio/level_test/B1-Q27.mp3", 
         text: "How are students assessed in this new approach?", 
-        options: ["Through traditional testing methods", "Based on solo writing assignments", "Evaluation of teamwork and the end result", "Solely on class participation"], 
-        correct: "Evaluation of teamwork and the end result", 
+        options: ["Only by one big exam", "By writing long papers", "By their work and their presentation", "By just coming to class"], 
+        correct: "By their work and their presentation", 
         transcript: "Teacher: This year we've introduced project-based learning for the older students. Instead of just sitting exams, students work in groups on real-world problems and present their solutions. The aim is to develop critical thinking and teamwork alongside academic knowledge. Parent: How are they assessed? Teacher: Through both the process and the final presentation. We're looking at how they collaborate, how they respond to challenges, and the quality of their final work." 
     },
     { 
         id: "B1_28", 
         audio: "audio/level_test/B1-Q28.mp3", 
         text: "What has been the main challenge for the stall owner?", 
-        options: ["Attracting enough clientele", "Obtaining legal trading rights", "Maintaining standards despite financial inflation", "Training a new group of employees"], 
-        correct: "Maintaining standards despite financial inflation", 
+        options: ["Getting more customers", "Getting a license", "Dealing with higher prices of ingredients", "Training the workers"], 
+        correct: "Dealing with higher prices of ingredients", 
         transcript: "Interviewer: You've been running this street food business for four years. What's been the biggest challenge? Stall owner: Getting consistent quality while keeping costs down. My ingredients have gone up forty percent in two years. I've had to be very creative. Interviewer: Have you had to raise your prices? Stall owner: A little. But I've also reduced portion sizes slightly and found more local suppliers, which helps." 
     },
     { 
         id: "B1_29", 
         audio: "audio/level_test/B1-Q29.mp3", 
         text: "What change has the man made to reduce his sugar intake?", 
-        options: ["Eliminating bakery products", "Choosing non-sweetened dairy options", "Removing pasta from his diet", "Avoiding regular meals"], 
-        correct: "Choosing non-sweetened dairy options", 
+        options: ["He stopped eating bread", "He eats yoghurt without sugar", "He doesn't eat pasta", "He doesn't eat lunch"], 
+        correct: "He eats yoghurt without sugar", 
         transcript: "Man: I've been trying to cut down on sugar. I didn't realise how much of it is hidden in things like bread and pasta sauce. Woman: It's shocking, isn't it? I started reading food labels properly and now I spend a lot longer in the supermarket. Man: Same. I've switched to plain yoghurt instead of flavoured, and I make my own sauces now when I have time." 
     },
     { 
         id: "B1_30", 
         audio: "audio/level_test/B1-Q30.mp3", 
         text: "According to the speaker, what is the key to adult language learning?", 
-        options: ["Living abroad in a foreign country", "Prioritizing syntax and grammar", "Occasional high-intensity learning blocks", "Frequent and steady study habits"], 
-        correct: "Frequent and steady study habits", 
+        options: ["Traveling to the country", "Studying grammar mostly", "Studying for many hours sometimes", "Practicing a little every day"], 
+        correct: "Practicing a little every day", 
         transcript: "Adult language learners often struggle because they expect to progress as quickly as children do. However, adults have significant advantages: they have larger vocabularies in their first language to draw on, stronger analytical skills, and are usually more motivated because they've chosen to learn. The key is consistent practice rather than occasional intensive sessions." 
     },
     { 
         id: "B1_31", 
         audio: "audio/level_test/B1-Q31.mp3", 
         text: "What time should guests arrive at the party?", 
-        options: ["Half past six", "Seven sharp", "Quarter past seven", "Seven-thirty"], 
-        correct: "Seven sharp", 
+        options: ["6:30", "7:00", "7:15", "7:30"], 
+        correct: "7:00", 
         transcript: "Woman A: We need to keep the party a secret from Tom. Can everyone pretend the dinner on Saturday is just a casual get-together? Woman B: What if he asks directly? Woman A: Just say it's a dinner for Maria's birthday. Woman B: And what time should people arrive? Woman A: Tom gets there at seven-thirty, so everyone should arrive by seven." 
     },
     { 
         id: "B1_32", 
         audio: "audio/level_test/B1-Q32.mp3", 
         text: "What costs will the company cover?", 
-        options: ["Pay raises and tax benefits", "Educational costs for family", "Travel, moving goods, and initial housing", "Medical insurance for the full term"], 
-        correct: "Travel, moving goods, and initial housing", 
+        options: ["Salary and taxes", "School for the kids", "Travel and the first month of housing", "Health insurance for years"], 
+        correct: "Travel and the first month of housing", 
         transcript: "Man: I've been offered a job in Singapore. Two-year contract. Woman: That's amazing! Are you going to take it? Man: It's a big decision. The salary is significantly better, but I'd be leaving my family and friends. Woman: Would the company cover relocation costs? Man: Yes, they'll pay for flights, shipping, and the first month's rent." 
     },
     { 
         id: "B1_33", 
         audio: "audio/level_test/B1-Q33.mp3", 
         text: "What is the main objection to the new road?", 
-        options: ["Sound disturbance for local people", "Financial burden on the public", "Threats to biodiversity and animal paths", "Congestion in the town center"], 
-        correct: "Threats to biodiversity and animal paths", 
+        options: ["It will be too noisy", "It will cost a lot of tax", "It will hurt local animals and plants", "Too much traffic in town"], 
+        correct: "It will hurt local animals and plants", 
         transcript: "Man: Did you read about the plans for a new road through the woodland at the back? Woman: Yes. I went to the council consultation last week. A lot of people are against it. Man: What were the main arguments? Woman: Mainly environmental. The woodland has protected species, and the road would cut right through a wildlife corridor." 
     },
     { 
         id: "B1_34", 
         audio: "audio/level_test/B1-Q34.mp3", 
         text: "Why does the seller say the price is justified?", 
-        options: ["A recently installed motor", "Four brand new wheels", "A comprehensive legal guarantee", "Minimal distance travelled by the vehicle"], 
-        correct: "Minimal distance travelled by the vehicle", 
+        options: ["It has a new motor", "It has new tyres", "It has a long warranty", "The car hasn't driven very far"], 
+        correct: "The car hasn't driven very far", 
         transcript: "Man: This car has been well maintained. It's had one owner, and all the service history is documented. Buyer: Has it ever been in an accident? Man: No, never. I can show you the vehicle history report. Buyer: The price seems a bit high given its age. Man: It's priced to reflect the low mileage. It's only done fifty-two thousand kilometres." 
     },
     { 
         id: "B1_35", 
         audio: "audio/level_test/B1-Q35.mp3", 
         text: "What does the trainer recommend as a dietary starting point?", 
-        options: ["Following a rigid food schedule", "Eliminating all starches and sugars", "Increasing protein while avoiding sweet beverages", "Consuming five small portions daily"], 
-        correct: "Increasing protein while avoiding sweet beverages", 
+        options: ["A very strict food plan", "No bread or pasta", "Less sweet drinks and more protein", "Five small meals a day"], 
+        correct: "Less sweet drinks and more protein", 
         transcript: "Trainer: What are your main fitness goals? Client: I want to lose some weight and feel more energetic. I sit at a desk all day. Trainer: Okay. A combination of cardio and strength training would work well for you. I'd suggest three sessions a week to start. Client: Should I change my diet too? Trainer: Ideally, yes. But small changes are more sustainable. Start with cutting out sugary drinks and increasing protein." 
     },
     { 
         id: "B1_36", 
         audio: "audio/level_test/B1-Q36.mp3", 
         text: "How can residents indicate their preference?", 
-        options: ["Submitting an email to authorities", "Directly contacting the official", "Completing paper forms at the entrance", "Participating in a follow-up session"], 
-        correct: "Completing paper forms at the entrance", 
+        options: ["By sending an email", "By talking to the man later", "By using the voting papers at the door", "By coming to another meeting"], 
+        correct: "By using the voting papers at the door", 
         transcript: "Speaker: We have three proposals to improve the town park. Option one is to install a children's play area in the north-east corner. Option two is to create a community garden near the main entrance. Option three is to add outdoor gym equipment along the main path. Voting slips are available at the door." 
     },
     { 
         id: "B1_37", 
         audio: "audio/level_test/B1-Q37.mp3", 
         text: "What time period are residents advised to avoid travel?", 
-        options: ["Late night until sunrise", "The early morning peak period", "Mid-morning until noon", "The full 24-hour cycle"], 
-        correct: "The early morning peak period", 
+        options: ["Middle of the night", "Between 6:00 and 9:00 AM", "From 9:00 AM to noon", "The whole day"], 
+        correct: "Between 6:00 and 9:00 AM", 
         transcript: "Due to freezing temperatures overnight, there is a risk of ice on roads across the region tomorrow morning. Residents are advised to grit their driveways, avoid unnecessary travel between six and nine AM, and allow extra journey time if travel is unavoidable." 
     },
     { 
         id: "B1_38", 
         audio: "audio/level_test/B1-Q38.mp3", 
         text: "How many visitors are allowed per patient at one time?", 
-        options: ["A single person", "A pair of visitors", "A group of three", "Up to four individuals"], 
-        correct: "A pair of visitors", 
+        options: ["Only one", "No more than two", "Up to three", "A maximum of four"], 
+        correct: "No more than two", 
         transcript: "Attention: visiting hours on ward C are now extended to between two and eight PM daily. Please note that no more than two visitors per patient are permitted at any one time. Visitors are asked to use the hand sanitiser stations on entry." 
     },
     { 
         id: "B1_39", 
         audio: "audio/level_test/B1-Q39.mp3", 
         text: "What is the core idea of the fifteen-minute city?", 
-        options: ["Height restrictions on urban buildings", "High-frequency transport systems", "Proximity to key facilities via walking or cycling", "A total ban on private vehicles"], 
-        correct: "Proximity to key facilities via walking or cycling", 
+        options: ["Buildings with fifteen floors", "Buses every fifteen minutes", "Services near home by foot or bike", "No cars in the city center"], 
+        correct: "Services near home by foot or bike", 
         transcript: "The concept of the fifteen-minute city is simple: every essential service, schools, shops, healthcare, parks, and workplaces, should be accessible within fifteen minutes by foot or bicycle. Cities like Paris and Melbourne are actively redesigning their infrastructure based on this model." 
     },
     { 
         id: "B1_40", 
         audio: "audio/level_test/B1-Q40.mp3", 
         text: "What percentage of the ocean floor has been mapped in detail?", 
-        options: ["A tiny fraction (under 5%)", "A fifth of the total area", "Less than a fifth of the surface", "Over 50 percent"], 
-        correct: "Less than a fifth of the surface", 
+        options: ["Under five percent", "Exactly twenty percent", "Less than twenty percent", "More than half"], 
+        correct: "Less than twenty percent", 
         transcript: "Despite covering more than seventy percent of our planet's surface, the deep ocean remains largely unexplored. Less than twenty percent of the ocean floor has been mapped in detail. Scientists believe that the vast majority of marine species are yet to be discovered." 
     },
     { 
         id: "B1_41", 
         audio: "audio/level_test/B1-Q41.mp3", 
-        text: "Which dish did the guest particularly enjoy?", options: ["The first course", "The sweet course", "The fish dish", "The meat course"], 
-        correct: "The meat course", 
+        text: "Which dish did the guest particularly enjoy?", 
+        options: ["The first dish", "The cake", "The fish", "The lamb"], 
+        correct: "The lamb", 
         transcript: "Host: Can I get you anything else? Guest: No thank you, everything was delicious. The lamb was particularly wonderful. Host: I'm so glad. It's a new recipe. I was a bit nervous about it. Guest: You should make it more often. It was the highlight of the evening for me." 
     },
     { 
         id: "B1_42", 
         audio: "audio/level_test/B1-Q42.mp3", 
         text: "What is the one downside of the new job?", 
-        options: ["Disappointing remuneration", "Difficulty with colleagues", "A time-consuming daily journey", "An overwhelming amount of tasks"], 
-        correct: "A time-consuming daily journey", 
+        options: ["The pay is too low", "People are not nice", "It takes a long time to get there", "Too much work to do"], 
+        correct: "It takes a long time to get there", 
         transcript: "Man: How's the new job going? Woman: It's intense, but I'm enjoying it. The team is really supportive, which makes a big difference. Man: And the commute? Woman: That's the one downside. It's an hour and twenty minutes each way. Man: That's quite a lot. Woman: Yes, but I'm hoping to work from home two days a week once my probation period is over." 
     },
     { 
         id: "B1_43", 
         audio: "audio/level_test/B1-Q43.mp3", 
         text: "Where were the three photographs in the corner taken?", 
-        options: ["The Southern Hemisphere", "Northern European regions", "A Nordic island nation", "The South Pole"], 
-        correct: "A Nordic island nation", 
+        options: ["South America", "Northern Europe", "Iceland", "The South Pole"], 
+        correct: "Iceland", 
         transcript: "Visitor: These photographs are stunning. Are these from your recent trip to South America? Photographer: Most of them, yes. But these three in the corner were taken in Iceland, two winters ago. Visitor: The lighting in the Iceland ones is extraordinary. Photographer: Thank you. I camped for three nights in minus fifteen degrees to capture that light." 
     },
     { 
         id: "B1_44", 
         audio: "audio/level_test/B1-Q44.mp3", 
         text: "What made a strong impression on the man?", 
-        options: ["A talk on environmental impact", "Innovative technology in logistics", "An evening social event", "A class on economic planning"], 
-        correct: "Innovative technology in logistics", 
+        options: ["A speech about nature", "A session about AI at work", "A dinner with people", "A class about money"], 
+        correct: "A session about AI at work", 
         transcript: "Woman: How was the conference? Man: Really valuable. I connected with a lot of people in the industry and attended some excellent workshops. Woman: Did anything particularly stand out? Man: There was a session on AI in supply chain management that completely changed how I'm thinking about our logistics strategy." 
     },
     { 
         id: "B1_45", 
         audio: "audio/level_test/B1-Q45.mp3", 
         text: "What did Student B find difficult?", 
-        options: ["Completing the test in time", "Topics related to historical economics", "Extended writing tasks", "Objective-style questions"], 
-        correct: "Topics related to historical economics", 
+        options: ["Not enough time", "Economic questions", "Writing long answers", "Simple questions"], 
+        correct: "Economic questions", 
         transcript: "Student A: How do you think that went? Student B: Honestly, not great. The last section completely threw me. I wasn't expecting questions on post-war economic policy. Student A: Really? I thought that was covered in the lecture notes. Student B: I must have missed that one. I'm hoping the first two sections save me." 
     },
     { 
         id: "B1_46", 
         audio: "audio/level_test/B1-Q46.mp3", 
         text: "What does the doctor say about back pain lasting more than two weeks?", 
-        options: ["It typically resolves without help", "Powerful medication is required", "Inactivity is the best cure", "A medical consultation is necessary"], 
-        correct: "A medical consultation is necessary", 
+        options: ["It will go away by itself", "Take strong medicine", "Don't move at all", "Go see a professional"], 
+        correct: "Go see a professional", 
         transcript: "Caller: I've been having back pain for three weeks and it's getting worse. Doctor: Have you seen your GP? Caller: Not yet. I thought it might go away. Doctor: With back pain lasting more than two weeks, you should see your GP. It's probably nothing serious, but it needs checking. In the meantime, gentle walking can help more than rest." 
     },
     { 
         id: "B1_47", 
         audio: "audio/level_test/B1-Q47.mp3", 
         text: "What change does the speaker recommend?", 
-        options: ["Switching off devices at night", "Delaying phone use until after a meal", "Delaying digital interaction upon waking", "Removing distracting social platforms"], 
-        correct: "Delaying digital interaction upon waking", 
+        options: ["No phone at night", "Wait until after breakfast to use it", "Spend 15 minutes without the phone in the morning", "Delete apps"], 
+        correct: "Spend 15 minutes without the phone in the morning", 
         transcript: "Research suggests that checking your phone first thing in the morning puts your brain into a reactive state, where you're responding to others' agendas rather than setting your own. A simple change is to spend the first fifteen minutes of your day without your phone, planning your own priorities before looking at messages." 
     },
-           
-{ 
-            id: "B1_48", 
-            audio: "audio/level_test/B1-Q48.mp3", 
-            text: "What does the man decide to do?", 
-            options: [
-                "Escalate the matter to the supervisors", 
-                "Invite the colleague for a group meal", 
-                "Request formal assistance from personnel services", 
-                "Speak to the individual privately the following day"
-            ], 
-            correct: "Speak to the individual privately the following day", 
-            transcript: "Woman: Have you noticed that James has seemed a bit withdrawn lately? Man: Yes, I've noticed he's been staying later at his desk and not joining us for lunch. Woman: I'm a bit concerned. Do you think someone should check in with him? Man: I'll have a quiet word tomorrow. I don't want to make a big deal of it." 
-        },
-        { 
-            id: "B1_49", 
-            audio: "audio/level_test/B1-Q49.mp3", 
-            text: "Why does the Arctic fox turn white in winter?", 
-            options: [
-                "To increase its chances of finding a partner", 
-                "To provide thermal insulation against freezing air", 
-                "To remain unnoticed by potential threats in its habitat", 
-                "Due to a biological inability to maintain pigment in winter"
-            ], 
-            correct: "To remain unnoticed by potential threats in its habitat", 
-            transcript: "The Arctic fox changes colour with the seasons. In winter, its fur turns white to blend in with the snow and ice, providing camouflage from predators. In summer, it becomes brown or grey to match the rocky tundra landscape." 
-        },
-        { 
-            id: "B1_50", 
-            audio: "audio/level_test/B1-Q50.mp3", 
-            text: "What does the woman suggest the man do?", 
-            options: [
-                "Post a public complaint on the internet", 
-                "Insist on an immediate cash return at the desk", 
-                "Contact the corporate headquarters regarding a gesture of goodwill", 
-                "Seek legal advice from a regulatory body"
-            ], 
-            correct: "Contact the corporate headquarters regarding a gesture of goodwill", 
-            transcript: "Man: We had such an awful experience at the hotel. The room was fine, but on the second night there was a wedding reception until three in the morning and we couldn't sleep. Woman: Did you complain to reception? Man: Yes, at midnight. They said they couldn't do anything because the ballroom was booked. Woman: I'd write to head office when you get back. You might get some form of compensation." 
-        }
-    ],
-    B2: [
+    { 
+        id: "B1_48", 
+        audio: "audio/level_test/B1-Q48.mp3", 
+        text: "What does the man decide to do?", 
+        options: ["Tell the boss", "Invite him to lunch", "Ask HR for help", "Talk to him quietly tomorrow"], 
+        correct: "Talk to him quietly tomorrow", 
+        transcript: "Woman: Have you noticed that James has seemed a bit withdrawn lately? Man: Yes, I've noticed he's been staying later at his desk and not joining us for lunch. Woman: I'm a bit concerned. Do you think someone should check in with him? Man: I'll have a quiet word tomorrow. I don't want to make a big deal of it." 
+    },
+    { 
+        id: "B1_49", 
+        audio: "audio/level_test/B1-Q49.mp3", 
+        text: "Why does the Arctic fox turn white in winter?", 
+        options: ["To find a friend", "To stay warm", "To hide from other animals", "Because it's very cold"], 
+        correct: "To hide from other animals", 
+        transcript: "The Arctic fox changes colour with the seasons. In winter, its fur turns white to blend in with the snow and ice, providing camouflage from predators. In summer, it becomes brown or grey to match the rocky tundra landscape." 
+    },
+    { 
+        id: "B1_50", 
+        audio: "audio/level_test/B1-Q50.mp3", 
+        text: "What does the woman suggest the man do?", 
+        options: ["Post a bad review", "Ask the hotel for money", "Write to the main office for help", "Call the police"], 
+        correct: "Write to the main office for help", 
+        transcript: "Man: We had such an awful experience at the hotel. The room was fine, but on the second night there was a wedding reception until three in the morning and we couldn't sleep. Woman: Did you complain to reception? Man: Yes, at midnight. They said they couldn't do anything because the ballroom was booked. Woman: I'd write to head office when you get back. You might get some form of compensation." 
+    }
+],
+
+B2: [
         { id: "B2_01", audio: "audio/level_test/B2-Q01.mp3", text: "What does the lecturer argue is more effective than recycling?", options: ["Using renewable energy at home", "Reducing consumption", "Buying recyclable packaging only", "Composting food waste"], correct: "Reducing consumption", transcript: "Lecturer: Many people believe that recycling is the most important thing individuals can do for the environment. But reducing consumption is actually more effective. For example, producing a single cotton t-shirt requires approximately two thousand seven hundred litres of water. That's enough for one person to drink for two and a half years. So buying a second-hand shirt, or simply buying less, saves far more than recycling the shirt afterwards." },
         { id: "B2_02", audio: "audio/level_test/B2-Q02.mp3", text: "What do open-plan offices actually produce, according to research?", options: ["Increased creativity and innovation", "More collaboration between departments", "Higher levels of distraction and lower productivity", "Improved team morale"], correct: "Higher levels of distraction and lower productivity", transcript: "Professor: Open-plan offices were introduced with the idea of encouraging collaboration. However, a growing body of research now suggests they achieve the opposite. Workers in open-plan environments take more sick days, report higher levels of distraction, and are less productive than those in private offices or working from home. The noise and lack of privacy appear to trigger a stress response that undermines concentration." },
         { id: "B2_03", audio: "audio/level_test/B2-Q03.mp3", text: "What is the definition of a nudge according to Dr. Patel?", options: ["A rule that forces people to change their behaviour", "A financial incentive to encourage better choices", "A small environmental change that makes a behaviour more likely without removing choice", "A public awareness campaign that changes attitudes"], correct: "A small environmental change that makes a behaviour more likely without removing choice", transcript: "Host: Today we're discussing the concept of nudge theory with Dr. Patel. Dr. Patel, can you explain what a nudge is? Dr. Patel: A nudge is any small change to the environment that makes a certain behaviour more likely, without restricting freedom of choice. For example, placing fruit at eye level in a canteen, instead of hiding it at the back. People still choose what they want, but healthier options become more salient. Host: And where is this being used in policy? Dr. Patel: In pension enrolment, organ donation, and even energy consumption. In the UK, switching the default for pension contributions to opt-out rather than opt-in dramatically increased participation rates." },
