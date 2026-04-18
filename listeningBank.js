@@ -2212,4 +2212,4 @@ B2: [
         correct: "The systemic integrity of the adversarial process of evidence evaluation", 
         transcript: "Barrister: The jury will be told to decide the case only on the evidence presented in court. Journalist: But the background to this case is known to everyone. Isn't it unrealistic to expect them to ignore it? Barrister: It is unrealistic, yes. But the instruction serves a function that transcends realism. It marks out the categories of evidence that have been subjected to adversarial testing and cross-examination from those that haven't. What we're protecting is not the jury's naivety but the integrity of the process by which evidence is evaluated." 
     }
-],
+];
