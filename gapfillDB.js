@@ -29322,7 +29322,2316 @@ window.gapfillDB = {
             originalSentence: "Good digital citizenship means using the internet responsibly and treating others with respect online."
         }
     ],
-    
+    "108-1": [ // artificial intelligence
+        {
+            sentence: "_______ is changing the way architects design buildings and analyse data.",
+            options: ["artificial intelligence", "ethical framework", "data privacy", "accountability"],
+            originalSentence: "Artificial intelligence is changing the way architects design buildings and analyse data."
+        }
+    ],
+    "108-2": [ // optimize
+        {
+            sentence: "Engineers use software to _______ the energy performance of a building.",
+            options: ["optimize", "guide", "reflect", "set apart"],
+            originalSentence: "Engineers use software to optimize the energy performance of a building."
+        }
+    ],
+    "108-3": [ // efficiency
+        {
+            sentence: "AI tools can improve the _______ of a design process by automating repetitive tasks.",
+            options: ["efficiency", "fairness", "transparency", "oversight"],
+            originalSentence: "AI tools can improve the efficiency of a design process by automating repetitive tasks."
+        }
+    ],
+    "108-4": [ // layout
+        {
+            sentence: "The software suggested a new _______ that made the office space much more practical.",
+            options: ["layout", "contexts", "regulations", "consequences"],
+            originalSentence: "The software suggested a new layout that made the office space much more practical."
+        }
+    ],
+    "108-5": [ // ethics
+        {
+            sentence: "The _______ of using AI in hiring decisions is still a hotly debated topic.",
+            options: ["ethics", "oversight", "transparency", "accountability"],
+            originalSentence: "The ethics of using AI in hiring decisions is still a hotly debated topic."
+        }
+    ],
+    "108-6": [ // biased
+        {
+            sentence: "The AI model was found to be _______ against certain groups because of the data it was trained on.",
+            options: ["biased", "diverse", "unintended", "responsible"],
+            originalSentence: "The AI model was found to be biased against certain groups because of the data it was trained on."
+        }
+    ],
+    "108-8": [ // consequences
+        {
+            sentence: "Developers must think carefully about the _______ of releasing AI tools without proper testing.",
+            options: ["consequences", "regulations", "contexts", "layouts"],
+            originalSentence: "Developers must think carefully about the consequences of releasing AI tools without proper testing."
+        }
+    ],
+    "108-9": [ // responsibly
+        {
+            sentence: "Every company that uses AI must do so _______ and with the public interest in mind.",
+            options: ["responsibly", "predominantly", "unintended", "diverse"],
+            originalSentence: "Every company that uses AI must do so responsibly and with the public interest in mind."
+        }
+    ],
+    "108-10": [ // ethics committees
+        {
+            sentence: "Many universities have set up _______ to review research involving AI systems.",
+            options: ["ethics committees", "regulations", "creators", "contexts"],
+            originalSentence: "Many universities have set up ethics committees to review research involving AI systems."
+        }
+    ],
+    "108-14": [ // predominantly
+        {
+            sentence: "The dataset was _______ made up of data from Western countries, which created blind spots.",
+            options: ["predominantly", "responsibly", "unintended", "diverse"],
+            originalSentence: "The dataset was predominantly made up of data from Western countries, which created blind spots."
+        }
+    ],
+    "108-16": [ // contexts
+        {
+            sentence: "AI tools must be tested across different _______ to ensure they work fairly for everyone.",
+            options: ["contexts", "layouts", "consequences", "regulations"],
+            originalSentence: "AI tools must be tested across different contexts to ensure they work fairly for everyone."
+        }
+    ],
+    "108-18": [ // reflects
+        {
+            sentence: "An AI system often _______ the values and assumptions of the people who built it.",
+            options: ["reflects", "guides", "optimizes", "sets apart"],
+            originalSentence: "An AI system often reflects the values and assumptions of the people who built it."
+        }
+    ],
+    "108-19": [ // creators
+        {
+            sentence: "The _______ of AI tools have a responsibility to consider how their work affects society.",
+            options: ["creators", "contexts", "regulations", "consequences"],
+            originalSentence: "The creators of AI tools have a responsibility to consider how their work affects society."
+        }
+    ],
+    "108-20": [ // diverse
+        {
+            sentence: "Building a _______ team of developers helps reduce bias in AI systems.",
+            options: ["diverse", "biased", "unintended", "predominantly"],
+            originalSentence: "Building a diverse team of developers helps reduce bias in AI systems."
+        }
+    ],
+    "108-21": [ // regulations
+        {
+            sentence: "New _______ are being introduced to ensure AI is used safely and fairly.",
+            options: ["regulations", "consequences", "contexts", "layouts"],
+            originalSentence: "New regulations are being introduced to ensure AI is used safely and fairly."
+        }
+    ],
+    "108-22": [ // AI
+        {
+            sentence: "_______ is being used in hospitals to help doctors diagnose diseases more accurately.",
+            options: ["AI", "ethical framework", "data privacy", "oversight"],
+            originalSentence: "AI is being used in hospitals to help doctors diagnose diseases more accurately."
+        }
+    ],
+    "108-24": [ // commitment
+        {
+            sentence: "The company made a public _______ to never use AI in ways that harm vulnerable people.",
+            options: ["commitment", "oversight", "transparency", "accountability"],
+            originalSentence: "The company made a public commitment to never use AI in ways that harm vulnerable people."
+        }
+    ],
+    "108-29": [ // set apart
+        {
+            sentence: "Their strong focus on ethical design is what truly _______ this company from its competitors.",
+            options: ["set apart", "guide", "reflect", "optimize"],
+            originalSentence: "Their strong focus on ethical design is what truly sets apart this company from its competitors."
+        }
+    ],
+    "108-32": [ // guide
+        {
+            sentence: "An ethical framework should _______ every decision made during the development of AI.",
+            options: ["guide", "optimize", "reflect", "set apart"],
+            originalSentence: "An ethical framework should guide every decision made during the development of AI."
+        }
+    ],
+    "108-34": [ // data privacy
+        {
+            sentence: "_______ laws require companies to be transparent about how they collect and use personal information.",
+            options: ["data privacy", "ethical framework", "oversight", "accountability"],
+            originalSentence: "Data privacy laws require companies to be transparent about how they collect and use personal information."
+        }
+    ],
+    "108-35": [ // accountability
+        {
+            sentence: "There must be clear _______ when an AI system causes harm or makes a serious error.",
+            options: ["accountability", "transparency", "fairness", "oversight"],
+            originalSentence: "There must be clear accountability when an AI system causes harm or makes a serious error."
+        }
+    ],
+    "108-36": [ // oversight
+        {
+            sentence: "Independent _______ of AI systems helps prevent abuse and ensures public trust.",
+            options: ["oversight", "accountability", "transparency", "fairness"],
+            originalSentence: "Independent oversight of AI systems helps prevent abuse and ensures public trust."
+        }
+    ],
+    "108-37": [ // transparency
+        {
+            sentence: "_______ means explaining clearly how an AI system makes its decisions.",
+            options: ["transparency", "fairness", "accountability", "oversight"],
+            originalSentence: "Transparency means explaining clearly how an AI system makes its decisions."
+        }
+    ],
+    "108-38": [ // fairness
+        {
+            sentence: "Ensuring _______ in AI means that the system must not disadvantage any group of people.",
+            options: ["fairness", "transparency", "accountability", "oversight"],
+            originalSentence: "Ensuring fairness in AI means that the system must not disadvantage any group of people."
+        }
+    ],
+    "108-39": [ // unintended
+        {
+            sentence: "Many harmful outcomes from AI are _______ and could have been avoided with better testing.",
+            options: ["unintended", "biased", "diverse", "predominantly"],
+            originalSentence: "Many harmful outcomes from AI are unintended and could have been avoided with better testing."
+        }
+    ],
+    "108-40": [ // ethical framework
+        {
+            sentence: "Every AI company should operate within a clear _______ that puts people before profit.",
+            options: ["ethical framework", "data privacy", "oversight", "accountability"],
+            originalSentence: "Every AI company should operate within a clear ethical framework that puts people before profit."
+        }
+    ],
+    "109-1": [ // financial literacy
+        {
+            sentence: "_______ helps people make smarter decisions about spending, saving, and investing.",
+            options: ["financial literacy", "compound growth", "cash flow", "credit score"],
+            originalSentence: "Financial literacy helps people make smarter decisions about spending, saving, and investing."
+        }
+    ],
+    "109-3": [ // spreadsheet
+        {
+            sentence: "She tracked all her monthly expenses in a _______ to see exactly where her money was going.",
+            options: ["spreadsheet", "budget", "retirement account", "emergency fund"],
+            originalSentence: "She tracked all her monthly expenses in a spreadsheet to see exactly where her money was going."
+        }
+    ],
+    "109-4": [ // consulting
+        {
+            sentence: "She started a _______ business from home and slowly built up a steady income.",
+            options: ["consulting", "investing", "contributing", "transferring"],
+            originalSentence: "She started a consulting business from home and slowly built up a steady income."
+        }
+    ],
+    "109-5": [ // income
+        {
+            sentence: "His monthly _______ was not enough to cover all his expenses after the rent increase.",
+            options: ["income", "revenue", "profit", "interest"],
+            originalSentence: "His monthly income was not enough to cover all his expenses after the rent increase."
+        }
+    ],
+    "109-6": [ // expenses
+        {
+            sentence: "She listed all her _______ at the end of the month and was shocked by the total.",
+            options: ["expenses", "taxes", "utilities", "stocks"],
+            originalSentence: "She listed all her expenses at the end of the month and was shocked by the total."
+        }
+    ],
+    "109-7": [ // taxes
+        {
+            sentence: "Self-employed people are responsible for calculating and paying their own _______ every year.",
+            options: ["taxes", "expenses", "utilities", "bonds"],
+            originalSentence: "Self-employed people are responsible for calculating and paying their own taxes every year."
+        }
+    ],
+    "109-8": [ // profit
+        {
+            sentence: "After paying all costs, the business made a _______ of ten thousand dollars last quarter.",
+            options: ["profit", "revenue", "income", "interest"],
+            originalSentence: "After paying all costs, the business made a profit of ten thousand dollars last quarter."
+        }
+    ],
+    "109-9": [ // revenue
+        {
+            sentence: "The company's _______ increased by thirty percent after launching its new product.",
+            options: ["revenue", "profit", "income", "cash flow"],
+            originalSentence: "The company's revenue increased by thirty percent after launching its new product."
+        }
+    ],
+    "109-10": [ // set aside
+        {
+            sentence: "She tries to _______ ten percent of her salary every month for savings.",
+            options: ["set aside", "track spending", "cutting back", "contributing"],
+            originalSentence: "She tries to set aside ten percent of her salary every month for savings."
+        }
+    ],
+    "109-11": [ // emergency fund
+        {
+            sentence: "Financial experts recommend having an _______ that covers three to six months of expenses.",
+            options: ["emergency fund", "retirement account", "budget", "spreadsheet"],
+            originalSentence: "Financial experts recommend having an emergency fund that covers three to six months of expenses."
+        }
+    ],
+    "109-13": [ // investing
+        {
+            sentence: "_______ early in life gives your money more time to grow through compound interest.",
+            options: ["investing", "contributing", "transferring", "consulting"],
+            originalSentence: "Investing early in life gives your money more time to grow through compound interest."
+        }
+    ],
+    "109-15": [ // budget
+        {
+            sentence: "Creating a monthly _______ is the first step to taking control of your finances.",
+            options: ["budget", "spreadsheet", "emergency fund", "retirement account"],
+            originalSentence: "Creating a monthly budget is the first step to taking control of your finances."
+        }
+    ],
+    "109-16": [ // utilities
+        {
+            sentence: "Her monthly _______ including electricity and water came to around two hundred dollars.",
+            options: ["utilities", "expenses", "taxes", "transportation"],
+            originalSentence: "Her monthly utilities including electricity and water came to around two hundred dollars."
+        }
+    ],
+    "109-17": [ // transportation
+        {
+            sentence: "He reduced his _______ costs by cycling to work instead of driving.",
+            options: ["transportation", "utilities", "expenses", "taxes"],
+            originalSentence: "He reduced his transportation costs by cycling to work instead of driving."
+        }
+    ],
+    "109-19": [ // track spending
+        {
+            sentence: "Using a budgeting app makes it much easier to _______ throughout the month.",
+            options: ["track spending", "set aside", "cutting back", "contributing"],
+            originalSentence: "Using a budgeting app makes it much easier to track spending throughout the month."
+        }
+    ],
+    "109-21": [ // cutting back
+        {
+            sentence: "She started _______ on eating out in order to save more money each month.",
+            options: ["cutting back", "set aside", "track spending", "transferring"],
+            originalSentence: "She started cutting back on eating out in order to save more money each month."
+        }
+    ],
+    "109-23": [ // transferring
+        {
+            sentence: "He set up an automatic system for _______ money into his savings account every payday.",
+            options: ["transferring", "contributing", "investing", "cutting back"],
+            originalSentence: "He set up an automatic system for transferring money into his savings account every payday."
+        }
+    ],
+    "109-24": [ // percentage
+        {
+            sentence: "A small _______ of your salary saved each month can grow into a significant amount over time.",
+            options: ["percentage", "profit", "interest", "revenue"],
+            originalSentence: "A small percentage of your salary saved each month can grow into a significant amount over time."
+        }
+    ],
+    "109-26": [ // stocks
+        {
+            sentence: "She invested part of her savings in _______ after researching several technology companies.",
+            options: ["stocks", "bonds", "mutual funds", "utilities"],
+            originalSentence: "She invested part of her savings in stocks after researching several technology companies."
+        }
+    ],
+    "109-27": [ // bonds
+        {
+            sentence: "_______ are generally considered safer than stocks but offer lower returns.",
+            options: ["bonds", "stocks", "mutual funds", "utilities"],
+            originalSentence: "Bonds are generally considered safer than stocks but offer lower returns."
+        }
+    ],
+    "109-28": [ // mutual funds
+        {
+            sentence: "_______ allow small investors to pool their money and invest in a wide range of assets.",
+            options: ["mutual funds", "stocks", "bonds", "retirement account"],
+            originalSentence: "Mutual funds allow small investors to pool their money and invest in a wide range of assets."
+        }
+    ],
+    "109-29": [ // retirement account
+        {
+            sentence: "Opening a _______ in your twenties gives your savings decades to grow.",
+            options: ["retirement account", "emergency fund", "budget", "spreadsheet"],
+            originalSentence: "Opening a retirement account in your twenties gives your savings decades to grow."
+        }
+    ],
+    "109-30": [ // contributing
+        {
+            sentence: "She started _______ a fixed amount to her pension every month as soon as she got her first job.",
+            options: ["contributing", "transferring", "investing", "cutting back"],
+            originalSentence: "She started contributing a fixed amount to her pension every month as soon as she got her first job."
+        }
+    ],
+    "109-31": [ // freedom
+        {
+            sentence: "Financial _______ means having enough savings to make life choices without money being the barrier.",
+            options: ["freedom", "profit", "interest", "cash flow"],
+            originalSentence: "Financial freedom means having enough savings to make life choices without money being the barrier."
+        }
+    ],
+    "109-33": [ // interest
+        {
+            sentence: "The bank charges _______ on any amount you borrow through a loan or credit card.",
+            options: ["interest", "profit", "revenue", "percentage"],
+            originalSentence: "The bank charges interest on any amount you borrow through a loan or credit card."
+        }
+    ],
+    "109-34": [ // compound growth
+        {
+            sentence: "_______ means earning returns not just on your original investment but also on previous gains.",
+            options: ["compound growth", "cash flow", "financial literacy", "credit score"],
+            originalSentence: "Compound growth means earning returns not just on your original investment but also on previous gains."
+        }
+    ],
+    "109-35": [ // credit score
+        {
+            sentence: "A high _______ makes it easier to get approved for a loan with a lower interest rate.",
+            options: ["credit score", "cash flow", "compound growth", "mortgage"],
+            originalSentence: "A high credit score makes it easier to get approved for a loan with a lower interest rate."
+        }
+    ],
+    "109-36": [ // debt
+        {
+            sentence: "She worked hard to pay off all her _______ before applying for a mortgage.",
+            options: ["debt", "loan", "mortgage", "interest"],
+            originalSentence: "She worked hard to pay off all her debt before applying for a mortgage."
+        }
+    ],
+    "109-37": [ // loan
+        {
+            sentence: "He took out a _______ from the bank to cover the cost of his university fees.",
+            options: ["loan", "mortgage", "debt", "interest"],
+            originalSentence: "He took out a loan from the bank to cover the cost of his university fees."
+        }
+    ],
+    "109-38": [ // mortgage
+        {
+            sentence: "They applied for a _______ to buy their first home after saving for several years.",
+            options: ["mortgage", "loan", "debt", "interest"],
+            originalSentence: "They applied for a mortgage to buy their first home after saving for several years."
+        }
+    ],
+    "109-39": [ // inflation
+        {
+            sentence: "High _______ means that the same amount of money buys fewer goods than it did before.",
+            options: ["inflation", "interest", "profit", "revenue"],
+            originalSentence: "High inflation means that the same amount of money buys fewer goods than it did before."
+        }
+    ],
+    "109-43": [ // financial
+        {
+            sentence: "She sought _______ advice from an expert before making any major investment decisions.",
+            options: ["financial", "consulting", "investing", "contributing"],
+            originalSentence: "She sought financial advice from an expert before making any major investment decisions."
+        }
+    ],
+    "109-44": [ // cash flow
+        {
+            sentence: "A business must maintain healthy _______ to pay its staff and cover running costs.",
+            options: ["cash flow", "compound growth", "credit score", "financial literacy"],
+            originalSentence: "A business must maintain healthy cash flow to pay its staff and cover running costs."
+        }
+    ],
+    "110-1": [ // sustainable living
+        {
+            sentence: "_______ means making daily choices that reduce your impact on the planet.",
+            options: ["sustainable living", "circular economy", "permaculture", "minimalism"],
+            originalSentence: "Sustainable living means making daily choices that reduce your impact on the planet."
+        }
+    ],
+    "110-2": [ // recycling
+        {
+            sentence: "_______ paper, plastic, and glass is one of the easiest ways to reduce waste.",
+            options: ["recycling", "composting", "upcycling", "repairing"],
+            originalSentence: "Recycling paper, plastic, and glass is one of the easiest ways to reduce waste."
+        }
+    ],
+    "110-3": [ // composting
+        {
+            sentence: "_______ turns food scraps and garden waste into rich natural fertilizer for plants.",
+            options: ["composting", "recycling", "upcycling", "repairing"],
+            originalSentence: "Composting turns food scraps and garden waste into rich natural fertilizer for plants."
+        }
+    ],
+    "110-4": [ // food scraps
+        {
+            sentence: "Instead of throwing away _______, she added them to her compost bin every evening.",
+            options: ["food scraps", "local produce", "recycled steel", "low-VOC paints"],
+            originalSentence: "Instead of throwing away food scraps, she added them to her compost bin every evening."
+        }
+    ],
+    "110-6": [ // environmentalist
+        {
+            sentence: "The _______ gave a powerful talk about the damage caused by single-use plastics.",
+            options: ["environmentalist", "minimalism", "permaculture", "consumption"],
+            originalSentence: "The environmentalist gave a powerful talk about the damage caused by single-use plastics."
+        }
+    ],
+    "110-7": [ // habits
+        {
+            sentence: "Small daily _______ like turning off lights can add up to a significant difference over time.",
+            options: ["habits", "values", "consumption", "carbon offset"],
+            originalSentence: "Small daily habits like turning off lights can add up to a significant difference over time."
+        }
+    ],
+    "110-9": [ // recycled steel
+        {
+            sentence: "The building was constructed using _______ which significantly reduced its environmental impact.",
+            options: ["recycled steel", "low-VOC paints", "local produce", "food scraps"],
+            originalSentence: "The building was constructed using recycled steel which significantly reduced its environmental impact."
+        }
+    ],
+    "110-11": [ // low-VOC paints
+        {
+            sentence: "She chose _______ for her home renovation to improve indoor air quality.",
+            options: ["low-VOC paints", "recycled steel", "local produce", "food scraps"],
+            originalSentence: "She chose low-VOC paints for her home renovation to improve indoor air quality."
+        }
+    ],
+    "110-13": [ // conventional
+        {
+            sentence: "Solar panels cost more than _______ energy sources but save money in the long run.",
+            options: ["conventional", "renewable", "conscious", "consistent"],
+            originalSentence: "Solar panels cost more than conventional energy sources but save money in the long run."
+        }
+    ],
+    "110-14": [ // upfront cost
+        {
+            sentence: "The _______ of installing solar panels is high but the long-term savings make it worthwhile.",
+            options: ["upfront cost", "carbon offset", "ecological footprint", "circular economy"],
+            originalSentence: "The upfront cost of installing solar panels is high but the long-term savings make it worthwhile."
+        }
+    ],
+    "110-17": [ // renewable
+        {
+            sentence: "Switching to _______ energy sources like wind and solar is essential for a sustainable future.",
+            options: ["renewable", "conventional", "consistent", "conscious"],
+            originalSentence: "Switching to renewable energy sources like wind and solar is essential for a sustainable future."
+        }
+    ],
+    "110-18": [ // local produce
+        {
+            sentence: "Buying _______ reduces the carbon emissions caused by transporting food long distances.",
+            options: ["local produce", "food scraps", "recycled steel", "low-VOC paints"],
+            originalSentence: "Buying local produce reduces the carbon emissions caused by transporting food long distances."
+        }
+    ],
+    "110-19": [ // repairing
+        {
+            sentence: "_______ broken items instead of replacing them saves money and reduces waste.",
+            options: ["repairing", "recycling", "composting", "upcycling"],
+            originalSentence: "Repairing broken items instead of replacing them saves money and reduces waste."
+        }
+    ],
+    "110-20": [ // wastefully
+        {
+            sentence: "Many households use water _______ without realising how much they are consuming each day.",
+            options: ["wastefully", "consistently", "consciously", "conventionally"],
+            originalSentence: "Many households use water wastefully without realising how much they are consuming each day."
+        }
+    ],
+    "110-21": [ // consistent
+        {
+            sentence: "Being _______ with your sustainable habits is more important than being perfect.",
+            options: ["consistent", "conscious", "conventional", "committed"],
+            originalSentence: "Being consistent with your sustainable habits is more important than being perfect."
+        }
+    ],
+    "110-22": [ // values
+        {
+            sentence: "Her home was designed to reflect her personal _______ around sustainability and simplicity.",
+            options: ["values", "habits", "consumption", "carbon offset"],
+            originalSentence: "Her home was designed to reflect her personal values around sustainability and simplicity."
+        }
+    ],
+    "110-23": [ // powerful statement
+        {
+            sentence: "Choosing to live without a car in a city can be a _______ about your environmental beliefs.",
+            options: ["powerful statement", "circular economy", "ecological footprint", "carbon offset"],
+            originalSentence: "Choosing to live without a car in a city can be a powerful statement about your environmental beliefs."
+        }
+    ],
+    "110-25": [ // committed
+        {
+            sentence: "She was deeply _______ to reducing her household waste to almost zero.",
+            options: ["committed", "consistent", "conscious", "conventional"],
+            originalSentence: "She was deeply committed to reducing her household waste to almost zero."
+        }
+    ],
+    "110-27": [ // circular economy
+        {
+            sentence: "A _______ aims to eliminate waste by keeping materials in use for as long as possible.",
+            options: ["circular economy", "carbon offset", "ecological footprint", "permaculture"],
+            originalSentence: "A circular economy aims to eliminate waste by keeping materials in use for as long as possible."
+        }
+    ],
+    "110-28": [ // consumption
+        {
+            sentence: "Reducing your _______ of single-use plastics is one of the simplest ways to help the planet.",
+            options: ["consumption", "habits", "values", "carbon offset"],
+            originalSentence: "Reducing your consumption of single-use plastics is one of the simplest ways to help the planet."
+        }
+    ],
+    "110-29": [ // carbon offset
+        {
+            sentence: "He paid for a _______ programme to balance out the emissions from his long-haul flights.",
+            options: ["carbon offset", "circular economy", "ecological footprint", "permaculture"],
+            originalSentence: "He paid for a carbon offset programme to balance out the emissions from his long-haul flights."
+        }
+    ],
+    "110-30": [ // minimalism
+        {
+            sentence: "_______ encourages people to own fewer things and focus on what truly adds value to their lives.",
+            options: ["minimalism", "permaculture", "composting", "upcycling"],
+            originalSentence: "Minimalism encourages people to own fewer things and focus on what truly adds value to their lives."
+        }
+    ],
+    "110-31": [ // conscious
+        {
+            sentence: "Being a _______ consumer means thinking carefully about what you buy and where it comes from.",
+            options: ["conscious", "consistent", "committed", "conventional"],
+            originalSentence: "Being a conscious consumer means thinking carefully about what you buy and where it comes from."
+        }
+    ],
+    "110-32": [ // ecological footprint
+        {
+            sentence: "You can calculate your _______ online to see how much of the planet's resources you use.",
+            options: ["ecological footprint", "carbon offset", "circular economy", "upfront cost"],
+            originalSentence: "You can calculate your ecological footprint online to see how much of the planet's resources you use."
+        }
+    ],
+    "110-33": [ // permaculture
+        {
+            sentence: "_______ is a design system that works with nature to create sustainable food and living systems.",
+            options: ["permaculture", "minimalism", "composting", "upcycling"],
+            originalSentence: "Permaculture is a design system that works with nature to create sustainable food and living systems."
+        }
+    ],
+    "110-34": [ // biodegradable
+        {
+            sentence: "She switched to _______ packaging for her food products to reduce plastic pollution.",
+            options: ["biodegradable", "recycled", "renewable", "conventional"],
+            originalSentence: "She switched to biodegradable packaging for her food products to reduce plastic pollution."
+        }
+    ],
+    "110-35": [ // upcycling
+        {
+            sentence: "_______ involves transforming old or unwanted items into something new and more useful.",
+            options: ["upcycling", "recycling", "composting", "repairing"],
+            originalSentence: "Upcycling involves transforming old or unwanted items into something new and more useful."
+        }
+    ],
+    "111-1": [ // globalization
+        {
+            sentence: "_______ has made it possible for architects to work on projects anywhere in the world.",
+            options: ["globalization", "global integration", "cultural exchange", "modular construction"],
+            originalSentence: "Globalization has made it possible for architects to work on projects anywhere in the world."
+        }
+    ],
+    "111-2": [ // international
+        {
+            sentence: "The firm won an _______ award for its innovative design of a public library in Singapore.",
+            options: ["international", "structural", "intentional", "conflicted"],
+            originalSentence: "The firm won an international award for its innovative design of a public library in Singapore."
+        }
+    ],
+    "111-3": [ // spans
+        {
+            sentence: "The project _______ three continents with offices in London, Dubai, and Tokyo.",
+            options: ["spans", "specifies", "honors", "incorporates"],
+            originalSentence: "The project spans three continents with offices in London, Dubai, and Tokyo."
+        }
+    ],
+    "111-4": [ // structural
+        {
+            sentence: "The engineer reviewed the _______ calculations before approving the final design.",
+            options: ["structural", "international", "intentional", "modular"],
+            originalSentence: "The engineer reviewed the structural calculations before approving the final design."
+        }
+    ],
+    "111-5": [ // conferencing
+        {
+            sentence: "Video _______ has made it much easier for global teams to collaborate in real time.",
+            options: ["conferencing", "globalization", "brickwork", "joinery"],
+            originalSentence: "Video conferencing has made it much easier for global teams to collaborate in real time."
+        }
+    ],
+    "111-6": [ // time zones
+        {
+            sentence: "Working across different _______ means some team members always have very early or late meetings.",
+            options: ["time zones", "design traditions", "crafts", "goods"],
+            originalSentence: "Working across different time zones means some team members always have very early or late meetings."
+        }
+    ],
+    "111-8": [ // supplier
+        {
+            sentence: "They found a reliable _______ in Japan who could deliver the specialist timber on time.",
+            options: ["supplier", "artisan", "tension", "flexibility"],
+            originalSentence: "They found a reliable supplier in Japan who could deliver the specialist timber on time."
+        }
+    ],
+    "111-10": [ // cultural exchange
+        {
+            sentence: "Working on international projects creates opportunities for genuine _______ between designers.",
+            options: ["cultural exchange", "global integration", "modular construction", "design traditions"],
+            originalSentence: "Working on international projects creates opportunities for genuine cultural exchange between designers."
+        }
+    ],
+    "111-11": [ // design traditions
+        {
+            sentence: "The architect studied local _______ carefully before proposing any changes to the building.",
+            options: ["design traditions", "cultural exchange", "crafts", "goods"],
+            originalSentence: "The architect studied local design traditions carefully before proposing any changes to the building."
+        }
+    ],
+    "111-12": [ // modular construction
+        {
+            sentence: "_______ allows building components to be manufactured off-site and assembled quickly on location.",
+            options: ["modular construction", "brickwork", "joinery", "globalization"],
+            originalSentence: "Modular construction allows building components to be manufactured off-site and assembled quickly on location."
+        }
+    ],
+    "111-13": [ // efficiency
+        {
+            sentence: "Using standardized parts greatly improves the _______ of the construction process.",
+            options: ["efficiency", "flexibility", "tension", "globalization"],
+            originalSentence: "Using standardized parts greatly improves the efficiency of the construction process."
+        }
+    ],
+    "111-14": [ // flexibility
+        {
+            sentence: "The open-plan design offers _______ so the space can be adapted for different uses.",
+            options: ["flexibility", "efficiency", "tension", "brickwork"],
+            originalSentence: "The open-plan design offers flexibility so the space can be adapted for different uses."
+        }
+    ],
+    "111-15": [ // incorporating
+        {
+            sentence: "The architect succeeded in _______ local materials into an otherwise modern design.",
+            options: ["incorporating", "specifying", "honoring", "spanning"],
+            originalSentence: "The architect succeeded in incorporating local materials into an otherwise modern design."
+        }
+    ],
+    "111-16": [ // global integration
+        {
+            sentence: "_______ in the construction industry means materials can be sourced from anywhere in the world.",
+            options: ["global integration", "cultural exchange", "modular construction", "globalization"],
+            originalSentence: "Global integration in the construction industry means materials can be sourced from anywhere in the world."
+        }
+    ],
+    "111-18": [ // tension
+        {
+            sentence: "There is often a _______ between using globally sourced materials and supporting local craftspeople.",
+            options: ["tension", "flexibility", "efficiency", "joinery"],
+            originalSentence: "There is often a tension between using globally sourced materials and supporting local craftspeople."
+        }
+    ],
+    "111-19": [ // brickwork
+        {
+            sentence: "The detailed _______ on the facade was carried out by skilled local craftsmen.",
+            options: ["brickwork", "joinery", "crafts", "goods"],
+            originalSentence: "The detailed brickwork on the facade was carried out by skilled local craftsmen."
+        }
+    ],
+    "111-20": [ // joinery
+        {
+            sentence: "The quality of the _______ throughout the interior gave the building a warm and refined feel.",
+            options: ["joinery", "brickwork", "crafts", "goods"],
+            originalSentence: "The quality of the joinery throughout the interior gave the building a warm and refined feel."
+        }
+    ],
+    "111-21": [ // honoring
+        {
+            sentence: "The design was praised for _______ the site's history while introducing a fresh modern aesthetic.",
+            options: ["honoring", "incorporating", "specifying", "spanning"],
+            originalSentence: "The design was praised for honoring the site's history while introducing a fresh modern aesthetic."
+        }
+    ],
+    "111-22": [ // downsides
+        {
+            sentence: "One of the _______ of globalization is that it can reduce demand for local skilled workers.",
+            options: ["downsides", "crafts", "goods", "tensions"],
+            originalSentence: "One of the downsides of globalization is that it can reduce demand for local skilled workers."
+        }
+    ],
+    "111-23": [ // crafts
+        {
+            sentence: "Traditional _______ like hand-carved stone and tile work are at risk of dying out.",
+            options: ["crafts", "goods", "downsides", "brickwork"],
+            originalSentence: "Traditional crafts like hand-carved stone and tile work are at risk of dying out."
+        }
+    ],
+    "111-24": [ // mass-produced
+        {
+            sentence: "_______ materials are cheaper but often lack the character of locally made alternatives.",
+            options: ["mass-produced", "intentional", "structural", "conflicted"],
+            originalSentence: "Mass-produced materials are cheaper but often lack the character of locally made alternatives."
+        }
+    ],
+    "111-25": [ // artisan
+        {
+            sentence: "They hired a local _______ to hand-make the decorative tiles for the entrance hall.",
+            options: ["artisan", "supplier", "tension", "flexibility"],
+            originalSentence: "They hired a local artisan to hand-make the decorative tiles for the entrance hall."
+        }
+    ],
+    "111-26": [ // conflicted
+        {
+            sentence: "She felt _______ about using imported materials when skilled local workers were available.",
+            options: ["conflicted", "intentional", "structural", "international"],
+            originalSentence: "She felt conflicted about using imported materials when skilled local workers were available."
+        }
+    ],
+    "111-27": [ // specify
+        {
+            sentence: "The architect decided to _______ only locally sourced timber for the entire project.",
+            options: ["specify", "incorporate", "honor", "span"],
+            originalSentence: "The architect decided to specify only locally sourced timber for the entire project."
+        }
+    ],
+    "111-28": [ // goods
+        {
+            sentence: "Global trade allows construction _______ to be shipped quickly from one country to another.",
+            options: ["goods", "crafts", "downsides", "tensions"],
+            originalSentence: "Global trade allows construction goods to be shipped quickly from one country to another."
+        }
+    ],
+    "111-29": [ // intentional
+        {
+            sentence: "Every material choice in the building was _______ and tied to the project's sustainability goals.",
+            options: ["intentional", "conflicted", "structural", "international"],
+            originalSentence: "Every material choice in the building was intentional and tied to the project's sustainability goals."
+        }
+    ],
+    "112-1": [ // human rights
+        {
+            sentence: "Every person in the world is entitled to basic _______ regardless of where they were born.",
+            options: ["human rights", "solidarity", "empowerment", "equity"],
+            originalSentence: "Every person in the world is entitled to basic human rights regardless of where they were born."
+        }
+    ],
+    "112-2": [ // asylum seekers
+        {
+            sentence: "The organization provides legal support to _______ who arrive without documents.",
+            options: ["asylum seekers", "marginalized", "advocacy", "inclusion"],
+            originalSentence: "The organization provides legal support to asylum seekers who arrive without documents."
+        }
+    ],
+    "112-3": [ // safety
+        {
+            sentence: "Every child has the right to grow up in an environment of _______ and care.",
+            options: ["safety", "dignity", "justice", "privacy"],
+            originalSentence: "Every child has the right to grow up in an environment of safety and care."
+        }
+    ],
+    "112-4": [ // dignity
+        {
+            sentence: "The shelter was designed to ensure that every resident was treated with full _______.",
+            options: ["dignity", "safety", "justice", "equity"],
+            originalSentence: "The shelter was designed to ensure that every resident was treated with full dignity."
+        }
+    ],
+    "112-5": [ // principle
+        {
+            sentence: "The _______ of equality means that no one should be treated differently based on their background.",
+            options: ["principle", "standard", "treaty", "entitlement"],
+            originalSentence: "The principle of equality means that no one should be treated differently based on their background."
+        }
+    ],
+    "112-6": [ // institutional
+        {
+            sentence: "_______ racism refers to discrimination that is built into the systems and policies of organizations.",
+            options: ["institutional", "universal", "marginalized", "inclusive"],
+            originalSentence: "Institutional racism refers to discrimination that is built into the systems and policies of organizations."
+        }
+    ],
+    "112-7": [ // courtyards
+        {
+            sentence: "The refugee centre was designed with open _______ to give residents a sense of community.",
+            options: ["courtyards", "standards", "reparations", "ceremonies"],
+            originalSentence: "The refugee centre was designed with open courtyards to give residents a sense of community."
+        }
+    ],
+    "112-8": [ // justice
+        {
+            sentence: "The victims of the conflict are still waiting for _______ more than twenty years later.",
+            options: ["justice", "dignity", "safety", "equity"],
+            originalSentence: "The victims of the conflict are still waiting for justice more than twenty years later."
+        }
+    ],
+    "112-9": [ // violate
+        {
+            sentence: "Any law that denies people basic freedoms may _______ international human rights standards.",
+            options: ["violate", "ratify", "advocate", "empower"],
+            originalSentence: "Any law that denies people basic freedoms may violate international human rights standards."
+        }
+    ],
+    "112-10": [ // standards
+        {
+            sentence: "International _______ require governments to provide safe housing for displaced populations.",
+            options: ["standards", "principles", "treaties", "entitlements"],
+            originalSentence: "International standards require governments to provide safe housing for displaced populations."
+        }
+    ],
+    "112-11": [ // universal
+        {
+            sentence: "The right to education is _______ and should be available to every child without exception.",
+            options: ["universal", "institutional", "marginalized", "inclusive"],
+            originalSentence: "The right to education is universal and should be available to every child without exception."
+        }
+    ],
+    "112-12": [ // shelter
+        {
+            sentence: "Providing adequate _______ is one of the most urgent needs in any humanitarian crisis.",
+            options: ["shelter", "privacy", "purpose", "construction"],
+            originalSentence: "Providing adequate shelter is one of the most urgent needs in any humanitarian crisis."
+        }
+    ],
+    "112-13": [ // privacy
+        {
+            sentence: "Residents of the temporary housing units had very little _______ due to the crowded conditions.",
+            options: ["privacy", "shelter", "purpose", "dignity"],
+            originalSentence: "Residents of the temporary housing units had very little privacy due to the crowded conditions."
+        }
+    ],
+    "112-14": [ // construction
+        {
+            sentence: "The _______ of the new community centre was completed ahead of schedule thanks to local volunteers.",
+            options: ["construction", "ceremony", "advocacy", "solidarity"],
+            originalSentence: "The construction of the new community centre was completed ahead of schedule thanks to local volunteers."
+        }
+    ],
+    "112-15": [ // ceremony
+        {
+            sentence: "A _______ was held to mark the official opening of the new refugee support centre.",
+            options: ["ceremony", "construction", "treaty", "principle"],
+            originalSentence: "A ceremony was held to mark the official opening of the new refugee support centre."
+        }
+    ],
+    "112-16": [ // fled
+        {
+            sentence: "Thousands of families _______ the country after the conflict destroyed their homes.",
+            options: ["fled", "ratified", "violated", "advocated"],
+            originalSentence: "Thousands of families fled the country after the conflict destroyed their homes."
+        }
+    ],
+    "112-17": [ // purpose
+        {
+            sentence: "She found a strong sense of _______ in her work helping displaced families find housing.",
+            options: ["purpose", "shelter", "privacy", "construction"],
+            originalSentence: "She found a strong sense of purpose in her work helping displaced families find housing."
+        }
+    ],
+    "112-18": [ // advocacy
+        {
+            sentence: "Her _______ for the rights of stateless children led to a major change in national policy.",
+            options: ["advocacy", "solidarity", "empowerment", "inclusion"],
+            originalSentence: "Her advocacy for the rights of stateless children led to a major change in national policy."
+        }
+    ],
+    "112-19": [ // discrimination
+        {
+            sentence: "_______ based on race, gender, or religion is prohibited under international law.",
+            options: ["discrimination", "injustice", "entitlement", "reparations"],
+            originalSentence: "Discrimination based on race, gender, or religion is prohibited under international law."
+        }
+    ],
+    "112-20": [ // equity
+        {
+            sentence: "_______ means giving people what they need to reach the same level of opportunity.",
+            options: ["equity", "equality", "inclusion", "empowerment"],
+            originalSentence: "Equity means giving people what they need to reach the same level of opportunity."
+        }
+    ],
+    "112-21": [ // inclusion
+        {
+            sentence: "_______ means ensuring that everyone can fully participate in society regardless of their background.",
+            options: ["inclusion", "equity", "empowerment", "solidarity"],
+            originalSentence: "Inclusion means ensuring that everyone can fully participate in society regardless of their background."
+        }
+    ],
+    "112-22": [ // marginalized
+        {
+            sentence: "The programme was specifically designed to support _______ communities that had been ignored for decades.",
+            options: ["marginalized", "institutional", "universal", "inclusive"],
+            originalSentence: "The programme was specifically designed to support marginalized communities that had been ignored for decades."
+        }
+    ],
+    "112-23": [ // entitlement
+        {
+            sentence: "Access to clean water is not a privilege — it is a basic _______.",
+            options: ["entitlement", "principle", "standard", "treaty"],
+            originalSentence: "Access to clean water is not a privilege — it is a basic entitlement."
+        }
+    ],
+    "112-24": [ // solidarity
+        {
+            sentence: "Communities around the world showed great _______ by donating to the earthquake relief fund.",
+            options: ["solidarity", "advocacy", "empowerment", "inclusion"],
+            originalSentence: "Communities around the world showed great solidarity by donating to the earthquake relief fund."
+        }
+    ],
+    "112-25": [ // empowerment
+        {
+            sentence: "Education is one of the most effective tools for the _______ of women in developing countries.",
+            options: ["empowerment", "solidarity", "advocacy", "inclusion"],
+            originalSentence: "Education is one of the most effective tools for the empowerment of women in developing countries."
+        }
+    ],
+    "112-26": [ // accessibility
+        {
+            sentence: "The building was redesigned to improve _______ for people with physical disabilities.",
+            options: ["accessibility", "privacy", "shelter", "construction"],
+            originalSentence: "The building was redesigned to improve accessibility for people with physical disabilities."
+        }
+    ],
+    "112-27": [ // injustice
+        {
+            sentence: "She dedicated her career to fighting the _______ faced by refugees and stateless people.",
+            options: ["injustice", "discrimination", "entitlement", "reparations"],
+            originalSentence: "She dedicated her career to fighting the injustice faced by refugees and stateless people."
+        }
+    ],
+    "112-28": [ // ratify
+        {
+            sentence: "Countries that _______ the convention are legally bound to uphold its protections.",
+            options: ["ratify", "violate", "advocate", "empower"],
+            originalSentence: "Countries that ratify the convention are legally bound to uphold its protections."
+        }
+    ],
+    "112-29": [ // treaty
+        {
+            sentence: "The two governments signed a _______ committing to protect the rights of migrant workers.",
+            options: ["treaty", "principle", "standard", "entitlement"],
+            originalSentence: "The two governments signed a treaty committing to protect the rights of migrant workers."
+        }
+    ],
+    "112-30": [ // reparations
+        {
+            sentence: "The government agreed to pay _______ to communities that had suffered historical injustices.",
+            options: ["reparations", "entitlement", "discrimination", "injustice"],
+            originalSentence: "The government agreed to pay reparations to communities that had suffered historical injustices."
+        }
+    ],
+    "113-1": [ // gender equality
+        {
+            sentence: "_______ means that people of all genders have the same rights and opportunities.",
+            options: ["gender equality", "parental leave", "unconscious bias", "representation"],
+            originalSentence: "Gender equality means that people of all genders have the same rights and opportunities."
+        }
+    ],
+    "113-3": [ // labeled
+        {
+            sentence: "Certain jobs are still _______ as being only suitable for men or only for women.",
+            options: ["labeled", "accessible", "well-lit", "thoughtful"],
+            originalSentence: "Certain jobs are still labeled as being only suitable for men or only for women."
+        }
+    ],
+    "113-4": [ // assumptions
+        {
+            sentence: "Many workplaces are built on outdated _______ about who is capable of doing certain jobs.",
+            options: ["assumptions", "amenities", "stereotypes", "quotas"],
+            originalSentence: "Many workplaces are built on outdated assumptions about who is capable of doing certain jobs."
+        }
+    ],
+    "113-5": [ // outdated
+        {
+            sentence: "The company's hiring policies were _______ and failed to reflect the modern workforce.",
+            options: ["outdated", "accessible", "inclusive", "thoughtful"],
+            originalSentence: "The company's hiring policies were outdated and failed to reflect the modern workforce."
+        }
+    ],
+    "113-6": [ // amenities
+        {
+            sentence: "The new office building includes _______ like prayer rooms and childcare facilities for all staff.",
+            options: ["amenities", "assumptions", "stereotypes", "quotas"],
+            originalSentence: "The new office building includes amenities like prayer rooms and childcare facilities for all staff."
+        }
+    ],
+    "113-9": [ // gender-blind
+        {
+            sentence: "A _______ policy treats all employees the same without considering how gender affects their experience.",
+            options: ["gender-blind", "inclusive", "accessible", "thoughtful"],
+            originalSentence: "A gender-blind policy treats all employees the same without considering how gender affects their experience."
+        }
+    ],
+    "113-10": [ // accessible
+        {
+            sentence: "Public spaces should be _______ to everyone regardless of gender, age, or ability.",
+            options: ["accessible", "well-lit", "inclusive", "thoughtful"],
+            originalSentence: "Public spaces should be accessible to everyone regardless of gender, age, or ability."
+        }
+    ],
+    "113-11": [ // elders
+        {
+            sentence: "The community centre was designed to serve everyone from young children to _______.",
+            options: ["elders", "caregivers", "role models", "pipeline"],
+            originalSentence: "The community centre was designed to serve everyone from young children to elders."
+        }
+    ],
+    "113-12": [ // perspective
+        {
+            sentence: "Including women in the design process brings a different _______ that improves the final outcome.",
+            options: ["perspective", "stereotype", "pipeline", "quota"],
+            originalSentence: "Including women in the design process brings a different perspective that improves the final outcome."
+        }
+    ],
+    "113-13": [ // household
+        {
+            sentence: "Research shows that women still carry a larger share of unpaid _______ tasks in many countries.",
+            options: ["household", "laundry", "amenities", "pipeline"],
+            originalSentence: "Research shows that women still carry a larger share of unpaid household tasks in many countries."
+        }
+    ],
+    "113-14": [ // laundry
+        {
+            sentence: "The shared _______ facilities in the building were placed on every floor for easy access.",
+            options: ["laundry", "household", "amenities", "pipeline"],
+            originalSentence: "The shared laundry facilities in the building were placed on every floor for easy access."
+        }
+    ],
+    "113-15": [ // well-lit
+        {
+            sentence: "_______ streets and public areas make women feel much safer when walking at night.",
+            options: ["well-lit", "accessible", "inclusive", "gender-blind"],
+            originalSentence: "Well-lit streets and public areas make women feel much safer when walking at night."
+        }
+    ],
+    "113-16": [ // thoughtful
+        {
+            sentence: "_______ urban design considers the safety and comfort of all users, not just the majority.",
+            options: ["thoughtful", "inclusive", "accessible", "well-lit"],
+            originalSentence: "Thoughtful urban design considers the safety and comfort of all users, not just the majority."
+        }
+    ],
+    "113-17": [ // caregivers
+        {
+            sentence: "Many _______ struggle to balance work responsibilities with looking after children or elderly relatives.",
+            options: ["caregivers", "elders", "role models", "feminist"],
+            originalSentence: "Many caregivers struggle to balance work responsibilities with looking after children or elderly relatives."
+        }
+    ],
+    "113-18": [ // inclusive
+        {
+            sentence: "An _______ workplace welcomes people of all genders, backgrounds, and abilities.",
+            options: ["inclusive", "accessible", "thoughtful", "gender-blind"],
+            originalSentence: "An inclusive workplace welcomes people of all genders, backgrounds, and abilities."
+        }
+    ],
+    "113-19": [ // stereotype
+        {
+            sentence: "The idea that women are not good at maths is a harmful _______ that discourages girls from studying science.",
+            options: ["stereotype", "assumption", "quota", "pipeline"],
+            originalSentence: "The idea that women are not good at maths is a harmful stereotype that discourages girls from studying science."
+        }
+    ],
+    "113-20": [ // harassment
+        {
+            sentence: "The company introduced a zero-tolerance policy against any form of _______ in the workplace.",
+            options: ["harassment", "discrimination", "patriarchy", "mainstreaming"],
+            originalSentence: "The company introduced a zero-tolerance policy against any form of harassment in the workplace."
+        }
+    ],
+    "113-21": [ // pipeline
+        {
+            sentence: "There are not enough women in the leadership _______ because barriers exist at every stage of their career.",
+            options: ["pipeline", "quota", "representation", "mainstreaming"],
+            originalSentence: "There are not enough women in the leadership pipeline because barriers exist at every stage of their career."
+        }
+    ],
+    "113-22": [ // unconscious
+        {
+            sentence: "_______ bias affects hiring decisions even when managers believe they are being completely fair.",
+            options: ["unconscious", "outdated", "labeled", "gender-blind"],
+            originalSentence: "Unconscious bias affects hiring decisions even when managers believe they are being completely fair."
+        }
+    ],
+    "113-23": [ // parental leave
+        {
+            sentence: "Generous _______ policies help both parents share childcare responsibilities more equally.",
+            options: ["parental leave", "paternity leave", "quota", "pipeline"],
+            originalSentence: "Generous parental leave policies help both parents share childcare responsibilities more equally."
+        }
+    ],
+    "113-24": [ // paternity leave
+        {
+            sentence: "More companies are now offering paid _______ to encourage fathers to be more involved at home.",
+            options: ["paternity leave", "parental leave", "quota", "representation"],
+            originalSentence: "More companies are now offering paid paternity leave to encourage fathers to be more involved at home."
+        }
+    ],
+    "113-25": [ // quota
+        {
+            sentence: "Some countries use a _______ system to ensure a minimum number of women are elected to parliament.",
+            options: ["quota", "pipeline", "representation", "mainstreaming"],
+            originalSentence: "Some countries use a quota system to ensure a minimum number of women are elected to parliament."
+        }
+    ],
+    "113-26": [ // representation
+        {
+            sentence: "Greater _______ of women in leadership roles sends a powerful message to younger generations.",
+            options: ["representation", "quota", "pipeline", "mainstreaming"],
+            originalSentence: "Greater representation of women in leadership roles sends a powerful message to younger generations."
+        }
+    ],
+    "113-28": [ // patriarchy
+        {
+            sentence: "_______ refers to a social system in which men hold the majority of power and authority.",
+            options: ["patriarchy", "feminist", "mainstreaming", "stereotype"],
+            originalSentence: "Patriarchy refers to a social system in which men hold the majority of power and authority."
+        }
+    ],
+    "113-29": [ // feminist
+        {
+            sentence: "A _______ approach to urban planning considers how spaces affect women differently from men.",
+            options: ["feminist", "thoughtful", "inclusive", "gender-blind"],
+            originalSentence: "A feminist approach to urban planning considers how spaces affect women differently from men."
+        }
+    ],
+    "113-30": [ // mainstreaming
+        {
+            sentence: "Gender _______ means integrating equality into all policies and programmes from the very beginning.",
+            options: ["mainstreaming", "quota", "pipeline", "representation"],
+            originalSentence: "Gender mainstreaming means integrating equality into all policies and programmes from the very beginning."
+        }
+    ],
+    "113-31": [ // role models
+        {
+            sentence: "Young women need visible _______ in science and engineering to believe these careers are open to them.",
+            options: ["role models", "caregivers", "elders", "feminist"],
+            originalSentence: "Young women need visible role models in science and engineering to believe these careers are open to them."
+        }
+    ],
+    "114-1": [ // innovation
+        {
+            sentence: "_______ in construction has led to buildings that are faster, cheaper, and more sustainable to build.",
+            options: ["innovation", "creativity", "brainstorming", "incubation"],
+            originalSentence: "Innovation in construction has led to buildings that are faster, cheaper, and more sustainable to build."
+        }
+    ],
+    "114-2": [ // creativity
+        {
+            sentence: "_______ is at the heart of every great architectural design.",
+            options: ["creativity", "innovation", "feasibility", "scalability"],
+            originalSentence: "Creativity is at the heart of every great architectural design."
+        }
+    ],
+    "114-3": [ // sticky notes
+        {
+            sentence: "The team covered the wall with _______ during the brainstorming session to organise their ideas.",
+            options: ["sticky notes", "prototype", "modular systems", "iterations"],
+            originalSentence: "The team covered the wall with sticky notes during the brainstorming session to organise their ideas."
+        }
+    ],
+    "114-4": [ // movable
+        {
+            sentence: "The classroom was designed with _______ walls so it could be reconfigured for different activities.",
+            options: ["movable", "foldable", "transformable", "modular"],
+            originalSentence: "The classroom was designed with movable walls so it could be reconfigured for different activities."
+        }
+    ],
+    "114-5": [ // foldable
+        {
+            sentence: "The _______ furniture allowed the small apartment to function as both a living room and a workspace.",
+            options: ["foldable", "movable", "transformable", "modular"],
+            originalSentence: "The foldable furniture allowed the small apartment to function as both a living room and a workspace."
+        }
+    ],
+    "114-6": [ // modular systems
+        {
+            sentence: "_______ allow buildings to be expanded or reconfigured without major construction work.",
+            options: ["modular systems", "sticky notes", "iterations", "prototype"],
+            originalSentence: "Modular systems allow buildings to be expanded or reconfigured without major construction work."
+        }
+    ],
+    "114-7": [ // transformable
+        {
+            sentence: "The _______ stage could be raised or lowered depending on the type of performance.",
+            options: ["transformable", "foldable", "movable", "small-scale"],
+            originalSentence: "The transformable stage could be raised or lowered depending on the type of performance."
+        }
+    ],
+    "114-8": [ // outside the box
+        {
+            sentence: "The best solutions often come when designers are encouraged to think _______.",
+            options: ["outside the box", "small-scale", "user-centered", "blue-sky"],
+            originalSentence: "The best solutions often come when designers are encouraged to think outside the box."
+        }
+    ],
+    "114-9": [ // brainstorming
+        {
+            sentence: "The team spent an afternoon _______ before narrowing down their ideas to three strong concepts.",
+            options: ["brainstorming", "synthesizing", "assembling", "experimenting"],
+            originalSentence: "The team spent an afternoon brainstorming before narrowing down their ideas to three strong concepts."
+        }
+    ],
+    "114-10": [ // synthesizing
+        {
+            sentence: "She was skilled at _______ research from many different fields into one clear design proposal.",
+            options: ["synthesizing", "brainstorming", "assembling", "experimenting"],
+            originalSentence: "She was skilled at synthesizing research from many different fields into one clear design proposal."
+        }
+    ],
+    "114-11": [ // prototype
+        {
+            sentence: "They built a physical _______ of the new chair design to test how comfortable it felt.",
+            options: ["prototype", "concept", "trial", "iteration"],
+            originalSentence: "They built a physical prototype of the new chair design to test how comfortable it felt."
+        }
+    ],
+    "114-12": [ // slide
+        {
+            sentence: "The movable partition was designed to _______ smoothly along a ceiling track.",
+            options: ["slide", "assemble", "transform", "fold"],
+            originalSentence: "The movable partition was designed to slide smoothly along a ceiling track."
+        }
+    ],
+    "114-13": [ // skeptical
+        {
+            sentence: "Some team members were _______ about the idea at first but became convinced after seeing the prototype.",
+            options: ["skeptical", "ambitious", "daring", "disruptive"],
+            originalSentence: "Some team members were skeptical about the idea at first but became convinced after seeing the prototype."
+        }
+    ],
+    "114-14": [ // ambitious
+        {
+            sentence: "The project was extremely _______, aiming to house five hundred families within two years.",
+            options: ["ambitious", "skeptical", "small-scale", "iterative"],
+            originalSentence: "The project was extremely ambitious, aiming to house five hundred families within two years."
+        }
+    ],
+    "114-15": [ // small-scale
+        {
+            sentence: "They started with a _______ pilot project before rolling out the design across the whole city.",
+            options: ["small-scale", "ambitious", "disruptive", "iterative"],
+            originalSentence: "They started with a small-scale pilot project before rolling out the design across the whole city."
+        }
+    ],
+    "114-16": [ // assembling
+        {
+            sentence: "The students spent the afternoon _______ their cardboard models for the final presentation.",
+            options: ["assembling", "synthesizing", "brainstorming", "filming"],
+            originalSentence: "The students spent the afternoon assembling their cardboard models for the final presentation."
+        }
+    ],
+    "114-17": [ // taking shape
+        {
+            sentence: "After weeks of planning, the design was finally _______ into something they were all proud of.",
+            options: ["taking shape", "outside the box", "blue-sky", "trial and error"],
+            originalSentence: "After weeks of planning, the design was finally taking shape into something they were all proud of."
+        }
+    ],
+    "114-18": [ // filming
+        {
+            sentence: "The team was _______ the assembly process to create a tutorial for other designers.",
+            options: ["filming", "assembling", "synthesizing", "experimenting"],
+            originalSentence: "The team was filming the assembly process to create a tutorial for other designers."
+        }
+    ],
+    "114-19": [ // concept
+        {
+            sentence: "The _______ behind the design was to create a space that felt both open and intimate at the same time.",
+            options: ["concept", "prototype", "trial", "iteration"],
+            originalSentence: "The concept behind the design was to create a space that felt both open and intimate at the same time."
+        }
+    ],
+    "114-21": [ // rush
+        {
+            sentence: "She felt a _______ of excitement when the client approved the final design.",
+            options: ["rush", "trial", "concept", "prototype"],
+            originalSentence: "She felt a rush of excitement when the client approved the final design."
+        }
+    ],
+    "114-22": [ // experimenting
+        {
+            sentence: "_______ with different materials helped the team find the most sustainable option.",
+            options: ["experimenting", "assembling", "synthesizing", "filming"],
+            originalSentence: "Experimenting with different materials helped the team find the most sustainable option."
+        }
+    ],
+    "114-23": [ // daring
+        {
+            sentence: "The architect was known for her _______ use of colour in otherwise minimal spaces.",
+            options: ["daring", "ambitious", "skeptical", "iterative"],
+            originalSentence: "The architect was known for her daring use of colour in otherwise minimal spaces."
+        }
+    ],
+    "114-24": [ // iterative
+        {
+            sentence: "Good design is an _______ process that involves testing, learning, and improving continuously.",
+            options: ["iterative", "disruptive", "ambitious", "small-scale"],
+            originalSentence: "Good design is an iterative process that involves testing, learning, and improving continuously."
+        }
+    ],
+    "114-25": [ // disruptive
+        {
+            sentence: "The startup introduced a _______ technology that completely changed how buildings are constructed.",
+            options: ["disruptive", "iterative", "ambitious", "daring"],
+            originalSentence: "The startup introduced a disruptive technology that completely changed how buildings are constructed."
+        }
+    ],
+    "114-26": [ // conceptualize
+        {
+            sentence: "The hardest part of any project is trying to _______ an idea that has never been done before.",
+            options: ["conceptualize", "synthesize", "assemble", "experiment"],
+            originalSentence: "The hardest part of any project is trying to conceptualize an idea that has never been done before."
+        }
+    ],
+    "114-27": [ // feasibility
+        {
+            sentence: "A _______ study was carried out to check whether the ambitious design could actually be built.",
+            options: ["feasibility", "scalability", "incubation", "paradigm shift"],
+            originalSentence: "A feasibility study was carried out to check whether the ambitious design could actually be built."
+        }
+    ],
+    "114-28": [ // scalability
+        {
+            sentence: "One of the key questions for any new design is whether it has the _______ to work at a larger scale.",
+            options: ["scalability", "feasibility", "incubation", "lateral thinking"],
+            originalSentence: "One of the key questions for any new design is whether it has the scalability to work at a larger scale."
+        }
+    ],
+    "114-29": [ // lateral thinking
+        {
+            sentence: "_______ involves approaching problems from unexpected angles to find creative solutions.",
+            options: ["lateral thinking", "blue-sky", "outside the box", "paradigm shift"],
+            originalSentence: "Lateral thinking involves approaching problems from unexpected angles to find creative solutions."
+        }
+    ],
+    "114-30": [ // incubation
+        {
+            sentence: "The design school ran an _______ programme to support students in developing their startup ideas.",
+            options: ["incubation", "feasibility", "scalability", "iteration"],
+            originalSentence: "The design school ran an incubation programme to support students in developing their startup ideas."
+        }
+    ],
+    "114-31": [ // paradigm shift
+        {
+            sentence: "The move toward modular construction represents a real _______ in how we think about building.",
+            options: ["paradigm shift", "lateral thinking", "blue-sky", "incubation"],
+            originalSentence: "The move toward modular construction represents a real paradigm shift in how we think about building."
+        }
+    ],
+    "114-32": [ // blue-sky
+        {
+            sentence: "The workshop encouraged _______ thinking where no idea was considered too wild or unrealistic.",
+            options: ["blue-sky", "lateral thinking", "outside the box", "user-centered"],
+            originalSentence: "The workshop encouraged blue-sky thinking where no idea was considered too wild or unrealistic."
+        }
+    ],
+    "114-33": [ // trial
+        {
+            sentence: "The team conducted a _______ run of the folding system before presenting it to the client.",
+            options: ["trial", "prototype", "concept", "iteration"],
+            originalSentence: "The team conducted a trial run of the folding system before presenting it to the client."
+        }
+    ],
+    "114-34": [ // user-centered
+        {
+            sentence: "A _______ design approach puts the needs and experiences of the end user first.",
+            options: ["user-centered", "blue-sky", "small-scale", "iterative"],
+            originalSentence: "A user-centered design approach puts the needs and experiences of the end user first."
+        }
+    ],
+    "114-35": [ // iterations
+        {
+            sentence: "The final product went through dozens of _______ before the team was satisfied with the result.",
+            options: ["iterations", "prototypes", "concepts", "trials"],
+            originalSentence: "The final product went through dozens of iterations before the team was satisfied with the result."
+        }
+    ],
+    "115-1": [ // urban planning
+        {
+            sentence: "Good _______ creates cities where people can live, work, and move around comfortably.",
+            options: ["urban planning", "master plan", "community engagement", "placemaking"],
+            originalSentence: "Good urban planning creates cities where people can live, work, and move around comfortably."
+        }
+    ],
+    "115-2": [ // auditorium
+        {
+            sentence: "The public meeting was held in the school _______ to accommodate the large number of residents.",
+            options: ["auditorium", "streetscape", "public realm", "boulevard"],
+            originalSentence: "The public meeting was held in the school auditorium to accommodate the large number of residents."
+        }
+    ],
+    "115-3": [ // public consultation
+        {
+            sentence: "The city held a _______ to gather residents' opinions before approving the new development.",
+            options: ["public consultation", "community engagement", "zoning variance", "stakeholders"],
+            originalSentence: "The city held a public consultation to gather residents' opinions before approving the new development."
+        }
+    ],
+    "115-4": [ // zoning bylaw
+        {
+            sentence: "The developer had to apply for a change to the _______ before construction could begin.",
+            options: ["zoning bylaw", "zoning variance", "height restriction", "master plan"],
+            originalSentence: "The developer had to apply for a change to the zoning bylaw before construction could begin."
+        }
+    ],
+    "115-5": [ // density
+        {
+            sentence: "Increasing housing _______ near transit stations helps reduce car dependency in the city.",
+            options: ["density", "ratio", "setbacks", "resilience"],
+            originalSentence: "Increasing housing density near transit stations helps reduce car dependency in the city."
+        }
+    ],
+    "115-6": [ // transit corridors
+        {
+            sentence: "New high-rise buildings are only permitted along designated _______ near major bus and train lines.",
+            options: ["transit corridors", "lanes", "bypass", "cul-de-sac"],
+            originalSentence: "New high-rise buildings are only permitted along designated transit corridors near major bus and train lines."
+        }
+    ],
+    "115-7": [ // subway
+        {
+            sentence: "The new _______ line will connect the eastern suburbs to the city centre in under twenty minutes.",
+            options: ["subway", "bypass", "boulevard", "cul-de-sac"],
+            originalSentence: "The new subway line will connect the eastern suburbs to the city centre in under twenty minutes."
+        }
+    ],
+    "115-8": [ // character
+        {
+            sentence: "Many residents were worried that the new tower would destroy the _______ of their historic neighbourhood.",
+            options: ["character", "density", "ratio", "setbacks"],
+            originalSentence: "Many residents were worried that the new tower would destroy the character of their historic neighbourhood."
+        }
+    ],
+    "115-9": [ // torn
+        {
+            sentence: "She was _______ between supporting new housing and protecting the low-rise feel of her street.",
+            options: ["torn", "livable", "equitable", "messy"],
+            originalSentence: "She was torn between supporting new housing and protecting the low-rise feel of her street."
+        }
+    ],
+    "115-10": [ // livable
+        {
+            sentence: "A _______ city offers affordable housing, good transport, and access to green spaces.",
+            options: ["livable", "equitable", "pedestrian-friendly", "car-centric"],
+            originalSentence: "A livable city offers affordable housing, good transport, and access to green spaces."
+        }
+    ],
+    "115-11": [ // competing needs
+        {
+            sentence: "Urban planners must constantly balance _______ from different groups within the same community.",
+            options: ["competing needs", "recommendations", "stakeholders", "zoning variance"],
+            originalSentence: "Urban planners must constantly balance competing needs from different groups within the same community."
+        }
+    ],
+    "115-12": [ // ratio
+        {
+            sentence: "The bylaw requires a minimum _______ of one parking space per residential unit.",
+            options: ["ratio", "density", "setbacks", "height restriction"],
+            originalSentence: "The bylaw requires a minimum ratio of one parking space per residential unit."
+        }
+    ],
+    "115-13": [ // setbacks
+        {
+            sentence: "Building _______ ensure that new structures do not come too close to the street or neighbouring properties.",
+            options: ["setbacks", "lanes", "ratio", "density"],
+            originalSentence: "Building setbacks ensure that new structures do not come too close to the street or neighbouring properties."
+        }
+    ],
+    "115-14": [ // mixed-use
+        {
+            sentence: "A _______ development combines residential units with shops and offices in the same building.",
+            options: ["mixed-use", "car-centric", "pedestrian-friendly", "infill development"],
+            originalSentence: "A mixed-use development combines residential units with shops and offices in the same building."
+        }
+    ],
+    "115-15": [ // advisory
+        {
+            sentence: "The _______ committee reviewed the proposal and submitted its findings to the city council.",
+            options: ["advisory", "equitable", "livable", "pedestrian-friendly"],
+            originalSentence: "The advisory committee reviewed the proposal and submitted its findings to the city council."
+        }
+    ],
+    "115-18": [ // pedestrian-friendly
+        {
+            sentence: "Wide footpaths, benches, and trees make a street much more _______ and welcoming.",
+            options: ["pedestrian-friendly", "car-centric", "mixed-use", "livable"],
+            originalSentence: "Wide footpaths, benches, and trees make a street much more pedestrian-friendly and welcoming."
+        }
+    ],
+    "115-19": [ // citing
+        {
+            sentence: "She supported her argument by _______ several studies on the health benefits of walkable neighbourhoods.",
+            options: ["citing", "finalizing", "voting", "advocating"],
+            originalSentence: "She supported her argument by citing several studies on the health benefits of walkable neighbourhoods."
+        }
+    ],
+    "115-20": [ // walkability
+        {
+            sentence: "High _______ scores attract more residents and businesses to a neighbourhood.",
+            options: ["walkability", "density", "resilience", "sustainability"],
+            originalSentence: "High walkability scores attract more residents and businesses to a neighbourhood."
+        }
+    ],
+    "115-21": [ // public health
+        {
+            sentence: "Access to parks and cycling paths has a direct positive effect on _______.",
+            options: ["public health", "resilience", "sustainability", "livelihood"],
+            originalSentence: "Access to parks and cycling paths has a direct positive effect on public health."
+        }
+    ],
+    "115-22": [ // infrastructure
+        {
+            sentence: "The city needs to upgrade its aging _______ to handle the growing population.",
+            options: ["infrastructure", "stormwater", "bypass", "grid pattern"],
+            originalSentence: "The city needs to upgrade its aging infrastructure to handle the growing population."
+        }
+    ],
+    "115-23": [ // stormwater
+        {
+            sentence: "Green roofs and rain gardens help manage _______ and reduce the risk of urban flooding.",
+            options: ["stormwater", "infrastructure", "resilience", "sustainability"],
+            originalSentence: "Green roofs and rain gardens help manage stormwater and reduce the risk of urban flooding."
+        }
+    ],
+    "115-25": [ // finalizing
+        {
+            sentence: "The planning team is _______ the design guidelines before presenting them to the public.",
+            options: ["finalizing", "voting", "citing", "advocating"],
+            originalSentence: "The planning team is finalizing the design guidelines before presenting them to the public."
+        }
+    ],
+    "115-26": [ // recommendations
+        {
+            sentence: "The committee submitted its _______ to the city council after six months of public consultation.",
+            options: ["recommendations", "stakeholders", "engagement", "zoning variance"],
+            originalSentence: "The committee submitted its recommendations to the city council after six months of public consultation."
+        }
+    ],
+    "115-27": [ // city council
+        {
+            sentence: "The _______ voted in favour of the new development after reviewing the community feedback.",
+            options: ["city council", "advisory", "stakeholders", "public consultation"],
+            originalSentence: "The city council voted in favour of the new development after reviewing the community feedback."
+        }
+    ],
+    "115-28": [ // equitable
+        {
+            sentence: "An _______ city ensures that good schools, parks, and transport are available to all neighbourhoods equally.",
+            options: ["equitable", "livable", "pedestrian-friendly", "car-centric"],
+            originalSentence: "An equitable city ensures that good schools, parks, and transport are available to all neighbourhoods equally."
+        }
+    ],
+    "115-29": [ // voting
+        {
+            sentence: "After months of debate, the council members were finally _______ on the new zoning proposal.",
+            options: ["voting", "finalizing", "citing", "advocating"],
+            originalSentence: "After months of debate, the council members were finally voting on the new zoning proposal."
+        }
+    ],
+    "115-30": [ // messy
+        {
+            sentence: "Urban planning is a _______ process because it involves many people with very different priorities.",
+            options: ["messy", "livable", "equitable", "advisory"],
+            originalSentence: "Urban planning is a messy process because it involves many people with very different priorities."
+        }
+    ],
+    "115-32": [ // renter
+        {
+            sentence: "As a long-time _______ in the neighbourhood, she was worried about rising housing costs.",
+            options: ["renter", "stakeholder", "advocate", "resident"],
+            originalSentence: "As a long-time renter in the neighbourhood, she was worried about rising housing costs."
+        }
+    ],
+    "115-33": [ // afford
+        {
+            sentence: "Many families can no longer _______ to live in the city centre due to rising rents.",
+            options: ["afford", "advocate", "bypass", "engage"],
+            originalSentence: "Many families can no longer afford to live in the city centre due to rising rents."
+        }
+    ],
+    "115-35": [ // lanes
+        {
+            sentence: "The city added protected cycling _______ along the main road to encourage more people to cycle.",
+            options: ["lanes", "setbacks", "transit corridors", "bypass"],
+            originalSentence: "The city added protected cycling lanes along the main road to encourage more people to cycle."
+        }
+    ],
+    "115-36": [ // zoning variance
+        {
+            sentence: "The developer applied for a _______ to build six storeys instead of the permitted four.",
+            options: ["zoning variance", "zoning bylaw", "height restriction", "master plan"],
+            originalSentence: "The developer applied for a zoning variance to build six storeys instead of the permitted four."
+        }
+    ],
+    "115-37": [ // height restriction
+        {
+            sentence: "The _______ in the historic district prevents new buildings from blocking views of the old cathedral.",
+            options: ["height restriction", "zoning variance", "zoning bylaw", "setbacks"],
+            originalSentence: "The height restriction in the historic district prevents new buildings from blocking views of the old cathedral."
+        }
+    ],
+    "115-38": [ // heritage preservation
+        {
+            sentence: "_______ policies protect significant buildings from being demolished or altered beyond recognition.",
+            options: ["heritage preservation", "infill development", "gentrification", "placemaking"],
+            originalSentence: "Heritage preservation policies protect significant buildings from being demolished or altered beyond recognition."
+        }
+    ],
+    "115-39": [ // infill development
+        {
+            sentence: "_______ makes use of vacant lots within existing neighbourhoods rather than expanding into green fields.",
+            options: ["infill development", "gentrification", "heritage preservation", "placemaking"],
+            originalSentence: "Infill development makes use of vacant lots within existing neighbourhoods rather than expanding into green fields."
+        }
+    ],
+    "115-40": [ // gentrification
+        {
+            sentence: "_______ can improve the physical appearance of a neighbourhood but often displaces long-term residents.",
+            options: ["gentrification", "infill development", "placemaking", "heritage preservation"],
+            originalSentence: "Gentrification can improve the physical appearance of a neighbourhood but often displaces long-term residents."
+        }
+    ],
+    "115-41": [ // car-centric
+        {
+            sentence: "A _______ city design prioritises roads and parking at the expense of walkways and public spaces.",
+            options: ["car-centric", "pedestrian-friendly", "mixed-use", "livable"],
+            originalSentence: "A car-centric city design prioritises roads and parking at the expense of walkways and public spaces."
+        }
+    ],
+    "115-42": [ // public realm
+        {
+            sentence: "Investing in the _______ means improving parks, plazas, and streets that everyone can enjoy.",
+            options: ["public realm", "streetscape", "placemaking", "boulevard"],
+            originalSentence: "Investing in the public realm means improving parks, plazas, and streets that everyone can enjoy."
+        }
+    ],
+    "115-43": [ // streetscape
+        {
+            sentence: "The _______ was transformed by adding trees, wider pavements, and outdoor seating areas.",
+            options: ["streetscape", "public realm", "boulevard", "cul-de-sac"],
+            originalSentence: "The streetscape was transformed by adding trees, wider pavements, and outdoor seating areas."
+        }
+    ],
+    "115-44": [ // placemaking
+        {
+            sentence: "_______ is the process of designing public spaces that bring people together and build community.",
+            options: ["placemaking", "streetscape", "public realm", "community engagement"],
+            originalSentence: "Placemaking is the process of designing public spaces that bring people together and build community."
+        }
+    ],
+    "115-45": [ // master plan
+        {
+            sentence: "The city released a new _______ outlining how the waterfront area would develop over the next twenty years.",
+            options: ["master plan", "zoning bylaw", "advisory", "recommendations"],
+            originalSentence: "The city released a new master plan outlining how the waterfront area would develop over the next twenty years."
+        }
+    ],
+    "115-46": [ // community engagement
+        {
+            sentence: "Meaningful _______ ensures that local residents have a real say in decisions that affect their neighbourhood.",
+            options: ["community engagement", "public consultation", "stakeholders", "engagement"],
+            originalSentence: "Meaningful community engagement ensures that local residents have a real say in decisions that affect their neighbourhood."
+        }
+    ],
+    "115-47": [ // stakeholders
+        {
+            sentence: "All _______ including residents, businesses, and developers were invited to attend the planning workshop.",
+            options: ["stakeholders", "recommendations", "engagement", "advisory"],
+            originalSentence: "All stakeholders including residents, businesses, and developers were invited to attend the planning workshop."
+        }
+    ],
+    "115-48": [ // sustainability
+        {
+            sentence: "_______ in urban design means creating cities that can meet today's needs without harming future generations.",
+            options: ["sustainability", "resilience", "livelihood", "walkability"],
+            originalSentence: "Sustainability in urban design means creating cities that can meet today's needs without harming future generations."
+        }
+    ],
+    "115-49": [ // resilience
+        {
+            sentence: "Building _______ into city infrastructure helps communities recover faster from floods and other disasters.",
+            options: ["resilience", "sustainability", "livelihood", "walkability"],
+            originalSentence: "Building resilience into city infrastructure helps communities recover faster from floods and other disasters."
+        }
+    ],
+    "115-50": [ // livelihood
+        {
+            sentence: "The loss of the local market threatened the _______ of dozens of small business owners.",
+            options: ["livelihood", "resilience", "sustainability", "walkability"],
+            originalSentence: "The loss of the local market threatened the livelihood of dozens of small business owners."
+        }
+    ],
+    "115-51": [ // advocate
+        {
+            sentence: "She continues to _______ for more affordable housing in the city's most desirable neighbourhoods.",
+            options: ["advocate", "bypass", "cite", "vote"],
+            originalSentence: "She continues to advocate for more affordable housing in the city's most desirable neighbourhoods."
+        }
+    ],
+    "115-52": [ // engagement
+        {
+            sentence: "High levels of community _______ during the planning process lead to better and more accepted outcomes.",
+            options: ["engagement", "recommendations", "stakeholders", "advisory"],
+            originalSentence: "High levels of community engagement during the planning process lead to better and more accepted outcomes."
+        }
+    ],
+    "115-53": [ // bypass
+        {
+            sentence: "A new _______ was built around the town centre to reduce heavy traffic on the main street.",
+            options: ["bypass", "boulevard", "cul-de-sac", "grid pattern"],
+            originalSentence: "A new bypass was built around the town centre to reduce heavy traffic on the main street."
+        }
+    ],
+    "115-54": [ // boulevard
+        {
+            sentence: "The tree-lined _______ became one of the most popular walking routes in the city.",
+            options: ["boulevard", "bypass", "cul-de-sac", "grid pattern"],
+            originalSentence: "The tree-lined boulevard became one of the most popular walking routes in the city."
+        }
+    ],
+    "115-55": [ // cul-de-sac
+        {
+            sentence: "The children played safely on the quiet _______ because there was no through traffic.",
+            options: ["cul-de-sac", "boulevard", "bypass", "grid pattern"],
+            originalSentence: "The children played safely on the quiet cul-de-sac because there was no through traffic."
+        }
+    ],
+    "115-56": [ // grid pattern
+        {
+            sentence: "Many American cities were built on a _______ which makes navigation straightforward for visitors.",
+            options: ["grid pattern", "bypass", "boulevard", "cul-de-sac"],
+            originalSentence: "Many American cities were built on a grid pattern which makes navigation straightforward for visitors."
+        }
+    ],
+    "116-1": [ // remote work
+        {
+            sentence: "_______ has become the new normal for millions of professionals around the world.",
+            options: ["remote work", "gig economy", "coworking", "hybrid"],
+            originalSentence: "Remote work has become the new normal for millions of professionals around the world."
+        }
+    ],
+    "116-3": [ // pandemic
+        {
+            sentence: "The _______ forced companies to adopt remote work almost overnight.",
+            options: ["pandemic", "automation", "displacement", "burnout"],
+            originalSentence: "The pandemic forced companies to adopt remote work almost overnight."
+        }
+    ],
+    "116-4": [ // coworking
+        {
+            sentence: "She rents a desk at a _______ space three days a week to escape the isolation of working from home.",
+            options: ["coworking", "remote work", "hybrid", "freelance"],
+            originalSentence: "She rents a desk at a coworking space three days a week to escape the isolation of working from home."
+        }
+    ],
+    "116-5": [ // automation
+        {
+            sentence: "_______ is replacing repetitive tasks in many industries, forcing workers to learn new skills.",
+            options: ["automation", "artificial intelligence", "displacement", "reskilling"],
+            originalSentence: "Automation is replacing repetitive tasks in many industries, forcing workers to learn new skills."
+        }
+    ],
+    "116-6": [ // artificial intelligence
+        {
+            sentence: "_______ tools can now generate design options in seconds, changing how architects work.",
+            options: ["artificial intelligence", "automation", "gig economy", "drafting"],
+            originalSentence: "Artificial intelligence tools can now generate design options in seconds, changing how architects work."
+        }
+    ],
+    "116-7": [ // emerge
+        {
+            sentence: "New job roles continue to _______ as technology reshapes every industry.",
+            options: ["emerge", "evolve", "energize", "displace"],
+            originalSentence: "New job roles continue to emerge as technology reshapes every industry."
+        }
+    ],
+    "116-8": [ // adaptability
+        {
+            sentence: "_______ is now considered one of the most valuable skills in any modern workplace.",
+            options: ["adaptability", "predictability", "productivity", "mentorship"],
+            originalSentence: "Adaptability is now considered one of the most valuable skills in any modern workplace."
+        }
+    ],
+    "116-9": [ // drafting
+        {
+            sentence: "Manual _______ has been largely replaced by computer-aided design software in architecture firms.",
+            options: ["drafting", "coding", "reskilling", "upskilling"],
+            originalSentence: "Manual drafting has been largely replaced by computer-aided design software in architecture firms."
+        }
+    ],
+    "116-10": [ // gig economy
+        {
+            sentence: "The _______ offers flexibility but often lacks the security of a traditional full-time job.",
+            options: ["gig economy", "freelance", "remote work", "portfolio career"],
+            originalSentence: "The gig economy offers flexibility but often lacks the security of a traditional full-time job."
+        }
+    ],
+    "116-11": [ // freelance
+        {
+            sentence: "She chose to _______ after leaving her firm so she could work with a variety of clients.",
+            options: ["freelance", "retire", "reskill", "network"],
+            originalSentence: "She chose to freelance after leaving her firm so she could work with a variety of clients."
+        }
+    ],
+    "116-12": [ // predictability
+        {
+            sentence: "One of the biggest downsides of freelancing is the lack of _______ in monthly income.",
+            options: ["predictability", "adaptability", "productivity", "well-being"],
+            originalSentence: "One of the biggest downsides of freelancing is the lack of predictability in monthly income."
+        }
+    ],
+    "116-13": [ // paycheck
+        {
+            sentence: "He missed the security of a regular _______ after leaving his full-time position.",
+            options: ["paycheck", "retirement", "mentorship", "side hustle"],
+            originalSentence: "He missed the security of a regular paycheck after leaving his full-time position."
+        }
+    ],
+    "116-15": [ // reskilling
+        {
+            sentence: "Many companies are investing in _______ programmes to help employees adapt to new technologies.",
+            options: ["reskilling", "upskilling", "networking", "mentorship"],
+            originalSentence: "Many companies are investing in reskilling programmes to help employees adapt to new technologies."
+        }
+    ],
+    "116-17": [ // code
+        {
+            sentence: "She taught herself to _______ during the lockdown and landed a job as a software developer.",
+            options: ["code", "freelance", "network", "reskill"],
+            originalSentence: "She taught herself to code during the lockdown and landed a job as a software developer."
+        }
+    ],
+    "116-18": [ // energized
+        {
+            sentence: "He felt more _______ working from home because he saved two hours of commuting every day.",
+            options: ["energized", "displaced", "evolved", "automated"],
+            originalSentence: "He felt more energized working from home because he saved two hours of commuting every day."
+        }
+    ],
+    "116-19": [ // watercooler conversations
+        {
+            sentence: "Many employees miss the spontaneous _______ that happen naturally in a shared office.",
+            options: ["watercooler conversations", "in-person", "asynchronous", "hybrid"],
+            originalSentence: "Many employees miss the spontaneous watercooler conversations that happen naturally in a shared office."
+        }
+    ],
+    "116-20": [ // in-person
+        {
+            sentence: "Some tasks like team workshops and client presentations work better _______.",
+            options: ["in-person", "asynchronous", "hybrid", "remote"],
+            originalSentence: "Some tasks like team workshops and client presentations work better in-person."
+        }
+    ],
+    "116-21": [ // hybrid
+        {
+            sentence: "A _______ model allows employees to split their time between the office and working from home.",
+            options: ["hybrid", "remote work", "freelance", "coworking"],
+            originalSentence: "A hybrid model allows employees to split their time between the office and working from home."
+        }
+    ],
+    "116-22": [ // evolving
+        {
+            sentence: "The nature of work is constantly _______, requiring professionals to keep learning throughout their careers.",
+            options: ["evolving", "emerging", "energizing", "displacing"],
+            originalSentence: "The nature of work is constantly evolving, requiring professionals to keep learning throughout their careers."
+        }
+    ],
+    "116-23": [ // portfolio career
+        {
+            sentence: "A _______ involves juggling multiple roles or projects rather than having one single employer.",
+            options: ["portfolio career", "gig economy", "side hustle", "freelance"],
+            originalSentence: "A portfolio career involves juggling multiple roles or projects rather than having one single employer."
+        }
+    ],
+    "116-24": [ // upskilling
+        {
+            sentence: "_______ means building on existing skills to stay competitive in a rapidly changing job market.",
+            options: ["upskilling", "reskilling", "networking", "mentorship"],
+            originalSentence: "Upskilling means building on existing skills to stay competitive in a rapidly changing job market."
+        }
+    ],
+    "116-25": [ // digital nomad
+        {
+            sentence: "As a _______, she works from a different country every few months using just her laptop.",
+            options: ["digital nomad", "contractor", "freelance", "portfolio career"],
+            originalSentence: "As a digital nomad, she works from a different country every few months using just her laptop."
+        }
+    ],
+    "116-26": [ // burnout
+        {
+            sentence: "Working long hours without breaks can quickly lead to serious _______ and loss of motivation.",
+            options: ["burnout", "displacement", "automation anxiety", "boundaries"],
+            originalSentence: "Working long hours without breaks can quickly lead to serious burnout and loss of motivation."
+        }
+    ],
+    "116-27": [ // boundaries
+        {
+            sentence: "Setting clear _______ between work and personal time is essential when working from home.",
+            options: ["boundaries", "productivity", "well-being", "adaptability"],
+            originalSentence: "Setting clear boundaries between work and personal time is essential when working from home."
+        }
+    ],
+    "116-28": [ // productivity
+        {
+            sentence: "Studies show that remote workers often report higher _______ when they have a dedicated workspace.",
+            options: ["productivity", "well-being", "adaptability", "predictability"],
+            originalSentence: "Studies show that remote workers often report higher productivity when they have a dedicated workspace."
+        }
+    ],
+    "116-30": [ // asynchronous
+        {
+            sentence: "_______ communication allows team members in different time zones to collaborate without being online at the same time.",
+            options: ["asynchronous", "in-person", "hybrid", "watercooler"],
+            originalSentence: "Asynchronous communication allows team members in different time zones to collaborate without being online at the same time."
+        }
+    ],
+    "116-31": [ // well-being
+        {
+            sentence: "More companies are investing in employee _______ programmes to reduce stress and improve retention.",
+            options: ["well-being", "productivity", "adaptability", "predictability"],
+            originalSentence: "More companies are investing in employee well-being programmes to reduce stress and improve retention."
+        }
+    ],
+    "116-32": [ // automation anxiety
+        {
+            sentence: "_______ is growing among workers who fear that their jobs will be taken over by machines.",
+            options: ["automation anxiety", "burnout", "displacement", "reskilling"],
+            originalSentence: "Automation anxiety is growing among workers who fear that their jobs will be taken over by machines."
+        }
+    ],
+    "116-33": [ // displacement
+        {
+            sentence: "The _______ of workers by robots in manufacturing has created a need for major retraining programmes.",
+            options: ["displacement", "automation anxiety", "burnout", "reskilling"],
+            originalSentence: "The displacement of workers by robots in manufacturing has created a need for major retraining programmes."
+        }
+    ],
+    "116-35": [ // networking
+        {
+            sentence: "Active _______ helps professionals find new opportunities and stay connected to their industry.",
+            options: ["networking", "mentorship", "upskilling", "reskilling"],
+            originalSentence: "Active networking helps professionals find new opportunities and stay connected to their industry."
+        }
+    ],
+    "116-36": [ // mentorship
+        {
+            sentence: "Having a good _______ relationship early in your career can make a huge difference to your growth.",
+            options: ["mentorship", "networking", "upskilling", "reskilling"],
+            originalSentence: "Having a good mentorship relationship early in your career can make a huge difference to your growth."
+        }
+    ],
+    "116-37": [ // contractor
+        {
+            sentence: "He works as an independent _______, taking on short-term projects for different companies.",
+            options: ["contractor", "freelance", "digital nomad", "portfolio career"],
+            originalSentence: "He works as an independent contractor, taking on short-term projects for different companies."
+        }
+    ],
+    "116-38": [ // retirement
+        {
+            sentence: "Many people are choosing to delay _______ and continue working well into their seventies.",
+            options: ["retirement", "displacement", "burnout", "automation anxiety"],
+            originalSentence: "Many people are choosing to delay retirement and continue working well into their seventies."
+        }
+    ],
+    "116-39": [ // side hustle
+        {
+            sentence: "She started a _______ selling handmade jewellery online while keeping her full-time job.",
+            options: ["side hustle", "portfolio career", "gig economy", "freelance"],
+            originalSentence: "She started a side hustle selling handmade jewellery online while keeping her full-time job."
+        }
+    ],
+    "117-1": [ // climate action
+        {
+            sentence: "Architects have a responsibility to lead _______ by designing buildings that use less energy.",
+            options: ["climate action", "decarbonization", "climate resilience", "adaptation"],
+            originalSentence: "Architects have a responsibility to lead climate action by designing buildings that use less energy."
+        }
+    ],
+    "117-2": [ // LEED certification
+        {
+            sentence: "The building achieved _______ after meeting strict standards for energy and water efficiency.",
+            options: ["LEED certification", "blueprint", "assessment", "incentive"],
+            originalSentence: "The building achieved LEED certification after meeting strict standards for energy and water efficiency."
+        }
+    ],
+    "117-4": [ // Leadership in Energy and Environmental Design
+        {
+            sentence: "_______ is an internationally recognised rating system for sustainable building design.",
+            options: ["Leadership in Energy and Environmental Design", "LEED certification", "net-zero emissions", "decarbonization"],
+            originalSentence: "Leadership in Energy and Environmental Design is an internationally recognised rating system for sustainable building design."
+        }
+    ],
+    "117-6": [ // summit
+        {
+            sentence: "World leaders gathered at the climate _______ to agree on new targets for reducing emissions.",
+            options: ["summit", "crisis", "assessment", "blueprint"],
+            originalSentence: "World leaders gathered at the climate summit to agree on new targets for reducing emissions."
+        }
+    ],
+    "117-8": [ // projections
+        {
+            sentence: "The latest climate _______ show that temperatures will rise faster than previously expected.",
+            options: ["projections", "assessment", "incentive", "blueprint"],
+            originalSentence: "The latest climate projections show that temperatures will rise faster than previously expected."
+        }
+    ],
+    "117-10": [ // long-term
+        {
+            sentence: "Sustainable materials may cost more initially but offer significant _______ savings on energy bills.",
+            options: ["long-term", "cutting-edge", "corporate", "hesitant"],
+            originalSentence: "Sustainable materials may cost more initially but offer significant long-term savings on energy bills."
+        }
+    ],
+    "117-11": [ // hesitant
+        {
+            sentence: "Some clients are _______ to invest in green technology because of the higher upfront costs.",
+            options: ["hesitant", "cutting-edge", "corporate", "featured"],
+            originalSentence: "Some clients are hesitant to invest in green technology because of the higher upfront costs."
+        }
+    ],
+    "117-12": [ // upfront investment
+        {
+            sentence: "The _______ in solar panels is recovered within a few years through lower electricity bills.",
+            options: ["upfront investment", "incentive", "assessment", "blueprint"],
+            originalSentence: "The upfront investment in solar panels is recovered within a few years through lower electricity bills."
+        }
+    ],
+    "117-13": [ // pilot
+        {
+            sentence: "The city launched a _______ programme to test the new energy-efficient street lighting system.",
+            options: ["pilot", "summit", "crisis", "assessment"],
+            originalSentence: "The city launched a pilot programme to test the new energy-efficient street lighting system."
+        }
+    ],
+    "117-15": [ // cooling
+        {
+            sentence: "Passive _______ strategies like shading and cross-ventilation can dramatically reduce energy use.",
+            options: ["cooling", "ventilation", "insulation", "electrification"],
+            originalSentence: "Passive cooling strategies like shading and cross-ventilation can dramatically reduce energy use."
+        }
+    ],
+    "117-16": [ // ventilation
+        {
+            sentence: "Good _______ in a building improves indoor air quality and reduces the need for air conditioning.",
+            options: ["ventilation", "cooling", "insulation", "electrification"],
+            originalSentence: "Good ventilation in a building improves indoor air quality and reduces the need for air conditioning."
+        }
+    ],
+    "117-17": [ // embodied carbon
+        {
+            sentence: "_______ refers to the emissions produced during the manufacture and transport of building materials.",
+            options: ["embodied carbon", "carbon capture", "greenhouse gases", "net-zero emissions"],
+            originalSentence: "Embodied carbon refers to the emissions produced during the manufacture and transport of building materials."
+        }
+    ],
+    "117-18": [ // concrete alternative
+        {
+            sentence: "Mass timber is increasingly being used as a _______ because it stores carbon rather than releasing it.",
+            options: ["concrete alternative", "biophilic design", "smart grid", "heat pump"],
+            originalSentence: "Mass timber is increasingly being used as a concrete alternative because it stores carbon rather than releasing it."
+        }
+    ],
+    "117-19": [ // cutting-edge
+        {
+            sentence: "The firm is known for its _______ approach to sustainable design and green technology.",
+            options: ["cutting-edge", "corporate", "hesitant", "long-term"],
+            originalSentence: "The firm is known for its cutting-edge approach to sustainable design and green technology."
+        }
+    ],
+    "117-20": [ // corporate
+        {
+            sentence: "Many _______ clients now require sustainability reports before approving a new building project.",
+            options: ["corporate", "cutting-edge", "hesitant", "featured"],
+            originalSentence: "Many corporate clients now require sustainability reports before approving a new building project."
+        }
+    ],
+    "117-22": [ // walk the talk
+        {
+            sentence: "Companies that claim to be green must _______ by making real changes to how they operate.",
+            options: ["walk the talk", "carbon capture", "electrification", "adaptation"],
+            originalSentence: "Companies that claim to be green must walk the talk by making real changes to how they operate."
+        }
+    ],
+    "117-23": [ // featured
+        {
+            sentence: "The sustainable housing project was _______ in a major international architecture magazine.",
+            options: ["featured", "hesitant", "cutting-edge", "corporate"],
+            originalSentence: "The sustainable housing project was featured in a major international architecture magazine."
+        }
+    ],
+    "117-24": [ // blueprint
+        {
+            sentence: "The report provides a clear _______ for how cities can reach net-zero emissions by 2050.",
+            options: ["blueprint", "assessment", "incentive", "summit"],
+            originalSentence: "The report provides a clear blueprint for how cities can reach net-zero emissions by 2050."
+        }
+    ],
+    "117-25": [ // crisis
+        {
+            sentence: "Scientists warn that the climate _______ requires immediate and decisive action from all governments.",
+            options: ["crisis", "summit", "assessment", "blueprint"],
+            originalSentence: "Scientists warn that the climate crisis requires immediate and decisive action from all governments."
+        }
+    ],
+    "117-26": [ // decarbonization
+        {
+            sentence: "_______ of the construction industry is essential if we are to meet global climate targets.",
+            options: ["decarbonization", "electrification", "carbon capture", "mitigation"],
+            originalSentence: "Decarbonization of the construction industry is essential if we are to meet global climate targets."
+        }
+    ],
+    "117-27": [ // renewable energy
+        {
+            sentence: "Switching to _______ sources like solar and wind is one of the fastest ways to reduce emissions.",
+            options: ["renewable energy", "fossil fuels", "energy storage", "smart grid"],
+            originalSentence: "Switching to renewable energy sources like solar and wind is one of the fastest ways to reduce emissions."
+        }
+    ],
+    "117-30": [ // assessment
+        {
+            sentence: "An environmental _______ was carried out before construction began on the new development.",
+            options: ["assessment", "blueprint", "incentive", "summit"],
+            originalSentence: "An environmental assessment was carried out before construction began on the new development."
+        }
+    ],
+    "117-32": [ // greenhouse gases
+        {
+            sentence: "Buildings are responsible for a significant share of the world's _______ emissions.",
+            options: ["greenhouse gases", "fossil fuels", "embodied carbon", "net-zero emissions"],
+            originalSentence: "Buildings are responsible for a significant share of the world's greenhouse gases emissions."
+        }
+    ],
+    "117-33": [ // fossil fuels
+        {
+            sentence: "Moving away from _______ is the single most important step in tackling climate change.",
+            options: ["fossil fuels", "greenhouse gases", "renewable energy", "embodied carbon"],
+            originalSentence: "Moving away from fossil fuels is the single most important step in tackling climate change."
+        }
+    ],
+    "117-34": [ // climate resilience
+        {
+            sentence: "_______ means designing cities and buildings that can withstand the effects of extreme weather.",
+            options: ["climate resilience", "climate action", "adaptation", "mitigation"],
+            originalSentence: "Climate resilience means designing cities and buildings that can withstand the effects of extreme weather."
+        }
+    ],
+    "117-35": [ // adaptation
+        {
+            sentence: "_______ involves adjusting how we build and live to cope with the effects of a changing climate.",
+            options: ["adaptation", "mitigation", "decarbonization", "climate resilience"],
+            originalSentence: "Adaptation involves adjusting how we build and live to cope with the effects of a changing climate."
+        }
+    ],
+    "117-36": [ // mitigation
+        {
+            sentence: "_______ strategies focus on reducing the causes of climate change rather than just responding to its effects.",
+            options: ["mitigation", "adaptation", "decarbonization", "carbon capture"],
+            originalSentence: "Mitigation strategies focus on reducing the causes of climate change rather than just responding to its effects."
+        }
+    ],
+    "117-37": [ // carbon capture
+        {
+            sentence: "_______ technology removes carbon dioxide from the atmosphere and stores it underground.",
+            options: ["carbon capture", "electrification", "energy storage", "smart grid"],
+            originalSentence: "Carbon capture technology removes carbon dioxide from the atmosphere and stores it underground."
+        }
+    ],
+    "117-38": [ // electrification
+        {
+            sentence: "The _______ of heating systems means replacing gas boilers with electric alternatives like heat pumps.",
+            options: ["electrification", "decarbonization", "carbon capture", "mitigation"],
+            originalSentence: "The electrification of heating systems means replacing gas boilers with electric alternatives like heat pumps."
+        }
+    ],
+    "117-39": [ // energy storage
+        {
+            sentence: "Better _______ technology is needed to make renewable energy available even when the sun is not shining.",
+            options: ["energy storage", "smart grid", "electrification", "carbon capture"],
+            originalSentence: "Better energy storage technology is needed to make renewable energy available even when the sun is not shining."
+        }
+    ],
+    "117-40": [ // smart grid
+        {
+            sentence: "A _______ uses digital technology to manage the flow of electricity more efficiently across a city.",
+            options: ["smart grid", "energy storage", "heat pump", "electrification"],
+            originalSentence: "A smart grid uses digital technology to manage the flow of electricity more efficiently across a city."
+        }
+    ],
+    "117-41": [ // heat pump
+        {
+            sentence: "A _______ can provide both heating and cooling using a fraction of the energy of a traditional system.",
+            options: ["heat pump", "smart grid", "insulation", "ventilation"],
+            originalSentence: "A heat pump can provide both heating and cooling using a fraction of the energy of a traditional system."
+        }
+    ],
+    "117-42": [ // insulation
+        {
+            sentence: "Good wall and roof _______ keeps buildings warm in winter and cool in summer without using extra energy.",
+            options: ["insulation", "ventilation", "cooling", "heat pump"],
+            originalSentence: "Good wall and roof insulation keeps buildings warm in winter and cool in summer without using extra energy."
+        }
+    ],
+    "117-43": [ // biophilic design
+        {
+            sentence: "_______ incorporates natural elements like plants, water, and daylight into the built environment.",
+            options: ["biophilic design", "rainwater harvesting", "greywater recycling", "permeable pavement"],
+            originalSentence: "Biophilic design incorporates natural elements like plants, water, and daylight into the built environment."
+        }
+    ],
+    "117-44": [ // rainwater harvesting
+        {
+            sentence: "_______ systems collect and store rain for use in irrigation and toilet flushing.",
+            options: ["rainwater harvesting", "greywater recycling", "permeable pavement", "biophilic design"],
+            originalSentence: "Rainwater harvesting systems collect and store rain for use in irrigation and toilet flushing."
+        }
+    ],
+    "117-45": [ // greywater recycling
+        {
+            sentence: "_______ treats water from sinks and showers so it can be reused for non-drinking purposes.",
+            options: ["greywater recycling", "rainwater harvesting", "permeable pavement", "biophilic design"],
+            originalSentence: "Greywater recycling treats water from sinks and showers so it can be reused for non-drinking purposes."
+        }
+    ],
+    "117-47": [ // tree canopy
+        {
+            sentence: "A dense urban _______ reduces the heat island effect and improves air quality in city centres.",
+            options: ["tree canopy", "permeable pavement", "biodiversity", "biophilic design"],
+            originalSentence: "A dense urban tree canopy reduces the heat island effect and improves air quality in city centres."
+        }
+    ],
+    "117-48": [ // permeable pavement
+        {
+            sentence: "_______ allows rainwater to pass through the surface and recharge groundwater instead of causing flooding.",
+            options: ["permeable pavement", "tree canopy", "rainwater harvesting", "greywater recycling"],
+            originalSentence: "Permeable pavement allows rainwater to pass through the surface and recharge groundwater instead of causing flooding."
+        }
+    ],
+    "117-49": [ // biodiversity
+        {
+            sentence: "Green roofs and urban gardens can significantly increase _______ in dense city environments.",
+            options: ["biodiversity", "tree canopy", "biophilic design", "rainwater harvesting"],
+            originalSentence: "Green roofs and urban gardens can significantly increase biodiversity in dense city environments."
+        }
+    ],
+    "117-50": [ // net-zero emissions
+        {
+            sentence: "The government has committed to achieving _______ across all new public buildings by 2035.",
+            options: ["net-zero emissions", "embodied carbon", "greenhouse gases", "decarbonization"],
+            originalSentence: "The government has committed to achieving net-zero emissions across all new public buildings by 2035."
+        }
+    ],
+    "117-52": [ // intergovernmental panel
+        {
+            sentence: "The _______ on climate change publishes regular reports on the latest scientific findings.",
+            options: ["intergovernmental panel", "summit", "blueprint", "assessment"],
+            originalSentence: "The intergovernmental panel on climate change publishes regular reports on the latest scientific findings."
+        }
+    ],
+    "117-54": [ // incentive
+        {
+            sentence: "The government offers a financial _______ to homeowners who install solar panels or heat pumps.",
+            options: ["incentive", "assessment", "blueprint", "summit"],
+            originalSentence: "The government offers a financial incentive to homeowners who install solar panels or heat pumps."
+        }
+    ],
     // استكمال gapfillDB.js - الدرس رقم 301
     "301-1": [
         {
