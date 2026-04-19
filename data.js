@@ -5687,7 +5687,7 @@ window.lessonsData = {
   {"id": "118-42", "english": "infection", "arabic": "عدوى"},
   {"id": "118-43", "english": "filtration", "arabic": "ترشيح"},
   {"id": "118-44", "english": "thermal", "arabic": "حراري"},
-  {"id": "118-45", "english": "acoustic", ": "صوتي"},
+  {"id": "118-45", "english": "acoustic", "arabic": "صوتي"},
   {"id": "118-46", "english": "universal design", "arabic": "شامل"},
   {"id": "118-48", "english": "accessibility", "arabic": "إمكانية الوصول"},
   {"id": "118-50", "english": "mental well-being", "arabic": "رفاهية نفسية"},
