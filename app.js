@@ -1760,6 +1760,32 @@ class App {
             }
         }
         
+        // ====== الإصلاح: تحويل التفاصيل إلى مصفوفة بدلاً من كائن ======
+        // دمج أسئلة الاستماع والقراءة في مصفوفة واحدة مع ترتيب زمني
+        const listeningQuestions = this.adaptiveListeningHistory.map((item, idx) => ({
+            id: `L${idx+1}`,
+            type: 'listening',
+            level: item.level,
+            question: item.question,
+            correct: item.correct,
+            selected: item.selected,
+            isCorrect: item.isCorrect,
+            transcript: item.transcript
+        }));
+        
+        const readingQuestions = this.adaptiveTestHistory.map((item, idx) => ({
+            id: `R${idx+1}`,
+            type: 'reading',
+            level: item.level,
+            question: item.question,
+            correct: item.correct,
+            selected: item.selected,
+            isCorrect: item.isCorrect,
+            skill: item.skill
+        }));
+        
+        const allDetails = [...listeningQuestions, ...readingQuestions];
+        
         const combinedResult = {
             level: finalLevel,
             displayLevel: finalLevel,
@@ -1773,10 +1799,7 @@ class App {
             ielts: this.getIeltsEquivalent(finalLevel),
             strengths: strengths,
             weaknesses: weaknesses,
-            details: {
-                listening: this.adaptiveListeningHistory,
-                reading: this.adaptiveTestHistory
-            }
+            details: allDetails  // الآن details هي مصفوفة
         };
         
         this.placementResults.unshift(combinedResult);
@@ -2664,7 +2687,6 @@ class App {
             const totalLessons = this.unlockedLessons ? this.unlockedLessons.length : 0; 
             const xpProgress = `${progress.currentProgress}/${progress.neededForNext}`; 
             const xpPercent = (progress.currentProgress / progress.neededForNext) * 100; 
-            // تعريف window.levels إذا لم يكن موجوداً
             if (!window.levels) window.levels = [{ id: 'beginner', name: 'مبتدئ', icon: '🌱' }, { id: 'intermediate', name: 'متوسط', icon: '📘' }, { id: 'advanced', name: 'متقدم', icon: '🚀' }];
             return `<main class="main-content"><div class="reading-card welcome-banner"><div style="display: flex; justify-content: space-between; align-items: center; flex-wrap:wrap; gap:10px;"><h3 style="margin:0;">${this.t(`مرحباً، ${this.userData?.name || 'مستخدم'} 👋`, `Welcome, ${this.userData?.name || 'User'} 👋`)}</h3><div style="background: rgba(255,255,255,0.2); padding: 4px 12px; border-radius: 20px; font-size: 0.8rem; font-weight: bold;">⭐ ${this.t('مستوى', 'Level')} ${progress.level}</div></div><div style="margin-top: 15px;"><div style="display: flex; justify-content: space-between; font-size: 0.8rem; margin-bottom: 6px;"><span>${this.t('نقاط الخبرة (XP)', 'Experience Points (XP)')}</span><span>${xpProgress}</span></div><div class="progress-bar-container"><div class="progress-bar-fill" style="width: ${xpPercent}%;"></div></div></div>${this.getBadgesDisplay()}<div style="margin-top: 10px; font-size:0.85rem;">${this.t('التاج الحالي:', 'Current Crown:')} ${this.userStats.tier}</div><div style="margin-top: 4px; font-size:0.8rem;">${this.t('الدروس المفتوحة:', 'Unlocked Lessons:')} ${totalLessons} | ${this.t('الكلمات المتقنة:', 'Mastered Words:')} ${totalMastered}</div></div><button class="hero-btn" data-action="setPage" data-param="addLesson" style="width:100%; background:#8b5cf6; margin-top:12px;">📸 ${this.t('إضافة من الكاميرا أو الهاتف', 'Add from Camera or Phone')}</button><button class="hero-btn" data-action="setPage" data-param="level_test_instructions" style="width:100%; background:#ec4899; margin:12px 0;">🧠 ${this.t('اختبار مستوى متقدم', 'Advanced Level Test')}</button><div class="features-grid">${window.levels.map(l => `<div class="feature-card" data-action="selLevel" data-param="${l.id}"><h3 style="font-size:1rem;">${l.icon} ${this.lang === 'en' ? (l.id === 'beginner' ? 'Beginner' : l.id === 'intermediate' ? 'Intermediate' : 'Advanced') : l.name}</h3></div>`).join('')}${Object.keys(this.customLessons).length > 0 ? `<div class="feature-card" data-action="selLevel" data-param="custom_list" style="border:1px solid #f97316;"><h3 style="font-size:1rem;">📂 ${this.t('نصوصي', 'My Texts')}</h3></div>` : ''}</div><button data-action="logout" class="logout-btn">${this.t('تسجيل الخروج', 'Logout')}</button></main>`;
         }
@@ -2771,11 +2793,26 @@ class App {
         if (this.currentPage === 'test_history') return `<main class="main-content"><button class="hero-btn" data-action="goHome" style="margin-bottom:15px; background:#64748b;">← ${this.t('الرجوع للرئيسية', 'Back to Home')}</button><button class="hero-btn" data-action="syncTestHistory" style="margin-bottom:15px; background:#f59e0b;">🔄 ${this.t('استعادة الاختبارات', 'Restore Tests')}</button><div class="reading-card"><h2 style="text-align:center;">📋 ${this.t('سجل اختبارات المستوى', 'Level Test History')}</h2>${this.placementResults.length === 0 ? `<p style="text-align:center; color:#666; padding:20px;">${this.t('لا توجد اختبارات سابقة', 'No previous tests')}</p>` : `<div class="history-list">${this.placementResults.map((r, idx) => `<div class="history-item" onclick="appInstance.viewTestDetails(${idx})"><div style="display:flex; justify-content:space-between; flex-wrap:wrap; gap:5px;"><span><strong>${r.date}</strong></span><span>${this.t('المستوى:', 'Level:')} ${r.displayLevel || r.level}</span></div><div style="display:flex; justify-content:space-between; margin-top:5px; flex-wrap:wrap; gap:5px;"><span>${this.t('الدرجة:', 'Score:')} ${r.totalScore || r.score}/${r.totalQuestions}</span><span>IELTS: ${r.ielts}</span></div><button class="hero-btn" data-action="deletePlacementTest" data-index="${idx}" style="margin-top:5px; background:#ef4444; padding:4px 8px; font-size:0.7rem;">🗑️ ${this.t('حذف', 'Delete')}</button></div>`).join('')}</div>`}</div></main>`;
         
         if (this.currentPage === 'placement_details' && this.viewingPlacementDetails) { 
-            const details = this.viewingPlacementDetails.details || []; 
-            return `<div class="reading-card"><button class="hero-btn" data-action="backFromDetails" style="margin-bottom:15px; background:#64748b;">← ${this.t('رجوع', 'Back')}</button><h2 style="text-align:center;">${this.t('تفاصيل اختبار', 'Test Details')} ${this.viewingPlacementDetails.date}</h2><p style="text-align:center;">${this.t('المستوى النهائي:', 'Final Level:')} <strong>${this.viewingPlacementDetails.displayLevel || this.viewingPlacementDetails.level}</strong> | ${this.t('الدرجة:', 'Score:')} ${this.viewingPlacementDetails.totalScore || this.viewingPlacementDetails.score}/${this.viewingPlacementDetails.totalQuestions}</p><div style="max-height:350px; overflow-y:auto; border:1px solid #e2e8f0; border-radius:8px; padding:10px;">${details.map((d, i) => `<div style="border-bottom:1px solid #e2e8f0; padding:8px; margin-bottom:5px;"><p><strong>${this.t('س', 'Q')}${i + 1}:</strong> ${d.question}</p><p>${this.t('مستوى السؤال:', 'Question level:')} ${d.level || this.t('غير محدد', 'Not specified')}</p><p>${this.t('إجابتك:', 'Your answer:')} ${d.selected || this.t('لم يجب', 'Not answered')} - ${d.isCorrect ? '✅' : '❌'}</p><p>${this.t('الإجابة الصحيحة:', 'Correct answer:')} ${d.correct || this.t('غير معروفة', 'Unknown')}</p></div>`).join('')}</div></div>`; 
+            // ====== الإصلاح: معالجة details سواء كانت مصفوفة أو كائن ======
+            let detailsArray = [];
+            const rawDetails = this.viewingPlacementDetails.details;
+            
+            if (Array.isArray(rawDetails)) {
+                detailsArray = rawDetails;
+            } else if (rawDetails && typeof rawDetails === 'object') {
+                // إذا كان كائن (من الاختبارات القديمة) نحوله إلى مصفوفة
+                if (rawDetails.listening && Array.isArray(rawDetails.listening)) {
+                    detailsArray.push(...rawDetails.listening.map((item, i) => ({ ...item, type: 'listening', id: `L${i+1}` })));
+                }
+                if (rawDetails.reading && Array.isArray(rawDetails.reading)) {
+                    detailsArray.push(...rawDetails.reading.map((item, i) => ({ ...item, type: 'reading', id: `R${i+1}` })));
+                }
+            }
+            
+            return `<div class="reading-card"><button class="hero-btn" data-action="backFromDetails" style="margin-bottom:15px; background:#64748b;">← ${this.t('رجوع', 'Back')}</button><h2 style="text-align:center;">${this.t('تفاصيل اختبار', 'Test Details')} ${this.viewingPlacementDetails.date}</h2><p style="text-align:center;">${this.t('المستوى النهائي:', 'Final Level:')} <strong>${this.viewingPlacementDetails.displayLevel || this.viewingPlacementDetails.level}</strong> | ${this.t('الدرجة:', 'Score:')} ${this.viewingPlacementDetails.totalScore || this.viewingPlacementDetails.score}/${this.viewingPlacementDetails.totalQuestions}</p><div style="max-height:350px; overflow-y:auto; border:1px solid #e2e8f0; border-radius:8px; padding:10px;">${detailsArray.map((d, i) => `<div style="border-bottom:1px solid #e2e8f0; padding:8px; margin-bottom:5px;"><p><strong>${this.t('س', 'Q')}${i + 1}:</strong> ${d.question}</p><p>${this.t('مستوى السؤال:', 'Question level:')} ${d.level || this.t('غير محدد', 'Not specified')}</p><p>${this.t('إجابتك:', 'Your answer:')} ${d.selected || this.t('لم يجب', 'Not answered')} - ${d.isCorrect ? '✅' : '❌'}</p><p>${this.t('الإجابة الصحيحة:', 'Correct answer:')} ${d.correct || this.t('غير معروفة', 'Unknown')}</p></div>`).join('')}</div></div>`; 
         }
         
-        if (this.currentPage === 'lessons') { const list = this.getLessonsForCurrentLevel(); let testLevelParam = ''; if (this.selectedLevel === 'beginner') testLevelParam = 'beginner'; else if (this.selectedLevel === 'intermediate') testLevelParam = 'intermediate'; else if (this.selectedLevel === 'advanced') testLevelParam = 'advanced'; const addLessonButton = `<div class="feature-card" data-action="setPage" data-param="addLesson" style="border: 2px dashed #10b981; background: linear-gradient(135deg, #e0f2e9, #d1fae5);"><h3 style="font-size:0.95rem;">📝 ${this.t('إضافة درس يدوي', 'Add Manual Lesson')}</h3><p style="font-size:0.7rem; margin-top:4px;">${this.t('أضف درساً خاصاً بك', 'Add your own lesson')}</p></div>`; return `<main class="main-content"><button class="hero-btn" data-action="goHome" style="margin-bottom:15px; background:#64748b;">← ${this.t('رجوع', 'Back')}</button>${testLevelParam ? `<div style="margin-bottom:15px; text-align:center;"><button class="hero-btn" data-action="startLevelTest" data-param="${testLevelParam}" style="background:#8b5cf6;">📊 ${this.t('اختبار المستوى الشامل', 'Comprehensive Level Test')}</button></div>` : ''}<div class="features-grid">${list.map(l => { const isOk = (list[0] && list[0].id == l.id) || this.unlockedLessons.includes(String(l.id)); const displayLock = (!isOk && !l.isGenerated) ? '🔒 ' : ''; return `<div class="feature-card" data-action="selLesson" data-param="${l.id}" style="${(!isOk && !l.isGenerated) ? 'opacity:0.6;' : ''}"><h3 style="font-size:0.9rem;">${displayLock}${l.title}</h3>${l.isGenerated ? `<div style="display:flex; justify-content:center; gap:8px; margin-top:8px; flex-wrap:wrap;"><button class="hero-btn" data-action="deleteGeneratedLesson" data-param="${l.id}" style="background:#ef4444; padding:4px 8px; font-size:0.65rem;">🗑️ ${this.t('حذف', 'Delete')}</button><button class="hero-btn" data-action="regenerateAILesson" data-param="${this.selectedLevel},${l.id}" style="background:#f59e0b; padding:4px 8px; font-size:0.65rem;">🔄 ${this.t('إعادة توليد', 'Regenerate')}</button></div>` : ''}</div>`; }).join('')}${addLessonButton}</div></main>`;
+        if (this.currentPage === 'lessons') { const list = this.getLessonsForCurrentLevel(); let testLevelParam = ''; if (this.selectedLevel === 'beginner') testLevelParam = 'beginner'; else if (this.selectedLevel === 'intermediate') testLevelParam = 'intermediate'; else if (this.selectedLevel === 'advanced') testLevelParam = 'advanced'; const addLessonButton = `<div class="feature-card" data-action="setPage" data-param="addLesson" style="border: 2px dashed #10b981; background: linear-gradient(135deg, #e0f2e9, #d1fae5);"><h3 style="font-size:0.95rem;">📝 ${this.t('إضافة درس يدوي', 'Add Manual Lesson')}</h3><p style="font-size:0.7rem; margin-top:4px;">${this.t('أضف درساً خاصاً بك', 'Add your own lesson')}</p></div>`; return `<main class="main-content"><button class="hero-btn" data-action="goHome" style="margin-bottom:15px; background:#64748b;">← ${this.t('رجوع', 'Back')}</button>${testLevelParam ? `<div style="margin-bottom:15px; text-align:center;"><button class="hero-btn" data-action="startLevelTest" data-param="${testLevelParam}" style="background:#8b5cf6;">📊 ${this.t('اختبار المستوى الشامل', 'Comprehensive Level Test')}</button></div>` : ''}<div class="features-grid">${list.map(l => { const isOk = (list[0] && list[0].id == l.id) || this.unlockedLessons.includes(String(l.id)); const displayLock = (!isOk && !l.isGenerated) ? '🔒 ' : ''; return `<div class="feature-card" data-action="selLesson" data-param="${l.id}" style="${(!isOk && !l.isGenerated) ? 'opacity:0.6;' : ''}"><h3 style="font-size:0.9rem;">${displayLock}${l.title}</h3>${l.isGenerated ? `<div style="display:flex; justify-content:center; gap:8px; margin-top:8px; flex-wrap:wrap;"><button class="hero-btn" data-action="deleteGeneratedLesson" data-param="${l.id}" style="background:#ef4444; padding:4px 8px; font-size:0.65rem;">🗑️ ${this.t('حذف', 'Delete')}</button><button class="hero-btn" data-action="regenerateAILesson" data-param="${this.selectedLevel},${l.id}" style="background:#f59e0b; padding:4px 8px; font-size:0.65rem;">🔄 ${this.t('إعادة توليد', 'Regenerate')}</button></div>` : ''}</div>`).join('')}${addLessonButton}</div></main>`;
         }
         
         if (this.currentPage === 'unlock_choice') return `<div class="reading-card" style="text-align:center;"><h3>🔓 ${this.t('فتح الدرس', 'Unlock Lesson')}</h3><p style="margin:10px 0;">${this.t('اختر طريقة فتح الدرس:', 'Choose how to unlock the lesson:')}</p><div class="unlock-choice"><button class="hero-btn" data-action="unlockWithTest" data-param="${this.tempLessonToUnlock}" style="background:#3b82f6;">🧪 ${this.t('خوض الاختبار', 'Take Test')}</button><button class="hero-btn" data-action="unlockWithCoins" data-param="${this.tempLessonToUnlock}" style="background:#ffd700; color:#000;">💰 ${this.t('دفع 100 لؤلؤة', 'Pay 100 Pearls')} (${this.t('رصيدك:', 'Your balance:')} ${this.userCoins})</button></div><button class="hero-btn" data-action="goHome" style="margin-top:15px; background:#64748b;">${this.t('الرئيسية', 'Home')}</button></div>`;
@@ -2947,7 +2984,6 @@ class App {
             return; 
         } 
         if (!window.levels || !window.lessonsData || !window.placementBank || !window.lessonsList) { 
-            // إنشاء بيانات افتراضية إذا لم تكن موجودة
             if (!window.levels) window.levels = [{ id: 'beginner', name: 'مبتدئ', icon: '🌱' }, { id: 'intermediate', name: 'متوسط', icon: '📘' }, { id: 'advanced', name: 'متقدم', icon: '🚀' }];
             if (!window.lessonsData) window.lessonsData = {};
             if (!window.placementBank) window.placementBank = {};
