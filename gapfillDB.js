@@ -34218,6 +34218,482 @@ window.gapfillDB = {
             originalSentence: "The rapid population growth has put enormous strain on the city's housing and transport systems."
         }
     ],
+    "306-1": [ // Emergence
+        {
+            sentence: "The _______ of cyber warfare has forced militaries to rethink their defence strategies.",
+            options: ["Emergence", "Escalation", "Engagement", "Threshold"],
+            originalSentence: "The emergence of cyber warfare has forced militaries to rethink their defence strategies."
+        }
+    ],
+    "306-2": [ // Hybrid Warfare
+        {
+            sentence: "_______ combines traditional military force with cyber attacks, propaganda, and economic pressure.",
+            options: ["Hybrid Warfare", "Conventional", "Deterrence", "Grey Zone"],
+            originalSentence: "Hybrid warfare combines traditional military force with cyber attacks, propaganda, and economic pressure."
+        }
+    ],
+    "306-3": [ // Conventional
+        {
+            sentence: "_______ military strategies are no longer sufficient to counter the full range of modern threats.",
+            options: ["Conventional", "Flexible", "Robust", "Overt"],
+            originalSentence: "Conventional military strategies are no longer sufficient to counter the full range of modern threats."
+        }
+    ],
+    "306-4": [ // Non-kinetic
+        {
+            sentence: "_______ tactics such as disinformation campaigns can be just as damaging as physical attacks.",
+            options: ["Non-kinetic", "Conventional", "Overt", "Explicit"],
+            originalSentence: "Non-kinetic tactics such as disinformation campaigns can be just as damaging as physical attacks."
+        }
+    ],
+    "306-5": [ // Disinformation
+        {
+            sentence: "The spread of _______ online has become one of the most serious threats to democratic elections.",
+            options: ["Disinformation", "Manipulation", "Ambiguity", "Attribution"],
+            originalSentence: "The spread of disinformation online has become one of the most serious threats to democratic elections."
+        }
+    ],
+    "306-6": [ // Manipulation
+        {
+            sentence: "Foreign _______ of social media platforms is designed to deepen divisions within target societies.",
+            options: ["Manipulation", "Disinformation", "Attribution", "Ambiguity"],
+            originalSentence: "Foreign manipulation of social media platforms is designed to deepen divisions within target societies."
+        }
+    ],
+    "306-7": [ // Fundamentally
+        {
+            sentence: "Digital technology has _______ changed the nature of conflict in the twenty-first century.",
+            options: ["Fundamentally", "Exceedingly", "Crucially", "Solely"],
+            originalSentence: "Digital technology has fundamentally changed the nature of conflict in the twenty-first century."
+        }
+    ],
+    "306-8": [ // Deterrence
+        {
+            sentence: "Nuclear _______ is based on the idea that the threat of retaliation prevents an enemy from attacking.",
+            options: ["Deterrence", "Escalation", "Engagement", "Threshold"],
+            originalSentence: "Nuclear deterrence is based on the idea that the threat of retaliation prevents an enemy from attacking."
+        }
+    ],
+    "306-9": [ // Military parity
+        {
+            sentence: "Achieving _______ with a more powerful rival requires massive investment in defence technology.",
+            options: ["Military parity", "Strategic gains", "Unacceptable Harm", "Grey Zone"],
+            originalSentence: "Achieving military parity with a more powerful rival requires massive investment in defence technology."
+        }
+    ],
+    "306-10": [ // Unacceptable Harm
+        {
+            sentence: "Deterrence works by threatening an aggressor with _______ if they choose to attack.",
+            options: ["Unacceptable Harm", "Strategic gains", "Military parity", "Grey Zone"],
+            originalSentence: "Deterrence works by threatening an aggressor with unacceptable harm if they choose to attack."
+        }
+    ],
+    "306-11": [ // Realm
+        {
+            sentence: "Competition between major powers has now extended into the _______ of outer space and cyberspace.",
+            options: ["Realm", "Threshold", "Dilemma", "Ambiguity"],
+            originalSentence: "Competition between major powers has now extended into the realm of outer space and cyberspace."
+        }
+    ],
+    "306-12": [ // Grey Zone
+        {
+            sentence: "Operations in the _______ are designed to advance national interests without triggering open conflict.",
+            options: ["Grey Zone", "Realm", "Threshold", "Dilemma"],
+            originalSentence: "Operations in the grey zone are designed to advance national interests without triggering open conflict."
+        }
+    ],
+    "306-13": [ // Threshold
+        {
+            sentence: "The attack was carefully calibrated to stay below the _______ that would require a military response.",
+            options: ["Threshold", "Realm", "Dilemma", "Escalation"],
+            originalSentence: "The attack was carefully calibrated to stay below the threshold that would require a military response."
+        }
+    ],
+    "306-14": [ // Triggering
+        {
+            sentence: "The government responded cautiously to avoid _______ a wider regional conflict.",
+            options: ["Triggering", "Absorbing", "Denying", "Incorporating"],
+            originalSentence: "The government responded cautiously to avoid triggering a wider regional conflict."
+        }
+    ],
+    "306-15": [ // Explicit
+        {
+            sentence: "The treaty contains _______ commitments that member states are legally bound to honour.",
+            options: ["Explicit", "Overt", "Robust", "Flexible"],
+            originalSentence: "The treaty contains explicit commitments that member states are legally bound to honour."
+        }
+    ],
+    "306-16": [ // Attribution
+        {
+            sentence: "_______ of cyber attacks is extremely difficult because perpetrators can disguise their identity.",
+            options: ["Attribution", "Ambiguity", "Manipulation", "Disinformation"],
+            originalSentence: "Attribution of cyber attacks is extremely difficult because perpetrators can disguise their identity."
+        }
+    ],
+    "306-17": [ // Exceedingly
+        {
+            sentence: "Defending against hybrid threats has proven _______ complex for traditional military structures.",
+            options: ["Exceedingly", "Fundamentally", "Crucially", "Solely"],
+            originalSentence: "Defending against hybrid threats has proven exceedingly complex for traditional military structures."
+        }
+    ],
+    "306-18": [ // Strategic gains
+        {
+            sentence: "The operation was designed to secure _______ without crossing into open military confrontation.",
+            options: ["Strategic gains", "Unacceptable Harm", "Military parity", "Grey Zone"],
+            originalSentence: "The operation was designed to secure strategic gains without crossing into open military confrontation."
+        }
+    ],
+    "306-19": [ // Overt
+        {
+            sentence: "The country preferred covert operations over _______ military action to maintain plausible deniability.",
+            options: ["Overt", "Explicit", "Conventional", "Robust"],
+            originalSentence: "The country preferred covert operations over overt military action to maintain plausible deniability."
+        }
+    ],
+    "306-20": [ // Engagement
+        {
+            sentence: "Direct military _______ between the two nuclear powers would have catastrophic consequences.",
+            options: ["Engagement", "Escalation", "Threshold", "Deterrence"],
+            originalSentence: "Direct military engagement between the two nuclear powers would have catastrophic consequences."
+        }
+    ],
+    "306-21": [ // Ambiguity
+        {
+            sentence: "Strategic _______ makes it difficult for an adversary to predict how a state will respond to an attack.",
+            options: ["Ambiguity", "Attribution", "Dilemma", "Threshold"],
+            originalSentence: "Strategic ambiguity makes it difficult for an adversary to predict how a state will respond to an attack."
+        }
+    ],
+    "306-22": [ // Dilemma
+        {
+            sentence: "Nations face a difficult _______ when choosing between responding forcefully and risking escalation.",
+            options: ["Dilemma", "Threshold", "Ambiguity", "Realm"],
+            originalSentence: "Nations face a difficult dilemma when choosing between responding forcefully and risking escalation."
+        }
+    ],
+    "306-23": [ // Disproportionate
+        {
+            sentence: "A _______ military response risks alienating allies and triggering international condemnation.",
+            options: ["Disproportionate", "Overwhelming", "Robust", "Flexible"],
+            originalSentence: "A disproportionate military response risks alienating allies and triggering international condemnation."
+        }
+    ],
+    "306-24": [ // Escalation
+        {
+            sentence: "Both sides showed restraint to prevent further _______ of the border dispute.",
+            options: ["Escalation", "Engagement", "Deterrence", "Threshold"],
+            originalSentence: "Both sides showed restraint to prevent further escalation of the border dispute."
+        }
+    ],
+    "306-25": [ // Flexible
+        {
+            sentence: "A _______ defence strategy allows a country to respond effectively across a wide range of threats.",
+            options: ["Flexible", "Robust", "Conventional", "Overt"],
+            originalSentence: "A flexible defence strategy allows a country to respond effectively across a wide range of threats."
+        }
+    ],
+    "306-26": [ // Solely
+        {
+            sentence: "Modern security cannot rely _______ on military power — diplomacy and economic tools are equally vital.",
+            options: ["Solely", "Crucially", "Fundamentally", "Exceedingly"],
+            originalSentence: "Modern security cannot rely solely on military power — diplomacy and economic tools are equally vital."
+        }
+    ],
+    "306-27": [ // Overwhelming
+        {
+            sentence: "The _______ superiority of the alliance's forces was intended to discourage any potential aggressor.",
+            options: ["Overwhelming", "Disproportionate", "Robust", "Flexible"],
+            originalSentence: "The overwhelming superiority of the alliance's forces was intended to discourage any potential aggressor."
+        }
+    ],
+    "306-28": [ // Incorporates
+        {
+            sentence: "The new defence doctrine _______ cyber capabilities alongside conventional military planning.",
+            options: ["Incorporates", "Absorbs", "Denies", "Triggers"],
+            originalSentence: "The new defence doctrine incorporates cyber capabilities alongside conventional military planning."
+        }
+    ],
+    "306-29": [ // Sanctions
+        {
+            sentence: "Economic _______ were imposed on the country following its violation of international law.",
+            options: ["Sanctions", "Deterrence", "Escalation", "Engagement"],
+            originalSentence: "Economic sanctions were imposed on the country following its violation of international law."
+        }
+    ],
+    "306-30": [ // Robust
+        {
+            sentence: "A _______ cybersecurity framework is essential to protect critical national infrastructure.",
+            options: ["Robust", "Flexible", "Conventional", "Explicit"],
+            originalSentence: "A robust cybersecurity framework is essential to protect critical national infrastructure."
+        }
+    ],
+    "306-31": [ // Aggressor
+        {
+            sentence: "International law requires that the _______ bear full responsibility for any conflict they initiate.",
+            options: ["Aggressor", "Deterrence", "Realm", "Threshold"],
+            originalSentence: "International law requires that the aggressor bear full responsibility for any conflict they initiate."
+        }
+    ],
+    "306-32": [ // Absorb
+        {
+            sentence: "A resilient state must be able to _______ a first strike and still retain the capacity to respond.",
+            options: ["Absorb", "Deny", "Trigger", "Incorporate"],
+            originalSentence: "A resilient state must be able to absorb a first strike and still retain the capacity to respond."
+        }
+    ],
+    "306-33": [ // Crucially
+        {
+            sentence: "_______, the new strategy addresses both physical and digital dimensions of national security.",
+            options: ["Crucially", "Solely", "Fundamentally", "Exceedingly"],
+            originalSentence: "Crucially, the new strategy addresses both physical and digital dimensions of national security."
+        }
+    ],
+    "306-34": [ // Deny
+        {
+            sentence: "The goal of the operation was to _______ the enemy access to key communication routes.",
+            options: ["Deny", "Absorb", "Trigger", "Incorporate"],
+            originalSentence: "The goal of the operation was to deny the enemy access to key communication routes."
+        }
+    ],
+    "307-1": [ // Militarization
+        {
+            sentence: "The rapid _______ of space has raised serious concerns among international security experts.",
+            options: ["Militarization", "Weaponization", "Stewardship", "Regime"],
+            originalSentence: "The rapid militarization of space has raised serious concerns among international security experts."
+        }
+    ],
+    "307-2": [ // Weaponization
+        {
+            sentence: "The _______ of satellites would mark a dangerous new phase in the global arms race.",
+            options: ["Weaponization", "Militarization", "Stewardship", "Projection"],
+            originalSentence: "The weaponization of satellites would mark a dangerous new phase in the global arms race."
+        }
+    ],
+    "307-3": [ // Under-regulated
+        {
+            sentence: "The commercial space industry remains largely _______, creating serious legal and security gaps.",
+            options: ["Under-regulated", "Indispensable", "Dual-use", "Maneuverable"],
+            originalSentence: "The commercial space industry remains largely under-regulated, creating serious legal and security gaps."
+        }
+    ],
+    "307-4": [ // Commons
+        {
+            sentence: "Outer space is considered a global _______ that no single nation has the right to claim.",
+            options: ["Commons", "Regime", "Projection", "Calculus"],
+            originalSentence: "Outer space is considered a global commons that no single nation has the right to claim."
+        }
+    ],
+    "307-5": [ // Reliance
+        {
+            sentence: "Modern militaries have an enormous _______ on satellite systems for navigation and communication.",
+            options: ["Reliance", "Stewardship", "Proximity", "Projection"],
+            originalSentence: "Modern militaries have an enormous reliance on satellite systems for navigation and communication."
+        }
+    ],
+    "307-6": [ // Munitions
+        {
+            sentence: "Precision-guided _______ depend heavily on satellite signals to reach their targets accurately.",
+            options: ["Munitions", "Debris", "Norms", "Retribution"],
+            originalSentence: "Precision-guided munitions depend heavily on satellite signals to reach their targets accurately."
+        }
+    ],
+    "307-7": [ // Rendered
+        {
+            sentence: "A successful cyber attack on GPS infrastructure could leave entire armed forces _______ ineffective.",
+            options: ["Rendered", "Neutralized", "Blurred", "Dazzled"],
+            originalSentence: "A successful cyber attack on GPS infrastructure could leave entire armed forces rendered ineffective."
+        }
+    ],
+    "307-8": [ // Indispensable
+        {
+            sentence: "Satellite technology has become _______ to modern warfare and civilian life alike.",
+            options: ["Indispensable", "Perpetual", "Proportional", "Bilateral"],
+            originalSentence: "Satellite technology has become indispensable to modern warfare and civilian life alike."
+        }
+    ],
+    "307-9": [ // Terrestrial
+        {
+            sentence: "Space-based systems now support almost every _______ military operation conducted around the world.",
+            options: ["Terrestrial", "Kinetic", "Offensive", "Hostile"],
+            originalSentence: "Space-based systems now support almost every terrestrial military operation conducted around the world."
+        }
+    ],
+    "307-10": [ // Projection
+        {
+            sentence: "Control of space is increasingly seen as essential to the global _______ of military power.",
+            options: ["Projection", "Calculus", "Regime", "Commons"],
+            originalSentence: "Control of space is increasingly seen as essential to the global projection of military power."
+        }
+    ],
+    "307-11": [ // Semantic
+        {
+            sentence: "The distinction between military and civilian satellites is becoming a _______ one at best.",
+            options: ["Semantic", "Kinetic", "Escalatory", "Proportional"],
+            originalSentence: "The distinction between military and civilian satellites is becoming a semantic one at best."
+        }
+    ],
+    "307-13": [ // Blurred
+        {
+            sentence: "The line between offensive and defensive space operations has become dangerously _______.",
+            options: ["Blurred", "Rendered", "Dazzled", "Neutralized"],
+            originalSentence: "The line between offensive and defensive space operations has become dangerously blurred."
+        }
+    ],
+    "307-14": [ // Kinetic
+        {
+            sentence: "A _______ attack on a satellite would create enormous debris and risk triggering a wider conflict.",
+            options: ["Kinetic", "Offensive", "Hostile", "Escalatory"],
+            originalSentence: "A kinetic attack on a satellite would create enormous debris and risk triggering a wider conflict."
+        }
+    ],
+    "307-15": [ // Dire
+        {
+            sentence: "The consequences of a large-scale attack on space infrastructure would be _______ for global society.",
+            options: ["Dire", "Perpetual", "Proportional", "Dual-use"],
+            originalSentence: "The consequences of a large-scale attack on space infrastructure would be dire for global society."
+        }
+    ],
+    "307-16": [ // Sustainability
+        {
+            sentence: "The long-term _______ of space activities depends on preventing the accumulation of orbital debris.",
+            options: ["Sustainability", "Stewardship", "Reliance", "Projection"],
+            originalSentence: "The long-term sustainability of space activities depends on preventing the accumulation of orbital debris."
+        }
+    ],
+    "307-17": [ // Debris
+        {
+            sentence: "Thousands of pieces of orbital _______ now pose a constant threat to functioning satellites.",
+            options: ["Debris", "Munitions", "Norms", "Retribution"],
+            originalSentence: "Thousands of pieces of orbital debris now pose a constant threat to functioning satellites."
+        }
+    ],
+    "307-18": [ // Indiscriminate
+        {
+            sentence: "Anti-satellite weapons are considered particularly dangerous because their effects are _______.",
+            options: ["Indiscriminate", "Proportional", "Bilateral", "Maneuverable"],
+            originalSentence: "Anti-satellite weapons are considered particularly dangerous because their effects are indiscriminate."
+        }
+    ],
+    "307-19": [ // Calculus
+        {
+            sentence: "The strategic _______ around space warfare is far more complex than traditional military planning.",
+            options: ["Calculus", "Regime", "Projection", "Commons"],
+            originalSentence: "The strategic calculus around space warfare is far more complex than traditional military planning."
+        }
+    ],
+    "307-20": [ // Retribution
+        {
+            sentence: "Any state that attacks another's satellites must expect swift and severe _______.",
+            options: ["Retribution", "Stewardship", "Sustainability", "Regime"],
+            originalSentence: "Any state that attacks another's satellites must expect swift and severe retribution."
+        }
+    ],
+    "307-21": [ // Stewardship
+        {
+            sentence: "Responsible _______ of space requires all nations to minimise debris and avoid provocative actions.",
+            options: ["Stewardship", "Sustainability", "Reliance", "Retribution"],
+            originalSentence: "Responsible stewardship of space requires all nations to minimise debris and avoid provocative actions."
+        }
+    ],
+    "307-22": [ // Dazzling
+        {
+            sentence: "_______ involves using powerful lasers to temporarily blind a satellite's optical sensors.",
+            options: ["Dazzling", "Jamming", "Neutralizing", "Rendering"],
+            originalSentence: "Dazzling involves using powerful lasers to temporarily blind a satellite's optical sensors."
+        }
+    ],
+    "307-23": [ // Jamming
+        {
+            sentence: "Electronic _______ of GPS signals can disrupt the navigation systems of aircraft and ships.",
+            options: ["Jamming", "Dazzling", "Neutralizing", "Rendering"],
+            originalSentence: "Electronic jamming of GPS signals can disrupt the navigation systems of aircraft and ships."
+        }
+    ],
+    "307-24": [ // Escalatory
+        {
+            sentence: "Destroying an adversary's satellite would be seen as a highly _______ act with unpredictable consequences.",
+            options: ["Escalatory", "Proportional", "Bilateral", "Offensive"],
+            originalSentence: "Destroying an adversary's satellite would be seen as a highly escalatory act with unpredictable consequences."
+        }
+    ],
+    "307-25": [ // Proportional
+        {
+            sentence: "International law requires that any military response be _______ to the original act of aggression.",
+            options: ["Proportional", "Escalatory", "Offensive", "Indiscriminate"],
+            originalSentence: "International law requires that any military response be proportional to the original act of aggression."
+        }
+    ],
+    "307-26": [ // Dual-use
+        {
+            sentence: "Most commercial satellites are _______ and can serve both civilian and military purposes.",
+            options: ["Dual-use", "Maneuverable", "Indispensable", "Under-regulated"],
+            originalSentence: "Most commercial satellites are dual-use and can serve both civilian and military purposes."
+        }
+    ],
+    "307-27": [ // Maneuverable
+        {
+            sentence: "Next-generation satellites are highly _______, able to shift orbits to avoid potential attacks.",
+            options: ["Maneuverable", "Dual-use", "Indispensable", "Perpetual"],
+            originalSentence: "Next-generation satellites are highly maneuverable, able to shift orbits to avoid potential attacks."
+        }
+    ],
+    "307-28": [ // Perpetual
+        {
+            sentence: "Without international agreements, the competition for space dominance risks becoming _______.",
+            options: ["Perpetual", "Bilateral", "Proportional", "Maneuverable"],
+            originalSentence: "Without international agreements, the competition for space dominance risks becoming perpetual."
+        }
+    ],
+    "307-29": [ // Bilateral
+        {
+            sentence: "The two powers signed a _______ agreement to share data on orbital debris and avoid collisions.",
+            options: ["Bilateral", "Perpetual", "Proportional", "Escalatory"],
+            originalSentence: "The two powers signed a bilateral agreement to share data on orbital debris and avoid collisions."
+        }
+    ],
+    "307-30": [ // Regime
+        {
+            sentence: "There is currently no binding international _______ that governs the conduct of warfare in space.",
+            options: ["Regime", "Commons", "Calculus", "Projection"],
+            originalSentence: "There is currently no binding international regime that governs the conduct of warfare in space."
+        }
+    ],
+    "307-31": [ // Norms
+        {
+            sentence: "Establishing shared _______ for responsible behaviour in space is urgently needed.",
+            options: ["Norms", "Munitions", "Debris", "Retribution"],
+            originalSentence: "Establishing shared norms for responsible behaviour in space is urgently needed."
+        }
+    ],
+    "307-32": [ // Neutralize
+        {
+            sentence: "The mission of the new space unit is to _______ any threat to the country's satellite network.",
+            options: ["Neutralize", "Render", "Jam", "Dazzle"],
+            originalSentence: "The mission of the new space unit is to neutralize any threat to the country's satellite network."
+        }
+    ],
+    "307-33": [ // Proximity
+        {
+            sentence: "The _______ of an adversary's satellite to a civilian communications hub complicates any military response.",
+            options: ["Proximity", "Projection", "Calculus", "Regime"],
+            originalSentence: "The proximity of an adversary's satellite to a civilian communications hub complicates any military response."
+        }
+    ],
+    "307-34": [ // Offensive
+        {
+            sentence: "Nations are investing heavily in _______ space capabilities while publicly claiming purely defensive intent.",
+            options: ["Offensive", "Hostile", "Kinetic", "Escalatory"],
+            originalSentence: "Nations are investing heavily in offensive space capabilities while publicly claiming purely defensive intent."
+        }
+    ],
+    "307-35": [ // Hostile
+        {
+            sentence: "Any _______ act against another nation's satellites could be treated as an act of war.",
+            options: ["Hostile", "Offensive", "Kinetic", "Escalatory"],
+            originalSentence: "Any hostile act against another nation's satellites could be treated as an act of war."
+        }
+    ],
 };
 // يمكن أيضاً إضافة أسئلة للكلمات المضافة من قبل المستخدم (تبدأ معرفاتها بـ "u")
 
