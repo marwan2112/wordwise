@@ -31632,6 +31632,930 @@ window.gapfillDB = {
             originalSentence: "The government offers a financial incentive to homeowners who install solar panels or heat pumps."
         }
     ],
+    "118-1": [ // public health
+        {
+            sentence: "The design of buildings and cities has a direct impact on _______.",
+            options: ["public health", "mental well-being", "physical health", "wellness"],
+            originalSentence: "The design of buildings and cities has a direct impact on public health."
+        }
+    ],
+    "118-2": [ // researcher
+        {
+            sentence: "A _______ at the university published a study linking poor housing to higher rates of depression.",
+            options: ["researcher", "psychologist", "clinic", "survivor"],
+            originalSentence: "A researcher at the university published a study linking poor housing to higher rates of depression."
+        }
+    ],
+    "118-3": [ // well-being
+        {
+            sentence: "Access to natural light and green spaces significantly improves the _______ of building occupants.",
+            options: ["well-being", "wellness", "mental well-being", "aesthetics"],
+            originalSentence: "Access to natural light and green spaces significantly improves the well-being of building occupants."
+        }
+    ],
+    "118-5": [ // ventilation
+        {
+            sentence: "Poor _______ in schools has been linked to higher rates of illness among students and teachers.",
+            options: ["ventilation", "filtration", "thermal", "acoustic"],
+            originalSentence: "Poor ventilation in schools has been linked to higher rates of illness among students and teachers."
+        }
+    ],
+    "118-7": [ // physical health
+        {
+            sentence: "Buildings that encourage movement and exercise can greatly improve residents' _______.",
+            options: ["physical health", "mental health", "well-being", "wellness"],
+            originalSentence: "Buildings that encourage movement and exercise can greatly improve residents' physical health."
+        }
+    ],
+    "118-8": [ // mental health
+        {
+            sentence: "Overcrowded and poorly lit housing has a serious negative effect on _______.",
+            options: ["mental health", "physical health", "well-being", "wellness"],
+            originalSentence: "Overcrowded and poorly lit housing has a serious negative effect on mental health."
+        }
+    ],
+    "118-9": [ // aesthetics
+        {
+            sentence: "The _______ of a hospital ward can affect how quickly patients recover from illness.",
+            options: ["aesthetics", "acoustics", "filtration", "thermal"],
+            originalSentence: "The aesthetics of a hospital ward can affect how quickly patients recover from illness."
+        }
+    ],
+    "118-10": [ // shift
+        {
+            sentence: "There has been a significant _______ in how architects think about health in the built environment.",
+            options: ["shift", "reduction", "direction", "rates"],
+            originalSentence: "There has been a significant shift in how architects think about health in the built environment."
+        }
+    ],
+    "118-11": [ // asthma
+        {
+            sentence: "Children living in damp and mouldy homes have much higher rates of _______ and respiratory problems.",
+            options: ["asthma", "trauma", "infection", "chronic"],
+            originalSentence: "Children living in damp and mouldy homes have much higher rates of asthma and respiratory problems."
+        }
+    ],
+    "118-12": [ // rates
+        {
+            sentence: "Neighbourhoods with better green spaces show lower _______ of obesity and heart disease.",
+            options: ["rates", "determinants", "insights", "shifts"],
+            originalSentence: "Neighbourhoods with better green spaces show lower rates of obesity and heart disease."
+        }
+    ],
+    "118-13": [ // chronic
+        {
+            sentence: "Poor air quality in buildings can lead to _______ respiratory conditions that last for years.",
+            options: ["chronic", "restorative", "occupational", "thermal"],
+            originalSentence: "Poor air quality in buildings can lead to chronic respiratory conditions that last for years."
+        }
+    ],
+    "118-14": [ // clinic
+        {
+            sentence: "The new community _______ was designed with large windows and natural materials to reduce patient anxiety.",
+            options: ["clinic", "researcher", "psychologist", "survivor"],
+            originalSentence: "The new community clinic was designed with large windows and natural materials to reduce patient anxiety."
+        }
+    ],
+    "118-15": [ // rooftop
+        {
+            sentence: "The building features a _______ garden where residents can grow vegetables and relax outdoors.",
+            options: ["rooftop", "community garden", "fitness", "amenities"],
+            originalSentence: "The building features a rooftop garden where residents can grow vegetables and relax outdoors."
+        }
+    ],
+    "118-16": [ // non-toxic
+        {
+            sentence: "Using _______ paints and finishes improves indoor air quality for building occupants.",
+            options: ["non-toxic", "restorative", "thermal", "acoustic"],
+            originalSentence: "Using non-toxic paints and finishes improves indoor air quality for building occupants."
+        }
+    ],
+    "118-19": [ // encourage
+        {
+            sentence: "The layout of the building was designed to _______ walking and reduce reliance on lifts.",
+            options: ["encourage", "shift", "commit", "heal"],
+            originalSentence: "The layout of the building was designed to encourage walking and reduce reliance on lifts."
+        }
+    ],
+    "118-20": [ // inviting
+        {
+            sentence: "Wide, well-lit stairwells that feel _______ make people more likely to use them instead of the lift.",
+            options: ["inviting", "restorative", "chronic", "thermal"],
+            originalSentence: "Wide, well-lit stairwells that feel inviting make people more likely to use them instead of the lift."
+        }
+    ],
+    "118-21": [ // stairs
+        {
+            sentence: "Placing _______ in prominent positions near building entrances encourages more physical activity.",
+            options: ["stairs", "amenities", "rooftop", "community garden"],
+            originalSentence: "Placing stairs in prominent positions near building entrances encourages more physical activity."
+        }
+    ],
+    "118-22": [ // transit
+        {
+            sentence: "Living close to good _______ links encourages people to walk more and drive less.",
+            options: ["transit", "walkability", "fitness", "amenities"],
+            originalSentence: "Living close to good transit links encourages people to walk more and drive less."
+        }
+    ],
+    "118-23": [ // survivors
+        {
+            sentence: "The centre was designed specifically to support _______ of domestic violence in a safe environment.",
+            options: ["survivors", "researchers", "psychologists", "clinics"],
+            originalSentence: "The centre was designed specifically to support survivors of domestic violence in a safe environment."
+        }
+    ],
+    "118-24": [ // trauma
+        {
+            sentence: "Calm colours, soft lighting, and quiet spaces can help people recovering from _______.",
+            options: ["trauma", "asthma", "infection", "chronic"],
+            originalSentence: "Calm colours, soft lighting, and quiet spaces can help people recovering from trauma."
+        }
+    ],
+    "118-28": [ // psychologist
+        {
+            sentence: "The design team consulted a _______ to ensure the space felt safe and calming for vulnerable users.",
+            options: ["psychologist", "researcher", "survivor", "clinic"],
+            originalSentence: "The design team consulted a psychologist to ensure the space felt safe and calming for vulnerable users."
+        }
+    ],
+    "118-29": [ // violence
+        {
+            sentence: "Research shows that well-designed neighbourhoods with good lighting help reduce levels of _______.",
+            options: ["violence", "trauma", "infection", "asthma"],
+            originalSentence: "Research shows that well-designed neighbourhoods with good lighting help reduce levels of violence."
+        }
+    ],
+    "118-33": [ // insights
+        {
+            sentence: "The research team shared valuable _______ about how noise affects sleep quality in urban homes.",
+            options: ["insights", "rates", "determinants", "direction"],
+            originalSentence: "The research team shared valuable insights about how noise affects sleep quality in urban homes."
+        }
+    ],
+    "118-34": [ // direction
+        {
+            sentence: "The new guidelines give clear _______ on how to incorporate health principles into building design.",
+            options: ["direction", "shift", "rates", "insights"],
+            originalSentence: "The new guidelines give clear direction on how to incorporate health principles into building design."
+        }
+    ],
+    "118-35": [ // committed
+        {
+            sentence: "The practice is deeply _______ to designing spaces that support the health of all users.",
+            options: ["committed", "inviting", "chronic", "restorative"],
+            originalSentence: "The practice is deeply committed to designing spaces that support the health of all users."
+        }
+    ],
+    "118-36": [ // healing
+        {
+            sentence: "The garden was described as a _______ space where patients could recover in a natural setting.",
+            options: ["healing", "restorative", "inviting", "thermal"],
+            originalSentence: "The garden was described as a healing space where patients could recover in a natural setting."
+        }
+    ],
+    "118-37": [ // biophilia
+        {
+            sentence: "_______ is the human instinct to connect with nature, and it shapes how we respond to our surroundings.",
+            options: ["biophilia", "wellness", "aesthetics", "walkability"],
+            originalSentence: "Biophilia is the human instinct to connect with nature, and it shapes how we respond to our surroundings."
+        }
+    ],
+    "118-39": [ // walkability
+        {
+            sentence: "High _______ in a neighbourhood is one of the strongest predictors of good community health outcomes.",
+            options: ["walkability", "fitness", "transit", "accessibility"],
+            originalSentence: "High walkability in a neighbourhood is one of the strongest predictors of good community health outcomes."
+        }
+    ],
+    "118-40": [ // reduction
+        {
+            sentence: "The use of acoustic panels led to a significant _______ in noise levels throughout the office.",
+            options: ["reduction", "shift", "rates", "direction"],
+            originalSentence: "The use of acoustic panels led to a significant reduction in noise levels throughout the office."
+        }
+    ],
+    "118-41": [ // restorative
+        {
+            sentence: "Gardens and water features create _______ environments that help reduce stress and anxiety.",
+            options: ["restorative", "inviting", "healing", "chronic"],
+            originalSentence: "Gardens and water features create restorative environments that help reduce stress and anxiety."
+        }
+    ],
+    "118-42": [ // infection
+        {
+            sentence: "Good hand-washing facilities and improved air flow can significantly reduce _______ rates in hospitals.",
+            options: ["infection", "asthma", "trauma", "chronic"],
+            originalSentence: "Good hand-washing facilities and improved air flow can significantly reduce infection rates in hospitals."
+        }
+    ],
+    "118-43": [ // filtration
+        {
+            sentence: "High-quality air _______ systems remove pollutants and allergens from indoor environments.",
+            options: ["filtration", "ventilation", "thermal", "acoustic"],
+            originalSentence: "High-quality air filtration systems remove pollutants and allergens from indoor environments."
+        }
+    ],
+    "118-44": [ // thermal
+        {
+            sentence: "Good _______ comfort means keeping indoor temperatures at a level that supports health and productivity.",
+            options: ["thermal", "acoustic", "filtration", "ventilation"],
+            originalSentence: "Good thermal comfort means keeping indoor temperatures at a level that supports health and productivity."
+        }
+    ],
+    "118-45": [ // acoustic
+        {
+            sentence: "_______ design in hospitals reduces noise levels, which helps patients rest and recover more quickly.",
+            options: ["acoustic", "thermal", "filtration", "ventilation"],
+            originalSentence: "Acoustic design in hospitals reduces noise levels, which helps patients rest and recover more quickly."
+        }
+    ],
+    "118-46": [ // universal design
+        {
+            sentence: "_______ ensures that buildings are accessible and usable by people of all ages and abilities.",
+            options: ["universal design", "accessibility", "wellness", "biophilia"],
+            originalSentence: "Universal design ensures that buildings are accessible and usable by people of all ages and abilities."
+        }
+    ],
+    "118-48": [ // accessibility
+        {
+            sentence: "Improving _______ in public buildings benefits not only people with disabilities but everyone.",
+            options: ["accessibility", "universal design", "walkability", "wellness"],
+            originalSentence: "Improving accessibility in public buildings benefits not only people with disabilities but everyone."
+        }
+    ],
+    "118-50": [ // mental well-being
+        {
+            sentence: "Spending time in green spaces has been proven to boost _______ and reduce feelings of anxiety.",
+            options: ["mental well-being", "physical health", "well-being", "wellness"],
+            originalSentence: "Spending time in green spaces has been proven to boost mental well-being and reduce feelings of anxiety."
+        }
+    ],
+    "118-53": [ // amenities
+        {
+            sentence: "The residential complex includes _______ such as a gym, a library, and a rooftop garden.",
+            options: ["amenities", "fitness", "community garden", "rooftop"],
+            originalSentence: "The residential complex includes amenities such as a gym, a library, and a rooftop garden."
+        }
+    ],
+    "118-54": [ // community garden
+        {
+            sentence: "The _______ gave residents a shared outdoor space to grow food and connect with their neighbours.",
+            options: ["community garden", "rooftop", "amenities", "fitness"],
+            originalSentence: "The community garden gave residents a shared outdoor space to grow food and connect with their neighbours."
+        }
+    ],
+    "118-55": [ // fitness
+        {
+            sentence: "The building includes a free _______ centre for all residents to encourage an active lifestyle.",
+            options: ["fitness", "wellness", "amenities", "rooftop"],
+            originalSentence: "The building includes a free fitness centre for all residents to encourage an active lifestyle."
+        }
+    ],
+    "118-57": [ // determinants
+        {
+            sentence: "Housing, income, and education are all key _______ of health in any community.",
+            options: ["determinants", "rates", "insights", "direction"],
+            originalSentence: "Housing, income, and education are all key determinants of health in any community."
+        }
+    ],
+    "118-59": [ // occupational
+        {
+            sentence: "_______ health focuses on protecting workers from illness and injury caused by their working environment.",
+            options: ["occupational", "chronic", "restorative", "thermal"],
+            originalSentence: "Occupational health focuses on protecting workers from illness and injury caused by their working environment."
+        }
+    ],
+    "118-60": [ // wellness
+        {
+            sentence: "The new office was designed with _______ in mind, offering quiet rooms, plants, and natural light throughout.",
+            options: ["wellness", "well-being", "mental well-being", "aesthetics"],
+            originalSentence: "The new office was designed with wellness in mind, offering quiet rooms, plants, and natural light throughout."
+        }
+    ],
+    "119-1": [ // civic engagement
+        {
+            sentence: "_______ means actively participating in the decisions that shape your community.",
+            options: ["civic engagement", "grassroots", "advocacy", "participatory"],
+            originalSentence: "Civic engagement means actively participating in the decisions that shape your community."
+        }
+    ],
+    "119-2": [ // assembly
+        {
+            sentence: "The neighbourhood _______ met monthly to discuss local issues and propose solutions.",
+            options: ["assembly", "committee", "coalition", "agency"],
+            originalSentence: "The neighbourhood assembly met monthly to discuss local issues and propose solutions."
+        }
+    ],
+    "119-3": [ // municipal
+        {
+            sentence: "She attended a _______ council meeting to voice her concerns about the new road development.",
+            options: ["municipal", "civic", "collective", "participatory"],
+            originalSentence: "She attended a municipal council meeting to voice her concerns about the new road development."
+        }
+    ],
+    "119-4": [ // mural
+        {
+            sentence: "The community painted a _______ on the wall of the old library to celebrate the neighbourhood's history.",
+            options: ["mural", "sticker", "crosswalk", "ballot"],
+            originalSentence: "The community painted a mural on the wall of the old library to celebrate the neighbourhood's history."
+        }
+    ],
+    "119-5": [ // election
+        {
+            sentence: "Local _______ turnout increased significantly after the new youth engagement campaign was launched.",
+            options: ["election", "referendum", "ballot", "registration"],
+            originalSentence: "Local election turnout increased significantly after the new youth engagement campaign was launched."
+        }
+    ],
+    "119-6": [ // grant
+        {
+            sentence: "The community group applied for a _______ to fund the renovation of the local park.",
+            options: ["grant", "petition", "ballot", "sticker"],
+            originalSentence: "The community group applied for a grant to fund the renovation of the local park."
+        }
+    ],
+    "119-7": [ // sticker
+        {
+            sentence: "Every voter received a small _______ after casting their vote at the polling station.",
+            options: ["sticker", "ballot", "mural", "crosswalk"],
+            originalSentence: "Every voter received a small sticker after casting their vote at the polling station."
+        }
+    ],
+    "119-8": [ // attendees
+        {
+            sentence: "Over two hundred _______ came to the public meeting to discuss the proposed housing development.",
+            options: ["attendees", "constituents", "stakeholders", "coalitions"],
+            originalSentence: "Over two hundred attendees came to the public meeting to discuss the proposed housing development."
+        }
+    ],
+    "119-9": [ // agency
+        {
+            sentence: "Giving residents a real voice in decisions increases their sense of _______ over their own lives.",
+            options: ["agency", "accountability", "transparency", "consensus"],
+            originalSentence: "Giving residents a real voice in decisions increases their sense of agency over their own lives."
+        }
+    ],
+    "119-10": [ // committee
+        {
+            sentence: "She joined the planning _______ to help shape the future of her neighbourhood.",
+            options: ["committee", "assembly", "coalition", "agency"],
+            originalSentence: "She joined the planning committee to help shape the future of her neighbourhood."
+        }
+    ],
+    "119-12": [ // recruiting
+        {
+            sentence: "The campaign was focused on _______ young volunteers to help register new voters.",
+            options: ["recruiting", "petitioning", "deliberating", "redistributing"],
+            originalSentence: "The campaign was focused on recruiting young volunteers to help register new voters."
+        }
+    ],
+    "119-15": [ // voter
+        {
+            sentence: "High _______ participation is essential for a healthy and functioning democracy.",
+            options: ["voter", "constituent", "stakeholder", "attendee"],
+            originalSentence: "High voter participation is essential for a healthy and functioning democracy."
+        }
+    ],
+    "119-16": [ // registration
+        {
+            sentence: "Online _______ has made it much easier for young people to sign up to vote.",
+            options: ["registration", "election", "referendum", "status"],
+            originalSentence: "Online registration has made it much easier for young people to sign up to vote."
+        }
+    ],
+    "119-17": [ // status
+        {
+            sentence: "She checked her voter registration _______ online before the deadline to make sure she was listed.",
+            options: ["status", "registration", "turnout", "engagement"],
+            originalSentence: "She checked her voter registration status online before the deadline to make sure she was listed."
+        }
+    ],
+    "119-18": [ // engagement
+        {
+            sentence: "Community _______ programmes help residents understand how local decisions are made.",
+            options: ["engagement", "advocacy", "deliberation", "consensus"],
+            originalSentence: "Community engagement programmes help residents understand how local decisions are made."
+        }
+    ],
+    "119-19": [ // coalition
+        {
+            sentence: "Several neighbourhood groups formed a _______ to push for safer cycling infrastructure.",
+            options: ["coalition", "assembly", "committee", "agency"],
+            originalSentence: "Several neighbourhood groups formed a coalition to push for safer cycling infrastructure."
+        }
+    ],
+    "119-20": [ // crosswalk
+        {
+            sentence: "Residents campaigned for a new _______ outside the school after a series of near-accidents.",
+            options: ["crosswalk", "mural", "sticker", "public square"],
+            originalSentence: "Residents campaigned for a new crosswalk outside the school after a series of near-accidents."
+        }
+    ],
+    "119-21": [ // signatures
+        {
+            sentence: "The petition collected over five thousand _______ in less than a week.",
+            options: ["signatures", "ballots", "grants", "stickers"],
+            originalSentence: "The petition collected over five thousand signatures in less than a week."
+        }
+    ],
+    "119-22": [ // collective
+        {
+            sentence: "_______ action by residents led to the cancellation of the unpopular development plan.",
+            options: ["collective", "civic", "municipal", "participatory"],
+            originalSentence: "Collective action by residents led to the cancellation of the unpopular development plan."
+        }
+    ],
+    "119-23": [ // democracy
+        {
+            sentence: "_______ works best when citizens are well-informed and actively involved in the process.",
+            options: ["democracy", "advocacy", "deliberation", "consensus"],
+            originalSentence: "Democracy works best when citizens are well-informed and actively involved in the process."
+        }
+    ],
+    "119-24": [ // advocacy
+        {
+            sentence: "Her _______ for affordable housing helped change the city's approach to new developments.",
+            options: ["advocacy", "engagement", "deliberation", "consensus"],
+            originalSentence: "Her advocacy for affordable housing helped change the city's approach to new developments."
+        }
+    ],
+    "119-25": [ // grassroots
+        {
+            sentence: "The _______ movement started with just a few neighbours and grew into a citywide campaign.",
+            options: ["grassroots", "collective", "civic", "participatory"],
+            originalSentence: "The grassroots movement started with just a few neighbours and grew into a citywide campaign."
+        }
+    ],
+    "119-26": [ // petition
+        {
+            sentence: "They launched an online _______ demanding better public transport in the outer suburbs.",
+            options: ["petition", "ballot", "grant", "mural"],
+            originalSentence: "They launched an online petition demanding better public transport in the outer suburbs."
+        }
+    ],
+    "119-29": [ // town hall
+        {
+            sentence: "The mayor held a _______ meeting to hear residents' concerns about the proposed budget cuts.",
+            options: ["town hall", "assembly", "committee", "polling station"],
+            originalSentence: "The mayor held a town hall meeting to hear residents' concerns about the proposed budget cuts."
+        }
+    ],
+    "119-30": [ // constituent
+        {
+            sentence: "Every elected official has a duty to represent and listen to their _______.",
+            options: ["constituent", "stakeholder", "attendee", "voter"],
+            originalSentence: "Every elected official has a duty to represent and listen to their constituent."
+        }
+    ],
+    "119-31": [ // turnout
+        {
+            sentence: "Low voter _______ in local elections is a sign that people feel disconnected from the political process.",
+            options: ["turnout", "registration", "status", "engagement"],
+            originalSentence: "Low voter turnout in local elections is a sign that people feel disconnected from the political process."
+        }
+    ],
+    "119-32": [ // ballot
+        {
+            sentence: "She carefully read through her _______ before casting her vote in the local election.",
+            options: ["ballot", "petition", "grant", "sticker"],
+            originalSentence: "She carefully read through her ballot before casting her vote in the local election."
+        }
+    ],
+    "119-33": [ // referendum
+        {
+            sentence: "The government held a _______ to let citizens vote directly on the new transport policy.",
+            options: ["referendum", "election", "ballot", "petition"],
+            originalSentence: "The government held a referendum to let citizens vote directly on the new transport policy."
+        }
+    ],
+    "119-34": [ // civic
+        {
+            sentence: "Schools should teach _______ education so young people understand their rights and responsibilities.",
+            options: ["civic", "collective", "municipal", "participatory"],
+            originalSentence: "Schools should teach civic education so young people understand their rights and responsibilities."
+        }
+    ],
+    "119-36": [ // accountability
+        {
+            sentence: "Public _______ means that elected officials must answer for their decisions to the people they represent.",
+            options: ["accountability", "transparency", "deliberation", "consensus"],
+            originalSentence: "Public accountability means that elected officials must answer for their decisions to the people they represent."
+        }
+    ],
+    "119-37": [ // transparency
+        {
+            sentence: "Government _______ allows citizens to see how public money is being spent.",
+            options: ["transparency", "accountability", "deliberation", "consensus"],
+            originalSentence: "Government transparency allows citizens to see how public money is being spent."
+        }
+    ],
+    "119-38": [ // participatory
+        {
+            sentence: "_______ budgeting gives residents direct control over how a portion of public funds is spent.",
+            options: ["participatory", "collective", "civic", "municipal"],
+            originalSentence: "Participatory budgeting gives residents direct control over how a portion of public funds is spent."
+        }
+    ],
+    "119-40": [ // polling station
+        {
+            sentence: "She walked to the nearest _______ on election day and waited in line for thirty minutes.",
+            options: ["polling station", "town hall", "assembly", "public square"],
+            originalSentence: "She walked to the nearest polling station on election day and waited in line for thirty minutes."
+        }
+    ],
+    "119-41": [ // early voting
+        {
+            sentence: "_______ options allow people who cannot vote on election day to cast their ballot in advance.",
+            options: ["early voting", "absentee ballot", "voter suppression", "redistricting"],
+            originalSentence: "Early voting options allow people who cannot vote on election day to cast their ballot in advance."
+        }
+    ],
+    "119-42": [ // absentee ballot
+        {
+            sentence: "She requested an _______ because she would be travelling on election day.",
+            options: ["absentee ballot", "early voting", "voter suppression", "referendum"],
+            originalSentence: "She requested an absentee ballot because she would be travelling on election day."
+        }
+    ],
+    "119-43": [ // voter suppression
+        {
+            sentence: "_______ refers to tactics used to discourage or prevent certain groups from voting.",
+            options: ["voter suppression", "redistricting", "early voting", "absentee ballot"],
+            originalSentence: "Voter suppression refers to tactics used to discourage or prevent certain groups from voting."
+        }
+    ],
+    "119-44": [ // redistricting
+        {
+            sentence: "Critics argued that the _______ process was designed to favour one political party over another.",
+            options: ["redistricting", "voter suppression", "referendum", "election"],
+            originalSentence: "Critics argued that the redistricting process was designed to favour one political party over another."
+        }
+    ],
+    "119-45": [ // civic duty
+        {
+            sentence: "Voting is widely considered a _______ that every eligible citizen should take seriously.",
+            options: ["civic duty", "common good", "collective", "agency"],
+            originalSentence: "Voting is widely considered a civic duty that every eligible citizen should take seriously."
+        }
+    ],
+    "119-46": [ // public square
+        {
+            sentence: "The _______ has historically been a place where citizens gather to debate and share ideas.",
+            options: ["public square", "polling station", "town hall", "assembly"],
+            originalSentence: "The public square has historically been a place where citizens gather to debate and share ideas."
+        }
+    ],
+    "119-47": [ // common good
+        {
+            sentence: "Good governance means making decisions that serve the _______ rather than private interests.",
+            options: ["common good", "civic duty", "consensus", "agency"],
+            originalSentence: "Good governance means making decisions that serve the common good rather than private interests."
+        }
+    ],
+    "119-48": [ // stakeholder
+        {
+            sentence: "Every _______ in the planning process deserves to have their voice heard and respected.",
+            options: ["stakeholder", "constituent", "attendee", "voter"],
+            originalSentence: "Every stakeholder in the planning process deserves to have their voice heard and respected."
+        }
+    ],
+    "119-49": [ // deliberation
+        {
+            sentence: "Careful _______ among council members led to a decision that satisfied most residents.",
+            options: ["deliberation", "consensus", "advocacy", "engagement"],
+            originalSentence: "Careful deliberation among council members led to a decision that satisfied most residents."
+        }
+    ],
+    "119-50": [ // consensus
+        {
+            sentence: "The group worked hard to reach a _______ that everyone could support before moving forward.",
+            options: ["consensus", "deliberation", "advocacy", "engagement"],
+            originalSentence: "The group worked hard to reach a consensus that everyone could support before moving forward."
+        }
+    ],
+    "120-1": [ // lifelong learning
+        {
+            sentence: "_______ means committing to growing your knowledge and skills throughout your entire life.",
+            options: ["lifelong learning", "growth mindset", "self-improvement", "knowledge economy"],
+            originalSentence: "Lifelong learning means committing to growing your knowledge and skills throughout your entire life."
+        }
+    ],
+    "120-2": [ // certificate
+        {
+            sentence: "She completed an online course and received a _______ in project management.",
+            options: ["certificate", "certification", "micro-credential", "fellowship"],
+            originalSentence: "She completed an online course and received a certificate in project management."
+        }
+    ],
+    "120-4": [ // analytics
+        {
+            sentence: "She enrolled in a data _______ course to better understand how to use information in her work.",
+            options: ["analytics", "parametric", "neuroarchitecture", "interdisciplinary"],
+            originalSentence: "She enrolled in a data analytics course to better understand how to use information in her work."
+        }
+    ],
+    "120-5": [ // parametric
+        {
+            sentence: "He taught himself _______ design software to stay competitive in the architecture industry.",
+            options: ["parametric", "analytics", "neuroarchitecture", "cross-training"],
+            originalSentence: "He taught himself parametric design software to stay competitive in the architecture industry."
+        }
+    ],
+    "120-6": [ // pace
+        {
+            sentence: "Online learning allows students to study at their own _______ without the pressure of a classroom.",
+            options: ["pace", "platform", "destination", "legacy"],
+            originalSentence: "Online learning allows students to study at their own pace without the pressure of a classroom."
+        }
+    ],
+    "120-7": [ // certification
+        {
+            sentence: "Earning a professional _______ can significantly improve your chances of promotion.",
+            options: ["certification", "certificate", "micro-credential", "fellowship"],
+            originalSentence: "Earning a professional certification can significantly improve your chances of promotion."
+        }
+    ],
+    "120-9": [ // motivates
+        {
+            sentence: "A genuine love of learning _______ people to keep developing long after their formal education ends.",
+            options: ["motivates", "discourages", "liberates", "mentors"],
+            originalSentence: "A genuine love of learning motivates people to keep developing long after their formal education ends."
+        }
+    ],
+    "120-10": [ // relevant
+        {
+            sentence: "Keeping your skills _______ in a fast-changing industry requires constant effort and curiosity.",
+            options: ["relevant", "sharp", "humble", "self-directed"],
+            originalSentence: "Keeping your skills relevant in a fast-changing industry requires constant effort and curiosity."
+        }
+    ],
+    "120-11": [ // sharp
+        {
+            sentence: "Reading regularly and solving problems helps keep your mind _______ as you get older.",
+            options: ["sharp", "relevant", "humble", "retired"],
+            originalSentence: "Reading regularly and solving problems helps keep your mind sharp as you get older."
+        }
+    ],
+    "120-12": [ // retired
+        {
+            sentence: "Even after he _______, he continued attending evening classes to explore new interests.",
+            options: ["retired", "mentored", "upskilled", "reskilled"],
+            originalSentence: "Even after he retired, he continued attending evening classes to explore new interests."
+        }
+    ],
+    "120-13": [ // pottery
+        {
+            sentence: "She signed up for a _______ class as a way to relax and learn something completely new.",
+            options: ["pottery", "oud", "seminar", "webinar"],
+            originalSentence: "She signed up for a pottery class as a way to relax and learn something completely new."
+        }
+    ],
+    "120-14": [ // oud
+        {
+            sentence: "He always dreamed of playing the _______ and finally started lessons at the age of fifty.",
+            options: ["oud", "pottery", "podcast", "fellowship"],
+            originalSentence: "He always dreamed of playing the oud and finally started lessons at the age of fifty."
+        }
+    ],
+    "120-15": [ // curiosity
+        {
+            sentence: "_______ is the driving force behind all great learning and discovery.",
+            options: ["curiosity", "willingness", "adaptability", "legacy"],
+            originalSentence: "Curiosity is the driving force behind all great learning and discovery."
+        }
+    ],
+    "120-16": [ // willingness
+        {
+            sentence: "A _______ to admit what you do not know is the first step toward real growth.",
+            options: ["willingness", "curiosity", "legacy", "destination"],
+            originalSentence: "A willingness to admit what you do not know is the first step toward real growth."
+        }
+    ],
+    "120-19": [ // trauma-informed
+        {
+            sentence: "She studied _______ design to better understand how spaces affect people who have experienced hardship.",
+            options: ["trauma-informed", "parametric", "interdisciplinary", "neuroarchitecture"],
+            originalSentence: "She studied trauma-informed design to better understand how spaces affect people who have experienced hardship."
+        }
+    ],
+    "120-20": [ // neuroarchitecture
+        {
+            sentence: "_______ explores how the design of spaces influences the human brain and emotional experience.",
+            options: ["neuroarchitecture", "trauma-informed", "parametric", "analytics"],
+            originalSentence: "Neuroarchitecture explores how the design of spaces influences the human brain and emotional experience."
+        }
+    ],
+    "120-21": [ // carpenter
+        {
+            sentence: "The experienced _______ taught weekend workshops to pass on traditional woodworking techniques.",
+            options: ["carpenter", "mentor", "apprentice", "fellow"],
+            originalSentence: "The experienced carpenter taught weekend workshops to pass on traditional woodworking techniques."
+        }
+    ],
+    "120-23": [ // discouraging
+        {
+            sentence: "Failing an exam can feel _______, but it is often the best way to identify where to improve.",
+            options: ["discouraging", "liberating", "humble", "relevant"],
+            originalSentence: "Failing an exam can feel discouraging, but it is often the best way to identify where to improve."
+        }
+    ],
+    "120-24": [ // liberating
+        {
+            sentence: "Admitting that you still have a lot to learn can actually feel _______ rather than embarrassing.",
+            options: ["liberating", "discouraging", "humble", "sharp"],
+            originalSentence: "Admitting that you still have a lot to learn can actually feel liberating rather than embarrassing."
+        }
+    ],
+    "120-25": [ // legacy
+        {
+            sentence: "She hoped that her _______ would be the students she had inspired to become architects.",
+            options: ["legacy", "destination", "pace", "platform"],
+            originalSentence: "She hoped that her legacy would be the students she had inspired to become architects."
+        }
+    ],
+    "120-26": [ // mentoring
+        {
+            sentence: "She found great fulfilment in _______ younger colleagues who were just starting their careers.",
+            options: ["mentoring", "upskilling", "reskilling", "cross-training"],
+            originalSentence: "She found great fulfilment in mentoring younger colleagues who were just starting their careers."
+        }
+    ],
+    "120-28": [ // podcast
+        {
+            sentence: "He listens to an architecture _______ during his commute to stay updated on industry trends.",
+            options: ["podcast", "webinar", "seminar", "platform"],
+            originalSentence: "He listens to an architecture podcast during his commute to stay updated on industry trends."
+        }
+    ],
+    "120-30": [ // humble
+        {
+            sentence: "The best learners are always _______ enough to accept feedback and ask for help.",
+            options: ["humble", "sharp", "relevant", "retired"],
+            originalSentence: "The best learners are always humble enough to accept feedback and ask for help."
+        }
+    ],
+    "120-31": [ // destination
+        {
+            sentence: "Learning is not a _______ — it is a continuous journey that never truly ends.",
+            options: ["destination", "pace", "platform", "legacy"],
+            originalSentence: "Learning is not a destination — it is a continuous journey that never truly ends."
+        }
+    ],
+    "120-33": [ // adaptability
+        {
+            sentence: "In a rapidly changing world, _______ is one of the most valuable qualities a professional can have.",
+            options: ["adaptability", "curiosity", "willingness", "legacy"],
+            originalSentence: "In a rapidly changing world, adaptability is one of the most valuable qualities a professional can have."
+        }
+    ],
+    "120-34": [ // upskilling
+        {
+            sentence: "_______ means improving the skills you already have to meet the demands of a changing role.",
+            options: ["upskilling", "reskilling", "cross-training", "mentoring"],
+            originalSentence: "Upskilling means improving the skills you already have to meet the demands of a changing role."
+        }
+    ],
+    "120-35": [ // reskilling
+        {
+            sentence: "_______ involves learning entirely new skills to move into a different role or industry.",
+            options: ["reskilling", "upskilling", "cross-training", "mentoring"],
+            originalSentence: "Reskilling involves learning entirely new skills to move into a different role or industry."
+        }
+    ],
+    "120-36": [ // micro-credential
+        {
+            sentence: "A _______ is a short focused qualification that proves competence in one specific area.",
+            options: ["micro-credential", "certificate", "certification", "fellowship"],
+            originalSentence: "A micro-credential is a short focused qualification that proves competence in one specific area."
+        }
+    ],
+    "120-39": [ // seminar
+        {
+            sentence: "She attended a two-day _______ on sustainable construction methods and found it extremely useful.",
+            options: ["seminar", "webinar", "podcast", "platform"],
+            originalSentence: "She attended a two-day seminar on sustainable construction methods and found it extremely useful."
+        }
+    ],
+    "120-40": [ // webinar
+        {
+            sentence: "The firm hosted a free _______ to introduce their team to the latest digital design tools.",
+            options: ["webinar", "seminar", "podcast", "platform"],
+            originalSentence: "The firm hosted a free webinar to introduce their team to the latest digital design tools."
+        }
+    ],
+    "120-41": [ // peer learning
+        {
+            sentence: "_______ allows colleagues to share knowledge and skills with each other in an informal setting.",
+            options: ["peer learning", "self-directed", "cross-training", "apprenticeship"],
+            originalSentence: "Peer learning allows colleagues to share knowledge and skills with each other in an informal setting."
+        }
+    ],
+    "120-42": [ // self-directed
+        {
+            sentence: "A _______ learner takes responsibility for their own education rather than waiting to be taught.",
+            options: ["self-directed", "peer learning", "interdisciplinary", "trauma-informed"],
+            originalSentence: "A self-directed learner takes responsibility for their own education rather than waiting to be taught."
+        }
+    ],
+    "120-43": [ // growth mindset
+        {
+            sentence: "Having a _______ means believing that your abilities can always be developed through effort.",
+            options: ["growth mindset", "self-improvement", "intellectual curiosity", "knowledge economy"],
+            originalSentence: "Having a growth mindset means believing that your abilities can always be developed through effort."
+        }
+    ],
+    "120-44": [ // intellectual curiosity
+        {
+            sentence: "_______ drives people to explore new ideas and ask questions even outside their area of expertise.",
+            options: ["intellectual curiosity", "growth mindset", "self-improvement", "adaptability"],
+            originalSentence: "Intellectual curiosity drives people to explore new ideas and ask questions even outside their area of expertise."
+        }
+    ],
+    "120-45": [ // knowledge economy
+        {
+            sentence: "In today's _______, the ability to learn and apply new information is more valuable than ever.",
+            options: ["knowledge economy", "skill gap", "growth mindset", "lifelong learning"],
+            originalSentence: "In today's knowledge economy, the ability to learn and apply new information is more valuable than ever."
+        }
+    ],
+    "120-46": [ // skill gap
+        {
+            sentence: "The company identified a _______ in digital literacy and launched a training programme to address it.",
+            options: ["skill gap", "knowledge economy", "growth mindset", "micro-credential"],
+            originalSentence: "The company identified a skill gap in digital literacy and launched a training programme to address it."
+        }
+    ],
+    "120-47": [ // development
+        {
+            sentence: "Investing in professional _______ helps employees feel valued and stay motivated.",
+            options: ["development", "platform", "destination", "pace"],
+            originalSentence: "Investing in professional development helps employees feel valued and stay motivated."
+        }
+    ],
+    "120-48": [ // professional
+        {
+            sentence: "She attended a _______ development workshop to improve her skills in client communication.",
+            options: ["professional", "self-directed", "interdisciplinary", "humble"],
+            originalSentence: "She attended a professional development workshop to improve her skills in client communication."
+        }
+    ],
+    "120-49": [ // platform
+        {
+            sentence: "Online learning _______ like Coursera and LinkedIn Learning have made education more accessible than ever.",
+            options: ["platform", "podcast", "seminar", "webinar"],
+            originalSentence: "Online learning platforms like Coursera and LinkedIn Learning have made education more accessible than ever."
+        }
+    ],
+    "120-51": [ // interdisciplinary
+        {
+            sentence: "An _______ approach to design combines knowledge from architecture, psychology, and engineering.",
+            options: ["interdisciplinary", "self-directed", "parametric", "trauma-informed"],
+            originalSentence: "An interdisciplinary approach to design combines knowledge from architecture, psychology, and engineering."
+        }
+    ],
+    "120-52": [ // cross-training
+        {
+            sentence: "_______ within a company allows employees to understand different departments and work more flexibly.",
+            options: ["cross-training", "peer learning", "upskilling", "reskilling"],
+            originalSentence: "Cross-training within a company allows employees to understand different departments and work more flexibly."
+        }
+    ],
+    "120-55": [ // mentorship
+        {
+            sentence: "A strong _______ programme helps new employees settle in faster and develop their skills more effectively.",
+            options: ["mentorship", "apprenticeship", "fellowship", "certification"],
+            originalSentence: "A strong mentorship programme helps new employees settle in faster and develop their skills more effectively."
+        }
+    ],
+    "120-56": [ // apprenticeship
+        {
+            sentence: "An _______ combines on-the-job training with formal study so young people can earn while they learn.",
+            options: ["apprenticeship", "fellowship", "mentorship", "certification"],
+            originalSentence: "An apprenticeship combines on-the-job training with formal study so young people can earn while they learn."
+        }
+    ],
+    "120-57": [ // fellowship
+        {
+            sentence: "She was awarded a prestigious _______ that allowed her to spend a year researching in Japan.",
+            options: ["fellowship", "apprenticeship", "mentorship", "micro-credential"],
+            originalSentence: "She was awarded a prestigious fellowship that allowed her to spend a year researching in Japan."
+        }
+    ],
+    "120-58": [ // lifelong learner
+        {
+            sentence: "Being a true _______ means staying curious and open to new ideas at every stage of life.",
+            options: ["lifelong learner", "self-directed", "growth mindset", "peer learning"],
+            originalSentence: "Being a true lifelong learner means staying curious and open to new ideas at every stage of life."
+        }
+    ],
+    "120-59": [ // self-improvement
+        {
+            sentence: "Her commitment to _______ led her to read at least one new book every month.",
+            options: ["self-improvement", "growth mindset", "intellectual curiosity", "adaptability"],
+            originalSentence: "Her commitment to self-improvement led her to read at least one new book every month."
+        }
+    ],
     // استكمال gapfillDB.js - الدرس رقم 301
     "301-1": [
         {
@@ -32823,6 +33747,475 @@ window.gapfillDB = {
             sentence: "The heavy snow is ______ the mountain climbers to turn back.",
             options: ["Forcing", "Diverting", "Eroding", "Amplifying"],
             originalSentence: "The heavy snow is Forcing the mountain climbers to turn back."
+        }
+    ],
+    "304-1": [ // Governance
+        {
+            sentence: "Effective _______ requires clear rules, accountability, and the participation of all stakeholders.",
+            options: ["Governance", "Reform", "Coalition", "Delegation"],
+            originalSentence: "Effective governance requires clear rules, accountability, and the participation of all stakeholders."
+        }
+    ],
+    "304-2": [ // Paradox
+        {
+            sentence: "It is a _______ that the countries with the most power are often the least willing to reform.",
+            options: ["Paradox", "Consensus", "Domain", "Compromise"],
+            originalSentence: "It is a paradox that the countries with the most power are often the least willing to reform."
+        }
+    ],
+    "304-3": [ // Escalating
+        {
+            sentence: "_______ tensions between nations have made international cooperation increasingly difficult.",
+            options: ["Escalating", "Intensifying", "Pressing", "Partial"],
+            originalSentence: "Escalating tensions between nations have made international cooperation increasingly difficult."
+        }
+    ],
+    "304-4": [ // to address
+        {
+            sentence: "World leaders met at the summit to _______ the growing threat of climate change.",
+            options: ["to address", "to impede", "to relinquish", "to scatter"],
+            originalSentence: "World leaders met at the summit to address the growing threat of climate change."
+        }
+    ],
+    "304-5": [ // Pressing
+        {
+            sentence: "Cybersecurity is one of the most _______ challenges facing governments around the world today.",
+            options: ["Pressing", "Partial", "Procedural", "Cohesive"],
+            originalSentence: "Cybersecurity is one of the most pressing challenges facing governments around the world today."
+        }
+    ],
+    "304-6": [ // cybersecurity
+        {
+            sentence: "Investing in _______ is essential to protect critical national infrastructure from digital attacks.",
+            options: ["cybersecurity", "governance", "reform", "delegation"],
+            originalSentence: "Investing in cybersecurity is essential to protect critical national infrastructure from digital attacks."
+        }
+    ],
+    "304-7": [ // Intensifying
+        {
+            sentence: "The _______ competition for global resources is putting pressure on international relationships.",
+            options: ["Intensifying", "Escalating", "Pressing", "Cohesive"],
+            originalSentence: "The intensifying competition for global resources is putting pressure on international relationships."
+        }
+    ],
+    "304-8": [ // Erosion
+        {
+            sentence: "The gradual _______ of public trust in institutions is a serious threat to democracy.",
+            options: ["Erosion", "Inertia", "Reluctance", "Paradox"],
+            originalSentence: "The gradual erosion of public trust in institutions is a serious threat to democracy."
+        }
+    ],
+    "304-9": [ // significantly
+        {
+            sentence: "The new policy has _______ reduced the number of unresolved disputes between member states.",
+            options: ["significantly", "partially", "inevitably", "procedurally"],
+            originalSentence: "The new policy has significantly reduced the number of unresolved disputes between member states."
+        }
+    ],
+    "304-10": [ // Variable
+        {
+            sentence: "Economic growth is a key _______ that affects a country's ability to invest in public services.",
+            options: ["Variable", "Domain", "Capacity", "Landscape"],
+            originalSentence: "Economic growth is a key variable that affects a country's ability to invest in public services."
+        }
+    ],
+    "304-11": [ // Inertia
+        {
+            sentence: "Institutional _______ often prevents governments from responding quickly to new crises.",
+            options: ["Inertia", "Erosion", "Reluctance", "Paradox"],
+            originalSentence: "Institutional inertia often prevents governments from responding quickly to new crises."
+        }
+    ],
+    "304-12": [ // Impede
+        {
+            sentence: "Outdated regulations can _______ progress and slow down essential reform.",
+            options: ["Impede", "Relinquish", "Scatter", "Compromise"],
+            originalSentence: "Outdated regulations can impede progress and slow down essential reform."
+        }
+    ],
+    "304-13": [ // Capacity
+        {
+            sentence: "Many developing nations lack the _______ to implement large-scale environmental programmes.",
+            options: ["Capacity", "Domain", "Variable", "Landscape"],
+            originalSentence: "Many developing nations lack the capacity to implement large-scale environmental programmes."
+        }
+    ],
+    "304-14": [ // Landscape
+        {
+            sentence: "The political _______ has shifted dramatically following the unexpected election results.",
+            options: ["Landscape", "Domain", "Capacity", "Variable"],
+            originalSentence: "The political landscape has shifted dramatically following the unexpected election results."
+        }
+    ],
+    "304-15": [ // Analyst
+        {
+            sentence: "The _______ warned that rising inequality could destabilise the region within a decade.",
+            options: ["Analyst", "Representative", "Delegate", "Councillor"],
+            originalSentence: "The analyst warned that rising inequality could destabilise the region within a decade."
+        }
+    ],
+    "304-16": [ // Consensus
+        {
+            sentence: "Reaching a _______ among all member states proved extremely difficult during the negotiations.",
+            options: ["Consensus", "Compromise", "Reform", "Coalition"],
+            originalSentence: "Reaching a consensus among all member states proved extremely difficult during the negotiations."
+        }
+    ],
+    "304-17": [ // Reform
+        {
+            sentence: "The organisation is under growing pressure to _______ its outdated decision-making structures.",
+            options: ["Reform", "Impede", "Relinquish", "Scatter"],
+            originalSentence: "The organisation is under growing pressure to reform its outdated decision-making structures."
+        }
+    ],
+    "304-18": [ // council
+        {
+            sentence: "The security _______ voted to extend the peacekeeping mission for another six months.",
+            options: ["council", "coalition", "delegation", "initiative"],
+            originalSentence: "The security council voted to extend the peacekeeping mission for another six months."
+        }
+    ],
+    "304-19": [ // Procedural
+        {
+            sentence: "The vote was delayed due to a _______ dispute over how the meeting should be conducted.",
+            options: ["Procedural", "Partial", "Equitable", "Cohesive"],
+            originalSentence: "The vote was delayed due to a procedural dispute over how the meeting should be conducted."
+        }
+    ],
+    "304-20": [ // Disagreement
+        {
+            sentence: "A fundamental _______ over trade policy blocked the signing of the new agreement.",
+            options: ["Disagreement", "Reluctance", "Paradox", "Erosion"],
+            originalSentence: "A fundamental disagreement over trade policy blocked the signing of the new agreement."
+        }
+    ],
+    "304-21": [ // Reluctance
+        {
+            sentence: "There is a clear _______ among wealthier nations to share vaccine technology with poorer countries.",
+            options: ["Reluctance", "Disagreement", "Inertia", "Paradox"],
+            originalSentence: "There is a clear reluctance among wealthier nations to share vaccine technology with poorer countries."
+        }
+    ],
+    "304-22": [ // Relinquish
+        {
+            sentence: "No country is willing to _______ its sovereignty in exchange for greater international integration.",
+            options: ["Relinquish", "Impede", "Scatter", "Address"],
+            originalSentence: "No country is willing to relinquish its sovereignty in exchange for greater international integration."
+        }
+    ],
+    "304-23": [ // In favor of
+        {
+            sentence: "The majority of delegates voted _______ the proposed reforms to the voting system.",
+            options: ["In favor of", "Partial to", "Reluctant about", "Cohesive with"],
+            originalSentence: "The majority of delegates voted in favor of the proposed reforms to the voting system."
+        }
+    ],
+    "304-24": [ // representative
+        {
+            sentence: "Each country sent a senior _______ to the international talks in Geneva.",
+            options: ["representative", "analyst", "delegate", "councillor"],
+            originalSentence: "Each country sent a senior representative to the international talks in Geneva."
+        }
+    ],
+    "304-25": [ // Equitable
+        {
+            sentence: "An _______ distribution of resources ensures that all nations benefit from global agreements.",
+            options: ["Equitable", "Partial", "Cohesive", "Procedural"],
+            originalSentence: "An equitable distribution of resources ensures that all nations benefit from global agreements."
+        }
+    ],
+    "304-26": [ // Initiative
+        {
+            sentence: "The new climate _______ was praised for its ambitious targets and clear implementation plan.",
+            options: ["Initiative", "Coalition", "Delegation", "Reform"],
+            originalSentence: "The new climate initiative was praised for its ambitious targets and clear implementation plan."
+        }
+    ],
+    "304-27": [ // Coalition
+        {
+            sentence: "A broad _______ of countries pushed for stronger protections for developing economies.",
+            options: ["Coalition", "Initiative", "Delegation", "Council"],
+            originalSentence: "A broad coalition of countries pushed for stronger protections for developing economies."
+        }
+    ],
+    "304-28": [ // Scatter
+        {
+            sentence: "Without a unified strategy, efforts to tackle the crisis will simply _______ and lose impact.",
+            options: ["Scatter", "Impede", "Relinquish", "Address"],
+            originalSentence: "Without a unified strategy, efforts to tackle the crisis will simply scatter and lose impact."
+        }
+    ],
+    "304-29": [ // Cohesive
+        {
+            sentence: "A _______ international response is needed to address threats that cross national borders.",
+            options: ["Cohesive", "Partial", "Procedural", "Equitable"],
+            originalSentence: "A cohesive international response is needed to address threats that cross national borders."
+        }
+    ],
+    "304-30": [ // Partial
+        {
+            sentence: "The agreement was only a _______ solution and failed to resolve the deeper structural issues.",
+            options: ["Partial", "Cohesive", "Equitable", "Procedural"],
+            originalSentence: "The agreement was only a partial solution and failed to resolve the deeper structural issues."
+        }
+    ],
+    "304-31": [ // Delegation
+        {
+            sentence: "The _______ of authority to regional bodies has helped speed up decision-making processes.",
+            options: ["Delegation", "Initiative", "Coalition", "Reform"],
+            originalSentence: "The delegation of authority to regional bodies has helped speed up decision-making processes."
+        }
+    ],
+    "304-32": [ // Supranational
+        {
+            sentence: "The European Union is an example of a _______ body that operates above individual member states.",
+            options: ["Supranational", "Procedural", "Equitable", "Cohesive"],
+            originalSentence: "The European Union is an example of a supranational body that operates above individual member states."
+        }
+    ],
+    "304-33": [ // Domain
+        {
+            sentence: "Artificial intelligence has rapidly become a major _______ of international strategic competition.",
+            options: ["Domain", "Landscape", "Variable", "Capacity"],
+            originalSentence: "Artificial intelligence has rapidly become a major domain of international strategic competition."
+        }
+    ],
+    "304-34": [ // Compromise
+        {
+            sentence: "After days of difficult talks, both sides finally reached a _______ that satisfied neither fully.",
+            options: ["Compromise", "Consensus", "Coalition", "Reform"],
+            originalSentence: "After days of difficult talks, both sides finally reached a compromise that satisfied neither fully."
+        }
+    ],
+    "304-35": [ // Inevitable
+        {
+            sentence: "Many experts argue that some degree of global governance reform is now _______.",
+            options: ["Inevitable", "Partial", "Procedural", "Equitable"],
+            originalSentence: "Many experts argue that some degree of global governance reform is now inevitable."
+        }
+    ],
+    "304-36": [ // Solidarity
+        {
+            sentence: "The crisis revealed a remarkable spirit of _______ among nations that had previously been divided.",
+            options: ["Solidarity", "Consensus", "Compromise", "Coalition"],
+            originalSentence: "The crisis revealed a remarkable spirit of solidarity among nations that had previously been divided."
+        }
+    ],
+    "305-1": [ // Profound
+        {
+            sentence: "The industrial revolution had a _______ impact on how cities were designed and built.",
+            options: ["Profound", "Radical", "Contentious", "Immense"],
+            originalSentence: "The industrial revolution had a profound impact on how cities were designed and built."
+        }
+    ],
+    "305-2": [ // Scrutiny
+        {
+            sentence: "The government's handling of public funds came under intense _______ from opposition leaders.",
+            options: ["Scrutiny", "Strain", "Volatility", "Predicament"],
+            originalSentence: "The government's handling of public funds came under intense scrutiny from opposition leaders."
+        }
+    ],
+    "305-3": [ // Subjecting
+        {
+            sentence: "The new law risks _______ millions of workers to unfair conditions without legal protection.",
+            options: ["Subjecting", "Undermining", "Exacerbating", "Imposing"],
+            originalSentence: "The new law risks subjecting millions of workers to unfair conditions without legal protection."
+        }
+    ],
+    "305-4": [ // Alteration
+        {
+            sentence: "Even a small _______ to the building's structure required approval from the heritage committee.",
+            options: ["Alteration", "Overhaul", "Mechanism", "Proportion"],
+            originalSentence: "Even a small alteration to the building's structure required approval from the heritage committee."
+        }
+    ],
+    "305-5": [ // Bifurcation
+        {
+            sentence: "The _______ of the education system into elite and underfunded schools is widening inequality.",
+            options: ["Bifurcation", "Redistribution", "Overhaul", "Strain"],
+            originalSentence: "The bifurcation of the education system into elite and underfunded schools is widening inequality."
+        }
+    ],
+    "305-6": [ // Tier
+        {
+            sentence: "The healthcare system operates on a two-_______ model with very different standards for each group.",
+            options: ["Tier", "Proportion", "Mechanism", "Notion"],
+            originalSentence: "The healthcare system operates on a two-tier model with very different standards for each group."
+        }
+    ],
+    "305-7": [ // Anchored
+        {
+            sentence: "The country's economic stability is _______ in its strong manufacturing and export sectors.",
+            options: ["Anchored", "Imposed", "Exacerbated", "Undermined"],
+            originalSentence: "The country's economic stability is anchored in its strong manufacturing and export sectors."
+        }
+    ],
+    "305-8": [ // Immense
+        {
+            sentence: "The project required _______ resources and years of international collaboration to complete.",
+            options: ["Immense", "Profound", "Radical", "Contentious"],
+            originalSentence: "The project required immense resources and years of international collaboration to complete."
+        }
+    ],
+    "305-9": [ // Fiscal
+        {
+            sentence: "The government introduced a _______ reform package to reduce the national deficit.",
+            options: ["Fiscal", "Pedagogical", "Competitive", "Radical"],
+            originalSentence: "The government introduced a fiscal reform package to reduce the national deficit."
+        }
+    ],
+    "305-10": [ // Precarious
+        {
+            sentence: "Many freelance workers find themselves in a _______ financial situation with no job security.",
+            options: ["Precarious", "Contentious", "Competitive", "Radical"],
+            originalSentence: "Many freelance workers find themselves in a precarious financial situation with no job security."
+        }
+    ],
+    "305-11": [ // Dwindle
+        {
+            sentence: "Public funding for the arts continued to _______ as the government cut its annual budget.",
+            options: ["Dwindle", "Exacerbate", "Undermine", "Widen"],
+            originalSentence: "Public funding for the arts continued to dwindle as the government cut its annual budget."
+        }
+    ],
+    "305-12": [ // Predicament
+        {
+            sentence: "The city found itself in a serious _______ after the main water supply was contaminated.",
+            options: ["Predicament", "Volatility", "Strain", "Scrutiny"],
+            originalSentence: "The city found itself in a serious predicament after the main water supply was contaminated."
+        }
+    ],
+    "305-13": [ // Volatility
+        {
+            sentence: "The _______ of global oil prices makes long-term economic planning very difficult.",
+            options: ["Volatility", "Strain", "Predicament", "Scrutiny"],
+            originalSentence: "The volatility of global oil prices makes long-term economic planning very difficult."
+        }
+    ],
+    "305-14": [ // Contentious
+        {
+            sentence: "Immigration policy remains one of the most _______ issues in the current political debate.",
+            options: ["Contentious", "Radical", "Fiscal", "Precarious"],
+            originalSentence: "Immigration policy remains one of the most contentious issues in the current political debate."
+        }
+    ],
+    "305-15": [ // Stimulus
+        {
+            sentence: "The government introduced an economic _______ package to prevent the recession from deepening.",
+            options: ["Stimulus", "Mechanism", "Redistribution", "Overhaul"],
+            originalSentence: "The government introduced an economic stimulus package to prevent the recession from deepening."
+        }
+    ],
+    "305-16": [ // Redistribution
+        {
+            sentence: "Advocates argue that a fairer _______ of wealth is essential to reducing poverty.",
+            options: ["Redistribution", "Stimulus", "Mechanism", "Overhaul"],
+            originalSentence: "Advocates argue that a fairer redistribution of wealth is essential to reducing poverty."
+        }
+    ],
+    "305-17": [ // Exacerbate
+        {
+            sentence: "Cutting social services during a recession will only _______ the suffering of vulnerable communities.",
+            options: ["Exacerbate", "Undermine", "Dwindle", "Impose"],
+            originalSentence: "Cutting social services during a recession will only exacerbate the suffering of vulnerable communities."
+        }
+    ],
+    "305-18": [ // Undermine
+        {
+            sentence: "Spreading misinformation can seriously _______ public confidence in democratic institutions.",
+            options: ["Undermine", "Exacerbate", "Impose", "Subject"],
+            originalSentence: "Spreading misinformation can seriously undermine public confidence in democratic institutions."
+        }
+    ],
+    "305-19": [ // Dignity
+        {
+            sentence: "Every worker deserves to be treated with respect and _______ regardless of their role.",
+            options: ["Dignity", "Notion", "Proportion", "Tier"],
+            originalSentence: "Every worker deserves to be treated with respect and dignity regardless of their role."
+        }
+    ],
+    "305-20": [ // Pedagogical
+        {
+            sentence: "The new _______ approach encourages critical thinking rather than passive memorisation.",
+            options: ["Pedagogical", "Fiscal", "Competitive", "Radical"],
+            originalSentence: "The new pedagogical approach encourages critical thinking rather than passive memorisation."
+        }
+    ],
+    "305-21": [ // Overhaul
+        {
+            sentence: "The education ministry announced a complete _______ of the national examination system.",
+            options: ["Overhaul", "Stimulus", "Redistribution", "Mechanism"],
+            originalSentence: "The education ministry announced a complete overhaul of the national examination system."
+        }
+    ],
+    "305-22": [ // Curricula
+        {
+            sentence: "Schools are being asked to update their _______ to better reflect the needs of the modern economy.",
+            options: ["Curricula", "Overhaul", "Proportion", "Notion"],
+            originalSentence: "Schools are being asked to update their curricula to better reflect the needs of the modern economy."
+        }
+    ],
+    "305-23": [ // Imposed
+        {
+            sentence: "The strict austerity measures were _______ by international lenders as a condition of the loan.",
+            options: ["Imposed", "Anchored", "Subjected", "Undermined"],
+            originalSentence: "The strict austerity measures were imposed by international lenders as a condition of the loan."
+        }
+    ],
+    "305-24": [ // Proportion
+        {
+            sentence: "A large _______ of the population still lacks access to clean drinking water.",
+            options: ["Proportion", "Tier", "Notion", "Mechanism"],
+            originalSentence: "A large proportion of the population still lacks access to clean drinking water."
+        }
+    ],
+    "305-25": [ // Simultaneously
+        {
+            sentence: "The policy must _______ address poverty, unemployment, and inequality to be truly effective.",
+            options: ["Simultaneously", "Significantly", "Radically", "Fiscally"],
+            originalSentence: "The policy must simultaneously address poverty, unemployment, and inequality to be truly effective."
+        }
+    ],
+    "305-26": [ // Radical
+        {
+            sentence: "Some economists argue that only a _______ restructuring of the tax system can fix the deficit.",
+            options: ["Radical", "Profound", "Contentious", "Fiscal"],
+            originalSentence: "Some economists argue that only a radical restructuring of the tax system can fix the deficit."
+        }
+    ],
+    "305-27": [ // Mechanism
+        {
+            sentence: "There is currently no reliable _______ for resolving disputes between member states quickly.",
+            options: ["Mechanism", "Stimulus", "Redistribution", "Overhaul"],
+            originalSentence: "There is currently no reliable mechanism for resolving disputes between member states quickly."
+        }
+    ],
+    "305-28": [ // Competitive
+        {
+            sentence: "The country needs to invest heavily in education to remain _______ in the global economy.",
+            options: ["Competitive", "Precarious", "Contentious", "Radical"],
+            originalSentence: "The country needs to invest heavily in education to remain competitive in the global economy."
+        }
+    ],
+    "305-29": [ // Notion
+        {
+            sentence: "The _______ that economic growth alone can solve inequality has been widely challenged.",
+            options: ["Notion", "Mechanism", "Proportion", "Tier"],
+            originalSentence: "The notion that economic growth alone can solve inequality has been widely challenged."
+        }
+    ],
+    "305-30": [ // Widening
+        {
+            sentence: "The _______ gap between the richest and poorest citizens is now at its highest level in decades.",
+            options: ["Widening", "Dwindling", "Escalating", "Intensifying"],
+            originalSentence: "The widening gap between the richest and poorest citizens is now at its highest level in decades."
+        }
+    ],
+    "305-31": [ // Strain
+        {
+            sentence: "The rapid population growth has put enormous _______ on the city's housing and transport systems.",
+            options: ["Strain", "Volatility", "Predicament", "Scrutiny"],
+            originalSentence: "The rapid population growth has put enormous strain on the city's housing and transport systems."
         }
     ],
 };
