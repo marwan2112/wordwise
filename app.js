@@ -1,4 +1,3 @@
-// app.js - الكود الكامل للتطبيق مع إصلاح اختبار CAT (نسخة نهائية تعمل 100%)
 window.addEventListener('error', function(e) {
     alert('❌ خطأ في السطر: ' + e.lineno + '\nالملف: ' + e.filename + '\nالرسالة: ' + e.message);
     document.body.innerHTML = '<pre style="color:red; background:white; padding:10px;">خطأ في السطر: ' + e.lineno + '\n' + e.message + '</pre>';
@@ -2483,10 +2482,10 @@ class App {
                 this.nextAdaptiveListeningQuestion(); 
                 return; 
             }
-            if (action === 'catAnswer') {
-                this.checkCatAnswer(param, correct, btn);
-                return;
-            }
+if (action === 'catAnswer') {
+    this.checkCatAnswer(btn.dataset.answer, btn.dataset.correct, btn);
+    return;
+}
             if (action === 'endCatTest') {
                 this.endCatTest(false);
                 return;
