@@ -36150,6 +36150,202 @@ window.gapfillDB = {
             originalSentence: "Shifting patterns of alignment among middle powers are reshaping the balance of influence in every region."
         }
     ],
+    "314-1": [ // Integration
+        {
+            sentence: "The _______ of AI tools into daily workflows has not yet produced the productivity gains many expected.",
+            options: ["Integration", "Optimization", "Automation", "Acquisition"],
+            originalSentence: "The integration of AI tools into daily workflows has not yet produced the productivity gains many expected."
+        }
+    ],
+    "314-2": [ // Heralded
+        {
+            sentence: "The digital revolution was _______ as a transformation that would unlock unprecedented economic growth.",
+            options: ["Heralded", "Posited", "Fostered", "Leveraged"],
+            originalSentence: "The digital revolution was heralded as a transformation that would unlock unprecedented economic growth."
+        }
+    ],
+    "314-3": [ // Definitive
+        {
+            sentence: "There is still no _______ explanation for why productivity growth has remained so weak despite technological progress.",
+            options: ["Definitive", "Empirical", "Nuanced", "Paradoxical"],
+            originalSentence: "There is still no definitive explanation for why productivity growth has remained so weak despite technological progress."
+        }
+    ],
+    "314-4": [ // Stagnating
+        {
+            sentence: "_______ wages in many advanced economies have fuelled widespread frustration with the benefits of globalisation.",
+            options: ["Stagnating", "Pervasive", "Antiquated", "Paradoxical"],
+            originalSentence: "Stagnating wages in many advanced economies have fuelled widespread frustration with the benefits of globalisation."
+        }
+    ],
+    "314-5": [ // Labor
+        {
+            sentence: "_______ market disruption caused by automation has hit low-skilled workers particularly hard.",
+            options: ["Labor", "Human capital", "Welfare", "Productivity"],
+            originalSentence: "Labor market disruption caused by automation has hit low-skilled workers particularly hard."
+        }
+    ],
+    "314-6": [ // Automation
+        {
+            sentence: "_______ is eliminating routine tasks faster than new roles are being created to replace them.",
+            options: ["Automation", "Integration", "Optimization", "Acquisition"],
+            originalSentence: "Automation is eliminating routine tasks faster than new roles are being created to replace them."
+        }
+    ],
+    "314-7": [ // productivity
+        {
+            sentence: "Despite massive investment in technology, _______ growth has remained surprisingly weak across most industries.",
+            options: ["productivity", "welfare", "leverage", "optimization"],
+            originalSentence: "Despite massive investment in technology, productivity growth has remained surprisingly weak across most industries."
+        }
+    ],
+    "314-8": [ // Optimization
+        {
+            sentence: "Firms have focused on cost _______ rather than genuine innovation, which limits long-term growth.",
+            options: ["Optimization", "Integration", "Automation", "Acquisition"],
+            originalSentence: "Firms have focused on cost optimization rather than genuine innovation, which limits long-term growth."
+        }
+    ],
+    "314-10": [ // Empirical
+        {
+            sentence: "The _______ evidence on whether remote work increases or decreases productivity remains deeply contested.",
+            options: ["Empirical", "Nuanced", "Paradoxical", "Definitive"],
+            originalSentence: "The empirical evidence on whether remote work increases or decreases productivity remains deeply contested."
+        }
+    ],
+    "314-11": [ // Nuanced
+        {
+            sentence: "A _______ analysis reveals that the effects of technology on employment vary significantly by sector and region.",
+            options: ["Nuanced", "Empirical", "Paradoxical", "Definitive"],
+            originalSentence: "A nuanced analysis reveals that the effects of technology on employment vary significantly by sector and region."
+        }
+    ],
+    "314-12": [ // Paradoxical
+        {
+            sentence: "It is _______ that more connected workers often report feeling less informed and more overwhelmed.",
+            options: ["Paradoxical", "Nuanced", "Empirical", "Pervasive"],
+            originalSentence: "It is paradoxical that more connected workers often report feeling less informed and more overwhelmed."
+        }
+    ],
+    "314-13": [ // Aggregate impact
+        {
+            sentence: "The _______ of digital tools on economic output has been far smaller than early forecasts suggested.",
+            options: ["Aggregate impact", "Organizational drag", "Information overload", "Human capital"],
+            originalSentence: "The aggregate impact of digital tools on economic output has been far smaller than early forecasts suggested."
+        }
+    ],
+    "314-14": [ // Metrics
+        {
+            sentence: "Traditional productivity _______ may be failing to capture the full value created by the digital economy.",
+            options: ["Metrics", "Hypotheses", "Discrepancy", "Welfare"],
+            originalSentence: "Traditional productivity metrics may be failing to capture the full value created by the digital economy."
+        }
+    ],
+    "314-15": [ // Hypotheses
+        {
+            sentence: "Several competing _______ have been advanced to explain the so-called productivity paradox.",
+            options: ["Hypotheses", "Metrics", "Discrepancy", "Posits"],
+            originalSentence: "Several competing hypotheses have been advanced to explain the so-called productivity paradox."
+        }
+    ],
+    "314-16": [ // Discrepancy
+        {
+            sentence: "The growing _______ between technology investment and measured output has puzzled economists for decades.",
+            options: ["Discrepancy", "Metrics", "Hypotheses", "Welfare"],
+            originalSentence: "The growing discrepancy between technology investment and measured output has puzzled economists for decades."
+        }
+    ],
+    "314-17": [ // Posits
+        {
+            sentence: "One prominent theory _______ that productivity gains are real but simply unmeasured by current statistics.",
+            options: ["Posits", "Leverages", "Fosters", "Subsidizes"],
+            originalSentence: "One prominent theory posits that productivity gains are real but simply unmeasured by current statistics."
+        }
+    ],
+    "314-18": [ // welfare
+        {
+            sentence: "Digital platforms may improve consumer _______ in ways that GDP figures fail to capture.",
+            options: ["welfare", "leverage", "acquisition", "optimization"],
+            originalSentence: "Digital platforms may improve consumer welfare in ways that GDP figures fail to capture."
+        }
+    ],
+    "314-19": [ // Organizational drag
+        {
+            sentence: "_______ from bureaucratic processes and poor management often offsets the gains from new technology.",
+            options: ["Organizational drag", "Information overload", "Human capital", "Aggregate impact"],
+            originalSentence: "Organizational drag from bureaucratic processes and poor management often offsets the gains from new technology."
+        }
+    ],
+    "314-20": [ // Leverage
+        {
+            sentence: "Firms that successfully _______ data analytics gain a significant competitive advantage over their rivals.",
+            options: ["Leverage", "Foster", "Subsidize", "Posit"],
+            originalSentence: "Firms that successfully leverage data analytics gain a significant competitive advantage over their rivals."
+        }
+    ],
+    "314-21": [ // Antiquated
+        {
+            sentence: "_______ management practices are preventing many organisations from realising the full potential of new tools.",
+            options: ["Antiquated", "Pervasive", "Paradoxical", "Stagnating"],
+            originalSentence: "Antiquated management practices are preventing many organisations from realising the full potential of new tools."
+        }
+    ],
+    "314-22": [ // Information overload
+        {
+            sentence: "_______ is reducing the quality of decision-making even as access to data expands dramatically.",
+            options: ["Information overload", "Organizational drag", "Human capital", "Aggregate impact"],
+            originalSentence: "Information overload is reducing the quality of decision-making even as access to data expands dramatically."
+        }
+    ],
+    "314-23": [ // Pervasive
+        {
+            sentence: "The _______ adoption of smartphones has transformed communication but not necessarily improved economic output.",
+            options: ["Pervasive", "Antiquated", "Stagnating", "Paradoxical"],
+            originalSentence: "The pervasive adoption of smartphones has transformed communication but not necessarily improved economic output."
+        }
+    ],
+    "314-24": [ // Detract from
+        {
+            sentence: "Constant digital interruptions _______ deep work and reduce the quality of intellectual output.",
+            options: ["Detract from", "Leverage", "Foster", "Subsidize"],
+            originalSentence: "Constant digital interruptions detract from deep work and reduce the quality of intellectual output."
+        }
+    ],
+    "314-25": [ // Subsidizing
+        {
+            sentence: "Governments are _______ the adoption of green technology to accelerate the transition away from fossil fuels.",
+            options: ["Subsidizing", "Fostering", "Leveraging", "Positing"],
+            originalSentence: "Governments are subsidizing the adoption of green technology to accelerate the transition away from fossil fuels."
+        }
+    ],
+    "314-26": [ // Acquisition
+        {
+            sentence: "The _______ of smaller technology firms by dominant platforms has reduced competition and stifled innovation.",
+            options: ["Acquisition", "Integration", "Optimization", "Automation"],
+            originalSentence: "The acquisition of smaller technology firms by dominant platforms has reduced competition and stifled innovation."
+        }
+    ],
+    "314-27": [ // Fostering
+        {
+            sentence: "Public investment in research universities plays a crucial role in _______ long-term innovation.",
+            options: ["Fostering", "Leveraging", "Subsidizing", "Positing"],
+            originalSentence: "Public investment in research universities plays a crucial role in fostering long-term innovation."
+        }
+    ],
+    "314-28": [ // Human capital
+        {
+            sentence: "Investment in _______ through education and training is essential for workers to adapt to technological change.",
+            options: ["Human capital", "Organizational drag", "Information overload", "Aggregate impact"],
+            originalSentence: "Investment in human capital through education and training is essential for workers to adapt to technological change."
+        }
+    ],
+    "314-29": [ // Institutional reforms
+        {
+            sentence: "_______ are needed to ensure that the gains from technological progress are shared more equitably.",
+            options: ["Institutional reforms", "Organizational drag", "Human capital", "Aggregate impact"],
+            originalSentence: "Institutional reforms are needed to ensure that the gains from technological progress are shared more equitably."
+        }
+    ],
 };
 // يمكن أيضاً إضافة أسئلة للكلمات المضافة من قبل المستخدم (تبدأ معرفاتها بـ "u")
 
