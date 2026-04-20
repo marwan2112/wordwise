@@ -6404,7 +6404,7 @@ window.lessonsData = {
     {"id": "313-26", "english": "Polarization", "arabic": "استقطاب"},
     {"id": "313-27", "english": "Underlying tension", "arabic": "توتر كامن"},
     {"id": "313-28", "english": "Imperatives", "arabic": "ضرورات"},
-    {"id": "313-29", "english": "Strategic alignment", "arabic": "اصطفاف استراتيجي"}
+    {"id": "313-29", "english": "alignment", "arabic": "اصطفاف"}
 ]
 },
 "314": {
@@ -6416,12 +6416,11 @@ window.lessonsData = {
     {"id": "314-2", "english": "Heralded", "arabic": "بُشِّر به"},
     {"id": "314-3", "english": "Definitive", "arabic": "نهائي"},
     {"id": "314-4", "english": "Stagnating", "arabic": "راكدة"},
-    {"id": "314-5", "english": "Labor productivity", "arabic": "إنتاجية العمل"},
+    {"id": "314-5", "english": "Labor ", "arabic": "العمل"},
     {"id": "314-6", "english": "Automation", "arabic": "أتمتة"},
-    {"id": "314-7", "english": "Routine tasks", "arabic": "مهام روتينية"},
+    {"id": "314-7", "english": "productivity", "arabic": "إنتاجية"},
     {"id": "314-8", "english": "Optimization", "arabic": "تحسين"},
-    {"id": "314-9", "english": "Supply chains", "arabic": "سلاسل الإمداد"},
-    {"id": "314-10", "english": "Empirical data", "arabic": "بيانات تجريبية"},
+    {"id": "314-10", "english": "Empirical", "arabic": "تجريبي"},
     {"id": "314-11", "english": "Nuanced", "arabic": "دقيق"},
     {"id": "314-12", "english": "Paradoxical", "arabic": "متناقض"},
     {"id": "314-13", "english": "Aggregate impact", "arabic": "تأثير إجمالي"},
@@ -6429,7 +6428,7 @@ window.lessonsData = {
     {"id": "314-15", "english": "Hypotheses", "arabic": "فرضيات"},
     {"id": "314-16", "english": "Discrepancy", "arabic": "تعارض"},
     {"id": "314-17", "english": "Posits", "arabic": "يفترض"},
-    {"id": "314-18", "english": "Consumer welfare", "arabic": "رفاهية المستهلك"},
+    {"id": "314-18", "english": "welfare", "arabic": "رفاهية"},
     {"id": "314-19", "english": "Organizational drag", "arabic": "العبء التنظيمي"},
     {"id": "314-20", "english": "Leverage", "arabic": "استغلال"},
     {"id": "314-21", "english": "Antiquated", "arabic": "عتيقة"},
