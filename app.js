@@ -2734,27 +2734,29 @@ checkCatAnswer(selectedAnswer, correctAnswer, btnElement) {
         }
     }
 
-    endCatTest(isComplete = false) {
-        if (!this.catActive) return;
+ endCatTest(isComplete = false) {
+    if (!this.catActive) return;
+    this.catActive = false;
+    const totalAttempts = this.catAnsweredCount || 0;
+    const correct = this.catScore;
+    // رسالة جميلة
+    let message = `🏆 ${this.t('النتيجة النهائية', 'Final Result')}<br><br>`;
+    message += `📊 ${this.t('لقد أجبت على', 'You answered')} <strong>${totalAttempts}</strong> ${this.t('سؤالاً', 'questions')}<br>`;
+    message += `✅ ${this.t('الإجابات الصحيحة', 'Correct answers')}: <strong style="color:#10b981;">${correct}</strong><br>`;
+    message += `❌ ${this.t('الإجابات الخاطئة', 'Wrong answers')}: <strong style="color:#ef4444;">${totalAttempts - correct}</strong><br><br>`;
+    message += `🎉 ${this.t('شكراً لمشاركتك في الاختبار!', 'Thank you for taking the test!')}`;
+    
+    // عرض النافذة المخصصة
+    this.showCustomModal('info', '📚 CAT', message, () => {
+        this.currentPage = 'home';
+        this.catQuestions = [];
+        this.catCurrentIndex = 0;
+        this.catScore = 0;
         this.catActive = false;
-        const total = window.catBank.length;
-        const message = isComplete 
-            ? `🎉 ${this.t('انتهى الاختبار!', 'Test completed!')}\n\n${this.t('لقد أجبت إجابة صحيحة على', 'You answered correctly')} ${this.catScore} ${this.t('من أصل', 'out of')} ${total} ${this.t('سؤالاً', 'questions')}.\n\n${this.t('نسبتك:', 'Your percentage:')} ${Math.round((this.catScore/total)*100)}%`
-            : `⚠️ ${this.t('تم إنهاء الاختبار قبل اكتماله.', 'Test ended before completion.')}\n\n${this.t('لقد أجبت على', 'You answered')} ${this.catScore} ${this.t('من أصل', 'out of')} ${total} ${this.t('سؤالاً بشكل صحيح.', 'questions correctly.')}\n\n${this.t('هل تريد البدء من جديد؟', 'Do you want to restart?')}`;
-        
-        if (confirm(message + '\n\n' + this.t('هل تريد العودة إلى القائمة الرئيسية؟', 'Return to home page?'))) {
-            this.currentPage = 'home';
-            this.catQuestions = [];
-            this.catCurrentIndex = 0;
-            this.catScore = 0;
-            this.catActive = false;
-            this.render();
-        } else {
-            if (!isComplete) {
-                this.startCatTest();
-            }
-        }
-    }
+        this.catAnsweredCount = 0;
+        this.render();
+    });
+}
 
     // ====================== دوال العرض (render و getView) ======================
     render() {
