@@ -2472,6 +2472,14 @@ class App {
                 this.nextAdaptiveListeningQuestion(); 
                 return; 
             }
+            if (action === 'catAnswer') {
+    this.checkCatAnswer(param, correct, btn);
+    return;
+}
+            if (action === 'endCatTest') {
+    this.endCatTest(false);
+    return;
+}
             if (action === 'playListeningAudio') {
                 const audioSrc = btn.dataset.audio;
                 const qId = btn.dataset.id;
@@ -2614,82 +2622,94 @@ class App {
         document.addEventListener('input', (e) => { if (e.target.id === 'spellingInput') this.spellingUserAnswer = e.target.value; });
     }
 
-    // ====================== دوال CAT ======================
-    startCatTest() {
-        if (!window.catBank || window.catBank.length === 0) {
-            alert(this.t('⚠️ لا توجد أسئلة في بنك CAT. الرجاء إضافة أسئلة في ملف catBank.js', '⚠️ No questions in CAT bank. Please add questions in catBank.js'));
-            return;
-        }
-        // نسخ جميع الأسئلة (يمكنك إضافة ترتيب عشوائي إذا أردت)
-        this.catQuestions = [...window.catBank];
-        this.catCurrentIndex = 0;
-        this.catScore = 0;
-        this.catActive = true;
-        this.currentPage = 'cat_test';
-        this.render();
+  // ====================== دوال CAT (اختيار من متعدد) ======================
+startCatTest() {
+    if (!window.catBank || window.catBank.length === 0) {
+        alert(this.t('⚠️ لا توجد أسئلة في بنك CAT. الرجاء إضافة أسئلة في ملف catBank.js', '⚠️ No questions in CAT bank. Please add questions in catBank.js'));
+        return;
     }
+    // نسخ جميع الأسئلة (يمكنك إضافة ترتيب عشوائي إذا أردت)
+    this.catQuestions = [...window.catBank];
+    this.catCurrentIndex = 0;
+    this.catScore = 0;
+    this.catActive = true;
+    this.currentPage = 'cat_test';
+    this.render();
+}
 
-    checkCatAnswer() {
-        if (!this.catActive) return;
-        const input = document.getElementById('catAnswerInput');
-        const userAnswer = input.value.trim().toLowerCase();
-        const currentQ = this.catQuestions[this.catCurrentIndex];
-        const correct = currentQ.correct.toLowerCase();
-        const feedbackDiv = document.getElementById('catFeedback');
-        
-        if (userAnswer === '') {
-            feedbackDiv.innerHTML = `<span class="error">⚠️ ${this.t('الرجاء كتابة إجابة', 'Please write an answer')}</span>`;
-            return;
-        }
-        
-        if (userAnswer === correct) {
-            this.catScore++;
-            feedbackDiv.innerHTML = `<span class="success">✅ ${this.t('إجابة صحيحة!', 'Correct answer!')}</span>`;
-            // تحديث درجة العرض
-            document.getElementById('catScoreDisplay').textContent = this.catScore;
-            // الانتقال للسؤال التالي بعد تأخير
-            setTimeout(() => this.nextCatQuestion(), 600);
+checkCatAnswer(selectedAnswer, correctAnswer, btnElement) {
+    if (!this.catActive) return;
+    if (this.catWaiting) return; // منع التكرار
+    
+    this.catWaiting = true;
+    const isCorrect = (selectedAnswer === correctAnswer);
+    this.playTone(isCorrect ? 'correct' : 'error');
+    
+    if (isCorrect) {
+        this.catScore++;
+    }
+    
+    // تعطيل جميع الأزرار وتلوينها
+    const allOptions = document.querySelectorAll('.cat-opt-btn');
+    allOptions.forEach(btn => {
+        btn.disabled = true;
+        const btnAnswer = btn.dataset.answer;
+        if (btnAnswer === correctAnswer) {
+            btn.classList.add('correct-answer');
+        } else if (btnAnswer === selectedAnswer && !isCorrect) {
+            btn.classList.add('wrong-answer');
         } else {
-            feedbackDiv.innerHTML = `<span class="error">❌ ${this.t('خطأ... الإجابة الصحيحة:', 'Wrong... correct answer:')} <strong>${currentQ.correct}</strong></span>`;
-            setTimeout(() => this.nextCatQuestion(), 1200);
+            btn.classList.add('other-option');
         }
-        // تعطيل زر التحقق مؤقتاً
-        const checkBtn = document.getElementById('catCheckBtn');
-        checkBtn.disabled = true;
-        setTimeout(() => { checkBtn.disabled = false; }, 1500);
+    });
+    
+    // عرض رسالة التغذية الراجعة
+    const feedbackDiv = document.getElementById('catFeedback');
+    if (feedbackDiv) {
+        if (isCorrect) {
+            feedbackDiv.innerHTML = `<span class="success">✅ ${this.t('إجابة صحيحة!', 'Correct answer!')}</span>`;
+        } else {
+            feedbackDiv.innerHTML = `<span class="error">❌ ${this.t('خطأ... الإجابة الصحيحة:', 'Wrong... correct answer:')} <strong>${correctAnswer}</strong></span>`;
+        }
     }
-
-    nextCatQuestion() {
+    
+    // الانتقال للسؤال التالي بعد تأخير
+    setTimeout(() => {
         this.catCurrentIndex++;
+        this.catWaiting = false;
         if (this.catCurrentIndex < this.catQuestions.length) {
-            this.render(); // إعادة عرض السؤال التالي
+            this.render();
         } else {
             this.endCatTest(true);
         }
-    }
+    }, 1500);
+}
 
-    endCatTest(isComplete = false) {
+endCatTest(isComplete = false) {
+    if (!this.catActive) return;
+    this.catActive = false;
+    const total = this.catQuestions.length;
+    const message = isComplete 
+        ? `🎉 ${this.t('انتهى الاختبار!', 'Test completed!')}\n\n${this.t('لقد أجبت إجابة صحيحة على', 'You answered correctly')} ${this.catScore} ${this.t('من أصل', 'out of')} ${total} ${this.t('سؤالاً', 'questions')}.\n\n${this.t('نسبتك:', 'Your percentage:')} ${Math.round((this.catScore/total)*100)}%`
+        : `⚠ ${this.t('تم إنهاء الاختبار قبل اكتماله.', 'Test ended before completion.')}\n\n${this.t('لقد أجبت على', 'You answered')} ${this.catScore} ${this.t('من أصل', 'out of')} ${this.catCurrentIndex} ${this.t('سؤال بشكل صحيح.', 'questions correctly.')}\n\n${this.t('هل تريد البدء من جديد؟', 'Do you want to restart?')}`;
+    
+    if (confirm(message + '\n\n' + this.t('هل تريد العودة إلى القائمة الرئيسية؟', 'Return to home page?'))) {
+        this.currentPage = 'home';
+        this.catQuestions = [];
+        this.catCurrentIndex = 0;
+        this.catScore = 0;
         this.catActive = false;
-        const total = this.catQuestions.length;
-        const message = isComplete 
-            ? `🎉 ${this.t('انتهى الاختبار!', 'Test completed!')}\n\n${this.t('لقد أجبت إجابة صحيحة على', 'You answered correctly')} ${this.catScore} ${this.t('من أصل', 'out of')} ${total} ${this.t('سؤالاً', 'questions')}.\n\n${this.t('نسبتك:', 'Your percentage:')} ${Math.round((this.catScore/total)*100)}%`
-            : `⚠ ${this.t('تم إنهاء الاختبار قبل اكتماله.', 'Test ended before completion.')}\n\n${this.t('لقد أجبت على', 'You answered')} ${this.catScore} ${this.t('من أصل', 'out of')} ${this.catCurrentIndex} ${this.t('سؤال بشكل صحيح.', 'questions correctly.')}\n\n${this.t('هل تريد البدء من جديد؟', 'Do you want to restart?')}`;
-        
-        if (confirm(message + '\n\n' + this.t('هل تريد العودة إلى القائمة الرئيسية؟', 'Return to home page?'))) {
-            this.currentPage = 'home';
-            this.catQuestions = [];
+        this.render();
+    } else {
+        // إذا اختار عدم العودة، نعيد تعيين الاختبار
+        if (!isComplete) {
             this.catCurrentIndex = 0;
             this.catScore = 0;
+            this.catActive = true;
             this.render();
-        } else {
-            // إذا اختار عدم العودة، نعيد تعيين الاختبار لنفس الوضع
-            if (!isComplete) {
-                this.catCurrentIndex = 0;
-                this.catScore = 0;
-                this.render();
-            }
         }
     }
+}
 
     render() {
         const app = document.getElementById('app');
@@ -2771,32 +2791,58 @@ class App {
             return `<main class="main-content"><div class="reading-card welcome-banner"><div style="display: flex; justify-content: space-between; align-items: center; flex-wrap:wrap; gap:10px;"><h3 style="margin:0;">${this.t(`مرحباً، ${this.userData?.name || 'مستخدم'} 👋`, `Welcome, ${this.userData?.name || 'User'} 👋`)}</h3><div style="background: rgba(255,255,255,0.2); padding: 4px 12px; border-radius: 20px; font-size: 0.8rem; font-weight: bold;">⭐ ${this.t('مستوى', 'Level')} ${progress.level}</div></div><div style="margin-top: 15px;"><div style="display: flex; justify-content: space-between; font-size: 0.8rem; margin-bottom: 6px;"><span>${this.t('نقاط الخبرة (XP)', 'Experience Points (XP)')}</span><span>${xpProgress}</span></div><div class="progress-bar-container"><div class="progress-bar-fill" style="width: ${xpPercent}%;"></div></div></div>${this.getBadgesDisplay()}<div style="margin-top: 10px; font-size:0.85rem;">${this.t('التاج الحالي:', 'Current Crown:')} ${this.userStats.tier}</div><div style="margin-top: 4px; font-size:0.8rem;">${this.t('الدروس المفتوحة:', 'Unlocked Lessons:')} ${totalLessons} | ${this.t('الكلمات المتقنة:', 'Mastered Words:')} ${totalMastered}</div></div><button class="hero-btn" data-action="setPage" data-param="addLesson" style="width:100%; background:#8b5cf6; margin-top:12px;">📸 ${this.t('إضافة من الكاميرا أو الهاتف', 'Add from Camera or Phone')}</button><button class="hero-btn" data-action="setPage" data-param="level_test_instructions" style="width:100%; background:#ec4899; margin:12px 0;">🧠 ${this.t('اختبار مستوى متقدم', 'Advanced Level Test')}</button><div class="features-grid">${window.levels.map(l => `<div class="feature-card" data-action="selLevel" data-param="${l.id}"><h3 style="font-size:1rem;">${l.icon} ${this.lang === 'en' ? (l.id === 'beginner' ? 'Beginner' : l.id === 'intermediate' ? 'Intermediate' : 'Advanced') : l.name}</h3></div>`).join('')}${`<div class="feature-card" data-action="startCatTest" style="border: 2px solid #f97316; background: linear-gradient(135deg, #fff7ed, #ffedd5);"><h3 style="font-size:0.9rem;">📚 CAT (كلمات السفارة)</h3><p style="font-size:0.7rem; margin-top:4px;">${this.t('اختبار شامل', 'Comprehensive Test')}</p></div>`}${Object.keys(this.customLessons).length > 0 ? `<div class="feature-card" data-action="selLevel" data-param="custom_list" style="border:1px solid #f97316;"><h3 style="font-size:1rem;">📂 ${this.t('نصوصي', 'My Texts')}</h3></div>` : ''}</div><button data-action="logout" class="logout-btn">${this.t('تسجيل الخروج', 'Logout')}</button></main>`;
         }
         
-        // ========== إضافة صفحة CAT TEST ==========
-        if (this.currentPage === 'cat_test') {
-            if (!this.catActive || this.catQuestions.length === 0) {
-                return `<div class="reading-card"><p>${this.t('لا توجد أسئلة', 'No questions')}</p><button class="hero-btn" data-action="goHome">${this.t('الرئيسية', 'Home')}</button></div>`;
-            }
-            const currentQ = this.catQuestions[this.catCurrentIndex];
-            const total = this.catQuestions.length;
-            return `
-                <div class="reading-card cat-test-container">
-                    <div style="display:flex; justify-content:space-between; margin-bottom:15px;">
-                        <span class="cat-counter">${this.catCurrentIndex + 1} / ${total}</span>
-                        <span class="cat-score" id="catScoreDisplay">✅ ${this.catScore}</span>
-                    </div>
-                    <div class="cat-sentence" style="font-size:1.2rem; text-align:center; margin:20px 0; padding:15px; background:#f8fafc; border-radius:12px;">
-                        ${currentQ.sentence.replace(/______/g, '<span style="display:inline-block; min-width:100px; border-bottom:3px dashed #3b82f6;">__________</span>')}
-                    </div>
-                    <div class="cat-input-area" style="display:flex; gap:10px; margin:20px 0;">
-                        <input type="text" id="catAnswerInput" placeholder="${this.t('اكتب الكلمة الناقصة...', 'Write the missing word...')}" style="flex:1; padding:12px; border-radius:12px; border:1px solid #ccc;">
-                        <button id="catCheckBtn" class="hero-btn" style="background:#10b981;" data-action="checkCatAnswer">${this.t('تحقق', 'Check')}</button>
-                    </div>
-                    <div id="catHint" class="cat-hint" style="color:#6b7280; font-size:0.9rem;">${currentQ.hint ? '💡 ' + currentQ.hint : ''}</div>
-                    <div id="catFeedback" class="cat-feedback" style="margin:10px 0;"></div>
-                    <button id="catEndBtn" class="hero-btn" style="background:#ef4444; width:100%;" data-action="endCatTest">🏁 ${this.t('إنهاء الاختبار', 'End Test')}</button>
-                </div>
-            `;
-        }
+if (this.currentPage === 'cat_test') {
+    if (!this.catActive || this.catQuestions.length === 0) {
+        return `<div class="reading-card"><p>${this.t('لا توجد أسئلة', 'No questions')}</p><button class="hero-btn" data-action="goHome">${this.t('الرئيسية', 'Home')}</button></div>`;
+    }
+    const currentQ = this.catQuestions[this.catCurrentIndex];
+    const total = this.catQuestions.length;
+    const options = [...currentQ.options];
+    // خلط الخيارات عشوائياً
+    for (let i = options.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [options[i], options[j]] = [options[j], options[i]];
+    }
+    
+    return `
+        <div class="reading-card cat-test-container">
+            <div style="display:flex; justify-content:space-between; margin-bottom:15px; flex-wrap:wrap; gap:10px;">
+                <span class="cat-counter" style="background:#e2e8f0; padding:4px 12px; border-radius:20px;">${this.catCurrentIndex + 1} / ${total}</span>
+                <span class="cat-score" style="background:#10b981; color:white; padding:4px 12px; border-radius:20px;">✅ ${this.catScore}</span>
+            </div>
+            <div class="cat-sentence" style="font-size:1.2rem; text-align:center; margin:20px 0; padding:20px; background:#f8fafc; border-radius:16px;">
+                ${currentQ.sentence}
+            </div>
+            <div id="catHint" class="cat-hint" style="color:#6b7280; font-size:0.9rem; margin:10px 0; text-align:center;">
+                ${currentQ.hint ? '💡 ' + currentQ.hint : ''}
+            </div>
+            <div class="quiz-options" id="catOptions">
+                ${options.map(opt => `
+                    <button class="quiz-opt-btn cat-opt-btn" data-action="catAnswer" data-answer="${opt.replace(/"/g, '&quot;')}" data-correct="${currentQ.correct.replace(/"/g, '&quot;')}">
+                        ${opt}
+                    </button>
+                `).join('')}
+            </div>
+            <div id="catFeedback" class="cat-feedback" style="margin:15px 0; text-align:center; min-height:50px;"></div>
+            <div class="cat-actions">
+                <button id="catEndBtn" class="hero-btn" data-action="endCatTest" style="background:#ef4444; width:100%;">🏁 ${this.t('إنهاء الاختبار', 'End Test')}</button>
+            </div>
+        </div>
+        <script>
+            // ربط الأحداث
+            setTimeout(() => {
+                document.querySelectorAll('.cat-opt-btn').forEach(btn => {
+                    btn.onclick = () => {
+                        const answer = btn.dataset.answer;
+                        const correct = btn.dataset.correct;
+                        appInstance.checkCatAnswer(answer, correct, btn);
+                    };
+                });
+                document.getElementById('catEndBtn')?.addEventListener('click', () => appInstance.endCatTest(false));
+            }, 50);
+        </script>
+    `;
+}
                 if (this.currentPage === 'level_test_instructions') {
             return `<main class="main-content">
                 <button class="hero-btn" data-action="goHome" style="margin-bottom:15px; background:#64748b;">← ${this.t('رجوع', 'Back')}</button>
