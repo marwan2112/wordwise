@@ -983,6 +983,355 @@ window.catBank = [
         correct: "pelted", 
         hint: "انهال عليها (بالثلج)"
     },
-       
+    { 
+        id: "CAT_138", 
+        sentence: "Select the correct sentence", 
+        options: ["does Megan forget something her keys?", "Does sometimes Megan forget her keys?", "Does Megan sometimes forget her keys?", "Does Megan forget her sometimes keys?"],
+        correct: "Does Megan sometimes forget her keys?", 
+        hint: "ترتيب الظرف (sometimes) في السؤال"
+    },
+    { 
+        id: "CAT_139", 
+        sentence: "This car has a new bumper that ______ more of the impact of a collision, thus lessening the damage to the car's engine.", 
+        options: ["absorbs", "entertains", "consumes", "displays"],
+        correct: "absorbs", 
+        hint: "يمتص (الصدمة)"
+    },
+    { 
+        id: "CAT_140", 
+        sentence: "______ can't hurt to try calling Paul again. He might be home now.", 
+        options: ["They", "You", "It", "We"],
+        correct: "It", 
+        hint: "فاعل غير عاقل للجملة"
+    },
+    { 
+        id: "CAT_141", 
+        sentence: "One of the big ______ points in his life was when he joined the military.", 
+        options: ["turn", "turning", "turned", "turns"],
+        correct: "turning", 
+        hint: "نقطة تحول (Turning point)"
+    },
+    { 
+        id: "CAT_142", 
+        sentence: "Select the correct sentence.", 
+        options: ["In many states an unchecked problem remains.", "In many states a problem unchecked pollution.", "Pollution remains an unchecked problem in many states.", "Pollution in many states an unchecked problem remains."],
+        correct: "Pollution remains an unchecked problem in many states.", 
+        hint: "تركيب الجملة: مبتدأ + فعل + خبر"
+    },
+    { 
+        id: "CAT_143", 
+        sentence: "Delaware was the first U.S. State, ______ Hawaii was the last.", 
+        options: ["as if", "even though", "neither", "while"],
+        correct: "while", 
+        hint: "بينما (للمقارنة)"
+    },
+    { 
+        id: "CAT_144", 
+        sentence: "The ground was hard to walk on because it was covered with fallen pine ______ .", 
+        options: ["caves", "bones", "crumbs", "crusts"],
+        correct: "crusts", 
+        hint: "قشور الصنوبر"
+    },
+    { 
+        id: "CAT_145", 
+        sentence: "Ronnie’s hopes of going to college were ______ when his father lost his job.", 
+        options: ["ripped", "maimed", "dashed", "wasted"],
+        correct: "dashed", 
+        hint: "تحطمت (الأمال)"
+    },
+    { 
+        id: "CAT_146", 
+        sentence: "Her 'glee' was apparent.", 
+        options: ["illness", "sadness", "wealth", "delight"],
+        correct: "delight", 
+        hint: "بهجة / سعادة"
+    },
+    { 
+        id: "CAT_147", 
+        sentence: "Fred: I’m really thirsty. Bill: Me too, I ______ use a soda right now.", 
+        options: ["would", "should", "could", "may"],
+        correct: "could", 
+        hint: "يمكنني (للتعبير عن الرغبة)"
+    },
+    { 
+        id: "CAT_148", 
+        sentence: "If carl ______ call while I’m out, tell him I’ll be right back.", 
+        options: ["should", "could", "might", "may"],
+        correct: "should", 
+        hint: "في حال (صيغة شرطية)"
+    },
+    { 
+        id: "CAT_149", 
+        sentence: "Susie ______ what I told her by the time she gets to me sure.", 
+        options: ["will be forgetting", "will have forgotten", "had been forgotten", "has forgotten"],
+        correct: "will have forgotten", 
+        hint: "ستكون قد نسيت (مستقبل تام)"
+    },
+    { 
+        id: "CAT_150", 
+        sentence: "The kidnappers tied him up and put a ______ on him so he couldn't talk.", 
+        options: ["mug", "wig", "gag", "log"],
+        correct: "gag", 
+        hint: "كمامة لمنع الكلام"
+    },
+    { 
+        id: "CAT_151", 
+        sentence: "I ______ study hard if I want to pass the test.", 
+        options: ["am able to", "am going to", "used to", "have got to"],
+        correct: "have got to", 
+        hint: "يجب عليّ"
+    },
+    { 
+        id: "CAT_152", 
+        sentence: "Tom: Did you identify the errors in his reasoning? Barbara: Yes, I pointed out the ______ in his argument.", 
+        options: ["benefits", "fallacies", "policies", "theories"],
+        correct: "fallacies", 
+        hint: "مغالطات منطقية"
+    },
+    { 
+        id: "CAT_153", 
+        sentence: "Pay the plumber ______ making a fuss", 
+        options: ["until", "except", "from", "without"],
+        correct: "without", 
+        hint: "بدون (إحداث جلبة)"
+    },
+    { 
+        id: "CAT_154", 
+        sentence: "I will ______ not support that candidate.", 
+        options: ["definite", "definitely", "definitive", "definition"],
+        correct: "definitely", 
+        hint: "قطعاً / بكل تأكيد"
+    },
+    { 
+        id: "CAT_155", 
+        sentence: "by the time we vote, the initial election results ______ .", 
+        options: ["had already reported", "already will report", "will have already been reported", "already have been reporting"],
+        correct: "will have already been reported", 
+        hint: "ستكون قد أُعلنت (مستقبل تام مبني للمجهول)"
+    },
+    { 
+        id: "CAT_156", 
+        sentence: "This stadium will be the ______ for the opening ceremony of the Olympics.", 
+        options: ["venue", "vicinity", "sector", "program"],
+        correct: "venue", 
+        hint: "موقع / مكان الحدث"
+    },
+    { 
+        id: "CAT_157", 
+        sentence: "You're just 'wasting' your breath. She never listens.", 
+        options: ["blowing", "wasting", "spending", "throwing"],
+        correct: "wasting", 
+        hint: "تضيع (جهدك/كلامك)"
+    },
+    { 
+        id: "CAT_158", 
+        sentence: "It won't make any difference ______ we go now or later.", 
+        options: ["either", "even if", "whether", "as if"],
+        correct: "whether", 
+        hint: "سواء (للخيارات)"
+    },
+    { 
+        id: "CAT_159", 
+        sentence: "Before her current job, Madeline worked ______ an interpreter.", 
+        options: ["on", "at", "as", "out"],
+        correct: "as", 
+        hint: "عملت كـ (للمنهة)"
+    },
+    { 
+        id: "CAT_160", 
+        sentence: "Today a marshmallow is a spongy treat cooked over campfires. But up until the mid - 1800s, marshmallow candy was used medicinally. Doctors extracted juice from the roots of the marshmallow plant and cooked it with egg whites and sugar, then whipped it into a foamy meringue. The mixture then hardened, and the resulting candy soothed children's sore throats. Eventually, advanced manufacturing processes replaced the root juice with gelatin, which eliminated any healing properties.\n\nThe underlined word 'it' refers to the ______ ", 
+        options: ["plant", "candy", "juice", "sugar"],
+        correct: "juice", 
+        hint: "تشير للعصير المستخرج"
+    },
+    { 
+        id: "CAT_161", 
+        sentence: "Before her current job, Madeline worked ______ an interpreter.", 
+        options: ["on", "at", "as", "out"],
+        correct: "as", 
+        hint: "مكرر"
+    },
+    { 
+        id: "CAT_162", 
+        sentence: "Paul has so many options that he can't decide what to do. He's in a real ______.", 
+        options: ["bureaucracy", "syndromic", "boundary", "quandary"],
+        correct: "quandary", 
+        hint: "حيرة / مأزق"
+    },
+    { 
+        id: "CAT_163", 
+        sentence: "The English alphabet consist of 5 vowels and 21 ______ ", 
+        options: ["words", "syllables", "phrases", "consonants"],
+        correct: "consonants", 
+        hint: "حروف ساكنة"
+    },
+    { 
+        id: "CAT_164", 
+        sentence: "I heard that the hurricane 'wreaked havoc' on your store. Were you able to ______ much?", 
+        options: ["purchase", "salvage", "distribute", "accrue"],
+        correct: "salvage", 
+        hint: "يستنقذ / ينقذ"
+    },
+    { 
+        id: "CAT_165", 
+        sentence: "My brother's poem won the prize, but I think ______ was better.", 
+        options: ["mine", "me", "I", "myself"],
+        correct: "mine", 
+        hint: "قصيدتي (ضمير ملكية)"
+    },
+    { 
+        id: "CAT_166", 
+        sentence: "She can't help ______ about her children all the time.", 
+        options: ["to worry", "worries", "worry", "worrying"],
+        correct: "worrying", 
+        hint: "بعد can't help نستخدم ing"
+    },
+    { 
+        id: "CAT_167", 
+        sentence: "The boss 'frowns' ______ that type of behavior.", 
+        options: ["from", "upon", "over", "down"],
+        correct: "upon", 
+        hint: "يستنكر / لا يرضى عن"
+    },
+    { 
+        id: "CAT_168", 
+        sentence: "Because ______ was mild yesterday, Pauline and her two children went on a picnic.", 
+        options: ["she", "it", "hers", "its"],
+        correct: "it", 
+        hint: "ضمير لغير العاقل (الطقس)"
+    },
+    { 
+        id: "CAT_169", 
+        sentence: "Because he couldn’t pay his debts, he had to ______ .", 
+        options: ["declare bankruptcy", "buy a computer", "open an account", "lend some money"],
+        correct: "declare bankruptcy", 
+        hint: "يعلن إفلاسه"
+    },
+    { 
+        id: "CAT_170", 
+        sentence: "the money ______ to go towards a building named after his late mother.", 
+        options: ["intended", "had intended", "was intended", "was intending"],
+        correct: "was intended", 
+        hint: "كان مخصصاً (مبني للمجهول)"
+    },
+    { 
+        id: "CAT_171", 
+        sentence: "A new smoke detector uses an ......to detect smoke.", 
+        options: ["Infrared light invisible beam", "Invisible infrared light beam", "Invisible beam infrared light", "Infrared light beam invisible"],
+        correct: "Invisible infrared light beam", 
+        hint: "ترتيب الصفات"
+    },
+    { 
+        id: "CAT_172", 
+        sentence: "Challenger crew members Bruce Mc Candless and Robert Stewart made the first free spacewalks in 1984, using a jetpack - like device called the manned maneuvering unit. Though no longer in use, these units allowed astronauts greater freedom and maneuverability, freeing them from being tethered to the shuttle. In 1985, the crew used the manned maneuvering unit to repair a malfunctioning satellite, at a cost of $50 million. This was a bargain, considering replacing the satellite would have cost about $250 million.\n\nThe underlined word 'them' refers to ………", 
+        options: ["bargains", "satellites", "astronauts", "units"],
+        correct: "astronauts", 
+        hint: "تشير لرواد الفضاء"
+    },
+    { 
+        id: "CAT_173", 
+        sentence: "your ______ at just this moment is fortuitous.", 
+        options: ["turned up", "turn up", "turning up", "turns up"],
+        correct: "turning up", 
+        hint: "ظهورك / حضورك (اسم)"
+    },
+    { 
+        id: "CAT_174", 
+        sentence: "By volunteering in the shelter, the man gained ______ the problems faced by homeless people.", 
+        options: ["profit from", "permission for", "insight into", "notoriety from"],
+        correct: "insight into", 
+        hint: "رؤية عميقة / فهم لـ"
+    },
+    { 
+        id: "CAT_175", 
+        sentence: "The ______ citizens of this country took to the study today to protest the blatant election fraud that took place on election day.", 
+        options: ["refreshed", "outraged", "revered", "indifferent"],
+        correct: "outraged", 
+        hint: "الغاضبون / المستاؤون"
+    },
+    { 
+        id: "CAT_176", 
+        sentence: "If you ______ often, you will likely maintain a healthy weight.", 
+        options: ["exercise", "exercising", "exercised", "exercises"],
+        correct: "exercise", 
+        hint: "مضارع بسيط (حالة شرطية)"
+    },
+    { 
+        id: "CAT_177", 
+        sentence: "Whew! the graduation festivities are finally over______ . I think it was an unequivocal success.", 
+        options: ["All in all", "Thus", "Moreover", "Also"],
+        correct: "All in all", 
+        hint: "إجمالاً"
+    },
+    { 
+        id: "CAT_178", 
+        sentence: "If you want results, it’s incumbent on you ______ your goals aggressively.", 
+        options: ["pursue", "pursues", "pursing", "to pursue"],
+        correct: "to pursue", 
+        hint: "يتوجب عليك أن"
+    },
+    { 
+        id: "CAT_179", 
+        sentence: "Select the correct sentence.", 
+        options: ["You may be held against anything you say.", "Anything you say may be held against you.", "Anything may be held against you say you.", "You may say anything against you be held."],
+        correct: "Anything you say may be held against you.", 
+        hint: "أي شيء تقوله قد يستخدم ضدك"
+    },
+    { 
+        id: "CAT_180", 
+        sentence: "Debby enjoyed her job ______ she mastered the tasks.", 
+        options: ["else", "once", "that", "now"],
+        correct: "once", 
+        hint: "بمجرد أن"
+    },
+    { 
+        id: "CAT_181", 
+        sentence: "Children often ______ their parents to buy them candy.", 
+        options: ["try", "cry", "say", "beg"],
+        correct: "beg", 
+        hint: "يتوسلون"
+    },
+    { 
+        id: "CAT_182", 
+        sentence: "A fellow in Hamburg, Germany, thought he'd do his brother a favor and himself a good turn - by stepping in to serve a jail term that wasn't his. So on the day his sibling was to show up for a ten - month sentence on a vice charge, our guy arrived in his place planning to use the time to battle a fondness for adult beverages. Ultimately, both were found out, and now a court has ordered the substitute inmate to pay $2,100 for his room and board.\n\nAccording to the paragraph, the brothers...... .", 
+        options: ["turned themselves into the police", "tried to deceive the authorities", "were released earlier than expected", "refused to pay for their room and board"],
+        correct: "tried to deceive the authorities", 
+        hint: "حاولوا خداع السلطات"
+    },
+    { 
+        id: "CAT_183", 
+        sentence: "Children often ______ their parents to buy them candy.", 
+        options: ["try", "cry", "say", "beg"],
+        correct: "beg", 
+        hint: "مكرر"
+    },
+    { 
+        id: "CAT_184", 
+        sentence: "I'm interested in ______ to speak English.", 
+        options: ["learning", "learn", "to learn", "to learning"],
+        correct: "learning", 
+        hint: "بعد حرف الجر نستخدم ing"
+    },
+    { 
+        id: "CAT_185", 
+        sentence: "Sam: Has a determination been made yet. Ann: No, the case is still ______ ", 
+        options: ["expensive", "recorded", "pending", "certain"],
+        correct: "pending", 
+        hint: "قيد الانتظار / معلقة"
+    },
+    { 
+        id: "CAT_186", 
+        sentence: "We'll borrow only if we can't raise the money any other way; borrowing will be our last ______ ", 
+        options: ["compromise", "entreaty", "resort", "desire"],
+        correct: "resort", 
+        hint: "الملاذ الأخير"
+    },
+    { 
+        id: "CAT_187", 
+        sentence: "I couldn't help wondering why he had reacted ______ he had", 
+        options: ["that", "as", "because", "since"],
+        correct: "as", 
+        hint: "كما (رد فعله)"
+    },
+    
 ]; 
-];
