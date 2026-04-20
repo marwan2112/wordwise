@@ -2648,63 +2648,72 @@ class App {
         this.render();
     }
 
-    checkCatAnswer(selectedAnswer, correctAnswer, btnElement) {
-        if (!this.catActive || this.catWaiting) return;
-        this.catWaiting = true;
-        
-        const selected = selectedAnswer.trim().toLowerCase();
-        const correct = correctAnswer.trim().toLowerCase();
-        const isCorrect = (selected === correct);
-        
-        this.playTone(isCorrect ? 'correct' : 'error');
-        
-        const allOptions = document.querySelectorAll('.cat-opt-btn');
-        allOptions.forEach(btn => {
-            btn.disabled = true;
-            const btnAnswer = btn.getAttribute('data-answer')?.trim().toLowerCase();
-            if (btnAnswer === correct) {
-                btn.classList.add('correct-answer');
-            } else if (btnAnswer === selected && !isCorrect) {
-                btn.classList.add('wrong-answer');
+checkCatAnswer(selectedAnswer, correctAnswer, btnElement) {
+    if (!this.catActive || this.catWaiting) return;
+    
+    // التحقق من وجود القيم
+    if (!selectedAnswer || !correctAnswer) {
+        console.error("خطأ: selectedAnswer أو correctAnswer غير معرف", {selectedAnswer, correctAnswer});
+        this.catWaiting = false;
+        return;
+    }
+    
+    this.catWaiting = true;
+    
+    const selected = selectedAnswer.trim().toLowerCase();
+    const correct = correctAnswer.trim().toLowerCase();
+    const isCorrect = (selected === correct);
+    
+    this.playTone(isCorrect ? 'correct' : 'error');
+    
+    // تعطيل جميع الأزرار وتلوينها
+    const allOptions = document.querySelectorAll('.cat-opt-btn');
+    allOptions.forEach(btn => {
+        btn.disabled = true;
+        const btnAnswer = btn.getAttribute('data-answer')?.trim().toLowerCase();
+        if (btnAnswer === correct) {
+            btn.classList.add('correct-answer');
+        } else if (btnAnswer === selected && !isCorrect) {
+            btn.classList.add('wrong-answer');
+        }
+    });
+    
+    const feedbackDiv = document.getElementById('catFeedback');
+    if (feedbackDiv) {
+        if (isCorrect) {
+            feedbackDiv.innerHTML = `<span class="success">✅ ${this.t('إجابة صحيحة!', 'Correct answer!')}</span>`;
+            this.catScore++;
+            this.catQuestions.splice(this.catCurrentIndex, 1);
+            if (this.catQuestions.length === 0) {
+                setTimeout(() => this.endCatTest(true), 1000);
+                return;
             }
-        });
-        
-        const feedbackDiv = document.getElementById('catFeedback');
-        if (feedbackDiv) {
-            if (isCorrect) {
-                feedbackDiv.innerHTML = `<span class="success">✅ ${this.t('إجابة صحيحة!', 'Correct answer!')}</span>`;
-                this.catScore++;
-                this.catQuestions.splice(this.catCurrentIndex, 1);
-                if (this.catQuestions.length === 0) {
-                    setTimeout(() => this.endCatTest(true), 1000);
-                    return;
-                }
-                if (this.catCurrentIndex >= this.catQuestions.length) {
-                    this.catCurrentIndex = 0;
-                }
-            } else {
-                feedbackDiv.innerHTML = `<span class="error">❌ ${this.t('خطأ... الإجابة الصحيحة:', 'Wrong... correct answer:')} <strong>${this.escapeHtml(correctAnswer)}</strong></span>`;
-                const wrongQuestion = this.catQuestions[this.catCurrentIndex];
-                this.catQuestions.splice(this.catCurrentIndex, 1);
-                this.catQuestions.push(wrongQuestion);
-                if (this.catCurrentIndex >= this.catQuestions.length) {
-                    this.catCurrentIndex = this.catQuestions.length - 1;
-                }
+            if (this.catCurrentIndex >= this.catQuestions.length) {
+                this.catCurrentIndex = 0;
+            }
+        } else {
+            feedbackDiv.innerHTML = `<span class="error">❌ ${this.t('خطأ... الإجابة الصحيحة:', 'Wrong... correct answer:')} <strong>${this.escapeHtml(correctAnswer)}</strong></span>`;
+            const wrongQuestion = this.catQuestions[this.catCurrentIndex];
+            this.catQuestions.splice(this.catCurrentIndex, 1);
+            this.catQuestions.push(wrongQuestion);
+            if (this.catCurrentIndex >= this.catQuestions.length) {
+                this.catCurrentIndex = this.catQuestions.length - 1;
             }
         }
-        
-        const scoreSpan = document.getElementById('catScoreDisplay');
-        if (scoreSpan) scoreSpan.textContent = this.catScore;
-        
-        setTimeout(() => {
-            this.catWaiting = false;
-            if (this.catQuestions.length > 0 && this.catActive) {
-                this.render();
-            } else if (this.catQuestions.length === 0) {
-                this.endCatTest(true);
-            }
-        }, 1500);
     }
+    
+    const scoreSpan = document.getElementById('catScoreDisplay');
+    if (scoreSpan) scoreSpan.textContent = this.catScore;
+    
+    setTimeout(() => {
+        this.catWaiting = false;
+        if (this.catQuestions.length > 0 && this.catActive) {
+            this.render();
+        } else if (this.catQuestions.length === 0) {
+            this.endCatTest(true);
+        }
+    }, 1500);
+}
 
     showCatHint() {
         if (!this.catActive) return;
@@ -2827,47 +2836,47 @@ class App {
         }
         
         if (this.currentPage === 'cat_test') {
-            if (!this.catActive || this.catQuestions.length === 0) {
-                return `<div class="reading-card"><p>${this.t('لا توجد أسئلة', 'No questions')}</p><button class="hero-btn" data-action="goHome">${this.t('الرئيسية', 'Home')}</button></div>`;
-            }
-            const currentQ = this.catQuestions[this.catCurrentIndex];
-            const totalOriginal = window.catBank.length;
-            const totalRemaining = this.catQuestions.length;
-            const options = [...currentQ.options];
-            for (let i = options.length - 1; i > 0; i--) {
-                const j = Math.floor(Math.random() * (i + 1));
-                [options[i], options[j]] = [options[j], options[i]];
-            }
-            
-            return `
-                <div class="reading-card cat-test-container">
-                    <div style="display:flex; justify-content:space-between; margin-bottom:15px; flex-wrap:wrap; gap:10px;">
-                        <span class="cat-counter" style="background:#e2e8f0; padding:4px 12px; border-radius:20px;">
-                            ${this.t('السؤال', 'Q')}: ${totalOriginal - totalRemaining + 1} / ${totalOriginal}
-                        </span>
-                        <span id="catScoreDisplay" class="cat-score" style="background:#10b981; color:white; padding:4px 12px; border-radius:20px;">✅ ${this.catScore}</span>
-                    </div>
-                    <div class="cat-sentence" style="font-size:1.2rem; text-align:center; margin:20px 0; padding:20px; background:#f8fafc; border-radius:16px;">
-                        ${this.escapeHtml(currentQ.sentence)}
-                    </div>
-                    <div style="text-align:left; margin-bottom:10px;">
-                        <button id="catHintBtn" class="hero-btn" style="background:#f59e0b; padding:6px 12px; font-size:0.9rem;">💡 ${this.t('تلميح', 'Hint')}</button>
-                    </div>
-                    <div id="catHint" class="cat-hint" style="color:#6b7280; font-size:0.9rem; margin:10px 0; text-align:center; display:none;"></div>
-                    <div class="quiz-options" id="catOptions">
-                        ${options.map(opt => `
-                            <button class="quiz-opt-btn cat-opt-btn" data-action="catAnswer" data-answer="${this.escapeHtml(opt)}" data-correct="${this.escapeHtml(currentQ.correct)}">
-                                ${this.escapeHtml(opt)}
-                            </button>
-                        `).join('')}
-                    </div>
-                    <div id="catFeedback" class="cat-feedback" style="margin:15px 0; text-align:center; min-height:50px;"></div>
-                    <div class="cat-actions">
-                        <button id="catEndBtn" class="hero-btn" data-action="endCatTest" style="background:#ef4444; width:100%;">🏁 ${this.t('إنهاء الاختبار', 'End Test')}</button>
-                    </div>
-                </div>
-            `;
-        }
+    if (!this.catActive || this.catQuestions.length === 0) {
+        return `<div class="reading-card"><p>${this.t('لا توجد أسئلة', 'No questions')}</p><button class="hero-btn" data-action="goHome">${this.t('الرئيسية', 'Home')}</button></div>`;
+    }
+    const currentQ = this.catQuestions[this.catCurrentIndex];
+    const totalOriginal = window.catBank.length;
+    const totalRemaining = this.catQuestions.length;
+    const options = [...currentQ.options];
+    for (let i = options.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [options[i], options[j]] = [options[j], options[i]];
+    }
+    
+    return `
+        <div class="reading-card cat-test-container">
+            <div style="display:flex; justify-content:space-between; margin-bottom:15px; flex-wrap:wrap; gap:10px;">
+                <span class="cat-counter" style="background:#e2e8f0; padding:4px 12px; border-radius:20px;">
+                    ${this.t('السؤال', 'Q')}: ${totalOriginal - totalRemaining + 1} / ${totalOriginal}
+                </span>
+                <span id="catScoreDisplay" class="cat-score" style="background:#10b981; color:white; padding:4px 12px; border-radius:20px;">✅ ${this.catScore}</span>
+            </div>
+            <div class="cat-sentence" style="font-size:1.2rem; text-align:center; margin:20px 0; padding:20px; background:#f8fafc; border-radius:16px;">
+                ${this.escapeHtml(currentQ.sentence)}
+            </div>
+            <div style="text-align:left; margin-bottom:10px;">
+                <button id="catHintBtn" class="hero-btn" style="background:#f59e0b; padding:6px 12px; font-size:0.9rem;">💡 ${this.t('تلميح', 'Hint')}</button>
+            </div>
+            <div id="catHint" class="cat-hint" style="color:#6b7280; font-size:0.9rem; margin:10px 0; text-align:center; display:none;"></div>
+            <div class="quiz-options" id="catOptions">
+                ${options.map(opt => `
+                    <button class="quiz-opt-btn cat-opt-btn" data-action="catAnswer" data-answer="${this.escapeHtml(opt)}" data-correct="${this.escapeHtml(currentQ.correct)}">
+                        ${this.escapeHtml(opt)}
+                    </button>
+                `).join('')}
+            </div>
+            <div id="catFeedback" class="cat-feedback" style="margin:15px 0; text-align:center; min-height:50px;"></div>
+            <div class="cat-actions">
+                <button id="catEndBtn" class="hero-btn" data-action="endCatTest" style="background:#ef4444; width:100%;">🏁 ${this.t('إنهاء الاختبار', 'End Test')}</button>
+            </div>
+        </div>
+    `;
+}
         
         if (this.currentPage === 'level_test_instructions') {
             return `<main class="main-content">
