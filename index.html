@@ -100,10 +100,12 @@
             console.error("❌ Some Firebase functions are missing");
         }
 
-        /** * تحميل ملفات المشروع برمجياً لضمان عدم تشغيل app.js 
+        /** 
+         * تحميل ملفات المشروع برمجياً لضمان عدم تشغيل app.js 
          * إلا بعد أن يصبح Firebase جاهزاً تماماً في المتصفح
+         * تم إضافة catBank.js لقائمة الملفات المحملة
          */
-const projectScripts = ["data.js", "gapfillDB.js", "listeningBank.js", "app.js"];        
+        const projectScripts = ["data.js", "gapfillDB.js", "listeningBank.js", "catBank.js", "app.js"];        
         let loadedCount = 0;
         projectScripts.forEach(src => {
             const script = document.createElement('script');
@@ -114,6 +116,8 @@ const projectScripts = ["data.js", "gapfillDB.js", "listeningBank.js", "app.js"]
                 console.log(`✅ Loaded: ${src} (${loadedCount}/${projectScripts.length})`);
                 if (loadedCount === projectScripts.length) {
                     console.log("✅ All project scripts loaded successfully");
+                    // إشعار عالمي بأن جميع الملفات جاهزة (يمكن لـ app.js الاستماع لهذا الحدث)
+                    window.dispatchEvent(new Event('allScriptsLoaded'));
                 }
             };
             script.onerror = () => {
