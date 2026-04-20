@@ -3012,7 +3012,7 @@ class App {
         
         return `<div style="text-align:center; padding:40px;">${this.t('جاري التحميل...', 'Loading...')}</div>`;         
     }
-    }
+    
 
     toggleTheme() { this.theme = this.theme === 'light' ? 'dark' : 'light'; document.documentElement.setAttribute('data-theme', this.theme); localStorage.setItem('theme', this.theme); this.render(); }
     resetPlacement() { this.placementTestActive = false; this.currentPage = 'home'; this.render(); }
