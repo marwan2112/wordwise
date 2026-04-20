@@ -1,3 +1,4 @@
+// app.js - الكود الكامل للتطبيق مع إصلاح اختبار CAT
 window.addEventListener('error', function(e) {
     alert('❌ خطأ في السطر: ' + e.lineno + '\nالملف: ' + e.filename + '\nالرسالة: ' + e.message);
     document.body.innerHTML = '<pre style="color:red; background:white; padding:10px;">خطأ في السطر: ' + e.lineno + '\n' + e.message + '</pre>';
@@ -5,11 +6,12 @@ window.addEventListener('error', function(e) {
 
 class App {
     constructor() {
-        // ========== متغيرات CAT الجديدة ==========
+        // ========== متغيرات CAT الجديدة (تم إصلاحها) ==========
         this.catQuestions = [];      // جميع أسئلة CAT
         this.catCurrentIndex = 0;    // السؤال الحالي
         this.catScore = 0;            // عدد الإجابات الصحيحة
         this.catActive = false;       // هل الاختبار نشط؟
+        this.catWaiting = false;      // منع التكرار أثناء الانتقال
 
         // أنظمة الحماية والمتغيرات الأساسية
         this.loadingData = true;
