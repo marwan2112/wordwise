@@ -2476,8 +2476,12 @@ class App {
     this.checkCatAnswer(param, correct, btn);
     return;
 }
-            if (action === 'endCatTest') {
+if (action === 'endCatTest') {
     this.endCatTest(false);
+    return;
+}
+if (action === 'showCatHint') {
+    this.showCatHint();
     return;
 }
             if (action === 'playListeningAudio') {
@@ -2621,77 +2625,117 @@ class App {
         });
         document.addEventListener('input', (e) => { if (e.target.id === 'spellingInput') this.spellingUserAnswer = e.target.value; });
     }
+// داخل Class App، استبدل دوال CAT بهذه:
 
-  // ====================== دوال CAT (اختيار من متعدد) ======================
 startCatTest() {
     if (!window.catBank || window.catBank.length === 0) {
-        alert(this.t('⚠️ لا توجد أسئلة في بنك CAT. الرجاء إضافة أسئلة في ملف catBank.js', '⚠️ No questions in CAT bank. Please add questions in catBank.js'));
+        alert(this.t('⚠️ لا توجد أسئلة في بنك CAT.', '⚠️ No questions in CAT bank.'));
         return;
     }
-    // نسخ جميع الأسئلة (يمكنك إضافة ترتيب عشوائي إذا أردت)
-    this.catQuestions = [...window.catBank];
+    // نسخ الأسئلة مع خلط عشوائي
+    let allQuestions = [...window.catBank];
+    for (let i = allQuestions.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [allQuestions[i], allQuestions[j]] = [allQuestions[j], allQuestions[i]];
+    }
+    this.catQuestions = allQuestions; // قائمة الأسئلة المتبقية (سيتم حذف الصحيح منها)
     this.catCurrentIndex = 0;
     this.catScore = 0;
     this.catActive = true;
+    this.catWaiting = false;
     this.currentPage = 'cat_test';
     this.render();
 }
 
 checkCatAnswer(selectedAnswer, correctAnswer, btnElement) {
-    if (!this.catActive) return;
-    if (this.catWaiting) return; // منع التكرار
-    
+    if (!this.catActive || this.catWaiting) return;
     this.catWaiting = true;
-    const isCorrect = (selectedAnswer === correctAnswer);
-    this.playTone(isCorrect ? 'correct' : 'error');
     
-    if (isCorrect) {
-        this.catScore++;
-    }
+    // مقارنة دقيقة (trim و lowerCase)
+    const selected = selectedAnswer.trim().toLowerCase();
+    const correct = correctAnswer.trim().toLowerCase();
+    const isCorrect = (selected === correct);
+    
+    this.playTone(isCorrect ? 'correct' : 'error');
     
     // تعطيل جميع الأزرار وتلوينها
     const allOptions = document.querySelectorAll('.cat-opt-btn');
     allOptions.forEach(btn => {
         btn.disabled = true;
-        const btnAnswer = btn.dataset.answer;
-        if (btnAnswer === correctAnswer) {
+        const btnAnswer = btn.dataset.answer?.trim().toLowerCase();
+        if (btnAnswer === correct) {
             btn.classList.add('correct-answer');
-        } else if (btnAnswer === selectedAnswer && !isCorrect) {
+        } else if (btnAnswer === selected && !isCorrect) {
             btn.classList.add('wrong-answer');
         } else {
             btn.classList.add('other-option');
         }
     });
     
-    // عرض رسالة التغذية الراجعة
     const feedbackDiv = document.getElementById('catFeedback');
     if (feedbackDiv) {
         if (isCorrect) {
             feedbackDiv.innerHTML = `<span class="success">✅ ${this.t('إجابة صحيحة!', 'Correct answer!')}</span>`;
+            this.catScore++;
+            // إزالة السؤال الحالي من القائمة (لن يظهر مرة أخرى)
+            this.catQuestions.splice(this.catCurrentIndex, 1);
+            if (this.catQuestions.length === 0) {
+                setTimeout(() => this.endCatTest(true), 1000);
+                return;
+            }
+            // إذا حذفنا السؤال، يجب أن يظل المؤشر على نفس الموضع (لأن المصفوفة تقلصت)
+            if (this.catCurrentIndex >= this.catQuestions.length) {
+                this.catCurrentIndex = 0;
+            }
         } else {
             feedbackDiv.innerHTML = `<span class="error">❌ ${this.t('خطأ... الإجابة الصحيحة:', 'Wrong... correct answer:')} <strong>${correctAnswer}</strong></span>`;
+            // في حالة الخطأ، ننقل السؤال إلى نهاية القائمة (يظهر لاحقاً)
+            const wrongQuestion = this.catQuestions[this.catCurrentIndex];
+            this.catQuestions.splice(this.catCurrentIndex, 1);
+            this.catQuestions.push(wrongQuestion);
+            // المؤشر يبقى على نفس الموضع لأن المصفوفة تقلصت ثم أضفنا في الآخر
+            if (this.catCurrentIndex >= this.catQuestions.length) {
+                this.catCurrentIndex = this.catQuestions.length - 1;
+            }
         }
     }
     
-    // الانتقال للسؤال التالي بعد تأخير
+    // تحديث درجة العرض (المعروضة في الأعلى)
+    const scoreSpan = document.getElementById('catScoreDisplay');
+    if (scoreSpan) scoreSpan.textContent = this.catScore;
+    
     setTimeout(() => {
-        this.catCurrentIndex++;
         this.catWaiting = false;
-        if (this.catCurrentIndex < this.catQuestions.length) {
+        if (this.catQuestions.length > 0 && this.catActive) {
+            // إذا كان هناك أسئلة متبقية، نعرض السؤال التالي (المؤشر قد تغير)
             this.render();
-        } else {
+        } else if (this.catQuestions.length === 0) {
             this.endCatTest(true);
         }
     }, 1500);
 }
 
+showCatHint() {
+    const currentQ = this.catQuestions[this.catCurrentIndex];
+    if (!currentQ || !currentQ.hint) return;
+    const hintDiv = document.getElementById('catHint');
+    if (hintDiv) {
+        hintDiv.innerHTML = `💡 ${currentQ.hint}`;
+        hintDiv.style.display = 'block';
+        // اختياري: إخفاء التلميح بعد 5 ثواني
+        setTimeout(() => {
+            if (hintDiv) hintDiv.style.display = 'none';
+        }, 5000);
+    }
+}
+
 endCatTest(isComplete = false) {
     if (!this.catActive) return;
     this.catActive = false;
-    const total = this.catQuestions.length;
+    const total = window.catBank.length; // إجمالي الأسئلة الأصلية
     const message = isComplete 
         ? `🎉 ${this.t('انتهى الاختبار!', 'Test completed!')}\n\n${this.t('لقد أجبت إجابة صحيحة على', 'You answered correctly')} ${this.catScore} ${this.t('من أصل', 'out of')} ${total} ${this.t('سؤالاً', 'questions')}.\n\n${this.t('نسبتك:', 'Your percentage:')} ${Math.round((this.catScore/total)*100)}%`
-        : `⚠ ${this.t('تم إنهاء الاختبار قبل اكتماله.', 'Test ended before completion.')}\n\n${this.t('لقد أجبت على', 'You answered')} ${this.catScore} ${this.t('من أصل', 'out of')} ${this.catCurrentIndex} ${this.t('سؤال بشكل صحيح.', 'questions correctly.')}\n\n${this.t('هل تريد البدء من جديد؟', 'Do you want to restart?')}`;
+        : `⚠ ${this.t('تم إنهاء الاختبار قبل اكتماله.', 'Test ended before completion.')}\n\n${this.t('لقد أجبت على', 'You answered')} ${this.catScore} ${this.t('من أصل', 'out of')} ${total} ${this.t('سؤالاً بشكل صحيح.', 'questions correctly.')}\n\n${this.t('هل تريد البدء من جديد؟', 'Do you want to restart?')}`;
     
     if (confirm(message + '\n\n' + this.t('هل تريد العودة إلى القائمة الرئيسية؟', 'Return to home page?'))) {
         this.currentPage = 'home';
@@ -2701,16 +2745,12 @@ endCatTest(isComplete = false) {
         this.catActive = false;
         this.render();
     } else {
-        // إذا اختار عدم العودة، نعيد تعيين الاختبار
         if (!isComplete) {
-            this.catCurrentIndex = 0;
-            this.catScore = 0;
-            this.catActive = true;
-            this.render();
+            // إعادة تعيين الاختبار من البداية مع خلط جديد
+            this.startCatTest();
         }
     }
 }
-
     render() {
         const app = document.getElementById('app');
         if (!app) return;
@@ -2796,7 +2836,8 @@ if (this.currentPage === 'cat_test') {
         return `<div class="reading-card"><p>${this.t('لا توجد أسئلة', 'No questions')}</p><button class="hero-btn" data-action="goHome">${this.t('الرئيسية', 'Home')}</button></div>`;
     }
     const currentQ = this.catQuestions[this.catCurrentIndex];
-    const total = this.catQuestions.length;
+    const totalOriginal = window.catBank.length; // إجمالي الأسئلة الأصلية
+    const totalRemaining = this.catQuestions.length;
     const options = [...currentQ.options];
     // خلط الخيارات عشوائياً
     for (let i = options.length - 1; i > 0; i--) {
@@ -2807,15 +2848,18 @@ if (this.currentPage === 'cat_test') {
     return `
         <div class="reading-card cat-test-container">
             <div style="display:flex; justify-content:space-between; margin-bottom:15px; flex-wrap:wrap; gap:10px;">
-                <span class="cat-counter" style="background:#e2e8f0; padding:4px 12px; border-radius:20px;">${this.catCurrentIndex + 1} / ${total}</span>
-                <span class="cat-score" style="background:#10b981; color:white; padding:4px 12px; border-radius:20px;">✅ ${this.catScore}</span>
+                <span class="cat-counter" style="background:#e2e8f0; padding:4px 12px; border-radius:20px;">
+                    ${this.t('السؤال', 'Q')}: ${totalOriginal - totalRemaining + 1} / ${totalOriginal}
+                </span>
+                <span id="catScoreDisplay" class="cat-score" style="background:#10b981; color:white; padding:4px 12px; border-radius:20px;">✅ ${this.catScore}</span>
             </div>
             <div class="cat-sentence" style="font-size:1.2rem; text-align:center; margin:20px 0; padding:20px; background:#f8fafc; border-radius:16px;">
                 ${currentQ.sentence}
             </div>
-            <div id="catHint" class="cat-hint" style="color:#6b7280; font-size:0.9rem; margin:10px 0; text-align:center;">
-                ${currentQ.hint ? '💡 ' + currentQ.hint : ''}
+            <div style="text-align:left; margin-bottom:10px;">
+                <button id="catHintBtn" class="hero-btn" style="background:#f59e0b; padding:6px 12px; font-size:0.9rem;">💡 ${this.t('تلميح', 'Hint')}</button>
             </div>
+            <div id="catHint" class="cat-hint" style="color:#6b7280; font-size:0.9rem; margin:10px 0; text-align:center; display:none;"></div>
             <div class="quiz-options" id="catOptions">
                 ${options.map(opt => `
                     <button class="quiz-opt-btn cat-opt-btn" data-action="catAnswer" data-answer="${opt.replace(/"/g, '&quot;')}" data-correct="${currentQ.correct.replace(/"/g, '&quot;')}">
@@ -2829,7 +2873,6 @@ if (this.currentPage === 'cat_test') {
             </div>
         </div>
         <script>
-            // ربط الأحداث
             setTimeout(() => {
                 document.querySelectorAll('.cat-opt-btn').forEach(btn => {
                     btn.onclick = () => {
@@ -2839,11 +2882,13 @@ if (this.currentPage === 'cat_test') {
                     };
                 });
                 document.getElementById('catEndBtn')?.addEventListener('click', () => appInstance.endCatTest(false));
+                document.getElementById('catHintBtn')?.addEventListener('click', () => appInstance.showCatHint());
             }, 50);
         </script>
     `;
 }
-                if (this.currentPage === 'level_test_instructions') {
+ 
+        if (this.currentPage === 'level_test_instructions') {
             return `<main class="main-content">
                 <button class="hero-btn" data-action="goHome" style="margin-bottom:15px; background:#64748b;">← ${this.t('رجوع', 'Back')}</button>
                 <div class="reading-card">
