@@ -1,4 +1,3 @@
-// ====================== بداية الملف (مع إضافة CAT) ======================
 window.addEventListener('error', function(e) {
     alert('❌ خطأ في السطر: ' + e.lineno + '\nالملف: ' + e.filename + '\nالرسالة: ' + e.message);
     document.body.innerHTML = '<pre style="color:red; background:white; padding:10px;">خطأ في السطر: ' + e.lineno + '\n' + e.message + '</pre>';
