@@ -608,5 +608,381 @@ window.catBank = [
         correct: "Set some speed records.", 
         hint: "سجل أرقاماً للسرعة"
     },
-    
+    { 
+        id: "CAT_88", 
+        sentence: "For over 10 years, Brian has been a close ......of the family.", 
+        options: ["friend", "son", "doctor", "sailor"],
+        correct: "friend", 
+        hint: "صديق مقرب"
+    },
+    { 
+        id: "CAT_89", 
+        sentence: "Select the correct sentence.", 
+        options: [
+            "All and for once this argument can we just settle?", 
+            "Once and for all can this argument just we settle?", 
+            "Can we just settle this argument once and for all?", 
+            "Can we settle this argument just all and for once?"
+        ],
+        correct: "Can we just settle this argument once and for all?", 
+        hint: "جملة صحيحة لغوياً"
+    },
+    { 
+        id: "CAT_90", 
+        sentence: "We finished ......the house before we moved in.", 
+        options: ["paints", "paint", "painted", "painting"],
+        correct: "painting", 
+        hint: "بعد finish نستخدم ing"
+    },
+    { 
+        id: "CAT_91", 
+        sentence: "Jim: Those are my students in that room. Bob: So, ......must be my students in the room.", 
+        options: ["that", "these", "this", "their"],
+        correct: "these", 
+        hint: "هؤلاء (للجمع)"
+    },
+    { 
+        id: "CAT_92", 
+        sentence: "The planes were approaching to ......formation.", 
+        options: ["are landing", "have landed", "land", "landing"],
+        correct: "land", 
+        hint: "لأجل الهبوط"
+    },
+    { 
+        id: "CAT_93", 
+        sentence: "The Captain is ______ to his commander immediately.", 
+        options: ["reports", "will report", "to report", "shall report"],
+        correct: "to report", 
+        hint: "صيغة أمر مستقبلي (is to)"
+    },
+    { 
+        id: "CAT_94", 
+        sentence: "______ was the only option left to him.", 
+        options: ["Prayed", "To pray", "Is praying", "Prays"],
+        correct: "To pray", 
+        hint: "المصدر كفاعل للجملة"
+    },
+    { 
+        id: "CAT_95", 
+        sentence: "Wendell denied ______ that erroneous report.", 
+        options: ["write", "writing", "wrote", "written"],
+        correct: "writing", 
+        hint: "بعد deny نستخدم ing"
+    },
+    { 
+        id: "CAT_96", 
+        sentence: "My doctor suggested that my son ______ 30 minutes every day.", 
+        options: ["walked", "walks", "walk", "walking"],
+        correct: "walk", 
+        hint: "صيغة الاحتمال (subjunctive)"
+    },
+    { 
+        id: "CAT_97", 
+        sentence: "In order to extract zinc, ore bearing rocks are first ______ then the small particles are fed into a melting cauldron.", 
+        options: ["synchronized", "caramelized", "pulverized", "mechanized"],
+        correct: "pulverized", 
+        hint: "سحق الصخور"
+    },
+    { 
+        id: "CAT_98", 
+        sentence: "The tickets are ten dollars ......person.", 
+        options: ["on", "per", "with", "for"],
+        correct: "per", 
+        hint: "لكل شخص"
+    },
+    { 
+        id: "CAT_99", 
+        sentence: "A generation ago, a ......lived on the income of a single breadwinner.", 
+        options: [
+            "typical American middle-class family", 
+            "Middle-class family typical American", 
+            "Family typical middle-class American", 
+            "Middle-class American typical family"
+        ],
+        correct: "typical American middle-class family", 
+        hint: "ترتيب الصفات الصحيح"
+    },
+    { 
+        id: "CAT_100", 
+        sentence: "His reluctance ......in the competition stemmed from his sense of insecurity.", 
+        options: ["participating", "to participate", "participates", "participate"],
+        correct: "to participate", 
+        hint: "تردد في المشاركة"
+    },
+    { 
+        id: "CAT_101", 
+        sentence: "Kim 'peeked' into the hole.", 
+        options: ["climbed", "jumped", "fell", "glanced"],
+        correct: "glanced", 
+        hint: "ألقى نظرة خاطفة"
+    },
+    { 
+        id: "CAT_102", 
+        sentence: "She felt a ......of guilt for the way she had treated her son.", 
+        options: ["pang", "wisp", "series", "pack"],
+        correct: "pang", 
+        hint: "وخزة ضمير"
+    },
+    { 
+        id: "CAT_103", 
+        sentence: "Most of the United State was still unexplored ......in 1803.", 
+        options: ["territory", "estate", "universe", "valley"],
+        correct: "territory", 
+        hint: "أقاليم غير مستكشفة"
+    },
+    { 
+        id: "CAT_104", 
+        sentence: "______ locking the door, is there anything else I should do?", 
+        options: ["Providing", "Contrary to", "Besides", "As long as"],
+        correct: "Besides", 
+        hint: "بالإضافة إلى"
+    },
+    { 
+        id: "CAT_105", 
+        sentence: "Eating slowly is very important for proper ______", 
+        options: ["digestive", "digest", "digestion", "digestible"],
+        correct: "digestion", 
+        hint: "عملية الهضم"
+    },
+    { 
+        id: "CAT_106", 
+        sentence: "He did what he could with his ______ resources.", 
+        options: ["limit", "limiting", "limited", "to limit"],
+        correct: "limited", 
+        hint: "موارد محدودة"
+    },
+    { 
+        id: "CAT_107", 
+        sentence: "The president of the company is heavily ______ in the negotiations with the labor union.", 
+        options: ["instilled", "related", "engaged", "applied"],
+        correct: "engaged", 
+        hint: "منخرط في المفاوضات"
+    },
+    { 
+        id: "CAT_108", 
+        sentence: "Joe: Why is your face so red? Sam: I always get ______ when I climb the stairs.", 
+        options: ["relaxed", "unflustered", "reassured", "flushed"],
+        correct: "flushed", 
+        hint: "تورد الوجه (احمرار)"
+    },
+    { 
+        id: "CAT_109", 
+        sentence: "How much is the ______ to the new museum?", 
+        options: ["adventure", "admission", "advancement", "adjournment"],
+        correct: "admission", 
+        hint: "رسوم الدخول"
+    },
+    { 
+        id: "CAT_110", 
+        sentence: "All academic institutions were closed ______ the ice storm.", 
+        options: ["because", "on account of", "since", "if"],
+        correct: "on account of", 
+        hint: "بسبب (على حساب)"
+    },
+    { 
+        id: "CAT_111", 
+        sentence: "The prize goes to ______ completes the tasks first.", 
+        options: ["who", "whom", "whose", "whoever"],
+        correct: "whoever", 
+        hint: "أياً كان من"
+    },
+    { 
+        id: "CAT_112", 
+        sentence: "The Innovative design for that aircraft could be a ______ real form for the industry.", 
+        options: ["breakthrough", "breakdown", "breakout", "breakup"],
+        correct: "breakthrough", 
+        hint: "طفرة أو إنجاز"
+    },
+    { 
+        id: "CAT_113", 
+        sentence: "I thought the action scenes in the moves were beyond unbelievable. They were totally ______ .", 
+        options: ["credible", "absurd", "hasty", "brittle"],
+        correct: "absurd", 
+        hint: "سخيف أو غير منطقي"
+    },
+    { 
+        id: "CAT_114", 
+        sentence: "Aaron: Did you watch the news last night? Ruby: No, I must ______ .", 
+        options: ["have been sleeping", "sleep", "be sleeping", "have slept"],
+        correct: "have been sleeping", 
+        hint: "يجب أنني كنت نائماً"
+    },
+    { 
+        id: "CAT_115", 
+        sentence: "I had my gardener ______ some new flowers.", 
+        options: ["to plant", "plants", "plant", "planted"],
+        correct: "plant", 
+        hint: "صيغة السببية (Have + person + do)"
+    },
+    { 
+        id: "CAT_116", 
+        sentence: "With the children out of the house, jane ______ the opportunity to take a nap.", 
+        options: ["captured", "seized", "snatched", "clutched"],
+        correct: "seized", 
+        hint: "اقتنصت الفرصة"
+    },
+    { 
+        id: "CAT_117", 
+        sentence: "witness: you can't smoke her Paul: OK, I’ll ______.", 
+        options: ["put it out", "put it up", "put it off", "put it on"],
+        correct: "put it out", 
+        hint: "يطفئ السيجارة"
+    },
+    { 
+        id: "CAT_118", 
+        sentence: "When the paintings were first exhibited, they considered distasteful but later they ______ earn critical acclaim.", 
+        options: ["would", "could", "would rather", "had better"],
+        correct: "would", 
+        hint: "سوف (في الماضي)"
+    },
+    { 
+        id: "CAT_119", 
+        sentence: "Kerrie has been very quiet today. I think she is mad ______ me.", 
+        options: ["at", "in", "of", "to"],
+        correct: "at", 
+        hint: "غاضب من (Mad at)"
+    },
+    { 
+        id: "CAT_120", 
+        sentence: "Driving too fast on a foggy mountain road, the driver ______ off a cliff and was killed instantly.", 
+        options: ["trailed", "sneaked", "plunged", "shrugged"],
+        correct: "plunged", 
+        hint: "هوى أو سقط"
+    },
+    { 
+        id: "CAT_121", 
+        sentence: "Select the correct sentence.", 
+        options: [
+            "Should you have any questions, feel free to call me.", 
+            "To call me should you have any questions, feel free to call me.", 
+            "Feel free to call me, you should have any questions.", 
+            "Have any questions, you should feel free to call me."
+        ],
+        correct: "Should you have any questions, feel free to call me.", 
+        hint: "استبدال If بـ Should"
+    },
+    { 
+        id: "CAT_122", 
+        sentence: "The boss was very pleased that the project was ______ success.", 
+        options: ["a resounding", "an abysmal", "a mediocre", "an unattained"],
+        correct: "a resounding", 
+        hint: "نجاح ساحق"
+    },
+    { 
+        id: "CAT_123", 
+        sentence: "His actions 'constituted' an egregious violation of procedure.", 
+        options: ["oppressed", "unfavorable", "egregious", "agonizing"],
+        correct: "egregious", 
+        hint: "انتهاك صارخ"
+    },
+    { 
+        id: "CAT_124", 
+        sentence: "The newspaper ______ the president as saying he was undecided.", 
+        options: ["quoted", "insisted", "argued", "requested"],
+        correct: "quoted", 
+        hint: "اقتبس"
+    },
+    { 
+        id: "CAT_125", 
+        sentence: "______ there be any developments in the case, please contact us right away.", 
+        options: ["May", "Can", "Should", "Might"],
+        correct: "Should", 
+        hint: "في حالة وجود (رسمي)"
+    },
+    { 
+        id: "CAT_126", 
+        sentence: "Enlisted personnel ______ show respect for their officers.", 
+        options: ["are to", "might", "could", "are about to"],
+        correct: "are to", 
+        hint: "من واجبهم"
+    },
+    { 
+        id: "CAT_127", 
+        sentence: "John's disguise completely ______ me, I had no idea it was him.", 
+        options: ["dismissed", "cheated", "fooled", "ignored"],
+        correct: "fooled", 
+        hint: "خدعني"
+    },
+    { 
+        id: "CAT_128", 
+        sentence: "The man was ______ along on his crutches.", 
+        options: ["flowing", "slithering", "hobbling", "bubbling"],
+        correct: "hobbling", 
+        hint: "يمشي بعرج"
+    },
+    { 
+        id: "CAT_129", 
+        sentence: "Isabella loves to read when ______ rains.", 
+        options: ["she", "it", "her", "its"],
+        correct: "it", 
+        hint: "تستخدم للمناخ"
+    },
+    { 
+        id: "CAT_130", 
+        sentence: "Select the correct sentence.", 
+        options: [
+            "Sheila gave her niece several books.", 
+            "Sheila gave several books to her niece.", 
+            "Sheila to her niece gave several books.", 
+            "Sheila to her niece several books gave."
+        ],
+        correct: "Sheila gave her niece several books.", 
+        hint: "تركيب المفعول به"
+    },
+    { 
+        id: "CAT_131", 
+        sentence: "We always give ______ gifts on our birthdays.", 
+        options: ["each other", "another", "each", "other one"],
+        correct: "each other", 
+        hint: "بعضنا البعض"
+    },
+    { 
+        id: "CAT_132", 
+        sentence: "I don’t understand how to do this ______ you please help.", 
+        options: ["May", "Should", "Might", "Could"],
+        correct: "Could", 
+        hint: "طلب القدرة أو المساعدة"
+    },
+    { 
+        id: "CAT_133", 
+        sentence: "The medic used a ______ to stop the arm wound bleeding.", 
+        options: ["Stethoscope", "Tourniquet", "Scalpel", "Ventilator"],
+        correct: "Tourniquet", 
+        hint: "جهاز وقف النزيف"
+    },
+    { 
+        id: "CAT_134", 
+        sentence: "After the fire destroyed most of my belongings, there was nothing I could ______ from it.", 
+        options: ["scatter", "salvage", "emancipate", "endorse"],
+        correct: "salvage", 
+        hint: "إنقاذ أو استعادة"
+    },
+    { 
+        id: "CAT_135", 
+        sentence: "Select the correct sentence", 
+        options: [
+            "I don't know where the bank is.", 
+            "I don't know where is the bank.", 
+            "Where is the bank I don't know.", 
+            "Where the is bank I don't know."
+        ],
+        correct: "I don't know where the bank is.", 
+        hint: "سؤال غير مباشر"
+    },
+    { 
+        id: "CAT_136", 
+        sentence: "When the paintings were first exhibited they were considered distasteful, but later they ______ earn critical acclaim.", 
+        options: ["would", "could", "would rather", "had better"],
+        correct: "would", 
+        hint: "مكرر (المستقبل في الماضي)"
+    },
+    { 
+        id: "CAT_137", 
+        sentence: "The half storm was so violent, it ______ their car with huge chunks of ice:", 
+        options: ["drenched", "crowned", "dabbed", "pelted"],
+        correct: "pelted", 
+        hint: "انهال عليها (بالثلج)"
+    },
+       
+]; 
 ];
