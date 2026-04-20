@@ -2628,24 +2628,25 @@ if (action === 'catAnswer') {
     }
 
     // ====================== دوال اختبار CAT (تم إصلاحها بالكامل) ======================
-    startCatTest() {
-        if (!window.catBank || window.catBank.length === 0) {
-            alert(this.t('⚠️ لا توجد أسئلة في بنك CAT.', '⚠️ No questions in CAT bank.'));
-            return;
-        }
-        let allQuestions = [...window.catBank];
-        for (let i = allQuestions.length - 1; i > 0; i--) {
-            const j = Math.floor(Math.random() * (i + 1));
-            [allQuestions[i], allQuestions[j]] = [allQuestions[j], allQuestions[i]];
-        }
-        this.catQuestions = allQuestions;
-        this.catCurrentIndex = 0;
-        this.catScore = 0;
-        this.catActive = true;
-        this.catWaiting = false;
-        this.currentPage = 'cat_test';
-        this.render();
+startCatTest() {
+    if (!window.catBank || window.catBank.length === 0) {
+        alert(this.t('⚠️ لا توجد أسئلة في بنك CAT.', '⚠️ No questions in CAT bank.'));
+        return;
     }
+    let allQuestions = [...window.catBank];
+    for (let i = allQuestions.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [allQuestions[i], allQuestions[j]] = [allQuestions[j], allQuestions[i]];
+    }
+    this.catQuestions = allQuestions;
+    this.catCurrentIndex = 0;
+    this.catScore = 0;
+    this.catActive = true;
+    this.catWaiting = false;
+    this.catAnsweredCount = 0;  // <-- أضف هذا السطر
+    this.currentPage = 'cat_test';
+    this.render();
+}
 
 checkCatAnswer(selectedAnswer, correctAnswer, btnElement) {
     if (!this.catActive || this.catWaiting) return;
@@ -2658,12 +2659,14 @@ checkCatAnswer(selectedAnswer, correctAnswer, btnElement) {
     }
     
     this.catWaiting = true;
+    this.catAnsweredCount++;  // <-- هذا هو التعديل المطلوب (زيادة عدد المحاولات)
     
     const selected = selectedAnswer.trim().toLowerCase();
     const correct = correctAnswer.trim().toLowerCase();
     const isCorrect = (selected === correct);
     
     this.playTone(isCorrect ? 'correct' : 'error');
+
     
     // تعطيل جميع الأزرار وتلوينها
     const allOptions = document.querySelectorAll('.cat-opt-btn');
@@ -2849,12 +2852,11 @@ checkCatAnswer(selectedAnswer, correctAnswer, btnElement) {
     
     return `
         <div class="reading-card cat-test-container">
-            <div style="display:flex; justify-content:space-between; margin-bottom:15px; flex-wrap:wrap; gap:10px;">
-                <span class="cat-counter" style="background:#e2e8f0; padding:4px 12px; border-radius:20px;">
-                    ${this.t('السؤال', 'Q')}: ${totalOriginal - totalRemaining + 1} / ${totalOriginal}
-                </span>
-                <span id="catScoreDisplay" class="cat-score" style="background:#10b981; color:white; padding:4px 12px; border-radius:20px;">✅ ${this.catScore}</span>
-            </div>
+       <div style="display:flex; justify-content:center; margin-bottom:15px;">
+    <span class="cat-counter" style="background:#10b981; color:white; padding:4px 16px; border-radius:20px; font-weight:bold;">
+        ✅ ${this.catScore} / ${this.catAnsweredCount}
+    </span>
+</div>
             <div class="cat-sentence" style="font-size:1.2rem; text-align:center; margin:20px 0; padding:20px; background:#f8fafc; border-radius:16px;">
                 ${this.escapeHtml(currentQ.sentence)}
             </div>
