@@ -34694,6 +34694,1462 @@ window.gapfillDB = {
             originalSentence: "Any hostile act against another nation's satellites could be treated as an act of war."
         }
     ],
+   "308-1": [ // Predicated
+        {
+            sentence: "The entire strategy is _______ on the assumption that trade will remain open and unrestricted.",
+            options: ["Predicated", "Manifesting", "Overlapping", "Hinged"],
+            originalSentence: "The entire strategy is predicated on the assumption that trade will remain open and unrestricted."
+        }
+    ],
+    "308-2": [ // Comparative advantage
+        {
+            sentence: "The theory of _______ argues that countries should specialise in what they produce most efficiently.",
+            options: ["Comparative advantage", "Paradigm shift", "Geoeconomic", "Resilience"],
+            originalSentence: "The theory of comparative advantage argues that countries should specialise in what they produce most efficiently."
+        }
+    ],
+    "308-3": [ // Paradigm shift
+        {
+            sentence: "The move away from free trade toward economic nationalism represents a fundamental _______.",
+            options: ["Paradigm shift", "Comparative advantage", "Confluence", "Diversification"],
+            originalSentence: "The move away from free trade toward economic nationalism represents a fundamental paradigm shift."
+        }
+    ],
+    "308-4": [ // Reigned
+        {
+            sentence: "For decades, the principle of open global markets _______ as the dominant economic orthodoxy.",
+            options: ["Reigned", "Manifested", "Hinged", "Fractured"],
+            originalSentence: "For decades, the principle of open global markets reigned as the dominant economic orthodoxy."
+        }
+    ],
+    "308-5": [ // Resilience
+        {
+            sentence: "Building supply chain _______ has become a top priority for governments after the pandemic disruptions.",
+            options: ["Resilience", "Fragility", "Viability", "Diversification"],
+            originalSentence: "Building supply chain resilience has become a top priority for governments after the pandemic disruptions."
+        }
+    ],
+    "308-6": [ // Geoeconomic
+        {
+            sentence: "Trade policy is increasingly shaped by _______ considerations rather than purely commercial ones.",
+            options: ["Geoeconomic", "Systemic", "Protectionist", "Sophisticated"],
+            originalSentence: "Trade policy is increasingly shaped by geoeconomic considerations rather than purely commercial ones."
+        }
+    ],
+    "308-7": [ // Imperatives
+        {
+            sentence: "Security _______ are now driving industrial policy in ways that economists did not anticipate.",
+            options: ["Imperatives", "Redundancies", "Subsidies", "Vulnerabilities"],
+            originalSentence: "Security imperatives are now driving industrial policy in ways that economists did not anticipate."
+        }
+    ],
+    "308-8": [ // Confluence
+        {
+            sentence: "A _______ of geopolitical tension, pandemic disruption, and climate pressures is reshaping global trade.",
+            options: ["Confluence", "Specter", "Fragility", "Paradigm shift"],
+            originalSentence: "A confluence of geopolitical tension, pandemic disruption, and climate pressures is reshaping global trade."
+        }
+    ],
+    "308-9": [ // Systemic
+        {
+            sentence: "The financial crisis exposed deep _______ weaknesses in how global supply chains were structured.",
+            options: ["Systemic", "Geoeconomic", "Protectionist", "Sophisticated"],
+            originalSentence: "The financial crisis exposed deep systemic weaknesses in how global supply chains were structured."
+        }
+    ],
+    "308-10": [ // Fragility
+        {
+            sentence: "The _______ of just-in-time manufacturing became painfully apparent during the global chip shortage.",
+            options: ["Fragility", "Resilience", "Viability", "Diversification"],
+            originalSentence: "The fragility of just-in-time manufacturing became painfully apparent during the global chip shortage."
+        }
+    ],
+    "308-11": [ // Interconnected
+        {
+            sentence: "In a deeply _______ global economy, a crisis in one region quickly spreads to others.",
+            options: ["Interconnected", "Overlapping", "Sophisticated", "Systemic"],
+            originalSentence: "In a deeply interconnected global economy, a crisis in one region quickly spreads to others."
+        }
+    ],
+    "308-12": [ // Specter
+        {
+            sentence: "The _______ of a prolonged trade war between the two superpowers is alarming investors worldwide.",
+            options: ["Specter", "Confluence", "Fragility", "Acknowledgment"],
+            originalSentence: "The specter of a prolonged trade war between the two superpowers is alarming investors worldwide."
+        }
+    ],
+    "308-13": [ // Interdependence
+        {
+            sentence: "Deep economic _______ between rivals makes full decoupling extremely costly for both sides.",
+            options: ["Interdependence", "Disengagement", "Decoupling", "Resilience"],
+            originalSentence: "Deep economic interdependence between rivals makes full decoupling extremely costly for both sides."
+        }
+    ],
+    "308-14": [ // Acknowledgment
+        {
+            sentence: "There is a growing _______ among policymakers that globalisation has created dangerous dependencies.",
+            options: ["Acknowledgment", "Specter", "Confluence", "Paradigm shift"],
+            originalSentence: "There is a growing acknowledgment among policymakers that globalisation has created dangerous dependencies."
+        }
+    ],
+    "308-15": [ // Semiconductors
+        {
+            sentence: "The race to dominate _______ production has become a central front in the rivalry between major powers.",
+            options: ["Semiconductors", "Subsidies", "Redundancies", "Imperatives"],
+            originalSentence: "The race to dominate semiconductors production has become a central front in the rivalry between major powers."
+        }
+    ],
+    "308-16": [ // Vulnerabilities
+        {
+            sentence: "Governments are conducting audits to identify _______ in their most critical supply chains.",
+            options: ["Vulnerabilities", "Redundancies", "Subsidies", "Imperatives"],
+            originalSentence: "Governments are conducting audits to identify vulnerabilities in their most critical supply chains."
+        }
+    ],
+    "308-17": [ // Manifesting
+        {
+            sentence: "The shift away from globalisation is _______ itself in rising tariffs and new industrial policies.",
+            options: ["Manifesting", "Hinged", "Fractured", "Reigned"],
+            originalSentence: "The shift away from globalisation is manifesting itself in rising tariffs and new industrial policies."
+        }
+    ],
+    "308-18": [ // Overlapping
+        {
+            sentence: "The _______ interests of trade partners and strategic rivals complicate every major policy decision.",
+            options: ["Overlapping", "Interconnected", "Systemic", "Sophisticated"],
+            originalSentence: "The overlapping interests of trade partners and strategic rivals complicate every major policy decision."
+        }
+    ],
+    "308-19": [ // Decoupling
+        {
+            sentence: "Complete economic _______ from China would impose enormous costs on Western economies.",
+            options: ["Decoupling", "Reshoring", "Disengagement", "Diversification"],
+            originalSentence: "Complete economic decoupling from China would impose enormous costs on Western economies."
+        }
+    ],
+    "308-20": [ // Reshoring
+        {
+            sentence: "_______ of semiconductor manufacturing to domestic sites is expensive but seen as strategically necessary.",
+            options: ["Reshoring", "Decoupling", "Disengagement", "Diversification"],
+            originalSentence: "Reshoring of semiconductor manufacturing to domestic sites is expensive but seen as strategically necessary."
+        }
+    ],
+    "308-21": [ // Disengagement
+        {
+            sentence: "Gradual economic _______ from an adversary requires years of careful planning and significant investment.",
+            options: ["Disengagement", "Decoupling", "Reshoring", "Diversification"],
+            originalSentence: "Gradual economic disengagement from an adversary requires years of careful planning and significant investment."
+        }
+    ],
+    "308-22": [ // Subsidies
+        {
+            sentence: "Government _______ for domestic chip manufacturers have sparked complaints of unfair competition.",
+            options: ["Subsidies", "Redundancies", "Imperatives", "Vulnerabilities"],
+            originalSentence: "Government subsidies for domestic chip manufacturers have sparked complaints of unfair competition."
+        }
+    ],
+    "308-23": [ // Redundancies
+        {
+            sentence: "Building _______ into supply chains means holding extra stock and using multiple suppliers.",
+            options: ["Redundancies", "Subsidies", "Vulnerabilities", "Imperatives"],
+            originalSentence: "Building redundancies into supply chains means holding extra stock and using multiple suppliers."
+        }
+    ],
+    "308-24": [ // Mitigating
+        {
+            sentence: "Diversifying suppliers is one of the most effective strategies for _______ supply chain risk.",
+            options: ["Mitigating", "Fracturing", "Decoupling", "Reshoring"],
+            originalSentence: "Diversifying suppliers is one of the most effective strategies for mitigating supply chain risk."
+        }
+    ],
+    "308-25": [ // Retaliatory
+        {
+            sentence: "The imposition of new tariffs triggered a swift _______ response from the affected trading partner.",
+            options: ["Retaliatory", "Protectionist", "Expedient", "Geoeconomic"],
+            originalSentence: "The imposition of new tariffs triggered a swift retaliatory response from the affected trading partner."
+        }
+    ],
+    "308-26": [ // Protectionist
+        {
+            sentence: "_______ policies may shield domestic industries in the short term but often reduce overall economic efficiency.",
+            options: ["Protectionist", "Retaliatory", "Geoeconomic", "Systemic"],
+            originalSentence: "Protectionist policies may shield domestic industries in the short term but often reduce overall economic efficiency."
+        }
+    ],
+    "308-27": [ // Fracture
+        {
+            sentence: "Analysts warn that trade wars could permanently _______ the multilateral system built after World War Two.",
+            options: ["Fracture", "Hinge", "Manifest", "Reign"],
+            originalSentence: "Analysts warn that trade wars could permanently fracture the multilateral system built after World War Two."
+        }
+    ],
+    "308-28": [ // Expedient
+        {
+            sentence: "Imposing tariffs may seem politically _______ but can have severe long-term economic consequences.",
+            options: ["Expedient", "Sophisticated", "Systemic", "Geoeconomic"],
+            originalSentence: "Imposing tariffs may seem politically expedient but can have severe long-term economic consequences."
+        }
+    ],
+    "308-29": [ // Inadvertently
+        {
+            sentence: "Aggressive subsidy programmes can _______ trigger retaliatory measures from trading partners.",
+            options: ["Inadvertently", "Fundamentally", "Crucially", "Simultaneously"],
+            originalSentence: "Aggressive subsidy programmes can inadvertently trigger retaliatory measures from trading partners."
+        }
+    ],
+    "308-30": [ // Diversification
+        {
+            sentence: "Supply chain _______ reduces dependence on any single country or supplier for critical goods.",
+            options: ["Diversification", "Resilience", "Viability", "Fragility"],
+            originalSentence: "Supply chain diversification reduces dependence on any single country or supplier for critical goods."
+        }
+    ],
+    "308-31": [ // Viability
+        {
+            sentence: "The long-term economic _______ of full decoupling from major trading partners remains highly questionable.",
+            options: ["Viability", "Resilience", "Fragility", "Diversification"],
+            originalSentence: "The long-term economic viability of full decoupling from major trading partners remains highly questionable."
+        }
+    ],
+    "308-32": [ // Hinge
+        {
+            sentence: "The success of the entire industrial strategy will _______ on whether domestic production can scale quickly enough.",
+            options: ["Hinge", "Fracture", "Manifest", "Reign"],
+            originalSentence: "The success of the entire industrial strategy will hinge on whether domestic production can scale quickly enough."
+        }
+    ],
+    "308-33": [ // Sophisticated
+        {
+            sentence: "Producing _______ microchips requires highly specialised knowledge and infrastructure that few countries possess.",
+            options: ["Sophisticated", "Systemic", "Geoeconomic", "Protectionist"],
+            originalSentence: "Producing sophisticated microchips requires highly specialised knowledge and infrastructure that few countries possess."
+        }
+    ],
+    "309-1": [ // Soft Power
+        {
+            sentence: "_______ allows a country to influence others through attraction and persuasion rather than force.",
+            options: ["Soft Power", "Coercion", "Statecraft", "Public diplomacy"],
+            originalSentence: "Soft power allows a country to influence others through attraction and persuasion rather than force."
+        }
+    ],
+    "309-2": [ // Co-option
+        {
+            sentence: "_______ involves winning over foreign audiences by making your values and culture appear genuinely attractive.",
+            options: ["Co-option", "Coercion", "Soft Power", "Public diplomacy"],
+            originalSentence: "Co-option involves winning over foreign audiences by making your values and culture appear genuinely attractive."
+        }
+    ],
+    "309-3": [ // Coercion
+        {
+            sentence: "Unlike soft power, _______ relies on threats, sanctions, and force to change the behaviour of others.",
+            options: ["Coercion", "Co-option", "Statecraft", "Legitimacy"],
+            originalSentence: "Unlike soft power, coercion relies on threats, sanctions, and force to change the behaviour of others."
+        }
+    ],
+    "309-4": [ // Cornerstone
+        {
+            sentence: "Cultural diplomacy has long been a _______ of how nations build influence beyond their borders.",
+            options: ["Cornerstone", "Narrative", "Coherence", "Discourse"],
+            originalSentence: "Cultural diplomacy has long been a cornerstone of how nations build influence beyond their borders."
+        }
+    ],
+    "309-5": [ // Statecraft
+        {
+            sentence: "Effective _______ requires the ability to deploy both hard and soft power at the right moment.",
+            options: ["Statecraft", "Public diplomacy", "Legitimacy", "Resilience"],
+            originalSentence: "Effective statecraft requires the ability to deploy both hard and soft power at the right moment."
+        }
+    ],
+    "309-6": [ // Disseminated
+        {
+            sentence: "Propaganda is most effective when it is _______ through trusted and credible-seeming channels.",
+            options: ["Disseminated", "Fabricated", "Neutralized", "Eroded"],
+            originalSentence: "Propaganda is most effective when it is disseminated through trusted and credible-seeming channels."
+        }
+    ],
+    "309-7": [ // Public diplomacy
+        {
+            sentence: "_______ involves engaging directly with foreign populations to shape how they perceive your country.",
+            options: ["Public diplomacy", "Information Warfare", "Statecraft", "Soft Power"],
+            originalSentence: "Public diplomacy involves engaging directly with foreign populations to shape how they perceive your country."
+        }
+    ],
+    "309-8": [ // Legitimacy
+        {
+            sentence: "A government that loses domestic _______ will find its soft power abroad diminishing rapidly.",
+            options: ["Legitimacy", "Coherence", "Resilience", "Narrative"],
+            originalSentence: "A government that loses domestic legitimacy will find its soft power abroad diminishing rapidly."
+        }
+    ],
+    "309-9": [ // Desirable
+        {
+            sentence: "Soft power works when a country's culture and values are seen as genuinely _______ by others.",
+            options: ["Desirable", "Plausible", "Verifiable", "Malicious"],
+            originalSentence: "Soft power works when a country's culture and values are seen as genuinely desirable by others."
+        }
+    ],
+    "309-10": [ // Transmission
+        {
+            sentence: "The _______ of ideas across borders has been transformed by the rise of digital platforms.",
+            options: ["Transmission", "Reception", "Coherence", "Discourse"],
+            originalSentence: "The transmission of ideas across borders has been transformed by the rise of digital platforms."
+        }
+    ],
+    "309-11": [ // Reception
+        {
+            sentence: "The _______ of foreign narratives by domestic audiences depends heavily on existing cultural attitudes.",
+            options: ["Reception", "Transmission", "Coherence", "Narrative"],
+            originalSentence: "The reception of foreign narratives by domestic audiences depends heavily on existing cultural attitudes."
+        }
+    ],
+    "309-12": [ // Unprecedented
+        {
+            sentence: "Social media has given state and non-state actors _______ reach in shaping global public opinion.",
+            options: ["Unprecedented", "Plausible", "Verifiable", "Intrinsically"],
+            originalSentence: "Social media has given state and non-state actors unprecedented reach in shaping global public opinion."
+        }
+    ],
+    "309-13": [ // Gatekeepers
+        {
+            sentence: "Traditional media _______ have lost their ability to control the flow of information in the digital age.",
+            options: ["Gatekeepers", "Deepfakes", "Narratives", "Discourses"],
+            originalSentence: "Traditional media gatekeepers have lost their ability to control the flow of information in the digital age."
+        }
+    ],
+    "309-14": [ // Information Warfare
+        {
+            sentence: "_______ seeks to manipulate the perceptions and decisions of adversaries through targeted deception.",
+            options: ["Information Warfare", "Public diplomacy", "Statecraft", "Soft Power"],
+            originalSentence: "Information warfare seeks to manipulate the perceptions and decisions of adversaries through targeted deception."
+        }
+    ],
+    "309-15": [ // Destabilize
+        {
+            sentence: "Foreign actors use disinformation campaigns to _______ democratic institutions and erode public trust.",
+            options: ["Destabilize", "Neutralize", "Erode", "Safeguard"],
+            originalSentence: "Foreign actors use disinformation campaigns to destabilize democratic institutions and erode public trust."
+        }
+    ],
+    "309-16": [ // Deepfakes
+        {
+            sentence: "_______ pose a severe threat to truth because they can make fabricated events appear entirely convincing.",
+            options: ["Deepfakes", "Micro-messaging", "Gatekeepers", "Narratives"],
+            originalSentence: "Deepfakes pose a severe threat to truth because they can make fabricated events appear entirely convincing."
+        }
+    ],
+    "309-17": [ // Micro-messaging
+        {
+            sentence: "Political campaigns now use _______ to deliver highly personalised content to specific voter groups.",
+            options: ["Micro-messaging", "Deepfakes", "Public diplomacy", "Transmission"],
+            originalSentence: "Political campaigns now use micro-messaging to deliver highly personalised content to specific voter groups."
+        }
+    ],
+    "309-18": [ // Erode
+        {
+            sentence: "Persistent exposure to disinformation can gradually _______ a society's ability to distinguish fact from fiction.",
+            options: ["Erode", "Destabilize", "Neutralize", "Safeguard"],
+            originalSentence: "Persistent exposure to disinformation can gradually erode a society's ability to distinguish fact from fiction."
+        }
+    ],
+    "309-19": [ // Coherence
+        {
+            sentence: "A successful information strategy depends on the _______ of its message across all platforms and channels.",
+            options: ["Coherence", "Narrative", "Discourse", "Legitimacy"],
+            originalSentence: "A successful information strategy depends on the coherence of its message across all platforms and channels."
+        }
+    ],
+    "309-20": [ // Narrative
+        {
+            sentence: "Controlling the dominant _______ in a conflict is often as important as winning on the battlefield.",
+            options: ["Narrative", "Coherence", "Discourse", "Transmission"],
+            originalSentence: "Controlling the dominant narrative in a conflict is often as important as winning on the battlefield."
+        }
+    ],
+    "309-21": [ // Epistemological
+        {
+            sentence: "The spread of disinformation creates an _______ crisis in which citizens no longer agree on basic facts.",
+            options: ["Epistemological", "Plausible", "Verifiable", "Intrinsically"],
+            originalSentence: "The spread of disinformation creates an epistemological crisis in which citizens no longer agree on basic facts."
+        }
+    ],
+    "309-22": [ // Ambiguity
+        {
+            sentence: "Strategic _______ in messaging makes it harder for audiences to identify the true source of a campaign.",
+            options: ["Ambiguity", "Coherence", "Narrative", "Discourse"],
+            originalSentence: "Strategic ambiguity in messaging makes it harder for audiences to identify the true source of a campaign."
+        }
+    ],
+    "309-23": [ // Plausible
+        {
+            sentence: "Effective disinformation is not obviously false — it must appear entirely _______ to its target audience.",
+            options: ["Plausible", "Verifiable", "Desirable", "Malicious"],
+            originalSentence: "Effective disinformation is not obviously false — it must appear entirely plausible to its target audience."
+        }
+    ],
+    "309-24": [ // Fabricated
+        {
+            sentence: "The investigation revealed that several viral news stories had been entirely _______ by a foreign operation.",
+            options: ["Fabricated", "Disseminated", "Neutralized", "Eroded"],
+            originalSentence: "The investigation revealed that several viral news stories had been entirely fabricated by a foreign operation."
+        }
+    ],
+    "309-25": [ // Discourse
+        {
+            sentence: "Foreign interference in public _______ undermines the quality of democratic debate and decision-making.",
+            options: ["Discourse", "Narrative", "Coherence", "Transmission"],
+            originalSentence: "Foreign interference in public discourse undermines the quality of democratic debate and decision-making."
+        }
+    ],
+    "309-26": [ // Paralyzing
+        {
+            sentence: "Information overload can have a _______ effect on citizens, making them unable to form clear judgements.",
+            options: ["Paralyzing", "Eroding", "Destabilizing", "Neutralizing"],
+            originalSentence: "Information overload can have a paralyzing effect on citizens, making them unable to form clear judgements."
+        }
+    ],
+    "309-27": [ // Resilience
+        {
+            sentence: "Building societal _______ against disinformation requires sustained investment in media literacy education.",
+            options: ["Resilience", "Legitimacy", "Coherence", "Safeguard"],
+            originalSentence: "Building societal resilience against disinformation requires sustained investment in media literacy education."
+        }
+    ],
+    "309-28": [ // Neutralize
+        {
+            sentence: "Rapid fact-checking and transparent communication can help _______ the impact of disinformation campaigns.",
+            options: ["Neutralize", "Erode", "Destabilize", "Safeguard"],
+            originalSentence: "Rapid fact-checking and transparent communication can help neutralize the impact of disinformation campaigns."
+        }
+    ],
+    "309-29": [ // Malicious
+        {
+            sentence: "Governments must develop the legal tools to identify and remove _______ content from public platforms.",
+            options: ["Malicious", "Plausible", "Fabricated", "Verifiable"],
+            originalSentence: "Governments must develop the legal tools to identify and remove malicious content from public platforms."
+        }
+    ],
+    "309-30": [ // Contingent upon
+        {
+            sentence: "The long-term success of any soft power strategy is _______ the genuine attractiveness of a nation's values.",
+            options: ["Contingent upon", "Intrinsically", "Plausibly", "Verifiably"],
+            originalSentence: "The long-term success of any soft power strategy is contingent upon the genuine attractiveness of a nation's values."
+        }
+    ],
+    "309-31": [ // Safeguard
+        {
+            sentence: "Democratic governments have a duty to _______ the integrity of the information environment.",
+            options: ["Safeguard", "Neutralize", "Erode", "Destabilize"],
+            originalSentence: "Democratic governments have a duty to safeguard the integrity of the information environment."
+        }
+    ],
+    "309-32": [ // Corrosion
+        {
+            sentence: "The slow _______ of trust in public institutions is one of the most damaging effects of disinformation.",
+            options: ["Corrosion", "Resilience", "Coherence", "Legitimacy"],
+            originalSentence: "The slow corrosion of trust in public institutions is one of the most damaging effects of disinformation."
+        }
+    ],
+    "309-33": [ // Verifiable
+        {
+            sentence: "In an era of deepfakes, citizens must demand that information be _______ before acting on it.",
+            options: ["Verifiable", "Plausible", "Desirable", "Malicious"],
+            originalSentence: "In an era of deepfakes, citizens must demand that information be verifiable before acting on it."
+        }
+    ],
+    "309-34": [ // Intrinsically
+        {
+            sentence: "Soft power is _______ tied to a country's domestic behaviour — hypocrisy abroad destroys credibility.",
+            options: ["Intrinsically", "Fundamentally", "Crucially", "Inadvertently"],
+            originalSentence: "Soft power is intrinsically tied to a country's domestic behaviour — hypocrisy abroad destroys credibility."
+        }
+    ],
+    "310-1": [ // Rapid advancement
+        {
+            sentence: "The _______ of artificial intelligence is transforming every aspect of modern warfare.",
+            options: ["Rapid advancement", "Normative debate", "Ethical framework", "Moral hazard"],
+            originalSentence: "The rapid advancement of artificial intelligence is transforming every aspect of modern warfare."
+        }
+    ],
+    "310-2": [ // Lethal
+        {
+            sentence: "The deployment of _______ autonomous weapons without human oversight raises profound ethical questions.",
+            options: ["Lethal", "Autonomous", "Foundational", "Excessive"],
+            originalSentence: "The deployment of lethal autonomous weapons without human oversight raises profound ethical questions."
+        }
+    ],
+    "310-3": [ // Autonomous
+        {
+            sentence: "_______ weapons systems can select and engage targets without any direct human command.",
+            options: ["Autonomous", "Lethal", "Foundational", "Contested"],
+            originalSentence: "Autonomous weapons systems can select and engage targets without any direct human command."
+        }
+    ],
+    "310-4": [ // Engaging targets
+        {
+            sentence: "The system is capable of _______ at speeds far beyond what any human operator could match.",
+            options: ["Engaging targets", "Delegating decisions", "Undermining norms", "Overriding controls"],
+            originalSentence: "The system is capable of engaging targets at speeds far beyond what any human operator could match."
+        }
+    ],
+    "310-5": [ // Human intervention
+        {
+            sentence: "Critics argue that removing _______ from lethal decisions crosses a fundamental moral line.",
+            options: ["Human intervention", "Authorization", "Supervision", "Adherence"],
+            originalSentence: "Critics argue that removing human intervention from lethal decisions crosses a fundamental moral line."
+        }
+    ],
+    "310-6": [ // Profound
+        {
+            sentence: "The use of autonomous weapons raises _______ questions about responsibility and the laws of war.",
+            options: ["Profound", "Excessive", "Foundational", "Susceptible"],
+            originalSentence: "The use of autonomous weapons raises profound questions about responsibility and the laws of war."
+        }
+    ],
+    "310-7": [ // Armed conflict
+        {
+            sentence: "International humanitarian law sets strict limits on how _______ may be conducted.",
+            options: ["Armed conflict", "Normative debate", "Criminal prosecution", "Moral hazard"],
+            originalSentence: "International humanitarian law sets strict limits on how armed conflict may be conducted."
+        }
+    ],
+    "310-8": [ // Underpinning
+        {
+            sentence: "The legal principles _______ the laws of war were developed long before autonomous weapons existed.",
+            options: ["Underpinning", "Overriding", "Delegating", "Breaching"],
+            originalSentence: "The legal principles underpinning the laws of war were developed long before autonomous weapons existed."
+        }
+    ],
+    "310-9": [ // Normative debate
+        {
+            sentence: "The _______ around killer robots has intensified as the technology moves closer to deployment.",
+            options: ["Normative debate", "Ethical framework", "Deterrent effect", "Moral hazard"],
+            originalSentence: "The normative debate around killer robots has intensified as the technology moves closer to deployment."
+        }
+    ],
+    "310-10": [ // Proponents
+        {
+            sentence: "_______ of autonomous weapons argue that they could reduce casualties by removing humans from danger.",
+            options: ["Proponents", "Advocates", "Combatants", "Supervisors"],
+            originalSentence: "Proponents of autonomous weapons argue that they could reduce casualties by removing humans from danger."
+        }
+    ],
+    "310-11": [ // Delegating
+        {
+            sentence: "_______ the decision to kill to a machine fundamentally challenges our understanding of moral responsibility.",
+            options: ["Delegating", "Overriding", "Breaching", "Undermining"],
+            originalSentence: "Delegating the decision to kill to a machine fundamentally challenges our understanding of moral responsibility."
+        }
+    ],
+    "310-12": [ // Breaches
+        {
+            sentence: "Any weapon that cannot distinguish between civilians and soldiers automatically _______ international law.",
+            options: ["Breaches", "Undermines", "Overrides", "Delegates"],
+            originalSentence: "Any weapon that cannot distinguish between civilians and soldiers automatically breaches international law."
+        }
+    ],
+    "310-13": [ // Human dignity
+        {
+            sentence: "Opponents argue that allowing a machine to decide who lives and dies violates basic _______.",
+            options: ["Human dignity", "Moral hazard", "Deterrent effect", "Normative debate"],
+            originalSentence: "Opponents argue that allowing a machine to decide who lives and dies violates basic human dignity."
+        }
+    ],
+    "310-14": [ // Moral hazard
+        {
+            sentence: "Autonomous weapons create a serious _______ by making it easier for states to go to war without political cost.",
+            options: ["Moral hazard", "Deterrent effect", "Normative debate", "Ethical framework"],
+            originalSentence: "Autonomous weapons create a serious moral hazard by making it easier for states to go to war without political cost."
+        }
+    ],
+    "310-15": [ // Nuanced judgment
+        {
+            sentence: "Decisions on the battlefield often require _______ that no algorithm can currently replicate.",
+            options: ["Nuanced judgment", "Human intervention", "Authorization", "Supervision"],
+            originalSentence: "Decisions on the battlefield often require nuanced judgment that no algorithm can currently replicate."
+        }
+    ],
+    "310-16": [ // Distinction
+        {
+            sentence: "The principle of _______ requires combatants to always differentiate between military and civilian targets.",
+            options: ["Distinction", "Proportionality", "Adherence", "Accountability"],
+            originalSentence: "The principle of distinction requires combatants to always differentiate between military and civilian targets."
+        }
+    ],
+    "310-17": [ // Combatants
+        {
+            sentence: "Under international law, only legitimate _______ may be targeted during an armed conflict.",
+            options: ["Combatants", "Proponents", "Advocates", "Supervisors"],
+            originalSentence: "Under international law, only legitimate combatants may be targeted during an armed conflict."
+        }
+    ],
+    "310-18": [ // Proportionality
+        {
+            sentence: "The principle of _______ prohibits attacks where civilian harm would clearly outweigh the military advantage.",
+            options: ["Proportionality", "Distinction", "Adherence", "Authorization"],
+            originalSentence: "The principle of proportionality prohibits attacks where civilian harm would clearly outweigh the military advantage."
+        }
+    ],
+    "310-19": [ // Excessive
+        {
+            sentence: "An attack that causes _______ civilian casualties relative to its military objective violates the laws of war.",
+            options: ["Excessive", "Autonomous", "Lethal", "Foundational"],
+            originalSentence: "An attack that causes excessive civilian casualties relative to its military objective violates the laws of war."
+        }
+    ],
+    "310-20": [ // Conversely
+        {
+            sentence: "_______, some scholars argue that well-programmed machines might actually comply with humanitarian law more consistently.",
+            options: ["Conversely", "Foundationally", "Excessively", "Adversely"],
+            originalSentence: "Conversely, some scholars argue that well-programmed machines might actually comply with humanitarian law more consistently."
+        }
+    ],
+    "310-21": [ // Advocates
+        {
+            sentence: "_______ of a ban on autonomous weapons argue that no machine should ever make life-or-death decisions.",
+            options: ["Advocates", "Proponents", "Combatants", "Supervisors"],
+            originalSentence: "Advocates of a ban on autonomous weapons argue that no machine should ever make life-or-death decisions."
+        }
+    ],
+    "310-22": [ // Adherence
+        {
+            sentence: "Strict _______ to the laws of war is non-negotiable regardless of the technology being used.",
+            options: ["Adherence", "Authorization", "Accountability", "Supervision"],
+            originalSentence: "Strict adherence to the laws of war is non-negotiable regardless of the technology being used."
+        }
+    ],
+    "310-23": [ // Susceptible
+        {
+            sentence: "Human soldiers are _______ to fear and fatigue, which can impair their judgement in combat.",
+            options: ["Susceptible", "Autonomous", "Lethal", "Foundational"],
+            originalSentence: "Human soldiers are susceptible to fear and fatigue, which can impair their judgement in combat."
+        }
+    ],
+    "310-24": [ // Emotional bias
+        {
+            sentence: "Supporters argue that machines are free from _______ and may therefore make more consistent decisions.",
+            options: ["Emotional bias", "Moral hazard", "Normative debate", "Human dignity"],
+            originalSentence: "Supporters argue that machines are free from emotional bias and may therefore make more consistent decisions."
+        }
+    ],
+    "310-25": [ // Fatigue
+        {
+            sentence: "Combat _______ is a well-documented cause of poor decision-making and violations of the laws of war.",
+            options: ["Fatigue", "Authorization", "Supervision", "Deployment"],
+            originalSentence: "Combat fatigue is a well-documented cause of poor decision-making and violations of the laws of war."
+        }
+    ],
+    "310-26": [ // Contested environments
+        {
+            sentence: "Autonomous systems struggle to operate reliably in _______ where the situation changes rapidly.",
+            options: ["Contested environments", "Ethical frameworks", "Normative debates", "Moral hazards"],
+            originalSentence: "Autonomous systems struggle to operate reliably in contested environments where the situation changes rapidly."
+        }
+    ],
+    "310-27": [ // Authorization
+        {
+            sentence: "Any use of lethal force must have clear legal _______ from the appropriate command authority.",
+            options: ["Authorization", "Supervision", "Adherence", "Accountability"],
+            originalSentence: "Any use of lethal force must have clear legal authorization from the appropriate command authority."
+        }
+    ],
+    "310-28": [ // Accountability
+        {
+            sentence: "When an autonomous weapon causes civilian deaths, establishing clear _______ becomes extremely difficult.",
+            options: ["Accountability", "Authorization", "Supervision", "Adherence"],
+            originalSentence: "When an autonomous weapon causes civilian deaths, establishing clear accountability becomes extremely difficult."
+        }
+    ],
+    "310-29": [ // Violation
+        {
+            sentence: "A single serious _______ of humanitarian law by an autonomous system could have catastrophic consequences.",
+            options: ["Violation", "Adherence", "Authorization", "Supervision"],
+            originalSentence: "A single serious violation of humanitarian law by an autonomous system could have catastrophic consequences."
+        }
+    ],
+    "310-30": [ // Undermines
+        {
+            sentence: "The absence of meaningful human control _______ the entire legal framework governing armed conflict.",
+            options: ["Undermines", "Overrides", "Delegates", "Breaches"],
+            originalSentence: "The absence of meaningful human control undermines the entire legal framework governing armed conflict."
+        }
+    ],
+    "310-31": [ // Deterrent effect
+        {
+            sentence: "The risk of criminal prosecution for war crimes has an important _______ on soldiers' conduct.",
+            options: ["Deterrent effect", "Moral hazard", "Normative debate", "Ethical framework"],
+            originalSentence: "The risk of criminal prosecution for war crimes has an important deterrent effect on soldiers' conduct."
+        }
+    ],
+    "310-32": [ // Criminal prosecution
+        {
+            sentence: "Without a human commander to hold responsible, _______ for violations becomes legally impossible.",
+            options: ["Criminal prosecution", "Deterrent effect", "Moral hazard", "Normative debate"],
+            originalSentence: "Without a human commander to hold responsible, criminal prosecution for violations becomes legally impossible."
+        }
+    ],
+    "310-33": [ // Foundational
+        {
+            sentence: "The prohibition on targeting civilians is a _______ principle of international humanitarian law.",
+            options: ["Foundational", "Excessive", "Autonomous", "Lethal"],
+            originalSentence: "The prohibition on targeting civilians is a foundational principle of international humanitarian law."
+        }
+    ],
+    "310-34": [ // Supervision
+        {
+            sentence: "Meaningful human _______ over autonomous systems is essential to ensure compliance with the laws of war.",
+            options: ["Supervision", "Authorization", "Adherence", "Accountability"],
+            originalSentence: "Meaningful human supervision over autonomous systems is essential to ensure compliance with the laws of war."
+        }
+    ],
+    "310-35": [ // Deployment
+        {
+            sentence: "Several nations have called for a moratorium on the _______ of fully autonomous lethal weapons.",
+            options: ["Deployment", "Supervision", "Authorization", "Adherence"],
+            originalSentence: "Several nations have called for a moratorium on the deployment of fully autonomous lethal weapons."
+        }
+    ],
+    "310-36": [ // Predicated on
+        {
+            sentence: "The entire framework of war crimes law is _______ the existence of a human decision-maker.",
+            options: ["Predicated on", "Contingent upon", "Foundational to", "Adherent to"],
+            originalSentence: "The entire framework of war crimes law is predicated on the existence of a human decision-maker."
+        }
+    ],
+    "310-37": [ // Ethical framework
+        {
+            sentence: "Any nation developing autonomous weapons must do so within a clear and binding _______.",
+            options: ["Ethical framework", "Normative debate", "Deterrent effect", "Moral hazard"],
+            originalSentence: "Any nation developing autonomous weapons must do so within a clear and binding ethical framework."
+        }
+    ],
+    "310-38": [ // Override
+        {
+            sentence: "Human operators must always retain the ability to _______ an autonomous system's decisions in real time.",
+            options: ["Override", "Delegate", "Breach", "Undermine"],
+            originalSentence: "Human operators must always retain the ability to override an autonomous system's decisions in real time."
+        }
+    ],
+    "311-1": [ // Large-scale
+        {
+            sentence: "_______ infrastructure investment has become a central tool of geopolitical competition.",
+            options: ["Large-scale", "Structural", "Multilateral", "Conditional"],
+            originalSentence: "Large-scale infrastructure investment has become a central tool of geopolitical competition."
+        }
+    ],
+    "311-2": [ // Infrastructure
+        {
+            sentence: "Ports, railways, and energy networks form the _______ backbone of any modern economy.",
+            options: ["Infrastructure", "Connectivity", "Narrative", "Divergence"],
+            originalSentence: "Ports, railways, and energy networks form the infrastructure backbone of any modern economy."
+        }
+    ],
+    "311-3": [ // State-backed
+        {
+            sentence: "_______ lending programmes often come with political strings that purely commercial loans do not.",
+            options: ["State-backed", "Multilateral", "Conditional", "Sovereign"],
+            originalSentence: "State-backed lending programmes often come with political strings that purely commercial loans do not."
+        }
+    ],
+    "311-4": [ // Pivotal
+        {
+            sentence: "Access to deep-water ports has become _______ in projecting naval power across the Indo-Pacific.",
+            options: ["Pivotal", "Implicit", "Opaque", "Conducive"],
+            originalSentence: "Access to deep-water ports has become pivotal in projecting naval power across the Indo-Pacific."
+        }
+    ],
+    "311-5": [ // Foreign policy
+        {
+            sentence: "Infrastructure investment has evolved into a primary instrument of _______ for major powers.",
+            options: ["Foreign policy", "Fiscal crisis", "Debt servicing", "Connectivity"],
+            originalSentence: "Infrastructure investment has evolved into a primary instrument of foreign policy for major powers."
+        }
+    ],
+    "311-6": [ // Proponents
+        {
+            sentence: "_______ of development lending argue that it fills a genuine gap in global infrastructure financing.",
+            options: ["Proponents", "Catalysts", "Creditors", "Narratives"],
+            originalSentence: "Proponents of development lending argue that it fills a genuine gap in global infrastructure financing."
+        }
+    ],
+    "311-7": [ // Catalysts
+        {
+            sentence: "Roads and ports can act as powerful _______ for broader economic development in isolated regions.",
+            options: ["Catalysts", "Proponents", "Revenue streams", "Value chains"],
+            originalSentence: "Roads and ports can act as powerful catalysts for broader economic development in isolated regions."
+        }
+    ],
+    "311-8": [ // Structural
+        {
+            sentence: "Critics argue that many loans fail to address the _______ barriers that keep poor countries poor.",
+            options: ["Structural", "Implicit", "Conditional", "Multilateral"],
+            originalSentence: "Critics argue that many loans fail to address the structural barriers that keep poor countries poor."
+        }
+    ],
+    "311-9": [ // Economic transformation
+        {
+            sentence: "Sustained investment in energy and transport infrastructure can drive genuine _______.",
+            options: ["Economic transformation", "Fiscal crisis", "Debt servicing", "Divergence"],
+            originalSentence: "Sustained investment in energy and transport infrastructure can drive genuine economic transformation."
+        }
+    ],
+    "311-10": [ // Deficits
+        {
+            sentence: "Developing nations face enormous infrastructure _______ that domestic resources alone cannot fill.",
+            options: ["Deficits", "Fluctuations", "Divergence", "Revenue streams"],
+            originalSentence: "Developing nations face enormous infrastructure deficits that domestic resources alone cannot fill."
+        }
+    ],
+    "311-11": [ // Value chains
+        {
+            sentence: "Better logistics infrastructure allows countries to integrate more deeply into global _______.",
+            options: ["Value chains", "Revenue streams", "Transaction costs", "Connectivity"],
+            originalSentence: "Better logistics infrastructure allows countries to integrate more deeply into global value chains."
+        }
+    ],
+    "311-12": [ // Underlying premise
+        {
+            sentence: "The _______ of development finance is that infrastructure investment generates growth that repays the debt.",
+            options: ["Underlying premise", "Implicit", "Narrative", "Divergence"],
+            originalSentence: "The underlying premise of development finance is that infrastructure investment generates growth that repays the debt."
+        }
+    ],
+    "311-13": [ // Transaction costs
+        {
+            sentence: "Poor transport links inflate _______ and make it harder for local businesses to compete internationally.",
+            options: ["Transaction costs", "Debt servicing", "Revenue streams", "Deficits"],
+            originalSentence: "Poor transport links inflate transaction costs and make it harder for local businesses to compete internationally."
+        }
+    ],
+    "311-14": [ // Unlocking
+        {
+            sentence: "Connectivity projects are presented as a means of _______ the economic potential of landlocked nations.",
+            options: ["Unlocking", "Facilitating", "Pledging", "Defaulting"],
+            originalSentence: "Connectivity projects are presented as a means of unlocking the economic potential of landlocked nations."
+        }
+    ],
+    "311-15": [ // Conducive to
+        {
+            sentence: "Stable governance and transparent institutions are far more _______ investment than infrastructure alone.",
+            options: ["Conducive to", "Denominated in", "Implicit in", "Contingent upon"],
+            originalSentence: "Stable governance and transparent institutions are far more conducive to investment than infrastructure alone."
+        }
+    ],
+    "311-16": [ // Facilitated
+        {
+            sentence: "Regional trade has been greatly _______ by the construction of cross-border road and rail networks.",
+            options: ["Facilitated", "Unlocked", "Pledged", "Defaulted"],
+            originalSentence: "Regional trade has been greatly facilitated by the construction of cross-border road and rail networks."
+        }
+    ],
+    "311-17": [ // Conditional
+        {
+            sentence: "Western development loans are typically _______ on governance reforms that many governments resist.",
+            options: ["Conditional", "Multilateral", "Structural", "Sovereign"],
+            originalSentence: "Western development loans are typically conditional on governance reforms that many governments resist."
+        }
+    ],
+    "311-18": [ // Multilateral
+        {
+            sentence: "_______ institutions like the World Bank impose stricter environmental and social standards than bilateral lenders.",
+            options: ["Multilateral", "State-backed", "Conditional", "Sovereign"],
+            originalSentence: "Multilateral institutions like the World Bank impose stricter environmental and social standards than bilateral lenders."
+        }
+    ],
+    "311-19": [ // Proliferation
+        {
+            sentence: "The _______ of competing infrastructure initiatives reflects the intensifying rivalry between major powers.",
+            options: ["Proliferation", "Divergence", "Connectivity", "Narrative"],
+            originalSentence: "The proliferation of competing infrastructure initiatives reflects the intensifying rivalry between major powers."
+        }
+    ],
+    "311-20": [ // State creditors
+        {
+            sentence: "When _______ hold strategic assets as collateral, debt becomes an instrument of geopolitical leverage.",
+            options: ["State creditors", "Proponents", "Catalysts", "Multilateral"],
+            originalSentence: "When state creditors hold strategic assets as collateral, debt becomes an instrument of geopolitical leverage."
+        }
+    ],
+    "311-21": [ // Deliberately
+        {
+            sentence: "Some analysts argue that loan terms are _______ structured to create dependencies that benefit the lender.",
+            options: ["Deliberately", "Implicitly", "Prohibitively", "Conditionally"],
+            originalSentence: "Some analysts argue that loan terms are deliberately structured to create dependencies that benefit the lender."
+        }
+    ],
+    "311-22": [ // Opaque
+        {
+            sentence: "The _______ terms of many bilateral loan agreements make independent scrutiny almost impossible.",
+            options: ["Opaque", "Predatory", "Implicit", "Conditional"],
+            originalSentence: "The opaque terms of many bilateral loan agreements make independent scrutiny almost impossible."
+        }
+    ],
+    "311-23": [ // Predatory
+        {
+            sentence: "Critics describe certain lending practices as _______, deliberately setting borrowers up to fail.",
+            options: ["Predatory", "Opaque", "Conditional", "Multilateral"],
+            originalSentence: "Critics describe certain lending practices as predatory, deliberately setting borrowers up to fail."
+        }
+    ],
+    "311-24": [ // Pledge
+        {
+            sentence: "Several countries were forced to _______ strategic port facilities as security against their loans.",
+            options: ["Pledge", "Default", "Facilitate", "Unlock"],
+            originalSentence: "Several countries were forced to pledge strategic port facilities as security against their loans."
+        }
+    ],
+    "311-25": [ // Collateral
+        {
+            sentence: "When a country cannot repay its loans, the lender may seize the pledged _______ instead.",
+            options: ["Collateral", "Revenue streams", "Transaction costs", "Deficits"],
+            originalSentence: "When a country cannot repay its loans, the lender may seize the pledged collateral instead."
+        }
+    ],
+    "311-26": [ // Default
+        {
+            sentence: "A sovereign _______ on infrastructure loans can trigger a broader economic and political crisis.",
+            options: ["Default", "Pledge", "Divergence", "Prolification"],
+            originalSentence: "A sovereign default on infrastructure loans can trigger a broader economic and political crisis."
+        }
+    ],
+    "311-27": [ // Inherent risk
+        {
+            sentence: "There is an _______ in financing infrastructure through foreign debt denominated in hard currencies.",
+            options: ["Inherent risk", "Underlying premise", "Implicit assumption", "Structural deficit"],
+            originalSentence: "There is an inherent risk in financing infrastructure through foreign debt denominated in hard currencies."
+        }
+    ],
+    "311-28": [ // Denominated
+        {
+            sentence: "Loans _______ in US dollars expose borrowers to significant currency risk over their repayment period.",
+            options: ["Denominated", "Facilitated", "Pledged", "Defaulted"],
+            originalSentence: "Loans denominated in US dollars expose borrowers to significant currency risk over their repayment period."
+        }
+    ],
+    "311-29": [ // Fluctuations
+        {
+            sentence: "Currency _______ can dramatically increase the real cost of foreign-denominated debt overnight.",
+            options: ["Fluctuations", "Deficits", "Revenue streams", "Transaction costs"],
+            originalSentence: "Currency fluctuations can dramatically increase the real cost of foreign-denominated debt overnight."
+        }
+    ],
+    "311-30": [ // Prohibitively
+        {
+            sentence: "Debt servicing costs became _______ high after the local currency collapsed against the dollar.",
+            options: ["Prohibitively", "Deliberately", "Implicitly", "Conditionally"],
+            originalSentence: "Debt servicing costs became prohibitively high after the local currency collapsed against the dollar."
+        }
+    ],
+    "311-31": [ // Revenue streams
+        {
+            sentence: "Infrastructure projects must generate sufficient _______ to cover both operating costs and debt repayment.",
+            options: ["Revenue streams", "Transaction costs", "Value chains", "Deficits"],
+            originalSentence: "Infrastructure projects must generate sufficient revenue streams to cover both operating costs and debt repayment."
+        }
+    ],
+    "311-32": [ // Debt servicing
+        {
+            sentence: "Rising _______ costs have forced several nations to cut essential public spending on health and education.",
+            options: ["Debt servicing", "Fiscal crisis", "Revenue streams", "Deficits"],
+            originalSentence: "Rising debt servicing costs have forced several nations to cut essential public spending on health and education."
+        }
+    ],
+    "311-33": [ // Fiscal crisis
+        {
+            sentence: "Unsustainable infrastructure loans contributed directly to the country's devastating _______.",
+            options: ["Fiscal crisis", "Debt servicing", "Revenue streams", "Structural deficit"],
+            originalSentence: "Unsustainable infrastructure loans contributed directly to the country's devastating fiscal crisis."
+        }
+    ],
+    "311-34": [ // Narrative
+        {
+            sentence: "Competing powers each promote a distinct _______ about whose infrastructure model best serves developing nations.",
+            options: ["Narrative", "Divergence", "Connectivity", "Transparency"],
+            originalSentence: "Competing powers each promote a distinct narrative about whose infrastructure model best serves developing nations."
+        }
+    ],
+    "311-35": [ // Sovereign
+        {
+            sentence: "Infrastructure diplomacy raises difficult questions about _______ control over strategic national assets.",
+            options: ["Sovereign", "Multilateral", "Conditional", "State-backed"],
+            originalSentence: "Infrastructure diplomacy raises difficult questions about sovereign control over strategic national assets."
+        }
+    ],
+    "311-36": [ // Divergence
+        {
+            sentence: "The growing _______ between Western and Eastern lending models reflects deeper ideological differences.",
+            options: ["Divergence", "Connectivity", "Proliferation", "Transparency"],
+            originalSentence: "The growing divergence between Western and Eastern lending models reflects deeper ideological differences."
+        }
+    ],
+    "311-37": [ // Implicit
+        {
+            sentence: "There is an _______ expectation that recipient nations will align politically with their major creditors.",
+            options: ["Implicit", "Opaque", "Conditional", "Predatory"],
+            originalSentence: "There is an implicit expectation that recipient nations will align politically with their major creditors."
+        }
+    ],
+    "311-38": [ // Geopolitical
+        {
+            sentence: "Infrastructure investment has become one of the primary arenas of _______ competition in the twenty-first century.",
+            options: ["Geopolitical", "Structural", "Multilateral", "Fiscal"],
+            originalSentence: "Infrastructure investment has become one of the primary arenas of geopolitical competition in the twenty-first century."
+        }
+    ],
+    "311-39": [ // Transparency
+        {
+            sentence: "Greater _______ in loan agreements would allow borrowing countries to make genuinely informed decisions.",
+            options: ["Transparency", "Connectivity", "Divergence", "Proliferation"],
+            originalSentence: "Greater transparency in loan agreements would allow borrowing countries to make genuinely informed decisions."
+        }
+    ],
+    "311-40": [ // Connectivity
+        {
+            sentence: "Enhanced regional _______ through shared infrastructure can reduce inequality and promote integration.",
+            options: ["Connectivity", "Transparency", "Divergence", "Proliferation"],
+            originalSentence: "Enhanced regional connectivity through shared infrastructure can reduce inequality and promote integration."
+        }
+    ],
+    "312-1": [ // Envisioned
+        {
+            sentence: "The internet was originally _______ as a tool for the free exchange of knowledge across borders.",
+            options: ["Envisioned", "Disseminated", "Reinforced", "Fragmented"],
+            originalSentence: "The internet was originally envisioned as a tool for the free exchange of knowledge across borders."
+        }
+    ],
+    "312-2": [ // Enlightenment
+        {
+            sentence: "The _______ ideal of rational public debate has been severely challenged by the rise of social media.",
+            options: ["Enlightenment", "Polarization", "Fragmentation", "Schism"],
+            originalSentence: "The Enlightenment ideal of rational public debate has been severely challenged by the rise of social media."
+        }
+    ],
+    "312-3": [ // Fragmentation
+        {
+            sentence: "The _______ of the media landscape means citizens increasingly inhabit entirely separate information worlds.",
+            options: ["Fragmentation", "Polarization", "Schism", "Closure"],
+            originalSentence: "The fragmentation of the media landscape means citizens increasingly inhabit entirely separate information worlds."
+        }
+    ],
+    "312-4": [ // Epistemological
+        {
+            sentence: "Widespread disinformation has created an _______ crisis in which shared facts no longer exist.",
+            options: ["Epistemological", "Partisan", "Intractable", "Authoritative"],
+            originalSentence: "Widespread disinformation has created an epistemological crisis in which shared facts no longer exist."
+        }
+    ],
+    "312-5": [ // Isolation
+        {
+            sentence: "Digital _______ from opposing views makes genuine political compromise increasingly difficult to achieve.",
+            options: ["Isolation", "Closure", "Schism", "Fragmentation"],
+            originalSentence: "Digital isolation from opposing views makes genuine political compromise increasingly difficult to achieve."
+        }
+    ],
+    "312-6": [ // Algorithms
+        {
+            sentence: "Platform _______ are designed to maximise engagement, not to promote balanced or accurate information.",
+            options: ["Algorithms", "Ecosystems", "Echo chambers", "Filter bubbles"],
+            originalSentence: "Platform algorithms are designed to maximise engagement, not to promote balanced or accurate information."
+        }
+    ],
+    "312-7": [ // Engagement
+        {
+            sentence: "Social media platforms optimise for _______, which systematically rewards outrage over nuance.",
+            options: ["Engagement", "Resonance", "Reinforcement", "Discourse"],
+            originalSentence: "Social media platforms optimise for engagement, which systematically rewards outrage over nuance."
+        }
+    ],
+    "312-8": [ // Sensationalism
+        {
+            sentence: "_______ spreads faster than accurate reporting because it triggers stronger emotional reactions.",
+            options: ["Sensationalism", "Polarization", "Schism", "Fragmentation"],
+            originalSentence: "Sensationalism spreads faster than accurate reporting because it triggers stronger emotional reactions."
+        }
+    ],
+    "312-9": [ // Resonance
+        {
+            sentence: "False stories gain traction because they have emotional _______ with audiences' pre-existing beliefs.",
+            options: ["Resonance", "Reinforcement", "Engagement", "Discourse"],
+            originalSentence: "False stories gain traction because they have emotional resonance with audiences' pre-existing beliefs."
+        }
+    ],
+    "312-10": [ // Reinforcement
+        {
+            sentence: "Algorithmic _______ of existing beliefs prevents users from encountering genuinely challenging ideas.",
+            options: ["Reinforcement", "Resonance", "Engagement", "Intervention"],
+            originalSentence: "Algorithmic reinforcement of existing beliefs prevents users from encountering genuinely challenging ideas."
+        }
+    ],
+    "312-11": [ // Echo chambers
+        {
+            sentence: "_______ amplify existing convictions and make users increasingly hostile to alternative perspectives.",
+            options: ["Echo chambers", "Filter bubbles", "Ecosystems", "Algorithms"],
+            originalSentence: "Echo chambers amplify existing convictions and make users increasingly hostile to alternative perspectives."
+        }
+    ],
+    "312-12": [ // Filter bubbles
+        {
+            sentence: "_______ created by personalisation algorithms mean users rarely encounter news that challenges their worldview.",
+            options: ["Filter bubbles", "Echo chambers", "Ecosystems", "Algorithms"],
+            originalSentence: "Filter bubbles created by personalisation algorithms mean users rarely encounter news that challenges their worldview."
+        }
+    ],
+    "312-13": [ // Insulate
+        {
+            sentence: "Highly curated news feeds effectively _______ users from the full complexity of political reality.",
+            options: ["Insulate", "Disseminate", "Weaponize", "Reinforce"],
+            originalSentence: "Highly curated news feeds effectively insulate users from the full complexity of political reality."
+        }
+    ],
+    "312-14": [ // Contradictory
+        {
+            sentence: "Citizens increasingly encounter _______ sets of facts, making shared political decision-making nearly impossible.",
+            options: ["Contradictory", "Dissenting", "Partisan", "Intractable"],
+            originalSentence: "Citizens increasingly encounter contradictory sets of facts, making shared political decision-making nearly impossible."
+        }
+    ],
+    "312-15": [ // Foundational premise
+        {
+            sentence: "The _______ of democratic governance is that citizens share access to a common base of reliable information.",
+            options: ["Foundational premise", "Epistemological crisis", "Partisan discourse", "Intractable schism"],
+            originalSentence: "The foundational premise of democratic governance is that citizens share access to a common base of reliable information."
+        }
+    ],
+    "312-16": [ // Discourse
+        {
+            sentence: "The quality of public _______ has deteriorated sharply as misinformation has flooded digital platforms.",
+            options: ["Discourse", "Resonance", "Reinforcement", "Consensus"],
+            originalSentence: "The quality of public discourse has deteriorated sharply as misinformation has flooded digital platforms."
+        }
+    ],
+    "312-17": [ // Polarization
+        {
+            sentence: "Political _______ has reached historic levels in many democracies, making compromise almost impossible.",
+            options: ["Polarization", "Fragmentation", "Schism", "Closure"],
+            originalSentence: "Political polarization has reached historic levels in many democracies, making compromise almost impossible."
+        }
+    ],
+    "312-18": [ // Schism
+        {
+            sentence: "The deepening _______ between urban and rural voters is tearing traditional political coalitions apart.",
+            options: ["Schism", "Polarization", "Fragmentation", "Closure"],
+            originalSentence: "The deepening schism between urban and rural voters is tearing traditional political coalitions apart."
+        }
+    ],
+    "312-19": [ // Ecosystems
+        {
+            sentence: "Separate media _______ have emerged in which entirely different versions of reality are considered normal.",
+            options: ["Ecosystems", "Echo chambers", "Filter bubbles", "Algorithms"],
+            originalSentence: "Separate media ecosystems have emerged in which entirely different versions of reality are considered normal."
+        }
+    ],
+    "312-20": [ // Closure
+        {
+            sentence: "Epistemic _______ occurs when individuals become completely unreachable by evidence that contradicts their beliefs.",
+            options: ["Closure", "Isolation", "Schism", "Fragmentation"],
+            originalSentence: "Epistemic closure occurs when individuals become completely unreachable by evidence that contradicts their beliefs."
+        }
+    ],
+    "312-21": [ // Dissenting
+        {
+            sentence: "Platforms frequently suppress _______ voices through algorithmic demotion rather than outright censorship.",
+            options: ["Dissenting", "Partisan", "Malicious", "Contradictory"],
+            originalSentence: "Platforms frequently suppress dissenting voices through algorithmic demotion rather than outright censorship."
+        }
+    ],
+    "312-22": [ // Partisan
+        {
+            sentence: "The rise of _______ media has made it easier for political movements to spread their message unchallenged.",
+            options: ["Partisan", "Malicious", "Dissenting", "Authoritative"],
+            originalSentence: "The rise of partisan media has made it easier for political movements to spread their message unchallenged."
+        }
+    ],
+    "312-23": [ // Malicious
+        {
+            sentence: "_______ actors deliberately exploit platform algorithms to amplify divisive and destabilising content.",
+            options: ["Malicious", "Partisan", "Dissenting", "Authoritative"],
+            originalSentence: "Malicious actors deliberately exploit platform algorithms to amplify divisive and destabilising content."
+        }
+    ],
+    "312-24": [ // Intractable
+        {
+            sentence: "Once disinformation becomes deeply embedded in a community, it becomes extraordinarily _______ to correct.",
+            options: ["Intractable", "Contradictory", "Partisan", "Dissenting"],
+            originalSentence: "Once disinformation becomes deeply embedded in a community, it becomes extraordinarily intractable to correct."
+        }
+    ],
+    "312-25": [ // Disseminated
+        {
+            sentence: "False narratives are _______ so rapidly online that corrections rarely reach the same audience.",
+            options: ["Disseminated", "Insulated", "Reinforced", "Weaponized"],
+            originalSentence: "False narratives are disseminated so rapidly online that corrections rarely reach the same audience."
+        }
+    ],
+    "312-26": [ // Consensus
+        {
+            sentence: "The erosion of factual _______ makes it nearly impossible for democratic societies to address collective challenges.",
+            options: ["Consensus", "Transparency", "Legitimacy", "Discourse"],
+            originalSentence: "The erosion of factual consensus makes it nearly impossible for democratic societies to address collective challenges."
+        }
+    ],
+    "312-27": [ // Transparency
+        {
+            sentence: "Greater algorithmic _______ would allow researchers to study how content is ranked and amplified.",
+            options: ["Transparency", "Consensus", "Legitimacy", "Intervention"],
+            originalSentence: "Greater algorithmic transparency would allow researchers to study how content is ranked and amplified."
+        }
+    ],
+    "312-28": [ // Intervention
+        {
+            sentence: "Any regulatory _______ in content moderation must be carefully balanced against freedom of expression.",
+            options: ["Intervention", "Transparency", "Consensus", "Legitimacy"],
+            originalSentence: "Any regulatory intervention in content moderation must be carefully balanced against freedom of expression."
+        }
+    ],
+    "312-29": [ // Impinging upon
+        {
+            sentence: "Critics argue that platform regulation risks _______ the fundamental right to free speech.",
+            options: ["Impinging upon", "Hinging upon", "Insulating from", "Disseminating through"],
+            originalSentence: "Critics argue that platform regulation risks impinging upon the fundamental right to free speech."
+        }
+    ],
+    "312-30": [ // Weaponized
+        {
+            sentence: "Freedom of speech has been _______ by bad-faith actors to shield deliberate disinformation from accountability.",
+            options: ["Weaponized", "Insulated", "Disseminated", "Reinforced"],
+            originalSentence: "Freedom of speech has been weaponized by bad-faith actors to shield deliberate disinformation from accountability."
+        }
+    ],
+    "312-31": [ // Hinge upon
+        {
+            sentence: "The future of democracy may ultimately _______ society's ability to distinguish truth from fabrication.",
+            options: ["Hinge upon", "Impinge upon", "Insulate from", "Disseminate through"],
+            originalSentence: "The future of democracy may ultimately hinge upon society's ability to distinguish truth from fabrication."
+        }
+    ],
+    "312-32": [ // Skepticism
+        {
+            sentence: "Healthy _______ toward all sources of information is a core component of genuine media literacy.",
+            options: ["Skepticism", "Consensus", "Legitimacy", "Transparency"],
+            originalSentence: "Healthy skepticism toward all sources of information is a core component of genuine media literacy."
+        }
+    ],
+    "312-33": [ // Legitimacy
+        {
+            sentence: "Institutions that lose public trust also lose the _______ they need to function effectively.",
+            options: ["Legitimacy", "Consensus", "Transparency", "Skepticism"],
+            originalSentence: "Institutions that lose public trust also lose the legitimacy they need to function effectively."
+        }
+    ],
+    "312-34": [ // Authoritative
+        {
+            sentence: "The collapse of _______ journalism has left citizens without reliable guides through the information landscape.",
+            options: ["Authoritative", "Partisan", "Dissenting", "Malicious"],
+            originalSentence: "The collapse of authoritative journalism has left citizens without reliable guides through the information landscape."
+        }
+    ],
+    "313-1": [ // Multilateral
+        {
+            sentence: "_______ institutions were built after World War Two to prevent conflict through cooperation.",
+            options: ["Multilateral", "Transactional", "Impartial", "Nuanced"],
+            originalSentence: "Multilateral institutions were built after World War Two to prevent conflict through cooperation."
+        }
+    ],
+    "313-2": [ // Profound
+        {
+            sentence: "The post-Cold War order is undergoing _______ transformation as new powers challenge Western dominance.",
+            options: ["Profound", "Transactional", "Implicit", "Inherent"],
+            originalSentence: "The post-Cold War order is undergoing profound transformation as new powers challenge Western dominance."
+        }
+    ],
+    "313-3": [ // Resurgence
+        {
+            sentence: "The _______ of great power competition has undermined decades of progress in international cooperation.",
+            options: ["Resurgence", "Recalibration", "Polarization", "Ambiguity"],
+            originalSentence: "The resurgence of great power competition has undermined decades of progress in international cooperation."
+        }
+    ],
+    "313-4": [ // Populist nationalism
+        {
+            sentence: "_______ has eroded domestic support for the international institutions that underpin global stability.",
+            options: ["Populist nationalism", "Strategic hedging", "Collective security", "Geopolitical rivalry"],
+            originalSentence: "Populist nationalism has eroded domestic support for the international institutions that underpin global stability."
+        }
+    ],
+    "313-5": [ // Immense strain
+        {
+            sentence: "The simultaneous crises of the past decade have placed _______ on the multilateral system.",
+            options: ["Immense strain", "Viable default", "Palpable erosion", "Cyclical fluctuation"],
+            originalSentence: "The simultaneous crises of the past decade have placed immense strain on the multilateral system."
+        }
+    ],
+    "313-6": [ // Governance structures
+        {
+            sentence: "Existing _______ were designed for a different era and struggle to address today's complex challenges.",
+            options: ["Governance structures", "Punitive measures", "Collective security", "Strategic hedging"],
+            originalSentence: "Existing governance structures were designed for a different era and struggle to address today's complex challenges."
+        }
+    ],
+    "313-7": [ // Cyclical fluctuation
+        {
+            sentence: "Some analysts dismiss the current instability as a _______ rather than a fundamental structural collapse.",
+            options: ["Cyclical fluctuation", "Palpable erosion", "Recalibration", "Immense strain"],
+            originalSentence: "Some analysts dismiss the current instability as a cyclical fluctuation rather than a fundamental structural collapse."
+        }
+    ],
+    "313-8": [ // Recalibration
+        {
+            sentence: "The alliance requires a fundamental _______ to remain relevant in a multipolar world.",
+            options: ["Recalibration", "Cyclical fluctuation", "Resurgence", "Polarization"],
+            originalSentence: "The alliance requires a fundamental recalibration to remain relevant in a multipolar world."
+        }
+    ],
+    "313-9": [ // Collective security
+        {
+            sentence: "The principle of _______ holds that an attack on one member is treated as an attack on all.",
+            options: ["Collective security", "Strategic hedging", "Punitive measures", "Geopolitical rivalry"],
+            originalSentence: "The principle of collective security holds that an attack on one member is treated as an attack on all."
+        }
+    ],
+    "313-10": [ // Transactional
+        {
+            sentence: "A purely _______ approach to alliances undermines the trust that makes them function in a crisis.",
+            options: ["Transactional", "Multilateral", "Impartial", "Nuanced"],
+            originalSentence: "A purely transactional approach to alliances undermines the trust that makes them function in a crisis."
+        }
+    ],
+    "313-11": [ // Palpable erosion
+        {
+            sentence: "There has been a _______ of confidence in international institutions over the past decade.",
+            options: ["Palpable erosion", "Cyclical fluctuation", "Viable default", "Recalibration"],
+            originalSentence: "There has been a palpable erosion of confidence in international institutions over the past decade."
+        }
+    ],
+    "313-12": [ // Impartial
+        {
+            sentence: "An _______ arbiter is essential for resolving disputes between states that distrust each other.",
+            options: ["Impartial", "Transactional", "Nuanced", "Implicit"],
+            originalSentence: "An impartial arbiter is essential for resolving disputes between states that distrust each other."
+        }
+    ],
+    "313-13": [ // Geopolitical rivalry
+        {
+            sentence: "Intensifying _______ between major powers is making multilateral cooperation increasingly difficult.",
+            options: ["Geopolitical rivalry", "Collective security", "Strategic hedging", "Punitive measures"],
+            originalSentence: "Intensifying geopolitical rivalry between major powers is making multilateral cooperation increasingly difficult."
+        }
+    ],
+    "313-14": [ // Prosperity
+        {
+            sentence: "Sustained global _______ depends on maintaining the open trade and investment rules of the liberal order.",
+            options: ["Prosperity", "Alignment", "Sustainability", "Ambiguity"],
+            originalSentence: "Sustained global prosperity depends on maintaining the open trade and investment rules of the liberal order."
+        }
+    ],
+    "313-15": [ // Viable default
+        {
+            sentence: "Unilateral action is not a _______ for small states that lack the power to act independently.",
+            options: ["Viable default", "Cyclical fluctuation", "Palpable erosion", "Recalibration"],
+            originalSentence: "Unilateral action is not a viable default for small states that lack the power to act independently."
+        }
+    ],
+    "313-16": [ // Strategic hedging
+        {
+            sentence: "Many middle powers practise _______ by maintaining ties with both major powers simultaneously.",
+            options: ["Strategic hedging", "Collective security", "Punitive measures", "Geopolitical rivalry"],
+            originalSentence: "Many middle powers practise strategic hedging by maintaining ties with both major powers simultaneously."
+        }
+    ],
+    "313-17": [ // Nuanced
+        {
+            sentence: "A _______ understanding of national interest recognises that security and economic ties cannot be fully separated.",
+            options: ["Nuanced", "Transactional", "Impartial", "Implicit"],
+            originalSentence: "A nuanced understanding of national interest recognises that security and economic ties cannot be fully separated."
+        }
+    ],
+    "313-18": [ // Simultaneously
+        {
+            sentence: "Nations must _______ manage domestic political pressures and complex international commitments.",
+            options: ["Simultaneously", "Inherently", "Implicitly", "Profoundly"],
+            originalSentence: "Nations must simultaneously manage domestic political pressures and complex international commitments."
+        }
+    ],
+    "313-19": [ // Inherent
+        {
+            sentence: "There is an _______ tension between national sovereignty and the obligations of multilateral membership.",
+            options: ["Inherent", "Implicit", "Transactional", "Nuanced"],
+            originalSentence: "There is an inherent tension between national sovereignty and the obligations of multilateral membership."
+        }
+    ],
+    "313-20": [ // Maneuvering
+        {
+            sentence: "Smaller nations have become increasingly skilled at _______ between competing great powers.",
+            options: ["Maneuvering", "Provoking", "Aligning", "Hedging"],
+            originalSentence: "Smaller nations have become increasingly skilled at maneuvering between competing great powers."
+        }
+    ],
+    "313-21": [ // Provoke
+        {
+            sentence: "Any step that might _______ a military response from a nuclear-armed rival must be avoided.",
+            options: ["Provoke", "Maneuver", "Align", "Hedge"],
+            originalSentence: "Any step that might provoke a military response from a nuclear-armed rival must be avoided."
+        }
+    ],
+    "313-22": [ // Punitive measures
+        {
+            sentence: "The alliance threatened _______ against any state that violated the agreed ceasefire terms.",
+            options: ["Punitive measures", "Strategic hedging", "Collective security", "Governance structures"],
+            originalSentence: "The alliance threatened punitive measures against any state that violated the agreed ceasefire terms."
+        }
+    ],
+    "313-23": [ // Implicit
+        {
+            sentence: "There is an _______ understanding that security guarantees come with economic and political expectations.",
+            options: ["Implicit", "Inherent", "Transactional", "Nuanced"],
+            originalSentence: "There is an implicit understanding that security guarantees come with economic and political expectations."
+        }
+    ],
+    "313-24": [ // Ambiguity
+        {
+            sentence: "Strategic _______ can be a deliberate tool to keep adversaries uncertain about how you will respond.",
+            options: ["Ambiguity", "Alignment", "Sustainability", "Polarization"],
+            originalSentence: "Strategic ambiguity can be a deliberate tool to keep adversaries uncertain about how you will respond."
+        }
+    ],
+    "313-25": [ // Sustainability
+        {
+            sentence: "The long-term _______ of any alliance depends on whether members perceive it as serving their interests.",
+            options: ["Sustainability", "Ambiguity", "Alignment", "Polarization"],
+            originalSentence: "The long-term sustainability of any alliance depends on whether members perceive it as serving their interests."
+        }
+    ],
+    "313-26": [ // Polarization
+        {
+            sentence: "Deepening domestic _______ makes it harder for elected governments to sustain consistent foreign policies.",
+            options: ["Polarization", "Sustainability", "Ambiguity", "Alignment"],
+            originalSentence: "Deepening domestic polarization makes it harder for elected governments to sustain consistent foreign policies."
+        }
+    ],
+    "313-27": [ // Underlying tension
+        {
+            sentence: "The _______ between economic interdependence and security competition defines today's international system.",
+            options: ["Underlying tension", "Viable default", "Cyclical fluctuation", "Palpable erosion"],
+            originalSentence: "The underlying tension between economic interdependence and security competition defines today's international system."
+        }
+    ],
+    "313-28": [ // Imperatives
+        {
+            sentence: "Domestic political _______ often force governments to take positions that complicate their alliances.",
+            options: ["Imperatives", "Governance structures", "Punitive measures", "Recalibration"],
+            originalSentence: "Domestic political imperatives often force governments to take positions that complicate their alliances."
+        }
+    ],
+    "313-29": [ // alignment
+        {
+            sentence: "Shifting patterns of _______ among middle powers are reshaping the balance of influence in every region.",
+            options: ["alignment", "ambiguity", "sustainability", "polarization"],
+            originalSentence: "Shifting patterns of alignment among middle powers are reshaping the balance of influence in every region."
+        }
+    ],
 };
 // يمكن أيضاً إضافة أسئلة للكلمات المضافة من قبل المستخدم (تبدأ معرفاتها بـ "u")
 
