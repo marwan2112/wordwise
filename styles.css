@@ -628,7 +628,121 @@ body {
     font-size: 0.95rem;
 }
 
-/* 18. أنماط الوضع الليلي (يتم تطبيقها عبر [data-theme="dark"]) */
+/* 18. أنماط اختبار CAT (كلمات السفارة) */
+.cat-test-container {
+    background: var(--bg-card);
+    border-radius: 24px;
+    padding: 20px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    margin: 16px auto;
+    max-width: 700px;
+}
+.cat-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid var(--border-color);
+    padding-bottom: 12px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+.cat-header h2 {
+    font-size: 1.4rem;
+    margin: 0;
+    color: #1e40af;
+}
+.cat-progress {
+    display: flex;
+    gap: 20px;
+    font-weight: bold;
+    font-size: 1rem;
+}
+.cat-sentence {
+    font-size: 1.3rem;
+    line-height: 1.6;
+    background: #f8fafc;
+    padding: 24px;
+    border-radius: 20px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+.cat-sentence .blank {
+    display: inline-block;
+    min-width: 120px;
+    border-bottom: 3px dashed #3b82f6;
+    margin: 0 4px;
+}
+.cat-input-area {
+    display: flex;
+    gap: 12px;
+    margin: 20px 0;
+}
+#catAnswerInput {
+    flex: 1;
+    padding: 14px;
+    font-size: 1rem;
+    border: 2px solid #cbd5e1;
+    border-radius: 16px;
+    font-family: inherit;
+    background: white;
+}
+#catCheckBtn {
+    background: #10b981;
+    color: white;
+    border: none;
+    padding: 0 24px;
+    border-radius: 16px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 1rem;
+    transition: 0.2s;
+}
+#catCheckBtn:hover:not(:disabled) {
+    background: #059669;
+}
+.cat-hint {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    margin: 10px 0;
+    background: #fef9c3;
+    padding: 8px 12px;
+    border-radius: 12px;
+    display: inline-block;
+}
+.cat-feedback {
+    margin: 15px 0;
+    font-size: 1.1rem;
+    text-align: center;
+}
+.cat-feedback .success {
+    color: #10b981;
+    font-weight: bold;
+}
+.cat-feedback .error {
+    color: #ef4444;
+    font-weight: bold;
+}
+.cat-actions {
+    margin-top: 20px;
+}
+.end-btn {
+    background: #ef4444;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 16px;
+    cursor: pointer;
+    width: 100%;
+    font-size: 1rem;
+    font-weight: bold;
+    transition: 0.2s;
+}
+.end-btn:hover {
+    background: #dc2626;
+}
+
+/* 19. أنماط الوضع الليلي (يتم تطبيقها عبر [data-theme="dark"]) */
 [data-theme="dark"] body {
     background-color: #121212 !important;
     color: #ffffff !important;
@@ -662,7 +776,8 @@ body {
 [data-theme="dark"] .gapfill-sentence,
 [data-theme="dark"] .scrollable-text,
 [data-theme="dark"] .gapfill-explanation,
-[data-theme="dark"] .history-list {
+[data-theme="dark"] .history-list,
+[data-theme="dark"] .cat-test-container {
     background-color: #1e1e1e !important;
     color: #ffffff !important;
     border-color: #444 !important;
@@ -679,28 +794,34 @@ body {
 [data-theme="dark"] .scrollable-text *,
 [data-theme="dark"] .gapfill-sentence *,
 [data-theme="dark"] .gapfill-explanation *,
-[data-theme="dark"] .history-list * {
+[data-theme="dark"] .history-list *,
+[data-theme="dark"] .cat-test-container * {
     color: #ffffff !important;
 }
 [data-theme="dark"] input,
 [data-theme="dark"] textarea,
-[data-theme="dark"] .spelling-input {
+[data-theme="dark"] .spelling-input,
+[data-theme="dark"] #catAnswerInput {
     background-color: #2d2d2d !important;
-    color: #000000 !important;
+    color: #ffffff !important;
     border-color: #555 !important;
 }
 [data-theme="dark"] input::placeholder,
-[data-theme="dark"] textarea::placeholder {
+[data-theme="dark"] textarea::placeholder,
+[data-theme="dark"] #catAnswerInput::placeholder {
     color: #aaa !important;
 }
 [data-theme="dark"] .hero-btn,
-[data-theme="dark"] .quiz-opt-btn {
+[data-theme="dark"] .quiz-opt-btn,
+[data-theme="dark"] #catCheckBtn,
+[data-theme="dark"] .end-btn {
     background-color: #333 !important;
     color: #fff !important;
     border-color: #555 !important;
 }
 [data-theme="dark"] .hero-btn:hover,
-[data-theme="dark"] .quiz-opt-btn:hover {
+[data-theme="dark"] .quiz-opt-btn:hover,
+[data-theme="dark"] #catCheckBtn:hover {
     background-color: #444 !important;
 }
 [data-theme="dark"] .flashcard-front,
@@ -779,4 +900,11 @@ body {
 }
 [data-theme="dark"] .auth-container p {
     color: #ccc !important;
+}
+[data-theme="dark"] .cat-sentence {
+    background: #2d2d2d !important;
+}
+[data-theme="dark"] .cat-hint {
+    background: #3e3a1f !important;
+    color: #fde047 !important;
 }
