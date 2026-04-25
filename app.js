@@ -2453,8 +2453,8 @@ class App {
             .card-nav-row{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:10px 0}
             .history-item{background:#f1f5f9;padding:12px;margin-bottom:10px;border-radius:12px;cursor:pointer}
             [data-theme="dark"] .history-item{background:#2d2d2d}
-            .scrollable-text{max-height:400px;overflow-y:auto;padding:10px;line-height:1.6;direction:ltr;text-align:left}
-            .profile-image{width:100px;height:100px;border-radius:50%;background:#e0e0e0;display:flex;align-items:center;justify-content:center;overflow:hidden;border:3px solid #ffd700;cursor:pointer;margin:10px auto}
+.scrollable-text{max-height:400px;overflow-y:auto;padding:10px;line-height:1.6;direction:ltr;text-align:left;white-space:pre-wrap}
+.profile-image{width:100px;height:100px;border-radius:50%;background:#e0e0e0;display:flex;align-items:center;justify-content:center;overflow:hidden;border:3px solid #ffd700;cursor:pointer;margin:10px auto}
             .profile-image img{width:100%;height:100%;object-fit:cover}
             .info-row{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid #eee;flex-wrap:wrap;gap:8px}
             [data-theme="dark"] .info-row{border-bottom-color:#444}
