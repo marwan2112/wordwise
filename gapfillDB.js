@@ -36346,6 +36346,454 @@ window.gapfillDB = {
             originalSentence: "Institutional reforms are needed to ensure that the gains from technological progress are shared more equitably."
         }
     ],
+    "315-1": [ // Deployment
+        {
+            sentence: "The _______ of hypersonic missiles by multiple powers has created new strategic instabilities.",
+            options: ["Deployment", "Deterrence", "Escalation", "Miscalculation"],
+            originalSentence: "The deployment of hypersonic missiles by multiple powers has created new strategic instabilities."
+        }
+    ],
+    "315-2": [ // Hypersonic
+        {
+            sentence: "_______ weapons travel at speeds exceeding Mach 5, making them extremely difficult to intercept.",
+            options: ["Hypersonic", "Conventional", "Agile", "Preemptive"],
+            originalSentence: "Hypersonic weapons travel at speeds exceeding Mach 5, making them extremely difficult to intercept."
+        }
+    ],
+    "315-3": [ // Destabilizing
+        {
+            sentence: "The proliferation of hypersonic weapons is widely regarded as deeply _______ to the existing strategic balance.",
+            options: ["Destabilizing", "Proportional", "Tailored", "Indefensible"],
+            originalSentence: "The proliferation of hypersonic weapons is widely regarded as deeply destabilizing to the existing strategic balance."
+        }
+    ],
+    "315-4": [ // Conventional
+        {
+            sentence: "Unlike _______ ballistic missiles, hypersonic glide vehicles follow unpredictable flight paths.",
+            options: ["Conventional", "Agile", "Preemptive", "Robust"],
+            originalSentence: "Unlike conventional ballistic missiles, hypersonic glide vehicles follow unpredictable flight paths."
+        }
+    ],
+    "315-5": [ // Trajectories
+        {
+            sentence: "The irregular _______ of hypersonic weapons make them far harder to track and intercept than traditional missiles.",
+            options: ["Trajectories", "Payloads", "Constraints", "Implications"],
+            originalSentence: "The irregular trajectories of hypersonic weapons make them far harder to track and intercept than traditional missiles."
+        }
+    ],
+    "315-6": [ // Glide vehicles
+        {
+            sentence: "Hypersonic _______ are launched on a rocket before gliding toward their target at extreme speeds.",
+            options: ["Glide vehicles", "Payloads", "First-strike", "Thresholds"],
+            originalSentence: "Hypersonic glide vehicles are launched on a rocket before gliding toward their target at extreme speeds."
+        }
+    ],
+    "315-7": [ // Maneuverability
+        {
+            sentence: "The exceptional _______ of hypersonic weapons allows them to change course and defeat existing defences.",
+            options: ["Maneuverability", "Efficacy", "Deterrence", "Ambiguity"],
+            originalSentence: "The exceptional maneuverability of hypersonic weapons allows them to change course and defeat existing defences."
+        }
+    ],
+    "315-8": [ // Evade
+        {
+            sentence: "Hypersonic missiles are specifically designed to _______ current missile defence systems.",
+            options: ["Evade", "Intercept", "Compress", "Deter"],
+            originalSentence: "Hypersonic missiles are specifically designed to evade current missile defence systems."
+        }
+    ],
+    "315-9": [ // Intercept
+        {
+            sentence: "No existing defence system has yet demonstrated a reliable ability to _______ a hypersonic glide vehicle.",
+            options: ["Intercept", "Evade", "Compress", "Deter"],
+            originalSentence: "No existing defence system has yet demonstrated a reliable ability to intercept a hypersonic glide vehicle."
+        }
+    ],
+    "315-10": [ // Agile
+        {
+            sentence: "Highly _______ weapons that can alter their flight path mid-course pose the greatest challenge to defenders.",
+            options: ["Agile", "Conventional", "Robust", "Proportional"],
+            originalSentence: "Highly agile weapons that can alter their flight path mid-course pose the greatest challenge to defenders."
+        }
+    ],
+    "315-11": [ // Compresses
+        {
+            sentence: "Hypersonic speed dramatically _______ the decision-making time available to a targeted nation.",
+            options: ["Compresses", "Evades", "Intercepts", "Tailors"],
+            originalSentence: "Hypersonic speed dramatically compresses the decision-making time available to a targeted nation."
+        }
+    ],
+    "315-12": [ // Adversary
+        {
+            sentence: "When an _______ possesses hypersonic weapons, the defender has very little warning before impact.",
+            options: ["Adversary", "Payload", "Threshold", "Constraint"],
+            originalSentence: "When an adversary possesses hypersonic weapons, the defender has very little warning before impact."
+        }
+    ],
+    "315-13": [ // Miscalculation
+        {
+            sentence: "The compressed warning times created by hypersonic weapons dramatically increase the risk of _______.",
+            options: ["Miscalculation", "Deterrence", "Escalation", "Ambiguity"],
+            originalSentence: "The compressed warning times created by hypersonic weapons dramatically increase the risk of miscalculation."
+        }
+    ],
+    "315-14": [ // Implications
+        {
+            sentence: "The strategic _______ of hypersonic weapons extend far beyond the battlefield into arms control and diplomacy.",
+            options: ["Implications", "Trajectories", "Payloads", "Constraints"],
+            originalSentence: "The strategic implications of hypersonic weapons extend far beyond the battlefield into arms control and diplomacy."
+        }
+    ],
+    "315-15": [ // Multifaceted
+        {
+            sentence: "The challenge posed by hypersonic weapons is _______, requiring military, diplomatic, and technological responses.",
+            options: ["Multifaceted", "Indefensible", "Proportional", "Tailored"],
+            originalSentence: "The challenge posed by hypersonic weapons is multifaceted, requiring military, diplomatic, and technological responses."
+        }
+    ],
+    "315-16": [ // Efficacy
+        {
+            sentence: "The _______ of traditional missile defence systems is severely diminished against hypersonic threats.",
+            options: ["Efficacy", "Deterrence", "Ambiguity", "Maneuverability"],
+            originalSentence: "The efficacy of traditional missile defence systems is severely diminished against hypersonic threats."
+        }
+    ],
+    "315-17": [ // Deterrence
+        {
+            sentence: "Stable _______ requires that both sides believe they can survive a first strike and still retaliate effectively.",
+            options: ["Deterrence", "Escalation", "Ambiguity", "Miscalculation"],
+            originalSentence: "Stable deterrence requires that both sides believe they can survive a first strike and still retaliate effectively."
+        }
+    ],
+    "315-18": [ // Robust
+        {
+            sentence: "A _______ second-strike capability is essential for maintaining credible nuclear deterrence.",
+            options: ["Robust", "Agile", "Conventional", "Proportional"],
+            originalSentence: "A robust second-strike capability is essential for maintaining credible nuclear deterrence."
+        }
+    ],
+    "315-19": [ // First-strike
+        {
+            sentence: "Hypersonic weapons may tempt adversaries to consider a _______ option before their own assets are destroyed.",
+            options: ["First-strike", "Preemptive", "Conventional", "Tailored"],
+            originalSentence: "Hypersonic weapons may tempt adversaries to consider a first-strike option before their own assets are destroyed."
+        }
+    ],
+    "315-20": [ // Indefensible
+        {
+            sentence: "If key military assets become _______, states may feel compelled to strike before they are targeted.",
+            options: ["Indefensible", "Agile", "Proportional", "Robust"],
+            originalSentence: "If key military assets become indefensible, states may feel compelled to strike before they are targeted."
+        }
+    ],
+    "315-21": [ // Incentive
+        {
+            sentence: "The vulnerability created by hypersonic weapons creates a dangerous _______ to strike first in a crisis.",
+            options: ["Incentive", "Threshold", "Constraint", "Payload"],
+            originalSentence: "The vulnerability created by hypersonic weapons creates a dangerous incentive to strike first in a crisis."
+        }
+    ],
+    "315-22": [ // Preemptive
+        {
+            sentence: "Fear of an imminent attack may push a state toward a _______ strike even when none was intended.",
+            options: ["Preemptive", "Conventional", "Proportional", "Tailored"],
+            originalSentence: "Fear of an imminent attack may push a state toward a preemptive strike even when none was intended."
+        }
+    ],
+    "315-23": [ // Threshold
+        {
+            sentence: "Hypersonic weapons lower the _______ for armed conflict by making decisive strikes appear achievable.",
+            options: ["Threshold", "Payload", "Constraint", "Trajectory"],
+            originalSentence: "Hypersonic weapons lower the threshold for armed conflict by making decisive strikes appear achievable."
+        }
+    ],
+    "315-24": [ // Escalation
+        {
+            sentence: "Managing _______ risk is one of the central challenges in any confrontation involving hypersonic-armed states.",
+            options: ["Escalation", "Deterrence", "Ambiguity", "Miscalculation"],
+            originalSentence: "Managing escalation risk is one of the central challenges in any confrontation involving hypersonic-armed states."
+        }
+    ],
+    "315-25": [ // Ambiguity
+        {
+            sentence: "The _______ surrounding whether a hypersonic weapon carries a nuclear or conventional warhead is deeply dangerous.",
+            options: ["Ambiguity", "Deterrence", "Escalation", "Efficacy"],
+            originalSentence: "The ambiguity surrounding whether a hypersonic weapon carries a nuclear or conventional warhead is deeply dangerous."
+        }
+    ],
+    "315-26": [ // Payload
+        {
+            sentence: "A defender cannot know whether an incoming hypersonic weapon carries a nuclear or conventional _______.",
+            options: ["Payload", "Trajectory", "Threshold", "Constraint"],
+            originalSentence: "A defender cannot know whether an incoming hypersonic weapon carries a nuclear or conventional payload."
+        }
+    ],
+    "315-27": [ // Proportional
+        {
+            sentence: "International law requires that military responses be _______ to the threat that provoked them.",
+            options: ["Proportional", "Agile", "Robust", "Indefensible"],
+            originalSentence: "International law requires that military responses be proportional to the threat that provoked them."
+        }
+    ],
+    "315-28": [ // Prohibitively
+        {
+            sentence: "Developing effective defences against hypersonic weapons is _______ expensive for most nations.",
+            options: ["Prohibitively", "Proportionally", "Conventionally", "Tailoredly"],
+            originalSentence: "Developing effective defences against hypersonic weapons is prohibitively expensive for most nations."
+        }
+    ],
+    "315-29": [ // Tailored
+        {
+            sentence: "Arms control agreements must be _______ to address the specific characteristics of hypersonic weapons.",
+            options: ["Tailored", "Conventional", "Proportional", "Robust"],
+            originalSentence: "Arms control agreements must be tailored to address the specific characteristics of hypersonic weapons."
+        }
+    ],
+    "315-30": [ // Improbable
+        {
+            sentence: "A comprehensive ban on hypersonic weapons appears _______ given the level of investment already committed.",
+            options: ["Improbable", "Indefensible", "Proportional", "Tailored"],
+            originalSentence: "A comprehensive ban on hypersonic weapons appears improbable given the level of investment already committed."
+        }
+    ],
+    "315-31": [ // Imperative
+        {
+            sentence: "Establishing communication channels to manage crises involving hypersonic weapons is an urgent _______.",
+            options: ["Imperative", "Threshold", "Payload", "Constraint"],
+            originalSentence: "Establishing communication channels to manage crises involving hypersonic weapons is an urgent imperative."
+        }
+    ],
+    "315-32": [ // Constraints
+        {
+            sentence: "Without verifiable arms control _______, the hypersonic arms race is likely to accelerate unchecked.",
+            options: ["Constraints", "Payloads", "Trajectories", "Thresholds"],
+            originalSentence: "Without verifiable arms control constraints, the hypersonic arms race is likely to accelerate unchecked."
+        }
+    ],
+    "316-1": [ // Digital sovereignty
+        {
+            sentence: "_______ refers to a nation's ability to control its own digital infrastructure, data, and technology ecosystem.",
+            options: ["Digital sovereignty", "Data localization", "Collective defense", "Regulatory regimes"],
+            originalSentence: "Digital sovereignty refers to a nation's ability to control its own digital infrastructure, data, and technology ecosystem."
+        }
+    ],
+    "316-2": [ // Niche concern
+        {
+            sentence: "What was once considered a _______ among security experts has become a mainstream political priority.",
+            options: ["Niche concern", "Paradigm shift", "Foundational principle", "Pragmatic balance"],
+            originalSentence: "What was once considered a niche concern among security experts has become a mainstream political priority."
+        }
+    ],
+    "316-3": [ // Ascended
+        {
+            sentence: "Digital sovereignty has _______ from a technical debate into a central question of national strategy.",
+            options: ["Ascended", "Mandated", "Fragmented", "Escalated"],
+            originalSentence: "Digital sovereignty has ascended from a technical debate into a central question of national strategy."
+        }
+    ],
+    "316-4": [ // Forefront
+        {
+            sentence: "Data governance is now at the _______ of geopolitical competition between major powers.",
+            options: ["Forefront", "Trajectory", "Confluence", "Compliance"],
+            originalSentence: "Data governance is now at the forefront of geopolitical competition between major powers."
+        }
+    ],
+    "316-5": [ // Foundational principle
+        {
+            sentence: "Control over critical digital infrastructure has become a _______ of modern statecraft.",
+            options: ["Foundational principle", "Niche concern", "Pragmatic balance", "Double-edged sword"],
+            originalSentence: "Control over critical digital infrastructure has become a foundational principle of modern statecraft."
+        }
+    ],
+    "316-6": [ // Paradigm shift
+        {
+            sentence: "The rise of digital sovereignty represents a fundamental _______ in how nations think about technology.",
+            options: ["Paradigm shift", "Niche concern", "Pragmatic balance", "Foundational principle"],
+            originalSentence: "The rise of digital sovereignty represents a fundamental paradigm shift in how nations think about technology."
+        }
+    ],
+    "316-7": [ // Confluence
+        {
+            sentence: "A _______ of cybersecurity threats, data scandals, and geopolitical rivalry has driven digital sovereignty up the agenda.",
+            options: ["Confluence", "Trajectory", "Compliance", "Fragmentation"],
+            originalSentence: "A confluence of cybersecurity threats, data scandals, and geopolitical rivalry has driven digital sovereignty up the agenda."
+        }
+    ],
+    "316-8": [ // Escalating
+        {
+            sentence: "_______ tensions over technology standards are pushing nations toward incompatible digital systems.",
+            options: ["Escalating", "Disparate", "Robust", "Pragmatic"],
+            originalSentence: "Escalating tensions over technology standards are pushing nations toward incompatible digital systems."
+        }
+    ],
+    "316-9": [ // Pervasive surveillance
+        {
+            sentence: "Concerns about _______ by foreign governments have accelerated the push for data localisation laws.",
+            options: ["Pervasive surveillance", "Economies of scale", "Collective defense", "Regulatory regimes"],
+            originalSentence: "Concerns about pervasive surveillance by foreign governments have accelerated the push for data localisation laws."
+        }
+    ],
+    "316-10": [ // Paramount
+        {
+            sentence: "Protecting citizens' data from foreign access has become a _______ concern for many governments.",
+            options: ["Paramount", "Disparate", "Robust", "Pragmatic"],
+            originalSentence: "Protecting citizens' data from foreign access has become a paramount concern for many governments."
+        }
+    ],
+    "316-11": [ // Robust interpretation
+        {
+            sentence: "A _______ of digital sovereignty would require nations to build entirely independent technology stacks.",
+            options: ["Robust interpretation", "Niche concern", "Pragmatic balance", "Foundational principle"],
+            originalSentence: "A robust interpretation of digital sovereignty would require nations to build entirely independent technology stacks."
+        }
+    ],
+    "316-12": [ // Advocates
+        {
+            sentence: "The European Union _______ a model of digital sovereignty that protects rights without closing off trade.",
+            options: ["Advocates", "Mandates", "Fragments", "Escalates"],
+            originalSentence: "The European Union advocates a model of digital sovereignty that protects rights without closing off trade."
+        }
+    ],
+    "316-13": [ // Necessitating
+        {
+            sentence: "The scale of foreign data collection is _______ a legal response that goes beyond existing privacy laws.",
+            options: ["Necessitating", "Mandating", "Fragmenting", "Escalating"],
+            originalSentence: "The scale of foreign data collection is necessitating a legal response that goes beyond existing privacy laws."
+        }
+    ],
+    "316-14": [ // Data localization
+        {
+            sentence: "_______ laws require companies to store and process citizens' data within national borders.",
+            options: ["Data localization", "Digital sovereignty", "Collective defense", "Regulatory regimes"],
+            originalSentence: "Data localization laws require companies to store and process citizens' data within national borders."
+        }
+    ],
+    "316-15": [ // Domestic champions
+        {
+            sentence: "Some governments are actively subsidising _______ to reduce dependence on foreign technology platforms.",
+            options: ["Domestic champions", "Regulatory regimes", "Economies of scale", "Compliance"],
+            originalSentence: "Some governments are actively subsidising domestic champions to reduce dependence on foreign technology platforms."
+        }
+    ],
+    "316-16": [ // Implications
+        {
+            sentence: "The _______ of digital sovereignty for global trade and innovation are only beginning to be understood.",
+            options: ["Implications", "Trajectories", "Mandates", "Compliances"],
+            originalSentence: "The implications of digital sovereignty for global trade and innovation are only beginning to be understood."
+        }
+    ],
+    "316-17": [ // Fragmentation
+        {
+            sentence: "The _______ of the global internet into national segments would impose enormous costs on the digital economy.",
+            options: ["Fragmentation", "Compliance", "Trajectory", "Confluence"],
+            originalSentence: "The fragmentation of the global internet into national segments would impose enormous costs on the digital economy."
+        }
+    ],
+    "316-18": [ // Splinternet
+        {
+            sentence: "The feared _______ scenario would see incompatible national internets replace the current global network.",
+            options: ["Splinternet", "Fragmentation", "Paradigm shift", "Confluence"],
+            originalSentence: "The feared splinternet scenario would see incompatible national internets replace the current global network."
+        }
+    ],
+    "316-19": [ // Regulatory regimes
+        {
+            sentence: "Diverging _______ across major markets are forcing multinationals to adapt their products for each jurisdiction.",
+            options: ["Regulatory regimes", "Economies of scale", "Domestic champions", "Data localization"],
+            originalSentence: "Diverging regulatory regimes across major markets are forcing multinationals to adapt their products for each jurisdiction."
+        }
+    ],
+    "316-20": [ // Compliance
+        {
+            sentence: "The cost of _______ with multiple incompatible national data laws is becoming unsustainable for smaller firms.",
+            options: ["Compliance", "Fragmentation", "Trajectory", "Confluence"],
+            originalSentence: "The cost of compliance with multiple incompatible national data laws is becoming unsustainable for smaller firms."
+        }
+    ],
+    "316-21": [ // Disparate
+        {
+            sentence: "_______ national approaches to data governance are creating barriers to the free flow of information.",
+            options: ["Disparate", "Paramount", "Robust", "Pragmatic"],
+            originalSentence: "Disparate national approaches to data governance are creating barriers to the free flow of information."
+        }
+    ],
+    "316-22": [ // Economies of scale
+        {
+            sentence: "Data localisation requirements undermine the _______ that make global technology platforms viable.",
+            options: ["Economies of scale", "Regulatory regimes", "Domestic champions", "Collective defense"],
+            originalSentence: "Data localisation requirements undermine the economies of scale that make global technology platforms viable."
+        }
+    ],
+    "316-23": [ // Mandates
+        {
+            sentence: "New legislation _______ that all personal data generated within the country must remain on domestic servers.",
+            options: ["Mandates", "Advocates", "Necessitates", "Fragments"],
+            originalSentence: "New legislation mandates that all personal data generated within the country must remain on domestic servers."
+        }
+    ],
+    "316-24": [ // Protectionism
+        {
+            sentence: "Critics argue that digital sovereignty is often used as a cover for _______ and market closure.",
+            options: ["Protectionism", "Resilience", "Autonomy", "Interoperability"],
+            originalSentence: "Critics argue that digital sovereignty is often used as a cover for protectionism and market closure."
+        }
+    ],
+    "316-25": [ // Double-edged sword
+        {
+            sentence: "Data localisation is a _______ — it may enhance security while reducing efficiency and innovation.",
+            options: ["Double-edged sword", "Foundational principle", "Niche concern", "Pragmatic balance"],
+            originalSentence: "Data localisation is a double-edged sword — it may enhance security while reducing efficiency and innovation."
+        }
+    ],
+    "316-26": [ // Resilience
+        {
+            sentence: "Investing in domestic cloud infrastructure improves national _______ against foreign cyberattacks and coercion.",
+            options: ["Resilience", "Autonomy", "Interoperability", "Compliance"],
+            originalSentence: "Investing in domestic cloud infrastructure improves national resilience against foreign cyberattacks and coercion."
+        }
+    ],
+    "316-27": [ // Collective defense
+        {
+            sentence: "Allies are exploring _______ frameworks that allow them to share threat intelligence without compromising sovereignty.",
+            options: ["Collective defense", "Data localization", "Domestic champions", "Regulatory regimes"],
+            originalSentence: "Allies are exploring collective defense frameworks that allow them to share threat intelligence without compromising sovereignty."
+        }
+    ],
+    "316-28": [ // Pragmatic balance
+        {
+            sentence: "Most nations will ultimately seek a _______ between openness and control rather than full digital independence.",
+            options: ["Pragmatic balance", "Foundational principle", "Niche concern", "Double-edged sword"],
+            originalSentence: "Most nations will ultimately seek a pragmatic balance between openness and control rather than full digital independence."
+        }
+    ],
+    "316-29": [ // Interoperability
+        {
+            sentence: "Without _______ between national systems, cross-border commerce and collaboration become far more difficult.",
+            options: ["Interoperability", "Resilience", "Autonomy", "Compliance"],
+            originalSentence: "Without interoperability between national systems, cross-border commerce and collaboration become far more difficult."
+        }
+    ],
+    "316-30": [ // Trajectory
+        {
+            sentence: "The current _______ of digital sovereignty debates suggests a gradual fragmentation of the global internet.",
+            options: ["Trajectory", "Confluence", "Compliance", "Fragmentation"],
+            originalSentence: "The current trajectory of digital sovereignty debates suggests a gradual fragmentation of the global internet."
+        }
+    ],
+    "316-31": [ // Decisively
+        {
+            sentence: "How governments act in the next decade will _______ shape the architecture of the global digital order.",
+            options: ["Decisively", "Disparately", "Robustly", "Pragmatically"],
+            originalSentence: "How governments act in the next decade will decisively shape the architecture of the global digital order."
+        }
+    ],
+    "316-32": [ // Autonomy
+        {
+            sentence: "True digital _______ requires not just legal control over data but also independent technical capabilities.",
+            options: ["Autonomy", "Resilience", "Interoperability", "Compliance"],
+            originalSentence: "True digital autonomy requires not just legal control over data but also independent technical capabilities."
+        }
+    ],
 };
 // يمكن أيضاً إضافة أسئلة للكلمات المضافة من قبل المستخدم (تبدأ معرفاتها بـ "u")
 
