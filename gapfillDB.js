@@ -10617,6 +10617,7 @@ window.gapfillDB = {
         {
             sentence: "I love spending time in _______ because it is so quiet and peaceful.",
             options: ["nature", "trip", "goal", "stone"],
+            originalSentence: "I love spending time in nature because it is so quiet and peaceful."
         }
     ],
     "40-4": [ // scenery
@@ -10828,7 +10829,7 @@ window.gapfillDB = {
             options: ["finish", "explore", "pack", "spread"],
             originalSentence: "I need to finish my homework before I can play games."
         }
-    ], 
+    ],
     "41-1": [ // classmate
         {
             sentence: "My new _______ sits next to me in English class.",
@@ -36794,6 +36795,7 @@ window.gapfillDB = {
             originalSentence: "True digital autonomy requires not just legal control over data but also independent technical capabilities."
         }
     ],
+    
 };
 // يمكن أيضاً إضافة أسئلة للكلمات المضافة من قبل المستخدم (تبدأ معرفاتها بـ "u")
 
