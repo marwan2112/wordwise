@@ -47,6 +47,7 @@ class App {
         this.adaptiveTestLevelStats = {};
         this.adaptiveTestLevelOrder = ['A1', 'A2', 'B1', 'B2', 'C1', 'C2'];
         this.adaptiveTestQuestionBank = {};
+        this.userGapFillQuestions = {};   // هيكل: { [wordId]: [{ sentence, correct, options }] }
         
         // ========== نظام اختبار المستوى السماعي ==========
         this.adaptiveListeningActive = false;
@@ -569,6 +570,7 @@ class App {
                 this.listeningUnlocked = data.listeningUnlocked ?? {};
                 this.spellingUnlocked = data.spellingUnlocked ?? {};
                 this.gapFillUnlocked = data.gapFillUnlocked ?? {};
+                this.userGapFillQuestions = data.userGapFillQuestions ?? {};
                 this.customLessons = data.customLessons ?? {};
                 Object.values(this.customLessons).forEach(lesson => {
     window.lessonsData[lesson.id] = lesson;
@@ -666,6 +668,7 @@ class App {
             spellingCorrectWords: this.spellingCorrectWords || [],
             gapFillCorrectWords: this.gapFillCorrectWords || [],
             lastUpdated: new Date().toISOString()
+            userGapFillQuestions: this.userGapFillQuestions || {},
         };
         try {
             await setDoc(doc(db, "users", uid), data, { merge: true });
@@ -1509,7 +1512,94 @@ class App {
         
         console.log(`✅ تم تحميل ${selected.length} سؤال قراءة للمستوى ${level}`);
     }
+// فتح نافذة إضافة سؤال gapfill مخصص
+showAddGapFillQuestion(wordId, wordEnglish, wordArabic) {
+    const modalDiv = document.createElement('div');
+    modalDiv.className = 'modal-overlay';
+    modalDiv.onclick = (e) => { if (e.target === modalDiv) modalDiv.remove(); };
+    modalDiv.innerHTML = `
+        <div class="modal-content" style="max-width:500px;">
+            <h3 style="margin-bottom:15px;">✏️ ${this.t('إضافة سؤال ملء فراغ', 'Add GapFill Question')}</h3>
+            <p><strong>${this.t('الكلمة:', 'Word:')}</strong> ${wordEnglish} (${wordArabic})</p>
+            <div style="margin:12px 0;">
+                <label>${this.t('الجملة (استخدم ______ مكان الكلمة):', 'Sentence (use ______ for the blank):')}</label>
+                <textarea id="newGapSentence" rows="3" style="width:100%; padding:8px; border-radius:8px; border:1px solid #ddd;" placeholder="مثال: I ______ to school every day."></textarea>
+            </div>
+            <div style="margin:12px 0;">
+                <label>${this.t('الإجابة الصحيحة:', 'Correct answer:')}</label>
+                <input type="text" id="newGapCorrect" style="width:100%; padding:8px; border-radius:8px; border:1px solid #ddd;" placeholder="${wordEnglish}">
+            </div>
+            <div style="margin:12px 0;">
+                <label>${this.t('الخيارات (افصل بينها بفواصل):', 'Options (separate by commas):')}</label>
+                <input type="text" id="newGapOptions" style="width:100%; padding:8px; border-radius:8px; border:1px solid #ddd;" placeholder="${wordEnglish}, goes, going, went">
+            </div>
+            <div style="display:flex; gap:10px; margin-top:20px;">
+                <button id="saveGapQuestionBtn" class="hero-btn" style="background:#10b981;">✅ ${this.t('حفظ', 'Save')}</button>
+                <button id="cancelGapBtn" class="hero-btn" style="background:#64748b;">${this.t('إلغاء', 'Cancel')}</button>
+            </div>
+        </div>
+    `;
+    document.body.appendChild(modalDiv);
+    
+    document.getElementById('saveGapQuestionBtn').onclick = () => {
+        const sentence = document.getElementById('newGapSentence').value.trim();
+        const correct = document.getElementById('newGapCorrect').value.trim();
+        const optionsStr = document.getElementById('newGapOptions').value.trim();
+        if (!sentence || !correct || !optionsStr) {
+            alert(this.t('الرجاء ملء جميع الحقول', 'Please fill all fields'));
+            return;
+        }
+        const options = optionsStr.split(',').map(opt => opt.trim());
+        if (!options.includes(correct)) {
+            options.push(correct);
+        }
+        if (!this.userGapFillQuestions[wordId]) this.userGapFillQuestions[wordId] = [];
+        this.userGapFillQuestions[wordId].push({
+            sentence: sentence,
+            correct: correct,
+            options: options
+        });
+        this.saveUserData();
+        modalDiv.remove();
+        this.showCustomModal('success', '✅', this.t('تم إضافة السؤال بنجاح!', 'Question added successfully!'));
+        this.render();
+    };
+    document.getElementById('cancelGapBtn').onclick = () => modalDiv.remove();
+}
 
+// عرض قائمة الأسئلة المخصصة لكلمة معينة
+showManageGapQuestions(wordId, wordEnglish) {
+    const questions = this.userGapFillQuestions[wordId] || [];
+    if (questions.length === 0) {
+        this.showCustomModal('info', 'ℹ️', this.t('لا توجد أسئلة مخصصة لهذه الكلمة.', 'No custom questions for this word.'));
+        return;
+    }
+    let html = `<div style="max-height:400px; overflow-y:auto;"><ul style="list-style:none; padding:0;">`;
+    questions.forEach((q, idx) => {
+        html += `<li style="border-bottom:1px solid #eee; padding:8px; margin-bottom:5px;">
+                    <strong>${this.t('الجملة:', 'Sentence:')}</strong> ${this.escapeHtml(q.sentence)}<br>
+                    <strong>${this.t('الإجابة:', 'Answer:')}</strong> ${q.correct}<br>
+                    <button class="hero-btn" data-delete-idx="${idx}" data-word-id="${wordId}" style="background:#ef4444; padding:4px 8px; margin-top:5px;">🗑️ ${this.t('حذف', 'Delete')}</button>
+                 </li>`;
+    });
+    html += `</ul></div>`;
+    const modalDiv = document.createElement('div');
+    modalDiv.className = 'modal-overlay';
+    modalDiv.innerHTML = `<div class="modal-content"><h3>📋 ${this.t('أسئلة مخصصة لـ', 'Custom questions for')} ${wordEnglish}</h3>${html}<button id="closeManageBtn" class="hero-btn" style="margin-top:15px;">${this.t('إغلاق', 'Close')}</button></div>`;
+    document.body.appendChild(modalDiv);
+    modalDiv.querySelectorAll('[data-delete-idx]').forEach(btn => {
+        btn.onclick = (e) => {
+            const idx = parseInt(btn.dataset.deleteIdx);
+            const wid = btn.dataset.wordId;
+            this.userGapFillQuestions[wid].splice(idx, 1);
+            if (this.userGapFillQuestions[wid].length === 0) delete this.userGapFillQuestions[wid];
+            this.saveUserData();
+            modalDiv.remove();
+            this.showManageGapQuestions(wid, wordEnglish);
+        };
+    });
+    document.getElementById('closeManageBtn').onclick = () => modalDiv.remove();
+}
     getCurrentAdaptiveQuestion() {
         if (this.adaptiveTestPhase === 'confirmation') {
             if (this.adaptiveTestConfirmationQuestions.length > 0) {
@@ -2168,8 +2258,85 @@ class App {
     
     getRandomWordsForOptions(correctWord, count) { const lesson = this.getCurrentLessonData(); if (!lesson) return []; const allTerms = [...lesson.terms, ...this.userVocabulary.filter(v => v.lessonId == this.selectedLessonId)]; const otherWords = allTerms.filter(t => t.english !== correctWord).map(t => t.english); const shuffled = [...otherWords].sort(() => 0.5 - Math.random()); const selected = shuffled.slice(0, count); while (selected.length < count) selected.push('???'); return selected; }
     
-    async prepareGapFill() { if (this.gapFillTimer) clearTimeout(this.gapFillTimer); const lesson = this.getCurrentLessonData(); if (!lesson) return; if (this.gapFillCurrentLessonId !== this.selectedLessonId) { this.resetGapFillForNewLesson(); this.gapFillCurrentLessonId = this.selectedLessonId; } const available = this.getAllAvailableWordsForExercises(); if (available.length === 0) { alert(this.t('🎉 لا توجد كلمات متاحة! قم بإضافة كلمات جديدة.', '🎉 No words available! Add new words.')); return; } if (!this.gapFillRemainingWords || this.gapFillRemainingWords.length === 0) { this.gapFillRemainingWords = [...available]; this.shuffleArray(this.gapFillRemainingWords); this.gapFillUsedQuestions = {}; this.gapFillNoQuestionsMessageShown = false; } const targetWordObj = this.gapFillRemainingWords[0]; const targetWord = targetWordObj.english; const targetArabic = targetWordObj.arabic; const wordId = targetWordObj.id; let questionData = null; if (window.gapfillDB && window.gapfillDB[wordId] && window.gapfillDB[wordId].length > 0) { const questionsForWord = window.gapfillDB[wordId]; if (!this.gapFillUsedQuestions[wordId]) this.gapFillUsedQuestions[wordId] = []; let availableQuestions = questionsForWord.filter(q => !this.gapFillUsedQuestions[wordId].includes(q)); if (availableQuestions.length === 0) { this.gapFillUsedQuestions[wordId] = []; availableQuestions = questionsForWord; } const randomIndex = Math.floor(Math.random() * availableQuestions.length); questionData = availableQuestions[randomIndex]; this.gapFillUsedQuestions[wordId].push(questionData); } if (!questionData) questionData = this.generateDynamicGapFillQuestion(targetWordObj); while (questionData.options.length < 4) questionData.options.push('???'); this.shuffleArray(questionData.options); this.gapFillCurrentQuestion = { text: questionData.sentence, correct: targetWord, arabic: targetArabic, originalSentence: questionData.originalSentence || questionData.sentence.replace('______', targetWord), originalSentenceArabic: '', wordId: wordId }; this.gapFillOptions = questionData.options; this.gapFillAnswered = false; this.gapFillResult = null; this.gapFillExplanation = ''; this.gapFillOptionsMeanings = []; this.gapFillExplanationVisible = false; this.render(); }
+async prepareGapFill() {
+    if (this.gapFillTimer) clearTimeout(this.gapFillTimer);
+    const lesson = this.getCurrentLessonData();
+    if (!lesson) return;
+    if (this.gapFillCurrentLessonId !== this.selectedLessonId) {
+        this.resetGapFillForNewLesson();
+        this.gapFillCurrentLessonId = this.selectedLessonId;
+    }
+    const available = this.getAllAvailableWordsForExercises();
+    if (available.length === 0) {
+        alert(this.t('🎉 لا توجد كلمات متاحة! قم بإضافة كلمات جديدة.', '🎉 No words available! Add new words.'));
+        return;
+    }
+    if (!this.gapFillRemainingWords || this.gapFillRemainingWords.length === 0) {
+        this.gapFillRemainingWords = [...available];
+        this.shuffleArray(this.gapFillRemainingWords);
+        this.gapFillUsedQuestions = {};
+        this.gapFillNoQuestionsMessageShown = false;
+    }
+    const targetWordObj = this.gapFillRemainingWords[0];
+    const targetWord = targetWordObj.english;
+    const targetArabic = targetWordObj.arabic;
+    const wordId = targetWordObj.id;
     
+    let questionData = null;
+    
+    // 1. التحقق من الأسئلة المخصصة للمستخدم
+    if (this.userGapFillQuestions && this.userGapFillQuestions[wordId] && this.userGapFillQuestions[wordId].length > 0) {
+        if (!this.gapFillUsedQuestions[wordId]) this.gapFillUsedQuestions[wordId] = [];
+        let availableCustom = this.userGapFillQuestions[wordId].filter((_, idx) => !this.gapFillUsedQuestions[wordId].includes(idx));
+        if (availableCustom.length === 0) {
+            this.gapFillUsedQuestions[wordId] = [];
+            availableCustom = this.userGapFillQuestions[wordId];
+        }
+        const randomIndex = Math.floor(Math.random() * availableCustom.length);
+        const customQ = availableCustom[randomIndex];
+        const originalIndex = this.userGapFillQuestions[wordId].findIndex(q => q === customQ);
+        this.gapFillUsedQuestions[wordId].push(originalIndex);
+        questionData = customQ;
+    }
+    
+    // 2. إذا لم توجد أسئلة مخصصة، حاول استخدام بنك الأسئلة العام
+    if (!questionData && window.gapfillDB && window.gapfillDB[wordId] && window.gapfillDB[wordId].length > 0) {
+        const questionsForWord = window.gapfillDB[wordId];
+        if (!this.gapFillUsedQuestions[wordId]) this.gapFillUsedQuestions[wordId] = [];
+        let availableQuestions = questionsForWord.filter((_, idx) => !this.gapFillUsedQuestions[wordId].includes(idx));
+        if (availableQuestions.length === 0) {
+            this.gapFillUsedQuestions[wordId] = [];
+            availableQuestions = questionsForWord;
+        }
+        const randomIndex = Math.floor(Math.random() * availableQuestions.length);
+        questionData = availableQuestions[randomIndex];
+        const originalIndex = questionsForWord.findIndex(q => q === questionData);
+        this.gapFillUsedQuestions[wordId].push(originalIndex);
+    }
+    
+    // 3. إذا لم يوجد أي سؤال، قم بإنشاء سؤال ديناميكي افتراضي
+    if (!questionData) {
+        questionData = this.generateDynamicGapFillQuestion(targetWordObj);
+    }
+    
+    while (questionData.options.length < 4) questionData.options.push('???');
+    this.shuffleArray(questionData.options);
+    this.gapFillCurrentQuestion = {
+        text: questionData.sentence,
+        correct: targetWord,
+        arabic: targetArabic,
+        originalSentence: questionData.originalSentence || questionData.sentence.replace('______', targetWord),
+        originalSentenceArabic: '',
+        wordId: wordId
+    };
+    this.gapFillOptions = questionData.options;
+    this.gapFillAnswered = false;
+    this.gapFillResult = null;
+    this.gapFillExplanation = '';
+    this.gapFillOptionsMeanings = [];
+    this.gapFillExplanationVisible = false;
+    this.render();
+}    
     handleGapFillAnswer(selectedEnglish) { if (this.gapFillAnswered || !this.gapFillCurrentQuestion) return; this.gapFillAnswered = true; const isCorrect = (selectedEnglish.trim().toLowerCase() === this.gapFillCurrentQuestion.correct.trim().toLowerCase()); this.playTone(isCorrect ? 'correct' : 'error'); this.gapFillResult = isCorrect ? 'correct' : 'wrong'; const allOptions = document.querySelectorAll('.gapfill-opt-btn'); allOptions.forEach(btn => { btn.disabled = true; btn.classList.remove('correct-answer', 'wrong-answer', 'other-option'); if (btn.dataset.english === this.gapFillCurrentQuestion.correct) btn.classList.add('correct-answer'); else if (btn.dataset.english === selectedEnglish && !isCorrect) btn.classList.add('wrong-answer'); else btn.classList.add('other-option'); }); const lesson = this.getCurrentLessonData(); const allTerms = lesson ? [...lesson.terms, ...this.userVocabulary.filter(v => v.lessonId == this.selectedLessonId)] : []; this.gapFillOptionsMeanings = this.gapFillOptions.map(opt => { const term = allTerms.find(t => t.english === opt); if (term) return { english: opt, arabic: term.arabic }; return { english: opt, arabic: 'معنى غير متاح' }; }); if (isCorrect) { if (this.gapFillRemainingWords && this.gapFillRemainingWords.length > 0) this.gapFillRemainingWords.shift(); this.addGapFillCorrectReward(this.gapFillCurrentQuestion.wordId); } else { this.recordTotalAnswer('gapFill'); if (this.gapFillRemainingWords && this.gapFillRemainingWords.length > 0) { const currentWord = this.gapFillRemainingWords.shift(); const len = this.gapFillRemainingWords.length; if (len > 0) { const randomIndex = Math.floor(Math.random() * len) + 1; this.gapFillRemainingWords.splice(randomIndex, 0, currentWord); } else this.gapFillRemainingWords.push(currentWord); } } this.gapFillExplanation = isCorrect ? this.t(`✅ إجابة صحيحة! كلمة "${this.gapFillCurrentQuestion.correct}" تعني "${this.gapFillCurrentQuestion.arabic}" في العربية.`, `✅ Correct answer! The word "${this.gapFillCurrentQuestion.correct}" means "${this.gapFillCurrentQuestion.arabic}" in Arabic.`) : this.t(`❌ إجابة خاطئة. الإجابة الصحيحة هي "${this.gapFillCurrentQuestion.correct}" (${this.gapFillCurrentQuestion.arabic}).`, `❌ Wrong answer. The correct answer is "${this.gapFillCurrentQuestion.correct}" (${this.gapFillCurrentQuestion.arabic}).`); this.render(); }
     
     handleGapFillNext() { if (this.gapFillRemainingWords.length === 0) { alert(this.t('🎉 تهانينا! أكملت جميع الكلمات.', '🎉 Congratulations! You completed all words.')); this.currentPage = 'reading'; } else this.prepareGapFill(); this.render(); }
