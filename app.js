@@ -570,6 +570,10 @@ class App {
                 this.spellingUnlocked = data.spellingUnlocked ?? {};
                 this.gapFillUnlocked = data.gapFillUnlocked ?? {};
                 this.customLessons = data.customLessons ?? {};
+                Object.values(this.customLessons).forEach(lesson => {
+    window.lessonsData[lesson.id] = lesson;
+});
+
                 this.generatedLessons = data.generatedLessons ?? {};
                 
                 if (data.adDailyData) this.adDailyData = data.adDailyData;
@@ -3011,7 +3015,7 @@ checkCatAnswer(selectedAnswer, correctAnswer, btnElement) {
         }
         
         if (this.currentPage === 'reading') { 
-            const audioSrc = lesson.audio || `audio/${lesson.id}.mp3`; 
+const audioSrc = (lesson.audio && lesson.audio !== "undefined" && lesson.audio !== null) ? lesson.audio : `audio/${lesson.id}.mp3`;
             return `<main class="main-content"><div style="display: flex; align-items: center; gap: 8px; margin-bottom: 10px; flex-wrap: wrap;"><button class="hero-btn" data-action="backToLessons" style="background:#64748b; padding:6px 12px;">⬅ ${this.t('تراجع', 'Back')}</button><div style="display: flex; gap: 4px; background: #f0f0f0; padding: 4px; border-radius: 8px; flex-wrap: wrap;"><button class="hero-btn" data-action="playAudio" data-param="${audioSrc}" style="background:#3b82f6; padding:5px 8px; font-size:0.75rem;">▶️ ${this.t('تشغيل', 'Play')}</button><button class="hero-btn" data-action="pauseAudio" style="background:#f59e0b; padding:5px 8px; font-size:0.75rem;">⏸️ ${this.t('إيقاف مؤقت', 'Pause')}</button><button class="hero-btn" data-action="stopAudio" style="background:#ef4444; padding:5px 8px; font-size:0.75rem;">⏹️ ${this.t('إيقاف', 'Stop')}</button><button class="hero-btn" data-action="skipBack10" style="background:#8b5cf6; padding:5px 8px; font-size:0.75rem;">⏪ 10</button><button class="hero-btn" data-action="skipForward10" style="background:#8b5cf6; padding:5px 8px; font-size:0.75rem;">10 ⏩</button><button class="hero-btn" data-action="speedDown" style="background:#8b5cf6; padding:5px 8px; font-size:0.75rem;">🐢</button><span style="background:#fff; padding:3px 6px; border-radius:5px; font-size:0.7rem;">${this.audioPlaybackRate.toFixed(2)}x</span><button class="hero-btn" data-action="speedUp" style="background:#8b5cf6; padding:5px 8px; font-size:0.75rem;">🐇</button></div></div><div class="reading-card"><h2 style="font-size:1.2rem;">${lesson.title}</h2><div class="scrollable-text" style="margin-top:10px; font-size:0.9rem;">${lesson.content}</div></div><div class="reading-card" style="margin-top:15px; border:1px dashed #6366f1; background:#f0f7ff;"><h4 style="margin-bottom:8px;">${this.t('إضافة كلمة جديدة:', 'Add New Word:')}</h4><input id="newEng" placeholder="${this.t('اكتب بالإنجليزية هنا...', 'Write in English here...')}" style="width:100%; padding:8px; border-radius:8px; border:1px solid #ddd;" oninput="appInstance.translateAuto(this.value, 'newArb')"><input id="newArb" placeholder="${this.t('الترجمة تظهر هنا...', 'Translation will appear here...')}" style="width:100%; padding:8px; margin:8px 0; border-radius:8px; border:1px solid #ddd; background:#fff;"><button class="hero-btn" data-action="addNewWord" style="width:100%; background:#10b981; padding:8px;">✅ ${this.t('إضافة للقائمة', 'Add to List')}</button></div></main>`;
         }
 
@@ -3117,25 +3121,24 @@ checkCatAnswer(selectedAnswer, correctAnswer, btnElement) {
         } 
     }
     
-    saveNewCustomLesson() { 
-        const titleInput = document.getElementById('newLessonTitle'); 
-        const contentInput = document.getElementById('ocrText'); 
-        if (!titleInput || !contentInput) return; 
-        const title = titleInput.value.trim() || (this.t("نص مخصص ", "Custom text ") + new Date().toLocaleDateString()); 
-        const content = contentInput.value.trim(); 
-        if (content) { 
-            const id = 'c' + Date.now(); 
-            const newL = { id, title, content, terms: [] }; 
-            this.customLessons[id] = newL; 
-            window.lessonsData[id] = newL; 
-            this.saveUserData(); 
-            titleInput.value = ''; 
-            contentInput.value = ''; 
-            this.currentPage = 'custom_lessons_view'; 
-            this.render(); 
-        } 
-    }
-    
+saveNewCustomLesson() { 
+    const titleInput = document.getElementById('newLessonTitle'); 
+    const contentInput = document.getElementById('ocrText'); 
+    if (!titleInput || !contentInput) return; 
+    const title = titleInput.value.trim() || (this.t("نص مخصص ", "Custom text ") + new Date().toLocaleDateString()); 
+    const content = contentInput.value.trim(); 
+    if (content) { 
+        const id = 'c' + Date.now(); 
+        const newL = { id, title, content, terms: [], audio: null };  // إضافة audio: null
+        this.customLessons[id] = newL; 
+        window.lessonsData[id] = newL; 
+        this.saveUserData(); 
+        titleInput.value = ''; 
+        contentInput.value = ''; 
+        this.currentPage = 'custom_lessons_view'; 
+        this.render(); 
+    } 
+}    
     editLessonTitle(id) { 
         const newTitle = prompt(this.t("العنوان الجديد:", "New title:"), this.customLessons[id].title); 
         if (newTitle && newTitle.trim()) { 
@@ -3146,15 +3149,19 @@ checkCatAnswer(selectedAnswer, correctAnswer, btnElement) {
         } 
     }
     
-    editLessonContent(id) { 
-        const newC = prompt(this.t("تعديل نص الموضوع:", "Edit text content:"), this.customLessons[id].content); 
-        if (newC && newC.trim()) { 
-            this.customLessons[id].content = newC.trim(); 
-            if (window.lessonsData[id]) window.lessonsData[id].content = newC.trim(); 
-            this.saveUserData(); 
-            this.render(); 
-        } 
-    }
+editLessonContent(id) { 
+    const newC = prompt(this.t("تعديل نص الموضوع:", "Edit text content:"), this.customLessons[id].content); 
+    if (newC && newC.trim()) { 
+        this.customLessons[id].content = newC.trim(); 
+        this.customLessons[id].audio = null;  // إعادة تعيين الصوت إلى null
+        if (window.lessonsData[id]) {
+            window.lessonsData[id].content = newC.trim();
+            window.lessonsData[id].audio = null;
+        }
+        this.saveUserData(); 
+        this.render(); 
+    } 
+}
     
     deleteCustomLesson(id) { 
         this.showConfirmModal(this.t('هل أنت متأكد من حذف هذا النص نهائياً؟', 'Are you sure you want to permanently delete this text?'), () => { 
