@@ -640,6 +640,7 @@ class App {
         if (!this.currentUser || this.loadingData || !this.isDataLoaded || !this.canSave) return;
         const uid = this.currentUser.uid;
         const data = {
+            userGapFillQuestions: this.userGapFillQuestions || {},
             userVocabulary: this.userVocabulary || [],
             masteredWords: this.masteredWords || [],
             userModifiedWords: this.userModifiedWords || {}, 
@@ -668,7 +669,6 @@ class App {
             spellingCorrectWords: this.spellingCorrectWords || [],
             gapFillCorrectWords: this.gapFillCorrectWords || [],
             lastUpdated: new Date().toISOString()
-            userGapFillQuestions: this.userGapFillQuestions || {},
         };
         try {
             await setDoc(doc(db, "users", uid), data, { merge: true });
